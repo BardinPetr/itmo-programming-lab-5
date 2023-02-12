@@ -1,4 +1,4 @@
-package data;
+package ru.bardinpetr.itmo.lab5.models.data;
 
 public enum Position {
     CLEANER(0),
@@ -7,12 +7,13 @@ public enum Position {
     LEAD_DEVELOPER(3),
     HEAD_OF_DEPARTMENT(4);
 
-    private int value;
-    Position(int value){
+    private final int value;
+
+    Position(int value) {
         this.value = value;
     }
 
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 }
