@@ -1,8 +1,10 @@
 package ru.bardinpetr.itmo.lab5.models.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+import lombok.extern.jackson.Jacksonized;
 import ru.bardinpetr.itmo.lab5.models.exceptions.WrongDataException;
 
 import java.time.LocalDateTime;
@@ -10,11 +12,17 @@ import java.util.Comparator;
 
 @Data
 @Builder
+@Jacksonized
+@AllArgsConstructor
 public class Worker implements Comparable<Worker> {
     private static Long nextId = 0L;
 
-    private final Long id = nextId++;
-    private final java.time.LocalDateTime creationDate = LocalDateTime.now();
+    @NonNull
+    @Builder.Default
+    private Long id = nextId++;
+    @NonNull
+    @Builder.Default
+    private java.time.LocalDateTime creationDate = LocalDateTime.now();
 
     @NonNull
     private String name;
@@ -51,7 +59,7 @@ public class Worker implements Comparable<Worker> {
         this.salary = salary;
     }
 
-    public void setName(String name) throws WrongDataException {
+    public void setName(@NonNull String name) throws WrongDataException {
         if (name.isEmpty()) throw new WrongDataException("name must be not empty");
         this.name = name;
     }

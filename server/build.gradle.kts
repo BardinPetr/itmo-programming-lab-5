@@ -9,7 +9,5 @@ application {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.4.1")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.13.4.1")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.0")
+    implementation(project(":models"))
 }

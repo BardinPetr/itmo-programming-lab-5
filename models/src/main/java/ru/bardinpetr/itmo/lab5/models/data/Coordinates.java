@@ -3,12 +3,14 @@ package ru.bardinpetr.itmo.lab5.models.data;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+import lombok.extern.jackson.Jacksonized;
 import ru.bardinpetr.itmo.lab5.models.exceptions.WrongDataException;
 
 //import javax.validation.constraints.Min;
 
 @Data
 @Builder
+@Jacksonized
 public class Coordinates implements Comparable<Coordinates> {
     @NonNull
 //    @Min(-719)

@@ -1,0 +1,54 @@
+package ru.bardinpetr.itmo.lab5.models.serdes;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
+
+/**
+ * Abstract class representing java object serializer/deserializer for type {@code T}.
+ * Uses Jackson ObjectMapper as backend.
+ *
+ * @param <T> base class to operate on
+ */
+abstract class SerDesService<T> {
+    private final ObjectMapper mapper = getObjectMapper();
+
+    /**
+     * Override this function with own creation and configuration of {@link ObjectMapper}
+     *
+     * @return Configured ObjectMapper
+     */
+    protected abstract ObjectMapper getObjectMapper();
+
+    /**
+     * Serialize object to string or throw exception if impossible.
+     *
+     * @param object input object.
+     * @return String
+     * @throws SerDesException thrown if serialization failed
+     */
+    public String serialize(T object) throws SerDesException {
+        try {
+            return mapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            throw new SerDesException(SerDesException.Type.SERIALIZE, e);
+        }
+    }
+
+    /**
+     * Deserialize string to object or throw exception if impossible.
+     * Allows polymorphism for target type.
+     *
+     * @param data    string to deserialize
+     * @param objType target type, must be a child of {@code T}
+     * @return deserialized object as {@code objType}
+     * @throws SerDesException thrown if deserialization failed
+     */
+    public T deserialize(String data, Class<? extends T> objType) throws SerDesException {
+        try {
+            return mapper.readValue(data, objType);
+        } catch (JsonProcessingException e) {
+            throw new SerDesException(SerDesException.Type.DESERIALIZE, e);
+        }
+    }
+}
