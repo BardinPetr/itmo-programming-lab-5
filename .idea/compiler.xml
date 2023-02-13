@@ -15,6 +15,6 @@
         <module name="itmo-programming-lab-5.models.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="16" />
+    <bytecodeTargetLevel target="18" />
   </component>
 </project>
