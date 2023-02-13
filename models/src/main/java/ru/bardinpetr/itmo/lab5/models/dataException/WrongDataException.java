@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.models.exceptions;
+package ru.bardinpetr.itmo.lab5.models.dataException;
 
 public class WrongDataException extends Exception {
 
@@ -8,7 +8,7 @@ public class WrongDataException extends Exception {
         this.msg = msg;
     }
 
-    public String getExceptionIngo() {
+    public String getExceptionInfo() {
         return msg;
     }
 }
