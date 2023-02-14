@@ -3,17 +3,18 @@ package ru.bardinpetr.itmo.lab5.server;
 import ru.bardinpetr.itmo.lab5.models.data.*;
 import ru.bardinpetr.itmo.lab5.models.serdes.XMLSerDesService;
 import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
-import ru.bardinpetr.itmo.lab5.server.filedb.FileIOController;
+import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 import ru.bardinpetr.itmo.lab5.server.filedb.exceptions.FileAccessException;
+import ru.bardinpetr.itmo.lab5.server.filedb.exceptions.InvalidDataFileException;
+import ru.bardinpetr.itmo.lab5.server.filedb.io.FileIOController;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Date;
 
 public class Main {
-    public static void main(String[] args) throws SerDesException, FileAccessException {
-        var a = new XMLSerDesService<WorkerCollection>();
+    public static void main(String[] args) throws SerDesException, FileAccessException, InvalidDataFileException {
+        var serdes = new XMLSerDesService<WorkerCollection>();
         var b = new WorkerCollection();
         b.add(
                 Worker.builder()
@@ -39,14 +40,14 @@ public class Main {
                         .startDate(Date.from(Instant.now()))
                         .build()
         );
-//        var s = a.serialize(b);
+//        var s = serdes.serialize(b);
 //        System.out.println(s);
-//        System.out.println(a.deserialize(s, WorkerCollection.class));
+//        System.out.println(serdes.deserialize(s, WorkerCollection.class));
 
-        var f = new FileIOController("/home/petr/Desktop/itmo-programming-lab-5/f.dat");
-        f.write(a.serialize(b));
-        System.out.println(Arrays.toString(f.read()));
-        f.clear();
-        System.out.println(Arrays.toString(f.read()));
+        var file = new FileIOController("/home/petr/Desktop/itmo-programming-lab-5/f.dat");
+        var db = new FileDBController<>(file, serdes);
+        db.store(b);
+        var res = db.load(WorkerCollection.class);
+        System.out.println(res);
     }
 }

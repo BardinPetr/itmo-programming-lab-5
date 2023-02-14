@@ -12,7 +12,7 @@ import java.io.IOException;
  *
  * @param <T> base class to operate on
  */
-abstract class SerDesService<T> {
+public abstract class SerDesService<T> {
     private final ObjectMapper mapper = getObjectMapper();
 
     /**

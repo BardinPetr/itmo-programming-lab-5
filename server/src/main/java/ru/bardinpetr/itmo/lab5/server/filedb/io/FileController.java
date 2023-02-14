@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.server.filedb;
+package ru.bardinpetr.itmo.lab5.server.filedb.io;
 
 import lombok.NonNull;
 import ru.bardinpetr.itmo.lab5.server.filedb.exceptions.FileAccessException;
@@ -125,5 +125,12 @@ public class FileController {
         } catch (Exception ignored) {
             return false;
         }
+    }
+
+    /**
+     * @return Get file path
+     */
+    public String getPath() {
+        return file.getAbsolutePath();
     }
 }
