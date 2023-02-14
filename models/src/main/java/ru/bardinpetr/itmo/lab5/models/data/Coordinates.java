@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.extern.jackson.Jacksonized;
-import ru.bardinpetr.itmo.lab5.models.dataException.WrongDataException;
 
 //import javax.validation.constraints.Min;
 

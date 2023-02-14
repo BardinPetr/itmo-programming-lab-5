@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.models.dataException;
+package ru.bardinpetr.itmo.lab5.models.data.exception;
 
 public class WrongDataException extends Exception {
 
