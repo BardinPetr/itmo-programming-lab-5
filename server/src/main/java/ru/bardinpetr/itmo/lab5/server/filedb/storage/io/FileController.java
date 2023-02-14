@@ -1,7 +1,7 @@
-package ru.bardinpetr.itmo.lab5.server.filedb.io;
+package ru.bardinpetr.itmo.lab5.server.filedb.storage.io;
 
 import lombok.NonNull;
-import ru.bardinpetr.itmo.lab5.server.filedb.exceptions.FileAccessException;
+import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.FileAccessException;
 
 import java.io.File;
 import java.io.IOException;

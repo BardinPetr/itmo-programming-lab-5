@@ -15,7 +15,7 @@ import java.util.Comparator;
 @Builder
 @Jacksonized
 @AllArgsConstructor
-public class Worker implements Comparable<Worker>{
+public class Worker implements Comparable<Worker> {
     private static Long nextId = 0L;
     @NonNull
     @Builder.Default
@@ -39,7 +39,6 @@ public class Worker implements Comparable<Worker>{
     private Position position;
 
     /**
-     *
      * @param worker the object to be compared.
      * @return
      */
@@ -59,9 +58,8 @@ public class Worker implements Comparable<Worker>{
                 ).compare(this, worker);
     }
 
-    public void check() throws WrongDataException{
+    public void check() throws WrongDataException {
         if (salary < 0) throw new WrongDataException("salary must be greater than 0");
         if (name.isEmpty()) throw new WrongDataException("name must be not empty");
     }
-
 }

@@ -13,7 +13,39 @@ import java.io.IOException;
  * @param <T> base class to operate on
  */
 public abstract class SerDesService<T> {
-    private final ObjectMapper mapper = getObjectMapper();
+    private final ObjectMapper mapper;
+    private final Class<? extends T> baseClass;
+
+    /**
+     * Initialize ObjectMapper specified getObjectMapper
+     * to enable injecting type names into data what allows use of polymorphism.
+     *
+     * @param baseClass allow deserialization of this class and all its children
+     */
+    public SerDesService(Class<? extends T> baseClass) {
+        this.baseClass = baseClass;
+
+        mapper = getObjectMapper();
+//        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        // Allow to deserialize all classes from .lab5.models and standard java types
+//        var modelsPackage = getClass().getPackageName().replaceFirst("\\.\\w+$", "");
+//        var validator =
+//                BasicPolymorphicTypeValidator
+//                        .builder()
+//                        .allowIfBaseType(Pattern.compile(".*"))
+//                        .allowIfSubType(modelsPackage)
+//                        .allowIfSubTypeIsArray()
+//                        .allowIfSubType("java")
+//                        .build();
+//
+//        // Include type info as property (works for XML, as well as for JSON)
+//        mapper.activateDefaultTyping(
+//                validator,
+//                ObjectMapper.DefaultTyping.NON_FINAL,
+//                JsonTypeInfo.As.WRAPPER_OBJECT
+//        );
+    }
 
     /**
      * Override this function with own creation and configuration of {@link ObjectMapper}
@@ -41,14 +73,13 @@ public abstract class SerDesService<T> {
      * Deserialize string to object or throw exception if impossible.
      * Allows polymorphism for target type.
      *
-     * @param data    string to deserialize
-     * @param objType target type, must be a child of {@code T}
+     * @param data string to deserialize
      * @return deserialized object as {@code objType}
      * @throws SerDesException thrown if deserialization failed
      */
-    public T deserialize(byte[] data, Class<? extends T> objType) throws SerDesException {
+    public T deserialize(byte[] data) throws SerDesException {
         try {
-            return mapper.readValue(data, objType);
+            return mapper.readValue(data, baseClass);
         } catch (IOException e) {
             throw new SerDesException(SerDesException.Type.DESERIALIZE, e);
         }

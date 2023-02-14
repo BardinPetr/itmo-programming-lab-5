@@ -16,6 +16,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class XMLSerDesService<T> extends SerDesService<T> {
 
+    public XMLSerDesService(Class<? extends T> baseClass) {
+        super(baseClass);
+    }
+
     @Override
     protected ObjectMapper getObjectMapper() {
         var mapper = new XmlMapper();

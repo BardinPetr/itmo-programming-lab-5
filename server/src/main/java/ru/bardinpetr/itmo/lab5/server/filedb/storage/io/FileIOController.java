@@ -1,7 +1,7 @@
-package ru.bardinpetr.itmo.lab5.server.filedb.io;
+package ru.bardinpetr.itmo.lab5.server.filedb.storage.io;
 
 import lombok.NonNull;
-import ru.bardinpetr.itmo.lab5.server.filedb.exceptions.FileAccessException;
+import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.FileAccessException;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,7 +32,7 @@ public class FileIOController extends FileController {
         try {
             return new FileInputStream(file);
         } catch (FileNotFoundException | SecurityException ex) {
-            throw new FileAccessException(ex, file, FileAccessException.OperationType.PERM_WRITE);
+            throw new FileAccessException(ex, file, FileAccessException.OperationType.PERM_READ);
         }
     }
 
@@ -50,7 +50,7 @@ public class FileIOController extends FileController {
         try {
             return new FileOutputStream(file);
         } catch (FileNotFoundException | SecurityException ex) {
-            throw new FileAccessException(ex, file, FileAccessException.OperationType.PERM_READ);
+            throw new FileAccessException(ex, file, FileAccessException.OperationType.PERM_WRITE);
         }
     }
 
@@ -78,7 +78,7 @@ public class FileIOController extends FileController {
         try (var stream = openReadStream()) {
             return stream.readAllBytes();
         } catch (IOException ex) {
-            throw new FileAccessException(file, FileAccessException.OperationType.WRITE);
+            throw new FileAccessException(file, FileAccessException.OperationType.READ);
         }
     }
 

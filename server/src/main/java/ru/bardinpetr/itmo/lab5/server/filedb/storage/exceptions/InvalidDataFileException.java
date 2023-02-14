@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.server.filedb.exceptions;
+package ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions;
 
 import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
 
@@ -8,7 +8,6 @@ import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
 public class InvalidDataFileException extends Exception {
     private final String path;
     private final byte[] contents;
-    private final SerDesException originalException;
 
     /**
      * @param path              DB file path
@@ -16,9 +15,9 @@ public class InvalidDataFileException extends Exception {
      * @param originalException Exception thrown by deserializer
      */
     public InvalidDataFileException(String path, byte[] contents, SerDesException originalException) {
+        super(originalException);
         this.path = path;
         this.contents = contents;
-        this.originalException = originalException;
     }
 
     public String getPath() {
@@ -27,12 +26,5 @@ public class InvalidDataFileException extends Exception {
 
     public byte[] getContents() {
         return contents;
-    }
-
-    /**
-     * @return deserializer's exception caused this error
-     */
-    public SerDesException getOriginalException() {
-        return originalException;
     }
 }
