@@ -10,4 +10,9 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 public class AddIfMinCommand extends Command{
     public final String TYPE = "add_if_min";
     public Worker element;
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }

@@ -9,4 +9,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class SaveCommand extends Command{
     public final String TYPE = "save";
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }

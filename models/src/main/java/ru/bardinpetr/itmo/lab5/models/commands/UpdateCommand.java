@@ -7,6 +7,12 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
  */
 @Data
 public class UpdateCommand extends Command{
+    public final String TYPE = "update";
     public int id;
     public Worker element;
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }

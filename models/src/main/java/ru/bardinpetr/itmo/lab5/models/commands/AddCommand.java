@@ -12,7 +12,9 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
  */
 @Data
 public class AddCommand extends Command{
-    public final String TYPE = "add";
     public Worker element;
-
+    @Override
+    public String getType() {
+        return "Add";
+    }
 }

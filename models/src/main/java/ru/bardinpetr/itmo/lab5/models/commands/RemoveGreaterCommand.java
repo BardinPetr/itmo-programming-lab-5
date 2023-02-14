@@ -11,4 +11,9 @@ public class RemoveGreaterCommand extends Command{
     public final String TYPE = "remove_greater";
     public Worker element;
 
+    @Override
+    public String getType() {
+        return TYPE;
+    }
+
 }

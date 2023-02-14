@@ -9,4 +9,9 @@ import lombok.Data;
 @Data
 public class PrintUniqueOrganisation extends Command{
     public final String TYPE = "print_unique_organization ";
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }

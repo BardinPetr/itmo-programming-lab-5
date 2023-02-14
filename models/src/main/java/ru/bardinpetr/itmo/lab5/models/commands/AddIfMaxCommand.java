@@ -10,4 +10,9 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 public class AddIfMaxCommand extends Command{
     public final String TYPE = "add_if_max";
     public Worker element;
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }
