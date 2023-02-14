@@ -8,4 +8,9 @@ import lombok.Data;
 @Data
 public class InfoCommand extends Command{
     public final String TYPE = "info";
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }

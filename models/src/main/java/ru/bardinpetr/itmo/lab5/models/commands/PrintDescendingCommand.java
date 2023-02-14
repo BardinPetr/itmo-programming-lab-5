@@ -9,4 +9,9 @@ import lombok.Data;
 public class PrintDescendingCommand extends Command{
     public final String TYPE = "print_descending";
 
+    @Override
+    public String getType() {
+        return TYPE;
+    }
+
 }

@@ -19,6 +19,18 @@ public class WorkerValidation {
     }
 
     /**
+     * @param id Worker's id
+     * @return response with error message
+     */
+    public static ValidationResponse validateId(Long id){
+        return (id <= 0) ?
+                new ValidationResponse(false, "id must be greater than 0") :
+                new ValidationResponse(true, "");
+    }
+
+
+
+    /**
      * @param coordinates Worker's coordinates
      * @return response with error message
      */
@@ -41,6 +53,7 @@ public class WorkerValidation {
      * @return response with error message
      */
     public static ValidationResponse validateAll(Worker worker){
+        if (!validateId(worker.getId()).allowed) return validateId(worker.getId());
         if (!validateName(worker.getName()).allowed) return validateName(worker.getName());
         if (!validateCoordinate(worker.getCoordinates()).allowed) return validateCoordinate(worker.getCoordinates());
         if (!validateSalary(worker.getSalary()).allowed) return validateSalary(worker.getSalary());

@@ -7,4 +7,9 @@ import lombok.Data;
 public class ExecuteScriptCommand extends Command{
     public final String TYPE = "execute_script";
     public String fileName;
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }

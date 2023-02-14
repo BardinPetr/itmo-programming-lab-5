@@ -12,4 +12,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class ClearCommand extends Command{
     public final String TYPE = "clear";
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }

@@ -7,4 +7,9 @@ import lombok.Data;
 @Data
 public class HelpCommand extends Command{
     public final String TYPE = "help";
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }

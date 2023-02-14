@@ -7,13 +7,9 @@ public enum Position {
     LEAD_DEVELOPER(3),
     HEAD_OF_DEPARTMENT(4);
 
-    private final int value;
+    public final int value;
 
     Position(int value) {
         this.value = value;
-    }
-
-    public int getValue() {
-        return value;
     }
 }

@@ -9,4 +9,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class ExitCommand extends Command{
     public final String TYPE = "exit";
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }

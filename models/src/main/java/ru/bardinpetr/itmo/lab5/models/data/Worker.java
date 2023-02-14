@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.extern.jackson.Jacksonized;
-import ru.bardinpetr.itmo.lab5.models.dataException.WrongDataException;
+import ru.bardinpetr.itmo.lab5.models.data.exception.WrongDataException;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -56,10 +56,5 @@ public class Worker implements Comparable<Worker> {
                                 .thenComparing(Worker::getCreationDate)
                                 .thenComparing(Worker::getId)
                 ).compare(this, worker);
-    }
-
-    public void check() throws WrongDataException {
-        if (salary < 0) throw new WrongDataException("salary must be greater than 0");
-        if (name.isEmpty()) throw new WrongDataException("name must be not empty");
     }
 }

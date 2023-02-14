@@ -11,4 +11,9 @@ public class FilterLessPosCommand extends Command{
     public final String TYPE = "filter_less_than_position";
     public Position position;
 
+    @Override
+    public String getType() {
+        return TYPE;
+    }
+
 }

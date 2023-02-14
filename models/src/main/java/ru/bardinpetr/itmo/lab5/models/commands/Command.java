@@ -5,9 +5,6 @@ import lombok.Data;
  * General class for all commands
  */
 @Data
-public class Command {
-    public final String TYPE = "CMD";
-
-    public Command(){
-    }
+public abstract class Command {
+    public abstract String getType();
 }

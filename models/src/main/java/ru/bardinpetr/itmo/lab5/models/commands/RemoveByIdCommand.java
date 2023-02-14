@@ -9,4 +9,9 @@ import lombok.Data;
 public class RemoveByIdCommand extends Command{
     public final String TYPE = "removeById";
     public int id;
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 }
