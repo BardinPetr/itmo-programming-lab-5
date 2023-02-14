@@ -20,19 +20,11 @@ public class Coordinates implements Comparable<Coordinates> {
     /**
      *
      * @param other the object to be compared.
-     * @return
+     * @return < 0 than other object is greater, > 0 this object is greater
      */
     @Override
     public int compareTo(Coordinates other) {
         return (x + y) - (other.x + other.y);
     }
-
-    /**
-     * method for checking fields values
-     * @throws WrongDataException
-     */
-
-    public void check() throws WrongDataException{
-        if (x <= -720) throw new WrongDataException("X coordinates must be greater than -720");
-    }
+    
 }
