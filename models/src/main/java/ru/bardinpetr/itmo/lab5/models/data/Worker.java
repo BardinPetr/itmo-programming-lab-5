@@ -5,18 +5,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.extern.jackson.Jacksonized;
-import ru.bardinpetr.itmo.lab5.models.exceptions.WrongDataException;
+import ru.bardinpetr.itmo.lab5.models.dataException.WrongDataException;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
+
 
 @Data
 @Builder
 @Jacksonized
 @AllArgsConstructor
-public class Worker implements Comparable<Worker> {
+public class Worker implements Comparable<Worker>{
     private static Long nextId = 0L;
-
     @NonNull
     @Builder.Default
     private Long id = nextId++;
@@ -38,6 +38,11 @@ public class Worker implements Comparable<Worker> {
     private java.time.LocalDateTime endDate;
     private Position position;
 
+    /**
+     *
+     * @param worker the object to be compared.
+     * @return
+     */
     public int compareTo(@NonNull Worker worker) {
         return Comparator
                 .nullsLast(
@@ -54,13 +59,9 @@ public class Worker implements Comparable<Worker> {
                 ).compare(this, worker);
     }
 
-    public void setSalary(@NonNull Float salary) throws WrongDataException {
+    public void check() throws WrongDataException{
         if (salary < 0) throw new WrongDataException("salary must be greater than 0");
-        this.salary = salary;
+        if (name.isEmpty()) throw new WrongDataException("name must be not empty");
     }
 
-    public void setName(@NonNull String name) throws WrongDataException {
-        if (name.isEmpty()) throw new WrongDataException("name must be not empty");
-        this.name = name;
-    }
 }

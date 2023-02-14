@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.extern.jackson.Jacksonized;
-import ru.bardinpetr.itmo.lab5.models.exceptions.WrongDataException;
+import ru.bardinpetr.itmo.lab5.models.dataException.WrongDataException;
 
 //import javax.validation.constraints.Min;
 
@@ -17,13 +17,14 @@ public class Coordinates implements Comparable<Coordinates> {
     private Integer x; // Значение поля должно быть больше -720
     private int y;
 
+    /**
+     *
+     * @param other the object to be compared.
+     * @return < 0 than other object is greater, > 0 this object is greater
+     */
     @Override
     public int compareTo(Coordinates other) {
         return (x + y) - (other.x + other.y);
     }
-
-    public void setX(Integer x) throws WrongDataException {
-        if (x <= -720) throw new WrongDataException("X coordinates must be greater than -720");
-        this.x = x;
-    }
+    
 }
