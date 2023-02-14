@@ -58,6 +58,8 @@ public class FileAccessException extends Exception {
      */
     public enum OperationType {
         READ, WRITE,
+        PERM_READ("no read permission for current user"),
+        PERM_WRITE("no write permission for current user"),
         CREATE,
         OPEN("may be not a regular file or have invalid path"),
         SET_PERMISSION("failed to update permissions");

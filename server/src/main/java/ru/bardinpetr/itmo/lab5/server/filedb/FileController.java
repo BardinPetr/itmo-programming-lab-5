@@ -87,8 +87,8 @@ public class FileController {
      * @throws FileAccessException if file is not readable
      */
     protected void checkWriteAccess() throws FileAccessException {
-        if (!file.canRead())
-            throw new FileAccessException(file, FileAccessException.OperationType.READ);
+        if (!file.canWrite())
+            throw new FileAccessException(file, FileAccessException.OperationType.PERM_WRITE);
     }
 
     /**
@@ -97,8 +97,8 @@ public class FileController {
      * @throws FileAccessException if file is not writable
      */
     protected void checkReadAccess() throws FileAccessException {
-        if (!file.canWrite())
-            throw new FileAccessException(file, FileAccessException.OperationType.WRITE);
+        if (!file.canRead())
+            throw new FileAccessException(file, FileAccessException.OperationType.PERM_READ);
     }
 
     /**

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
 
+import java.io.IOException;
+
 /**
  * Abstract class representing java object serializer/deserializer for type {@code T}.
  * Uses Jackson ObjectMapper as backend.
@@ -27,9 +29,9 @@ abstract class SerDesService<T> {
      * @return String
      * @throws SerDesException thrown if serialization failed
      */
-    public String serialize(T object) throws SerDesException {
+    public byte[] serialize(T object) throws SerDesException {
         try {
-            return mapper.writeValueAsString(object);
+            return mapper.writeValueAsBytes(object);
         } catch (JsonProcessingException e) {
             throw new SerDesException(SerDesException.Type.SERIALIZE, e);
         }
@@ -44,10 +46,10 @@ abstract class SerDesService<T> {
      * @return deserialized object as {@code objType}
      * @throws SerDesException thrown if deserialization failed
      */
-    public T deserialize(String data, Class<? extends T> objType) throws SerDesException {
+    public T deserialize(byte[] data, Class<? extends T> objType) throws SerDesException {
         try {
             return mapper.readValue(data, objType);
-        } catch (JsonProcessingException e) {
+        } catch (IOException e) {
             throw new SerDesException(SerDesException.Type.DESERIALIZE, e);
         }
     }
