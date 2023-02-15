@@ -1,26 +1,20 @@
 package ru.bardinpetr.itmo.lab5.models.data;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 import lombok.extern.jackson.Jacksonized;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.Date;
 
 
 @Data
-@Builder
 @Jacksonized
-@AllArgsConstructor
 public class Worker implements Comparable<Worker> {
     private static Long nextId = 0L;
     @NonNull
-    @Builder.Default
-    private Long id = nextId++;
+    private Long id;
     @NonNull
-    @Builder.Default
     private java.time.LocalDateTime creationDate = LocalDateTime.now();
 
     @NonNull
@@ -36,7 +30,62 @@ public class Worker implements Comparable<Worker> {
 
     private java.time.LocalDateTime endDate;
     private Position position;
+    
+    public Worker(){};
 
+    public static workerBuilder builder(){
+        return new workerBuilder();
+    }
+    public static class workerBuilder{
+        private Worker worker= new Worker();
+        public workerBuilder(){
+            worker.id = Worker.nextId;
+            Worker.nextId++;
+        }
+
+        public workerBuilder coordinates(Coordinates coordinates){
+            worker.coordinates = coordinates;
+            return this;
+        }
+        public workerBuilder endDate(LocalDateTime localDateTime){
+            worker.endDate = localDateTime;
+            return this;
+        }
+        public workerBuilder name(String name){
+            worker.name = name;
+            return this;
+        }
+
+        public workerBuilder organization(Organization organization){
+            worker.organization = organization;
+            return this;
+        }
+
+        public workerBuilder position(Position position){
+            worker.position = position;
+            return this;
+        }
+
+        public workerBuilder salary(float salary){
+            worker.salary = salary;
+            return this;
+        }
+
+        public workerBuilder startDate(Date from){
+            worker.startDate = from;
+            return this;
+        }
+
+        public Worker build(){
+            return worker;
+        }
+
+
+
+
+
+
+    }
     /**
      * @param worker the object to be compared.
      * @return

@@ -1,14 +1,19 @@
-package ru.bardinpetr.itmo.lab5.client;
+package ru.bardinpetr.itmo.lab5.client.texts;
 
 
-import lombok.Getter;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Texts {
-    @Getter public static String greetingText = "Hi! It's Bardin Pert and Zaytsev Artem lab5 program. Enter \"help\" to see more information";
-    public static String helpText = """
+public class RussianText{
+
+    private final Map<TextKeys, String> textList = new HashMap<>();
+
+    public RussianText(){
+        textList.put(TextKeys.GREEETING, "Hi! It's Bardin Pert and Zaytsev Artem lab5 program. Enter \"help\" to see more information");
+        textList.put(TextKeys.HELP, """
             Ниже представлен список команд в следующем виде
             <название команды> <аргументы>: описание команды
-            Аргументы вводятся в строке с комнадой. Если аргумент указан в {}, то его ввод просиходит поэтапно.
+            Аргументы вводятся в строке с комнатой. Если аргумент указан в {}, то его ввод происходит поэтапно.
                         
                - help : вывести справку по доступным командам
                - info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)
@@ -32,6 +37,12 @@ public class Texts {
             				HEAD_OF_DEPARTMENT
             	
                - print_descending : вывести элементы коллекции в порядке убывания
-               - print_unique_organization : вывести уникальные значения поля organization всех элементов в коллекции""";
+               - print_unique_organization : вывести уникальные значения поля organization всех элементов в коллекции"""
+            );
 
+    }
+
+    public Map<TextKeys, String> getMap() {
+        return textList;
+    }
 }
