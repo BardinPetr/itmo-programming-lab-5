@@ -7,15 +7,14 @@ import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.FileAccessExcept
 import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.InvalidDataFileException;
 import ru.bardinpetr.itmo.lab5.server.filedb.storage.io.FileIOController;
 
-import java.util.Collection;
-
 /**
  * Database main controller.
  * Stores local WorkerCollection and provides interface for storing and loading it to the file.
  */
-public class FileDBController<T extends Collection<?>> {
+public class FileDBController<T> {
     private final FileStorageController<T> storage;
-    protected T collection;
+    private final Class<T> baseCollectionClass;
+    public T collection;
 
     /**
      * Initializes database.
@@ -23,8 +22,10 @@ public class FileDBController<T extends Collection<?>> {
      *
      * @param fileIO file controller for storing database
      */
-    public FileDBController(FileIOController fileIO, Class<? extends T> baseClass) {
-        storage = new FileStorageController<T>(fileIO, new XMLSerDesService<>(baseClass));
+    public FileDBController(FileIOController fileIO, Class<T> baseCollectionClass) {
+        this.baseCollectionClass = baseCollectionClass;
+
+        storage = new FileStorageController<>(fileIO, new XMLSerDesService<>(baseCollectionClass));
         load();
     }
 
@@ -39,8 +40,8 @@ public class FileDBController<T extends Collection<?>> {
     public boolean load() {
         try {
             collection = storage.loadObject();
-        } catch (InvalidDataFileException ignored) {
-            System.err.println("[DB] Current file ignored as it contains invalid data. File recreated. Collection cleared");
+        } catch (InvalidDataFileException ex) {
+            System.err.printf("[DB] DB file recreated as it contained invalid data. Collection cleared: %s", ex);
             clear();
         } catch (FileAccessException e) {
             System.err.printf("[DB] could not read from file. Fix by hand please. Error: %s", e);
@@ -70,12 +71,16 @@ public class FileDBController<T extends Collection<?>> {
     }
 
     /**
-     * Resets local collection and recreates file
+     * Resets local collection by instantiating empty collection of target type and recreates file
      *
      * @return if operation was successful
      */
     public boolean clear() {
-        collection.clear();
+        try {
+            collection = baseCollectionClass.getDeclaredConstructor().newInstance();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
         return store();
     }
 }

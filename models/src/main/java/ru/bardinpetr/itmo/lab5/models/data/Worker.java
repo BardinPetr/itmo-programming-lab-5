@@ -1,7 +1,10 @@
 package ru.bardinpetr.itmo.lab5.models.data;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NonNull;
 import lombok.extern.jackson.Jacksonized;
+import ru.bardinpetr.itmo.lab5.models.data.collection.IIdentifiableEntry;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -10,7 +13,7 @@ import java.util.Date;
 
 @Data
 @Jacksonized
-public class Worker implements Comparable<Worker> {
+public class Worker implements Comparable<Worker>, IIdentifiableEntry<Long> {
     private static Long nextId = 0L;
     @NonNull
     private Long id;
@@ -30,62 +33,20 @@ public class Worker implements Comparable<Worker> {
 
     private java.time.LocalDateTime endDate;
     private Position position;
-    
-    public Worker(){};
 
-    public static workerBuilder builder(){
-        return new workerBuilder();
+    public Worker() {
     }
-    public static class workerBuilder{
-        private Worker worker= new Worker();
-        public workerBuilder(){
-            worker.id = Worker.nextId;
-            Worker.nextId++;
-        }
 
-        public workerBuilder coordinates(Coordinates coordinates){
-            worker.coordinates = coordinates;
-            return this;
-        }
-        public workerBuilder endDate(LocalDateTime localDateTime){
-            worker.endDate = localDateTime;
-            return this;
-        }
-        public workerBuilder name(String name){
-            worker.name = name;
-            return this;
-        }
-
-        public workerBuilder organization(Organization organization){
-            worker.organization = organization;
-            return this;
-        }
-
-        public workerBuilder position(Position position){
-            worker.position = position;
-            return this;
-        }
-
-        public workerBuilder salary(float salary){
-            worker.salary = salary;
-            return this;
-        }
-
-        public workerBuilder startDate(Date from){
-            worker.startDate = from;
-            return this;
-        }
-
-        public Worker build(){
-            return worker;
-        }
-
-
-
-
-
-
+    public static WorkerBuilder builder() {
+        return new WorkerBuilder();
     }
+
+    @JsonIgnore
+    @Override
+    public Long getKey() {
+        return id;
+    }
+
     /**
      * @param worker the object to be compared.
      * @return
@@ -104,5 +65,55 @@ public class Worker implements Comparable<Worker> {
                                 .thenComparing(Worker::getCreationDate)
                                 .thenComparing(Worker::getId)
                 ).compare(this, worker);
+    }
+
+    public static class WorkerBuilder {
+        private final Worker worker = new Worker();
+
+        public WorkerBuilder() {
+            worker.id = Worker.nextId;
+            Worker.nextId++;
+        }
+
+        public WorkerBuilder coordinates(Coordinates coordinates) {
+            worker.coordinates = coordinates;
+            return this;
+        }
+
+        public WorkerBuilder endDate(LocalDateTime localDateTime) {
+            worker.endDate = localDateTime;
+            return this;
+        }
+
+        public WorkerBuilder name(String name) {
+            worker.name = name;
+            return this;
+        }
+
+        public WorkerBuilder organization(Organization organization) {
+            worker.organization = organization;
+            return this;
+        }
+
+        public WorkerBuilder position(Position position) {
+            worker.position = position;
+            return this;
+        }
+
+        public WorkerBuilder salary(float salary) {
+            worker.salary = salary;
+            return this;
+        }
+
+        public WorkerBuilder startDate(Date from) {
+            worker.startDate = from;
+            return this;
+        }
+
+        public Worker build() {
+            return worker;
+        }
+
+
     }
 }

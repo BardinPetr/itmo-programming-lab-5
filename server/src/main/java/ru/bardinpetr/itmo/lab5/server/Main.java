@@ -2,7 +2,8 @@ package ru.bardinpetr.itmo.lab5.server;
 
 import ru.bardinpetr.itmo.lab5.models.data.*;
 import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
-import ru.bardinpetr.itmo.lab5.server.filedb.WorkersDAO;
+import ru.bardinpetr.itmo.lab5.server.dao.WorkersDAO;
+import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.InvalidDataFileException;
 import ru.bardinpetr.itmo.lab5.server.filedb.storage.io.FileIOController;
@@ -38,10 +39,36 @@ public class Main {
 
         w.add(w1);
 
-        System.out.println(w1.toString());
-        System.out.println(w2.toString());
+        var file = new FileIOController("/home/petr/Desktop/itmo-programming-lab-5/db.xml");
+        var db = new FileDBController<>(file, WorkerCollection.class);
 
-        //var file = new FileIOController("/home/petr/Desktop/itmo-programming-lab-5/db.xml");
-        //var db = new WorkersDAO(file);
+        var dao = new WorkersDAO(db);
+
+        System.out.println(dao.readAll());
+        dao.create(w1);
+        System.out.println(dao.readAll());
+        dao.create(w2);
+        System.out.println(dao.readAll());
+        dao.remove(1L);
+        System.out.println(dao.readAll());
+        db.store();
+
+//        var d = new CRUDDAO<Long, Worker>(file, ISetCollection.class);
+//        var q = new WorkerCollection();
+
+//        var exec = new Executor();
+
+        //        exec.registerOperation(
+//                (new AddCommand()).getType(),
+//                (command) -> {
+//                    return command.createResponse();
+//                }
+//            );
+
+//        exec.registerOperation((AddCommand command) -> {
+//            AddCmdResponse x=  command.createResponse();
+//            x.set(x)
+//            return x;
+//        });
     }
 }
