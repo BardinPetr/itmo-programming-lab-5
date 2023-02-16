@@ -1,7 +1,8 @@
 package ru.bardinpetr.itmo.lab5.server.executor;
 
 import ru.bardinpetr.itmo.lab5.models.commands.Command;
-import ru.bardinpetr.itmo.lab5.models.resonses.Response;
+import ru.bardinpetr.itmo.lab5.models.commands.resonses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.resonses.Response;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
  */
 public class Executor {
 
-    private final Map<Class<? extends Command>, Operation<Command, Response>> operationMap = new HashMap<>();
+    private final Map<Class<? extends Command>, Operation<Command, ICommandResponse>> operationMap = new HashMap<>();
 
     /**
      * Register function "{@code operation}" for replying on "{@code cmdClass}" calls
@@ -22,8 +23,8 @@ public class Executor {
      * @param operation function taking Command and returning Response on this command
      * @param <T>       type of command
      */
-    public <T extends Command> void registerOperation(Class<T> cmdClass, Operation<T, Response> operation) {
-        @SuppressWarnings("unchecked") var baseOperation = (Operation<Command, Response>) operation;
+    public <T extends Command> void registerOperation(Class<T> cmdClass, Operation<T, ICommandResponse> operation) {
+        @SuppressWarnings("unchecked") var baseOperation = (Operation<Command, ICommandResponse>) operation;
         operationMap.put(cmdClass, baseOperation);
     }
 
@@ -34,9 +35,14 @@ public class Executor {
      * @param cmd Command from client
      * @return Response for this command or Response(success=false) if no handler exist
      */
-    public Response execute(Command cmd) {
+    public <T extends ICommandResponse> Response<T> execute(Command cmd) {
         var op = operationMap.get(cmd.getClass());
-        if (op == null) return new Response(false, "Command not implemented");
-        return op.apply(cmd);
+        if (op == null) return Response.error("Command not implemented");
+        try {
+            @SuppressWarnings("unchecked") var res = (T) op.apply(cmd);
+            return Response.success(res);
+        } catch (Exception ex) {
+            return Response.error(ex);
+        }
     }
 }

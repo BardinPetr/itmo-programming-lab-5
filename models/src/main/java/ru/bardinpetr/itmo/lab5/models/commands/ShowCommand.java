@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.resonses.Response;
+import ru.bardinpetr.itmo.lab5.models.commands.resonses.ICommandResponse;
 
 /**
  * Class of show command
@@ -21,7 +21,7 @@ public class ShowCommand extends Command {
     }
 
     @Data
-    public static class ShowCommandResponse extends Response {
+    public static class ShowCommandResponse implements ICommandResponse {
         public String test;
     }
 }

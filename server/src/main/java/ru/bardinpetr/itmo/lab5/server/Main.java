@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.server;
 
+import ru.bardinpetr.itmo.lab5.models.commands.AddCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.ShowCommand;
 import ru.bardinpetr.itmo.lab5.models.data.*;
 import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
@@ -49,11 +50,17 @@ public class Main {
         var ex = new Executor();
 
         ex.registerOperation(ShowCommand.class, (ShowCommand cmd) -> {
-            ShowCommand.ShowCommandResponse res = cmd.createResponse();
+            var res = cmd.createResponse();
             res.test = "ok";
             return res;
         });
 
+        ex.registerOperation(AddCommand.class, (AddCommand cmd) -> {
+            var res = cmd.createResponse();
+            throw new RuntimeException("asd");
+        });
+
         System.out.println(ex.execute(new ShowCommand()));
+        System.out.println(ex.execute(new AddCommand()));
     }
 }
