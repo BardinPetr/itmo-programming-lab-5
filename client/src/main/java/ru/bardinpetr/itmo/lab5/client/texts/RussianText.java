@@ -6,11 +6,9 @@ import java.util.Map;
 
 public class RussianText{
 
-    private final Map<TextKeys, String> textList = new HashMap<>();
-
-    public RussianText(){
-        textList.put(TextKeys.GREEETING, "Hi! It's Bardin Pert and Zaytsev Artem lab5 program. Enter \"help\" to see more information");
-        textList.put(TextKeys.HELP, """
+    private final static Map<TextKeys, String> textList = new HashMap<>(){{
+        put(TextKeys.GREEETING, "Hi! It's Bardin Pert and Zaytsev Artem lab5 program. Enter \"help\" to see more information");
+        put(TextKeys.HELP, """
             Ниже представлен список команд в следующем виде
             <название команды> <аргументы>: описание команды
             Аргументы вводятся в строке с комнатой. Если аргумент указан в {}, то его ввод происходит поэтапно.
@@ -38,11 +36,35 @@ public class RussianText{
             	
                - print_descending : вывести элементы коллекции в порядке убывания
                - print_unique_organization : вывести уникальные значения поля organization всех элементов в коллекции"""
-            );
+        );
 
-    }
+        put(TextKeys.WORKERINTERACT, "Enter employee details");
+        put(TextKeys.NAMEINTERACT, "Enter a name");
+        put(TextKeys.COORDINATESINTERACT, "Enter coordinates");
+        put(TextKeys.ORGANIZATIONINTERACT, "Enter an organization");
+        put(TextKeys.SALARYINTERACT, "Enter salary");
+        put(TextKeys.COORXINTERACT, "Enter x coordinate");
+        put(TextKeys.COORYINTERACT, "Enter y coordinate");
+        put(TextKeys.STARTDAYINTERACT, "Enter start date");
+        put(TextKeys.ENDNDATEINTERACT, "Enter end date");
+        put(TextKeys.POSITIONINTERACT, "Enter position from list:" +
+                "    ENGINEER,\n" +
+                "    HEAD_OF_DEPARTMENT,\n" +
+                "    LEAD_DEVELOPER,\n" +
+                "    CLEANER,\n" +
+                "    MANAGER_OF_CLEANING");
+        put(TextKeys.ORGANISATIONNAMEINTERACT, "Enter organisation name");
+        put(TextKeys.ORGANISATIONTYPEINTERACT, "Enter organisation type from list:" +
+                "    COMMERCIAL,\n" +
+                "    PUBLIC,\n" +
+                "    PRIVATE_LIMITED_COMPANY,\n" +
+                "    OPEN_JOINT_STOCK_COMPANY");
 
-    public Map<TextKeys, String> getMap() {
+
+    }};
+
+
+    public static Map<TextKeys, String> getMap() {
         return textList;
     }
 }

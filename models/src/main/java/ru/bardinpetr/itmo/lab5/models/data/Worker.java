@@ -3,14 +3,18 @@ package ru.bardinpetr.itmo.lab5.models.data;
 import lombok.*;
 import lombok.extern.jackson.Jacksonized;
 
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
 @Jacksonized
 public class Worker implements Comparable<Worker> {
+
     private static Long nextId = 0L;
     @NonNull
     private Long id;

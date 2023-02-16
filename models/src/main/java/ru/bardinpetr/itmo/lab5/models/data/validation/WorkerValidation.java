@@ -28,8 +28,6 @@ public class WorkerValidation {
                 new ValidationResponse(true, "");
     }
 
-
-
     /**
      * @param coordinates Worker's coordinates
      * @return response with error message

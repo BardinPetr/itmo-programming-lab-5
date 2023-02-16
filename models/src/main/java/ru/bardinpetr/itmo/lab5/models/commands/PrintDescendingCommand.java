@@ -1,13 +1,13 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
 import lombok.Data;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * Class of print_descending command
  */
 @Data
 public class PrintDescendingCommand extends Command{
-    public final String TYPE = "print_descending";
+    @JsonIgnore public final String TYPE = "print_descending";
 
     @Override
     public String getType() {
