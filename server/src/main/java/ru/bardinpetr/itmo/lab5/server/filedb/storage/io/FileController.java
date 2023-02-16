@@ -9,7 +9,7 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 
 /**
- * Class implementing basic filesystem operations (rw) with required checks.
+ * Class implementing low level filesystem operations (rw) with required checks.
  */
 public class FileController {
     protected final File file;

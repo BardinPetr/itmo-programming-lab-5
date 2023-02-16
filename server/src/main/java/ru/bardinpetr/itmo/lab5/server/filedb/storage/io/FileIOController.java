@@ -8,6 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * Controller for streaming IO operations on file.
+ */
 public class FileIOController extends FileController {
     /**
      * Initializes work with file, this command must be called at least once.

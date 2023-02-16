@@ -1,9 +1,12 @@
 package ru.bardinpetr.itmo.lab5.server;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.bardinpetr.itmo.lab5.models.commands.AddCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.ShowCommand;
 import ru.bardinpetr.itmo.lab5.models.data.*;
 import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
-import ru.bardinpetr.itmo.lab5.server.filedb.WorkersDAO;
+import ru.bardinpetr.itmo.lab5.server.dao.WorkersDAO;
+import ru.bardinpetr.itmo.lab5.server.executor.Executor;
+import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.InvalidDataFileException;
 import ru.bardinpetr.itmo.lab5.server.filedb.storage.io.FileIOController;
@@ -14,7 +17,6 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) throws SerDesException, FileAccessException, InvalidDataFileException {
-
         var w = new WorkerCollection();
         Worker.builder().endDate(LocalDateTime.now());
         var w1 = Worker.builder()
@@ -40,10 +42,25 @@ public class Main {
 
         w.add(w1);
 
-        System.out.println(w1.toString());
-        System.out.println(w2.toString());
+        var file = new FileIOController("/home/petr/Desktop/itmo-programming-lab-5/db.xml");
+        var db = new FileDBController<>(file, WorkerCollection.class);
 
-        //var file = new FileIOController("/home/petr/Desktop/itmo-programming-lab-5/db.xml");
-        //var db = new WorkersDAO(file);
+        var dao = new WorkersDAO(db);
+
+        var ex = new Executor();
+
+        ex.registerOperation(ShowCommand.class, (ShowCommand cmd) -> {
+            var res = cmd.createResponse();
+            res.test = "ok";
+            return res;
+        });
+
+        ex.registerOperation(AddCommand.class, (AddCommand cmd) -> {
+            var res = cmd.createResponse();
+            throw new RuntimeException("asd");
+        });
+
+        System.out.println(ex.execute(new ShowCommand()));
+        System.out.println(ex.execute(new AddCommand()));
     }
 }
