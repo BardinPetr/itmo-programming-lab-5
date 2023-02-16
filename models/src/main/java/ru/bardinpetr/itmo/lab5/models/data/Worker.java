@@ -43,7 +43,7 @@ public class Worker implements Comparable<Worker>, IIdentifiableEntry<Long> {
 
     @JsonIgnore
     @Override
-    public Long getKey() {
+    public Long getPrimaryKey() {
         return id;
     }
 

@@ -4,7 +4,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 
-public class WorkersDAO extends CRUDDAO<Long, Worker> {
+public class WorkersDAO extends FileDBCRUDDAO<Long, Worker> {
 
     public WorkersDAO(FileDBController<WorkerCollection> controller) {
         super(controller);

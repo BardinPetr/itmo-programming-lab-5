@@ -9,7 +9,7 @@ import ru.bardinpetr.itmo.lab5.server.filedb.storage.io.FileIOController;
 
 /**
  * Database main controller.
- * Stores local WorkerCollection and provides interface for storing and loading it to the file.
+ * Stores local collection T and provides interface for storing and loading it to the file.
  */
 public class FileDBController<T> {
     private final FileStorageController<T> storage;

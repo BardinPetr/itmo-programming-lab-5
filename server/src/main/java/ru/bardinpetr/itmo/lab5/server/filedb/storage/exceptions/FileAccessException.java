@@ -8,14 +8,13 @@ import java.io.File;
 public class FileAccessException extends Exception {
     private final String path;
     private final OperationType type;
-    private final Exception originalException;
 
     public FileAccessException(Exception originalException, String path, OperationType type) {
         super(
                 "Failed to get %s access to file %s: %s".formatted(
-                        type.name(), path, type.getDescription())
+                        type.name(), path, type.getDescription()),
+                originalException
         );
-        this.originalException = originalException;
         this.type = type;
         this.path = path;
     }
@@ -44,13 +43,6 @@ public class FileAccessException extends Exception {
      */
     public OperationType getType() {
         return type;
-    }
-
-    /**
-     * @return Returns original exception if there was one, otherwise null
-     */
-    public Exception getOriginalException() {
-        return originalException;
     }
 
     /**
