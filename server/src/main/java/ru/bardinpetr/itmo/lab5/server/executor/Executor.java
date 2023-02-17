@@ -1,9 +1,12 @@
 package ru.bardinpetr.itmo.lab5.server.executor;
 
-import ru.bardinpetr.itmo.lab5.models.commands.Command;
-import ru.bardinpetr.itmo.lab5.models.commands.resonses.ICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.resonses.Response;
+import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.Response;
+import ru.bardinpetr.itmo.lab5.server.executor.operations.NoReturnOperation;
+import ru.bardinpetr.itmo.lab5.server.executor.operations.Operation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,17 +19,44 @@ import java.util.Map;
 public class Executor {
 
     private final Map<Class<? extends Command>, Operation<Command, ICommandResponse>> operationMap = new HashMap<>();
+    private final List<Executor> childExecutors = new ArrayList<>();
 
     /**
-     * Register function "{@code operation}" for replying on "{@code cmdClass}" calls
+     * Register function "{@code operation}" for replying on "{@code cmdClass}" calls.
      *
      * @param cmdClass  class of input command object
-     * @param operation function taking Command and returning Response on this command
+     * @param operation function taking input Command and returning Response object
      * @param <T>       type of command
      */
     public <T extends Command> void registerOperation(Class<T> cmdClass, Operation<T, ICommandResponse> operation) {
         @SuppressWarnings("unchecked") var baseOperation = (Operation<Command, ICommandResponse>) operation;
         operationMap.put(cmdClass, baseOperation);
+    }
+
+    /**
+     * Register function "{@code operation}" for replying on "{@code cmdClass}" calls.
+     * Used for commands that do not have specific response type
+     *
+     * @param cmdClass  class of input command object
+     * @param operation function taking input Command
+     * @param <T>       type of command
+     */
+    public <T extends Command> void registerVoidOperation(Class<T> cmdClass, NoReturnOperation<T> operation) {
+        var baseOperation = (Operation<Command, ICommandResponse>) (cmd) -> {
+            @SuppressWarnings("unchecked") var command = (T) cmd;
+            operation.apply(command);
+            return cmd.createResponse();
+        };
+        operationMap.put(cmdClass, baseOperation);
+    }
+
+    /**
+     * Join other executor with this so locally not resolved commands will be forwarded to this executor
+     *
+     * @param child Executor to pass commands to
+     */
+    public void registerExecutor(Executor child) {
+        childExecutors.add(child);
     }
 
     /**
@@ -38,7 +68,13 @@ public class Executor {
      */
     public Response<ICommandResponse> execute(Command cmd) {
         var op = operationMap.get(cmd.getClass());
-        if (op == null) return Response.error("Command not implemented");
+        if (op == null) {
+            for (Executor e : childExecutors) {
+                var res = e.execute(cmd);
+                if (res.isResolved()) return res;
+            }
+            return Response.noResolve();
+        }
         try {
             return Response.success(op.apply(cmd));
         } catch (Exception ex) {

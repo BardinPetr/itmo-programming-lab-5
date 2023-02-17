@@ -1,7 +1,7 @@
-package ru.bardinpetr.itmo.lab5.models.commands;
+package ru.bardinpetr.itmo.lab5.models.commands.base;
 
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.commands.resonses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
 
 /**
  * General class for all commands

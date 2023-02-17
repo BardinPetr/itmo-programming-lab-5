@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class TUI {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Shower shower = new ConsolePrinter();
         Map<TextKeys, String> texts = (new RussianText()).getMap();
@@ -15,7 +15,6 @@ public class TUI {
         shower.show(texts.get(TextKeys.GREEETING));
 
         String commandString = scanner.next();
-
 
 
     }

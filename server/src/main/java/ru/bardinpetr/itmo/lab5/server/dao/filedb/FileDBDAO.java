@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.server.dao.filedb;
 
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 import ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection;
@@ -7,6 +8,7 @@ import ru.bardinpetr.itmo.lab5.server.dao.ICollectionFilteredDAO;
 import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -51,7 +53,12 @@ public class FileDBDAO<K, V extends IKeyedEntity<K>> implements ICollectionFilte
 
     @Override
     public CollectionInfo getCollectionInfo() {
-        return new CollectionInfo();
+        return new CollectionInfo(
+                Worker.class.getCanonicalName(),
+                Worker.class.getName(),
+                new Date(),
+                controller.data().size()
+        );
     }
 
     @Override

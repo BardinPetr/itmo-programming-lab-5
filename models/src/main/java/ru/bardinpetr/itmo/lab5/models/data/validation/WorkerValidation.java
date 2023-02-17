@@ -12,7 +12,7 @@ public class WorkerValidation {
      * @param name Worker's name
      * @return response with error message
      */
-    public static ValidationResponse validateName(String name){
+    public static ValidationResponse validateName(String name) {
         return name.isEmpty() ?
                 new ValidationResponse(false, "Name must not be empty") :
                 new ValidationResponse(true, "");
@@ -22,19 +22,18 @@ public class WorkerValidation {
      * @param id Worker's id
      * @return response with error message
      */
-    public static ValidationResponse validateId(Long id){
+    public static ValidationResponse validateId(Long id) {
         return (id <= 0) ?
                 new ValidationResponse(false, "id must be greater than 0") :
                 new ValidationResponse(true, "");
     }
 
 
-
     /**
      * @param coordinates Worker's coordinates
      * @return response with error message
      */
-    public static ValidationResponse validateCoordinate(Coordinates coordinates){
+    public static ValidationResponse validateCoordinate(Coordinates coordinates) {
         return CoordinatesValidation.validateAll(coordinates);
     }
 
@@ -42,7 +41,7 @@ public class WorkerValidation {
      * @param salary Worker's salary
      * @return response with error message
      */
-    public static ValidationResponse validateSalary(float salary){
+    public static ValidationResponse validateSalary(float salary) {
         return salary > 0 ?
                 new ValidationResponse(true, "") :
                 new ValidationResponse(false, "salary must be greater than 0");
@@ -52,7 +51,7 @@ public class WorkerValidation {
      * @param worker Worker object to check all fields
      * @return response with error message
      */
-    public static ValidationResponse validateAll(Worker worker){
+    public static ValidationResponse validateAll(Worker worker) {
         if (!validateId(worker.getId()).allowed) return validateId(worker.getId());
         if (!validateName(worker.getName()).allowed) return validateName(worker.getName());
         if (!validateCoordinate(worker.getCoordinates()).allowed) return validateCoordinate(worker.getCoordinates());

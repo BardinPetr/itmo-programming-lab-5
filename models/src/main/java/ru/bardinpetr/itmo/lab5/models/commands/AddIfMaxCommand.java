@@ -1,18 +1,20 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
 import lombok.Data;
+import lombok.NonNull;
+import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 /**
  * Class of add_if_max command
  */
 @Data
-public class AddIfMaxCommand extends Command{
-    public final String TYPE = "add_if_max";
+public class AddIfMaxCommand extends Command {
+    @NonNull
     public Worker element;
 
     @Override
     public String getType() {
-        return TYPE;
+        return "add_if_max";
     }
 }

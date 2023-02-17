@@ -1,18 +1,18 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.commands.resonses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ListCommandResponse;
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 /**
  * Class of show command
  */
 @Data
 public class ShowCommand extends Command {
-    public final String TYPE = "show";
-
     @Override
     public String getType() {
-        return TYPE;
+        return "show";
     }
 
     @Override
@@ -20,8 +20,6 @@ public class ShowCommand extends Command {
         return new ShowCommandResponse();
     }
 
-    @Data
-    public static class ShowCommandResponse implements ICommandResponse {
-        public String test;
+    public static class ShowCommandResponse extends ListCommandResponse<Worker> {
     }
 }

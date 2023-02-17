@@ -1,20 +1,16 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
+import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 
 /**
  * Class of clear command
  */
-@Getter
-@ToString
-@EqualsAndHashCode
-public class ClearCommand extends Command{
-    public final String TYPE = "clear";
+@Data
+public class ClearCommand extends Command {
 
     @Override
     public String getType() {
-        return TYPE;
+        return "clear";
     }
 }

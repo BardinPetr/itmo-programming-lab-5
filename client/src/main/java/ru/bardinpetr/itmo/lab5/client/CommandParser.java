@@ -1,29 +1,27 @@
 package ru.bardinpetr.itmo.lab5.client;
 
-import ru.bardinpetr.itmo.lab5.models.commands.Command;
-import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
 public class CommandParser {
-    private Map<String, LinkedList<Class>> map = new HashMap<String, LinkedList<Class>>();
+    private final Map<String, LinkedList<Class>> map = new HashMap<String, LinkedList<Class>>();
 
-    public CommandParser(){
+    public CommandParser() {
         var listOfTypes = new LinkedList<Class>();
         listOfTypes.add(Integer.class);
         map.put("remove_by_id", listOfTypes);
     }
 
-    public Command parse(String commandString){
+    public Command parse(String commandString) {
         String[] args = commandString.split(" ");
         String command = args[0];
 
         var listOfTypes = map.get(command);
 
-        if (listOfTypes.size() == args.length - 1){
+        if (listOfTypes.size() == args.length - 1) {
             /*
             for (int i=1; i<args.length; i++){
                 var myClass = listOfTypes.get(i-1);

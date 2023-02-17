@@ -17,7 +17,6 @@ public class Coordinates implements Comparable<Coordinates> {
     private int y;
 
     /**
-     *
      * @param other the object to be compared.
      * @return < 0 than other object is greater, > 0 this object is greater
      */
@@ -25,5 +24,5 @@ public class Coordinates implements Comparable<Coordinates> {
     public int compareTo(Coordinates other) {
         return (x + y) - (other.x + other.y);
     }
-    
+
 }

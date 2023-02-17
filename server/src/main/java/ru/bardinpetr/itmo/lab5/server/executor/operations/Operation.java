@@ -1,7 +1,7 @@
-package ru.bardinpetr.itmo.lab5.server.executor;
+package ru.bardinpetr.itmo.lab5.server.executor.operations;
 
-import ru.bardinpetr.itmo.lab5.models.commands.Command;
-import ru.bardinpetr.itmo.lab5.models.commands.resonses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
 
 /**
  * Server side implementation of clients Command
