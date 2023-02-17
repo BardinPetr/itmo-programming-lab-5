@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NonNull;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
-import ru.bardinpetr.itmo.lab5.models.data.collection.IIdentifiableEntry;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;

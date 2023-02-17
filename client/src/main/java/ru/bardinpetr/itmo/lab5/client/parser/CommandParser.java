@@ -2,8 +2,8 @@ package ru.bardinpetr.itmo.lab5.client.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.tui.ObjectScanner;
-import ru.bardinpetr.itmo.lab5.models.commands.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.Field;
+import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.validation.ValueDeserializer;
 
 import java.util.HashMap;
@@ -14,7 +14,7 @@ public class CommandParser {
     ObjectMapper mapper = new ObjectMapper();
 
 
-    public CommandParser(HashMap<String, Command> cmdMap){
+    public CommandParser(HashMap<String, Command> cmdMap) {
         this.cmdMap = cmdMap;
     }
 

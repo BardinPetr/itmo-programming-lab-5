@@ -2,7 +2,6 @@ package ru.bardinpetr.itmo.lab5.models.commands;
 
 import lombok.Data;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Class of clear command

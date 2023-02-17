@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.server.executor.operations;
+package ru.bardinpetr.itmo.lab5.common.executor.operations;
 
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 

@@ -10,6 +10,7 @@ application {
 
 dependencies {
     implementation(project(":models"))
+    implementation(project(":common"))
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.14.2")

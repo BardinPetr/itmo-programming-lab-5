@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.server.executor;
 
+import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
 

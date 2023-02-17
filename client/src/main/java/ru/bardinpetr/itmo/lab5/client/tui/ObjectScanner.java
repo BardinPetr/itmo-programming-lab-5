@@ -41,13 +41,15 @@ public class ObjectScanner {
         mapper.registerModule(timeModule);
         //mapper.registerModule(new ParameterNamesModule());
     }
+
     /**
-     *  Method for single value interaction
+     * Method for single value interaction
+     *
      * @param kClass - Class of value
+     * @param <T>    Type of value
      * @return object if required type
-     * @param <T> Type of value
      */
-    private static <T> T interactValue(Class<T> kClass){
+    private static <T> T interactValue(Class<T> kClass) {
         Scanner scanner = new Scanner(System.in);
 
         try {
@@ -56,8 +58,7 @@ public class ObjectScanner {
             else {
                 return scan(kClass);
             }
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             //viewer.show(e.getLocalizedMessage());
             viewer.show("Some went wrong. Please, try again.");
             return interactValue(kClass);
@@ -66,14 +67,15 @@ public class ObjectScanner {
 
     /**
      * Method for integrating thw whole object
+     *
      * @param kClass Object class
+     * @param <T>    Object class
      * @return Object
-     * @param <T> Object class
      */
-    public static <T> T scan(Class<T> kClass){
+    public static <T> T scan(Class<T> kClass) {
         Map<String, Object> objectMap = new HashMap<>();
         List<FieldWithDesc> fields = DescriptionHolder.dataDescriptions.get(kClass);
-        for (var i: fields){
+        for (var i : fields) {
             while (true) {
                 viewer.show(i.getPromptMsg());
 
@@ -81,9 +83,10 @@ public class ObjectScanner {
                 if (i.getValidator().validate(value).allowed) {
                     objectMap.put(i.getName(), value);
                     break;
-                }
-                else {
-                    viewer.show(i.getValidator().validate(value).msg);
+                } else {
+                    @SuppressWarnings("unchecked")
+                    var res = i.getValidator().validate(value);
+                    viewer.show(res.msg);
                 }
             }
         }

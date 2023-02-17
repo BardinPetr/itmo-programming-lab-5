@@ -69,7 +69,7 @@ public class DescriptionHolder {
         );
         put(
                 Coordinates.class,
-                new ArrayList<>(){
+                new ArrayList<>() {
                     {
                         add(new FieldWithDesc(
                                 "x",
@@ -88,7 +88,7 @@ public class DescriptionHolder {
         );
         put(
                 Organization.class,
-                new ArrayList<>(){
+                new ArrayList<>() {
                     {
                         add(new FieldWithDesc(
                                 "fullName",
@@ -97,8 +97,8 @@ public class DescriptionHolder {
                                 OrganizationValidation::validateFullName)
                         );
                         add(new FieldWithDesc(
-                                        "type",
-                                        OrganizationType.class,
+                                "type",
+                                OrganizationType.class,
                                         RussianText.getMap().get(TextKeys.ORGANISATIONTYPEINTERACT)
                                 )
                         );

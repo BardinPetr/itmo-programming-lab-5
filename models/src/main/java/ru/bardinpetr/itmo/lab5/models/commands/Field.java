@@ -7,8 +7,11 @@ import lombok.Data;
 public class Field {
     private String name;
     private Class<?> valueClass;
-    public Field(){}
-    public Field(String name, Class<?> kClass){
+
+    public Field() {
+    }
+
+    public Field(String name, Class<?> kClass) {
         this.name = name;
         this.valueClass = kClass;
     }

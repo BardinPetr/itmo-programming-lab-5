@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.parser;
 
 import ru.bardinpetr.itmo.lab5.models.commands.*;
+import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 
 import java.util.HashMap;
 
@@ -16,7 +17,7 @@ public class CommandRegister {
             new HelpCommand(),
             new InfoCommand(),
             new PrintDescendingCommand(),
-            new PrintUniqueOrganisation(),
+            new UniqueOrganisationCommand(),
             new RemoveByIdCommand(),
             new RemoveGreaterCommand(),
             new SaveCommand(),

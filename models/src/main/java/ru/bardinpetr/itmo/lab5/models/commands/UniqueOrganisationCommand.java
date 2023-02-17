@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
@@ -12,6 +13,7 @@ import java.util.Set;
  */
 
 @Data
+@NoArgsConstructor
 public class UniqueOrganisationCommand extends Command {
     @Override
     public String getType() {

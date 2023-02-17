@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions;
+package ru.bardinpetr.itmo.lab5.common.io.exceptions;
 
 import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
 

@@ -1,6 +1,5 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -21,7 +20,7 @@ public class RemoveByIdCommand extends Command {
     }
 
     @Override
-    public Field[] getInlineArgs(){
+    public Field[] getInlineArgs() {
         return new Field[]{
                 new Field("id", Long.class)
         };

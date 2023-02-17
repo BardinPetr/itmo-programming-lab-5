@@ -1,10 +1,10 @@
-package ru.bardinpetr.itmo.lab5.server.filedb.storage;
+package ru.bardinpetr.itmo.lab5.server.filedb;
 
+import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
+import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
+import ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException;
 import ru.bardinpetr.itmo.lab5.models.serdes.SerDesService;
 import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
-import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.FileAccessException;
-import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.InvalidDataFileException;
-import ru.bardinpetr.itmo.lab5.server.filedb.storage.io.FileIOController;
 
 /**
  * Implements main operations storing collection T in file
