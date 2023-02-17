@@ -97,7 +97,7 @@ public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> imple
     }
 
     @Override
-    public void remove(K id) {
-        controller.data().removeIf(data -> data.getPrimaryKey() == id);
+    public boolean remove(K id) {
+        return controller.data().removeIf(data -> data.getPrimaryKey() == id);
     }
 }

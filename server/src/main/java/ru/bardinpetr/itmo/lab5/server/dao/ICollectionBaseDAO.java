@@ -63,8 +63,9 @@ public interface ICollectionBaseDAO<K, V extends IKeyedEntity<K>> {
      * Remove entity by id
      *
      * @param id entity id
+     * @return true if any element deleted
      */
-    void remove(K id);
+    boolean remove(K id);
 
     /**
      * Clear collection

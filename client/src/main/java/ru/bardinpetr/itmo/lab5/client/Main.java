@@ -8,15 +8,10 @@ import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
-import ru.bardinpetr.itmo.lab5.models.commands.AddCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.data.*;
 import ru.bardinpetr.itmo.lab5.server.MainExecutor;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -36,13 +31,6 @@ public class Main {
         executor.registerExecutor(new UIExecutor());
         executor.registerExecutor(serverExecutor);
 
-        for (int i = 0; i < 10; i++) {
-            executor.execute(new AddCommand(new Worker(
-                    0L, LocalDateTime.now(), "%d".formatted(i),
-                    new Coordinates(10, 12), 123.4F, Date.from(Instant.now()),
-                    new Organization("asd", OrganizationType.COMMERCIAL), LocalDateTime.now(), Position.CLEANER
-            )));
-        }
 
         while (true) {
             try {

@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.server.executor;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
+import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
 
 import java.util.Comparator;
@@ -20,19 +21,25 @@ public class WorkersDAOExecutor extends Executor {
     }
 
     private void registerCRUD() {
-        registerOperation(InfoCommand.class, req -> {
-            var resp = req.createResponse();
-            resp.setResult(dao.getCollectionInfo());
-            return resp;
-        });
-        registerOperation(ShowCommand.class, req -> {
-            var resp = req.createResponse();
-            resp.setResult(dao.readAll());
-            return resp;
-        });
+        registerOperation(
+                InfoCommand.class,
+                req -> {
+                    var resp = req.createResponse();
+                    resp.setResult(dao.getCollectionInfo());
+                    return resp;
+                });
+        registerOperation(
+                ShowCommand.class,
+                req -> {
+                    var resp = req.createResponse();
+                    resp.setResult(dao.readAll());
+                    return resp;
+                });
         registerOperation(
                 AddCommand.class,
                 req -> {
+                    if (!WorkerValidation.validateAll(req.element).isAllowed())
+                        throw new RuntimeException("Invalid worker");
                     var resp = req.createResponse();
                     resp.setId(dao.add(req.element));
                     return resp;
@@ -40,11 +47,18 @@ public class WorkersDAOExecutor extends Executor {
         );
         registerVoidOperation(
                 UpdateCommand.class,
-                req -> dao.update(req.id, req.element)
+                req -> {
+                    if (!WorkerValidation.validateAll(req.element).isAllowed())
+                        throw new RuntimeException("Invalid worker");
+                    dao.update(req.id, req.element);
+                }
         );
         registerVoidOperation(
                 RemoveByIdCommand.class,
-                req -> dao.remove(req.id)
+                req -> {
+                    if (!dao.remove(req.id))
+                        throw new RuntimeException("Not found entity to remove");
+                }
         );
         registerVoidOperation(
                 ClearCommand.class,
