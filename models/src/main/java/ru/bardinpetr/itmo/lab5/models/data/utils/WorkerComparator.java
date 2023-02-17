@@ -1,4 +1,6 @@
-package ru.bardinpetr.itmo.lab5.models.data;
+package ru.bardinpetr.itmo.lab5.models.data.utils;
+
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import java.util.Comparator;
 

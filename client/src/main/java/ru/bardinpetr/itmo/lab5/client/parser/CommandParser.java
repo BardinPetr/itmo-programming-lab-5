@@ -4,10 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.ObjectScanner;
-import ru.bardinpetr.itmo.lab5.models.commands.Field;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.validation.ValueDeserializer;
+import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;

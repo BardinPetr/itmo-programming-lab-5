@@ -5,9 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
-import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ListCommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.Response;
+import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
+import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.List;
 

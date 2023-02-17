@@ -5,9 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
-import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ListCommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Position;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 /**
  * Class of filter_less_than_position command

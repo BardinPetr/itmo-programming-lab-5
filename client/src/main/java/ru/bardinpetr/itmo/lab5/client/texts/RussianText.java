@@ -54,7 +54,7 @@ public class RussianText {
                 "    CLEANER,\n" +
                 "    MANAGER_OF_CLEANING");
         put(TextKeys.ORGANISATIONNAMEINTERACT, "Enter organisation name");
-        put(TextKeys.ORGANISATIONTYPEINTERACT, "Enter organisation type from list:" +
+        put(TextKeys.ORGANISATIONTYPEINTERACT, "Enter organisation type from list:\n" +
                 "    COMMERCIAL,\n" +
                 "    PUBLIC,\n" +
                 "    PRIVATE_LIMITED_COMPANY,\n" +

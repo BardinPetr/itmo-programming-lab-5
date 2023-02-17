@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.server;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.ExecuteScriptCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO;
 import ru.bardinpetr.itmo.lab5.server.executor.WorkersDAOExecutor;

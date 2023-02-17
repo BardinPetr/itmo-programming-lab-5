@@ -1,8 +1,8 @@
 package ru.bardinpetr.itmo.lab5.models.commands.base;
 
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.commands.Field;
-import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 /**
  * General class for all commands

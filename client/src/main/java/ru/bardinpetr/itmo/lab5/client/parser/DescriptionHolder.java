@@ -1,15 +1,12 @@
-package ru.bardinpetr.itmo.lab5.client;
+package ru.bardinpetr.itmo.lab5.client.parser;
 
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
-import ru.bardinpetr.itmo.lab5.models.commands.FieldWithDesc;
-import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
-import ru.bardinpetr.itmo.lab5.models.data.Organization;
-import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
-import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.models.data.*;
 import ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidation;
 import ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidation;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation;
+import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -61,6 +58,11 @@ public class DescriptionHolder {
                                 Organization.class,
                                 RussianText.getMap().get(TextKeys.ORGANIZATIONINTERACT),
                                 OrganizationValidation::validateAll)
+                        );
+                        add(new FieldWithDesc(
+                                "position",
+                                Position.class,
+                                RussianText.getMap().get(TextKeys.POSITIONINTERACT))
                         );
 
 
