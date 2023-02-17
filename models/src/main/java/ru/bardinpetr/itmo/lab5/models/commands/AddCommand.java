@@ -1,18 +1,19 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
-import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 
 /**
  * Class of add command
  */
 @Data
+@NoArgsConstructor
 public class AddCommand extends Command {
     @JsonIgnore public final String TYPE = "add";
     public Worker element;
+
     @Override
     public String getType() {
         return TYPE;

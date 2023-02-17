@@ -1,12 +1,14 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
-import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
 /**
  * Class of update command
  */
 @Data
+@NoArgsConstructor
 public class UpdateCommand extends Command{
     @JsonIgnore public final String TYPE = "update";
     public int id;

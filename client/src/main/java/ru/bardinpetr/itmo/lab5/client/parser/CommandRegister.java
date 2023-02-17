@@ -25,12 +25,16 @@ public class CommandRegister {
     };
     private final HashMap<String, Command> map = new HashMap<>();
 
-    private void addCommand(Command cmd){
+    public HashMap<String, Command> getMap() {
+        return map;
+    }
+
+    private void addCommand(Command cmd) {
         map.put(cmd.getType(), cmd);
     }
 
-    public CommandParser regist(){
-        for (Command i: cmdList){
+    public CommandParser regist() {
+        for (Command i : cmdList) {
             addCommand(i);
         }
         return new CommandParser(map);

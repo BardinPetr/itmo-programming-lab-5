@@ -9,18 +9,20 @@ import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 @Getter
 @ToString
 @EqualsAndHashCode
-public class FiledWithDesc extends Field{
-    private String promtMsg;
+//TODO generics
+public class FieldWithDesc extends Field {
+    private String promptMsg;
     private IValidator validator;
-    public <T> FiledWithDesc(String name, Class<T> kClass, String requestMsg, IValidator<T> validator){
+
+    public <T> FieldWithDesc(String name, Class<T> kClass, String requestMsg, IValidator<T> validator) {
         super(name, kClass);
-        this.promtMsg = requestMsg;
+        this.promptMsg = requestMsg;
         this.validator = validator;
     }
 
-    public <T> FiledWithDesc(String name, Class<T> kclass, String requestMsg){
+    public <T> FieldWithDesc(String name, Class<T> kclass, String requestMsg) {
         super(name, kclass);
-        this.promtMsg = requestMsg;
+        this.promptMsg = requestMsg;
         this.validator = (IValidator<T>) s -> new ValidationResponse(true, "");
     }
 
