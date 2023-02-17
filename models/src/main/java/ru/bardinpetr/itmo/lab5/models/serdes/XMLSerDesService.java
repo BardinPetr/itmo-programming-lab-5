@@ -1,8 +1,8 @@
 package ru.bardinpetr.itmo.lab5.models.serdes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
@@ -26,7 +26,7 @@ public class XMLSerDesService<T> extends SerDesService<T> {
 
         var formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
         var timeModule =
-                new SimpleModule()
+                new JavaTimeModule()
                         .addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(formatter))
                         .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(formatter));
 

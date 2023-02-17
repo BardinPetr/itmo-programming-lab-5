@@ -3,8 +3,9 @@ package ru.bardinpetr.itmo.lab5.server;
 import ru.bardinpetr.itmo.lab5.models.commands.AddCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.ShowCommand;
 import ru.bardinpetr.itmo.lab5.models.data.*;
+import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
-import ru.bardinpetr.itmo.lab5.server.dao.WorkersDAO;
+import ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO;
 import ru.bardinpetr.itmo.lab5.server.executor.Executor;
 import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 import ru.bardinpetr.itmo.lab5.server.filedb.storage.exceptions.FileAccessException;
@@ -44,22 +45,18 @@ public class Main {
 
         var file = new FileIOController("/home/petr/Desktop/itmo-programming-lab-5/db.xml");
         var db = new FileDBController<>(file, WorkerCollection.class);
-
-        var dao = new WorkersDAO(db);
+        var dao = new FileDBWorkersDAO(db);
 
         var ex = new Executor();
-
         ex.registerOperation(ShowCommand.class, (ShowCommand cmd) -> {
             var res = cmd.createResponse();
             res.test = "ok";
             return res;
         });
-
         ex.registerOperation(AddCommand.class, (AddCommand cmd) -> {
             var res = cmd.createResponse();
             throw new RuntimeException("asd");
         });
-
         System.out.println(ex.execute(new ShowCommand()));
         System.out.println(ex.execute(new AddCommand()));
     }

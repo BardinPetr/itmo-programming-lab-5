@@ -1,6 +1,6 @@
-package ru.bardinpetr.itmo.lab5.models.data;
+package ru.bardinpetr.itmo.lab5.models.data.collection;
 
-import ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection;
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import java.util.TreeSet;
 

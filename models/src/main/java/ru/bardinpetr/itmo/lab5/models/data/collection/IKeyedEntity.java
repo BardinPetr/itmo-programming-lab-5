@@ -5,7 +5,7 @@ package ru.bardinpetr.itmo.lab5.models.data.collection;
  *
  * @param <K> Primary key type
  */
-public interface IIdentifiableEntry<K> {
+public interface IKeyedEntity<K> {
     /**
      * Returns primary key for object implementing this interface
      *

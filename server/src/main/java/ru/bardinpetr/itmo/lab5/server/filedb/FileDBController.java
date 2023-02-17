@@ -14,7 +14,7 @@ import ru.bardinpetr.itmo.lab5.server.filedb.storage.io.FileIOController;
 public class FileDBController<T> {
     private final FileStorageController<T> storage;
     private final Class<T> baseCollectionClass;
-    public T collection;
+    private T collection;
 
     /**
      * Initializes database.
@@ -82,5 +82,14 @@ public class FileDBController<T> {
             throw new RuntimeException(ex);
         }
         return store();
+    }
+
+    /**
+     * Get collection object
+     *
+     * @return collection
+     */
+    public T data() {
+        return collection;
     }
 }

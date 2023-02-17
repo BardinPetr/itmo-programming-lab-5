@@ -5,6 +5,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.resonses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.resonses.Response;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -35,14 +36,24 @@ public class Executor {
      * @param cmd Command from client
      * @return Response for this command or Response(success=false) if no handler exist
      */
-    public <T extends ICommandResponse> Response<T> execute(Command cmd) {
+    public Response<ICommandResponse> execute(Command cmd) {
         var op = operationMap.get(cmd.getClass());
         if (op == null) return Response.error("Command not implemented");
         try {
-            @SuppressWarnings("unchecked") var res = (T) op.apply(cmd);
-            return Response.success(res);
+            return Response.success(op.apply(cmd));
         } catch (Exception ex) {
             return Response.error(ex);
         }
+    }
+
+    /**
+     * Execute script (sequence of commands) one by one.
+     * Errors won't stop execution.
+     *
+     * @param cmds commands
+     * @return list of response payloads for each command in input order
+     */
+    public List<Response<ICommandResponse>> executeBatch(List<Command> cmds) {
+        return cmds.stream().map(this::execute).toList();
     }
 }

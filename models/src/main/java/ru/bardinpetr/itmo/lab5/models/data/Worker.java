@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.extern.jackson.Jacksonized;
-import ru.bardinpetr.itmo.lab5.models.data.collection.IIdentifiableEntry;
+import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Data
 @Jacksonized
-public class Worker implements Comparable<Worker>, IIdentifiableEntry<Long> {
+public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
     private static Long nextId = 0L;
     @NonNull
     private Long id;

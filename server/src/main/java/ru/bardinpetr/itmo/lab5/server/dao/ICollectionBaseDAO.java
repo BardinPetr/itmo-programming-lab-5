@@ -1,0 +1,93 @@
+package ru.bardinpetr.itmo.lab5.server.dao;
+
+import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
+import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
+
+import java.util.Comparator;
+import java.util.List;
+
+/**
+ * DAO for CRUD operations.
+ *
+ * @param <K> Type of primary key
+ * @param <V> Entity type
+ */
+public interface ICollectionBaseDAO<K, V extends IKeyedEntity<K>> {
+    /**
+     * @return collection stats and basic information
+     */
+    CollectionInfo getCollectionInfo();
+
+    /**
+     * Get entity by id
+     *
+     * @param id entity or null if invalid id
+     * @return entity
+     */
+    V read(K id);
+
+    /**
+     * Get all entities from collection
+     *
+     * @return list of all items
+     */
+    List<V> readAll();
+
+    /**
+     * Get all entities from collection in order using comparator
+     *
+     * @param order comparator to apply
+     * @return sorted list of all entities
+     */
+    default List<V> readAll(Comparator<V> order) {
+        return readAll().stream().sorted(order).toList();
+    }
+
+    /**
+     * Insert element into collection
+     *
+     * @param worker item to insert
+     */
+    void add(V worker);
+
+    /**
+     * Replace entity with given id with new contents
+     *
+     * @param id           entity id to update
+     * @param updateWorker new data
+     */
+    void update(K id, V updateWorker);
+
+    /**
+     * Remove entity by id
+     *
+     * @param id entity id
+     */
+    void remove(K id);
+
+    /**
+     * Clear collection
+     */
+    void clear();
+
+    /**
+     * Store collection to file
+     */
+    default void save() {
+    }
+
+    /**
+     * Get maximum entity in collection
+     *
+     * @return maximal element
+     */
+    V getMax();
+
+
+    /**
+     * Get minimum entity in collection
+     *
+     * @return minimal element
+     */
+    V getMin();
+}
