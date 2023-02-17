@@ -47,20 +47,15 @@ public class ObjectScanner {
      * @param <T>    Type of value
      * @return object if required type
      */
-    private static <T> T interactValue(Class<T> kClass) {
+    private static <T> T interactValue(Class<T> kClass) throws IllegalArgumentException {
         Scanner scanner = new Scanner(System.in);
 
-        try {
-            if (!DescriptionHolder.dataDescriptions.containsKey(kClass))
-                return mapper.convertValue(scanner.next(), kClass);
-            else {
-                return scan(kClass);
-            }
-        } catch (IllegalArgumentException e) {
-            //viewer.show(e.getLocalizedMessage());
-            viewer.show("Some went wrong. Please, try again.");
-            return interactValue(kClass);
+        if (!DescriptionHolder.dataDescriptions.containsKey(kClass))
+            return mapper.convertValue(scanner.next(), kClass);
+        else {
+            return scan(kClass);
         }
+
     }
 
     /**
