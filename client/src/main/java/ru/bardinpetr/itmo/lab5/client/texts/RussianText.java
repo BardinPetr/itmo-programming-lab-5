@@ -7,7 +7,7 @@ import java.util.Map;
 public class RussianText {
 
     private final static Map<TextKeys, String> textList = new HashMap<>() {{
-        put(TextKeys.GREEETING, "Hi! It's Bardin Pert and Zaytsev Artem lab5 program. Enter \"help\" to see more information");
+        put(TextKeys.GREEETING, "Hi! It's Bardin Petr and Zaytsev Artem lab5 program. Enter \"help\" to see more information");
         put(TextKeys.HELP, """
                 Ниже представлен список команд в следующем виде
                 <название команды> <аргументы>: описание команды
