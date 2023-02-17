@@ -16,7 +16,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileAccessException {
-        var serverExecutor = new MainExecutor(new FileIOController("db.xml"));
+        if (args.length != 1) {
+            System.err.println("Please call this program with single argument - path to database file");
+            System.exit(1);
+        }
+        var serverExecutor = new MainExecutor(new FileIOController(args[0]));
 
         Scanner scanner = new Scanner(System.in);
         View view = new ConsolePrinter();
