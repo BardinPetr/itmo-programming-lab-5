@@ -1,9 +1,12 @@
 package ru.bardinpetr.itmo.lab5.client;
 
-import ru.bardinpetr.itmo.lab5.client.parser.CommandParser;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
+import ru.bardinpetr.itmo.lab5.client.parser.ParserException;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
+import ru.bardinpetr.itmo.lab5.common.executor.Executor;
+import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -14,16 +17,26 @@ public class TUI {
         View view = new ConsolePrinter();
         Map<TextKeys, String> texts = RussianText.getMap();
         CommandRegister cmdRegister = new CommandRegister();
+        var cmdParser = cmdRegister.regist();
+
+        Executor executor = new Executor();
+
 
         try {
-            CommandParser parser = cmdRegister.regist();
-        } catch (Exception e) {
+            Command cmd = cmdParser.parse("info");
+            var resp = executor.execute(cmd);
+            if (resp.isSuccess()) {
+                ICommandResponse payload = resp.getPayload();
+                view.show(payload.getUserMessage());
+            } else {
+                view.show("Error!" + resp.getText());
+            }
+
+
+            //System.out.println(cmd);
+        } catch (ParserException e) {
             System.out.println(e.getMessage());
         }
-
-        view.show(texts.get(TextKeys.GREEETING));
-
-        String commandString = scanner.next();
 
 
     }

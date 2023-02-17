@@ -11,10 +11,12 @@
         <module name="itmo-programming-lab-5.models.test" />
         <module name="itmo-programming-lab-5.models.main" />
         <module name="itmo-programming-lab-5.server.test" />
+        <module name="itmo-programming-lab-5.common.main" />
         <module name="itmo-programming-lab-5.client.main" />
         <module name="itmo-programming-lab-5.client.test" />
+        <module name="itmo-programming-lab-5.common.test" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="16" />
+    <bytecodeTargetLevel target="18" />
   </component>
 </project>

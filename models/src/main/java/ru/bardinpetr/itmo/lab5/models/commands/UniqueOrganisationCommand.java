@@ -35,5 +35,10 @@ public class UniqueOrganisationCommand extends Command {
         public void setOrganizations(Set<Organization> organizations) {
             this.organizations = organizations;
         }
+
+        @Override
+        public String getUserMessage() {
+            return getOrganizations().toString();
+        }
     }
 }

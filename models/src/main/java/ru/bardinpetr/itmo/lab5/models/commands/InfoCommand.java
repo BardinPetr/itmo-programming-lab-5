@@ -21,7 +21,6 @@ public class InfoCommand extends Command {
     public InfoCommand.InfoCommandResponse createResponse() {
         return new InfoCommand.InfoCommandResponse();
     }
-
     public static class InfoCommandResponse implements ICommandResponse {
         private CollectionInfo result;
 
@@ -31,6 +30,11 @@ public class InfoCommand extends Command {
 
         public void setResult(CollectionInfo result) {
             this.result = result;
+        }
+
+        @Override
+        public String getUserMessage() {
+            return result.toString();
         }
     }
 }

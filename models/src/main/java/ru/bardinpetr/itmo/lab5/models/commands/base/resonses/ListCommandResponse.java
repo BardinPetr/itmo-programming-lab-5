@@ -12,4 +12,10 @@ public class ListCommandResponse<T> implements ICommandResponse {
     public void setResult(List<T> result) {
         this.result = result;
     }
+
+
+    @Override
+    public String getUserMessage() {
+        return getResult().toString();
+    }
 }
