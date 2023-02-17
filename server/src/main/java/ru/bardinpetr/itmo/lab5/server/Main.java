@@ -2,17 +2,10 @@ package ru.bardinpetr.itmo.lab5.server;
 
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
-import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
-import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 
 public class Main {
     public static void main(String[] args) throws FileAccessException {
-        var db = new FileDBController<>(
-                new FileIOController("/home/petr/Desktop/itmo-programming-lab-5/db.xml"),
-                WorkerCollection.class
-        );
-
-        var executor = new MainExecutor(db);
+        var executor = new MainExecutor(new FileIOController("db.xml"));
 
         /*
         var w1 = new Worker(
