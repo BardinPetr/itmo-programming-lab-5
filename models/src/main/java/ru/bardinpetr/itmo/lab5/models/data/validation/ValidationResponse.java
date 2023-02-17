@@ -1,8 +1,6 @@
 package ru.bardinpetr.itmo.lab5.models.data.validation;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * Class for validation response
@@ -10,14 +8,16 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
+@Getter
+@Setter
 public class ValidationResponse {
     /**
      * Was the validation passed successfully?
      */
-    public boolean allowed;
+    private boolean allowed;
     /**
      * msg for data errors
      */
-    public String msg;
+    private String msg;
 
 }

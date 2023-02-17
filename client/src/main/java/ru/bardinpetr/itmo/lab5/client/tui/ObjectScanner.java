@@ -5,6 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import ru.bardinpetr.itmo.lab5.client.parser.DescriptionHolder;
+import ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator;
 import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;
 
 import java.text.SimpleDateFormat;
@@ -67,19 +68,23 @@ public class ObjectScanner {
      */
     public static <T> T scan(Class<T> kClass) {
         Map<String, Object> objectMap = new HashMap<>();
-        List<FieldWithDesc> fields = DescriptionHolder.dataDescriptions.get(kClass);
+        List<FieldWithDesc<?>> fields = DescriptionHolder.dataDescriptions.get(kClass);
         for (var i : fields) {
             while (true) {
                 viewer.show(i.getPromptMsg());
 
                 var value = interactValue(i.getValueClass());
-                if (i.getValidator().validate(value).allowed) {
+
+                var val = (IValidator) i.getValidator();
+                @SuppressWarnings("unchecked")
+                var res = val.validate(i.getValueClass().cast(value));
+                if (res.isAllowed()) {
                     objectMap.put(i.getName(), value);
                     break;
                 } else {
                     @SuppressWarnings("unchecked")
-                    var res = i.getValidator().validate(value);
-                    viewer.show(res.msg);
+                    var resp = val.validate(value);
+                    viewer.show(res.getMsg());
                 }
             }
         }

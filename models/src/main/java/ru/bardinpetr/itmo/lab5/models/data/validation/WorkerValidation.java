@@ -52,10 +52,11 @@ public class WorkerValidation {
      * @return response with error message
      */
     public static ValidationResponse validateAll(Worker worker) {
-        if (!validateId(worker.getId()).allowed) return validateId(worker.getId());
-        if (!validateName(worker.getName()).allowed) return validateName(worker.getName());
-        if (!validateCoordinate(worker.getCoordinates()).allowed) return validateCoordinate(worker.getCoordinates());
-        if (!validateSalary(worker.getSalary()).allowed) return validateSalary(worker.getSalary());
+        if (!validateId(worker.getId()).isAllowed()) return validateId(worker.getId());
+        if (!validateName(worker.getName()).isAllowed()) return validateName(worker.getName());
+        if (!validateCoordinate(worker.getCoordinates()).isAllowed())
+            return validateCoordinate(worker.getCoordinates());
+        if (!validateSalary(worker.getSalary()).isAllowed()) return validateSalary(worker.getSalary());
         return new ValidationResponse(true, "");
 
     }

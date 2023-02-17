@@ -40,10 +40,10 @@ public class FileDBController<T> {
         try {
             collection = storage.loadObject();
         } catch (InvalidDataFileException ex) {
-            System.err.printf("[DB] DB file recreated as it contained invalid data. Collection cleared: %s", ex);
+            System.err.println("[DB] DB file recreated as it contained invalid data. Collection cleared");
             clear();
         } catch (FileAccessException e) {
-            System.err.printf("[DB] could not read from file. Fix by hand please. Error: %s", e);
+            System.err.printf("[DB] could not read from file. Fix by hand please. \nError: %s", e);
             return false;
         }
         return true;
