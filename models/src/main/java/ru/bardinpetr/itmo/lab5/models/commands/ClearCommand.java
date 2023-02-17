@@ -8,7 +8,6 @@ import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
  */
 @Data
 public class ClearCommand extends Command {
-
     @Override
     public String getType() {
         return "clear";

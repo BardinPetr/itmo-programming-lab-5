@@ -11,8 +11,8 @@ import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 @EqualsAndHashCode
 //TODO generics
 public class FieldWithDesc extends Field {
-    private String promptMsg;
-    private IValidator validator;
+    private final String promptMsg;
+    private final IValidator validator;
 
     public <T> FieldWithDesc(String name, Class<T> kClass, String requestMsg, IValidator<T> validator) {
         super(name, kClass);

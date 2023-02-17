@@ -3,6 +3,7 @@ package ru.bardinpetr.itmo.lab5.models.commands;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ListCommandResponse;
@@ -12,15 +13,15 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class ExecuteScriptCommand extends Command {
     @NonNull
-    public List<Command> commands;
+    private List<Command> commands;
 
     @Override
     public String getType() {
         return "execute_script";
     }
-
 
     @Override
     public ExecuteScriptCommandResponse createResponse() {

@@ -1,11 +1,13 @@
 package ru.bardinpetr.itmo.lab5.models.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
 //import javax.validation.constraints.Min;
 
 @Data
+@AllArgsConstructor
 public class Coordinates implements Comparable<Coordinates> {
     @NonNull
     private Integer x; // Значение поля должно быть больше -720
