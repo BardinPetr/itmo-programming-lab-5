@@ -20,7 +20,7 @@ import java.util.stream.Stream;
  * @param <K> Key for identifying objects
  * @param <V> Objects in collection
  */
-public class FileDBDAO<K, V extends IKeyedEntity<K>> implements ICollectionFilteredDAO<K, V> {
+public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> implements ICollectionFilteredDAO<K, V> {
     private final FileDBController<? extends ISetCollection<K, V>> controller;
 
     public FileDBDAO(FileDBController<? extends ISetCollection<K, V>> controller) {
@@ -49,6 +49,11 @@ public class FileDBDAO<K, V extends IKeyedEntity<K>> implements ICollectionFilte
     @Override
     public V getMin() {
         return controller.data().first();
+    }
+
+    @Override
+    public K nextPrimaryKey() {
+        return null;
     }
 
     @Override
@@ -81,8 +86,9 @@ public class FileDBDAO<K, V extends IKeyedEntity<K>> implements ICollectionFilte
     }
 
     @Override
-    public void add(V worker) {
-        controller.data().add(worker);
+    public K add(V item) {
+        controller.data().add(item);
+        return item.getPrimaryKey();
     }
 
     public void update(K id, V updateObject) {

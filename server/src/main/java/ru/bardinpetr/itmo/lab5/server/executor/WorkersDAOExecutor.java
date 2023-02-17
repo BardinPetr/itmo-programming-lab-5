@@ -30,9 +30,13 @@ public class WorkersDAOExecutor extends Executor {
             resp.setResult(dao.readAll());
             return resp;
         });
-        registerVoidOperation(
+        registerOperation(
                 AddCommand.class,
-                req -> dao.add(req.element)
+                req -> {
+                    var resp = req.createResponse();
+                    resp.setId(dao.add(req.element));
+                    return resp;
+                }
         );
         registerVoidOperation(
                 UpdateCommand.class,

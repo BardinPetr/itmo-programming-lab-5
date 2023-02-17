@@ -12,4 +12,9 @@ public interface IKeyedEntity<K> {
      * @return primary key
      */
     K getPrimaryKey();
+
+    /**
+     * Sets primary key for object
+     */
+    void setPrimaryKey(K key);
 }

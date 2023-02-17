@@ -10,4 +10,16 @@ public class FileDBWorkersDAO extends FileDBDAO<Long, Worker> implements IWorker
     public FileDBWorkersDAO(FileDBController<WorkerCollection> controller) {
         super(controller);
     }
+
+    @Override
+    public Long nextPrimaryKey() {
+        return getMapped(Worker::getPrimaryKey).stream().max(Long::compareTo).orElse(0L) + 1;
+    }
+
+    @Override
+    public Long add(Worker item) {
+        var key = nextPrimaryKey();
+        super.add(item.withId(key));
+        return key;
+    }
 }

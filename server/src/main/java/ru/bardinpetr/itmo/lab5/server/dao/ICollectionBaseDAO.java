@@ -47,8 +47,9 @@ public interface ICollectionBaseDAO<K, V extends IKeyedEntity<K>> {
      * Insert element into collection
      *
      * @param worker item to insert
+     * @return key assigned to object
      */
-    void add(V worker);
+    K add(V worker);
 
     /**
      * Replace entity with given id with new contents
@@ -90,4 +91,11 @@ public interface ICollectionBaseDAO<K, V extends IKeyedEntity<K>> {
      * @return minimal element
      */
     V getMin();
+
+    /**
+     * Get next available primary key
+     *
+     * @return primary key could be assigned to new element
+     */
+    K nextPrimaryKey();
 }
