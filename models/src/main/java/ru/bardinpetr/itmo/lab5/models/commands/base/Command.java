@@ -13,4 +13,12 @@ public abstract class Command {
     public ICommandResponse createResponse() {
         return null;
     }
+
+    public Field[] getInlineArgs() {
+        return new Field[0];
+    }
+    public Field[] getInteractArgs() {
+        return new Field[0];
+    }
+
 }

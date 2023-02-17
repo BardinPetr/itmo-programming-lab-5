@@ -4,10 +4,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
-@Getter
-@ToString
-@EqualsAndHashCode
+@Data
+@NoArgsConstructor
 public class SaveCommand extends Command {
 
     @Override

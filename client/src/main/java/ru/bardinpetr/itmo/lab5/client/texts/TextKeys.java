@@ -1,6 +1,22 @@
 package ru.bardinpetr.itmo.lab5.client.texts;
 
+/**
+ * Enum class for text access
+ */
 public enum TextKeys {
     GREEETING,
-    HELP;
+    HELP,
+    WORKERINTERACT,
+    NAMEINTERACT,
+    COORDINATESINTERACT,
+    SALARYINTERACT,
+    STARTDAYINTERACT,
+    ENDNDATEINTERACT,
+    POSITIONINTERACT,
+    ORGANIZATIONINTERACT,
+    COORXINTERACT,
+    COORYINTERACT,
+    ORGANISATIONNAMEINTERACT,
+    ORGANISATIONTYPEINTERACT
+    ;
 }

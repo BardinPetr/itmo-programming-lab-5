@@ -1,15 +1,12 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.NonNull;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
-import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ListCommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.Response;
-
+import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class ExecuteScriptCommand extends Command {
     @NonNull
     public List<Command> commands;
@@ -27,4 +24,12 @@ public class ExecuteScriptCommand extends Command {
 
     public static class ExecuteScriptCommandResponse extends ListCommandResponse<Response<ICommandResponse>> {
     }
+
+    @Override
+    public Field[] getInlineArgs(){
+        return new Field[]{
+                new Field("file_name", String.class)
+        };
+    }
+
 }

@@ -4,19 +4,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NonNull;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
+import ru.bardinpetr.itmo.lab5.models.data.collection.IIdentifiableEntry;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.Date;
 
 
 @Data
 public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
     private static Long nextId = 0L;
     @NonNull
-    private Long id;
+    private final Long id = nextId++;
     @NonNull
-    private java.time.LocalDateTime creationDate = LocalDateTime.now();
+    private final java.time.LocalDateTime creationDate = LocalDateTime.now();
 
     @NonNull
     private String name;
@@ -32,11 +32,11 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
     private java.time.LocalDateTime endDate;
     private Position position;
 
-    public Worker() {
-    }
+//    public static WorkerBuilder builder() {
+//        return new WorkerBuilder();
+//    }
 
-    public static WorkerBuilder builder() {
-        return new WorkerBuilder();
+    public Worker() {
     }
 
     @JsonIgnore
@@ -65,53 +65,69 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
                 ).compare(this, worker);
     }
 
-    public static class WorkerBuilder {
-        private final Worker worker = new Worker();
-
-        public WorkerBuilder() {
-            worker.id = Worker.nextId;
-            Worker.nextId++;
-        }
-
-        public WorkerBuilder coordinates(Coordinates coordinates) {
-            worker.coordinates = coordinates;
-            return this;
-        }
-
-        public WorkerBuilder endDate(LocalDateTime localDateTime) {
-            worker.endDate = localDateTime;
-            return this;
-        }
-
-        public WorkerBuilder name(String name) {
-            worker.name = name;
-            return this;
-        }
-
-        public WorkerBuilder organization(Organization organization) {
-            worker.organization = organization;
-            return this;
-        }
-
-        public WorkerBuilder position(Position position) {
-            worker.position = position;
-            return this;
-        }
-
-        public WorkerBuilder salary(float salary) {
-            worker.salary = salary;
-            return this;
-        }
-
-        public WorkerBuilder startDate(Date from) {
-            worker.startDate = from;
-            return this;
-        }
-
-        public Worker build() {
-            return worker;
-        }
-
-
-    }
+//    public static class WorkerBuilder {
+//        @NonNull
+//        private String name;
+//        @NonNull
+//        private Coordinates coordinates;
+//        @NonNull
+//        private Float salary;
+//        @NonNull
+//        private java.util.Date startDate;
+//        @NonNull
+//        private Organization organization;
+//
+//        private java.time.LocalDateTime endDate;
+//        private Position position;
+//
+//
+//        public WorkerBuilder coordinates(Coordinates coordinates) {
+//            this.coordinates = coordinates;
+//            return this;
+//        }
+//
+//        public WorkerBuilder endDate(LocalDateTime localDateTime) {
+//            this.endDate = localDateTime;
+//            return this;
+//        }
+//
+//        public WorkerBuilder name(String name) {
+//            this.name = name;
+//            return this;
+//        }
+//
+//        public WorkerBuilder organization(Organization organization) {
+//            this.organization = organization;
+//            return this;
+//        }
+//
+//        public WorkerBuilder position(Position position) {
+//            this.position = position;
+//            return this;
+//        }
+//
+//        public WorkerBuilder salary(float salary) {
+//            this.salary = salary;
+//            return this;
+//        }
+//
+//        public WorkerBuilder startDate(Date from) {
+//            this.startDate = from;
+//            return this;
+//        }
+//
+//        public Worker build() {
+//            return new Worker(
+//                    name,
+//                    coordinates,
+//                    salary,
+//                    startDate,
+//                    organization,
+//                    endDate,
+//                    position
+//                    );
+//        }
+//
+//
+//    }
 }

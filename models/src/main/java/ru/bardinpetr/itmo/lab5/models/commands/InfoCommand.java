@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.base.resonses.ICommandResponse;
@@ -9,6 +10,7 @@ import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
  * Class of info command
  */
 @Data
+@NoArgsConstructor
 public class InfoCommand extends Command {
     @Override
     public String getType() {

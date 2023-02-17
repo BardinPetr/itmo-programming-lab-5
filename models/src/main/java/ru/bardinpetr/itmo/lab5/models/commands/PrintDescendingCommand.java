@@ -9,6 +9,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
  * Class of print_descending command
  */
 @Data
+@NoArgsConstructor
 public class PrintDescendingCommand extends Command {
 
     @Override
@@ -24,4 +25,3 @@ public class PrintDescendingCommand extends Command {
     public static class PrintDescendingCommandResponse extends ListCommandResponse<Worker> {
     }
 }
-

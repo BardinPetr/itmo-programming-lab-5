@@ -1,5 +1,5 @@
 package ru.bardinpetr.itmo.lab5.client;
 
-public interface Shower {
+public interface View {
     public void show(String s);
 }
