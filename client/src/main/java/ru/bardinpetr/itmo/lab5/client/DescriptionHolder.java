@@ -97,8 +97,8 @@ public class DescriptionHolder {
                                 OrganizationValidation::validateFullName)
                         );
                         add(new FieldWithDesc(
-                                "type",
-                                OrganizationType.class,
+                                        "type",
+                                        OrganizationType.class,
                                         RussianText.getMap().get(TextKeys.ORGANISATIONTYPEINTERACT)
                                 )
                         );

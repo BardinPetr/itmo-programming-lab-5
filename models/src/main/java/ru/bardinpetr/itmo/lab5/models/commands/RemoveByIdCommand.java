@@ -3,6 +3,7 @@ package ru.bardinpetr.itmo.lab5.models.commands;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 
 /**
@@ -10,6 +11,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
  */
 @Data
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class RemoveByIdCommand extends Command {
     @NonNull
     public Long id;

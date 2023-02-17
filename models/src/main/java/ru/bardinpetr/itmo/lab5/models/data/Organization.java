@@ -1,10 +1,11 @@
 package ru.bardinpetr.itmo.lab5.models.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
-//@Data
 @Data
+@AllArgsConstructor
 public class Organization implements Comparable<Organization> {
     @NonNull String fullName;
     @NonNull OrganizationType type;

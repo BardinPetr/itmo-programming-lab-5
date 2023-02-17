@@ -78,7 +78,7 @@ public class Executor {
         try {
             return Response.success(op.apply(cmd));
         } catch (Exception ex) {
-            return Response.error(ex);
+            return Response.error(ex.getMessage());
         }
     }
 

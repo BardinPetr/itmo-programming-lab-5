@@ -1,7 +1,9 @@
 package ru.bardinpetr.itmo.lab5.models.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
@@ -10,6 +12,8 @@ import java.util.Comparator;
 
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
     private static Long nextId = 0L;
     @NonNull
@@ -34,9 +38,6 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
 //    public static WorkerBuilder builder() {
 //        return new WorkerBuilder();
 //    }
-
-    public Worker() {
-    }
 
     @JsonIgnore
     @Override
