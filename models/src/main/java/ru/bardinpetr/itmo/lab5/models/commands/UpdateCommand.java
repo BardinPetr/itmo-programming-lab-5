@@ -6,6 +6,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
+import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 /**
@@ -23,6 +25,11 @@ public class UpdateCommand extends Command {
     @Override
     public String getType() {
         return "update";
+    }
+
+    @Override
+    public ValidationResponse validate() {
+        return WorkerValidation.validateAll(element);
     }
 
     @Override

@@ -76,6 +76,9 @@ public class Executor {
             return Response.noResolve();
         }
         try {
+            var validation = cmd.validate();
+            if (!validation.isAllowed())
+                return Response.error("Validation of command failed: %s".formatted(validation.getMsg()));
             return Response.success(op.apply(cmd));
         } catch (Exception ex) {
             return Response.error(ex.getMessage());

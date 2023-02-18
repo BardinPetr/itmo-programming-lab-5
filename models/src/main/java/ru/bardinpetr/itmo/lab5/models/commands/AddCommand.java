@@ -4,6 +4,8 @@ import lombok.*;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
+import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 /**
@@ -26,6 +28,11 @@ public class AddCommand extends Command {
         return new Field[]{
                 new Field("element", Worker.class)
         };
+    }
+
+    @Override
+    public ValidationResponse validate() {
+        return WorkerValidation.validateAll(element);
     }
 
     @Override

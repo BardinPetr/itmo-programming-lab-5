@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.models.commands.base;
 
 import lombok.Data;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 /**
@@ -23,4 +24,7 @@ public abstract class Command {
         return new Field[0];
     }
 
+    public ValidationResponse validate() {
+        return new ValidationResponse(true, "OK");
+    }
 }

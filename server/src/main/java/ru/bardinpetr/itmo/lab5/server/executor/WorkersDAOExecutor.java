@@ -2,7 +2,6 @@ package ru.bardinpetr.itmo.lab5.server.executor;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
-import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
 
 import java.util.Comparator;
@@ -38,8 +37,6 @@ public class WorkersDAOExecutor extends Executor {
         registerOperation(
                 AddCommand.class,
                 req -> {
-                    if (!WorkerValidation.validateAll(req.element).isAllowed())
-                        throw new RuntimeException("Invalid worker");
                     var resp = req.createResponse();
                     resp.setId(dao.add(req.element));
                     return resp;
@@ -47,11 +44,7 @@ public class WorkersDAOExecutor extends Executor {
         );
         registerVoidOperation(
                 UpdateCommand.class,
-                req -> {
-                    if (!WorkerValidation.validateAll(req.element).isAllowed())
-                        throw new RuntimeException("Invalid worker");
-                    dao.update(req.id, req.element);
-                }
+                req -> dao.update(req.id, req.element)
         );
         registerVoidOperation(
                 RemoveByIdCommand.class,
