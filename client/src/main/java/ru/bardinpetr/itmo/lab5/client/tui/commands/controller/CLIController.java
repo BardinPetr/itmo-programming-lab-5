@@ -1,0 +1,75 @@
+package ru.bardinpetr.itmo.lab5.client.tui.commands.controller;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.bardinpetr.itmo.lab5.client.parser.CommandParser;
+import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
+import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
+import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
+import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
+import ru.bardinpetr.itmo.lab5.client.tui.ICommandIOComeback;
+import ru.bardinpetr.itmo.lab5.client.tui.View;
+import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
+import ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
+
+import java.io.InputStream;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CLIController {
+
+    protected Scanner scanner;
+    protected Map<TextKeys, String> texts;
+    protected CommandParser cmdParser;
+    protected View viewer;
+    protected ICommandIOComeback callback;
+    protected ObjectMapper mapper = ObjectMapperFactory.createMapper();
+
+    public CLIController(View viewer, InputStream inputStream, ICommandIOComeback callback) {
+        scanner = new Scanner(inputStream);
+
+        this.callback = callback;
+
+        texts = RussianText.getMap();
+
+        CommandRegister cmdRegister = new CommandRegister();
+
+        this.viewer = viewer;
+
+        cmdParser = cmdRegister.register(mapper, scanner, viewer);
+    }
+
+    public void run() {
+        viewer.show(texts.get(TextKeys.GREEETING));
+        while (scanner.hasNextLine()) {
+            try {
+                Command cmd = cmdParser.parse();
+                var resp = callback.callback(cmd);
+                if (resp.isSuccess()) {
+                    ICommandResponse payload = resp.getPayload();
+                    if (resp.getPayload() != null) {
+                        if (payload.getClass() == LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse.class) {
+                            var res2p = (ExecuteScriptCommandResponse) callback.callback((Command) payload).getPayload(); //TODO chrck
+                            res2p.getResult().forEach(
+                                    i -> viewer.show(i.getText())
+                            );
+                        } else {
+                            viewer.show(payload.getUserMessage());
+                        }
+                    } else {
+                        viewer.show("OK!");
+                    }
+                } else {
+                    viewer.show("Error: " + resp.getText());
+                }
+                //System.out.println(cmd);
+            } catch (ParserException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid argument. Stop command interaction");
+            }
+        }
+    }
+}

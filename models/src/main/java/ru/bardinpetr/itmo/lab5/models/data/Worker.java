@@ -26,7 +26,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
     @NonNull
     private Coordinates coordinates;
     @NonNull
-    private Float salary;
+    private float salary;
     @NonNull
     private java.util.Date startDate;
     @NonNull

@@ -24,6 +24,19 @@ public class DescriptionHolder {
                 new ArrayList<>() {
                     {
                         add(new FieldWithDesc<>(
+                                "name",
+                                String.class,
+                                RussianText.getMap().get(TextKeys.NAMEINTERACT),
+                                WorkerValidation::validateName)
+                        );
+                        add(new FieldWithDesc<>(
+                                "salary",
+                                Float.class,
+                                RussianText.getMap().get(TextKeys.SALARYINTERACT),
+                                WorkerValidation::validateSalary)
+                        );
+
+                        add(new FieldWithDesc<>(
                                         "startDate",
                                         Date.class,
                                         RussianText.getMap().get(TextKeys.STARTDAYINTERACT)
@@ -34,18 +47,6 @@ public class DescriptionHolder {
                                         LocalDateTime.class,
                                         RussianText.getMap().get(TextKeys.ENDNDATEINTERACT)
                                 )
-                        );
-                        add(new FieldWithDesc<>(
-                                "name",
-                                String.class,
-                                RussianText.getMap().get(TextKeys.NAMEINTERACT),
-                                WorkerValidation::validateName)
-                        );
-                        add(new FieldWithDesc<>(
-                                "salary",
-                                float.class,
-                                RussianText.getMap().get(TextKeys.SALARYINTERACT),
-                                WorkerValidation::validateSalary)
                         );
                         add(new FieldWithDesc<>(
                                 "coordinates",
@@ -81,7 +82,7 @@ public class DescriptionHolder {
                         );
                         add(new FieldWithDesc<>(
                                 "y",
-                                int.class,
+                                Float.class,
                                 RussianText.getMap().get(TextKeys.COORYINTERACT))
                         );
 
