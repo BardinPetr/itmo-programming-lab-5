@@ -1,8 +1,8 @@
-package ru.bardinpetr.itmo.lab5.models.serdes;
+package ru.bardinpetr.itmo.lab5.common.serdes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
+import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 
 import java.io.IOException;
 

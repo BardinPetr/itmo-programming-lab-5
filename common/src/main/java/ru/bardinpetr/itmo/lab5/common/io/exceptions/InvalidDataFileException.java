@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.common.io.exceptions;
 
-import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
+import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 
 /**
  * Thrown if DB controller tried to load corrupted or empty file

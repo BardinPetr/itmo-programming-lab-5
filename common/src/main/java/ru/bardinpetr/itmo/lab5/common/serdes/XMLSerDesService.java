@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.models.serdes;
+package ru.bardinpetr.itmo.lab5.common.serdes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;

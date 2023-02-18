@@ -3,8 +3,8 @@ package ru.bardinpetr.itmo.lab5.server.filedb;
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException;
-import ru.bardinpetr.itmo.lab5.models.serdes.XMLSerDesService;
-import ru.bardinpetr.itmo.lab5.models.serdes.exceptions.SerDesException;
+import ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService;
+import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 
 /**
  * Database main controller.
