@@ -13,9 +13,6 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":server"))
 
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.14.2")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.2")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2")
-    implementation("com.fasterxml.jackson.module:jackson-module-parameter-names:2.14.2")
+    implementation("com.fasterxml.jackson.core:jackson-databind:${Deps.jacksonVersion}")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Deps.jacksonVersion}")
 }

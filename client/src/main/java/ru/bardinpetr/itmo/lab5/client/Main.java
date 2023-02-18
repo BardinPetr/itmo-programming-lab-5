@@ -23,6 +23,7 @@ public class Main {
         executor.registerExecutor(new UIExecutor());
         executor.registerExecutor(serverExecutor);
 
+
         View view = new ConsolePrinter();
 
         CLIController cmdController = new CLIController(
@@ -31,6 +32,5 @@ public class Main {
                 executor::execute
         );
         cmdController.run();
-
     }
 }

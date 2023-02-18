@@ -3,7 +3,6 @@ package ru.bardinpetr.itmo.lab5.client.parser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.ObjectScanner;
-import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.validation.ValueDeserializer;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
@@ -42,7 +41,7 @@ public class CommandParser {
         var inlineArgs = cmdMap.get(commandName).getInlineArgs();
         HashMap<String, Object> objectMap = new HashMap<>();
         for (int i = 0; i < userArgs.length - 1; i++) {
-            var value = valueDes.Deserialize(inlineArgs[i].getValueClass(), userArgs[i + 1]);
+            var value = valueDes.deserialize(inlineArgs[i].getValueClass(), userArgs[i + 1]);
             objectMap.put(inlineArgs[i].getName(), value);
         }
 

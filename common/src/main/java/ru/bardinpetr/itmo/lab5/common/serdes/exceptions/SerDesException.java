@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.models.serdes.exceptions;
+package ru.bardinpetr.itmo.lab5.common.serdes.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

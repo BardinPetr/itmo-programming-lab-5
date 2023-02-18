@@ -20,19 +20,27 @@ public class WorkersDAOExecutor extends Executor {
     }
 
     private void registerCRUD() {
-        registerOperation(InfoCommand.class, req -> {
-            var resp = req.createResponse();
-            resp.setResult(dao.getCollectionInfo());
-            return resp;
-        });
-        registerOperation(ShowCommand.class, req -> {
-            var resp = req.createResponse();
-            resp.setResult(dao.readAll());
-            return resp;
-        });
-        registerVoidOperation(
+        registerOperation(
+                InfoCommand.class,
+                req -> {
+                    var resp = req.createResponse();
+                    resp.setResult(dao.getCollectionInfo());
+                    return resp;
+                });
+        registerOperation(
+                ShowCommand.class,
+                req -> {
+                    var resp = req.createResponse();
+                    resp.setResult(dao.readAll());
+                    return resp;
+                });
+        registerOperation(
                 AddCommand.class,
-                req -> dao.add(req.element)
+                req -> {
+                    var resp = req.createResponse();
+                    resp.setId(dao.add(req.element));
+                    return resp;
+                }
         );
         registerVoidOperation(
                 UpdateCommand.class,
@@ -40,7 +48,10 @@ public class WorkersDAOExecutor extends Executor {
         );
         registerVoidOperation(
                 RemoveByIdCommand.class,
-                req -> dao.remove(req.id)
+                req -> {
+                    if (!dao.remove(req.id))
+                        throw new RuntimeException("Not found entity to remove");
+                }
         );
         registerVoidOperation(
                 ClearCommand.class,
