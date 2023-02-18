@@ -10,6 +10,9 @@ import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 
+import static java.util.Comparator.naturalOrder;
+import static java.util.Comparator.nullsLast;
+
 
 @Data
 @AllArgsConstructor
@@ -40,6 +43,19 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
         creationDate = LocalDateTime.now();
     }
 
+    public static Comparator<Worker> getComparator() {
+        return Comparator
+                .comparing(Worker::getOrganization)
+                .thenComparing(Worker::getPosition, nullsLast(naturalOrder()))
+                .thenComparing(Worker::getName)
+                .thenComparing(Worker::getSalary)
+                .thenComparing((x, y) -> -1 * x.startDate.compareTo(y.startDate))
+                .thenComparing(Worker::getEndDate, nullsLast(naturalOrder()))
+                .thenComparing(Worker::getCoordinates)
+                .thenComparing(Worker::getCreationDate)
+                .thenComparing(Worker::getId);
+    }
+
     @JsonIgnore
     @Override
     public Long getPrimaryKey() {
@@ -56,18 +72,6 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
      * @param worker the object to be compared.
      */
     public int compareTo(@NonNull Worker worker) {
-        return Comparator
-                .nullsLast(
-                        Comparator
-                                .comparing(Worker::getOrganization)
-                                .thenComparing(Worker::getPosition)
-                                .thenComparing(Worker::getName)
-                                .thenComparing(Worker::getSalary)
-                                .thenComparing((x, y) -> -1 * x.startDate.compareTo(y.startDate))
-                                .thenComparing(Worker::getEndDate)
-                                .thenComparing(Worker::getCoordinates)
-                                .thenComparing(Worker::getCreationDate)
-                                .thenComparing(Worker::getId)
-                ).compare(this, worker);
+        return getComparator().compare(this, worker);
     }
 }
