@@ -3,8 +3,9 @@ package ru.bardinpetr.itmo.lab5.client.parser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.ObjectScanner;
+import ru.bardinpetr.itmo.lab5.client.tui.View;
+import ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
-import ru.bardinpetr.itmo.lab5.models.commands.validation.ValueDeserializer;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.HashMap;
