@@ -26,44 +26,44 @@ public class DescriptionHolder {
                         add(new FieldWithDesc<>(
                                 "name",
                                 String.class,
-                                RussianText.getMap().get(TextKeys.NAMEINTERACT),
+                                RussianText.get(TextKeys.NAMEINTERACT),
                                 WorkerValidation::validateName)
                         );
                         add(new FieldWithDesc<>(
                                 "salary",
                                 Float.class,
-                                RussianText.getMap().get(TextKeys.SALARYINTERACT),
+                                RussianText.get(TextKeys.SALARYINTERACT),
                                 WorkerValidation::validateSalary)
                         );
 
                         add(new FieldWithDesc<>(
                                         "startDate",
                                         Date.class,
-                                        RussianText.getMap().get(TextKeys.STARTDAYINTERACT)
+                                RussianText.get(TextKeys.STARTDAYINTERACT)
                                 )
                         );
                         add(new FieldWithDesc<>(
                                         "endDate",
                                         LocalDateTime.class,
-                                        RussianText.getMap().get(TextKeys.ENDNDATEINTERACT)
+                                RussianText.get(TextKeys.ENDNDATEINTERACT)
                                 )
                         );
                         add(new FieldWithDesc<>(
                                 "coordinates",
                                 Coordinates.class,
-                                RussianText.getMap().get(TextKeys.COORDINATESINTERACT),
+                                RussianText.get(TextKeys.COORDINATESINTERACT),
                                 CoordinatesValidation::validateAll)
                         );
                         add(new FieldWithDesc<>(
                                 "organization",
                                 Organization.class,
-                                RussianText.getMap().get(TextKeys.ORGANIZATIONINTERACT),
+                                RussianText.get(TextKeys.ORGANIZATIONINTERACT),
                                 OrganizationValidation::validateAll)
                         );
                         add(new FieldWithDesc<>(
                                 "position",
                                 Position.class,
-                                RussianText.getMap().get(TextKeys.POSITIONINTERACT))
+                                RussianText.get(TextKeys.POSITIONINTERACT))
                         );
 
 
@@ -77,13 +77,13 @@ public class DescriptionHolder {
                         add(new FieldWithDesc<>(
                                 "x",
                                 Integer.class,
-                                RussianText.getMap().get(TextKeys.COORXINTERACT),
+                                RussianText.get(TextKeys.COORXINTERACT),
                                 CoordinatesValidation::validateX)
                         );
                         add(new FieldWithDesc<>(
                                 "y",
                                 Float.class,
-                                RussianText.getMap().get(TextKeys.COORYINTERACT))
+                                RussianText.get(TextKeys.COORYINTERACT))
                         );
 
                     }
@@ -96,13 +96,13 @@ public class DescriptionHolder {
                         add(new FieldWithDesc<>(
                                 "fullName",
                                 String.class,
-                                RussianText.getMap().get(TextKeys.ORGANISATIONNAMEINTERACT),
+                                RussianText.get(TextKeys.ORGANISATIONNAMEINTERACT),
                                 OrganizationValidation::validateFullName)
                         );
                         add(new FieldWithDesc<>(
                                         "type",
                                         OrganizationType.class,
-                                        RussianText.getMap().get(TextKeys.ORGANISATIONTYPEINTERACT)
+                                RussianText.get(TextKeys.ORGANISATIONTYPEINTERACT)
                                 )
                         );
 

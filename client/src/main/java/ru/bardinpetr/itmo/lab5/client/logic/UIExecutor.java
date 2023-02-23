@@ -14,7 +14,7 @@ public class UIExecutor extends Executor {
         );
         registerVoidOperation(
                 HelpCommand.class,
-                req -> System.out.println(RussianText.getMap().get(TextKeys.HELP))
+                req -> System.out.println(RussianText.get(TextKeys.HELP))
         );
     }
 

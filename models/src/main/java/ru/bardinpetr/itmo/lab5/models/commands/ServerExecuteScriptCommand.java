@@ -17,17 +17,14 @@ import java.util.List;
 public class ServerExecuteScriptCommand extends Command {
         @NonNull
         private List<Command> commands;
-
         @Override
         public String getType() {
                 return "server_execute_script";
         }
-
         @Override
         public ExecuteScriptCommandResponse createResponse() {
                 return new ExecuteScriptCommandResponse();
         }
-
         public static class ExecuteScriptCommandResponse extends ListCommandResponse<Response<ICommandResponse>> {
         }
 }

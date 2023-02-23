@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.server;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
+import ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
@@ -17,6 +18,7 @@ public class MainExecutor extends Executor {
         registerExecutor(new WorkersDAOExecutor(dao));
 
         registerOperation(ServerExecuteScriptCommand.class, this::processScript);
+        registerOperation(LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse.class, this::processScript);
     }
 
     private ICommandResponse processScript(ServerExecuteScriptCommand req) {

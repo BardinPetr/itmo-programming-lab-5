@@ -15,13 +15,12 @@ import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 
 import java.io.InputStream;
-import java.util.Map;
 import java.util.Scanner;
 
 public class CLIController {
 
     protected Scanner scanner;
-    protected Map<TextKeys, String> texts;
+
     protected CommandParser cmdParser;
     protected View viewer;
     protected ICommandIOComeback callback;
@@ -32,44 +31,50 @@ public class CLIController {
 
         this.callback = callback;
 
-        texts = RussianText.getMap();
+
 
         CommandRegister cmdRegister = new CommandRegister();
 
         this.viewer = viewer;
 
-        cmdParser = cmdRegister.register(mapper, scanner, viewer);
+        cmdParser = cmdRegister.getParser(mapper, scanner, viewer);
     }
 
     public void run() {
-        viewer.show(texts.get(TextKeys.GREEETING));
+        viewer.show(RussianText.get(TextKeys.GREEETING));
         while (scanner.hasNextLine()) {
             try {
                 Command cmd = cmdParser.parse();
                 var resp = callback.callback(cmd);
                 if (resp.isSuccess()) {
                     ICommandResponse payload = resp.getPayload();
-                    if (resp.getPayload() != null) {
+                    if (payload != null) {
                         if (payload.getClass() == LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse.class) {
-                            var res2p = (ExecuteScriptCommandResponse) callback.callback((Command) payload).getPayload(); //TODO chrck
-                            res2p.getResult().forEach(
-                                    i -> viewer.show(i.getText())
-                            );
+                            var resp2 = callback.callback((Command) payload);
+                            if (resp2.isSuccess()) {
+                                ExecuteScriptCommandResponse payload2 = (ExecuteScriptCommandResponse) resp2.getPayload();
+                                payload2.getResult().forEach(
+                                        i -> viewer.show(i.getText()) // print script command responses
+                                );
+                            } else {
+                                viewer.show("Error: " + resp2.getText());
+                            }
                         } else {
-                            viewer.show(payload.getUserMessage());
+                            viewer.show(payload.getUserMessage()); // print general command response
                         }
                     } else {
                         viewer.show("OK!");
                     }
                 } else {
-                    viewer.show("Error: " + resp.getText());
+                    if (cmd.getClass() == LocalExecuteScriptCommand.class) viewer.show("Invalid script");
+                    else viewer.show("Error: " + resp.getText());
                 }
-                //System.out.println(cmd);
-            } catch (ParserException e) {
-                System.out.println(e.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println("Invalid argument. Stop command interaction");
+            } catch (ParserException e) {
+                System.out.println(e.getMessage());
             }
+
         }
     }
 }

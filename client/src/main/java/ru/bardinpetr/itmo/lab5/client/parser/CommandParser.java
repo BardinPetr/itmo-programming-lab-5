@@ -30,7 +30,7 @@ public class CommandParser {
     }
 
     public Command parse() throws ParserException {
-        var valueDes = new ValueDeserializer();
+        ValueDeserializer valueDes = new ValueDeserializer();
 
         String[] userArgs = scanner.nextLine().split(" ");
         String commandName = userArgs[0];

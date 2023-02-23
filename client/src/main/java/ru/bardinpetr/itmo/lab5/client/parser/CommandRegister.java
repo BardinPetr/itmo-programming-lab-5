@@ -43,7 +43,7 @@ public class CommandRegister {
         map.put(cmd.getType(), cmd);
     }
 
-    public CommandParser register(ObjectMapper mapper, Scanner scanner, View viewer) {
+    public CommandParser getParser(ObjectMapper mapper, Scanner scanner, View viewer) {
         return new CommandParser(map, mapper, scanner, viewer);
     }
 }

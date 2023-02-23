@@ -45,8 +45,8 @@ public class RussianText {
         put(TextKeys.SALARYINTERACT, "Enter salary");
         put(TextKeys.COORXINTERACT, "Enter x coordinate");
         put(TextKeys.COORYINTERACT, "Enter y coordinate");
-        put(TextKeys.STARTDAYINTERACT, "Enter start date");
-        put(TextKeys.ENDNDATEINTERACT, "Enter end date");
+        put(TextKeys.STARTDAYINTERACT, "Enter start date in DD-MM-YYYY format");
+        put(TextKeys.ENDNDATEINTERACT, "Enter end date in DD-MM-YYYY format");
         put(TextKeys.POSITIONINTERACT, "Enter position from list:" +
                 "    ENGINEER,\n" +
                 "    HEAD_OF_DEPARTMENT,\n" +
@@ -64,7 +64,7 @@ public class RussianText {
     }};
 
 
-    public static Map<TextKeys, String> getMap() {
-        return textList;
+    public static String get(TextKeys key) {
+        return textList.get(key);
     }
 }

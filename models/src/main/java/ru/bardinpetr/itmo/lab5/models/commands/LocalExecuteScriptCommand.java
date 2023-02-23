@@ -38,7 +38,6 @@ public class LocalExecuteScriptCommand extends Command {
         public LocalExecuteScriptCommandResponse(@NonNull List<Command> commands) {
             super(commands);
         }
-
         @Override
         public String getUserMessage() {
             return null;
