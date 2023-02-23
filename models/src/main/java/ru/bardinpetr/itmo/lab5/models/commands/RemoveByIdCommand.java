@@ -19,7 +19,7 @@ public class RemoveByIdCommand extends Command {
 
     @Override
     public String getType() {
-        return "removeById";
+        return "remove_by_id";
     }
 
     @Override

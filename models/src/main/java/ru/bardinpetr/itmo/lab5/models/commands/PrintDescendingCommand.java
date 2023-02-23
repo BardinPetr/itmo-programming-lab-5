@@ -22,5 +22,11 @@ public class PrintDescendingCommand extends Command {
     }
 
     public static class PrintDescendingCommandResponse extends ListCommandResponse<Worker> {
+        @Override
+        public String getUserMessage() {
+            var result = getResult();
+            return "collection elements in descending order" +
+                    Worker.nicePrintFormat(result);
+        }
     }
 }

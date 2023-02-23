@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.client.tui;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.parser.DescriptionHolder;
+import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator;
 import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;
 
@@ -24,6 +25,12 @@ public class ObjectScanner {
         this.mapper = mapper;
     }
 
+
+    private String scan() {
+        String string = scanner.nextLine();
+        return string == null ? "" : string;
+    }
+
     /**
      * Method for single value interaction
      *
@@ -31,10 +38,13 @@ public class ObjectScanner {
      * @param <T>    Type of value
      * @return object if required type
      */
-
-    private <T> T interactValue(Class<T> kClass) throws IllegalArgumentException {
+    private <T> T interactValue(Class<T> kClass) throws IllegalArgumentException, ParserException {
         if (!DescriptionHolder.dataDescriptions.containsKey(kClass))
-            return mapper.convertValue(scanner.next(), kClass);
+            try {
+                return mapper.convertValue(scan(), kClass);
+            } catch (IllegalArgumentException e) {
+                throw new ParserException("Invalid argument");
+            }
         else {
             return scan(kClass);
         }
@@ -48,7 +58,7 @@ public class ObjectScanner {
      * @param <T>    Object class
      * @return Object
      */
-    public <T> T scan(Class<T> kClass) {
+    public <T> T scan(Class<T> kClass) throws ParserException {
         Map<String, Object> objectMap = new HashMap<>();
         List<FieldWithDesc<?>> fields = DescriptionHolder.dataDescriptions.get(kClass);
         for (var i : fields) {

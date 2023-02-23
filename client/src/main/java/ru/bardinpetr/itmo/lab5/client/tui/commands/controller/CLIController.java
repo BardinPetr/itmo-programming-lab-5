@@ -69,8 +69,7 @@ public class CLIController {
                         viewer.show("OK!");
                     }
                 } else {
-                    if (cmd.getClass() == LocalExecuteScriptCommand.class) viewer.show("Invalid script");
-                    else viewer.show("Error: " + resp.getText());
+                    viewer.show("Error: " + resp.getText());
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("Invalid argument. Stop command interaction");

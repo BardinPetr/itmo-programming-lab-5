@@ -35,7 +35,7 @@ public class CommandParser {
         String[] userArgs = scanner.nextLine().split(" ");
         String commandName = userArgs[0];
 
-        if (!cmdMap.containsKey(commandName)) throw new ParserException("invalid command name");
+        if (!cmdMap.containsKey(commandName)) throw new ParserException("invalid command name \"" + commandName + "\"");
         if (userArgs.length - 1 != cmdMap.get(commandName).getInlineArgs().length)
             throw new ParserException("arguments amount exception");
 

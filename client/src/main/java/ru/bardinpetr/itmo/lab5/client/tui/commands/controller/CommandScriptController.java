@@ -40,7 +40,7 @@ public class CommandScriptController {
                 Command cmd = cmdParser.parse();
                 commandList.add(cmd);
             } catch (ParserException e) {
-                throw new ScriptExecuteException("");
+                throw new ScriptExecuteException("Invalid script: " + e.getMessage());
             }
         }
         return commandList;

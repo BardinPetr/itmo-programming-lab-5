@@ -45,7 +45,6 @@ public class ScriptExecutor extends Executor {
             }
             return Stream.of(i);
         }).toList();
-
         return new LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse(list);
     }
 
