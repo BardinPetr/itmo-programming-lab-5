@@ -54,8 +54,11 @@ public class CLIController {
                             if (resp2.isSuccess()) {
                                 ExecuteScriptCommandResponse payload2 = (ExecuteScriptCommandResponse) resp2.getPayload();
                                 payload2.getResult().forEach(
-                                        i -> viewer.show(i.getText()) // print script command responses
-                                );
+                                        i -> {
+                                            if (i.getPayload() != null) {
+                                                viewer.show(i.getPayload().getUserMessage());
+                                            }
+                                        }); // print script command responses
                             } else {
                                 viewer.show("Error: " + resp2.getText());
                             }
