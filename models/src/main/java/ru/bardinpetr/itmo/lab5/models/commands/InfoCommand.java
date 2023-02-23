@@ -32,7 +32,11 @@ public class InfoCommand extends Command {
 
         @Override
         public String getUserMessage() {
-            return result.toString();
+            return "collection information\n" +
+                    "   name:" + result.getName() +
+                    ",\n   element type:" + result.getType() +
+                    ",\n   initializationDate:" + result.getInitializationDate() +
+                    ",\n   itemsCount:" + result.getItemsCount();
         }
     }
 }

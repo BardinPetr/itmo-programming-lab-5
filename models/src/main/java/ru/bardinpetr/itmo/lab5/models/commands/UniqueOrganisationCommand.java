@@ -36,7 +36,15 @@ public class UniqueOrganisationCommand extends Command {
 
         @Override
         public String getUserMessage() {
-            return getOrganizations().toString();
+            String s = "organization field unique values:\n";
+            for (Organization i : organizations) {
+                s += String.format(
+                        "\tFull name: %s, type: %s\n",
+                        i.getFullName(),
+                        i.getType()
+                );
+            }
+            return s;
         }
     }
 }

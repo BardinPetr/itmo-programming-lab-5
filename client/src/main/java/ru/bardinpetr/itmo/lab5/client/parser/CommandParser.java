@@ -1,51 +1,41 @@
 package ru.bardinpetr.itmo.lab5.client.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.ObjectScanner;
+import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
 import java.util.HashMap;
+import java.util.Scanner;
 
 
 public class CommandParser {
     private final HashMap<String, Command> cmdMap;
-    ObjectMapper mapper = new ObjectMapper();
+    private ObjectMapper mapper;
+    private Scanner scanner;
+    private View viewer;
+    private ObjectScanner objectScanner;
 
 
-    public CommandParser(HashMap<String, Command> cmdMap) {
+    public CommandParser(HashMap<String, Command> cmdMap, ObjectMapper mapper, Scanner scanner, View viewer) {
         this.cmdMap = cmdMap;
-        String timeFormat = "dd-MM-yyyy";
-        mapper.setDateFormat(new SimpleDateFormat(timeFormat));
-        var formatter = new DateTimeFormatterBuilder().appendPattern(timeFormat)
-                .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
-                .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
-                .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
-                .toFormatter(); //TODO reformat
-        var timeModule =
-                new JavaTimeModule()
-                        .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(formatter))
-                        .addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(formatter));
+        this.mapper = mapper;
+        this.viewer = viewer;
+        this.scanner = scanner;
+        this.objectScanner = new ObjectScanner(scanner, viewer, mapper);
 
-        mapper.registerModule(timeModule);
     }
 
-    public Command parse(String commandString) throws ParserException {
-        var valueDes = new ValueDeserializer();
+    public Command parse() throws ParserException {
+        ValueDeserializer valueDes = new ValueDeserializer();
 
-        String[] userArgs = commandString.split(" ");
+        String[] userArgs = scanner.nextLine().split(" ");
         String commandName = userArgs[0];
 
-        if (!cmdMap.containsKey(commandName)) throw new ParserException("invalid command name");
+        if (!cmdMap.containsKey(commandName)) throw new ParserException("invalid command name \"" + commandName + "\"");
         if (userArgs.length - 1 != cmdMap.get(commandName).getInlineArgs().length)
             throw new ParserException("arguments amount exception");
 
@@ -58,9 +48,8 @@ public class CommandParser {
 
         var interactArgs = cmdMap.get(commandName).getInteractArgs();
         for (Field i : interactArgs) {
-            objectMap.put(i.getName(), ObjectScanner.scan(i.getValueClass()));
+            objectMap.put(i.getName(), objectScanner.scan(i.getValueClass()));
         }
-
 
         return mapper.convertValue(objectMap, cmdMap.get(commandName).getClass());
     }

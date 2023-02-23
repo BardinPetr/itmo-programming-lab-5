@@ -1,9 +1,12 @@
 package ru.bardinpetr.itmo.lab5.client.parser;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class CommandRegister {
     private final Command[] cmdList = new Command[]{
@@ -11,7 +14,7 @@ public class CommandRegister {
             new AddIfMaxCommand(),
             new AddIfMinCommand(),
             new ClearCommand(),
-            new ExecuteScriptCommand(),
+            new LocalExecuteScriptCommand(),
             new ExitCommand(),
             new FilterLessPosCommand(),
             new HelpCommand(),
@@ -26,6 +29,12 @@ public class CommandRegister {
     };
     private final HashMap<String, Command> map = new HashMap<>();
 
+    public CommandRegister() {
+        for (Command i : cmdList) {
+            addCommand(i);
+        }
+    }
+
     public HashMap<String, Command> getMap() {
         return map;
     }
@@ -34,10 +43,7 @@ public class CommandRegister {
         map.put(cmd.getType(), cmd);
     }
 
-    public CommandParser regist() {
-        for (Command i : cmdList) {
-            addCommand(i);
-        }
-        return new CommandParser(map);
+    public CommandParser getParser(ObjectMapper mapper, Scanner scanner, View viewer) {
+        return new CommandParser(map, mapper, scanner, viewer);
     }
 }

@@ -21,5 +21,11 @@ public class ShowCommand extends Command {
     }
 
     public static class ShowCommandResponse extends ListCommandResponse<Worker> {
+        @Override
+        public String getUserMessage() {
+            var result = getResult();
+            return "the whole collection" +
+                    Worker.nicePrintFormat(result);
+        }
     }
 }

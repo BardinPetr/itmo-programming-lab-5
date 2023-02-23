@@ -9,6 +9,7 @@ import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.List;
 
 import static java.util.Comparator.naturalOrder;
 import static java.util.Comparator.nullsLast;
@@ -29,7 +30,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
     @NonNull
     private Coordinates coordinates;
     @NonNull
-    private Float salary;
+    private float salary;
     @NonNull
     private java.util.Date startDate;
     @NonNull
@@ -73,5 +74,29 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
      */
     public int compareTo(@NonNull Worker worker) {
         return getComparator().compare(this, worker);
+    }
+
+    public static String nicePrintFormat(List<Worker> list) {
+        String s = "";
+        for (var i : list) {
+            String coordinates = "(x: " + i.getCoordinates().getX() + "," +
+                    "y: " + i.getCoordinates().getX() + ')';
+            String organization = String.format(
+                    "(full name: %s, type: %s)",
+                    i.getOrganization().getFullName(),
+                    i.getOrganization().getType()
+            );
+            s += "\n\tid: " + i.getId() +
+                    ",\n\t creationDate: " + i.getCreationDate() +
+                    ",\n\t name: '" + i.getName() + '\'' +
+                    ",\n\t coordinates: " + coordinates +
+                    ",\n\t salary: " + i.getSalary() +
+                    ",\n\t startDate: " + i.getStartDate() +
+                    ",\n\t organization: " + organization +
+                    ",\n\t endDate: " + i.getEndDate() +
+                    ",\n\t position: " + i.getPosition();
+        }
+        return s;
+
     }
 }
