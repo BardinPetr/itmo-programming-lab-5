@@ -17,11 +17,11 @@ import static java.util.Comparator.nullsLast;
 
 @Data
 @AllArgsConstructor
-public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
-    private static Long nextId = 0L;
+public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
+    private static Integer nextId = 0;
     @With
     @NonNull
-    private final Long id;
+    private final Integer id;
     @NonNull
     private final java.time.LocalDateTime creationDate;
 
@@ -59,13 +59,13 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Long> {
 
     @JsonIgnore
     @Override
-    public Long getPrimaryKey() {
+    public Integer getPrimaryKey() {
         return id;
     }
 
     @JsonIgnore
     @Override
-    public void setPrimaryKey(Long key) {
+    public void setPrimaryKey(Integer key) {
 //        this.id = key;
     }
 

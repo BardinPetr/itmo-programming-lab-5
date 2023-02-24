@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public interface IWorkerCollectionDAO extends ICollectionFilteredDAO<Long, Worker> {
+public interface IWorkerCollectionDAO extends ICollectionFilteredDAO<Integer, Worker> {
     default void addIfMax(Worker worker) {
         var curMax = getMax();
         if (curMax.compareTo(worker) < 0)

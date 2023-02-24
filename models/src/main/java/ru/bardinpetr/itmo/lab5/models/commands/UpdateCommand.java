@@ -18,7 +18,7 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
 @RequiredArgsConstructor
 public class UpdateCommand extends Command {
     @NonNull
-    public Long id;
+    public Integer id;
     @NonNull
     public Worker element;
 
@@ -35,7 +35,7 @@ public class UpdateCommand extends Command {
     @Override
     public Field[] getInlineArgs() {
         return new Field[]{
-                new Field("id", Long.class)
+                new Field("id", Integer.class)
         };
     }
 

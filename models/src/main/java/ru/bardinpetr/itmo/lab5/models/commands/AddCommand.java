@@ -43,7 +43,7 @@ public class AddCommand extends Command {
     @Getter
     @Setter
     public static class AddCommandResponse implements ICommandResponse {
-        private Long id;
+        private Integer id;
 
         @Override
         public String getUserMessage() {

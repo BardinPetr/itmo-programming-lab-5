@@ -22,7 +22,7 @@ public class WorkerValidation {
      * @param id Worker's id
      * @return response with error message
      */
-    public static ValidationResponse validateId(Long id) {
+    public static ValidationResponse validateId(Integer id) {
         return (id <= 0) ?
                 new ValidationResponse(false, "id must be greater than 0") :
                 new ValidationResponse(true, "");

@@ -15,7 +15,7 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
 @RequiredArgsConstructor
 public class RemoveByIdCommand extends Command {
     @NonNull
-    public Long id;
+    public Integer id;
 
     @Override
     public String getType() {
@@ -25,7 +25,7 @@ public class RemoveByIdCommand extends Command {
     @Override
     public Field[] getInlineArgs() {
         return new Field[]{
-                new Field("id", Long.class)
+                new Field("id", Integer.class)
         };
     }
 }

@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * Implementation of collection DAO for workers database.
  */
-public class FileDBWorkersDAO extends FileDBDAO<Long, Worker> implements IWorkerCollectionDAO {
+public class FileDBWorkersDAO extends FileDBDAO<Integer, Worker> implements IWorkerCollectionDAO {
 
     public FileDBWorkersDAO(FileDBController<WorkerCollection> controller) {
         super(controller);
@@ -23,12 +23,12 @@ public class FileDBWorkersDAO extends FileDBDAO<Long, Worker> implements IWorker
      * @return next integer for max id in db
      */
     @Override
-    public Long nextPrimaryKey() {
-        return getMapped(Worker::getPrimaryKey).stream().max(Long::compareTo).orElse(0L) + 1;
+    public Integer nextPrimaryKey() {
+        return getMapped(Worker::getPrimaryKey).stream().max(Integer::compareTo).orElse(0) + 1;
     }
 
     @Override
-    public Long add(Worker item) {
+    public Integer add(Worker item) {
         var key = nextPrimaryKey();
         super.add(item.withId(key));
         return key;
