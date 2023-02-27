@@ -11,16 +11,27 @@ public class CoordinatesValidation {
      * @return response with error message
      */
     public static ValidationResponse validateX(Integer x) {
-        return (x <= -720) ?
-                new ValidationResponse(false, "X coordinate must be greater than -720") :
+        if (x == null) return new ValidationResponse(false, "x coordinate can't be null");
+        return (x >= 773) ?
+                new ValidationResponse(false, "X coordinate must be less than 773") :
                 new ValidationResponse(true, "");
     }
+
+    public static ValidationResponse validateY(Float y) {
+        if (y == null) return new ValidationResponse(false, "y coordinate can't be null");
+        return (y <= -413) ?
+                new ValidationResponse(false, "Y coordinate must be greater than -413") :
+                new ValidationResponse(true, "");
+    }
+
 
     /**
      * @param coordinates Coordinates object
      * @return response with error message
      */
     public static ValidationResponse validateAll(Coordinates coordinates) {
-        return validateX(coordinates.getX());
+        if (!validateX(coordinates.getX()).isAllowed()) return validateX(coordinates.getX());
+        if (!validateY(coordinates.getY()).isAllowed()) return validateY(coordinates.getY());
+        return new ValidationResponse(true, "");
     }
 }

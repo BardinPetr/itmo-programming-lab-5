@@ -83,7 +83,8 @@ public class DescriptionHolder {
                         add(new FieldWithDesc<>(
                                 "y",
                                 Float.class,
-                                RussianText.get(TextKeys.COORYINTERACT))
+                                RussianText.get(TextKeys.COORYINTERACT),
+                                CoordinatesValidation::validateY)
                         );
 
                     }

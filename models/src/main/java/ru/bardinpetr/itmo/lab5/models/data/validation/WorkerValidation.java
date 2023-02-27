@@ -40,7 +40,8 @@ public class WorkerValidation {
      * @param salary Worker's salary
      * @return response with error message
      */
-    public static ValidationResponse validateSalary(float salary) {
+    public static ValidationResponse validateSalary(Float salary) {
+        if (salary == null) return new ValidationResponse(false, "salary can't be null");
         return salary > 0 ?
                 new ValidationResponse(true, "") :
                 new ValidationResponse(false, "salary must be greater than 0");

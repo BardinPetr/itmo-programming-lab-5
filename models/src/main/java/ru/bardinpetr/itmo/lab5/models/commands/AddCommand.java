@@ -44,10 +44,9 @@ public class AddCommand extends Command {
     @Setter
     public static class AddCommandResponse implements ICommandResponse {
         private Integer id;
-
         @Override
         public String getUserMessage() {
-            return null;
+            return "OK";
         }
     }
 }
