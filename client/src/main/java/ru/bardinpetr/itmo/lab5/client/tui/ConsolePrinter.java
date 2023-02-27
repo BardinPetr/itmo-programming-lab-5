@@ -5,6 +5,11 @@ public class ConsolePrinter implements View {
         System.out.println(str);
     }
 
+    @Override
+    public void suggestInput() {
+        System.out.print("> ");
+    }
+
     public void showLine(String str) {
         System.out.print(str);
     }

@@ -3,6 +3,8 @@ package ru.bardinpetr.itmo.lab5.models.data.validation;
 import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
+import java.util.Date;
+
 /**
  * A class for worker's data validation
  */
@@ -26,6 +28,16 @@ public class WorkerValidation {
         return (id <= 0) ?
                 new ValidationResponse(false, "id must be greater than 0") :
                 new ValidationResponse(true, "");
+    }
+
+    public static ValidationResponse validateStartDate(Date startDate) {
+        Date maxDate = new Date(10000 - 1900, 1, 1);
+        Date minDate = new Date(1000 - 1900, 1, 1);
+        if (
+                startDate.before(maxDate) &&
+                        startDate.after(minDate)
+        ) return new ValidationResponse(true, "");
+        else return new ValidationResponse(false, "Incorrect data format");
     }
 
     /**

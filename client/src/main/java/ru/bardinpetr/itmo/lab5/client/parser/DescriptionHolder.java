@@ -39,7 +39,8 @@ public class DescriptionHolder {
                         add(new FieldWithDesc<>(
                                         "startDate",
                                         Date.class,
-                                RussianText.get(TextKeys.STARTDAYINTERACT)
+                                        RussianText.get(TextKeys.STARTDAYINTERACT),
+                                        WorkerValidation::validateStartDate
                                 )
                         );
                         add(new FieldWithDesc<>(
