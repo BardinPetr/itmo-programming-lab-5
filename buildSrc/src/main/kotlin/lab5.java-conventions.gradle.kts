@@ -15,3 +15,8 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.javadoc {
+    setDestinationDir(projectDir.resolve("docs/javadoc"))
+    include("*.java")
+}
