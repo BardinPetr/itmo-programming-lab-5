@@ -1,0 +1,60 @@
+name: Deploy javadoc to GHPages
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Validate Gradle wrapper
+      - uses: gradle/wrapper-validation-action@v1
+
+      - name: Gradle build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
+
+      - name: Execute Gradle build
+        run: ./gradlew javadoc
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Package
+          path: docs/javadoc
+
+#  publish_docs:
+#    environment:
+#      name: github-pages
+#      url: ${{ steps.deployment.outputs.page_url }}
+#    steps:
+#      - name: Setup Pages
+#        uses: actions/configure-pages@v3
+#
+#      - name: Upload artifact
+#        uses: actions/upload-pages-artifact@v1
+#        with:
+#          path: 'docs/javadoc'
+#
+#      - name: Deploy to GitHub Pages
+#        id: deployment
+#        uses: actions/deploy-pages@v1
