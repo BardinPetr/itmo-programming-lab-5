@@ -7,7 +7,7 @@ import lombok.NonNull;
 import lombok.With;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -23,13 +23,12 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
     @NonNull
     private final Integer id;
     @NonNull
-    private final java.time.LocalDateTime creationDate;
+    private final java.time.ZonedDateTime creationDate;
 
     @NonNull
     private String name;
     @NonNull
     private Coordinates coordinates;
-    @NonNull
     private float salary;
     @NonNull
     private java.util.Date startDate;
@@ -41,7 +40,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
 
     public Worker() {
         id = nextId++;
-        creationDate = LocalDateTime.now();
+        creationDate = ZonedDateTime.now();
     }
 
     public static Comparator<Worker> getComparator() {

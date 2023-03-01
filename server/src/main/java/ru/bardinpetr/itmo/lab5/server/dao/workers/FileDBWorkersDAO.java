@@ -6,8 +6,7 @@ import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO;
 import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 /**
@@ -41,8 +40,8 @@ public class FileDBWorkersDAO extends FileDBDAO<Integer, Worker> implements IWor
                 .stream()
                 .map(Worker::getCreationDate)
                 .sorted()
-                .findFirst().orElse(LocalDateTime.now());
-        info.setInitializationDate(Date.from(first.atZone(ZoneId.systemDefault()).toInstant()));
+                .findFirst().orElse(ZonedDateTime.now());
+        info.setInitializationDate(Date.from(first.toInstant()));
         return info;
     }
 }

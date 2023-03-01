@@ -42,6 +42,7 @@ public class CLIController {
 
     public void run() {
         viewer.show(RussianText.get(TextKeys.GREEETING));
+        viewer.suggestInput();
         while (scanner.hasNextLine()) {
             try {
                 Command cmd = cmdParser.parse();
@@ -76,7 +77,7 @@ public class CLIController {
             } catch (ParserException e) {
                 System.out.println(e.getMessage());
             }
-
+            viewer.suggestInput();
         }
     }
 }

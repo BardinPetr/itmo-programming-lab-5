@@ -30,6 +30,10 @@ public class CommandScriptController {
             }
 
             @Override
+            public void suggestInput() {
+            }
+
+            @Override
             public void showLine(String s) {
             }
         });

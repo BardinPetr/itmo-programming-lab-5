@@ -62,24 +62,18 @@ public class ObjectScanner {
         Map<String, Object> objectMap = new HashMap<>();
         List<FieldWithDesc<?>> fields = DescriptionHolder.dataDescriptions.get(kClass);
         for (var i : fields) {
-            while (true) {
-                viewer.show(i.getPromptMsg());
-                var value = interactValue(i.getValueClass());
+            viewer.show(i.getPromptMsg());
+            var value = interactValue(i.getValueClass());
 
-                var val = (IValidator) i.getValidator();
-                @SuppressWarnings("unchecked")
-                var res = val.validate(i.getValueClass().cast(value));
-                if (res.isAllowed()) {
-                    objectMap.put(i.getName(), value);
-                    break;
-                } else {
-                    @SuppressWarnings("unchecked")
-                    var resp = val.validate(value);
-                    viewer.show(res.getMsg());
-                }
+            IValidator val = i.getValidator();
+            @SuppressWarnings("unchecked")
+            var res = val.validate(i.getValueClass().cast(value));
+            if (res.isAllowed()) {
+                objectMap.put(i.getName(), value);
+            } else {
+                throw new ParserException("Invalid argument: " + res.getMsg());
             }
         }
-
         return mapper.convertValue(objectMap, kClass);
     }
 }
