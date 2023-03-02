@@ -6,7 +6,7 @@ import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
-import ru.bardinpetr.itmo.lab5.client.tui.ICommandIOComeback;
+import ru.bardinpetr.itmo.lab5.client.tui.ICommandIOCallback;
 import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand;
@@ -23,14 +23,13 @@ public class CLIController {
 
     protected CommandParser cmdParser;
     protected View viewer;
-    protected ICommandIOComeback callback;
+    protected ICommandIOCallback callback;
     protected ObjectMapper mapper = ObjectMapperFactory.createMapper();
 
-    public CLIController(View viewer, InputStream inputStream, ICommandIOComeback callback) {
+    public CLIController(View viewer, InputStream inputStream, ICommandIOCallback callback) {
         scanner = new Scanner(inputStream);
 
         this.callback = callback;
-
 
 
         CommandRegister cmdRegister = new CommandRegister();

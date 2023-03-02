@@ -8,6 +8,6 @@ import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
  * Interface fro commands execution
  */
 @FunctionalInterface
-public interface ICommandIOComeback {
+public interface ICommandIOCallback {
     Response<ICommandResponse> callback(Command cmd);
 }

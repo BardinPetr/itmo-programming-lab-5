@@ -15,3 +15,8 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.javadoc {
+//    setDestinationDir(projectDir.resolve("javadoc"))
+//    sourceSets.addAll(sourceSets["main"].allSource)
+}

@@ -17,6 +17,7 @@ import java.util.Map;
  * Register handlers with registerOperation
  */
 public class Executor {
+    public static int MAX_RECURSION_DEPTH = 10;
 
     private final Map<Class<? extends Command>, Operation<Command, ICommandResponse>> operationMap = new HashMap<>();
     private final List<Executor> childExecutors = new ArrayList<>();
@@ -67,11 +68,17 @@ public class Executor {
      * @return Response for this command or Response(success=false) if no handler exist
      */
     public Response<ICommandResponse> execute(Command cmd) {
+        return execute(cmd, MAX_RECURSION_DEPTH);
+    }
+
+    protected Response<ICommandResponse> execute(Command cmd, int recursionDepth) {
         var op = operationMap.get(cmd.getClass());
         if (op == null) {
-            for (Executor e : childExecutors) {
-                var res = e.execute(cmd);
-                if (res.isResolved()) return res;
+            if (recursionDepth > 0) {
+                for (Executor e : childExecutors) {
+                    var res = e.execute(cmd, recursionDepth - 1);
+                    if (res.isResolved()) return res;
+                }
             }
             return Response.noResolve();
         }
