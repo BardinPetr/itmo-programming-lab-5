@@ -32,24 +32,12 @@ jobs:
       - name: Gradle build
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: assembleDist
+          arguments: build
 
-      - name: Gradle javadoc
+      - name: Execute Gradle build
         run: ./gradlew javadoc
-
-      - run: ls -la .
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Client dist package
-          path: client/build/distributions/client.tar
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Server dist package
-          path: server/build/distributions/client.tar
 
       - uses: actions/upload-artifact@v3
         with:
           name: Docs
-          path: javadoc
+          path: docs/javadoc
