@@ -17,14 +17,12 @@ public class ObjectMapperFactory {
         String timeFormat = "dd-MM-yyyy";
         mapper.setDateFormat(new SimpleDateFormat(timeFormat));
 
-
         var localDateTimeFormatter = new DateTimeFormatterBuilder().appendPattern(timeFormat)
                 .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
                 .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
                 .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
                 .toFormatter();
-        var dateFormatter = new DateTimeFormatterBuilder().appendPattern(timeFormat)
-                .toFormatter();
+
         var timeModule =
                 new JavaTimeModule()
                         .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(localDateTimeFormatter))

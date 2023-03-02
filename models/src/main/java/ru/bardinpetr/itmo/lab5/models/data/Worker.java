@@ -22,6 +22,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
     @With
     @NonNull
     private final Integer id;
+    @With
     @NonNull
     private final java.time.ZonedDateTime creationDate;
 

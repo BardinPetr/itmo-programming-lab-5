@@ -1,6 +1,8 @@
 package ru.bardinpetr.itmo.lab5.common.serdes;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -16,7 +18,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class XMLSerDesService<T> extends SerDesService<T> {
 
-    public XMLSerDesService(Class<? extends T> baseClass) {
+    public XMLSerDesService(Class<T> baseClass) {
         super(baseClass);
     }
 
@@ -29,6 +31,9 @@ public class XMLSerDesService<T> extends SerDesService<T> {
                 new JavaTimeModule()
                         .addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(formatter))
                         .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(formatter));
+
+        mapper.disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         mapper.registerModule(timeModule);
         return mapper;

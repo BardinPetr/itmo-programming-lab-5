@@ -17,6 +17,6 @@ tasks.test {
 }
 
 tasks.javadoc {
-    setDestinationDir(projectDir.resolve("docs/javadoc"))
-    include("*.java")
+//    setDestinationDir(projectDir.resolve("javadoc"))
+//    sourceSets.addAll(sourceSets["main"].allSource)
 }

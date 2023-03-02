@@ -35,10 +35,6 @@ public class CommandRegister {
         }
     }
 
-    public HashMap<String, Command> getMap() {
-        return map;
-    }
-
     private void addCommand(Command cmd) {
         map.put(cmd.getType(), cmd);
     }

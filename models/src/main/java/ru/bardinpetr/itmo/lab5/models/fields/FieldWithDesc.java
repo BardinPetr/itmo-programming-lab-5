@@ -9,7 +9,6 @@ import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 @Getter
 @ToString
 @EqualsAndHashCode
-//TODO generics
 public class FieldWithDesc<T> extends Field {
     private final String promptMsg;
     private final IValidator<T> validator;
@@ -25,6 +24,4 @@ public class FieldWithDesc<T> extends Field {
         this.promptMsg = requestMsg;
         this.validator = s -> new ValidationResponse(true, "");
     }
-
-
 }

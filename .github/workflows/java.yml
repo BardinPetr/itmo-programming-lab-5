@@ -1,0 +1,55 @@
+name: Deploy javadoc to GHPages
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "build"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Gradle build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: assembleDist
+
+      - name: Gradle javadoc
+        run: ./gradlew javadoc
+
+      - run: ls -la .
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Client dist package
+          path: client/build/distributions/client.tar
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Server dist package
+          path: server/build/distributions/client.tar
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Docs
+          path: javadoc
