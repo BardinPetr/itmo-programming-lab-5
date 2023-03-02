@@ -35,7 +35,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
     @NonNull
     private Organization organization;
 
-    private java.time.LocalDateTime endDate;
+    private java.time.LocalDate endDate;
     private Position position;
 
     public Worker() {

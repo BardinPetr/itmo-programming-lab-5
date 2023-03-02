@@ -28,7 +28,7 @@ public class ObjectScanner {
 
     private String scan() {
         String string = scanner.nextLine();
-        return string == null ? "" : string;
+        return string.isEmpty() ? null : string;
     }
 
     /**
