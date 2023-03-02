@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.models.data.validation;
 
+import lombok.NonNull;
 import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
@@ -14,7 +15,7 @@ public class WorkerValidation {
      * @param name Worker's name
      * @return response with error message
      */
-    public static ValidationResponse validateName(String name) {
+    public static ValidationResponse validateName(@NonNull String name) {
         return name.isEmpty() ?
                 new ValidationResponse(false, "Name must not be empty") :
                 new ValidationResponse(true, "");

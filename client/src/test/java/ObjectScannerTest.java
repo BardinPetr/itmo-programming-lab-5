@@ -80,8 +80,6 @@ public class ObjectScannerTest {
         });
 
     }
-
-
     @DisplayName("Organization scanner")
     @Test
     void organizationScanTest() {
@@ -176,12 +174,12 @@ public class ObjectScannerTest {
                 },
                 "Salary must be float");
 
-        assertThrows(ParserException.class,
+        assertThrows(NullPointerException.class,
                 () -> {
                     getScanner("""
                             Artem
-                                                            
-                            02-03-2023
+                            123
+                                                        
                             02-03-2023
                             13
                             12
@@ -189,7 +187,84 @@ public class ObjectScannerTest {
                             PUBLIC
                             CLEANER""").scan(Worker.class);
                 },
-                "Salary can not be null");
+                "Start date can not be null");
+
+        assertThrows(ParserException.class,
+                () -> {
+                    getScanner("""
+                            Artem
+                            123
+                            44-11-2121
+                            02-03-2023
+                            13
+                            12
+                            ITMO
+                            PUBLIC
+                            CLEANER""").scan(Worker.class);
+                },
+                "Start date should be in format");
+
+        assertThrows(ParserException.class,
+                () -> {
+                    getScanner("""
+                            Artem
+                            123
+                            24-41-2121
+                            02-03-2023
+                            13
+                            12
+                            ITMO
+                            PUBLIC
+                            CLEANER""").scan(Worker.class);
+                },
+                "Start date should be in format");
+
+        assertThrows(ParserException.class,
+                () -> {
+                    getScanner("""
+                            Artem
+                            123
+                            14-11-2121
+                            32-03-2023
+                            13
+                            12
+                            ITMO
+                            PUBLIC
+                            CLEANER""").scan(Worker.class);
+                },
+                "End date should be in format");
+
+        assertThrows(ParserException.class,
+                () -> {
+                    getScanner("""
+                            Artem
+                            123
+                            14-11-2121
+                            12-33-2023
+                            13
+                            12
+                            ITMO
+                            PUBLIC
+                            CLEANER""").scan(Worker.class);
+                },
+                "End date should be in format");
+
+        assertThrows(ParserException.class,
+                () -> {
+                    getScanner("""
+                            Artem
+                            123
+                            14-11-2121
+                            12-33-2023
+                            13
+                            12
+                            ITMO
+                            PUBLIC
+                            CLEA2NER""").scan(Worker.class);
+                },
+                "Position should be from enum list");
+
+
     }
 
 }
