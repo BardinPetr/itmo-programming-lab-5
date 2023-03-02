@@ -10,7 +10,7 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class Coordinates implements Comparable<Coordinates> {
     @NonNull
-    private Integer x; // Значение поля должно быть больше -720
+    private Integer x;
     private float y;
 
     public Coordinates() {

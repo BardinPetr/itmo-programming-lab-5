@@ -2,11 +2,11 @@ package ru.bardinpetr.itmo.lab5.common.serdes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
@@ -25,8 +25,8 @@ public class ObjectMapperFactory {
 
         var timeModule =
                 new JavaTimeModule()
-                        .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(localDateTimeFormatter))
-                        .addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(localDateTimeFormatter));
+                        .addDeserializer(LocalDate.class, new LocalDateDeserializer(localDateTimeFormatter))
+                        .addSerializer(LocalDate.class, new LocalDateSerializer(localDateTimeFormatter));
         mapper.registerModule(timeModule);
 
         return mapper;

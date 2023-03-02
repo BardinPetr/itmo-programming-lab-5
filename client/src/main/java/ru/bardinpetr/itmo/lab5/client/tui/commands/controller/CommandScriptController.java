@@ -25,17 +25,6 @@ public class CommandScriptController {
         Scanner scanner = new Scanner(inputStream);
 
         CommandParser cmdParser = cmdRegister.getParser(mapper, scanner, new View() {
-            @Override
-            public void show(String s) {
-            }
-
-            @Override
-            public void suggestInput() {
-            }
-
-            @Override
-            public void showLine(String s) {
-            }
         });
 
         List<Command> commandList = new ArrayList<>();

@@ -1,9 +1,18 @@
 package ru.bardinpetr.itmo.lab5.client.tui;
 
 public interface View {
-    void show(String s);
+    default void show(String s) {
+    }
 
-    void suggestInput();
+    ;
 
-    void showLine(String s);
+    default void suggestInput() {
+    }
+
+    ;
+
+    default void showLine(String s) {
+    }
+
+    ;
 }

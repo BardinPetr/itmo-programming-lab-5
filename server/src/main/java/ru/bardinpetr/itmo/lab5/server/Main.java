@@ -7,7 +7,7 @@ import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
@@ -18,7 +18,7 @@ public class Main {
                 new Coordinates(234, 235), 213F,
                 Date.from(Instant.now()),
                 new Organization("asd", OrganizationType.COMMERCIAL),
-                LocalDateTime.now(),
+                LocalDate.now(),
                 null
         );
     }

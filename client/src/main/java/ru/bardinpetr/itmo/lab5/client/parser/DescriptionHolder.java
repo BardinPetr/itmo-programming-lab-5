@@ -8,7 +8,7 @@ import ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidation;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation;
 import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -45,8 +45,8 @@ public class DescriptionHolder {
                         );
                         add(new FieldWithDesc<>(
                                         "endDate",
-                                        LocalDateTime.class,
-                                RussianText.get(TextKeys.ENDNDATEINTERACT)
+                                        LocalDate.class,
+                                        RussianText.get(TextKeys.ENDNDATEINTERACT)
                                 )
                         );
                         add(new FieldWithDesc<>(
