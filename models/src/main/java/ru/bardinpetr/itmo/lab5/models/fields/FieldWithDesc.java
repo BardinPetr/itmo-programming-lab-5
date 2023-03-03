@@ -6,6 +6,11 @@ import lombok.ToString;
 import ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 
+/**
+ * Class for full field description
+ *
+ * @param <T>
+ */
 @Getter
 @ToString
 @EqualsAndHashCode

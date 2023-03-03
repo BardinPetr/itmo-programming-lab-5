@@ -55,9 +55,9 @@ public class ObjectScanner {
     /**
      * Method for integrating thw whole object
      *
-     * @param kClass Object class
-     * @param <T>    Object class
-     * @return Object
+     * @param kClass class of scanned object
+     * @param <T>    class of scanned object
+     * @return fulfilled object
      */
     public <T> T scan(Class<T> kClass) throws ParserException {
         Map<String, Object> objectMap = new HashMap<>();

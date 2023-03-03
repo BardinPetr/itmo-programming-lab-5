@@ -18,6 +18,9 @@ import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
 import java.io.InputStream;
 import java.util.Scanner;
 
+/**
+ * Class for console UI
+ */
 public class CLIController {
 
     protected Scanner scanner;
@@ -40,6 +43,11 @@ public class CLIController {
         cmdParser = cmdRegister.getParser(scanner, viewer);
     }
 
+    /**
+     * method for script output
+     *
+     * @param resp2 script response
+     */
     private void runScript(Response<ICommandResponse> resp2) {
         if (resp2.isSuccess()) {
             ExecuteScriptCommandResponse payload2 = (ExecuteScriptCommandResponse) resp2.getPayload();
@@ -55,6 +63,9 @@ public class CLIController {
 
     }
 
+    /**
+     * method for starting program execution
+     */
     public void run() {
         viewer.show(RussianText.get(TextKeys.GREEETING));
         viewer.suggestInput();

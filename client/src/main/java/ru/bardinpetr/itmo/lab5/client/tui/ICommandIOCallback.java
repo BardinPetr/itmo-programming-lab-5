@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
 
 /**
- * Interface fro commands execution
+ * Interface for commands execution
  */
 @FunctionalInterface
 public interface ICommandIOCallback {

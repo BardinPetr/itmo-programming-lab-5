@@ -16,7 +16,8 @@ import java.util.*;
  */
 public class DescriptionHolder {
     /**
-     * Main map with all information
+     * Main map with all information for each field: name, type, validation function,
+     * nullAble boolean and text for interact
      */
     public static Map<Class<?>, List<FieldWithDesc<?>>> dataDescriptions = new HashMap<>() {{
         put(

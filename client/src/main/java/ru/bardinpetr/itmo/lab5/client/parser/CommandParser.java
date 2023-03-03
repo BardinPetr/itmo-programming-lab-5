@@ -11,7 +11,9 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
 import java.util.HashMap;
 import java.util.Scanner;
 
-
+/**
+ * Main class for parsing command from String. Text is entered via scanner.
+ */
 public class CommandParser {
     private final HashMap<String, Command> cmdMap;
     private ObjectMapper mapper;
@@ -29,6 +31,13 @@ public class CommandParser {
 
     }
 
+    /**
+     * Methid for parsing command's arguments from string. It uses command's inline
+     * and composite arguments.
+     *
+     * @return Command with all completed fields
+     * @throws ParserException Exception can be thrown during parsing type of validation
+     */
     public Command parse() throws ParserException {
         ValueDeserializer valueDes = new ValueDeserializer();
 

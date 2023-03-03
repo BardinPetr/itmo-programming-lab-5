@@ -8,6 +8,9 @@ import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Class for commands registration
+ */
 public class CommandRegister {
     private final Command[] cmdList = new Command[]{
             new AddCommand(),
@@ -39,6 +42,13 @@ public class CommandRegister {
         map.put(cmd.getType(), cmd);
     }
 
+    /**
+     * Method for getting oarser with registered commands
+     *
+     * @param scanner scanner for oarser
+     * @param viewer  viewer for parser
+     * @return command parser
+     */
     public CommandParser getParser(Scanner scanner, View viewer) {
         return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, viewer);
     }

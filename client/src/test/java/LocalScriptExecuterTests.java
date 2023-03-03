@@ -1,7 +1,9 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.client.logic.ScriptExecutor;
+import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.data.*;
@@ -380,6 +382,12 @@ public class LocalScriptExecuterTests {
             );
         }, "unlimited recursion is not allowed");
 
+    }
+
+    @BeforeEach
+    void cleanDataBase() {
+        var executor = new Executor();
+        executor.execute(new ClearCommand());
     }
 
 }
