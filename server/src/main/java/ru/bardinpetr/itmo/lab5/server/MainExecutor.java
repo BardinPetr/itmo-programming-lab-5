@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.server;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
+import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
@@ -13,7 +14,14 @@ import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 public class MainExecutor extends Executor {
 
     public MainExecutor(FileIOController fileIOController) {
-        var db = new FileDBController<>(fileIOController, WorkerCollection.class);
+        FileDBController<WorkerCollection> db = null;
+        try {
+            db = new FileDBController<>(fileIOController, WorkerCollection.class);
+        } catch (FileAccessException e) {
+            System.err.printf("[DB] could not read from file. Fix by hand please. \nError: %s", e);
+            System.exit(1);
+        }
+
         var dao = new FileDBWorkersDAO(db);
         registerExecutor(new WorkersDAOExecutor(dao));
 
