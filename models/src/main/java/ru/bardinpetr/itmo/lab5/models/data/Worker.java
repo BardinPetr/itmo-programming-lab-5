@@ -40,7 +40,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
     private Position position;
 
     public Worker() {
-        id = nextId++;
+        id = 0;
         creationDate = ZonedDateTime.of(2023, 10, 10, 12, 12, 12, 12, ZoneId.of("UTC"));//TODO correct
     }
 
