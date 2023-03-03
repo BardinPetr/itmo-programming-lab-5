@@ -33,7 +33,6 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
     private float salary;
     @NonNull
     private java.util.Date startDate;
-    @NonNull
     private Organization organization;
 
     private java.time.LocalDate endDate;
@@ -46,7 +45,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
 
     public static Comparator<Worker> getComparator() {
         return Comparator
-                .comparing(Worker::getOrganization)
+                .comparing(Worker::getOrganization, nullsLast(naturalOrder()))
                 .thenComparing(Worker::getPosition, nullsLast(naturalOrder()))
                 .thenComparing(Worker::getName)
                 .thenComparing(Worker::getSalary)
@@ -75,6 +74,24 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
     public int compareTo(@NonNull Worker worker) {
         return getComparator().compare(this, worker);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Worker worker = (Worker) o;
+        if (Float.compare(worker.getSalary(), getSalary()) != 0) return false;
+        if (!getId().equals(worker.getId())) return false;
+        if (!getName().equals(worker.getName())) return false;
+        if (!getCoordinates().equals(worker.getCoordinates())) return false;
+        if (!getStartDate().equals(worker.getStartDate())) return false;
+        if (getOrganization() != null ? !getOrganization().equals(worker.getOrganization()) : worker.getOrganization() != null)
+            return false;
+        if (getEndDate() != null ? !getEndDate().equals(worker.getEndDate()) : worker.getEndDate() != null)
+            return false;
+        return getPosition() == worker.getPosition();
+    }
+
 
     public static String nicePrintFormat(List<Worker> list) {
         String s = "";

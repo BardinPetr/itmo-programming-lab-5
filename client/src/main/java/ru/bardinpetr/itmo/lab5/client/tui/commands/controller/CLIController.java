@@ -13,6 +13,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -39,6 +40,21 @@ public class CLIController {
         cmdParser = cmdRegister.getParser(mapper, scanner, viewer);
     }
 
+    private void runScript(Response<ICommandResponse> resp2) {
+        if (resp2.isSuccess()) {
+            ExecuteScriptCommandResponse payload2 = (ExecuteScriptCommandResponse) resp2.getPayload();
+            payload2.getResult().forEach(
+                    i -> {
+                        if (i.getPayload() != null) {
+                            viewer.show(i.getPayload().getUserMessage());
+                        }
+                    }); // print script command responses
+        } else {
+            viewer.show("Error: " + resp2.getText());
+        }
+
+    }
+
     public void run() {
         viewer.show(RussianText.get(TextKeys.GREEETING));
         viewer.suggestInput();
@@ -51,17 +67,7 @@ public class CLIController {
                     if (payload != null) {
                         if (payload.getClass() == LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse.class) {
                             var resp2 = callback.callback((Command) payload);
-                            if (resp2.isSuccess()) {
-                                ExecuteScriptCommandResponse payload2 = (ExecuteScriptCommandResponse) resp2.getPayload();
-                                payload2.getResult().forEach(
-                                        i -> {
-                                            if (i.getPayload() != null) {
-                                                viewer.show(i.getPayload().getUserMessage());
-                                            }
-                                        }); // print script command responses
-                            } else {
-                                viewer.show("Error: " + resp2.getText());
-                            }
+                            runScript(resp2);
                         } else {
                             viewer.show(payload.getUserMessage()); // print general command response
                         }

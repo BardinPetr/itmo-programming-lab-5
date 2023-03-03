@@ -18,6 +18,7 @@ public class ObjectScanner {
     private Scanner scanner;
     private View viewer;
     private ObjectMapper mapper;
+    private final Map<Class<?>, List<FieldWithDesc<?>>> dataDescription = DescriptionHolder.dataDescriptions;
 
     public ObjectScanner(Scanner scanner, View viewer, ObjectMapper mapper) {
         this.scanner = scanner;
@@ -39,7 +40,7 @@ public class ObjectScanner {
      * @return object if required type
      */
     private <T> T interactValue(Class<T> kClass) throws IllegalArgumentException, ParserException {
-        if (!DescriptionHolder.dataDescriptions.containsKey(kClass))
+        if (!dataDescription.containsKey(kClass))
             try {
                 return mapper.convertValue(scan(), kClass);
             } catch (IllegalArgumentException e) {
@@ -60,11 +61,25 @@ public class ObjectScanner {
      */
     public <T> T scan(Class<T> kClass) throws ParserException {
         Map<String, Object> objectMap = new HashMap<>();
-        List<FieldWithDesc<?>> fields = DescriptionHolder.dataDescriptions.get(kClass);
+        List<FieldWithDesc<?>> fields = dataDescription.get(kClass);
         for (var i : fields) {
             viewer.show(i.getPromptMsg());
-            var value = interactValue(i.getValueClass());
 
+            if (dataDescription.containsKey(i.getValueClass()) && i.isNullAble()) {
+                viewer.show("If object does not exist enter N. To continue interaction enter C");
+                String answer = scanner.nextLine();
+                if (answer.equals("N")) {
+                    objectMap.put(i.getName(), null);
+                    continue;
+                }
+                if (!answer.equals("C"))
+                    throw new ParserException("Invalid argument: ");
+                viewer.show("Continue interaction");
+            }
+
+            var value = interactValue(i.getValueClass());
+            if ((!i.isNullAble()) && value == null)
+                throw new ParserException("Invalid argument: Argument can't be null");
             IValidator val = i.getValidator();
             @SuppressWarnings("unchecked")
             var res = val.validate(i.getValueClass().cast(value));
