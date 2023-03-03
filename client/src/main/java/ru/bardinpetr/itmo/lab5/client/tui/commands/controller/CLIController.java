@@ -37,7 +37,7 @@ public class CLIController {
 
         this.viewer = viewer;
 
-        cmdParser = cmdRegister.getParser(mapper, scanner, viewer);
+        cmdParser = cmdRegister.getParser(scanner, viewer);
     }
 
     private void runScript(Response<ICommandResponse> resp2) {

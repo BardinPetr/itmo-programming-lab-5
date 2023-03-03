@@ -25,7 +25,7 @@ public class WorkerValidation {
      * @return response with error message
      */
     public static ValidationResponse validateId(Integer id) {
-        return (id <= 0) ?
+        return (id < 0) ?
                 new ValidationResponse(false, "id must be greater than 0") :
                 new ValidationResponse(true, "");
     }
