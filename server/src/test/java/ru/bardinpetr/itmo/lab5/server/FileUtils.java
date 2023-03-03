@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.server.tests;
+package ru.bardinpetr.itmo.lab5.server;
 
 import java.io.File;
 import java.io.FileInputStream;

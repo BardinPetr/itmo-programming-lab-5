@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.server.tests;
+package ru.bardinpetr.itmo.lab5.server;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,8 +7,8 @@ import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService;
 import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
-import ru.bardinpetr.itmo.lab5.server.tests.utils.TestEntity;
-import ru.bardinpetr.itmo.lab5.server.tests.utils.TestEntityCollection;
+import ru.bardinpetr.itmo.lab5.server.utils.TestEntity;
+import ru.bardinpetr.itmo.lab5.server.utils.TestEntityCollection;
 
 import java.io.File;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.server.tests.utils;
+package ru.bardinpetr.itmo.lab5.server.utils;
 
 import ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection;
 
