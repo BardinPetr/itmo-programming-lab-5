@@ -7,6 +7,7 @@ import lombok.NonNull;
 import lombok.With;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Comparator;
 import java.util.List;
@@ -39,8 +40,8 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
     private Position position;
 
     public Worker() {
-        id = nextId++;
-        creationDate = ZonedDateTime.now();//ZonedDateTime.of(2023, 10, 10, 12, 12, 12, 12, ZoneId.of("UTC"));//TODO correct
+        id = 0;
+        creationDate = ZonedDateTime.of(2023, 10, 10, 12, 12, 12, 12, ZoneId.of("UTC"));//TODO correct
     }
 
     public static Comparator<Worker> getComparator() {

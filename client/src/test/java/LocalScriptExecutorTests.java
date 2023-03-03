@@ -9,6 +9,8 @@ import ru.bardinpetr.itmo.lab5.models.data.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
@@ -18,8 +20,10 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class LocalScriptExecuterTests {
-    private String ordPath = "E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\";
+public class LocalScriptExecutorTests {
+    Path path = Paths.get("scripts");
+
+    private String ordPath = path.toAbsolutePath().toString();
     private String elementText = """
             Artem
             12.3
@@ -38,9 +42,9 @@ public class LocalScriptExecuterTests {
         file.close();
     }
 
-    private Worker createWorker(Integer Id) {
+    private Worker createWorker() {
         return new Worker(
-                Id,
+                0,
                 ZonedDateTime.of(2023, 10, 10, 12, 12, 12, 12, ZoneId.of("UTC")),//TODO correct
                 "Artem",
                 new Coordinates(13, 12),
@@ -57,16 +61,7 @@ public class LocalScriptExecuterTests {
         String fileName = ordPath + "TestScript1.zb";
         createScript(fileName, text);
 
-        HashMap<String, Object> objectMap = new HashMap<>();
-        objectMap.put("fileName", fileName);
-
-        var cmd = (new ObjectMapper()).convertValue(
-                objectMap, LocalExecuteScriptCommand.class);
-
-        ScriptExecutor executor = new ScriptExecutor();
-        var respond = (ServerExecuteScriptCommand) executor.execute(cmd).getPayload();
-
-        assertEquals(result, respond.getCommands());
+        executeScript(fileName, result);
 
     }
 
@@ -109,7 +104,7 @@ public class LocalScriptExecuterTests {
                             """, elementText),
                     new ArrayList<>() {{
                         var t = new AddCommand();
-                        t.setElement(createWorker(0));
+                        t.setElement(createWorker());
                         add(t);
                     }}
             );
@@ -174,12 +169,12 @@ public class LocalScriptExecuterTests {
                         add(new ClearCommand());
 
                         var t1 = new AddCommand();
-                        t1.setElement(createWorker(0));
+                        t1.setElement(createWorker());
                         add(t1);
 
                         var t2 = new UpdateCommand();
                         t2.setId(0);
-                        t2.setElement(createWorker(2));
+                        t2.setElement(createWorker());
                         add(t2);
 
                         var t3 = new RemoveByIdCommand();
@@ -187,15 +182,15 @@ public class LocalScriptExecuterTests {
                         add(t3);
 
                         var t4 = new AddIfMaxCommand();
-                        t4.setElement(createWorker(4));
+                        t4.setElement(createWorker());
                         add(t4);
 
                         var t5 = new AddIfMinCommand();
-                        t5.setElement(createWorker(6));
+                        t5.setElement(createWorker());
                         add(t5);
 
                         var t6 = new RemoveGreaterCommand();
-                        t6.setElement(createWorker(8));
+                        t6.setElement(createWorker());
                         add(t6);
 
                         var t7 = new FilterLessPosCommand();
@@ -210,11 +205,11 @@ public class LocalScriptExecuterTests {
     @DisplayName("Testing two connected scripts")
     void correctTwoScripts() {
         assertDoesNotThrow(() -> {
-            createScript(ordPath + "DoubleScript1.zb", """
+            createScript(ordPath + "DoubleScript1.zb", String.format("""
                     clear
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript2.zb
+                    execute_script %sDoubleScript2.zb
                     show
-                    """);
+                    """, ordPath));
             createScript(ordPath + "DoubleScript2.zb", String.format("""
                             info
                             add
@@ -228,7 +223,7 @@ public class LocalScriptExecuterTests {
                         List<Command> commands = new ArrayList<>() {{
                             add(new InfoCommand());
                             var t = new AddCommand();
-                            t.setElement(createWorker(0));
+                            t.setElement(createWorker());
                             add(t);
                         }};
 
@@ -244,14 +239,14 @@ public class LocalScriptExecuterTests {
     @DisplayName("Testing recursion limit")
     void infinityRecursionTwoScripts() {
         assertThrows(NullPointerException.class, () -> {
-            createScript(ordPath + "DoubleScript1.zb", """
+            createScript(ordPath + "DoubleScript1.zb", String.format("""
                     clear
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript2.zb
+                    execute_script %sDoubleScript2.zb
                     show
-                    """);
+                    """, ordPath));
             createScript(ordPath + "DoubleScript2.zb", String.format("""
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript2.zb
-                    """));
+                    execute_script %sDoubleScript2.zb
+                    """, ordPath));
             executeScript(ordPath + "DoubleScript1.zb",
                     new ArrayList<>() {{
                         add(new ClearCommand());
@@ -259,7 +254,7 @@ public class LocalScriptExecuterTests {
                         List<Command> commands = new ArrayList<>() {{
                             add(new InfoCommand());
                             var t = new AddCommand();
-                            t.setElement(createWorker(0));
+                            t.setElement(createWorker());
                             add(t);
                         }};
 
@@ -275,19 +270,19 @@ public class LocalScriptExecuterTests {
     @DisplayName("Testing recursion depth")
     void recursionFourDepth() {
         assertDoesNotThrow(() -> {
-            createScript(ordPath + "DoubleScript1.zb", """
+            createScript(ordPath + "DoubleScript1.zb", String.format("""
                     clear
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript2.zb
-                    """);
+                    execute_script %sDoubleScript2.zb
+                    """, ordPath));
             createScript(ordPath + "DoubleScript2.zb", String.format("""
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript3.zb
-                    """));
+                    execute_script %sDoubleScript3.zb
+                    """, ordPath));
             createScript(ordPath + "DoubleScript3.zb", String.format("""
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript4.zb
-                    """));
+                    execute_script %sDoubleScript4.zb
+                    """, ordPath));
             createScript(ordPath + "DoubleScript4.zb", String.format("""
                     info
-                    """));
+                    """, ordPath));
             executeScript(ordPath + "DoubleScript1.zb",
                     new ArrayList<>() {{
                         add(new ClearCommand());
@@ -312,19 +307,19 @@ public class LocalScriptExecuterTests {
     @DisplayName("Testing recursion depth with error")
     void recursionFourDepthCommandError() {
         assertThrows(NullPointerException.class, () -> {
-            createScript(ordPath + "DoubleScript1.zb", """
+            createScript(ordPath + "DoubleScript1.zb", String.format("""
                     clear
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript2.zb
-                    """);
+                    execute_script %sDoubleScript2.zb
+                    """, ordPath));
             createScript(ordPath + "DoubleScript2.zb", String.format("""
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript3.zb
-                    """));
+                    execute_script %sDoubleScript3.zb
+                    """, ordPath));
             createScript(ordPath + "DoubleScript3.zb", String.format("""
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript4.zb
-                    """));
+                    execute_script %sDoubleScript4.zb
+                    """, ordPath));
             createScript(ordPath + "DoubleScript4.zb", String.format("""
                     infod
-                    """));
+                    """, ordPath));
             executeScript(ordPath + "DoubleScript1.zb",
                     new ArrayList<>() {{
                         add(new ClearCommand());
@@ -349,16 +344,16 @@ public class LocalScriptExecuterTests {
     @DisplayName("Testing recursion depth with invalid file name")
     void recursionFourDepthFileNameError() {
         assertThrows(NullPointerException.class, () -> {
-            createScript(ordPath + "DoubleScript1.zb", """
+            createScript(ordPath + "DoubleScript1.zb", String.format("""
                     clear
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript2.zb
-                    """);
+                    execute_script %sDoubleScript2.zb
+                    """, ordPath));
             createScript(ordPath + "DoubleScript2.zb", String.format("""
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScript3.zb
-                    """));
+                    execute_script %sDoubleScript3.zb
+                    """, ordPath));
             createScript(ordPath + "DoubleScript3.zb", String.format("""
-                    execute_script E:\\programs\\Java\\labs\\itmo-programming-lab-5\\client\\src\\main\\java\\ru\\bardinpetr\\itmo\\lab5\\client\\scripts\\DoubleScrip5t4.zb
-                    """));
+                    execute_script %sDoubleScrip5t4.zb
+                    """, ordPath));
             createScript(ordPath + "DoubleScript4.zb", String.format("""
                     info
                     """));

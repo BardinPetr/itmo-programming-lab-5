@@ -12,9 +12,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
+/**
+ * Executer for scripts command which can track looping in scripts
+ */
 public class ScriptExecutor extends Executor {
     private final CommandScriptController scriptController = new CommandScriptController();
 
+    /**
+     * registration commands
+     */
     public ScriptExecutor() {
         registerOperation(
                 LocalExecuteScriptCommand.class,
@@ -22,6 +28,12 @@ public class ScriptExecutor extends Executor {
         );
     }
 
+    /**
+     * creating an input stream
+     *
+     * @param scriptCommand command that stores the path to the file
+     * @return input stream
+     */
     private FileInputStream fileInputStream(LocalExecuteScriptCommand scriptCommand) {
         try {
             return new FileInputStream(scriptCommand.getFileName());
@@ -29,6 +41,17 @@ public class ScriptExecutor extends Executor {
             throw new RuntimeException("Invalid script. File name: " + scriptCommand.getFileName());
         }
     }
+
+    /**
+     * the main method for executing scripts.
+     * The method executes the commands one by one and collects them into a sheet.
+     * If another script is executed during operation, it jumps into it recursively,
+     * then adds all the commands to the initial list.
+     *
+     * @param scriptCommand command to find the desired script file
+     * @param paths         paths to files that have already been encountered earlier in the recursion
+     * @return response with list of commands
+     */
 
     private LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse executeScript(LocalExecuteScriptCommand scriptCommand, Set<String> paths) {
         List<Command> list = scriptController.run(fileInputStream(scriptCommand));

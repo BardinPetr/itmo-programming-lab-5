@@ -6,6 +6,9 @@ import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.ExitCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.HelpCommand;
 
+/**
+ * Executor for UI commands: exit and help
+ */
 public class UIExecutor extends Executor {
     public UIExecutor() {
         registerVoidOperation(

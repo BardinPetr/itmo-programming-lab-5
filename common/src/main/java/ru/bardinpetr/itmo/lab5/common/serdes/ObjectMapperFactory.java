@@ -9,6 +9,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatterBuilder;
 
+/**
+ * Class-factory for building object mapper with correct parameters for date types.
+ */
 public class ObjectMapperFactory {
 
     public static ObjectMapper createMapper() {

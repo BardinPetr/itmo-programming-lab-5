@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Class for script executing. It will be validated during executing.
+ */
 public class CommandScriptController {
     private final ObjectMapper mapper = ObjectMapperFactory.createMapper();
     private final CommandRegister cmdRegister = new CommandRegister();
@@ -21,6 +24,12 @@ public class CommandScriptController {
     public CommandScriptController() {
     }
 
+    /**
+     * method for starting script executing
+     *
+     * @param inputStream Input Stream for scanner.
+     * @return list of fulfilled commands
+     */
     public List<Command> run(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
 
