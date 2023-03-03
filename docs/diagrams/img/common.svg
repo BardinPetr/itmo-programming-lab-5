@@ -1,0 +1,1495 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css"
+     height="1286px" preserveAspectRatio="none" style="width:2519px;height:1286px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 2519 1286" width="2519px" zoomAndPan="magnify">
+    <defs/>
+    <g><!--MD5=[521817ab83e81da341a3f4b5e91bae41]
+class Command-->
+        <g id="elem_Command">
+            <rect codeLine="24" fill="#FFFFFF" height="213.1611" id="Command" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="303" x="21.5" y="626"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="78" x="134" y="645.0752">Command
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="22.5" x2="323.5" y1="653.0146" y2="653.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="22.5" x2="323.5" y1="661.0146" y2="661.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="100" x="27.5"
+                  y="679.0898">+Command():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="134" x="27.5"
+                  y="696.1045">+getType(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="27.5"
+                  y="713.1191">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="27.5"
+                  y="730.1338">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="27.5"
+                  y="747.1484">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="27.5"
+                  y="764.1631">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="291" x="27.5"
+                  y="781.1777">+createResponse(): ICommandResponse
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="188" x="27.5"
+                  y="798.1924">+getInteractArgs(): Field[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="224" x="27.5"
+                  y="815.207">+validate(): ValidationResponse
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="170" x="27.5"
+                  y="832.2217">+getInlineArgs(): Field[]
+            </text>
+        </g><!--MD5=[8db60afef7a3447bbe27c5ed187fdac2]
+class Exception-->
+        <g id="elem_Exception">
+            <rect codeLine="36" fill="#FFFFFF" height="145.1025" id="Exception" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="365" x="1228.5" y="1068"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="76" x="1373" y="1087.0752">Exception
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1229.5" x2="1592.5" y1="1095.0146" y2="1095.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="1234.5"
+                  y="1113.0898">~serialVersionUID: long
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1229.5" x2="1592.5" y1="1120.0293" y2="1120.0293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="170" x="1234.5"
+                  y="1138.1045">+Exception(Throwable):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="223" x="1234.5"
+                  y="1155.1191">+Exception(String, Throwable):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="98" x="1234.5"
+                  y="1172.1338">+Exception():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="353" x="1234.5"
+                  y="1189.1484">#Exception(String, Throwable, boolean, boolean):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="141" x="1234.5"
+                  y="1206.1631">+Exception(String):
+            </text>
+        </g><!--MD5=[a0a1f7f9662f43ef0ece806266f72a6f]
+class Executor-->
+        <g id="elem_Executor">
+            <rect codeLine="44" fill="#FFFFFF" height="179.1318" id="Executor" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="632" x="25" y="12"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="69" x="306.5" y="31.0752">Executor
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="26" x2="656" y1="39.0146" y2="39.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="230" x="31"
+                  y="57.0898">-childExecutors: List&lt;Executor&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="620" x="31"
+                  y="74.1045">-operationMap: Map&lt;Class&lt;Command&gt;, Operation&lt;Command, ICommandResponse&gt;&gt;
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="26" x2="656" y1="81.0439" y2="81.0439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="92" x="31"
+                  y="99.1191">+Executor():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="530" x="31"
+                  y="116.1338">+executeBatch(List&lt;Command&gt;): List&lt;Response&lt;ICommandResponse&gt;&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="462" x="31"
+                  y="133.1484">+registerVoidOperation(Class&lt;T&gt;, NoReturnOperation&lt;T&gt;): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="396" x="31"
+                  y="150.1631">+execute(Command): Response&lt;ICommandResponse&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="519" x="31"
+                  y="167.1777">+registerOperation(Class&lt;T&gt;, Operation&lt;T, ICommandResponse&gt;): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="243" x="31"
+                  y="184.1924">+registerExecutor(Executor): void
+            </text>
+        </g><!--MD5=[b0e40f0c39f625d643b1f5b496d53d35]
+class FileAccessException-->
+        <g id="elem_FileAccessException">
+            <rect codeLine="54" fill="#FFFFFF" height="179.1318" id="FileAccessException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="415" x="839.5" y="643"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="154" x="970" y="662.0752">FileAccessException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="840.5" x2="1253.5" y1="670.0146" y2="670.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="93" x="845.5"
+                  y="688.0898">-path: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="152" x="845.5"
+                  y="705.1045">-type: OperationType
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="840.5" x2="1253.5" y1="712.0439" y2="712.0439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="382" x="845.5"
+                  y="730.1191">+FileAccessException(Exception, File, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="324" x="845.5"
+                  y="747.1338">+FileAccessException(String, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="403" x="845.5"
+                  y="764.1484">+FileAccessException(Exception, String, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="303" x="845.5"
+                  y="781.1631">+FileAccessException(File, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="131" x="845.5"
+                  y="798.1777">+getPath(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="194" x="845.5"
+                  y="815.1924">+getType(): OperationType
+            </text>
+        </g><!--MD5=[6d4717cd035eac7033f7f366a0087a6d]
+class FileController-->
+        <g id="elem_FileController">
+            <rect codeLine="64" fill="#FFFFFF" height="213.1611" id="FileController" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="271" x="911.5" y="251"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="104" x="995" y="270.0752">FileController
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="912.5" x2="1181.5" y1="278.0146" y2="278.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="63" x="917.5"
+                  y="296.0898">#file: File
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="912.5" x2="1181.5" y1="303.0293" y2="303.0293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="163" x="917.5"
+                  y="321.1045">+FileController(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="128" x="917.5"
+                  y="338.1191">+check(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="131" x="917.5"
+                  y="355.1338">+getPath(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="188" x="917.5"
+                  y="372.1484">#checkWriteAccess(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="155" x="917.5"
+                  y="389.1631">-loadPath(String): File
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="185" x="917.5"
+                  y="406.1777">#checkReadAccess(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="259" x="917.5"
+                  y="423.1924">#ensureExistence(boolean): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="146" x="917.5"
+                  y="440.207">-checkAccess(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="191" x="917.5"
+                  y="457.2217">-checkExistence(): boolean
+            </text>
+        </g><!--MD5=[a9a1cf1effea8b0a49d86e314f79dfde]
+class FileIOController-->
+        <g id="elem_FileIOController">
+            <rect codeLine="76" fill="#FFFFFF" height="145.1025" id="FileIOController" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="293" x="806.5" y="29"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="124" x="891" y="48.0752">FileIOController
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="807.5" x2="1098.5" y1="56.0146" y2="56.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="807.5" x2="1098.5" y1="64.0146" y2="64.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="179" x="812.5"
+                  y="82.0898">+FileIOController(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="140" x="812.5"
+                  y="99.1045">+write(byte[]): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="281" x="812.5"
+                  y="116.1191">+openWriteStream(): FileOutputStream
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="266" x="812.5"
+                  y="133.1338">+openReadStream(): FileInputStream
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="108" x="812.5"
+                  y="150.1484">+read(): byte[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="812.5"
+                  y="167.1631">+clear(): void
+            </text>
+        </g><!--MD5=[7b82ae2f2c4d9bced7a59f0fe064a814]
+class ICommandResponse-->
+        <g id="elem_ICommandResponse">
+            <rect codeLine="84" fill="#FFFFFF" height="74.6133" id="ICommandResponse" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="204" x="312" y="1103"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="380" y="1120.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="164" x="332" y="1136.6592">ICommandResponse
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="313" x2="515" y1="1144.5986" y2="1144.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="313" x2="515" y1="1152.5986" y2="1152.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="192" x="318"
+                  y="1170.6738">+getUserMessage(): String
+            </text>
+        </g><!--MD5=[5a85cc44919b3ca52dba57e77f440a41]
+class InvalidDataFileException-->
+        <g id="elem_InvalidDataFileException">
+            <rect codeLine="87" fill="#FFFFFF" height="128.0879" id="InvalidDataFileException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="436" x="1218" y="293.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="191" x="1340.5" y="312.5752">InvalidDataFileException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1219" x2="1653" y1="320.5146" y2="320.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="93" x="1224"
+                  y="338.5898">-path: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="123" x="1224"
+                  y="355.6045">-contents: byte[]
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1219" x2="1653" y1="362.5439" y2="362.5439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="424" x="1224"
+                  y="380.6191">+InvalidDataFileException(String, byte[], SerDesException):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="165" x="1224"
+                  y="397.6338">+getContents(): byte[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="131" x="1224"
+                  y="414.6484">+getPath(): String
+            </text>
+        </g><!--MD5=[654d3ca46e3a3e3865aaaaf3ffe63678]
+class NoReturnOperation-->
+        <g id="elem_NoReturnOperation">
+            <rect codeLine="94" fill="#FFFFFF" height="74.6133" id="NoReturnOperation" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="168" x="12" y="320"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="56.5" y="337.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="151" x="15" y="353.6592">NoReturnOperation
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="174" y="317"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="175" y="330.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="13" x2="179" y1="361.5986" y2="361.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="13" x2="179" y1="369.5986" y2="369.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="109" x="18"
+                  y="387.6738">+apply(T): void
+            </text>
+        </g><!--MD5=[06591d594c991ba1702232680c4cdc77]
+class ObjectMapperFactory-->
+        <g id="elem_ObjectMapperFactory">
+            <rect codeLine="97" fill="#FFFFFF" height="77.0439" id="ObjectMapperFactory" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="237" x="1989.5" y="63"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="167" x="2024.5" y="82.0752">ObjectMapperFactory
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1990.5" x2="2225.5" y1="90.0146" y2="90.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1990.5" x2="2225.5" y1="98.0146" y2="98.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="178" x="1995.5"
+                  y="116.0898">+ObjectMapperFactory():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" text-decoration="underline"
+                  textLength="225" x="1995.5" y="133.1045">+createMapper(): ObjectMapper
+            </text>
+        </g><!--MD5=[cca5d97aaf46870920fae66c9bd85cdd]
+class Operation-->
+        <g id="elem_Operation">
+            <rect codeLine="101" fill="#FFFFFF" height="74.6133" id="Operation" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="110" x="286" y="320"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="293.5" y="337.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="77" x="289" y="353.6592">Operation
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="25" x="374" y="317"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="23" x="375" y="330.0645">T, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="287" x2="395" y1="361.5986" y2="361.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="287" x2="395" y1="369.5986" y2="369.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="292"
+                  y="387.6738">+apply(T): V
+            </text>
+        </g><!--MD5=[cc4941acd9f25cf973013d8901d108c0]
+class OperationType-->
+        <g id="elem_OperationType">
+            <rect codeLine="104" fill="#FFFFFF" height="278.7891" id="OperationType" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="244" x="925" y="1001"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="93" x="1000.5" y="1018.0645">«enumeration»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="115" x="989.5" y="1034.6592">OperationType
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="926" x2="1168" y1="1042.5986" y2="1042.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="57" x="931"
+                  y="1060.6738">+READ:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="74" x="931"
+                  y="1077.6885">+CREATE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="55" x="931"
+                  y="1094.7031">+OPEN:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="65" x="931"
+                  y="1111.7178">+WRITE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="143" x="931"
+                  y="1128.7324">+SET_PERMISSION:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="112" x="931"
+                  y="1145.7471">+PERM_WRITE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="104" x="931"
+                  y="1162.7617">+PERM_READ:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="138" x="931"
+                  y="1179.7764">-description: String
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="926" x2="1168" y1="1186.7158" y2="1186.7158"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="171" x="931"
+                  y="1204.791">-OperationType(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="128" x="931"
+                  y="1221.8057">-OperationType():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="179" x="931"
+                  y="1238.8203">+getDescription(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="232" x="931"
+                  y="1255.835">+valueOf(String): OperationType
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="193" x="931"
+                  y="1272.8496">+values(): OperationType[]
+            </text>
+        </g><!--MD5=[62ba8ad8b61caf20139235a169a8c31d]
+class Response-->
+        <g id="elem_Response">
+            <rect codeLine="119" fill="#FFFFFF" height="417.3369" id="Response" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="302" x="502" y="524"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="75" x="610" y="543.0752">Response
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="798" y="521"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="799" y="534.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="503" x2="803" y1="551.0146" y2="551.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="508"
+                  y="569.0898">-text: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="128" x="508"
+                  y="586.1045">-success: boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="132" x="508"
+                  y="603.1191">-resolved: boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="81" x="508"
+                  y="620.1338">-payload: T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="503" x2="803" y1="627.0732" y2="627.0732"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="290" x="508"
+                  y="645.1484">+Response(boolean, boolean, String, T):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="98" x="508"
+                  y="662.1631">+Response():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="157" x="508"
+                  y="679.1777">+isSuccess(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="163" x="508"
+                  y="696.1924">+isResolved(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="508"
+                  y="713.207">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="508"
+                  y="730.2217">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="132" x="508"
+                  y="747.2363">+getText(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="119" x="508"
+                  y="764.251">+getPayload(): T
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="508"
+                  y="781.2656">+setSuccess(boolean): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="508"
+                  y="798.2803">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="508"
+                  y="815.2949">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="203" x="508"
+                  y="832.3096">+setResolved(boolean): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="160" x="508"
+                  y="849.3242">+setText(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="147" x="508"
+                  y="866.3389">+setPayload(T): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="206" x="508"
+                  y="883.3535">+noResolve(): Response&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="212" x="508"
+                  y="900.3682">+error(String): Response&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="198" x="508"
+                  y="917.3828">+success(T): Response&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="238" x="508"
+                  y="934.3975">+error(Exception): Response&lt;T&gt;
+            </text>
+        </g><!--MD5=[fc26920c0028197b58c483e6ce4f83b6]
+class SerDesException-->
+        <g id="elem_SerDesException">
+            <rect codeLine="143" fill="#FFFFFF" height="145.1025" id="SerDesException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="274" x="1528" y="660"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="130" x="1600" y="679.0752">SerDesException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1529" x2="1801" y1="687.0146" y2="687.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="112" x="1534"
+                  y="705.0898">-direction: Type
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="208" x="1534"
+                  y="722.1045">-internalException: Exception
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1529" x2="1801" y1="729.0439" y2="729.0439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="262" x="1534"
+                  y="747.1191">+SerDesException(Type, Exception):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="249" x="1534"
+                  y="764.1338">+getInternalException(): Exception
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="1534"
+                  y="781.1484">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="153" x="1534"
+                  y="798.1631">+getDirection(): Type
+            </text>
+        </g><!--MD5=[3a6b3ac2109cf17577e54c40a11f263c]
+class SerDesService-->
+        <g id="elem_SerDesService">
+            <rect codeLine="151" fill="#FFFFFF" height="159.6865" id="SerDesService" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="267" x="1689.5" y="277.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="65" x="1785" y="294.5645">«abstract»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="111" x="1762" y="311.1592">SerDesService
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="1950.5" y="274.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="1951.5" y="287.5645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1690.5" x2="1955.5" y1="319.0986" y2="319.0986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="156" x="1695.5"
+                  y="337.1738">-baseClass: Class&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="1695.5"
+                  y="354.1885">-mapper: ObjectMapper
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1690.5" x2="1955.5" y1="361.1279" y2="361.1279"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="198" x="1695.5"
+                  y="379.2031">+SerDesService(Class&lt;T&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="255" x="1695.5" y="396.2178">#getObjectMapper(): ObjectMapper
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="141" x="1695.5"
+                  y="413.2324">+serialize(T): byte[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="158" x="1695.5"
+                  y="430.2471">+deserialize(byte[]): T
+            </text>
+        </g><!--MD5=[4296a1ab0576a383a1a509d52c22ebf0]
+class Type-->
+        <g id="elem_Type">
+            <rect codeLine="159" fill="#FFFFFF" height="142.6719" id="Type" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="175" x="1628.5" y="1069"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="93" x="1669.5" y="1086.0645">«enumeration»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="38" x="1697" y="1102.6592">Type
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1629.5" x2="1802.5" y1="1110.5986" y2="1110.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="113" x="1634.5"
+                  y="1128.6738">+DESERIALIZE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="93" x="1634.5"
+                  y="1145.6885">+SERIALIZE:
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1629.5" x2="1802.5" y1="1152.6279" y2="1152.6279"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="63" x="1634.5"
+                  y="1170.7031">+Type():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="124" x="1634.5"
+                  y="1187.7178">+values(): Type[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="163" x="1634.5"
+                  y="1204.7324">+valueOf(String): Type
+            </text>
+        </g><!--MD5=[2356422f0b171adae8a901d167ecd8b0]
+class ValueDeserializer-->
+        <g id="elem_ValueDeserializer">
+            <rect codeLine="166" fill="#FFFFFF" height="94.0586" id="ValueDeserializer" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="250" x="2262" y="54.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="132" x="2321" y="73.5752">ValueDeserializer
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2263" x2="2511" y1="81.5146" y2="81.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="2268"
+                  y="99.5898">-mapper: ObjectMapper
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2263" x2="2511" y1="106.5293" y2="106.5293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="147" x="2268"
+                  y="124.6045">+ValueDeserializer():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="238" x="2268"
+                  y="141.6191">+deserialize(Class&lt;K&gt;, String): K
+            </text>
+        </g><!--MD5=[968951716562b046ac42ee688e9ebd5b]
+class XMLSerDesService-->
+        <g id="elem_XMLSerDesService">
+            <rect codeLine="171" fill="#FFFFFF" height="77.0439" id="XMLSerDesService" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="263" x="1691.5" y="63"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="143" x="1746" y="82.0752">XMLSerDesService
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="1948.5" y="60"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="1949.5" y="73.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1692.5" x2="1953.5" y1="90.0146" y2="90.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1692.5" x2="1953.5" y1="98.0146" y2="98.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="227" x="1697.5"
+                  y="116.0898">+XMLSerDesService(Class&lt;T&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="251" x="1697.5"
+                  y="133.1045">#getObjectMapper(): ObjectMapper
+            </text>
+        </g><!--MD5=[b2a0bf17c1ea0efabfb34b5cc24fe483]
+link Command to ICommandResponse-->
+        <g id="link_Command_ICommandResponse">
+            <path codeLine="176" d="M318.25,839.16 C318.25,839.16 318.25,1097.53 318.25,1097.53 " fill="none"
+                  id="Command-to-ICommandResponse" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="318.25,1102.53,322.25,1093.53,318.25,1097.53,314.25,1093.53,318.25,1102.53"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6821661e3b5af139cdbb4b06c0151e9a]
+link Executor to Command-->
+        <g id="link_Executor_Command">
+            <path codeLine="177" d="M233,191.24 C233,191.24 233,620.94 233,620.94 " fill="none" id="Executor-to-Command"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="233,625.94,237,616.94,233,620.94,229,616.94,233,625.94"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[513406298a3da3cd701e25fce19c06e3]
+link Executor to ICommandResponse-->
+        <g id="link_Executor_ICommandResponse">
+            <path codeLine="178" d="M449,191.43 C449,191.43 449,1097.85 449,1097.85 " fill="none"
+                  id="Executor-to-ICommandResponse" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="449,1102.85,453,1093.85,449,1097.85,445,1093.85,449,1102.85"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[f01992a556bddc67426b4338e89bc371]
+link Executor to NoReturnOperation-->
+        <g id="link_Executor_NoReturnOperation">
+            <path codeLine="179" d="M102.5,191.04 C102.5,191.04 102.5,314.77 102.5,314.77 " fill="none"
+                  id="Executor-to-NoReturnOperation" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="102.5,319.77,106.5,310.77,102.5,314.77,98.5,310.77,102.5,319.77"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[32320fee4ac87861624c3fe86636c53e]
+link Executor to Operation-->
+        <g id="link_Executor_Operation">
+            <path codeLine="180" d="M341,203.04 C341,203.04 341,306.77 341,306.77 " fill="none" id="Executor-Operation"
+                  style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="341,319.77,345,310.77,341,314.77,337,310.77,341,319.77"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="341" x2="341" y1="314.77" y2="306.77"/>
+            <polygon fill="#000000" points="341,191.04,337,197.04,341,203.04,345,197.04,341,191.04"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="332.2375"
+                  y="309.3309">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="89" x="248.593"
+                  y="212.1698">operationMap
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="9" x="288.593"
+                  y="227.9691">*
+            </text>
+        </g><!--MD5=[86d5f901449b5dd0904a7e3d114db375]
+link Executor to Response-->
+        <g id="link_Executor_Response">
+            <path codeLine="181" d="M579.5,191.24 C579.5,191.24 579.5,518.86 579.5,518.86 " fill="none"
+                  id="Executor-to-Response" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="579.5,523.86,583.5,514.86,579.5,518.86,575.5,514.86,579.5,523.86"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[3a625ee349d4fa9041aede7af1524f49]
+link FileAccessException to Exception-->
+        <g id="link_FileAccessException_Exception">
+            <path codeLine="182" d="M1241.5,822.04 C1241.5,822.04 1241.5,1047.83 1241.5,1047.83 " fill="none"
+                  id="FileAccessException-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1248.5,1047.83,1241.5,1067.83,1234.5,1047.83,1248.5,1047.83"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[e37b1099d9d87c206acdfb6c2a87d170]
+link FileAccessException to OperationType-->
+        <g id="link_FileAccessException_OperationType">
+            <path codeLine="183" d="M1006.33,834.04 C1006.33,834.04 1006.33,987.65 1006.33,987.65 " fill="none"
+                  id="FileAccessException-OperationType" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="1006.33,1000.65,1010.33,991.65,1006.33,995.65,1002.33,991.65,1006.33,1000.65"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1006.33" x2="1006.33" y1="995.65" y2="987.65"/>
+            <polygon fill="#000000" points="1006.33,822.04,1002.33,828.04,1006.33,834.04,1010.33,828.04,1006.33,822.04"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="995.7475"
+                  y="990.2304">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="30"
+                  x="972.0678" y="843.1698">type
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="983.0678"
+                  y="858.9691">1
+            </text>
+        </g><!--MD5=[d8da52b434e5862642b8d99f374c4917]
+reverse link OperationType to FileAccessException-->
+        <g id="link_OperationType_FileAccessException">
+            <path codeLine="192" d="M1087.67,985.95 C1087.67,985.95 1087.67,822.11 1087.67,822.11 " fill="none"
+                  id="OperationType-backto-FileAccessException" style="stroke:#000000;stroke-width:1.0;"/>
+            <ellipse cx="1087.67" cy="992.95" fill="#FFFFFF" rx="8" ry="8" style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1087.67" x2="1087.67" y1="984.95" y2="1000.95"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1095.67" x2="1079.67" y1="992.95" y2="992.95"/>
+        </g><!--MD5=[58e10f033640b18108112a54095e9ac1]
+link FileController to FileAccessException-->
+        <g id="link_FileController_FileAccessException">
+            <path codeLine="184" d="M1047,464.21 C1047,464.21 1047,637.72 1047,637.72 " fill="none"
+                  id="FileController-to-FileAccessException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1047,642.72,1051,633.72,1047,637.72,1043,633.72,1047,642.72"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[675ebdb9eb2686e7dde9fb30c460e98d]
+link FileIOController to FileAccessException-->
+        <g id="link_FileIOController_FileAccessException">
+            <path codeLine="185" d="M875.5,174.19 C875.5,174.19 875.5,637.84 875.5,637.84 " fill="none"
+                  id="FileIOController-to-FileAccessException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="875.5,642.84,879.5,633.84,875.5,637.84,871.5,633.84,875.5,642.84"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[3e850670f0dbef9e0fc9efb5134ac0d3]
+link FileIOController to FileController-->
+        <g id="link_FileIOController_FileController">
+            <path codeLine="186" d="M1005.5,174.17 C1005.5,174.17 1005.5,230.71 1005.5,230.71 " fill="none"
+                  id="FileIOController-to-FileController" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1012.5,230.71,1005.5,250.71,998.5,230.71,1012.5,230.71"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[b15040193027710d47883fdc4dceba03]
+link InvalidDataFileException to Exception-->
+        <g id="link_InvalidDataFileException_Exception">
+            <path codeLine="187" d="M1391.25,421.58 C1391.25,421.58 1391.25,1047.92 1391.25,1047.92 " fill="none"
+                  id="InvalidDataFileException-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1398.25,1047.92,1391.25,1067.92,1384.25,1047.92,1398.25,1047.92"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[55626b4ac6c39c66792d51386d375961]
+link InvalidDataFileException to SerDesException-->
+        <g id="link_InvalidDataFileException_SerDesException">
+            <path codeLine="188" d="M1591,421.54 C1591,421.54 1591,654.74 1591,654.74 " fill="none"
+                  id="InvalidDataFileException-to-SerDesException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1591,659.74,1595,650.74,1591,654.74,1587,650.74,1591,659.74"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[bd2974d97017d2f1cc0369e618b7fb1c]
+link NoReturnOperation to Command-->
+        <g id="link_NoReturnOperation_Command">
+            <path codeLine="189" d="M100.75,395.17 C100.75,395.17 100.75,620.61 100.75,620.61 " fill="none"
+                  id="NoReturnOperation-to-Command" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="100.75,625.61,104.75,616.61,100.75,620.61,96.75,616.61,100.75,625.61"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[fb6f11d485091e1c5f55fe2569b7ef3e]
+link Operation to Command-->
+        <g id="link_Operation_Command">
+            <path codeLine="190" d="M305.25,395.17 C305.25,395.17 305.25,620.61 305.25,620.61 " fill="none"
+                  id="Operation-to-Command" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="305.25,625.61,309.25,616.61,305.25,620.61,301.25,616.61,305.25,625.61"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[9c059360508ce4cc8e96d48797d96651]
+link Operation to ICommandResponse-->
+        <g id="link_Operation_ICommandResponse">
+            <path codeLine="191" d="M360.25,395 C360.25,395 360.25,1097.62 360.25,1097.62 " fill="none"
+                  id="Operation-to-ICommandResponse" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="360.25,1102.62,364.25,1093.62,360.25,1097.62,356.25,1093.62,360.25,1102.62"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[ab011aa00e43d299f2e5ec67eedcec32]
+link Response to ICommandResponse-->
+        <g id="link_Response_ICommandResponse">
+            <path codeLine="193" d="M509,941.28 C509,941.28 509,1097.86 509,1097.86 " fill="none"
+                  id="Response-to-ICommandResponse" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="509,1102.86,513,1093.86,509,1097.86,505,1093.86,509,1102.86"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[b572461bbe1918384c0c91d47dd98b96]
+link SerDesException to Exception-->
+        <g id="link_SerDesException_Exception">
+            <path codeLine="194" d="M1549.83,805.44 C1549.83,805.44 1549.83,1047.85 1549.83,1047.85 " fill="none"
+                  id="SerDesException-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1556.83,1047.85,1549.83,1067.85,1542.83,1047.85,1556.83,1047.85"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[b572461bbe1918384c0c91d47dd98b96]
+link SerDesException to Exception-->
+        <g id="link_SerDesException_Exception">
+            <path codeLine="195" d="M1571.67,817.44 C1571.67,817.44 1571.67,1054.85 1571.67,1054.85 " fill="none"
+                  id="SerDesException-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="1571.67,1067.85,1575.67,1058.85,1571.67,1062.85,1567.67,1058.85,1571.67,1067.85"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1571.67" x2="1571.67" y1="1062.85" y2="1054.85"/>
+            <polygon fill="#000000" points="1571.67,805.44,1567.67,811.44,1571.67,817.44,1575.67,811.44,1571.67,805.44"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1580.8058" y="1057.1915">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="113"
+                  x="1445.794" y="826.1315">internalException
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="1498.294"
+                  y="841.9308">1
+            </text>
+        </g><!--MD5=[f6c4f979d4fbe30a468e906baf634c76]
+link SerDesException to Type-->
+        <g id="link_SerDesException_Type">
+            <path codeLine="196" d="M1686.33,817.44 C1686.33,817.44 1686.33,1055.87 1686.33,1055.87 " fill="none"
+                  id="SerDesException-Type" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="1686.33,1068.87,1690.33,1059.87,1686.33,1063.87,1682.33,1059.87,1686.33,1068.87"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1686.33" x2="1686.33" y1="1063.87" y2="1055.87"/>
+            <polygon fill="#000000" points="1686.33,805.44,1682.33,811.44,1686.33,817.44,1690.33,811.44,1686.33,805.44"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1674.6473" y="1058.3466">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="57"
+                  x="1628.7138" y="826.1315">direction
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1653.2138" y="841.9308">1
+            </text>
+        </g><!--MD5=[cfe92338ec0548272e453952adabaae8]
+reverse link Type to SerDesException-->
+        <g id="link_Type_SerDesException">
+            <path codeLine="198" d="M1744.17,1053.96 C1744.17,1053.96 1744.17,805.33 1744.17,805.33 " fill="none"
+                  id="Type-backto-SerDesException" style="stroke:#000000;stroke-width:1.0;"/>
+            <ellipse cx="1744.17" cy="1060.96" fill="#FFFFFF" rx="8" ry="8" style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1744.17" x2="1744.17" y1="1052.96" y2="1068.96"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1752.17" x2="1736.17" y1="1060.96" y2="1060.96"/>
+        </g><!--MD5=[aa4514fda377d24f5a4977360085f112]
+link SerDesService to SerDesException-->
+        <g id="link_SerDesService_SerDesException">
+            <path codeLine="197" d="M1745.75,437.95 C1745.75,437.95 1745.75,654.8 1745.75,654.8 " fill="none"
+                  id="SerDesService-to-SerDesException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1745.75,659.8,1749.75,650.8,1745.75,654.8,1741.75,650.8,1745.75,659.8"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[f9e188e19f5582a771bbec8164801049]
+link XMLSerDesService to SerDesService-->
+        <g id="link_XMLSerDesService_SerDesService">
+            <path codeLine="199" d="M1823,140.1 C1823,140.1 1823,257.48 1823,257.48 " fill="none"
+                  id="XMLSerDesService-to-SerDesService" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1830,257.48,1823,277.48,1816,257.48,1830,257.48"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[9c54ae7b762148c13aa350a59b58fd9a]
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+'skinparam CircledCharacterFontSize 0
+'skinparam CircledCharacterRadius 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Command {
+  + Command(): 
+  + getType(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + createResponse(): ICommandResponse
+  + getInteractArgs(): Field[]
+  + validate(): ValidationResponse
+  + getInlineArgs(): Field[]
+}
+class Exception {
+  + Exception(Throwable): 
+  + Exception(String, Throwable): 
+  + Exception(): 
+  # Exception(String, Throwable, boolean, boolean): 
+  + Exception(String): 
+  ~ serialVersionUID: long
+}
+class Executor {
+  + Executor(): 
+  - childExecutors: List<Executor>
+  - operationMap: Map<Class<Command>, Operation<Command, ICommandResponse>>
+  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + execute(Command): Response<ICommandResponse>
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  + registerExecutor(Executor): void
+}
+class FileAccessException {
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(File, OperationType): 
+  - path: String
+  - type: OperationType
+  + getPath(): String
+  + getType(): OperationType
+}
+class FileController {
+  + FileController(String): 
+  # file: File
+  + check(): boolean
+  + getPath(): String
+  # checkWriteAccess(): void
+  - loadPath(String): File
+  # checkReadAccess(): void
+  # ensureExistence(boolean): boolean
+  - checkAccess(): void
+  - checkExistence(): boolean
+}
+class FileIOController {
+  + FileIOController(String): 
+  + write(byte[]): void
+  + openWriteStream(): FileOutputStream
+  + openReadStream(): FileInputStream
+  + read(): byte[]
+  + clear(): void
+}
+interface ICommandResponse << interface >> {
+  + getUserMessage(): String
+}
+class InvalidDataFileException {
+  + InvalidDataFileException(String, byte[], SerDesException): 
+  - path: String
+  - contents: byte[]
+  + getContents(): byte[]
+  + getPath(): String
+}
+interface NoReturnOperation<T> << interface >> {
+  + apply(T): void
+}
+class ObjectMapperFactory {
+  + ObjectMapperFactory(): 
+  {static} + createMapper(): ObjectMapper
+}
+interface Operation<T, V> << interface >> {
+  + apply(T): V
+}
+enum OperationType << enumeration >> {
+  - OperationType(String): 
+  - OperationType(): 
+  + READ: 
+  + CREATE: 
+  + OPEN: 
+  + WRITE: 
+  + SET_PERMISSION: 
+  + PERM_WRITE: 
+  + PERM_READ: 
+  - description: String
+  + getDescription(): String
+  + valueOf(String): OperationType
+  + values(): OperationType[]
+}
+class Response<T> {
+  + Response(boolean, boolean, String, T): 
+  + Response(): 
+  - text: String
+  - success: boolean
+  - resolved: boolean
+  - payload: T
+  + isSuccess(): boolean
+  + isResolved(): boolean
+  + hashCode(): int
+  # canEqual(Object): boolean
+  + getText(): String
+  + getPayload(): T
+  + setSuccess(boolean): void
+  + toString(): String
+  + equals(Object): boolean
+  + setResolved(boolean): void
+  + setText(String): void
+  + setPayload(T): void
+  + noResolve(): Response<T>
+  + error(String): Response<T>
+  + success(T): Response<T>
+  + error(Exception): Response<T>
+}
+class SerDesException {
+  + SerDesException(Type, Exception): 
+  - direction: Type
+  - internalException: Exception
+  + getInternalException(): Exception
+  + toString(): String
+  + getDirection(): Type
+}
+abstract class SerDesService<T>  <<abstract>> {
+  + SerDesService(Class<T>): 
+  - baseClass: Class<T>
+  - mapper: ObjectMapper
+  {abstract} # getObjectMapper(): ObjectMapper
+  + serialize(T): byte[]
+  + deserialize(byte[]): T
+}
+enum Type << enumeration >> {
+  + Type(): 
+  + DESERIALIZE: 
+  + SERIALIZE: 
+  + values(): Type[]
+  + valueOf(String): Type
+}
+class ValueDeserializer {
+  + ValueDeserializer(): 
+  - mapper: ObjectMapper
+  + deserialize(Class<K>, String): K
+}
+class XMLSerDesService<T> {
+  + XMLSerDesService(Class<T>): 
+  # getObjectMapper(): ObjectMapper
+}
+
+Command                   ..>  ICommandResponse         
+Executor                  ..>  Command                  
+Executor                  ..>  ICommandResponse         
+Executor                  ..>  NoReturnOperation        
+Executor                 "1" *- -> "operationMap\n*" Operation                
+Executor                  ..>  Response                 
+FileAccessException       - -^  Exception                
+FileAccessException      "1" *- -> "type\n1" OperationType            
+FileController            ..>  FileAccessException      
+FileIOController          ..>  FileAccessException      
+FileIOController          - -^  FileController           
+InvalidDataFileException  - -^  Exception                
+InvalidDataFileException  ..>  SerDesException          
+NoReturnOperation         ..>  Command                  
+Operation                 ..>  Command                  
+Operation                 ..>  ICommandResponse         
+OperationType             +- -  FileAccessException      
+Response                  ..>  ICommandResponse         
+SerDesException           - -^  Exception                
+SerDesException          "1" *- -> "internalException\n1" Exception                
+SerDesException          "1" *- -> "direction\n1" Type                     
+SerDesService             ..>  SerDesException          
+Type                      +- -  SerDesException          
+XMLSerDesService          - -^  SerDesService            
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+<style>
+  root {
+    BackgroundColor white
+    FontColor black
+    FontName Verdana
+    HyperLinkColor blue
+    LineColor black
+    LineThickness 1
+    Margin 5
+  }
+  caption {
+    LineThickness 0
+  }
+  footer {
+    LineThickness 0
+  }
+  header {
+    LineThickness 0
+  }
+  node {
+    MaximumWidth 300
+  }
+  title {
+    FontSize 22
+    LineThickness 0
+  }
+</style>
+
+skinparam ArrowLollipopColor black
+skinparam BackgroundColor white
+skinparam DefaultFontName Verdana
+skinparam DefaultMonospacedFontName Courier
+skinparam LifelineStrategy nosolid
+skinparam ParticipantPadding 10
+skinparam SequenceLifeLineBorderColor black
+skinparam Shadowing false
+skinparam UseBetaStyle true
+
+skinparam Activity {
+  BackgroundColor white
+  BarColor black
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam Boundary {
+  FontColor black
+}
+skinparam Box {
+  Padding 5
+}
+skinparam CircledCharacter {
+  FontColor black
+  FontName Courier
+  Radius 9
+}
+skinparam Class {
+  BackgroundColor white
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassAttribute {
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassStereotype {
+  FontColor black
+  FontName Verdana
+}
+skinparam Footer {
+  FontColor black
+  FontName Verdana
+}
+skinparam Header {
+  FontColor black
+  FontName Verdana
+}
+skinparam Hyperlink {
+  Color blue
+}
+skinparam IconPackage {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPrivate {
+  Color black
+  BackgroundColor white
+}
+skinparam IconProtected {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPublic {
+  Color black
+  BackgroundColor white
+}
+skinparam Note {
+  FontColor black
+  FontName Verdana
+}
+skinparam Object {
+  BorderColor black
+}
+skinparam Package {
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam State {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeA {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeC {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeE {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeI {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeN {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam UseCaseStereoType {
+  FontColor black
+  FontName Verdana
+}
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+
+
+
+
+
+
+
+<style>
+  root {
+    BackgroundColor white
+    FontColor black
+    FontName Verdana
+    HyperLinkColor blue
+    LineColor black
+    LineThickness 1
+    Margin 5
+  }
+  caption {
+    LineThickness 0
+  }
+  footer {
+    LineThickness 0
+  }
+  header {
+    LineThickness 0
+  }
+  node {
+    MaximumWidth 300
+  }
+  title {
+    FontSize 22
+    LineThickness 0
+  }
+</style>
+
+skinparam ArrowLollipopColor black
+skinparam BackgroundColor white
+skinparam DefaultFontName Verdana
+skinparam DefaultMonospacedFontName Courier
+skinparam LifelineStrategy nosolid
+skinparam ParticipantPadding 10
+skinparam SequenceLifeLineBorderColor black
+skinparam Shadowing false
+skinparam UseBetaStyle true
+
+skinparam Activity {
+  BackgroundColor white
+  BarColor black
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam Boundary {
+  FontColor black
+}
+skinparam Box {
+  Padding 5
+}
+skinparam CircledCharacter {
+  FontColor black
+  FontName Courier
+  Radius 9
+}
+skinparam Class {
+  BackgroundColor white
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassAttribute {
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassStereotype {
+  FontColor black
+  FontName Verdana
+}
+skinparam Footer {
+  FontColor black
+  FontName Verdana
+}
+skinparam Header {
+  FontColor black
+  FontName Verdana
+}
+skinparam Hyperlink {
+  Color blue
+}
+skinparam IconPackage {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPrivate {
+  Color black
+  BackgroundColor white
+}
+skinparam IconProtected {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPublic {
+  Color black
+  BackgroundColor white
+}
+skinparam Note {
+  FontColor black
+  FontName Verdana
+}
+skinparam Object {
+  BorderColor black
+}
+skinparam Package {
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam State {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeA {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeC {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeE {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeI {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeN {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam UseCaseStereoType {
+  FontColor black
+  FontName Verdana
+}
+top to bottom direction
+skinparam linetype ortho
+
+class Command {
+  + Command(): 
+  + getType(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + createResponse(): ICommandResponse
+  + getInteractArgs(): Field[]
+  + validate(): ValidationResponse
+  + getInlineArgs(): Field[]
+}
+class Exception {
+  + Exception(Throwable): 
+  + Exception(String, Throwable): 
+  + Exception(): 
+  # Exception(String, Throwable, boolean, boolean): 
+  + Exception(String): 
+  ~ serialVersionUID: long
+}
+class Executor {
+  + Executor(): 
+  - childExecutors: List<Executor>
+  - operationMap: Map<Class<Command>, Operation<Command, ICommandResponse>>
+  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + execute(Command): Response<ICommandResponse>
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  + registerExecutor(Executor): void
+}
+class FileAccessException {
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(File, OperationType): 
+  - path: String
+  - type: OperationType
+  + getPath(): String
+  + getType(): OperationType
+}
+class FileController {
+  + FileController(String): 
+  # file: File
+  + check(): boolean
+  + getPath(): String
+  # checkWriteAccess(): void
+  - loadPath(String): File
+  # checkReadAccess(): void
+  # ensureExistence(boolean): boolean
+  - checkAccess(): void
+  - checkExistence(): boolean
+}
+class FileIOController {
+  + FileIOController(String): 
+  + write(byte[]): void
+  + openWriteStream(): FileOutputStream
+  + openReadStream(): FileInputStream
+  + read(): byte[]
+  + clear(): void
+}
+interface ICommandResponse << interface >> {
+  + getUserMessage(): String
+}
+class InvalidDataFileException {
+  + InvalidDataFileException(String, byte[], SerDesException): 
+  - path: String
+  - contents: byte[]
+  + getContents(): byte[]
+  + getPath(): String
+}
+interface NoReturnOperation<T> << interface >> {
+  + apply(T): void
+}
+class ObjectMapperFactory {
+  + ObjectMapperFactory(): 
+  {static} + createMapper(): ObjectMapper
+}
+interface Operation<T, V> << interface >> {
+  + apply(T): V
+}
+enum OperationType << enumeration >> {
+  - OperationType(String): 
+  - OperationType(): 
+  + READ: 
+  + CREATE: 
+  + OPEN: 
+  + WRITE: 
+  + SET_PERMISSION: 
+  + PERM_WRITE: 
+  + PERM_READ: 
+  - description: String
+  + getDescription(): String
+  + valueOf(String): OperationType
+  + values(): OperationType[]
+}
+class Response<T> {
+  + Response(boolean, boolean, String, T): 
+  + Response(): 
+  - text: String
+  - success: boolean
+  - resolved: boolean
+  - payload: T
+  + isSuccess(): boolean
+  + isResolved(): boolean
+  + hashCode(): int
+  # canEqual(Object): boolean
+  + getText(): String
+  + getPayload(): T
+  + setSuccess(boolean): void
+  + toString(): String
+  + equals(Object): boolean
+  + setResolved(boolean): void
+  + setText(String): void
+  + setPayload(T): void
+  + noResolve(): Response<T>
+  + error(String): Response<T>
+  + success(T): Response<T>
+  + error(Exception): Response<T>
+}
+class SerDesException {
+  + SerDesException(Type, Exception): 
+  - direction: Type
+  - internalException: Exception
+  + getInternalException(): Exception
+  + toString(): String
+  + getDirection(): Type
+}
+abstract class SerDesService<T>  <<abstract>> {
+  + SerDesService(Class<T>): 
+  - baseClass: Class<T>
+  - mapper: ObjectMapper
+  {abstract} # getObjectMapper(): ObjectMapper
+  + serialize(T): byte[]
+  + deserialize(byte[]): T
+}
+enum Type << enumeration >> {
+  + Type(): 
+  + DESERIALIZE: 
+  + SERIALIZE: 
+  + values(): Type[]
+  + valueOf(String): Type
+}
+class ValueDeserializer {
+  + ValueDeserializer(): 
+  - mapper: ObjectMapper
+  + deserialize(Class<K>, String): K
+}
+class XMLSerDesService<T> {
+  + XMLSerDesService(Class<T>): 
+  # getObjectMapper(): ObjectMapper
+}
+
+Command                   ..>  ICommandResponse         
+Executor                  ..>  Command                  
+Executor                  ..>  ICommandResponse         
+Executor                  ..>  NoReturnOperation        
+Executor                 "1" *- -> "operationMap\n*" Operation                
+Executor                  ..>  Response                 
+FileAccessException       - -^  Exception                
+FileAccessException      "1" *- -> "type\n1" OperationType            
+FileController            ..>  FileAccessException      
+FileIOController          ..>  FileAccessException      
+FileIOController          - -^  FileController           
+InvalidDataFileException  - -^  Exception                
+InvalidDataFileException  ..>  SerDesException          
+NoReturnOperation         ..>  Command                  
+Operation                 ..>  Command                  
+Operation                 ..>  ICommandResponse         
+OperationType             +- -  FileAccessException      
+Response                  ..>  ICommandResponse         
+SerDesException           - -^  Exception                
+SerDesException          "1" *- -> "internalException\n1" Exception                
+SerDesException          "1" *- -> "direction\n1" Type                     
+SerDesService             ..>  SerDesException          
+Type                      +- -  SerDesException          
+XMLSerDesService          - -^  SerDesService            
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 20:01:30 MSK 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+-->
+    </g>
+</svg>

@@ -30,6 +30,7 @@ public class WorkerValidation {
                 new ValidationResponse(true, "");
     }
 
+    @SuppressWarnings("deprecation")
     public static ValidationResponse validateStartDate(Date startDate) {
         Date maxDate = new Date(10000 - 1900, 1, 1);
         Date minDate = new Date(1000 - 1900, 1, 1);

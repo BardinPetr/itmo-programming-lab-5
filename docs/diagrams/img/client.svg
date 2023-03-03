@@ -1,0 +1,3080 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css"
+     height="2787px" preserveAspectRatio="none" style="width:4166px;height:2787px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 4166 2787" width="4166px" zoomAndPan="magnify">
+    <defs/>
+    <g><!--MD5=[2eb427bdcbfffcf09ea1657edbeb18de]
+class CLIController-->
+        <g id="elem_CLIController">
+            <rect codeLine="22" fill="#FFFFFF" height="179.1318" id="CLIController" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="422" x="1069" y="354"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="106" x="1227" y="373.0752">CLIController
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1070" x2="1490" y1="381.0146" y2="381.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="210" x="1075"
+                  y="399.0898">#cmdParser: CommandParser
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="134" x="1075"
+                  y="416.1045">#scanner: Scanner
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="172" x="1075"
+                  y="433.1191">#mapper: ObjectMapper
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="98" x="1075"
+                  y="450.1338">#viewer: View
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="223" x="1075"
+                  y="467.1484">#callback: ICommandIOCallback
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1070" x2="1490" y1="474.0879" y2="474.0879"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="410" x="1075"
+                  y="492.1631">+CLIController(View, InputStream, ICommandIOCallback):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="87" x="1075"
+                  y="509.1777">+run(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="360" x="1075"
+                  y="526.1924">-runScript(Response&lt;ICommandResponse&gt;): void
+            </text>
+        </g><!--MD5=[521817ab83e81da341a3f4b5e91bae41]
+class Command-->
+        <g id="elem_Command">
+            <rect codeLine="32" fill="#FFFFFF" height="213.1611" id="Command" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="303" x="1666.5" y="1885"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="78" x="1779" y="1904.0752">Command
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1667.5" x2="1968.5" y1="1912.0146" y2="1912.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1667.5" x2="1968.5" y1="1920.0146" y2="1920.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="100" x="1672.5"
+                  y="1938.0898">+Command():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="134" x="1672.5"
+                  y="1955.1045">+getType(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="1672.5"
+                  y="1972.1191">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="1672.5"
+                  y="1989.1338">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="1672.5"
+                  y="2006.1484">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="1672.5"
+                  y="2023.1631">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="291" x="1672.5"
+                  y="2040.1777">+createResponse(): ICommandResponse
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="188" x="1672.5"
+                  y="2057.1924">+getInteractArgs(): Field[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="224" x="1672.5"
+                  y="2074.207">+validate(): ValidationResponse
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="170" x="1672.5"
+                  y="2091.2217">+getInlineArgs(): Field[]
+            </text>
+        </g><!--MD5=[ed26f6b12c6467a8f3040c59fc5b4465]
+class CommandParser-->
+        <g id="elem_CommandParser">
+            <rect codeLine="44" fill="#FFFFFF" height="162.1172" id="CommandParser" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="581" x="2384.5" y="1024.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="128" x="2611" y="1043.5752">CommandParser
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2385.5" x2="2964.5" y1="1051.5146" y2="1051.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="284" x="2390.5"
+                  y="1069.5898">-cmdMap: HashMap&lt;String, Command&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="94" x="2390.5"
+                  y="1086.6045">-viewer: View
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="222" x="2390.5"
+                  y="1103.6191">-objectScanner: ObjectScanner
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="2390.5"
+                  y="1120.6338">-mapper: ObjectMapper
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="130" x="2390.5"
+                  y="1137.6484">-scanner: Scanner
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2385.5" x2="2964.5" y1="1144.5879" y2="1144.5879"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="569" x="2390.5"
+                  y="1162.6631">+CommandParser(HashMap&lt;String, Command&gt;, ObjectMapper, Scanner, View):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="144" x="2390.5"
+                  y="1179.6777">+parse(): Command
+            </text>
+        </g><!--MD5=[be722e415354dc8666333eb0a4f56848]
+class CommandRegister-->
+        <g id="elem_CommandRegister">
+            <rect codeLine="53" fill="#FFFFFF" height="128.0879" id="CommandRegister" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="434" x="1885" y="668.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="142" x="2031" y="687.5752">CommandRegister
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1886" x2="2318" y1="695.5146" y2="695.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="155" x="1891"
+                  y="713.5898">-cmdList: Command[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="257" x="1891"
+                  y="730.6045">-map: HashMap&lt;String, Command&gt;
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1886" x2="2318" y1="737.5439" y2="737.5439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="158" x="1891"
+                  y="755.6191">+CommandRegister():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="422" x="1891"
+                  y="772.6338">+getParser(ObjectMapper, Scanner, View): CommandParser
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="227" x="1891"
+                  y="789.6484">-addCommand(Command): void
+            </text>
+        </g><!--MD5=[138e2955aa01cc1d099cae6b29826902]
+class CommandScriptController-->
+        <g id="elem_CommandScriptController">
+            <rect codeLine="60" fill="#FFFFFF" height="111.0732" id="CommandScriptController" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="277" x="2612.5" y="388"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="201" x="2650.5" y="407.0752">CommandScriptController
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2613.5" x2="2888.5" y1="415.0146" y2="415.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="234" x="2618.5"
+                  y="433.0898">-cmdRegister: CommandRegister
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="2618.5"
+                  y="450.1045">-mapper: ObjectMapper
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2613.5" x2="2888.5" y1="457.0439" y2="457.0439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="210" x="2618.5"
+                  y="475.1191">+CommandScriptController():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="265" x="2618.5"
+                  y="492.1338">+run(InputStream): List&lt;Command&gt;
+            </text>
+        </g><!--MD5=[b34bfa46d10f60da10054aede3b3a2f1]
+class ConsolePrinter-->
+        <g id="elem_ConsolePrinter">
+            <rect codeLine="66" fill="#FFFFFF" height="111.0732" id="ConsolePrinter" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="183" x="3012.5" y="166"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="115" x="3046.5" y="185.0752">ConsolePrinter
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3013.5" x2="3194.5" y1="193.0146" y2="193.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3013.5" x2="3194.5" y1="201.0146" y2="201.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="131" x="3018.5"
+                  y="219.0898">+ConsolePrinter():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="158" x="3018.5"
+                  y="236.1045">+suggestInput(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="143" x="3018.5"
+                  y="253.1191">+show(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="171" x="3018.5"
+                  y="270.1338">+showLine(String): void
+            </text>
+        </g><!--MD5=[8db60afef7a3447bbe27c5ed187fdac2]
+class Exception-->
+        <g id="elem_Exception">
+            <rect codeLine="72" fill="#FFFFFF" height="145.1025" id="Exception" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="365" x="3436.5" y="2635"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="76" x="3581" y="2654.0752">Exception
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3437.5" x2="3800.5" y1="2662.0146" y2="2662.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="3442.5"
+                  y="2680.0898">~serialVersionUID: long
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3437.5" x2="3800.5" y1="2687.0293" y2="2687.0293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="170" x="3442.5"
+                  y="2705.1045">+Exception(Throwable):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="223" x="3442.5"
+                  y="2722.1191">+Exception(String, Throwable):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="98" x="3442.5"
+                  y="2739.1338">+Exception():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="353" x="3442.5"
+                  y="2756.1484">#Exception(String, Throwable, boolean, boolean):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="141" x="3442.5"
+                  y="2773.1631">+Exception(String):
+            </text>
+        </g><!--MD5=[b87aaf09bbaf7eb3d10186943c81d1a0]
+class ExecuteScriptCommandResponse-->
+        <g id="elem_ExecuteScriptCommandResponse">
+            <rect codeLine="80" fill="#FFFFFF" height="60.0293" id="ExecuteScriptCommandResponse" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="278" x="1191" y="1961.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="259" x="1200.5" y="1980.5752">ExecuteScriptCommandResponse
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1192" x2="1468" y1="1988.5146" y2="1988.5146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1192" x2="1468" y1="1996.5146" y2="1996.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="266" x="1197"
+                  y="2014.5898">+ExecuteScriptCommandResponse():
+            </text>
+        </g><!--MD5=[a0a1f7f9662f43ef0ece806266f72a6f]
+class Executor-->
+        <g id="elem_Executor">
+            <rect codeLine="83" fill="#FFFFFF" height="213.1611" id="Executor" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="632" x="453" y="1595"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="69" x="734.5" y="1614.0752">Executor
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="454" x2="1084" y1="1622.0146" y2="1622.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="221" x="459"
+                  y="1640.0898">+MAX_RECURSION_DEPTH: int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="620" x="459"
+                  y="1657.1045">-operationMap: Map&lt;Class&lt;Command&gt;, Operation&lt;Command, ICommandResponse&gt;&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="230" x="459"
+                  y="1674.1191">-childExecutors: List&lt;Executor&gt;
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="454" x2="1084" y1="1681.0586" y2="1681.0586"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="92" x="459"
+                  y="1699.1338">+Executor():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="396" x="459"
+                  y="1716.1484">+execute(Command): Response&lt;ICommandResponse&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="462" x="459"
+                  y="1733.1631">+registerVoidOperation(Class&lt;T&gt;, NoReturnOperation&lt;T&gt;): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="519" x="459"
+                  y="1750.1777">+registerOperation(Class&lt;T&gt;, Operation&lt;T, ICommandResponse&gt;): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="424" x="459"
+                  y="1767.1924">#execute(Command, int): Response&lt;ICommandResponse&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="243" x="459"
+                  y="1784.207">+registerExecutor(Executor): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="530" x="459"
+                  y="1801.2217">+executeBatch(List&lt;Command&gt;): List&lt;Response&lt;ICommandResponse&gt;&gt;
+            </text>
+        </g><!--MD5=[d9427b671d7d049aff2d6f2fe36a13b3]
+class Field-->
+        <g id="elem_Field">
+            <rect codeLine="95" fill="#FFFFFF" height="247.1904" id="Field" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="239" x="3205.5" y="2243"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="36" x="3307" y="2262.0752">Field
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3206.5" x2="3443.5" y1="2270.0146" y2="2270.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="158" x="3211.5"
+                  y="2288.0898">-valueClass: Class&lt;?&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="99" x="3211.5"
+                  y="2305.1045">-name: String
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3206.5" x2="3443.5" y1="2312.0439" y2="2312.0439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="3211.5"
+                  y="2330.1191">+Field(String, Class&lt;?&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="60" x="3211.5"
+                  y="2347.1338">+Field():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="139" x="3211.5"
+                  y="2364.1484">+getName(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="199" x="3211.5"
+                  y="2381.1631">+getValueClass(): Class&lt;?&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="3211.5"
+                  y="2398.1777">+setName(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="227" x="3211.5"
+                  y="2415.1924">+setValueClass(Class&lt;?&gt;): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="3211.5"
+                  y="2432.207">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="3211.5"
+                  y="2449.2217">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="3211.5"
+                  y="2466.2363">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="3211.5"
+                  y="2483.251">+toString(): String
+            </text>
+        </g><!--MD5=[5d528023a3b4cb1d377ab9e3b4e2efd8]
+class FieldWithDesc-->
+        <g id="elem_FieldWithDesc">
+            <rect codeLine="109" fill="#FFFFFF" height="247.1904" id="FieldWithDesc" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="486" x="2786" y="1578"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="108" x="2969.5" y="1597.0752">FieldWithDesc
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="3266" y="1575"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="3267" y="1588.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2787" x2="3271" y1="1605.0146" y2="1605.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="141" x="2792"
+                  y="1623.0898">-promptMsg: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="176" x="2792"
+                  y="1640.1045">-validator: IValidator&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="127" x="2792"
+                  y="1657.1191">-nullAble: boolean
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2787" x2="3271" y1="1664.0586" y2="1664.0586"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="474" x="2792"
+                  y="1682.1338">+FieldWithDesc(String, Class&lt;T&gt;, String, IValidator&lt;T&gt;, boolean):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="366" x="2792"
+                  y="1699.1484">+FieldWithDesc(String, Class&lt;T&gt;, String, boolean):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="2792"
+                  y="1716.1631">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="2792"
+                  y="1733.1777">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="2792"
+                  y="1750.1924">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="179" x="2792"
+                  y="1767.207">+getPromptMsg(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="217" x="2792"
+                  y="1784.2217">+getValidator(): IValidator&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="155" x="2792"
+                  y="1801.2363">+isNullAble(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="2792"
+                  y="1818.251">+toString(): String
+            </text>
+        </g><!--MD5=[b0e40f0c39f625d643b1f5b496d53d35]
+class FileAccessException-->
+        <g id="elem_FileAccessException">
+            <rect codeLine="123" fill="#FFFFFF" height="179.1318" id="FileAccessException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="415" x="3744.5" y="354"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="154" x="3875" y="373.0752">FileAccessException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3745.5" x2="4158.5" y1="381.0146" y2="381.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="93" x="3750.5"
+                  y="399.0898">-path: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="152" x="3750.5"
+                  y="416.1045">-type: OperationType
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3745.5" x2="4158.5" y1="423.0439" y2="423.0439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="403" x="3750.5"
+                  y="441.1191">+FileAccessException(Exception, String, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="303" x="3750.5"
+                  y="458.1338">+FileAccessException(File, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="382" x="3750.5"
+                  y="475.1484">+FileAccessException(Exception, File, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="324" x="3750.5"
+                  y="492.1631">+FileAccessException(String, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="194" x="3750.5"
+                  y="509.1777">+getType(): OperationType
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="131" x="3750.5"
+                  y="526.1924">+getPath(): String
+            </text>
+        </g><!--MD5=[a9a1cf1effea8b0a49d86e314f79dfde]
+class FileIOController-->
+        <g id="elem_FileIOController">
+            <rect codeLine="133" fill="#FFFFFF" height="145.1025" id="FileIOController" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="293" x="3744.5" y="149"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="124" x="3829" y="168.0752">FileIOController
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3745.5" x2="4036.5" y1="176.0146" y2="176.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3745.5" x2="4036.5" y1="184.0146" y2="184.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="179" x="3750.5"
+                  y="202.0898">+FileIOController(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="140" x="3750.5"
+                  y="219.1045">+write(byte[]): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="3750.5"
+                  y="236.1191">+clear(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="281" x="3750.5"
+                  y="253.1338">+openWriteStream(): FileOutputStream
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="108" x="3750.5"
+                  y="270.1484">+read(): byte[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="266" x="3750.5"
+                  y="287.1631">+openReadStream(): FileInputStream
+            </text>
+        </g><!--MD5=[c6bd92dbb38dbf9ad607a86554d64696]
+class ICommandIOCallback-->
+        <g id="elem_ICommandIOCallback">
+            <rect codeLine="141" fill="#FFFFFF" height="74.6133" id="ICommandIOCallback" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="406" x="12" y="1664"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="181" y="1681.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="172" x="129" y="1697.6592">ICommandIOCallback
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="13" x2="417" y1="1705.5986" y2="1705.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="13" x2="417" y1="1713.5986" y2="1713.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="394" x="18"
+                  y="1731.6738">+callback(Command): Response&lt;ICommandResponse&gt;
+            </text>
+        </g><!--MD5=[7b82ae2f2c4d9bced7a59f0fe064a814]
+class ICommandResponse-->
+        <g id="elem_ICommandResponse">
+            <rect codeLine="144" fill="#FFFFFF" height="74.6133" id="ICommandResponse" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="204" x="427" y="2670"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="495" y="2687.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="164" x="447" y="2703.6592">ICommandResponse
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="428" x2="630" y1="2711.5986" y2="2711.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="428" x2="630" y1="2719.5986" y2="2719.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="192" x="433"
+                  y="2737.6738">+getUserMessage(): String
+            </text>
+        </g><!--MD5=[6cd857f209d3ee32bf571638a1085030]
+class IValidator-->
+        <g id="elem_IValidator">
+            <rect codeLine="147" fill="#FFFFFF" height="74.6133" id="IValidator" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="245" x="2668.5" y="1954"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="2751.5" y="1971.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="78" x="2746.5" y="1987.6592">IValidator
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="2907.5" y="1951"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="2908.5" y="1964.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2669.5" x2="2912.5" y1="1995.5986" y2="1995.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2669.5" x2="2912.5" y1="2003.5986" y2="2003.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="233" x="2674.5"
+                  y="2021.6738">+validate(T): ValidationResponse
+            </text>
+        </g><!--MD5=[10a91cb133dd40f62ca8495f6c512a29]
+class LocalExecuteScriptCommand-->
+        <g id="elem_LocalExecuteScriptCommand">
+            <rect codeLine="150" fill="#FFFFFF" height="145.1025" id="LocalExecuteScriptCommand" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="430" x="1475" y="1033"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="224" x="1578" y="1052.0752">LocalExecuteScriptCommand
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1476" x2="1904" y1="1060.0146" y2="1060.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="119" x="1481"
+                  y="1078.0898">-fileName: String
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1476" x2="1904" y1="1085.0293" y2="1085.0293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="232" x="1481"
+                  y="1103.1045">+LocalExecuteScriptCommand():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="134" x="1481"
+                  y="1120.1191">+getType(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="418" x="1481"
+                  y="1137.1338">+createResponse(): LocalExecuteScriptCommandResponse
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="161" x="1481"
+                  y="1154.1484">+getFileName(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="170" x="1481"
+                  y="1171.1631">+getInlineArgs(): Field[]
+            </text>
+        </g><!--MD5=[92b0cd05256950b7f49f79b20d8c1fbf]
+class LocalExecuteScriptCommandResponse-->
+        <g id="elem_LocalExecuteScriptCommandResponse">
+            <rect codeLine="158" fill="#FFFFFF" height="145.1025" id="LocalExecuteScriptCommandResponse" rx="2.5"
+                  ry="2.5" style="stroke:#000000;stroke-width:1.0;" width="431" x="1262.5" y="1356"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="299" x="1328.5" y="1375.0752">LocalExecuteScriptCommandResponse
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1263.5" x2="1692.5" y1="1383.0146" y2="1383.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1263.5" x2="1692.5" y1="1391.0146" y2="1391.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="419" x="1268.5"
+                  y="1409.0898">+LocalExecuteScriptCommandResponse(List&lt;Command&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="1268.5"
+                  y="1426.1045">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="1268.5"
+                  y="1443.1191">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="1268.5"
+                  y="1460.1338">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="1268.5"
+                  y="1477.1484">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="192" x="1268.5"
+                  y="1494.1631">+getUserMessage(): String
+            </text>
+        </g><!--MD5=[84718776d214be480e4c259efcb737fc]
+class Main-->
+        <g id="elem_Main">
+            <rect codeLine="166" fill="#FFFFFF" height="77.0439" id="Main" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="163" x="2562.5" y="12"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="36" x="2626" y="31.0752">Main
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2563.5" x2="2724.5" y1="39.0146" y2="39.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2563.5" x2="2724.5" y1="47.0146" y2="47.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="60" x="2568.5"
+                  y="65.0898">+Main():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="151" x="2568.5"
+                  y="82.1045">+main(String[]): void
+            </text>
+        </g><!--MD5=[06591d594c991ba1702232680c4cdc77]
+class ObjectMapperFactory-->
+        <g id="elem_ObjectMapperFactory">
+            <rect codeLine="170" fill="#FFFFFF" height="77.0439" id="ObjectMapperFactory" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="237" x="2425.5" y="694"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="167" x="2460.5" y="713.0752">ObjectMapperFactory
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2426.5" x2="2661.5" y1="721.0146" y2="721.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2426.5" x2="2661.5" y1="729.0146" y2="729.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="178" x="2431.5"
+                  y="747.0898">+ObjectMapperFactory():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="225" x="2431.5"
+                  y="764.1045">+createMapper(): ObjectMapper
+            </text>
+        </g><!--MD5=[cec40fc9a766b7476abd90eb604657dd]
+class ObjectScanner-->
+        <g id="elem_ObjectScanner">
+            <rect codeLine="174" fill="#FFFFFF" height="179.1318" id="ObjectScanner" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="442" x="2901" y="1339"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="114" x="3065" y="1358.0752">ObjectScanner
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2902" x2="3342" y1="1366.0146" y2="1366.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="430" x="2907"
+                  y="1384.0898">-dataDescription: Map&lt;Class&lt;?&gt;, List&lt;FieldWithDesc&lt;?&gt;&gt;&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="94" x="2907"
+                  y="1401.1045">-viewer: View
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="130" x="2907"
+                  y="1418.1191">-scanner: Scanner
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="2907"
+                  y="1435.1338">-mapper: ObjectMapper
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2902" x2="3342" y1="1442.0732" y2="1442.0732"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="338" x="2907"
+                  y="1460.1484">+ObjectScanner(Scanner, View, ObjectMapper):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="113" x="2907"
+                  y="1477.1631">-scan(): String?
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="198" x="2907"
+                  y="1494.1777">-interactValue(Class&lt;T&gt;): T
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="143" x="2907"
+                  y="1511.1924">+scan(Class&lt;T&gt;): T
+            </text>
+        </g><!--MD5=[cc4941acd9f25cf973013d8901d108c0]
+class OperationType-->
+        <g id="elem_OperationType">
+            <rect codeLine="184" fill="#FFFFFF" height="278.7891" id="OperationType" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="244" x="3787" y="593"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="93" x="3862.5" y="610.0645">«enumeration»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="115" x="3851.5" y="626.6592">OperationType
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3788" x2="4030" y1="634.5986" y2="634.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="138" x="3793"
+                  y="652.6738">-description: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="104" x="3793"
+                  y="669.6885">+PERM_READ:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="112" x="3793"
+                  y="686.7031">+PERM_WRITE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="74" x="3793"
+                  y="703.7178">+CREATE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="65" x="3793"
+                  y="720.7324">+WRITE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="143" x="3793"
+                  y="737.7471">+SET_PERMISSION:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="55" x="3793"
+                  y="754.7617">+OPEN:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="57" x="3793"
+                  y="771.7764">+READ:
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3788" x2="4030" y1="778.7158" y2="778.7158"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="171" x="3793"
+                  y="796.791">-OperationType(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="128" x="3793"
+                  y="813.8057">-OperationType():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="193" x="3793"
+                  y="830.8203">+values(): OperationType[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="179" x="3793"
+                  y="847.835">+getDescription(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="232" x="3793"
+                  y="864.8496">+valueOf(String): OperationType
+            </text>
+        </g><!--MD5=[3ff0a4c9b66d9363db7aacc190b46116]
+class ParserException-->
+        <g id="elem_ParserException">
+            <rect codeLine="199" fill="#FFFFFF" height="60.0293" id="ParserException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="197" x="3520.5" y="1671.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="126" x="3556" y="1690.5752">ParserException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3521.5" x2="3716.5" y1="1698.5146" y2="1698.5146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3521.5" x2="3716.5" y1="1706.5146" y2="1706.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="185" x="3526.5"
+                  y="1724.5898">+ParserException(String):
+            </text>
+        </g><!--MD5=[62ba8ad8b61caf20139235a169a8c31d]
+class Response-->
+        <g id="elem_Response">
+            <rect codeLine="202" fill="#FFFFFF" height="417.3369" id="Response" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="302" x="582" y="2158"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="75" x="690" y="2177.0752">Response
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="878" y="2155"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="879" y="2168.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="583" x2="883" y1="2185.0146" y2="2185.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="588"
+                  y="2203.0898">-text: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="128" x="588"
+                  y="2220.1045">-success: boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="132" x="588"
+                  y="2237.1191">-resolved: boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="81" x="588"
+                  y="2254.1338">-payload: T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="583" x2="883" y1="2261.0732" y2="2261.0732"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="290" x="588"
+                  y="2279.1484">+Response(boolean, boolean, String, T):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="98" x="588"
+                  y="2296.1631">+Response():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="132" x="588"
+                  y="2313.1777">+getText(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="157" x="588"
+                  y="2330.1924">+isSuccess(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="163" x="588"
+                  y="2347.207">+isResolved(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="588"
+                  y="2364.2217">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="588"
+                  y="2381.2363">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="119" x="588"
+                  y="2398.251">+getPayload(): T
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="588"
+                  y="2415.2656">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="588"
+                  y="2432.2803">+setSuccess(boolean): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="203" x="588"
+                  y="2449.2949">+setResolved(boolean): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="160" x="588"
+                  y="2466.3096">+setText(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="147" x="588"
+                  y="2483.3242">+setPayload(T): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="588"
+                  y="2500.3389">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="206" x="588"
+                  y="2517.3535">+noResolve(): Response&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="212" x="588"
+                  y="2534.3682">+error(String): Response&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="198" x="588"
+                  y="2551.3828">+success(T): Response&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="238" x="588"
+                  y="2568.3975">+error(Exception): Response&lt;T&gt;
+            </text>
+        </g><!--MD5=[5c6c7d52e42032554528404b62c1d271]
+class RuntimeException-->
+        <g id="elem_RuntimeException">
+            <rect codeLine="226" fill="#FFFFFF" height="145.1025" id="RuntimeException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="423" x="3143.5" y="1033"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="140" x="3285" y="1052.0752">RuntimeException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3144.5" x2="3565.5" y1="1060.0146" y2="1060.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="3149.5"
+                  y="1078.0898">~serialVersionUID: long
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3144.5" x2="3565.5" y1="1085.0293" y2="1085.0293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="411" x="3149.5"
+                  y="1103.1045">#RuntimeException(String, Throwable, boolean, boolean):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="156" x="3149.5"
+                  y="1120.1191">+RuntimeException():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="199" x="3149.5"
+                  y="1137.1338">+RuntimeException(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="281" x="3149.5"
+                  y="1154.1484">+RuntimeException(String, Throwable):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="228" x="3149.5"
+                  y="1171.1631">+RuntimeException(Throwable):
+            </text>
+        </g><!--MD5=[4edbbbc87c4c22180c393e84f309ec7b]
+class RussianText-->
+        <g id="elem_RussianText">
+            <rect codeLine="234" fill="#FFFFFF" height="94.0586" id="RussianText" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="253" x="425.5" y="685.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="94" x="505" y="704.5752">RussianText
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="426.5" x2="677.5" y1="712.5146" y2="712.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="241" x="431.5"
+                  y="730.5898">-textList: Map&lt;TextKeys, String&gt;
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="426.5" x2="677.5" y1="737.5293" y2="737.5293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="116" x="431.5"
+                  y="755.6045">+RussianText():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" text-decoration="underline"
+                  textLength="166" x="431.5" y="772.6191">+get(TextKeys): String
+            </text>
+        </g><!--MD5=[cf262d0de928f4ecf542932ac63be992]
+class ScriptExecuteException-->
+        <g id="elem_ScriptExecuteException">
+            <rect codeLine="239" fill="#FFFFFF" height="60.0293" id="ScriptExecuteException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="250" x="3143" y="702.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="182" x="3177" y="721.5752">ScriptExecuteException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3144" x2="3392" y1="729.5146" y2="729.5146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3144" x2="3392" y1="737.5146" y2="737.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="238" x="3149"
+                  y="755.5898">+ScriptExecuteException(String):
+            </text>
+        </g><!--MD5=[e4784efc606901aafb904d1ef1a79e6a]
+class ScriptExecutor-->
+        <g id="elem_ScriptExecutor">
+            <rect codeLine="242" fill="#FFFFFF" height="111.0732" id="ScriptExecutor" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="712" x="1405" y="166"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="114" x="1704" y="185.0752">ScriptExecutor
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1406" x2="2116" y1="193.0146" y2="193.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="307" x="1411"
+                  y="211.0898">-scriptController: CommandScriptController
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1406" x2="2116" y1="218.0293" y2="218.0293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="133" x="1411"
+                  y="236.1045">+ScriptExecutor():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="452" x="1411"
+                  y="253.1191">-fileInputStream(LocalExecuteScriptCommand): FileInputStream
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="700" x="1411"
+                  y="270.1338">-executeScript(LocalExecuteScriptCommand, Set&lt;String&gt;):
+                LocalExecuteScriptCommandResponse
+            </text>
+        </g><!--MD5=[feeb6757b47bfbb1bdb71ab2b4a6a4e3]
+class ServerExecuteScriptCommand-->
+        <g id="elem_ServerExecuteScriptCommand">
+            <rect codeLine="248" fill="#FFFFFF" height="230.1758" id="ServerExecuteScriptCommand" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="395" x="1262.5" y="1586.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="235" x="1342.5" y="1605.5752">ServerExecuteScriptCommand
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1263.5" x2="1656.5" y1="1613.5146" y2="1613.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="212" x="1268.5"
+                  y="1631.5898">-commands: List&lt;Command&gt;
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1263.5" x2="1656.5" y1="1638.5293" y2="1638.5293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="243" x="1268.5"
+                  y="1656.6045">+ServerExecuteScriptCommand():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="361" x="1268.5"
+                  y="1673.6191">+ServerExecuteScriptCommand(List&lt;Command&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="383" x="1268.5"
+                  y="1690.6338">+createResponse(): ExecuteScriptCommandResponse
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="254" x="1268.5"
+                  y="1707.6484">+getCommands(): List&lt;Command&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="282" x="1268.5"
+                  y="1724.6631">+setCommands(List&lt;Command&gt;): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="1268.5"
+                  y="1741.6777">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="1268.5"
+                  y="1758.6924">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="1268.5"
+                  y="1775.707">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="1268.5"
+                  y="1792.7217">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="134" x="1268.5"
+                  y="1809.7363">+getType(): String
+            </text>
+        </g><!--MD5=[165dd509ac83472684e1cf591a01e286]
+class TextKeys-->
+        <g id="elem_TextKeys">
+            <rect codeLine="261" fill="#FFFFFF" height="346.8477" id="TextKeys" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="253" x="425.5" y="932"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="93" x="505.5" y="949.0645">«enumeration»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="71" x="516.5" y="965.6592">TextKeys
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="426.5" x2="677.5" y1="973.5986" y2="973.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="195" x="431.5"
+                  y="991.6738">+COORDINATESINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="141" x="431.5"
+                  y="1008.6885">+COORXINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="52" x="431.5"
+                  y="1025.7031">+HELP:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="129" x="431.5"
+                  y="1042.7178">+NAMEINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="140" x="431.5"
+                  y="1059.7324">+COORYINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="201" x="431.5"
+                  y="1076.7471">+ORGANIZATIONINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="146" x="431.5"
+                  y="1093.7617">+SALARYINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="236" x="431.5"
+                  y="1110.7764">+ORGANISATIONTYPEINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="431.5"
+                  y="1127.791">+ENDNDATEINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="431.5"
+                  y="1144.8057">+STARTDAYINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="158" x="431.5"
+                  y="1161.8203">+POSITIONINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="100" x="431.5"
+                  y="1178.835">+GREEETING:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="154" x="431.5"
+                  y="1195.8496">+WORKERINTERACT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="241" x="431.5"
+                  y="1212.8643">+ORGANISATIONNAMEINTERACT:
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="426.5" x2="677.5" y1="1219.8037" y2="1219.8037"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="431.5"
+                  y="1237.8789">+TextKeys():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="156" x="431.5"
+                  y="1254.8936">+values(): TextKeys[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="195" x="431.5"
+                  y="1271.9082">+valueOf(String): TextKeys
+            </text>
+        </g><!--MD5=[4a720c5b1827c53263373f2169077997]
+class UIExecutor-->
+        <g id="elem_UIExecutor">
+            <rect codeLine="280" fill="#FFFFFF" height="60.0293" id="UIExecutor" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="119" x="402.5" y="413.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="88" x="418" y="432.5752">UIExecutor
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="403.5" x2="520.5" y1="440.5146" y2="440.5146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="403.5" x2="520.5" y1="448.5146" y2="448.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="107" x="408.5"
+                  y="466.5898">+UIExecutor():
+            </text>
+        </g><!--MD5=[5307db3e53408f612fff2f6a4e9a3ae1]
+class ValidationResponse-->
+        <g id="elem_ValidationResponse">
+            <rect codeLine="283" fill="#FFFFFF" height="230.1758" id="ValidationResponse" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="286" x="2472" y="2251.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="152" x="2539" y="2270.5752">ValidationResponse
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2473" x2="2757" y1="2278.5146" y2="2278.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="124" x="2478"
+                  y="2296.5898">-allowed: boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="91" x="2478"
+                  y="2313.6045">-msg: String
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2473" x2="2757" y1="2320.5439" y2="2320.5439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="274" x="2478"
+                  y="2338.6191">+ValidationResponse(boolean, String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="2478"
+                  y="2355.6338">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="2478"
+                  y="2372.6484">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="2478"
+                  y="2389.6631">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="153" x="2478"
+                  y="2406.6777">+isAllowed(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="128" x="2478"
+                  y="2423.6924">+getMsg(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="193" x="2478"
+                  y="2440.707">+setAllowed(boolean): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="156" x="2478"
+                  y="2457.7217">+setMsg(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="2478"
+                  y="2474.7363">+toString(): String
+            </text>
+        </g><!--MD5=[2356422f0b171adae8a901d167ecd8b0]
+class ValueDeserializer-->
+        <g id="elem_ValueDeserializer">
+            <rect codeLine="296" fill="#FFFFFF" height="94.0586" id="ValueDeserializer" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="250" x="2474" y="1381.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="132" x="2533" y="1400.5752">ValueDeserializer
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2475" x2="2723" y1="1408.5146" y2="1408.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="2480"
+                  y="1426.5898">-mapper: ObjectMapper
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2475" x2="2723" y1="1433.5293" y2="1433.5293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="147" x="2480"
+                  y="1451.6045">+ValueDeserializer():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="238" x="2480"
+                  y="1468.6191">+deserialize(Class&lt;K&gt;, String): K
+            </text>
+        </g><!--MD5=[c045e12321b83266d36d22b9096c24ea]
+class View-->
+        <g id="elem_View">
+            <rect codeLine="301" fill="#FFFFFF" height="108.6426" id="View" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="183" x="2332.5" y="1647"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="2390" y="1664.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="38" x="2405" y="1680.6592">View
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2333.5" x2="2514.5" y1="1688.5986" y2="1688.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2333.5" x2="2514.5" y1="1696.5986" y2="1696.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="158" x="2338.5"
+                  y="1714.6738">+suggestInput(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="143" x="2338.5"
+                  y="1731.6885">+show(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="171" x="2338.5"
+                  y="1748.7031">+showLine(String): void
+            </text>
+        </g><!--MD5=[a5078f1af927da36480df0d8581b7852]
+link CLIController to Command-->
+        <g id="link_CLIController_Command">
+            <path codeLine="307"
+                  d="M1238.67,533.27 C1238.67,851.25 1238.67,1905 1238.67,1905 C1238.67,1905 1661.17,1905 1661.17,1905 "
+                  fill="none" id="CLIController-to-Command"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1666.17,1905,1657.17,1901,1661.17,1905,1657.17,1909,1666.17,1905"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[209386be4f2db23c077afc7a4c1e2c7d]
+link CLIController to CommandParser-->
+        <g id="link_CLIController_CommandParser">
+            <path codeLine="308" d="M1483,545.06 C1483,545.06 1483,1029 1483,1029 C1483,1029 2371.17,1029 2371.17,1029 "
+                  fill="none" id="CLIController-CommandParser" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="2384.17,1029,2375.17,1025,2379.17,1029,2375.17,1033,2384.17,1029"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2379.17" x2="2371.17" y1="1029" y2="1029"/>
+            <polygon fill="#000000" points="1483,533.06,1479,539.06,1483,545.06,1487,539.06,1483,533.06"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1491.4797" y="554.1952">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="68"
+                  x="2308.5568" y="1008.9192">cmdParser
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2338.5568" y="1024.7185">1
+            </text>
+        </g><!--MD5=[1deb3564cc22e9cbc8d3f61ce08cf7ac]
+link CLIController to CommandRegister-->
+        <g id="link_CLIController_CommandRegister">
+            <path codeLine="309" d="M1487,533.25 C1487,600.15 1487,680 1487,680 C1487,680 1879.74,680 1879.74,680 "
+                  fill="none" id="CLIController-to-CommandRegister"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1884.74,680,1875.74,676,1879.74,680,1875.74,684,1884.74,680"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[fdd3d98494b20c0b50cf8e3b487d6aa1]
+link CLIController to ExecuteScriptCommandResponse-->
+        <g id="link_CLIController_ExecuteScriptCommandResponse">
+            <path codeLine="310" d="M1214.83,533.13 C1214.83,533.13 1214.83,1956.31 1214.83,1956.31 " fill="none"
+                  id="CLIController-to-ExecuteScriptCommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="1214.83,1961.31,1218.83,1952.31,1214.83,1956.31,1210.83,1952.31,1214.83,1961.31"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[75f262032e6aa35e57ff87bad02764e3]
+link CLIController to ICommandIOCallback-->
+        <g id="link_CLIController_ICommandIOCallback">
+            <path codeLine="311"
+                  d="M1056.9,504 C1056.9,504 410.25,504 410.25,504 C410.25,504 410.25,1650.68 410.25,1650.68 "
+                  fill="none" id="CLIController-ICommandIOCallback" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="410.25,1663.68,414.25,1654.68,410.25,1658.68,406.25,1654.68,410.25,1663.68"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="410.25" x2="410.25" y1="1658.68" y2="1650.68"/>
+            <polygon fill="#000000" points="1068.9,504,1062.9,500,1056.9,504,1062.9,508,1068.9,504"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1053.1698" y="503.9865">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="53"
+                  x="384.1445" y="1637.3305">callback
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="406.6445"
+                  y="1653.1298">1
+            </text>
+        </g><!--MD5=[d0b4a70713c00c795d33de13bbc77442]
+link CLIController to ICommandResponse-->
+        <g id="link_CLIController_ICommandResponse">
+            <path codeLine="312"
+                  d="M1155.67,533.32 C1155.67,953.87 1155.67,2708 1155.67,2708 C1155.67,2708 636.08,2708 636.08,2708 "
+                  fill="none" id="CLIController-to-ICommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="631.08,2708,640.08,2712,636.08,2708,640.08,2704,631.08,2708"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[b295f1de82c5c600f64969b6cf49a914]
+link CLIController to LocalExecuteScriptCommand-->
+        <g id="link_CLIController_LocalExecuteScriptCommand">
+            <path codeLine="313" d="M1479,533.12 C1479,533.12 1479,1027.94 1479,1027.94 " fill="none"
+                  id="CLIController-to-LocalExecuteScriptCommand"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1479,1032.94,1483,1023.94,1479,1027.94,1475,1023.94,1479,1032.94"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[3d8846ef805fa213f353a26b9d605ea4]
+link CLIController to LocalExecuteScriptCommandResponse-->
+        <g id="link_CLIController_LocalExecuteScriptCommandResponse">
+            <path codeLine="314" d="M1333.33,533.09 C1333.33,533.09 1333.33,1350.98 1333.33,1350.98 " fill="none"
+                  id="CLIController-to-LocalExecuteScriptCommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="1333.33,1355.98,1337.33,1346.98,1333.33,1350.98,1329.33,1346.98,1333.33,1355.98"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[11bcc4e84004b763c1ab14b7472463d9]
+link CLIController to ObjectMapperFactory-->
+        <g id="link_CLIController_ObjectMapperFactory">
+            <path codeLine="315" d="M1491.12,516 C1838.85,516 2494,516 2494,516 C2494,516 2494,688.79 2494,688.79 "
+                  fill="none" id="CLIController-to-ObjectMapperFactory"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2494,693.79,2498,684.79,2494,688.79,2490,684.79,2494,693.79"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6bb5ebbab43275206d73e8024f95b932]
+link CLIController to ParserException-->
+        <g id="link_CLIController_ParserException">
+            <path codeLine="316"
+                  d="M1491.24,508 C2066.27,508 3616.83,508 3616.83,508 C3616.83,508 3616.83,1666.4 3616.83,1666.4 "
+                  fill="none" id="CLIController-to-ParserException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3616.83,1671.4,3620.83,1662.4,3616.83,1666.4,3612.83,1662.4,3616.83,1671.4"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[2a883afe64325fbb31521ea9d24e8f66]
+link CLIController to Response-->
+        <g id="link_CLIController_Response">
+            <path codeLine="317"
+                  d="M1120.33,533.26 C1120.33,889.85 1120.33,2187 1120.33,2187 C1120.33,2187 889.14,2187 889.14,2187 "
+                  fill="none" id="CLIController-to-Response"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="884.14,2187,893.14,2191,889.14,2187,893.14,2183,884.14,2187"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6e2c200800cc6bd3c2e7ae4bfb2664f7]
+link CLIController to RussianText-->
+        <g id="link_CLIController_RussianText">
+            <path codeLine="318"
+                  d="M1074.33,533.12 C1074.33,618.14 1074.33,733 1074.33,733 C1074.33,733 683.78,733 683.78,733 "
+                  fill="none" id="CLIController-to-RussianText"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="678.78,733,687.78,737,683.78,733,687.78,729,678.78,733"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[957780576a8fd5f30bf3a947a26bd69c]
+link CLIController to TextKeys-->
+        <g id="link_CLIController_TextKeys">
+            <path codeLine="319"
+                  d="M1079.67,533.13 C1079.67,685.57 1079.67,979 1079.67,979 C1079.67,979 683.72,979 683.72,979 "
+                  fill="none" id="CLIController-to-TextKeys"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="678.72,979,687.72,983,683.72,979,687.72,975,678.72,979"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[9105f1122c09b8a7020362d8694953db]
+link CLIController to View-->
+        <g id="link_CLIController_View">
+            <path codeLine="320"
+                  d="M1503.05,525 C1503.05,525 2349.83,525 2349.83,525 C2349.83,525 2349.83,1633.72 2349.83,1633.72 "
+                  fill="none" id="CLIController-View" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="2349.83,1646.72,2353.83,1637.72,2349.83,1641.72,2345.83,1637.72,2349.83,1646.72"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2349.83" x2="2349.83" y1="1641.72" y2="1633.72"/>
+            <polygon fill="#000000" points="1491.05,525,1497.05,529,1503.05,525,1497.05,521,1491.05,525"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1498.7784" y="525.7412">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="43"
+                  x="2295.1702" y="1620.2827">viewer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2312.6702" y="1636.082">1
+            </text>
+        </g><!--MD5=[afd48c6d9ceb6133383cf3855dab2254]
+link Command to Field-->
+        <g id="link_Command_Field">
+            <path codeLine="321"
+                  d="M1969.53,2052 C2333.61,2052 3227.67,2052 3227.67,2052 C3227.67,2052 3227.67,2237.65 3227.67,2237.65 "
+                  fill="none" id="Command-to-Field" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="3227.67,2242.65,3231.67,2233.65,3227.67,2237.65,3223.67,2233.65,3227.67,2242.65"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[b2a0bf17c1ea0efabfb34b5cc24fe483]
+link Command to ICommandResponse-->
+        <g id="link_Command_ICommandResponse">
+            <path codeLine="322"
+                  d="M1666.28,2060 C1329.64,2060 549.75,2060 549.75,2060 C549.75,2060 549.75,2664.89 549.75,2664.89 "
+                  fill="none" id="Command-to-ICommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="549.75,2669.89,553.75,2660.89,549.75,2664.89,545.75,2660.89,549.75,2669.89"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[5a84619dc618619627e4289661934342]
+link Command to ValidationResponse-->
+        <g id="link_Command_ValidationResponse">
+            <path codeLine="323"
+                  d="M1969.65,2075 C2168.89,2075 2493.75,2075 2493.75,2075 C2493.75,2075 2493.75,2246.29 2493.75,2246.29 "
+                  fill="none" id="Command-to-ValidationResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="2493.75,2251.29,2497.75,2242.29,2493.75,2246.29,2489.75,2242.29,2493.75,2251.29"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[8f76454e1502f47db1a1549788c51cf4]
+link CommandParser to Command-->
+        <g id="link_CommandParser_Command">
+            <path codeLine="324"
+                  d="M2372.35,1183 C2372.35,1183 1953.38,1183 1953.38,1183 C1953.38,1183 1953.38,1871.97 1953.38,1871.97 "
+                  fill="none" id="CommandParser-Command" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="1953.38,1884.97,1957.38,1875.97,1953.38,1879.97,1949.38,1875.97,1953.38,1884.97"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1953.38" x2="1953.38" y1="1879.97" y2="1871.97"/>
+            <polygon fill="#000000" points="2384.35,1183,2378.35,1179,2372.35,1183,2378.35,1187,2384.35,1183"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2368.5234" y="1182.9383">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="54"
+                  x="1964.7973" y="1858.475">cmdMap
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="9"
+                  x="1987.2973" y="1874.2743">*
+            </text>
+        </g><!--MD5=[45911f88fe2e47f69160de2d1a6ea1ed]
+link CommandParser to Field-->
+        <g id="link_CommandParser_Field">
+            <path codeLine="325"
+                  d="M2965.53,1184 C3164.95,1184 3393.75,1184 3393.75,1184 C3393.75,1184 3393.75,2237.74 3393.75,2237.74 "
+                  fill="none" id="CommandParser-to-Field"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="3393.75,2242.74,3397.75,2233.74,3393.75,2237.74,3389.75,2233.74,3393.75,2242.74"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[9537413afcba81370f1f2e8a1b04a2e0]
+link CommandParser to ObjectScanner-->
+        <g id="link_CommandParser_ObjectScanner">
+            <path codeLine="326" d="M2933.25,1198.59 C2933.25,1198.59 2933.25,1325.84 2933.25,1325.84 " fill="none"
+                  id="CommandParser-ObjectScanner" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="2933.25,1338.84,2937.25,1329.84,2933.25,1333.84,2929.25,1329.84,2933.25,1338.84"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2933.25" x2="2933.25" y1="1333.84" y2="1325.84"/>
+            <polygon fill="#000000"
+                     points="2933.25,1186.59,2929.25,1192.59,2933.25,1198.59,2937.25,1192.59,2933.25,1186.59"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2908.0832" y="1328.2862">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="96"
+                  x="2854.6613" y="1207.6786">objectScanner
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2898.6613" y="1223.4779">1
+            </text>
+        </g><!--MD5=[7d9c89deaf78cdaee8879a63de3dbb03]
+link CommandParser to ParserException-->
+        <g id="link_CommandParser_ParserException">
+            <path codeLine="327"
+                  d="M2965.71,1181 C3218.14,1181 3543.5,1181 3543.5,1181 C3543.5,1181 3543.5,1666.27 3543.5,1666.27 "
+                  fill="none" id="CommandParser-to-ParserException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3543.5,1671.27,3547.5,1662.27,3543.5,1666.27,3539.5,1662.27,3543.5,1671.27"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[8404d1c313c6d0ea83c79cf3c68e8513]
+link CommandParser to ValueDeserializer-->
+        <g id="link_CommandParser_ValueDeserializer">
+            <path codeLine="328" d="M2599,1186.59 C2599,1186.59 2599,1376.44 2599,1376.44 " fill="none"
+                  id="CommandParser-to-ValueDeserializer"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2599,1381.44,2603,1372.44,2599,1376.44,2595,1372.44,2599,1381.44"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[2c07cb27a16f2f5c81aa7eb6dd00c56f]
+link CommandParser to View-->
+        <g id="link_CommandParser_View">
+            <path codeLine="329" d="M2429.25,1198.81 C2429.25,1198.81 2429.25,1633.9 2429.25,1633.9 " fill="none"
+                  id="CommandParser-View" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="2429.25,1646.9,2433.25,1637.9,2429.25,1641.9,2425.25,1637.9,2429.25,1646.9"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2429.25" x2="2429.25" y1="1641.9" y2="1633.9"/>
+            <polygon fill="#000000"
+                     points="2429.25,1186.81,2425.25,1192.81,2429.25,1198.81,2433.25,1192.81,2429.25,1186.81"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2421.4258" y="1636.3183">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="43"
+                  x="2364.9535" y="1207.6136">viewer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2382.4535" y="1223.4129">1
+            </text>
+        </g><!--MD5=[3e0d01298869ca610a7db37673c6c4f2]
+link CommandRegister to Command-->
+        <g id="link_CommandRegister_Command">
+            <path codeLine="330" d="M1937.25,808.66 C1937.25,808.66 1937.25,1871.76 1937.25,1871.76 " fill="none"
+                  id="CommandRegister-Command" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="1937.25,1884.76,1941.25,1875.76,1937.25,1879.76,1933.25,1875.76,1937.25,1884.76"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1937.25" x2="1937.25" y1="1879.76" y2="1871.76"/>
+            <polygon fill="#000000" points="1937.25,796.66,1933.25,802.66,1937.25,808.66,1941.25,802.66,1937.25,796.66"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1938.0738" y="1874.1078">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="50"
+                  x="1868.5715" y="817.5965">cmdList
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="9"
+                  x="1889.0715" y="833.3958">*
+            </text>
+        </g><!--MD5=[eb75b674dc245f329e080478ef36d654]
+link CommandRegister to CommandParser-->
+        <g id="link_CommandRegister_CommandParser">
+            <path codeLine="331" d="M2319.39,780 C2367.76,780 2405,780 2405,780 C2405,780 2405,1019.2 2405,1019.2 "
+                  fill="none" id="CommandRegister-to-CommandParser"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2405,1024.2,2409,1015.2,2405,1019.2,2401,1015.2,2405,1024.2"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[30728a01a3fd6a5bd0be6cefd63fb389]
+link CommandRegister to LocalExecuteScriptCommand-->
+        <g id="link_CommandRegister_LocalExecuteScriptCommand">
+            <path codeLine="332" d="M1895,796.62 C1895,796.62 1895,1027.97 1895,1027.97 " fill="none"
+                  id="CommandRegister-to-LocalExecuteScriptCommand"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1895,1032.97,1899,1023.97,1895,1027.97,1891,1023.97,1895,1032.97"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[fab6487da86da0db82538a43a2d66013]
+link CommandRegister to View-->
+        <g id="link_CommandRegister_View">
+            <path codeLine="333"
+                  d="M2319.1,788 C2332.76,788 2341.17,788 2341.17,788 C2341.17,788 2341.17,1641.75 2341.17,1641.75 "
+                  fill="none" id="CommandRegister-to-View"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="2341.17,1646.75,2345.17,1637.75,2341.17,1641.75,2337.17,1637.75,2341.17,1646.75"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[bfcde25b919d6eef92c35429752f1ceb]
+link CommandScriptController to Command-->
+        <g id="link_CommandScriptController_Command">
+            <path codeLine="334"
+                  d="M2612.35,425 C2488.25,425 2325.75,425 2325.75,425 C2325.75,425 2325.75,1920 2325.75,1920 C2325.75,1920 1974.65,1920 1974.65,1920 "
+                  fill="none" id="CommandScriptController-to-Command"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1969.65,1920,1978.65,1924,1974.65,1920,1978.65,1916,1969.65,1920"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[c71dc3e1c54b52e924cb5bee4992d64d]
+link CommandScriptController to CommandParser-->
+        <g id="link_CommandScriptController_CommandParser">
+            <path codeLine="335" d="M2776,499.09 C2776,499.09 2776,1019.37 2776,1019.37 " fill="none"
+                  id="CommandScriptController-to-CommandParser"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2776,1024.37,2780,1015.37,2776,1019.37,2772,1015.37,2776,1024.37"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[ec16785238e71aac063dd7e499370e10]
+link CommandScriptController to CommandRegister-->
+        <g id="link_CommandScriptController_CommandRegister">
+            <path codeLine="336"
+                  d="M2629.17,511.12 C2629.17,511.12 2629.17,682 2629.17,682 C2629.17,682 2332.08,682 2332.08,682 "
+                  fill="none" id="CommandScriptController-CommandRegister" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="2319.08,682,2328.08,686,2324.08,682,2328.08,678,2319.08,682"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2324.08" x2="2332.08" y1="682" y2="682"/>
+            <polygon fill="#000000" points="2629.17,499.12,2625.17,505.12,2629.17,511.12,2633.17,505.12,2629.17,499.12"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="2605.048"
+                  y="520.3236">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="80"
+                  x="2326.7121" y="662.118">cmdRegister
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2362.7121" y="677.9173">1
+            </text>
+        </g><!--MD5=[6fc869aa02c8cb280caf3848685daddc]
+link CommandScriptController to ObjectMapperFactory-->
+        <g id="link_CommandScriptController_ObjectMapperFactory">
+            <path codeLine="337" d="M2645.83,499.22 C2645.83,499.22 2645.83,688.6 2645.83,688.6 " fill="none"
+                  id="CommandScriptController-to-ObjectMapperFactory"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2645.83,693.6,2649.83,684.6,2645.83,688.6,2641.83,684.6,2645.83,693.6"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[e8d4dfa77e998dd2a568b2a48db92c96]
+link CommandScriptController to ParserException-->
+        <g id="link_CommandScriptController_ParserException">
+            <path codeLine="338"
+                  d="M2889.65,425 C3145.77,425 3667.17,425 3667.17,425 C3667.17,425 3667.17,1666.2 3667.17,1666.2 "
+                  fill="none" id="CommandScriptController-to-ParserException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3667.17,1671.2,3671.17,1662.2,3667.17,1666.2,3663.17,1662.2,3667.17,1671.2"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[948b0d3985876dbbdb2f47762424df72]
+link CommandScriptController to ScriptExecuteException-->
+        <g id="link_CommandScriptController_ScriptExecuteException">
+            <path codeLine="339"
+                  d="M2889.69,462 C3011.44,462 3169.25,462 3169.25,462 C3169.25,462 3169.25,697.26 3169.25,697.26 "
+                  fill="none" id="CommandScriptController-to-ScriptExecuteException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3169.25,702.26,3173.25,693.26,3169.25,697.26,3165.25,693.26,3169.25,702.26"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[30266368d5a087d2ba15be0644229ac2]
+link CommandScriptController to View-->
+        <g id="link_CommandScriptController_View">
+            <path codeLine="340"
+                  d="M2612.37,462 C2505.5,462 2375.83,462 2375.83,462 C2375.83,462 2375.83,1641.64 2375.83,1641.64 "
+                  fill="none" id="CommandScriptController-to-View"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="2375.83,1646.64,2379.83,1637.64,2375.83,1641.64,2371.83,1637.64,2375.83,1646.64"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[c21ddf152140b3bf008617634d1b15eb]
+link ConsolePrinter to View-->
+        <g id="link_ConsolePrinter_View">
+            <path codeLine="341"
+                  d="M3012.17,240 C2814.65,240 2367.17,240 2367.17,240 C2367.17,240 2367.17,1626.87 2367.17,1626.87 "
+                  fill="none" id="ConsolePrinter-to-View"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2374.17,1626.87,2367.17,1646.87,2360.17,1626.87,2374.17,1626.87"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[c3f05a4e278b1a4fe90c5bd2939109aa]
+link ExecuteScriptCommandResponse to ICommandResponse-->
+        <g id="link_ExecuteScriptCommandResponse_ICommandResponse">
+            <path codeLine="342"
+                  d="M1190.79,1992 C958.6,1992 517.5,1992 517.5,1992 C517.5,1992 517.5,2649.79 517.5,2649.79 "
+                  fill="none" id="ExecuteScriptCommandResponse-to-ICommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="524.5,2649.79,517.5,2669.79,510.5,2649.79,524.5,2649.79"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[4349fdfbfaf358900b309d26ba691308]
+link ExecuteScriptCommandResponse to Response-->
+        <g id="link_ExecuteScriptCommandResponse_Response">
+            <path codeLine="343" d="M1330,2021.64 C1330,2082.65 1330,2215 1330,2215 C1330,2215 889.03,2215 889.03,2215 "
+                  fill="none" id="ExecuteScriptCommandResponse-to-Response"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="884.03,2215,893.03,2219,889.03,2215,893.03,2211,884.03,2215"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[02899da7be930073ef41cf405803bf68]
+reverse link ExecuteScriptCommandResponse to ServerExecuteScriptCommand-->
+        <g id="link_ExecuteScriptCommandResponse_ServerExecuteScriptCommand">
+            <path codeLine="344" d="M1331.33,1946.29 C1331.33,1946.29 1331.33,1816.74 1331.33,1816.74 " fill="none"
+                  id="ExecuteScriptCommandResponse-backto-ServerExecuteScriptCommand"
+                  style="stroke:#000000;stroke-width:1.0;"/>
+            <ellipse cx="1331.33" cy="1953.29" fill="#FFFFFF" rx="8" ry="8" style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1331.33" x2="1331.33" y1="1945.29" y2="1961.29"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1339.33" x2="1323.33" y1="1953.29" y2="1953.29"/>
+        </g><!--MD5=[a7ab97c5d5630cb409cca293a0624ea5]
+link ServerExecuteScriptCommand to ExecuteScriptCommandResponse-->
+        <g id="link_ServerExecuteScriptCommand_ExecuteScriptCommandResponse">
+            <path codeLine="396" d="M1400.17,1816.53 C1400.17,1816.53 1400.17,1956.3 1400.17,1956.3 " fill="none"
+                  id="ServerExecuteScriptCommand-to-ExecuteScriptCommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1400.17,1961.3,1404.17,1952.3,1400.17,1956.3,1396.17,1952.3,1400.17,1961.3"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6821661e3b5af139cdbb4b06c0151e9a]
+link Executor to Command-->
+        <g id="link_Executor_Command">
+            <path codeLine="345"
+                  d="M1034.75,1808.19 C1034.75,1865.29 1034.75,1924 1034.75,1924 C1034.75,1924 1661.05,1924 1661.05,1924 "
+                  fill="none" id="Executor-to-Command"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1666.05,1924,1657.05,1920,1661.05,1924,1657.05,1928,1666.05,1924"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[0f9251eb05bf11c0db5ce37ea75605a7]
+link Executor to Exception-->
+        <g id="link_Executor_Exception">
+            <path codeLine="346"
+                  d="M934.25,1808.34 C934.25,2056.91 934.25,2653 934.25,2653 C934.25,2653 3431.31,2653 3431.31,2653 "
+                  fill="none" id="Executor-to-Exception"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3436.31,2653,3427.31,2649,3431.31,2653,3427.31,2657,3436.31,2653"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[513406298a3da3cd701e25fce19c06e3]
+link Executor to ICommandResponse-->
+        <g id="link_Executor_ICommandResponse">
+            <path codeLine="347" d="M485.25,1808.21 C485.25,1808.21 485.25,2664.97 485.25,2664.97 " fill="none"
+                  id="Executor-to-ICommandResponse" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="485.25,2669.97,489.25,2660.97,485.25,2664.97,481.25,2660.97,485.25,2669.97"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[86d5f901449b5dd0904a7e3d114db375]
+link Executor to Response-->
+        <g id="link_Executor_Response">
+            <path codeLine="348" d="M733,1808.34 C733,1808.34 733,2152.91 733,2152.91 " fill="none"
+                  id="Executor-to-Response" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="733,2157.91,737,2148.91,733,2152.91,729,2148.91,733,2157.91"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[f8301e659489e78724e7dca79e0bb413]
+link Executor to ValidationResponse-->
+        <g id="link_Executor_ValidationResponse">
+            <path codeLine="349"
+                  d="M984.5,1808.05 C984.5,1996.06 984.5,2367 984.5,2367 C984.5,2367 2466.73,2367 2466.73,2367 "
+                  fill="none" id="Executor-to-ValidationResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2471.73,2367,2462.73,2363,2466.73,2367,2462.73,2371,2471.73,2367"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[29195e11e62d1fd57e732c54160dfe5d]
+link FieldWithDesc to Field-->
+        <g id="link_FieldWithDesc_Field">
+            <path codeLine="350" d="M3249.83,1825.02 C3249.83,1825.02 3249.83,2222.79 3249.83,2222.79 " fill="none"
+                  id="FieldWithDesc-to-Field" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="3256.83,2222.79,3249.83,2242.79,3242.83,2222.79,3256.83,2222.79"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[4df0bdc457ce0648e97aad0f69a6955d]
+link FieldWithDesc to IValidator-->
+        <g id="link_FieldWithDesc_IValidator">
+            <path codeLine="351" d="M2849.75,1837.33 C2849.75,1837.33 2849.75,1940.7 2849.75,1940.7 " fill="none"
+                  id="FieldWithDesc-IValidator" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="2849.75,1953.7,2853.75,1944.7,2849.75,1948.7,2845.75,1944.7,2849.75,1953.7"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2849.75" x2="2849.75" y1="1948.7" y2="1940.7"/>
+            <polygon fill="#000000"
+                     points="2849.75,1825.33,2845.75,1831.33,2849.75,1837.33,2853.75,1831.33,2849.75,1825.33"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2852.1867" y="1943.2476">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="57"
+                  x="2780.7395" y="1846.4666">validator
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2805.2395" y="1862.266">1
+            </text>
+        </g><!--MD5=[f3ff6a1c8a23d5c9f6b57e2fd4fa41fb]
+link FieldWithDesc to ValidationResponse-->
+        <g id="link_FieldWithDesc_ValidationResponse">
+            <path codeLine="352"
+                  d="M2785.76,1821 C2696.79,1821 2617.5,1821 2617.5,1821 C2617.5,1821 2617.5,2246.48 2617.5,2246.48 "
+                  fill="none" id="FieldWithDesc-to-ValidationResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2617.5,2251.48,2621.5,2242.48,2617.5,2246.48,2613.5,2242.48,2617.5,2251.48"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[3a625ee349d4fa9041aede7af1524f49]
+link FileAccessException to Exception-->
+        <g id="link_FileAccessException_Exception">
+            <path codeLine="353" d="M3765.75,533.3 C3765.75,533.3 3765.75,2615 3765.75,2615 " fill="none"
+                  id="FileAccessException-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="3772.75,2615,3765.75,2635,3758.75,2615,3772.75,2615"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[e37b1099d9d87c206acdfb6c2a87d170]
+link FileAccessException to OperationType-->
+        <g id="link_FileAccessException_OperationType">
+            <path codeLine="354" d="M3868.33,545.36 C3868.33,545.36 3868.33,579.82 3868.33,579.82 " fill="none"
+                  id="FileAccessException-OperationType" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="3868.33,592.82,3872.33,583.82,3868.33,587.82,3864.33,583.82,3868.33,592.82"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3868.33" x2="3868.33" y1="587.82" y2="579.82"/>
+            <polygon fill="#000000" points="3868.33,533.36,3864.33,539.36,3868.33,545.36,3872.33,539.36,3868.33,533.36"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="3857.7475" y="582.4102">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="30"
+                  x="3831.0839" y="554.1843">type
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="3842.0839" y="569.9837">1
+            </text>
+        </g><!--MD5=[d8da52b434e5862642b8d99f374c4917]
+reverse link OperationType to FileAccessException-->
+        <g id="link_OperationType_FileAccessException">
+            <path codeLine="381" d="M3949.67,577.66 C3949.67,577.66 3949.67,533.35 3949.67,533.35 " fill="none"
+                  id="OperationType-backto-FileAccessException" style="stroke:#000000;stroke-width:1.0;"/>
+            <ellipse cx="3949.67" cy="584.66" fill="#FFFFFF" rx="8" ry="8" style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3949.67" x2="3949.67" y1="576.66" y2="592.66"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3957.67" x2="3941.67" y1="584.66" y2="584.66"/>
+        </g><!--MD5=[675ebdb9eb2686e7dde9fb30c460e98d]
+link FileIOController to FileAccessException-->
+        <g id="link_FileIOController_FileAccessException">
+            <path codeLine="355" d="M3891,294.19 C3891,294.19 3891,348.97 3891,348.97 " fill="none"
+                  id="FileIOController-to-FileAccessException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3891,353.97,3895,344.97,3891,348.97,3887,344.97,3891,353.97"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[ab9e0ab513f42185949e757e294c4025]
+link ICommandIOCallback to Command-->
+        <g id="link_ICommandIOCallback_Command">
+            <path codeLine="356"
+                  d="M282.67,1739.23 C282.67,1807.16 282.67,1943 282.67,1943 C282.67,1943 1661.23,1943 1661.23,1943 "
+                  fill="none" id="ICommandIOCallback-to-Command"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1666.23,1943,1657.23,1939,1661.23,1943,1657.23,1947,1666.23,1943"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6d92f9a1937a83eedb57b84ebfd14a1b]
+link ICommandIOCallback to ICommandResponse-->
+        <g id="link_ICommandIOCallback_ICommandResponse">
+            <path codeLine="357"
+                  d="M418.35,1702 C429.15,1702 435.67,1702 435.67,1702 C435.67,1702 435.67,2664.92 435.67,2664.92 "
+                  fill="none" id="ICommandIOCallback-to-ICommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="435.67,2669.92,439.67,2660.92,435.67,2664.92,431.67,2660.92,435.67,2669.92"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[836a635db6454ec664054e59117ed1a7]
+link ICommandIOCallback to Response-->
+        <g id="link_ICommandIOCallback_Response">
+            <path codeLine="358"
+                  d="M147.33,1739.19 C147.33,1879.97 147.33,2367 147.33,2367 C147.33,2367 576.8,2367 576.8,2367 "
+                  fill="none" id="ICommandIOCallback-to-Response"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="581.8,2367,572.8,2363,576.8,2367,572.8,2371,581.8,2367"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[f9b505ff20890c8ee7f2475a60780ac3]
+link IValidator to ValidationResponse-->
+        <g id="link_IValidator_ValidationResponse">
+            <path codeLine="359" d="M2713.25,2029.17 C2713.25,2029.17 2713.25,2246.47 2713.25,2246.47 " fill="none"
+                  id="IValidator-to-ValidationResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="2713.25,2251.47,2717.25,2242.47,2713.25,2246.47,2709.25,2242.47,2713.25,2251.47"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[130fed2d3f67a68d5bcf4454cb3e5790]
+link LocalExecuteScriptCommand to Command-->
+        <g id="link_LocalExecuteScriptCommand_Command">
+            <path codeLine="360" d="M1799.25,1178.01 C1799.25,1178.01 1799.25,1864.88 1799.25,1864.88 " fill="none"
+                  id="LocalExecuteScriptCommand-to-Command" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1806.25,1864.88,1799.25,1884.88,1792.25,1864.88,1806.25,1864.88"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[33ec5e2b09856c8b08b4c3459e37c54a]
+link LocalExecuteScriptCommand to Field-->
+        <g id="link_LocalExecuteScriptCommand_Field">
+            <path codeLine="361"
+                  d="M1905.15,1106 C2022.56,1106 2144.25,1106 2144.25,1106 C2144.25,1106 2144.25,2248 2144.25,2248 C2144.25,2248 3200.29,2248 3200.29,2248 "
+                  fill="none" id="LocalExecuteScriptCommand-to-Field"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3205.29,2248,3196.29,2244,3200.29,2248,3196.29,2252,3205.29,2248"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[56e7becfe40f2401314efc1cf3b9d4de]
+link LocalExecuteScriptCommand to LocalExecuteScriptCommandResponse-->
+        <g id="link_LocalExecuteScriptCommand_LocalExecuteScriptCommandResponse">
+            <path codeLine="362" d="M1547.83,1178.39 C1547.83,1178.39 1547.83,1350.87 1547.83,1350.87 " fill="none"
+                  id="LocalExecuteScriptCommand-to-LocalExecuteScriptCommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="1547.83,1355.87,1551.83,1346.87,1547.83,1350.87,1543.83,1346.87,1547.83,1355.87"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[483efd6b49e818b9dd8dcb28e3dcdd8e]
+reverse link LocalExecuteScriptCommandResponse to LocalExecuteScriptCommand-->
+        <g id="link_LocalExecuteScriptCommandResponse_LocalExecuteScriptCommand">
+            <path codeLine="365" d="M1620.67,1340.61 C1620.67,1340.61 1620.67,1178.13 1620.67,1178.13 " fill="none"
+                  id="LocalExecuteScriptCommandResponse-backto-LocalExecuteScriptCommand"
+                  style="stroke:#000000;stroke-width:1.0;"/>
+            <ellipse cx="1620.67" cy="1347.61" fill="#FFFFFF" rx="8" ry="8" style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1620.67" x2="1620.67" y1="1339.61" y2="1355.61"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1628.67" x2="1612.67" y1="1347.61" y2="1347.61"/>
+        </g><!--MD5=[ea33a503216ae4bee0a53e18a49412b7]
+link LocalExecuteScriptCommandResponse to Command-->
+        <g id="link_LocalExecuteScriptCommandResponse_Command">
+            <path codeLine="363" d="M1686.75,1501.24 C1686.75,1501.24 1686.75,1879.83 1686.75,1879.83 " fill="none"
+                  id="LocalExecuteScriptCommandResponse-to-Command"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="1686.75,1884.83,1690.75,1875.83,1686.75,1879.83,1682.75,1875.83,1686.75,1884.83"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[ce198310ab2320044c42c5bfdc3ecfe4]
+link LocalExecuteScriptCommandResponse to ICommandResponse-->
+        <g id="link_LocalExecuteScriptCommandResponse_ICommandResponse">
+            <path codeLine="364"
+                  d="M1262.25,1429 C959.27,1429 444.33,1429 444.33,1429 C444.33,1429 444.33,2649.93 444.33,2649.93 "
+                  fill="none" id="LocalExecuteScriptCommandResponse-to-ICommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="451.33,2649.93,444.33,2669.93,437.33,2649.93,451.33,2649.93"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[849c292063937212c4c4e5706a7d90d2]
+link LocalExecuteScriptCommandResponse to ServerExecuteScriptCommand-->
+        <g id="link_LocalExecuteScriptCommandResponse_ServerExecuteScriptCommand">
+            <path codeLine="366" d="M1460,1501.3 C1460,1501.3 1460,1566.45 1460,1566.45 " fill="none"
+                  id="LocalExecuteScriptCommandResponse-to-ServerExecuteScriptCommand"
+                  style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1467,1566.45,1460,1586.45,1453,1566.45,1467,1566.45"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[8965aca9547896bfbc5def1877217893]
+link Main to CLIController-->
+        <g id="link_Main_CLIController">
+            <path codeLine="367"
+                  d="M2595.83,89.19 C2595.83,173.43 2595.83,366 2595.83,366 C2595.83,366 1496.05,366 1496.05,366 "
+                  fill="none" id="Main-to-CLIController"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1491.05,366,1500.05,370,1496.05,366,1500.05,362,1491.05,366"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[830a66f9e89f09be3c33b00202d2de78]
+link Main to ConsolePrinter-->
+        <g id="link_Main_ConsolePrinter">
+            <path codeLine="368"
+                  d="M2680.3,89.38 C2680.3,134.56 2680.3,203 2680.3,203 C2680.3,203 3007.32,203 3007.32,203 "
+                  fill="none" id="Main-to-ConsolePrinter"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3012.32,203,3003.32,199,3007.32,203,3003.32,207,3012.32,203"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[599f8691f667952b1472c999c21e8797]
+link Main to Executor-->
+        <g id="link_Main_Executor">
+            <path codeLine="369"
+                  d="M2562.47,51 C2206.8,51 808.67,51 808.67,51 C808.67,51 808.67,1589.79 808.67,1589.79 " fill="none"
+                  id="Main-to-Executor" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="808.67,1594.79,812.67,1585.79,808.67,1589.79,804.67,1585.79,808.67,1594.79"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[f1424fafc2c60a70941963444d1b5fee]
+link Main to FileAccessException-->
+        <g id="link_Main_FileAccessException">
+            <path codeLine="370"
+                  d="M2657.7,89.24 C2657.7,175.72 2657.7,377 2657.7,377 C2657.7,377 3739.41,377 3739.41,377 "
+                  fill="none" id="Main-to-FileAccessException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3744.41,377,3735.41,373,3739.41,377,3735.41,381,3744.41,377"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6b32b0855d40e29e108b0cdc29f2830e]
+link Main to FileIOController-->
+        <g id="link_Main_FileIOController">
+            <path codeLine="371"
+                  d="M2702.9,89.01 C2702.9,119.85 2702.9,158 2702.9,158 C2702.9,158 3739.42,158 3739.42,158 "
+                  fill="none" id="Main-to-FileIOController"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3744.42,158,3735.42,154,3739.42,158,3735.42,162,3744.42,158"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[03fc77596dd1f48ba974cf7827a33f6c]
+link Main to ScriptExecutor-->
+        <g id="link_Main_ScriptExecutor">
+            <path codeLine="372"
+                  d="M2579.17,89.04 C2579.17,128.79 2579.17,185 2579.17,185 C2579.17,185 2122.18,185 2122.18,185 "
+                  fill="none" id="Main-to-ScriptExecutor"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2117.18,185,2126.18,189,2122.18,185,2126.18,181,2117.18,185"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[40a2ef511de5d8fee4269b33e4360512]
+link Main to UIExecutor-->
+        <g id="link_Main_UIExecutor">
+            <path codeLine="373" d="M2562.45,32 C2166.32,32 462,32 462,32 C462,32 462,408.24 462,408.24 " fill="none"
+                  id="Main-to-UIExecutor" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="462,413.24,466,404.24,462,408.24,458,404.24,462,413.24"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[dfa6dc5814dc17acb9f83ca4bc904ae0]
+link Main to View-->
+        <g id="link_Main_View">
+            <path codeLine="374"
+                  d="M2562.19,70 C2477.82,70 2358.5,70 2358.5,70 C2358.5,70 2358.5,1641.75 2358.5,1641.75 " fill="none"
+                  id="Main-to-View" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2358.5,1646.75,2362.5,1637.75,2358.5,1641.75,2354.5,1637.75,2358.5,1646.75"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[b351c2286181724a20fb1b31562023a8]
+link ObjectScanner to Field-->
+        <g id="link_ObjectScanner_Field">
+            <path codeLine="375" d="M3295.67,1518.01 C3295.67,1518.01 3295.67,2237.89 3295.67,2237.89 " fill="none"
+                  id="ObjectScanner-to-Field" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="3295.67,2242.89,3299.67,2233.89,3295.67,2237.89,3291.67,2233.89,3295.67,2242.89"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[e41aab58be72d6ad724f4ed4f6227860]
+link ObjectScanner to FieldWithDesc-->
+        <g id="link_ObjectScanner_FieldWithDesc">
+            <path codeLine="376" d="M3086.5,1518.27 C3086.5,1518.27 3086.5,1572.52 3086.5,1572.52 " fill="none"
+                  id="ObjectScanner-to-FieldWithDesc"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3086.5,1577.52,3090.5,1568.52,3086.5,1572.52,3082.5,1568.52,3086.5,1577.52"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[5eb69a32eb104ac482b5f7fe1c60227b]
+link ObjectScanner to IValidator-->
+        <g id="link_ObjectScanner_IValidator">
+            <path codeLine="377"
+                  d="M2900.84,1514 C2823.22,1514 2755,1514 2755,1514 C2755,1514 2755,1948.63 2755,1948.63 " fill="none"
+                  id="ObjectScanner-to-IValidator" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2755,1953.63,2759,1944.63,2755,1948.63,2751,1944.63,2755,1953.63"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6a4cd4c4ba4597fe0cd0b04b9697b6be]
+link ObjectScanner to ParserException-->
+        <g id="link_ObjectScanner_ParserException">
+            <path codeLine="378"
+                  d="M3319.33,1518.05 C3319.33,1597.82 3319.33,1702 3319.33,1702 C3319.33,1702 3515.46,1702 3515.46,1702 "
+                  fill="none" id="ObjectScanner-to-ParserException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3520.46,1702,3511.46,1698,3515.46,1702,3511.46,1706,3520.46,1702"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[47dc561d599d9078a110fcb38df1e07d]
+link ObjectScanner to ValidationResponse-->
+        <g id="link_ObjectScanner_ValidationResponse">
+            <path codeLine="379"
+                  d="M2900.86,1510 C2745.94,1510 2566.5,1510 2566.5,1510 C2566.5,1510 2566.5,2246.43 2566.5,2246.43 "
+                  fill="none" id="ObjectScanner-to-ValidationResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2566.5,2251.43,2570.5,2242.43,2566.5,2246.43,2562.5,2242.43,2566.5,2251.43"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[86c3dc47f0c327b952b6630363c4e4e2]
+link ObjectScanner to View-->
+        <g id="link_ObjectScanner_View">
+            <path codeLine="380"
+                  d="M2888.86,1506 C2888.86,1506 2494.75,1506 2494.75,1506 C2494.75,1506 2494.75,1633.78 2494.75,1633.78 "
+                  fill="none" id="ObjectScanner-View" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="2494.75,1646.78,2498.75,1637.78,2494.75,1641.78,2490.75,1637.78,2494.75,1646.78"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2494.75" x2="2494.75" y1="1641.78" y2="1633.78"/>
+            <polygon fill="#000000" points="2900.86,1506,2894.86,1502,2888.86,1506,2894.86,1510,2900.86,1506"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="2884.769"
+                  y="1506.5974">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="43"
+                  x="2457.7523" y="1620.35">viewer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2475.2523" y="1636.1493">1
+            </text>
+        </g><!--MD5=[81d8f3fe36ece9e454bd115191927a64]
+link ParserException to Exception-->
+        <g id="link_ParserException_Exception">
+            <path codeLine="382" d="M3619,1731.61 C3619,1731.61 3619,2614.71 3619,2614.71 " fill="none"
+                  id="ParserException-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="3626,2614.71,3619,2634.71,3612,2614.71,3626,2614.71"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[f6b45362599958cbf1f48726d2aee1f4]
+link Response to Exception-->
+        <g id="link_Response_Exception">
+            <path codeLine="383"
+                  d="M884.37,2533 C1454.55,2533 3440.5,2533 3440.5,2533 C3440.5,2533 3440.5,2629.76 3440.5,2629.76 "
+                  fill="none" id="Response-to-Exception"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3440.5,2634.76,3444.5,2625.76,3440.5,2629.76,3436.5,2625.76,3440.5,2634.76"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[ab011aa00e43d299f2e5ec67eedcec32]
+link Response to ICommandResponse-->
+        <g id="link_Response_ICommandResponse">
+            <path codeLine="384" d="M606.5,2575.17 C606.5,2575.17 606.5,2664.85 606.5,2664.85 " fill="none"
+                  id="Response-to-ICommandResponse" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="606.5,2669.85,610.5,2660.85,606.5,2664.85,602.5,2660.85,606.5,2669.85"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[9b2e5719cc57bc896343f43f584e2f38]
+link RuntimeException to Exception-->
+        <g id="link_RuntimeException_Exception">
+            <path codeLine="385" d="M3482.5,1178.23 C3482.5,1178.23 3482.5,2614.95 3482.5,2614.95 " fill="none"
+                  id="RuntimeException-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="3489.5,2614.95,3482.5,2634.95,3475.5,2614.95,3489.5,2614.95"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[777e9ef84049aa32e87dfdbb25474437]
+link RussianText to TextKeys-->
+        <g id="link_RussianText_TextKeys">
+            <path codeLine="386" d="M552,791.74 C552,791.74 552,918.59 552,918.59 " fill="none"
+                  id="RussianText-TextKeys" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="552,931.59,556,922.59,552,926.59,548,922.59,552,931.59"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="552" x2="552" y1="926.59" y2="918.59"/>
+            <polygon fill="#000000" points="552,779.74,548,785.74,552,791.74,556,785.74,552,779.74"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="543.8188"
+                  y="921.4612">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="50"
+                  x="498.9531" y="800.4892">textList
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="9" x="519.4531"
+                  y="816.2885">*
+            </text>
+        </g><!--MD5=[a9b08c2a819d61b2319b7fed6545765e]
+link ScriptExecuteException to RuntimeException-->
+        <g id="link_ScriptExecuteException_RuntimeException">
+            <path codeLine="387" d="M3268.25,762.71 C3268.25,762.71 3268.25,1012.85 3268.25,1012.85 " fill="none"
+                  id="ScriptExecuteException-to-RuntimeException" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="3275.25,1012.85,3268.25,1032.85,3261.25,1012.85,3275.25,1012.85"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[53a1222156efc424bde499deea9564ed]
+link ScriptExecutor to Command-->
+        <g id="link_ScriptExecutor_Command">
+            <path codeLine="388"
+                  d="M1786.5,277.03 C1786.5,428.04 1786.5,835 1786.5,835 C1786.5,835 1921.12,835 1921.12,835 C1921.12,835 1921.12,1879.77 1921.12,1879.77 "
+                  fill="none" id="ScriptExecutor-to-Command"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="1921.12,1884.77,1925.12,1875.77,1921.12,1879.77,1917.12,1875.77,1921.12,1884.77"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[d24a16d78022efd8a8bce7ca7f63be37]
+link ScriptExecutor to CommandScriptController-->
+        <g id="link_ScriptExecutor_CommandScriptController">
+            <path codeLine="389"
+                  d="M2129.16,259 C2129.16,259 2635.1,259 2635.1,259 C2635.1,259 2635.1,374.89 2635.1,374.89 "
+                  fill="none" id="ScriptExecutor-CommandScriptController" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="2635.1,387.89,2639.1,378.89,2635.1,382.89,2631.1,378.89,2635.1,387.89"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2635.1" x2="2635.1" y1="382.89" y2="374.89"/>
+            <polygon fill="#000000" points="2117.16,259,2123.16,263,2129.16,259,2123.16,255,2117.16,259"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2124.4758" y="257.6866">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="100"
+                  x="2514.8809" y="361.3253">scriptController
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2560.8809" y="377.1246">1
+            </text>
+        </g><!--MD5=[729c4a05c8e76845a7994d631c331f7f]
+link ScriptExecutor to Executor-->
+        <g id="link_ScriptExecutor_Executor">
+            <path codeLine="390"
+                  d="M1404.87,222 C1182.75,222 938.83,222 938.83,222 C938.83,222 938.83,1574.8 938.83,1574.8 "
+                  fill="none" id="ScriptExecutor-to-Executor" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="945.83,1574.8,938.83,1594.8,931.83,1574.8,945.83,1574.8"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[d49ffe037dc7945b023f3e8808d27b79]
+link ScriptExecutor to LocalExecuteScriptCommand-->
+        <g id="link_ScriptExecutor_LocalExecuteScriptCommand">
+            <path codeLine="391" d="M1688,277.13 C1688,277.13 1688,1027.82 1688,1027.82 " fill="none"
+                  id="ScriptExecutor-to-LocalExecuteScriptCommand"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1688,1032.82,1692,1023.82,1688,1027.82,1684,1023.82,1688,1032.82"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[97e58f8b2474500a7b4b80ffc744ad45]
+link ScriptExecutor to LocalExecuteScriptCommandResponse-->
+        <g id="link_ScriptExecutor_LocalExecuteScriptCommandResponse">
+            <path codeLine="392"
+                  d="M1589.5,277.11 C1589.5,398.21 1589.5,675 1589.5,675 C1589.5,675 1404.17,675 1404.17,675 C1404.17,675 1404.17,1350.91 1404.17,1350.91 "
+                  fill="none" id="ScriptExecutor-to-LocalExecuteScriptCommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="1404.17,1355.91,1408.17,1346.91,1404.17,1350.91,1400.17,1346.91,1404.17,1355.91"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[cd5270b0c2c13919d54403f8a0422f14]
+link ScriptExecutor to RuntimeException-->
+        <g id="link_ScriptExecutor_RuntimeException">
+            <path codeLine="393"
+                  d="M2117.01,222 C2479.64,222 2989,222 2989,222 C2989,222 2989,1106 2989,1106 C2989,1106 3138.42,1106 3138.42,1106 "
+                  fill="none" id="ScriptExecutor-to-RuntimeException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3143.42,1106,3134.42,1102,3138.42,1106,3134.42,1110,3143.42,1106"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[3bb83442510f3ae0089d651090f90905]
+link ServerExecuteScriptCommand to Command-->
+        <g id="link_ServerExecuteScriptCommand_Command">
+            <path codeLine="394"
+                  d="M1657.69,1777 C1671.44,1777 1680,1777 1680,1777 C1680,1777 1680,1864.88 1680,1864.88 " fill="none"
+                  id="ServerExecuteScriptCommand-to-Command" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1687,1864.88,1680,1884.88,1673,1864.88,1687,1864.88"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[3bb83442510f3ae0089d651090f90905]
+link ServerExecuteScriptCommand to Command-->
+        <g id="link_ServerExecuteScriptCommand_Command">
+            <path codeLine="395"
+                  d="M1669.57,1797 C1669.57,1797 1673.25,1797 1673.25,1797 C1673.25,1797 1673.25,1871.86 1673.25,1871.86 "
+                  fill="none" id="ServerExecuteScriptCommand-Command" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="1673.25,1884.86,1677.25,1875.86,1673.25,1879.86,1669.25,1875.86,1673.25,1884.86"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1673.25" x2="1673.25" y1="1879.86" y2="1871.86"/>
+            <polygon fill="#000000" points="1657.57,1797,1663.57,1801,1669.57,1797,1663.57,1793,1657.57,1797"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1665.4438" y="1798.5195">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="69"
+                  x="1591.6465" y="1858.3572">commands
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="9"
+                  x="1621.6465" y="1874.1566">*
+            </text>
+        </g><!--MD5=[b6e4765e68f537d492856ce00d06ae6b]
+link UIExecutor to Executor-->
+        <g id="link_UIExecutor_Executor">
+            <path codeLine="397"
+                  d="M420.5,473.72 C420.5,658.69 420.5,1630 420.5,1630 C420.5,1630 432.97,1630 432.97,1630 " fill="none"
+                  id="UIExecutor-to-Executor" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="432.97,1623,452.97,1630,432.97,1637,432.97,1623"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[7979ddddfb962ee78d0e03f3449432c9]
+link UIExecutor to RussianText-->
+        <g id="link_UIExecutor_RussianText">
+            <path codeLine="398" d="M473.5,473.61 C473.5,473.61 473.5,680.32 473.5,680.32 " fill="none"
+                  id="UIExecutor-to-RussianText" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="473.5,685.32,477.5,676.32,473.5,680.32,469.5,676.32,473.5,685.32"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[c98f032b2ab9d246e607754d9483d1e8]
+link UIExecutor to TextKeys-->
+        <g id="link_UIExecutor_TextKeys">
+            <path codeLine="399" d="M423,473.69 C423,603.29 423,1106 423,1106 C423,1106 423.22,1106 423.22,1106 "
+                  fill="none" id="UIExecutor-to-TextKeys"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="425.24,1106,416.24,1102,420.24,1106,416.24,1110,425.24,1106"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[f9dee23445f324eab6a298f62cce1487]
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class CLIController {
+  + CLIController(View, InputStream, ICommandIOCallback): 
+  # cmdParser: CommandParser
+  # scanner: Scanner
+  # mapper: ObjectMapper
+  # viewer: View
+  # callback: ICommandIOCallback
+  + run(): void
+  - runScript(Response<ICommandResponse>): void
+}
+class Command {
+  + Command(): 
+  + getType(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + createResponse(): ICommandResponse
+  + getInteractArgs(): Field[]
+  + validate(): ValidationResponse
+  + getInlineArgs(): Field[]
+}
+class CommandParser {
+  + CommandParser(HashMap<String, Command>, ObjectMapper, Scanner, View): 
+  - cmdMap: HashMap<String, Command>
+  - viewer: View
+  - objectScanner: ObjectScanner
+  - mapper: ObjectMapper
+  - scanner: Scanner
+  + parse(): Command
+}
+class CommandRegister {
+  + CommandRegister(): 
+  - cmdList: Command[]
+  - map: HashMap<String, Command>
+  + getParser(ObjectMapper, Scanner, View): CommandParser
+  - addCommand(Command): void
+}
+class CommandScriptController {
+  + CommandScriptController(): 
+  - cmdRegister: CommandRegister
+  - mapper: ObjectMapper
+  + run(InputStream): List<Command>
+}
+class ConsolePrinter {
+  + ConsolePrinter(): 
+  + suggestInput(): void
+  + show(String): void
+  + showLine(String): void
+}
+class Exception {
+  + Exception(Throwable): 
+  + Exception(String, Throwable): 
+  + Exception(): 
+  # Exception(String, Throwable, boolean, boolean): 
+  + Exception(String): 
+  ~ serialVersionUID: long
+}
+class ExecuteScriptCommandResponse {
+  + ExecuteScriptCommandResponse(): 
+}
+class Executor {
+  + Executor(): 
+  + MAX_RECURSION_DEPTH: int
+  - operationMap: Map<Class<Command>, Operation<Command, ICommandResponse>>
+  - childExecutors: List<Executor>
+  + execute(Command): Response<ICommandResponse>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  # execute(Command, int): Response<ICommandResponse>
+  + registerExecutor(Executor): void
+  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+}
+class Field {
+  + Field(String, Class<?>): 
+  + Field(): 
+  - valueClass: Class<?>
+  - name: String
+  + getName(): String
+  + getValueClass(): Class<?>
+  + setName(String): void
+  + setValueClass(Class<?>): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+class FieldWithDesc<T> {
+  + FieldWithDesc(String, Class<T>, String, IValidator<T>, boolean): 
+  + FieldWithDesc(String, Class<T>, String, boolean): 
+  - promptMsg: String
+  - validator: IValidator<T>
+  - nullAble: boolean
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + getPromptMsg(): String
+  + getValidator(): IValidator<T>
+  + isNullAble(): boolean
+  + toString(): String
+}
+class FileAccessException {
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(File, OperationType): 
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
+  - path: String
+  - type: OperationType
+  + getType(): OperationType
+  + getPath(): String
+}
+class FileIOController {
+  + FileIOController(String): 
+  + write(byte[]): void
+  + clear(): void
+  + openWriteStream(): FileOutputStream
+  + read(): byte[]
+  + openReadStream(): FileInputStream
+}
+interface ICommandIOCallback << interface >> {
+  + callback(Command): Response<ICommandResponse>
+}
+interface ICommandResponse << interface >> {
+  + getUserMessage(): String
+}
+interface IValidator<T> << interface >> {
+  + validate(T): ValidationResponse
+}
+class LocalExecuteScriptCommand {
+  + LocalExecuteScriptCommand(): 
+  - fileName: String
+  + getType(): String
+  + createResponse(): LocalExecuteScriptCommandResponse
+  + getFileName(): String
+  + getInlineArgs(): Field[]
+}
+class LocalExecuteScriptCommandResponse {
+  + LocalExecuteScriptCommandResponse(List<Command>): 
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + getUserMessage(): String
+}
+class Main {
+  + Main(): 
+  + main(String[]): void
+}
+class ObjectMapperFactory {
+  + ObjectMapperFactory(): 
+  + createMapper(): ObjectMapper
+}
+class ObjectScanner {
+  + ObjectScanner(Scanner, View, ObjectMapper): 
+  - dataDescription: Map<Class<?>, List<FieldWithDesc<?>>>
+  - viewer: View
+  - scanner: Scanner
+  - mapper: ObjectMapper
+  - scan(): String?
+  - interactValue(Class<T>): T
+  + scan(Class<T>): T
+}
+enum OperationType << enumeration >> {
+  - OperationType(String): 
+  - OperationType(): 
+  - description: String
+  + PERM_READ: 
+  + PERM_WRITE: 
+  + CREATE: 
+  + WRITE: 
+  + SET_PERMISSION: 
+  + OPEN: 
+  + READ: 
+  + values(): OperationType[]
+  + getDescription(): String
+  + valueOf(String): OperationType
+}
+class ParserException {
+  + ParserException(String): 
+}
+class Response<T> {
+  + Response(boolean, boolean, String, T): 
+  + Response(): 
+  - text: String
+  - success: boolean
+  - resolved: boolean
+  - payload: T
+  + getText(): String
+  + isSuccess(): boolean
+  + isResolved(): boolean
+  + hashCode(): int
+  + equals(Object): boolean
+  + getPayload(): T
+  # canEqual(Object): boolean
+  + setSuccess(boolean): void
+  + setResolved(boolean): void
+  + setText(String): void
+  + setPayload(T): void
+  + toString(): String
+  + noResolve(): Response<T>
+  + error(String): Response<T>
+  + success(T): Response<T>
+  + error(Exception): Response<T>
+}
+class RuntimeException {
+  # RuntimeException(String, Throwable, boolean, boolean): 
+  + RuntimeException(): 
+  + RuntimeException(String): 
+  + RuntimeException(String, Throwable): 
+  + RuntimeException(Throwable): 
+  ~ serialVersionUID: long
+}
+class RussianText {
+  + RussianText(): 
+  - textList: Map<TextKeys, String>
+  {static} + get(TextKeys): String
+}
+class ScriptExecuteException {
+  + ScriptExecuteException(String): 
+}
+class ScriptExecutor {
+  + ScriptExecutor(): 
+  - scriptController: CommandScriptController
+  - fileInputStream(LocalExecuteScriptCommand): FileInputStream
+  - executeScript(LocalExecuteScriptCommand, Set<String>): LocalExecuteScriptCommandResponse
+}
+class ServerExecuteScriptCommand {
+  + ServerExecuteScriptCommand(): 
+  + ServerExecuteScriptCommand(List<Command>): 
+  - commands: List<Command>
+  + createResponse(): ExecuteScriptCommandResponse
+  + getCommands(): List<Command>
+  + setCommands(List<Command>): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + getType(): String
+}
+enum TextKeys << enumeration >> {
+  + TextKeys(): 
+  + COORDINATESINTERACT: 
+  + COORXINTERACT: 
+  + HELP: 
+  + NAMEINTERACT: 
+  + COORYINTERACT: 
+  + ORGANIZATIONINTERACT: 
+  + SALARYINTERACT: 
+  + ORGANISATIONTYPEINTERACT: 
+  + ENDNDATEINTERACT: 
+  + STARTDAYINTERACT: 
+  + POSITIONINTERACT: 
+  + GREEETING: 
+  + WORKERINTERACT: 
+  + ORGANISATIONNAMEINTERACT: 
+  + values(): TextKeys[]
+  + valueOf(String): TextKeys
+}
+class UIExecutor {
+  + UIExecutor(): 
+}
+class ValidationResponse {
+  + ValidationResponse(boolean, String): 
+  - allowed: boolean
+  - msg: String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + isAllowed(): boolean
+  + getMsg(): String
+  + setAllowed(boolean): void
+  + setMsg(String): void
+  + toString(): String
+}
+class ValueDeserializer {
+  + ValueDeserializer(): 
+  - mapper: ObjectMapper
+  + deserialize(Class<K>, String): K
+}
+interface View << interface >> {
+  + suggestInput(): void
+  + show(String): void
+  + showLine(String): void
+}
+
+CLIController                      ..>  Command                           
+CLIController                     "1" *- -> "cmdParser\n1" CommandParser                     
+CLIController                      ..>  CommandRegister                   
+CLIController                      ..>  ExecuteScriptCommandResponse      
+CLIController                     "1" *- -> "callback\n1" ICommandIOCallback                
+CLIController                      ..>  ICommandResponse                  
+CLIController                      ..>  LocalExecuteScriptCommand         
+CLIController                      ..>  LocalExecuteScriptCommandResponse 
+CLIController                      ..>  ObjectMapperFactory               
+CLIController                      ..>  ParserException                   
+CLIController                      ..>  Response                          
+CLIController                      ..>  RussianText                       
+CLIController                      ..>  TextKeys                          
+CLIController                     "1" *- -> "viewer\n1" View                              
+Command                            ..>  Field                             
+Command                            ..>  ICommandResponse                  
+Command                            ..>  ValidationResponse                
+CommandParser                     "1" *- -> "cmdMap\n*" Command                           
+CommandParser                      ..>  Field                             
+CommandParser                     "1" *- -> "objectScanner\n1" ObjectScanner                     
+CommandParser                      ..>  ParserException                   
+CommandParser                      ..>  ValueDeserializer                 
+CommandParser                     "1" *- -> "viewer\n1" View                              
+CommandRegister                   "1" *- -> "cmdList\n*" Command                           
+CommandRegister                    ..>  CommandParser                     
+CommandRegister                    ..>  LocalExecuteScriptCommand         
+CommandRegister                    ..>  View                              
+CommandScriptController            ..>  Command                           
+CommandScriptController            ..>  CommandParser                     
+CommandScriptController           "1" *- -> "cmdRegister\n1" CommandRegister                   
+CommandScriptController            ..>  ObjectMapperFactory               
+CommandScriptController            ..>  ParserException                   
+CommandScriptController            ..>  ScriptExecuteException            
+CommandScriptController            ..>  View                              
+ConsolePrinter                     ..^  View                              
+ExecuteScriptCommandResponse       ..^  ICommandResponse                  
+ExecuteScriptCommandResponse       ..>  Response                          
+ExecuteScriptCommandResponse       +- -  ServerExecuteScriptCommand        
+Executor                           ..>  Command                           
+Executor                           ..>  Exception                         
+Executor                           ..>  ICommandResponse                  
+Executor                           ..>  Response                          
+Executor                           ..>  ValidationResponse                
+FieldWithDesc                      - -^  Field                             
+FieldWithDesc                     "1" *- -> "validator\n1" IValidator                        
+FieldWithDesc                      ..>  ValidationResponse                
+FileAccessException                - -^  Exception                         
+FileAccessException               "1" *- -> "type\n1" OperationType                     
+FileIOController                   ..>  FileAccessException               
+ICommandIOCallback                 ..>  Command                           
+ICommandIOCallback                 ..>  ICommandResponse                  
+ICommandIOCallback                 ..>  Response                          
+IValidator                         ..>  ValidationResponse                
+LocalExecuteScriptCommand          - -^  Command                           
+LocalExecuteScriptCommand          ..>  Field                             
+LocalExecuteScriptCommand          ..>  LocalExecuteScriptCommandResponse 
+LocalExecuteScriptCommandResponse  ..>  Command                           
+LocalExecuteScriptCommandResponse  ..^  ICommandResponse                  
+LocalExecuteScriptCommandResponse  +- -  LocalExecuteScriptCommand         
+LocalExecuteScriptCommandResponse  - -^  ServerExecuteScriptCommand        
+Main                               ..>  CLIController                     
+Main                               ..>  ConsolePrinter                    
+Main                               ..>  Executor                          
+Main                               ..>  FileAccessException               
+Main                               ..>  FileIOController                  
+Main                               ..>  ScriptExecutor                    
+Main                               ..>  UIExecutor                        
+Main                               ..>  View                              
+ObjectScanner                      ..>  Field                             
+ObjectScanner                      ..>  FieldWithDesc                     
+ObjectScanner                      ..>  IValidator                        
+ObjectScanner                      ..>  ParserException                   
+ObjectScanner                      ..>  ValidationResponse                
+ObjectScanner                     "1" *- -> "viewer\n1" View                              
+OperationType                      +- -  FileAccessException               
+ParserException                    - -^  Exception                         
+Response                           ..>  Exception                         
+Response                           ..>  ICommandResponse                  
+RuntimeException                   - -^  Exception                         
+RussianText                       "1" *- -> "textList\n*" TextKeys                          
+ScriptExecuteException             - -^  RuntimeException                  
+ScriptExecutor                     ..>  Command                           
+ScriptExecutor                    "1" *- -> "scriptController\n1" CommandScriptController           
+ScriptExecutor                     - -^  Executor                          
+ScriptExecutor                     ..>  LocalExecuteScriptCommand         
+ScriptExecutor                     ..>  LocalExecuteScriptCommandResponse 
+ScriptExecutor                     ..>  RuntimeException                  
+ServerExecuteScriptCommand         - -^  Command                           
+ServerExecuteScriptCommand        "1" *- -> "commands\n*" Command                           
+ServerExecuteScriptCommand         ..>  ExecuteScriptCommandResponse      
+UIExecutor                         - -^  Executor                          
+UIExecutor                         ..>  RussianText                       
+UIExecutor                         ..>  TextKeys                          
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+<style>
+  root {
+    BackgroundColor white
+    FontColor black
+    FontName Verdana
+    HyperLinkColor blue
+    LineColor black
+    LineThickness 1
+    Margin 5
+  }
+  caption {
+    LineThickness 0
+  }
+  footer {
+    LineThickness 0
+  }
+  header {
+    LineThickness 0
+  }
+  node {
+    MaximumWidth 300
+  }
+  title {
+    FontSize 22
+    LineThickness 0
+  }
+</style>
+
+skinparam ArrowLollipopColor black
+skinparam BackgroundColor white
+skinparam DefaultFontName Verdana
+skinparam DefaultMonospacedFontName Courier
+skinparam LifelineStrategy nosolid
+skinparam ParticipantPadding 10
+skinparam SequenceLifeLineBorderColor black
+skinparam Shadowing false
+skinparam UseBetaStyle true
+
+skinparam Activity {
+  BackgroundColor white
+  BarColor black
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam Boundary {
+  FontColor black
+}
+skinparam Box {
+  Padding 5
+}
+skinparam CircledCharacter {
+  FontColor black
+  FontName Courier
+  Radius 9
+}
+skinparam Class {
+  BackgroundColor white
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassAttribute {
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassStereotype {
+  FontColor black
+  FontName Verdana
+}
+skinparam Footer {
+  FontColor black
+  FontName Verdana
+}
+skinparam Header {
+  FontColor black
+  FontName Verdana
+}
+skinparam Hyperlink {
+  Color blue
+}
+skinparam IconPackage {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPrivate {
+  Color black
+  BackgroundColor white
+}
+skinparam IconProtected {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPublic {
+  Color black
+  BackgroundColor white
+}
+skinparam Note {
+  FontColor black
+  FontName Verdana
+}
+skinparam Object {
+  BorderColor black
+}
+skinparam Package {
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam State {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeA {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeC {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeE {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeI {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeN {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam UseCaseStereoType {
+  FontColor black
+  FontName Verdana
+}
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+
+
+
+
+
+
+
+<style>
+  root {
+    BackgroundColor white
+    FontColor black
+    FontName Verdana
+    HyperLinkColor blue
+    LineColor black
+    LineThickness 1
+    Margin 5
+  }
+  caption {
+    LineThickness 0
+  }
+  footer {
+    LineThickness 0
+  }
+  header {
+    LineThickness 0
+  }
+  node {
+    MaximumWidth 300
+  }
+  title {
+    FontSize 22
+    LineThickness 0
+  }
+</style>
+
+skinparam ArrowLollipopColor black
+skinparam BackgroundColor white
+skinparam DefaultFontName Verdana
+skinparam DefaultMonospacedFontName Courier
+skinparam LifelineStrategy nosolid
+skinparam ParticipantPadding 10
+skinparam SequenceLifeLineBorderColor black
+skinparam Shadowing false
+skinparam UseBetaStyle true
+
+skinparam Activity {
+  BackgroundColor white
+  BarColor black
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam Boundary {
+  FontColor black
+}
+skinparam Box {
+  Padding 5
+}
+skinparam CircledCharacter {
+  FontColor black
+  FontName Courier
+  Radius 9
+}
+skinparam Class {
+  BackgroundColor white
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassAttribute {
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassStereotype {
+  FontColor black
+  FontName Verdana
+}
+skinparam Footer {
+  FontColor black
+  FontName Verdana
+}
+skinparam Header {
+  FontColor black
+  FontName Verdana
+}
+skinparam Hyperlink {
+  Color blue
+}
+skinparam IconPackage {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPrivate {
+  Color black
+  BackgroundColor white
+}
+skinparam IconProtected {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPublic {
+  Color black
+  BackgroundColor white
+}
+skinparam Note {
+  FontColor black
+  FontName Verdana
+}
+skinparam Object {
+  BorderColor black
+}
+skinparam Package {
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam State {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeA {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeC {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeE {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeI {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeN {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam UseCaseStereoType {
+  FontColor black
+  FontName Verdana
+}
+top to bottom direction
+skinparam linetype ortho
+
+class CLIController {
+  + CLIController(View, InputStream, ICommandIOCallback): 
+  # cmdParser: CommandParser
+  # scanner: Scanner
+  # mapper: ObjectMapper
+  # viewer: View
+  # callback: ICommandIOCallback
+  + run(): void
+  - runScript(Response<ICommandResponse>): void
+}
+class Command {
+  + Command(): 
+  + getType(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + createResponse(): ICommandResponse
+  + getInteractArgs(): Field[]
+  + validate(): ValidationResponse
+  + getInlineArgs(): Field[]
+}
+class CommandParser {
+  + CommandParser(HashMap<String, Command>, ObjectMapper, Scanner, View): 
+  - cmdMap: HashMap<String, Command>
+  - viewer: View
+  - objectScanner: ObjectScanner
+  - mapper: ObjectMapper
+  - scanner: Scanner
+  + parse(): Command
+}
+class CommandRegister {
+  + CommandRegister(): 
+  - cmdList: Command[]
+  - map: HashMap<String, Command>
+  + getParser(ObjectMapper, Scanner, View): CommandParser
+  - addCommand(Command): void
+}
+class CommandScriptController {
+  + CommandScriptController(): 
+  - cmdRegister: CommandRegister
+  - mapper: ObjectMapper
+  + run(InputStream): List<Command>
+}
+class ConsolePrinter {
+  + ConsolePrinter(): 
+  + suggestInput(): void
+  + show(String): void
+  + showLine(String): void
+}
+class Exception {
+  + Exception(Throwable): 
+  + Exception(String, Throwable): 
+  + Exception(): 
+  # Exception(String, Throwable, boolean, boolean): 
+  + Exception(String): 
+  ~ serialVersionUID: long
+}
+class ExecuteScriptCommandResponse {
+  + ExecuteScriptCommandResponse(): 
+}
+class Executor {
+  + Executor(): 
+  + MAX_RECURSION_DEPTH: int
+  - operationMap: Map<Class<Command>, Operation<Command, ICommandResponse>>
+  - childExecutors: List<Executor>
+  + execute(Command): Response<ICommandResponse>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  # execute(Command, int): Response<ICommandResponse>
+  + registerExecutor(Executor): void
+  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+}
+class Field {
+  + Field(String, Class<?>): 
+  + Field(): 
+  - valueClass: Class<?>
+  - name: String
+  + getName(): String
+  + getValueClass(): Class<?>
+  + setName(String): void
+  + setValueClass(Class<?>): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+class FieldWithDesc<T> {
+  + FieldWithDesc(String, Class<T>, String, IValidator<T>, boolean): 
+  + FieldWithDesc(String, Class<T>, String, boolean): 
+  - promptMsg: String
+  - validator: IValidator<T>
+  - nullAble: boolean
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + getPromptMsg(): String
+  + getValidator(): IValidator<T>
+  + isNullAble(): boolean
+  + toString(): String
+}
+class FileAccessException {
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(File, OperationType): 
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
+  - path: String
+  - type: OperationType
+  + getType(): OperationType
+  + getPath(): String
+}
+class FileIOController {
+  + FileIOController(String): 
+  + write(byte[]): void
+  + clear(): void
+  + openWriteStream(): FileOutputStream
+  + read(): byte[]
+  + openReadStream(): FileInputStream
+}
+interface ICommandIOCallback << interface >> {
+  + callback(Command): Response<ICommandResponse>
+}
+interface ICommandResponse << interface >> {
+  + getUserMessage(): String
+}
+interface IValidator<T> << interface >> {
+  + validate(T): ValidationResponse
+}
+class LocalExecuteScriptCommand {
+  + LocalExecuteScriptCommand(): 
+  - fileName: String
+  + getType(): String
+  + createResponse(): LocalExecuteScriptCommandResponse
+  + getFileName(): String
+  + getInlineArgs(): Field[]
+}
+class LocalExecuteScriptCommandResponse {
+  + LocalExecuteScriptCommandResponse(List<Command>): 
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + getUserMessage(): String
+}
+class Main {
+  + Main(): 
+  + main(String[]): void
+}
+class ObjectMapperFactory {
+  + ObjectMapperFactory(): 
+  + createMapper(): ObjectMapper
+}
+class ObjectScanner {
+  + ObjectScanner(Scanner, View, ObjectMapper): 
+  - dataDescription: Map<Class<?>, List<FieldWithDesc<?>>>
+  - viewer: View
+  - scanner: Scanner
+  - mapper: ObjectMapper
+  - scan(): String?
+  - interactValue(Class<T>): T
+  + scan(Class<T>): T
+}
+enum OperationType << enumeration >> {
+  - OperationType(String): 
+  - OperationType(): 
+  - description: String
+  + PERM_READ: 
+  + PERM_WRITE: 
+  + CREATE: 
+  + WRITE: 
+  + SET_PERMISSION: 
+  + OPEN: 
+  + READ: 
+  + values(): OperationType[]
+  + getDescription(): String
+  + valueOf(String): OperationType
+}
+class ParserException {
+  + ParserException(String): 
+}
+class Response<T> {
+  + Response(boolean, boolean, String, T): 
+  + Response(): 
+  - text: String
+  - success: boolean
+  - resolved: boolean
+  - payload: T
+  + getText(): String
+  + isSuccess(): boolean
+  + isResolved(): boolean
+  + hashCode(): int
+  + equals(Object): boolean
+  + getPayload(): T
+  # canEqual(Object): boolean
+  + setSuccess(boolean): void
+  + setResolved(boolean): void
+  + setText(String): void
+  + setPayload(T): void
+  + toString(): String
+  + noResolve(): Response<T>
+  + error(String): Response<T>
+  + success(T): Response<T>
+  + error(Exception): Response<T>
+}
+class RuntimeException {
+  # RuntimeException(String, Throwable, boolean, boolean): 
+  + RuntimeException(): 
+  + RuntimeException(String): 
+  + RuntimeException(String, Throwable): 
+  + RuntimeException(Throwable): 
+  ~ serialVersionUID: long
+}
+class RussianText {
+  + RussianText(): 
+  - textList: Map<TextKeys, String>
+  {static} + get(TextKeys): String
+}
+class ScriptExecuteException {
+  + ScriptExecuteException(String): 
+}
+class ScriptExecutor {
+  + ScriptExecutor(): 
+  - scriptController: CommandScriptController
+  - fileInputStream(LocalExecuteScriptCommand): FileInputStream
+  - executeScript(LocalExecuteScriptCommand, Set<String>): LocalExecuteScriptCommandResponse
+}
+class ServerExecuteScriptCommand {
+  + ServerExecuteScriptCommand(): 
+  + ServerExecuteScriptCommand(List<Command>): 
+  - commands: List<Command>
+  + createResponse(): ExecuteScriptCommandResponse
+  + getCommands(): List<Command>
+  + setCommands(List<Command>): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + getType(): String
+}
+enum TextKeys << enumeration >> {
+  + TextKeys(): 
+  + COORDINATESINTERACT: 
+  + COORXINTERACT: 
+  + HELP: 
+  + NAMEINTERACT: 
+  + COORYINTERACT: 
+  + ORGANIZATIONINTERACT: 
+  + SALARYINTERACT: 
+  + ORGANISATIONTYPEINTERACT: 
+  + ENDNDATEINTERACT: 
+  + STARTDAYINTERACT: 
+  + POSITIONINTERACT: 
+  + GREEETING: 
+  + WORKERINTERACT: 
+  + ORGANISATIONNAMEINTERACT: 
+  + values(): TextKeys[]
+  + valueOf(String): TextKeys
+}
+class UIExecutor {
+  + UIExecutor(): 
+}
+class ValidationResponse {
+  + ValidationResponse(boolean, String): 
+  - allowed: boolean
+  - msg: String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + isAllowed(): boolean
+  + getMsg(): String
+  + setAllowed(boolean): void
+  + setMsg(String): void
+  + toString(): String
+}
+class ValueDeserializer {
+  + ValueDeserializer(): 
+  - mapper: ObjectMapper
+  + deserialize(Class<K>, String): K
+}
+interface View << interface >> {
+  + suggestInput(): void
+  + show(String): void
+  + showLine(String): void
+}
+
+CLIController                      ..>  Command                           
+CLIController                     "1" *- -> "cmdParser\n1" CommandParser                     
+CLIController                      ..>  CommandRegister                   
+CLIController                      ..>  ExecuteScriptCommandResponse      
+CLIController                     "1" *- -> "callback\n1" ICommandIOCallback                
+CLIController                      ..>  ICommandResponse                  
+CLIController                      ..>  LocalExecuteScriptCommand         
+CLIController                      ..>  LocalExecuteScriptCommandResponse 
+CLIController                      ..>  ObjectMapperFactory               
+CLIController                      ..>  ParserException                   
+CLIController                      ..>  Response                          
+CLIController                      ..>  RussianText                       
+CLIController                      ..>  TextKeys                          
+CLIController                     "1" *- -> "viewer\n1" View                              
+Command                            ..>  Field                             
+Command                            ..>  ICommandResponse                  
+Command                            ..>  ValidationResponse                
+CommandParser                     "1" *- -> "cmdMap\n*" Command                           
+CommandParser                      ..>  Field                             
+CommandParser                     "1" *- -> "objectScanner\n1" ObjectScanner                     
+CommandParser                      ..>  ParserException                   
+CommandParser                      ..>  ValueDeserializer                 
+CommandParser                     "1" *- -> "viewer\n1" View                              
+CommandRegister                   "1" *- -> "cmdList\n*" Command                           
+CommandRegister                    ..>  CommandParser                     
+CommandRegister                    ..>  LocalExecuteScriptCommand         
+CommandRegister                    ..>  View                              
+CommandScriptController            ..>  Command                           
+CommandScriptController            ..>  CommandParser                     
+CommandScriptController           "1" *- -> "cmdRegister\n1" CommandRegister                   
+CommandScriptController            ..>  ObjectMapperFactory               
+CommandScriptController            ..>  ParserException                   
+CommandScriptController            ..>  ScriptExecuteException            
+CommandScriptController            ..>  View                              
+ConsolePrinter                     ..^  View                              
+ExecuteScriptCommandResponse       ..^  ICommandResponse                  
+ExecuteScriptCommandResponse       ..>  Response                          
+ExecuteScriptCommandResponse       +- -  ServerExecuteScriptCommand        
+Executor                           ..>  Command                           
+Executor                           ..>  Exception                         
+Executor                           ..>  ICommandResponse                  
+Executor                           ..>  Response                          
+Executor                           ..>  ValidationResponse                
+FieldWithDesc                      - -^  Field                             
+FieldWithDesc                     "1" *- -> "validator\n1" IValidator                        
+FieldWithDesc                      ..>  ValidationResponse                
+FileAccessException                - -^  Exception                         
+FileAccessException               "1" *- -> "type\n1" OperationType                     
+FileIOController                   ..>  FileAccessException               
+ICommandIOCallback                 ..>  Command                           
+ICommandIOCallback                 ..>  ICommandResponse                  
+ICommandIOCallback                 ..>  Response                          
+IValidator                         ..>  ValidationResponse                
+LocalExecuteScriptCommand          - -^  Command                           
+LocalExecuteScriptCommand          ..>  Field                             
+LocalExecuteScriptCommand          ..>  LocalExecuteScriptCommandResponse 
+LocalExecuteScriptCommandResponse  ..>  Command                           
+LocalExecuteScriptCommandResponse  ..^  ICommandResponse                  
+LocalExecuteScriptCommandResponse  +- -  LocalExecuteScriptCommand         
+LocalExecuteScriptCommandResponse  - -^  ServerExecuteScriptCommand        
+Main                               ..>  CLIController                     
+Main                               ..>  ConsolePrinter                    
+Main                               ..>  Executor                          
+Main                               ..>  FileAccessException               
+Main                               ..>  FileIOController                  
+Main                               ..>  ScriptExecutor                    
+Main                               ..>  UIExecutor                        
+Main                               ..>  View                              
+ObjectScanner                      ..>  Field                             
+ObjectScanner                      ..>  FieldWithDesc                     
+ObjectScanner                      ..>  IValidator                        
+ObjectScanner                      ..>  ParserException                   
+ObjectScanner                      ..>  ValidationResponse                
+ObjectScanner                     "1" *- -> "viewer\n1" View                              
+OperationType                      +- -  FileAccessException               
+ParserException                    - -^  Exception                         
+Response                           ..>  Exception                         
+Response                           ..>  ICommandResponse                  
+RuntimeException                   - -^  Exception                         
+RussianText                       "1" *- -> "textList\n*" TextKeys                          
+ScriptExecuteException             - -^  RuntimeException                  
+ScriptExecutor                     ..>  Command                           
+ScriptExecutor                    "1" *- -> "scriptController\n1" CommandScriptController           
+ScriptExecutor                     - -^  Executor                          
+ScriptExecutor                     ..>  LocalExecuteScriptCommand         
+ScriptExecutor                     ..>  LocalExecuteScriptCommandResponse 
+ScriptExecutor                     ..>  RuntimeException                  
+ServerExecuteScriptCommand         - -^  Command                           
+ServerExecuteScriptCommand        "1" *- -> "commands\n*" Command                           
+ServerExecuteScriptCommand         ..>  ExecuteScriptCommandResponse      
+UIExecutor                         - -^  Executor                          
+UIExecutor                         ..>  RussianText                       
+UIExecutor                         ..>  TextKeys                          
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 20:01:30 MSK 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+-->
+    </g>
+</svg>

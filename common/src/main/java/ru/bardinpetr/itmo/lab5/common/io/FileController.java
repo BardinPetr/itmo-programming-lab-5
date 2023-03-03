@@ -5,8 +5,12 @@ import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 /**
  * Class implementing low level filesystem operations (rw) with required checks.
@@ -132,5 +136,14 @@ public class FileController {
      */
     public String getPath() {
         return file.getAbsolutePath();
+    }
+
+    public LocalDateTime creationDate() {
+        try {
+            var attrs = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
+            return LocalDateTime.ofEpochSecond(attrs.creationTime().toInstant().getEpochSecond(), 0, ZoneOffset.UTC);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

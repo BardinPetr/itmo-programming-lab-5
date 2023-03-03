@@ -13,6 +13,7 @@ import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 public class FileDBController<T> {
     private final FileStorageController<T> storage;
     private final Class<T> baseCollectionClass;
+    private final FileIOController fileIO;
     private T collection;
 
     /**
@@ -23,6 +24,7 @@ public class FileDBController<T> {
      */
     public FileDBController(FileIOController fileIO, Class<T> baseCollectionClass) {
         this.baseCollectionClass = baseCollectionClass;
+        this.fileIO = fileIO;
 
         storage = new FileStorageController<>(fileIO, new XMLSerDesService<>(baseCollectionClass));
         load();
@@ -90,5 +92,15 @@ public class FileDBController<T> {
      */
     public T data() {
         return collection;
+    }
+
+    /**
+     * Get DB file info
+     */
+    public FileDBInfo info() {
+        return new FileDBInfo(
+                fileIO.getPath(),
+                fileIO.creationDate()
+        );
     }
 }

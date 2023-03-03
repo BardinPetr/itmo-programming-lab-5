@@ -1,8 +1,10 @@
+package ru.bardinpetr.itmo.lab5.common.tests;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
-import utils.FileUtils;
+import ru.bardinpetr.itmo.lab5.common.tests.utils.FileUtils;
 
 import java.nio.file.Path;
 import java.util.List;

@@ -1,8 +1,8 @@
-package utils;
+package ru.bardinpetr.itmo.lab5.common.tests.utils;
 
 import ru.bardinpetr.itmo.lab5.models.data.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
@@ -21,7 +21,7 @@ public class WorkerGenerator {
                 44.55f,
                 new Date(),
                 org,
-                LocalDateTime.now(),
+                LocalDate.now(),
                 Position.CLEANER
         );
     }

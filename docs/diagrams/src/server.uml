@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/petr/Desktop/itmo-programming-lab-5/server</OriginalElement>
+  <nodes>
+    <node x="2102.5986912393146" y="422.5">ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException</node>
+    <node x="2472.9166666666665" y="397.5">ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException</node>
+    <node x="806.861244658118" y="1491.5">ru.bardinpetr.itmo.lab5.server.dao.ICollectionBaseDAO</node>
+    <node x="-226.5" y="1279.0">java.util.Set</node>
+    <node x="1005.42922008547" y="3646.0">ru.bardinpetr.itmo.lab5.server.executor.WorkersDAOExecutor</node>
+    <node x="982.05422008547" y="-82.0">ru.bardinpetr.itmo.lab5.models.data.Coordinates</node>
+    <node x="-115.25" y="2568.0">ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection</node>
+    <node x="1413.67922008547" y="-32.0">ru.bardinpetr.itmo.lab5.models.data.OrganizationType</node>
+    <node x="2523.5986912393146" y="-82.0">ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException.OperationType</node>
+    <node x="2901.9166666666665" y="2440.5">ru.bardinpetr.itmo.lab5.models.commands.base.Command</node>
+    <node x="1428.17922008547" y="752.0">ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo</node>
+    <node x="2203.5479433760684" y="1615.5">ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService</node>
+    <node x="662.111244658118" y="3296.0">ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO</node>
+    <node x="599.2625534188033" y="2529.0">ru.bardinpetr.itmo.lab5.server.dao.ICollectionFilteredDAO</node>
+    <node x="3249.1049679487164" y="1629.0">ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse</node>
+    <node x="2589.7979433760684" y="1564.5">ru.bardinpetr.itmo.lab5.server.filedb.FileStorageController</node>
+    <node x="438.92922008547" y="3647.0">ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO</node>
+    <node x="1200.67922008547" y="1527.0">ru.bardinpetr.itmo.lab5.models.data.Position</node>
+    <node x="2347.8042200854698" y="2464.5">ru.bardinpetr.itmo.lab5.server.filedb.FileDBController</node>
+    <node x="205.26255341880324" y="2102.0">ru.bardinpetr.itmo.lab5.models.data.Worker</node>
+    <node x="2551.9292200854698" y="3836.0">ru.bardinpetr.itmo.lab5.server.MainExecutor</node>
+    <node x="1812.1792200854698" y="902.0">ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException</node>
+    <node x="-160.74372329059815" y="3346.0">ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection</node>
+    <node x="426.5986912393148" y="941.5">ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity</node>
+    <node x="3067.6666666666665" y="3231.5">ru.bardinpetr.itmo.lab5.common.executor.Executor</node>
+    <node x="3694.1666666666665" y="-193.0">ru.bardinpetr.itmo.lab5.server.filedb.FileDBInfo</node>
+    <node x="2140.0986912393146" y="18.0">ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException.Type</node>
+    <node x="1464.67922008547" y="335.0">ru.bardinpetr.itmo.lab5.models.data.Organization</node>
+    <node x="555.3812767094017" y="-193.0">java.lang.Comparable</node>
+    <node x="3159.1049679487164" y="890.5">ru.bardinpetr.itmo.lab5.common.io.FileIOController</node>
+    <node x="3330.2236912393146" y="2289.5">ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response</node>
+    <node x="283.11124465811804" y="3169.0">ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO</node>
+    <node x="2228.1792200854698" y="889.5">ru.bardinpetr.itmo.lab5.common.serdes.SerDesService</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.bardinpetr.itmo.lab5.server.MainExecutor" target="ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection" relationship="DEPENDENCY">
+      <point x="-113.25" y="-43.0" />
+      <point x="2665.1792200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3805.0" />
+      <point x="-68.74372329059815" y="3805.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO" target="ru.bardinpetr.itmo.lab5.server.dao.ICollectionFilteredDAO" relationship="INTERFACE_GENERALIZATION">
+      <point x="-81.0" y="-79.5" />
+      <point x="743.111244658118" y="3137.0" />
+      <point x="825.9292200854702" y="3137.0" />
+      <point x="90.66666666666674" y="54.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.ICollectionFilteredDAO" target="ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity" relationship="DEPENDENCY">
+      <point x="-68.0" y="-54.5" />
+      <point x="667.2625534188033" y="2060.0" />
+      <point x="720.1375534188033" y="2060.0" />
+      <point x="720.1375534188033" y="1257.0" />
+      <point x="529.8486912393148" y="1257.0" />
+      <point x="529.8486912393148" y="1237.0" />
+      <point x="565.3486912393148" y="1237.0" />
+      <point x="46.25" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException.OperationType" relationship="TO_ONE">
+      <point x="95.25" y="-119.0" />
+      <point x="2758.6666666666665" y="308.0" />
+      <point x="2696.8486912393146" y="308.0" />
+      <point x="57.75" y="181.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO" target="java.util.Set" relationship="DEPENDENCY">
+      <point x="81.0" y="-79.5" />
+      <point x="905.111244658118" y="3097.0" />
+      <point x="107.88755341880324" y="3097.0" />
+      <point x="107.88755341880324" y="2080.0" />
+      <point x="-115.7763087606852" y="2080.0" />
+      <point x="-115.7763087606852" y="2060.0" />
+      <point x="-14.0" y="2060.0" />
+      <point x="85.0" y="379.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Coordinates" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-181.5" />
+      <point x="1091.55422008547" y="-103.0" />
+      <point x="1538.2236912393148" y="-103.0" />
+      <point x="1538.2236912393148" y="-113.0" />
+      <point x="684.3812767094017" y="-113.0" />
+      <point x="43.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.base.Command" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-143.0" />
+      <point x="3045.9166666666665" y="2080.0" />
+      <point x="3354.6049679487164" y="2080.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO" target="ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity" relationship="DEPENDENCY">
+      <point x="-119.66666666666674" y="-206.5" />
+      <point x="342.9445779914513" y="3147.0" />
+      <point x="-27.743723290598155" y="3147.0" />
+      <point x="-27.743723290598155" y="3107.0" />
+      <point x="194.76255341880324" y="3107.0" />
+      <point x="194.76255341880324" y="1257.0" />
+      <point x="529.8486912393148" y="1257.0" />
+      <point x="529.8486912393148" y="1237.0" />
+      <point x="565.3486912393148" y="1237.0" />
+      <point x="46.25" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.executor.WorkersDAOExecutor" target="ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO" relationship="TO_ONE">
+      <point x="-110.33333333333326" y="-69.0" />
+      <point x="1060.5958867521367" y="3624.0" />
+      <point x="905.111244658118" y="3624.0" />
+      <point x="81.0" y="79.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO" target="ru.bardinpetr.itmo.lab5.server.dao.ICollectionFilteredDAO" relationship="DEPENDENCY">
+      <point x="-132.0" y="-68.0" />
+      <point x="504.92922008547" y="3624.0" />
+      <point x="446.92922008547" y="3624.0" />
+      <point x="446.92922008547" y="3604.0" />
+      <point x="272.61124465811804" y="3604.0" />
+      <point x="272.61124465811804" y="3127.0" />
+      <point x="644.5958867521366" y="3127.0" />
+      <point x="-90.66666666666674" y="54.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.executor.WorkersDAOExecutor" target="ru.bardinpetr.itmo.lab5.server.dao.ICollectionBaseDAO" relationship="DEPENDENCY">
+      <point x="0.0" y="-69.0" />
+      <point x="1170.92922008547" y="3624.0" />
+      <point x="1131.2299679487164" y="3624.0" />
+      <point x="1131.2299679487164" y="2080.0" />
+      <point x="1049.42922008547" y="2080.0" />
+      <point x="1049.42922008547" y="2060.0" />
+      <point x="996.611244658118" y="2060.0" />
+      <point x="63.25" y="167.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO" target="ru.bardinpetr.itmo.lab5.server.dao.ICollectionBaseDAO" relationship="DEPENDENCY">
+      <point x="81.0" y="-79.5" />
+      <point x="905.111244658118" y="3097.0" />
+      <point x="1003.67922008547" y="3097.0" />
+      <point x="1003.67922008547" y="2080.0" />
+      <point x="1049.42922008547" y="2080.0" />
+      <point x="1049.42922008547" y="2060.0" />
+      <point x="996.611244658118" y="2060.0" />
+      <point x="63.25" y="167.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.executor.Executor" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="DEPENDENCY">
+      <point x="0.0" y="-144.0" />
+      <point x="3350.1666666666665" y="3147.0" />
+      <point x="3045.9166666666665" y="3147.0" />
+      <point x="0.0" y="143.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection" target="java.util.Set" relationship="REALIZATION">
+      <point x="-92.0" y="-0.0" />
+      <point x="-252.0" y="3375.5" />
+      <point x="-252.0" y="1658.5" />
+      <point x="-127.5" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService" target="ru.bardinpetr.itmo.lab5.common.serdes.SerDesService" relationship="GENERALIZATION">
+      <point x="0.0" y="-43.0" />
+      <point x="2333.0479433760684" y="1257.0" />
+      <point x="2292.9292200854698" y="1257.0" />
+      <point x="-64.75" y="94.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileStorageController" target="ru.bardinpetr.itmo.lab5.common.io.FileIOController" relationship="TO_ONE">
+      <point x="99.5" y="-94.0" />
+      <point x="2888.2979433760684" y="1237.0" />
+      <point x="3229.3549679487164" y="1237.0" />
+      <point x="-70.25" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection" target="java.util.Set" relationship="INTERFACE_GENERALIZATION">
+      <point x="-50.5" y="-15.5" />
+      <point x="-64.75" y="2070.0" />
+      <point x="-99.0" y="2070.0" />
+      <point x="0.0" y="379.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection" target="ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection" relationship="REALIZATION">
+      <point x="-46.0" y="-29.5" />
+      <point x="-114.74372329059815" y="3147.0" />
+      <point x="-195.99372329059815" y="3147.0" />
+      <point x="-195.99372329059815" y="3097.0" />
+      <point x="-64.75" y="3097.0" />
+      <point x="-50.5" y="15.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Worker" target="ru.bardinpetr.itmo.lab5.models.data.Coordinates" relationship="TO_ONE">
+      <point x="93.5" y="-481.5" />
+      <point x="485.76255341880324" y="2070.0" />
+      <point x="1291.7236912393148" y="2070.0" />
+      <point x="1291.7236912393148" y="2060.0" />
+      <point x="1091.55422008547" y="2060.0" />
+      <point x="0.0" y="181.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.OrganizationType" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-131.5" />
+      <point x="1537.17922008547" y="-103.0" />
+      <point x="1538.2236912393148" y="-103.0" />
+      <point x="1538.2236912393148" y="-113.0" />
+      <point x="684.3812767094017" y="-113.0" />
+      <point x="43.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Worker" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-93.5" y="-481.5" />
+      <point x="298.76255341880324" y="2080.0" />
+      <point x="144.88755341880324" y="2080.0" />
+      <point x="144.88755341880324" y="2060.0" />
+      <point x="139.63755341880324" y="2060.0" />
+      <point x="139.63755341880324" y="-103.0" />
+      <point x="1538.2236912393148" y="-103.0" />
+      <point x="1538.2236912393148" y="-113.0" />
+      <point x="684.3812767094017" y="-113.0" />
+      <point x="43.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.io.FileIOController" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" relationship="DEPENDENCY">
+      <point x="0.0" y="-93.0" />
+      <point x="3299.6049679487164" y="720.0" />
+      <point x="2663.4166666666665" y="720.0" />
+      <point x="0.0" y="119.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO" target="ru.bardinpetr.itmo.lab5.server.filedb.FileDBController" relationship="TO_ONE">
+      <point x="119.66666666666674" y="-206.5" />
+      <point x="582.2779113247848" y="3147.0" />
+      <point x="2426.5542200854698" y="3147.0" />
+      <point x="-78.75" y="119.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.MainExecutor" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
+      <point x="-113.25" y="-43.0" />
+      <point x="2665.1792200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3805.0" />
+      <point x="3643.1666666666665" y="3805.0" />
+      <point x="3643.1666666666665" y="2080.0" />
+      <point x="3354.6049679487164" y="2080.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" relationship="DEPENDENCY">
+      <point x="0.0" y="-81.5" />
+      <point x="2010.1792200854698" y="730.0" />
+      <point x="2224.0986912393146" y="730.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileStorageController" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException" relationship="DEPENDENCY">
+      <point x="-99.5" y="-94.0" />
+      <point x="2689.2979433760684" y="1257.0" />
+      <point x="2568.7979433760684" y="1257.0" />
+      <point x="2568.7979433760684" y="1247.0" />
+      <point x="2010.1792200854698" y="1247.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException.Type" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-81.5" />
+      <point x="2224.0986912393146" y="-103.0" />
+      <point x="1538.2236912393148" y="-103.0" />
+      <point x="1538.2236912393148" y="-113.0" />
+      <point x="684.3812767094017" y="-113.0" />
+      <point x="43.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Organization" target="ru.bardinpetr.itmo.lab5.models.data.OrganizationType" relationship="TO_ONE">
+      <point x="-69.75" y="-181.5" />
+      <point x="1534.42922008547" y="308.0" />
+      <point x="1537.17922008547" y="308.0" />
+      <point x="0.0" y="131.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileDBController" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" relationship="DEPENDENCY">
+      <point x="-78.75" y="-119.0" />
+      <point x="2426.5542200854698" y="2080.0" />
+      <point x="2330.5542200854698" y="2080.0" />
+      <point x="2330.5542200854698" y="2070.0" />
+      <point x="1801.6792200854698" y="2070.0" />
+      <point x="1801.6792200854698" y="730.0" />
+      <point x="2224.0986912393146" y="730.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Organization" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="69.75" y="-181.5" />
+      <point x="1673.92922008547" y="308.0" />
+      <point x="1671.17922008547" y="308.0" />
+      <point x="1671.17922008547" y="-103.0" />
+      <point x="1538.2236912393148" y="-103.0" />
+      <point x="1538.2236912393148" y="-113.0" />
+      <point x="684.3812767094017" y="-113.0" />
+      <point x="43.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.executor.WorkersDAOExecutor" target="ru.bardinpetr.itmo.lab5.common.executor.Executor" relationship="GENERALIZATION">
+      <point x="110.33333333333326" y="-69.0" />
+      <point x="1281.2625534188032" y="3624.0" />
+      <point x="3350.1666666666665" y="3624.0" />
+      <point x="0.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO" target="ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo" relationship="DEPENDENCY">
+      <point x="-132.0" y="-68.0" />
+      <point x="504.92922008547" y="3624.0" />
+      <point x="446.92922008547" y="3624.0" />
+      <point x="446.92922008547" y="3604.0" />
+      <point x="1672.2979433760684" y="3604.0" />
+      <point x="1672.2979433760684" y="1247.0" />
+      <point x="1604.17922008547" y="1247.0" />
+      <point x="0.0" y="231.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Position" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-131.5" />
+      <point x="1297.17922008547" y="-103.0" />
+      <point x="1538.2236912393148" y="-103.0" />
+      <point x="1538.2236912393148" y="-113.0" />
+      <point x="684.3812767094017" y="-113.0" />
+      <point x="43.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileStorageController" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" relationship="DEPENDENCY">
+      <point x="-99.5" y="-94.0" />
+      <point x="2689.2979433760684" y="1257.0" />
+      <point x="2568.7979433760684" y="1257.0" />
+      <point x="2568.7979433760684" y="730.0" />
+      <point x="2224.0986912393146" y="730.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileDBController" target="ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService" relationship="DEPENDENCY">
+      <point x="-78.75" y="-119.0" />
+      <point x="2426.5542200854698" y="2080.0" />
+      <point x="2330.5542200854698" y="2080.0" />
+      <point x="2330.5542200854698" y="2070.0" />
+      <point x="2333.0479433760684" y="2070.0" />
+      <point x="0.0" y="43.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+      <point x="-132.0" y="-68.0" />
+      <point x="504.92922008547" y="3624.0" />
+      <point x="446.92922008547" y="3624.0" />
+      <point x="446.92922008547" y="3604.0" />
+      <point x="121.11124465811804" y="3604.0" />
+      <point x="121.11124465811804" y="3087.0" />
+      <point x="392.26255341880324" y="3087.0" />
+      <point x="0.0" y="481.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.MainExecutor" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="DEPENDENCY">
+      <point x="-113.25" y="-43.0" />
+      <point x="2665.1792200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3805.0" />
+      <point x="3045.9166666666665" y="3805.0" />
+      <point x="0.0" y="143.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO" target="ru.bardinpetr.itmo.lab5.server.filedb.FileDBController" relationship="DEPENDENCY">
+      <point x="-132.0" y="-68.0" />
+      <point x="504.92922008547" y="3624.0" />
+      <point x="446.92922008547" y="3624.0" />
+      <point x="446.92922008547" y="3604.0" />
+      <point x="2467.6729433760684" y="3604.0" />
+      <point x="2467.6729433760684" y="3147.0" />
+      <point x="2510.5542200854698" y="3147.0" />
+      <point x="2510.5542200854698" y="3137.0" />
+      <point x="2584.0542200854698" y="3137.0" />
+      <point x="78.75" y="119.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileDBController" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" relationship="DEPENDENCY">
+      <point x="-78.75" y="-119.0" />
+      <point x="2426.5542200854698" y="2080.0" />
+      <point x="2330.5542200854698" y="2080.0" />
+      <point x="2330.5542200854698" y="2070.0" />
+      <point x="2579.2979433760684" y="2070.0" />
+      <point x="2579.2979433760684" y="720.0" />
+      <point x="2663.4166666666665" y="720.0" />
+      <point x="0.0" y="119.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+      <point x="46.0" y="-29.5" />
+      <point x="-22.743723290598155" y="3137.0" />
+      <point x="121.11124465811804" y="3137.0" />
+      <point x="121.11124465811804" y="3087.0" />
+      <point x="392.26255341880324" y="3087.0" />
+      <point x="0.0" y="481.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+      <point x="-119.66666666666674" y="-206.5" />
+      <point x="342.9445779914513" y="3147.0" />
+      <point x="-27.743723290598155" y="3147.0" />
+      <point x="-27.743723290598155" y="3127.0" />
+      <point x="121.11124465811804" y="3127.0" />
+      <point x="121.11124465811804" y="3087.0" />
+      <point x="392.26255341880324" y="3087.0" />
+      <point x="0.0" y="481.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileDBController" target="ru.bardinpetr.itmo.lab5.common.io.FileIOController" relationship="DEPENDENCY">
+      <point x="-78.75" y="-119.0" />
+      <point x="2426.5542200854698" y="2080.0" />
+      <point x="2330.5542200854698" y="2080.0" />
+      <point x="2330.5542200854698" y="2070.0" />
+      <point x="3087.6666666666665" y="2070.0" />
+      <point x="3087.6666666666665" y="1257.0" />
+      <point x="3354.6049679487164" y="1257.0" />
+      <point x="3354.6049679487164" y="1247.0" />
+      <point x="3369.8549679487164" y="1247.0" />
+      <point x="70.25" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO" target="ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo" relationship="DEPENDENCY">
+      <point x="-119.66666666666674" y="-206.5" />
+      <point x="342.9445779914513" y="3147.0" />
+      <point x="-27.743723290598155" y="3147.0" />
+      <point x="-27.743723290598155" y="3107.0" />
+      <point x="1604.17922008547" y="3107.0" />
+      <point x="0.0" y="231.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.ICollectionFilteredDAO" target="ru.bardinpetr.itmo.lab5.server.dao.ICollectionBaseDAO" relationship="INTERFACE_GENERALIZATION">
+      <point x="68.0" y="-54.5" />
+      <point x="803.2625534188032" y="2060.0" />
+      <point x="870.111244658118" y="2060.0" />
+      <point x="-63.25" y="167.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.SerDesService" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" relationship="DEPENDENCY">
+      <point x="0.0" y="-94.0" />
+      <point x="2357.6792200854698" y="730.0" />
+      <point x="2224.0986912393146" y="730.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO" target="java.util.Set" relationship="DEPENDENCY">
+      <point x="-119.66666666666674" y="-206.5" />
+      <point x="342.9445779914513" y="3147.0" />
+      <point x="-27.743723290598155" y="3147.0" />
+      <point x="-27.743723290598155" y="3107.0" />
+      <point x="-125.75" y="3107.0" />
+      <point x="-125.75" y="2080.0" />
+      <point x="-115.7763087606852" y="2080.0" />
+      <point x="-115.7763087606852" y="2060.0" />
+      <point x="-14.0" y="2060.0" />
+      <point x="85.0" y="379.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.MainExecutor" target="ru.bardinpetr.itmo.lab5.common.executor.Executor" relationship="GENERALIZATION">
+      <point x="113.25" y="-43.0" />
+      <point x="2891.6792200854698" y="3815.0" />
+      <point x="3350.1666666666665" y="3815.0" />
+      <point x="0.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO" target="ru.bardinpetr.itmo.lab5.models.data.Organization" relationship="DEPENDENCY">
+      <point x="81.0" y="-79.5" />
+      <point x="905.111244658118" y="3097.0" />
+      <point x="1790.6792200854698" y="3097.0" />
+      <point x="1790.6792200854698" y="730.0" />
+      <point x="1673.92922008547" y="730.0" />
+      <point x="69.75" y="181.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection" target="ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity" relationship="DEPENDENCY">
+      <point x="50.5" y="-15.5" />
+      <point x="36.25" y="2070.0" />
+      <point x="184.26255341880324" y="2070.0" />
+      <point x="184.26255341880324" y="1257.0" />
+      <point x="529.8486912393148" y="1257.0" />
+      <point x="529.8486912393148" y="1237.0" />
+      <point x="565.3486912393148" y="1237.0" />
+      <point x="46.25" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO" target="ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection" relationship="DEPENDENCY">
+      <point x="-119.66666666666674" y="-206.5" />
+      <point x="342.9445779914513" y="3147.0" />
+      <point x="-27.743723290598155" y="3147.0" />
+      <point x="-27.743723290598155" y="3107.0" />
+      <point x="36.25" y="3107.0" />
+      <point x="50.5" y="15.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.MainExecutor" target="ru.bardinpetr.itmo.lab5.server.filedb.FileDBController" relationship="DEPENDENCY">
+      <point x="-113.25" y="-43.0" />
+      <point x="2665.1792200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3137.0" />
+      <point x="2584.0542200854698" y="3137.0" />
+      <point x="78.75" y="119.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO" target="ru.bardinpetr.itmo.lab5.server.dao.ICollectionFilteredDAO" relationship="REALIZATION">
+      <point x="0.0" y="-206.5" />
+      <point x="462.61124465811804" y="3137.0" />
+      <point x="735.2625534188033" y="3137.0" />
+      <point x="0.0" y="54.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileStorageController" target="ru.bardinpetr.itmo.lab5.common.serdes.SerDesService" relationship="TO_ONE">
+      <point x="99.5" y="-94.0" />
+      <point x="2888.2979433760684" y="1237.0" />
+      <point x="2422.4292200854698" y="1237.0" />
+      <point x="64.75" y="94.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO" target="ru.bardinpetr.itmo.lab5.models.data.Position" relationship="DEPENDENCY">
+      <point x="81.0" y="-79.5" />
+      <point x="905.111244658118" y="3097.0" />
+      <point x="1367.0416666666667" y="3097.0" />
+      <point x="1367.0416666666667" y="2080.0" />
+      <point x="1345.42922008547" y="2080.0" />
+      <point x="48.25" y="131.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileDBController" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException" relationship="DEPENDENCY">
+      <point x="-78.75" y="-119.0" />
+      <point x="2426.5542200854698" y="2080.0" />
+      <point x="2330.5542200854698" y="2080.0" />
+      <point x="2330.5542200854698" y="2070.0" />
+      <point x="2010.1792200854698" y="2070.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.executor.Executor" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response" relationship="DEPENDENCY">
+      <point x="0.0" y="-144.0" />
+      <point x="3350.1666666666665" y="3137.0" />
+      <point x="3464.7236912393146" y="3137.0" />
+      <point x="0.0" y="294.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException.OperationType" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" relationship="INNER_CLASS">
+      <point x="-57.75" y="181.5" />
+      <point x="2581.3486912393146" y="308.0" />
+      <point x="2568.1666666666665" y="308.0" />
+      <point x="-95.25" y="-119.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Worker" target="ru.bardinpetr.itmo.lab5.models.data.Position" relationship="TO_ONE">
+      <point x="93.5" y="-481.5" />
+      <point x="485.76255341880324" y="2070.0" />
+      <point x="1291.7236912393148" y="2070.0" />
+      <point x="1291.7236912393148" y="2060.0" />
+      <point x="1248.92922008547" y="2060.0" />
+      <point x="-48.25" y="131.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.executor.Executor" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-144.0" />
+      <point x="3350.1666666666665" y="3137.0" />
+      <point x="3319.7236912393146" y="3137.0" />
+      <point x="3319.7236912393146" y="2080.0" />
+      <point x="3354.6049679487164" y="2080.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+      <point x="81.0" y="-79.5" />
+      <point x="905.111244658118" y="3117.0" />
+      <point x="121.11124465811804" y="3117.0" />
+      <point x="121.11124465811804" y="3087.0" />
+      <point x="392.26255341880324" y="3087.0" />
+      <point x="0.0" y="481.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Worker" target="ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity" relationship="REALIZATION">
+      <point x="-93.5" y="-481.5" />
+      <point x="298.76255341880324" y="2080.0" />
+      <point x="144.88755341880324" y="2080.0" />
+      <point x="144.88755341880324" y="2060.0" />
+      <point x="173.26255341880324" y="2060.0" />
+      <point x="173.26255341880324" y="1247.0" />
+      <point x="472.8486912393148" y="1247.0" />
+      <point x="-46.25" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.ICollectionBaseDAO" target="ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity" relationship="DEPENDENCY">
+      <point x="0.0" y="-167.0" />
+      <point x="933.361244658118" y="1247.0" />
+      <point x="529.8486912393148" y="1247.0" />
+      <point x="529.8486912393148" y="1237.0" />
+      <point x="565.3486912393148" y="1237.0" />
+      <point x="46.25" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.MainExecutor" target="ru.bardinpetr.itmo.lab5.server.executor.WorkersDAOExecutor" relationship="DEPENDENCY">
+      <point x="-113.25" y="-43.0" />
+      <point x="2665.1792200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3805.0" />
+      <point x="1170.9292200854698" y="3805.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO" target="ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO" relationship="REALIZATION">
+      <point x="132.0" y="-68.0" />
+      <point x="768.92922008547" y="3624.0" />
+      <point x="743.111244658118" y="3624.0" />
+      <point x="-81.0" y="79.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException.OperationType" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-181.5" />
+      <point x="2639.0986912393146" y="-103.0" />
+      <point x="1538.2236912393148" y="-103.0" />
+      <point x="1538.2236912393148" y="-113.0" />
+      <point x="684.3812767094017" y="-113.0" />
+      <point x="43.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO" target="ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection" relationship="DEPENDENCY">
+      <point x="-132.0" y="-68.0" />
+      <point x="504.92922008547" y="3624.0" />
+      <point x="446.92922008547" y="3624.0" />
+      <point x="446.92922008547" y="3614.0" />
+      <point x="-68.74372329059815" y="3614.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException.Type" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" relationship="INNER_CLASS">
+      <point x="42.0" y="81.5" />
+      <point x="2266.0986912393146" y="308.0" />
+      <point x="2284.8486912393146" y="308.0" />
+      <point x="60.75" y="-94.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-294.0" />
+      <point x="3464.7236912393146" y="2080.0" />
+      <point x="3354.6049679487164" y="2080.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO" target="java.lang.Comparable" relationship="DEPENDENCY">
+      <point x="-119.66666666666674" y="-206.5" />
+      <point x="342.9445779914513" y="3147.0" />
+      <point x="-27.743723290598155" y="3147.0" />
+      <point x="-27.743723290598155" y="3107.0" />
+      <point x="-237.0" y="3107.0" />
+      <point x="-237.0" y="-113.0" />
+      <point x="598.3812767094017" y="-113.0" />
+      <point x="-43.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException.Type" relationship="TO_ONE">
+      <point x="-60.75" y="-94.0" />
+      <point x="2163.3486912393146" y="308.0" />
+      <point x="2182.0986912393146" y="308.0" />
+      <point x="-42.0" y="81.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Worker" target="ru.bardinpetr.itmo.lab5.models.data.Organization" relationship="TO_ONE">
+      <point x="93.5" y="-481.5" />
+      <point x="485.76255341880324" y="2070.0" />
+      <point x="1291.7236912393148" y="2070.0" />
+      <point x="1291.7236912393148" y="2060.0" />
+      <point x="1417.67922008547" y="2060.0" />
+      <point x="1417.67922008547" y="730.0" />
+      <point x="1534.42922008547" y="730.0" />
+      <point x="-69.75" y="181.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileDBController" target="ru.bardinpetr.itmo.lab5.server.filedb.FileStorageController" relationship="TO_ONE">
+      <point x="78.75" y="-119.0" />
+      <point x="2584.0542200854698" y="2080.0" />
+      <point x="2788.7979433760684" y="2080.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.MainExecutor" target="ru.bardinpetr.itmo.lab5.common.io.FileIOController" relationship="DEPENDENCY">
+      <point x="-113.25" y="-43.0" />
+      <point x="2665.1792200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3805.0" />
+      <point x="3645.8042200854698" y="3805.0" />
+      <point x="3645.8042200854698" y="1257.0" />
+      <point x="3354.6049679487164" y="1257.0" />
+      <point x="3354.6049679487164" y="1247.0" />
+      <point x="3369.8549679487164" y="1247.0" />
+      <point x="70.25" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.ICollectionBaseDAO" target="ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo" relationship="DEPENDENCY">
+      <point x="0.0" y="-167.0" />
+      <point x="933.361244658118" y="1257.0" />
+      <point x="1604.17922008547" y="1257.0" />
+      <point x="0.0" y="231.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.MainExecutor" target="ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO" relationship="DEPENDENCY">
+      <point x="-113.25" y="-43.0" />
+      <point x="2665.1792200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3815.0" />
+      <point x="2510.5542200854698" y="3805.0" />
+      <point x="636.9292200854699" y="3805.0" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.filedb.FileStorageController" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" relationship="DEPENDENCY">
+      <point x="-99.5" y="-94.0" />
+      <point x="2689.2979433760684" y="1257.0" />
+      <point x="2568.7979433760684" y="1257.0" />
+      <point x="2568.7979433760684" y="720.0" />
+      <point x="2663.4166666666665" y="720.0" />
+      <point x="0.0" y="119.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO" target="ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO" relationship="GENERALIZATION">
+      <point x="0.0" y="-68.0" />
+      <point x="636.92922008547" y="3614.0" />
+      <point x="462.61124465811804" y="3614.0" />
+      <point x="0.0" y="206.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.40222684590386937" showDependencies="true" x="2246.7396961467894" y="805.9091963302753" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

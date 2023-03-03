@@ -1,4 +1,4 @@
-package utils;
+package ru.bardinpetr.itmo.lab5.common.tests.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

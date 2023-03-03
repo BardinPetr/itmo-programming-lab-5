@@ -1,3 +1,5 @@
+package ru.bardinpetr.itmo.lab5.common.tests;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;

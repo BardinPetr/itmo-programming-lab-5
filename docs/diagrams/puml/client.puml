@@ -1,0 +1,401 @@
+
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class CLIController {
+  + CLIController(View, InputStream, ICommandIOCallback): 
+  # cmdParser: CommandParser
+  # scanner: Scanner
+  # mapper: ObjectMapper
+  # viewer: View
+  # callback: ICommandIOCallback
+  + run(): void
+  - runScript(Response<ICommandResponse>): void
+}
+class Command {
+  + Command(): 
+  + getType(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + createResponse(): ICommandResponse
+  + getInteractArgs(): Field[]
+  + validate(): ValidationResponse
+  + getInlineArgs(): Field[]
+}
+class CommandParser {
+  + CommandParser(HashMap<String, Command>, ObjectMapper, Scanner, View): 
+  - cmdMap: HashMap<String, Command>
+  - viewer: View
+  - objectScanner: ObjectScanner
+  - mapper: ObjectMapper
+  - scanner: Scanner
+  + parse(): Command
+}
+class CommandRegister {
+  + CommandRegister(): 
+  - cmdList: Command[]
+  - map: HashMap<String, Command>
+  + getParser(ObjectMapper, Scanner, View): CommandParser
+  - addCommand(Command): void
+}
+class CommandScriptController {
+  + CommandScriptController(): 
+  - cmdRegister: CommandRegister
+  - mapper: ObjectMapper
+  + run(InputStream): List<Command>
+}
+class ConsolePrinter {
+  + ConsolePrinter(): 
+  + suggestInput(): void
+  + show(String): void
+  + showLine(String): void
+}
+class Exception {
+  + Exception(Throwable): 
+  + Exception(String, Throwable): 
+  + Exception(): 
+  # Exception(String, Throwable, boolean, boolean): 
+  + Exception(String): 
+  ~ serialVersionUID: long
+}
+class ExecuteScriptCommandResponse {
+  + ExecuteScriptCommandResponse(): 
+}
+class Executor {
+  + Executor(): 
+  + MAX_RECURSION_DEPTH: int
+  - operationMap: Map<Class<Command>, Operation<Command, ICommandResponse>>
+  - childExecutors: List<Executor>
+  + execute(Command): Response<ICommandResponse>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  # execute(Command, int): Response<ICommandResponse>
+  + registerExecutor(Executor): void
+  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+}
+class Field {
+  + Field(String, Class<?>): 
+  + Field(): 
+  - valueClass: Class<?>
+  - name: String
+  + getName(): String
+  + getValueClass(): Class<?>
+  + setName(String): void
+  + setValueClass(Class<?>): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+class FieldWithDesc<T> {
+  + FieldWithDesc(String, Class<T>, String, IValidator<T>, boolean): 
+  + FieldWithDesc(String, Class<T>, String, boolean): 
+  - promptMsg: String
+  - validator: IValidator<T>
+  - nullAble: boolean
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + getPromptMsg(): String
+  + getValidator(): IValidator<T>
+  + isNullAble(): boolean
+  + toString(): String
+}
+class FileAccessException {
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(File, OperationType): 
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
+  - path: String
+  - type: OperationType
+  + getType(): OperationType
+  + getPath(): String
+}
+class FileIOController {
+  + FileIOController(String): 
+  + write(byte[]): void
+  + clear(): void
+  + openWriteStream(): FileOutputStream
+  + read(): byte[]
+  + openReadStream(): FileInputStream
+}
+interface ICommandIOCallback << interface >> {
+  + callback(Command): Response<ICommandResponse>
+}
+interface ICommandResponse << interface >> {
+  + getUserMessage(): String
+}
+interface IValidator<T> << interface >> {
+  + validate(T): ValidationResponse
+}
+class LocalExecuteScriptCommand {
+  + LocalExecuteScriptCommand(): 
+  - fileName: String
+  + getType(): String
+  + createResponse(): LocalExecuteScriptCommandResponse
+  + getFileName(): String
+  + getInlineArgs(): Field[]
+}
+class LocalExecuteScriptCommandResponse {
+  + LocalExecuteScriptCommandResponse(List<Command>): 
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + getUserMessage(): String
+}
+class Main {
+  + Main(): 
+  + main(String[]): void
+}
+class ObjectMapperFactory {
+  + ObjectMapperFactory(): 
+  + createMapper(): ObjectMapper
+}
+class ObjectScanner {
+  + ObjectScanner(Scanner, View, ObjectMapper): 
+  - dataDescription: Map<Class<?>, List<FieldWithDesc<?>>>
+  - viewer: View
+  - scanner: Scanner
+  - mapper: ObjectMapper
+  - scan(): String?
+  - interactValue(Class<T>): T
+  + scan(Class<T>): T
+}
+enum OperationType << enumeration >> {
+  - OperationType(String): 
+  - OperationType(): 
+  - description: String
+  + PERM_READ: 
+  + PERM_WRITE: 
+  + CREATE: 
+  + WRITE: 
+  + SET_PERMISSION: 
+  + OPEN: 
+  + READ: 
+  + values(): OperationType[]
+  + getDescription(): String
+  + valueOf(String): OperationType
+}
+class ParserException {
+  + ParserException(String): 
+}
+class Response<T> {
+  + Response(boolean, boolean, String, T): 
+  + Response(): 
+  - text: String
+  - success: boolean
+  - resolved: boolean
+  - payload: T
+  + getText(): String
+  + isSuccess(): boolean
+  + isResolved(): boolean
+  + hashCode(): int
+  + equals(Object): boolean
+  + getPayload(): T
+  # canEqual(Object): boolean
+  + setSuccess(boolean): void
+  + setResolved(boolean): void
+  + setText(String): void
+  + setPayload(T): void
+  + toString(): String
+  + noResolve(): Response<T>
+  + error(String): Response<T>
+  + success(T): Response<T>
+  + error(Exception): Response<T>
+}
+class RuntimeException {
+  # RuntimeException(String, Throwable, boolean, boolean): 
+  + RuntimeException(): 
+  + RuntimeException(String): 
+  + RuntimeException(String, Throwable): 
+  + RuntimeException(Throwable): 
+  ~ serialVersionUID: long
+}
+class RussianText {
+  + RussianText(): 
+  - textList: Map<TextKeys, String>
+  {static} + get(TextKeys): String
+}
+class ScriptExecuteException {
+  + ScriptExecuteException(String): 
+}
+class ScriptExecutor {
+  + ScriptExecutor(): 
+  - scriptController: CommandScriptController
+  - fileInputStream(LocalExecuteScriptCommand): FileInputStream
+  - executeScript(LocalExecuteScriptCommand, Set<String>): LocalExecuteScriptCommandResponse
+}
+class ServerExecuteScriptCommand {
+  + ServerExecuteScriptCommand(): 
+  + ServerExecuteScriptCommand(List<Command>): 
+  - commands: List<Command>
+  + createResponse(): ExecuteScriptCommandResponse
+  + getCommands(): List<Command>
+  + setCommands(List<Command>): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + getType(): String
+}
+enum TextKeys << enumeration >> {
+  + TextKeys(): 
+  + COORDINATESINTERACT: 
+  + COORXINTERACT: 
+  + HELP: 
+  + NAMEINTERACT: 
+  + COORYINTERACT: 
+  + ORGANIZATIONINTERACT: 
+  + SALARYINTERACT: 
+  + ORGANISATIONTYPEINTERACT: 
+  + ENDNDATEINTERACT: 
+  + STARTDAYINTERACT: 
+  + POSITIONINTERACT: 
+  + GREEETING: 
+  + WORKERINTERACT: 
+  + ORGANISATIONNAMEINTERACT: 
+  + values(): TextKeys[]
+  + valueOf(String): TextKeys
+}
+class UIExecutor {
+  + UIExecutor(): 
+}
+class ValidationResponse {
+  + ValidationResponse(boolean, String): 
+  - allowed: boolean
+  - msg: String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + isAllowed(): boolean
+  + getMsg(): String
+  + setAllowed(boolean): void
+  + setMsg(String): void
+  + toString(): String
+}
+class ValueDeserializer {
+  + ValueDeserializer(): 
+  - mapper: ObjectMapper
+  + deserialize(Class<K>, String): K
+}
+interface View << interface >> {
+  + suggestInput(): void
+  + show(String): void
+  + showLine(String): void
+}
+
+CLIController                      ..>  Command                           
+CLIController                     "1" *--> "cmdParser\n1" CommandParser                     
+CLIController                      ..>  CommandRegister                   
+CLIController                      ..>  ExecuteScriptCommandResponse      
+CLIController                     "1" *--> "callback\n1" ICommandIOCallback                
+CLIController                      ..>  ICommandResponse                  
+CLIController                      ..>  LocalExecuteScriptCommand         
+CLIController                      ..>  LocalExecuteScriptCommandResponse 
+CLIController                      ..>  ObjectMapperFactory               
+CLIController                      ..>  ParserException                   
+CLIController                      ..>  Response                          
+CLIController                      ..>  RussianText                       
+CLIController                      ..>  TextKeys                          
+CLIController                     "1" *--> "viewer\n1" View                              
+Command                            ..>  Field                             
+Command                            ..>  ICommandResponse                  
+Command                            ..>  ValidationResponse                
+CommandParser                     "1" *--> "cmdMap\n*" Command                           
+CommandParser                      ..>  Field                             
+CommandParser                     "1" *--> "objectScanner\n1" ObjectScanner                     
+CommandParser                      ..>  ParserException                   
+CommandParser                      ..>  ValueDeserializer                 
+CommandParser                     "1" *--> "viewer\n1" View                              
+CommandRegister                   "1" *--> "cmdList\n*" Command                           
+CommandRegister                    ..>  CommandParser                     
+CommandRegister                    ..>  LocalExecuteScriptCommand         
+CommandRegister                    ..>  View                              
+CommandScriptController            ..>  Command                           
+CommandScriptController            ..>  CommandParser                     
+CommandScriptController           "1" *--> "cmdRegister\n1" CommandRegister                   
+CommandScriptController            ..>  ObjectMapperFactory               
+CommandScriptController            ..>  ParserException                   
+CommandScriptController            ..>  ScriptExecuteException            
+CommandScriptController            ..>  View                              
+ConsolePrinter                     ..^  View                              
+ExecuteScriptCommandResponse       ..^  ICommandResponse                  
+ExecuteScriptCommandResponse       ..>  Response                          
+ExecuteScriptCommandResponse       +--  ServerExecuteScriptCommand        
+Executor                           ..>  Command                           
+Executor                           ..>  Exception                         
+Executor                           ..>  ICommandResponse                  
+Executor                           ..>  Response                          
+Executor                           ..>  ValidationResponse                
+FieldWithDesc                      --^  Field                             
+FieldWithDesc                     "1" *--> "validator\n1" IValidator                        
+FieldWithDesc                      ..>  ValidationResponse                
+FileAccessException                --^  Exception                         
+FileAccessException               "1" *--> "type\n1" OperationType                     
+FileIOController                   ..>  FileAccessException               
+ICommandIOCallback                 ..>  Command                           
+ICommandIOCallback                 ..>  ICommandResponse                  
+ICommandIOCallback                 ..>  Response                          
+IValidator                         ..>  ValidationResponse                
+LocalExecuteScriptCommand          --^  Command                           
+LocalExecuteScriptCommand          ..>  Field                             
+LocalExecuteScriptCommand          ..>  LocalExecuteScriptCommandResponse 
+LocalExecuteScriptCommandResponse  ..>  Command                           
+LocalExecuteScriptCommandResponse  ..^  ICommandResponse                  
+LocalExecuteScriptCommandResponse  +--  LocalExecuteScriptCommand         
+LocalExecuteScriptCommandResponse  --^  ServerExecuteScriptCommand        
+Main                               ..>  CLIController                     
+Main                               ..>  ConsolePrinter                    
+Main                               ..>  Executor                          
+Main                               ..>  FileAccessException               
+Main                               ..>  FileIOController                  
+Main                               ..>  ScriptExecutor                    
+Main                               ..>  UIExecutor                        
+Main                               ..>  View                              
+ObjectScanner                      ..>  Field                             
+ObjectScanner                      ..>  FieldWithDesc                     
+ObjectScanner                      ..>  IValidator                        
+ObjectScanner                      ..>  ParserException                   
+ObjectScanner                      ..>  ValidationResponse                
+ObjectScanner                     "1" *--> "viewer\n1" View                              
+OperationType                      +--  FileAccessException               
+ParserException                    --^  Exception                         
+Response                           ..>  Exception                         
+Response                           ..>  ICommandResponse                  
+RuntimeException                   --^  Exception                         
+RussianText                       "1" *--> "textList\n*" TextKeys                          
+ScriptExecuteException             --^  RuntimeException                  
+ScriptExecutor                     ..>  Command                           
+ScriptExecutor                    "1" *--> "scriptController\n1" CommandScriptController           
+ScriptExecutor                     --^  Executor                          
+ScriptExecutor                     ..>  LocalExecuteScriptCommand         
+ScriptExecutor                     ..>  LocalExecuteScriptCommandResponse 
+ScriptExecutor                     ..>  RuntimeException                  
+ServerExecuteScriptCommand         --^  Command                           
+ServerExecuteScriptCommand        "1" *--> "commands\n*" Command                           
+ServerExecuteScriptCommand         ..>  ExecuteScriptCommandResponse      
+UIExecutor                         --^  Executor                          
+UIExecutor                         ..>  RussianText                       
+UIExecutor                         ..>  TextKeys                          
+@enduml

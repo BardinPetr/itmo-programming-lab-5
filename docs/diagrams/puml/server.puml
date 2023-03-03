@@ -1,0 +1,457 @@
+
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+'skinparam CircledCharacterFontSize 0
+'skinparam CircledCharacterRadius 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class CollectionInfo {
+  + CollectionInfo(String, String, LocalDateTime, Integer): 
+  - itemsCount: Integer
+  - name: String
+  - type: String
+  - initializationDate: LocalDateTime
+  + setInitializationDate(LocalDateTime): void
+  + getName(): String
+  + toString(): String
+  + getType(): String
+  + getInitializationDate(): LocalDateTime
+  + getItemsCount(): Integer
+  + setName(String): void
+  + setType(String): void
+  + setItemsCount(Integer): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+}
+class Command {
+  + Command(): 
+  + getType(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + createResponse(): ICommandResponse
+  + getInteractArgs(): Field[]
+  + validate(): ValidationResponse
+  + getInlineArgs(): Field[]
+}
+interface Comparable<T> << interface >> {
+  + compareTo(T): int
+}
+class Coordinates {
+  + Coordinates(Integer, float): 
+  + Coordinates(): 
+  - y: float
+  - x: Integer
+  + getX(): Integer
+  + getY(): float
+  + setX(Integer): void
+  + setY(float): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + compareTo(Coordinates): int
+}
+class Executor {
+  + Executor(): 
+  + MAX_RECURSION_DEPTH: int
+  - operationMap: Map<Class<Command>, Operation<Command, ICommandResponse>>
+  - childExecutors: List<Executor>
+  + execute(Command): Response<ICommandResponse>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  # execute(Command, int): Response<ICommandResponse>
+  + registerExecutor(Executor): void
+  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+}
+class FileAccessException {
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(File, OperationType): 
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
+  - path: String
+  - type: OperationType
+  + getType(): OperationType
+  + getPath(): String
+}
+class FileDBController<T> {
+  + FileDBController(FileIOController, Class<T>): 
+  - storage: FileStorageController<T>
+  - baseCollectionClass: Class<T>
+  - collection: T
+  + store(): boolean
+  + clear(): boolean
+  + load(): boolean
+  + data(): T
+}
+class FileDBDAO<K, V> {
+  + FileDBDAO(FileDBController<ISetCollection<K, V>>): 
+  - controller: FileDBController<ISetCollection<K, V>>
+  + read(K): V
+  + add(V): K
+  - asStream(): Stream<V>
+  + clear(): void
+  + getMax(): V
+  + getCollectionInfo(): CollectionInfo
+  + getMin(): V
+  + readAll(): List<V>
+  + remove(K): boolean
+  + readAll(Comparator<V>): List<V>
+  + update(K, V): void
+  + save(): void
+  + nextPrimaryKey(): K
+}
+entity FileDBInfo << record >> {
+  + FileDBInfo(String, LocalDateTime): 
+  - filePath: String
+  - creationDate: LocalDateTime
+  + filePath(): String
+  + creationDate(): LocalDateTime
+}
+class FileDBWorkersDAO {
+  + FileDBWorkersDAO(FileDBController<WorkerCollection>): 
+  + nextPrimaryKey(): Integer
+  + getCollectionInfo(): CollectionInfo
+  + add(Worker): Integer
+}
+class FileIOController {
+  + FileIOController(String): 
+  + write(byte[]): void
+  + clear(): void
+  + openWriteStream(): FileOutputStream
+  + read(): byte[]
+  + openReadStream(): FileInputStream
+}
+class FileStorageController<T> {
+  + FileStorageController(FileIOController, SerDesService<T>): 
+  - serDesService: SerDesService<T>
+  - file: FileIOController
+  + loadObject(): T
+  + clear(): void
+  + storeObject(T): void
+}
+interface ICollectionBaseDAO<K, V> << interface >> {
+  + getCollectionInfo(): CollectionInfo
+  + readAll(): List<V>
+  + add(V): K
+  + getMax(): V
+  + readAll(Comparator<V>): List<V>
+  + getMin(): V
+  + remove(K): boolean
+  + clear(): void
+  + save(): void
+  + update(K, V): void
+  + read(K): V
+  + nextPrimaryKey(): K
+}
+interface ICollectionFilteredDAO<K, V> << interface >> {
+  + remove(Predicate<V>): void
+  + filter(Predicate<V>): List<V>
+  + getMapped(Function<V, T>): List<T>
+}
+interface ICommandResponse << interface >> {
+  + getUserMessage(): String
+}
+interface IKeyedEntity<K> << interface >> {
+  + getPrimaryKey(): K
+  + setPrimaryKey(K): void
+}
+interface ISetCollection<K, V> << interface >>
+interface IWorkerCollectionDAO << interface >> {
+  + filterLessThanPosition(Position): List<Worker>
+  + addIfMax(Worker): void
+  + addIfMin(Worker): void
+  + removeIfGreater(Worker): void
+  + getUniqueOrganizations(): Set<Organization>
+}
+class InvalidDataFileException {
+  + InvalidDataFileException(String, byte[], SerDesException): 
+  - path: String
+  - contents: byte[]
+  + getPath(): String
+  + getContents(): byte[]
+}
+class MainExecutor {
+  + MainExecutor(FileIOController): 
+  - processScript(ServerExecuteScriptCommand): ICommandResponse
+}
+enum OperationType << enumeration >> {
+  - OperationType(String): 
+  - OperationType(): 
+  - description: String
+  + PERM_READ: 
+  + PERM_WRITE: 
+  + CREATE: 
+  + WRITE: 
+  + SET_PERMISSION: 
+  + OPEN: 
+  + READ: 
+  + values(): OperationType[]
+  + getDescription(): String
+  + valueOf(String): OperationType
+}
+class Organization {
+  + Organization(String, OrganizationType): 
+  + Organization(): 
+  ~ fullName: String
+  ~ type: OrganizationType
+  + compareTo(Organization): int
+  + getFullName(): String
+  + getType(): OrganizationType
+  + setFullName(String): void
+  + setType(OrganizationType): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+enum OrganizationType << enumeration >> {
+  - OrganizationType(int): 
+  + PUBLIC: 
+  - value: int
+  + COMMERCIAL: 
+  + PRIVATE_LIMITED_COMPANY: 
+  + OPEN_JOINT_STOCK_COMPANY: 
+  + getValue(): int
+  + values(): OrganizationType[]
+  + valueOf(String): OrganizationType
+}
+enum Position << enumeration >> {
+  - Position(int): 
+  + CLEANER: 
+  + ENGINEER: 
+  + LEAD_DEVELOPER: 
+  + HEAD_OF_DEPARTMENT: 
+  + value: int
+  + MANAGER_OF_CLEANING: 
+  + valueOf(String): Position
+  + values(): Position[]
+}
+class Response<T> {
+  + Response(boolean, boolean, String, T): 
+  + Response(): 
+  - text: String
+  - success: boolean
+  - resolved: boolean
+  - payload: T
+  + getText(): String
+  + isSuccess(): boolean
+  + equals(Object): boolean
+  + isResolved(): boolean
+  + getPayload(): T
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + setSuccess(boolean): void
+  + setResolved(boolean): void
+  + setText(String): void
+  + toString(): String
+  + setPayload(T): void
+  + noResolve(): Response<T>
+  + error(String): Response<T>
+  + success(T): Response<T>
+  + error(Exception): Response<T>
+}
+class SerDesException {
+  + SerDesException(Type, Exception): 
+  - direction: Type
+  - internalException: Exception
+  + getDirection(): Type
+  + getInternalException(): Exception
+  + toString(): String
+}
+class SerDesService<T> {
+  + SerDesService(Class<T>): 
+  - mapper: ObjectMapper
+  - baseClass: Class<T>
+  + serialize(T): byte[]
+  # getObjectMapper(): ObjectMapper
+  + deserialize(byte[]): T
+}
+interface Set<E> << interface >> {
+  + size(): int
+  + of(E, E, E, E, E, E, E, E, E, E): Set<E>
+  + of(E): Set<E>
+  + toArray(T[]): T[]
+  + remove(Object): boolean
+  + containsAll(Collection<?>): boolean
+  + of(): Set<E>
+  + hashCode(): int
+  + isEmpty(): boolean
+  + add(E): boolean
+  + retainAll(Collection<?>): boolean
+  + iterator(): Iterator<E>
+  + of(E, E, E, E, E, E, E, E): Set<E>
+  + of(E[]): Set<E>
+  + clear(): void
+  + of(E, E, E, E, E, E, E): Set<E>
+  + spliterator(): Spliterator<E>
+  + removeAll(Collection<?>): boolean
+  + toArray(): Object[]
+  + of(E, E, E, E): Set<E>
+  + equals(Object): boolean
+  + of(E, E, E, E, E, E, E, E, E): Set<E>
+  + addAll(Collection<E>): boolean
+  + of(E, E, E, E, E, E): Set<E>
+  + copyOf(Collection<E>): Set<E>
+  + contains(Object): boolean
+  + of(E, E): Set<E>
+  + of(E, E, E): Set<E>
+  + of(E, E, E, E, E): Set<E>
+}
+enum Type << enumeration >> {
+  + Type(): 
+  + SERIALIZE: 
+  + DESERIALIZE: 
+  + values(): Type[]
+  + valueOf(String): Type
+}
+class Worker {
+  + Worker(Integer, ZonedDateTime, String, Coordinates, float, Date, Organization, LocalDate, Position): 
+  + Worker(): 
+  - id: Integer
+  - salary: float
+  - endDate: LocalDate
+  - coordinates: Coordinates
+  - organization: Organization
+  - position: Position
+  - nextId: Integer
+  - startDate: Date
+  - name: String
+  - creationDate: ZonedDateTime
+  + getCreationDate(): ZonedDateTime
+  + getId(): Integer
+  + getName(): String
+  + setSalary(float): void
+  + setEndDate(LocalDate): void
+  + getCoordinates(): Coordinates
+  + setPosition(Position): void
+  + getSalary(): float
+  + getStartDate(): Date
+  + getOrganization(): Organization
+  + withId(Integer): Worker
+  + withCreationDate(ZonedDateTime): Worker
+  + getEndDate(): LocalDate
+  + toString(): String
+  + getPosition(): Position
+  + setStartDate(Date): void
+  + setCoordinates(Coordinates): void
+  + setOrganization(Organization): void
+  + setName(String): void
+  + nicePrintFormat(List<Worker>): String
+  + compareTo(Worker): int
+  + getPrimaryKey(): Integer
+  + setPrimaryKey(Integer): void
+  + equals(Object): boolean
+  + getComparator(): Comparator<Worker>
+}
+class WorkerCollection {
+  + WorkerCollection(): 
+}
+class WorkersDAOExecutor {
+  + WorkersDAOExecutor(IWorkerCollectionDAO): 
+  - dao: IWorkerCollectionDAO
+  - registerCRUD(): void
+  - registerComplex(): void
+}
+class XMLSerDesService<T> {
+  + XMLSerDesService(Class<T>): 
+  # getObjectMapper(): ObjectMapper
+}
+
+Command                   ..>  ICommandResponse         
+Coordinates               ..^  Comparable               
+Executor                  ..>  Command                  
+Executor                  ..>  ICommandResponse         
+Executor                  ..>  Response                 
+FileAccessException      "1" *--> "type\n1" OperationType            
+FileDBController          ..>  FileAccessException      
+FileDBController          ..>  FileIOController         
+FileDBController         "1" *--> "storage\n1" FileStorageController    
+FileDBController          ..>  InvalidDataFileException 
+FileDBController          ..>  SerDesException          
+FileDBController          ..>  XMLSerDesService         
+FileDBDAO                 ..>  CollectionInfo           
+FileDBDAO                 ..>  Comparable               
+FileDBDAO                "1" *--> "controller\n1" FileDBController         
+FileDBDAO                 ..^  ICollectionFilteredDAO   
+FileDBDAO                 ..>  IKeyedEntity             
+FileDBDAO                 ..>  ISetCollection           
+FileDBDAO                 ..>  Set                      
+FileDBDAO                 ..>  Worker                   
+FileDBWorkersDAO          ..>  CollectionInfo           
+FileDBWorkersDAO          ..>  FileDBController         
+FileDBWorkersDAO          --^  FileDBDAO                
+FileDBWorkersDAO          ..>  ICollectionFilteredDAO   
+FileDBWorkersDAO          ..^  IWorkerCollectionDAO     
+FileDBWorkersDAO          ..>  Worker                   
+FileDBWorkersDAO          ..>  WorkerCollection         
+FileIOController          ..>  FileAccessException      
+FileStorageController     ..>  FileAccessException      
+FileStorageController    "1" *--> "file\n1" FileIOController         
+FileStorageController     ..>  InvalidDataFileException 
+FileStorageController     ..>  SerDesException          
+FileStorageController    "1" *--> "serDesService\n1" SerDesService            
+ICollectionBaseDAO        ..>  CollectionInfo           
+ICollectionBaseDAO        ..>  IKeyedEntity             
+ICollectionFilteredDAO    --^  ICollectionBaseDAO       
+ICollectionFilteredDAO    ..>  IKeyedEntity             
+ISetCollection            ..>  IKeyedEntity             
+ISetCollection            --^  Set                      
+IWorkerCollectionDAO      ..>  ICollectionBaseDAO       
+IWorkerCollectionDAO      --^  ICollectionFilteredDAO   
+IWorkerCollectionDAO      ..>  Organization             
+IWorkerCollectionDAO      ..>  Position                 
+IWorkerCollectionDAO      ..>  Set                      
+IWorkerCollectionDAO      ..>  Worker                   
+InvalidDataFileException  ..>  SerDesException          
+MainExecutor              ..>  Command                  
+MainExecutor              --^  Executor                 
+MainExecutor              ..>  FileDBController         
+MainExecutor              ..>  FileDBWorkersDAO         
+MainExecutor              ..>  FileIOController         
+MainExecutor              ..>  ICommandResponse         
+MainExecutor              ..>  WorkerCollection         
+MainExecutor              ..>  WorkersDAOExecutor       
+OperationType             ..^  Comparable               
+OperationType             +--  FileAccessException      
+Organization              ..^  Comparable               
+Organization             "1" *--> "type\n1" OrganizationType         
+OrganizationType          ..^  Comparable               
+Position                  ..^  Comparable               
+Response                  ..>  ICommandResponse         
+SerDesException          "1" *--> "direction\n1" Type                     
+SerDesService             ..>  SerDesException          
+Type                      ..^  Comparable               
+Type                      +--  SerDesException          
+Worker                    ..^  Comparable               
+Worker                   "1" *--> "coordinates\n1" Coordinates              
+Worker                    ..^  IKeyedEntity             
+Worker                   "1" *--> "organization\n1" Organization             
+Worker                   "1" *--> "position\n1" Position                 
+WorkerCollection          ..^  ISetCollection           
+WorkerCollection          ..^  Set                      
+WorkerCollection          ..>  Worker                   
+WorkersDAOExecutor        --^  Executor                 
+WorkersDAOExecutor        ..>  ICollectionBaseDAO       
+WorkersDAOExecutor       "1" *--> "dao\n1" IWorkerCollectionDAO     
+XMLSerDesService          --^  SerDesService            
+@enduml

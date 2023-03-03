@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/petr/Desktop/itmo-programming-lab-5/models</OriginalElement>
+  <nodes>
+    <node x="7300.283045977006" y="-80.0">ru.bardinpetr.itmo.lab5.models.data.Coordinates</node>
+    <node x="4856.749999999999" y="-80.0">ru.bardinpetr.itmo.lab5.models.data.Organization</node>
+    <node x="5661.817267502612" y="1265.5">ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc</node>
+    <node x="2019.249999999999" y="1953.0">ru.bardinpetr.itmo.lab5.models.commands.InfoCommand.InfoCommandResponse</node>
+    <node x="2387.7497387669746" y="1316.5">ru.bardinpetr.itmo.lab5.models.commands.ExitCommand</node>
+    <node x="5720.541405433642" y="-55.0">ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse</node>
+    <node x="5165.749999999999" y="-67.5">ru.bardinpetr.itmo.lab5.models.fields.Field</node>
+    <node x="5944.442267502612" y="1827.0">ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand</node>
+    <node x="6755.408045977006" y="1305.0">ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation</node>
+    <node x="5328.442267502612" y="1852.0">ru.bardinpetr.itmo.lab5.models.commands.AddCommand</node>
+    <node x="2833.7497387669746" y="1316.5">ru.bardinpetr.itmo.lab5.models.commands.ClearCommand</node>
+    <node x="1724.1589602925806" y="627.5">ru.bardinpetr.itmo.lab5.models.commands.base.Command</node>
+    <node x="5473.624738766975" y="22.0">ru.bardinpetr.itmo.lab5.models.data.Position</node>
+    <node x="1727.7497387669746" y="1228.0">ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo</node>
+    <node x="5656.442267502612" y="1864.5">ru.bardinpetr.itmo.lab5.models.commands.RemoveGreaterCommand</node>
+    <node x="6550.408045977006" y="1381.0">ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection</node>
+    <node x="830.9999999999991" y="1992.5">ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse</node>
+    <node x="2898.749999999999" y="1979.0">ru.bardinpetr.itmo.lab5.models.commands.PrintDescendingCommand.PrintDescendingCommandResponse</node>
+    <node x="3462.7497387669746" y="1316.5">ru.bardinpetr.itmo.lab5.models.commands.HelpCommand</node>
+    <node x="4671.858672936254" y="2269.0">ru.bardinpetr.itmo.lab5.models.commands.ShowCommand</node>
+    <node x="4979.317267502612" y="716.0">ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidation</node>
+    <node x="7721.499999999999" y="48.0">ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity</node>
+    <node x="3865.5330459770057" y="1265.5">ru.bardinpetr.itmo.lab5.models.commands.RemoveByIdCommand</node>
+    <node x="5770.541405433642" y="-380.5">java.lang.Comparable</node>
+    <node x="2058.7497387669746" y="1304.0">ru.bardinpetr.itmo.lab5.models.commands.InfoCommand</node>
+    <node x="980.9997387669746" y="1341.5">ru.bardinpetr.itmo.lab5.models.commands.AddCommand.AddCommandResponse</node>
+    <node x="701.9997387669746" y="1341.5">ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse</node>
+    <node x="1235.9997387669746" y="1265.5">ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand</node>
+    <node x="7751.749999999999" y="756.0">ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection</node>
+    <node x="4710.442006269587" y="1979.0">ru.bardinpetr.itmo.lab5.models.commands.ShowCommand.ShowCommandResponse</node>
+    <node x="2405.1922675026117" y="2280.5">ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand</node>
+    <node x="-204.0" y="526.5">ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response</node>
+    <node x="4815.999999999999" y="-299.0">ru.bardinpetr.itmo.lab5.models.data.OrganizationType</node>
+    <node x="2610.7497387669746" y="1316.5">ru.bardinpetr.itmo.lab5.models.commands.SaveCommand</node>
+    <node x="3056.7497387669746" y="1304.0">ru.bardinpetr.itmo.lab5.models.commands.PrintDescendingCommand</node>
+    <node x="5322.317267502612" y="716.0">WorkerValidationTest</node>
+    <node x="5003.442267502612" y="1979.0">ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand.FilterLessPosCommandResponse</node>
+    <node x="4300.567267502612" y="1253.0">ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand</node>
+    <node x="5354.442006269587" y="2281.5">ru.bardinpetr.itmo.lab5.models.commands.AddIfMaxCommand</node>
+    <node x="335.53396029258056" y="48.0">ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse</node>
+    <node x="5988.067267502612" y="389.0">ru.bardinpetr.itmo.lab5.models.data.Worker</node>
+    <node x="7330.249738766975" y="703.5">ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidation</node>
+    <node x="1328.916666666666" y="1928.0">ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse</node>
+    <node x="274.9997387669746" y="1304.0">ru.bardinpetr.itmo.lab5.models.commands.UniqueOrganisationCommand</node>
+    <node x="6074.067267502612" y="1367.5">ru.bardinpetr.itmo.lab5.models.data.utils.WorkerComparator</node>
+    <node x="5729.317267502612" y="742.0">ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator</node>
+    <node x="230.66640543364156" y="702.5">ru.bardinpetr.itmo.lab5.models.commands.UniqueOrganisationCommand.UniqueOrganisationCommandResponse</node>
+    <node x="5580.442006269587" y="2281.5">ru.bardinpetr.itmo.lab5.models.commands.AddIfMinCommand</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UniqueOrganisationCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="135.66666666666652" y="-106.5" />
+      <point x="614.1664054336411" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.PrintDescendingCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="0.0" y="-106.5" />
+      <point x="3249.7497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Coordinates" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-4.5977005356689915E-5" y="-157.5" />
+      <point x="7409.783" y="-107.0" />
+      <point x="5690.0" y="-107.00000000000003" />
+      <point x="5690.0" y="-351.0" />
+      <point x="-86.00040543364139" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ShowCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="105.33333333333348" y="-106.5" />
+      <point x="4935.192006269587" y="2248.0" />
+      <point x="4967.942006269587" y="2248.0" />
+      <point x="4967.942006269587" y="1735.0" />
+      <point x="3833.0330459770057" y="1735.0" />
+      <point x="3833.0330459770057" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.PrintDescendingCommand.PrintDescendingCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.PrintDescendingCommand" relationship="INNER_CLASS">
+      <point x="0.0" y="-43.0" />
+      <point x="3064.749999999999" y="1805.0" />
+      <point x="3153.2497387669746" y="1805.0" />
+      <point x="-96.5" y="106.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="DEPENDENCY">
+      <point x="132.0" y="-94.0" />
+      <point x="1658.916666666666" y="1805.0" />
+      <point x="1717.2497387669746" y="1805.0" />
+      <point x="1717.2497387669746" y="1196.0" />
+      <point x="1868.1589602925806" y="1196.0" />
+      <point x="0.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UniqueOrganisationCommand.UniqueOrganisationCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="REALIZATION">
+      <point x="-90.0" y="-69.0" />
+      <point x="320.66640543364156" y="367.0" />
+      <point x="625.4836729362542" y="367.0" />
+      <point x="625.4836729362542" y="297.0" />
+      <point x="493.78396029258056" y="297.0" />
+      <point x="52.75" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidation" target="ru.bardinpetr.itmo.lab5.models.data.Organization" relationship="DEPENDENCY">
+      <point x="0.0" y="-55.5" />
+      <point x="5140.317267502612" y="317.0" />
+      <point x="4928.999999999999" y="317.0" />
+      <point x="-72.25" y="157.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection" target="ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection" relationship="REALIZATION">
+      <point x="46.0" y="-29.5" />
+      <point x="6688.408045977006" y="1206.0" />
+      <point x="7852.749999999999" y="1206.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand.FilterLessPosCommandResponse" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+      <point x="101.66666666666652" y="-43.0" />
+      <point x="5257.608934169279" y="1805.0" />
+      <point x="4762.567006269587" y="1805.0" />
+      <point x="4762.567006269587" y="1645.0" />
+      <point x="6063.567267502612" y="1645.0" />
+      <point x="6063.567267502612" y="1206.0" />
+      <point x="6150.442006269587" y="1206.0" />
+      <point x="6150.442006269587" y="1176.0" />
+      <point x="6087.567267502612" y="1176.0" />
+      <point x="-99.5" y="382.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.OrganizationType" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="23.00000000000091" y="82.5" />
+      <point x="4962.5" y="-107.0" />
+      <point x="5690.0" y="-107.00000000000003" />
+      <point x="5690.0" y="-351.0" />
+      <point x="-86.00040543364139" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Worker" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-199.00026750261168" y="47.0" />
+      <point x="5690.0" y="818.5" />
+      <point x="5690.0" y="-351.0" />
+      <point x="-86.00040543364139" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UniqueOrganisationCommand.UniqueOrganisationCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.UniqueOrganisationCommand" relationship="INNER_CLASS">
+      <point x="-90.0" y="69.0" />
+      <point x="320.66640543364156" y="1206.0" />
+      <point x="342.8330721003081" y="1206.0" />
+      <point x="-135.66666666666652" y="-106.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.utils.WorkerComparator" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+      <point x="0.0" y="-43.0" />
+      <point x="6187.067267502612" y="1206.0" />
+      <point x="6150.442006269587" y="1206.0" />
+      <point x="6150.442006269587" y="1176.0" />
+      <point x="6087.567267502612" y="1176.0" />
+      <point x="-99.5" y="382.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ExitCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="0.0" y="-94.0" />
+      <point x="2489.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand" target="ru.bardinpetr.itmo.lab5.models.fields.Field" relationship="DEPENDENCY">
+      <point x="0.0" y="-95.0" />
+      <point x="2604.1922675026117" y="2238.0" />
+      <point x="3491.624999999999" y="2238.0" />
+      <point x="3491.624999999999" y="1795.0" />
+      <point x="4167.783045977006" y="1795.0" />
+      <point x="4167.783045977006" y="367.0" />
+      <point x="4620.499738766975" y="367.0" />
+      <point x="4620.499738766975" y="277.0" />
+      <point x="5216.499999999999" y="277.0" />
+      <point x="-50.75" y="145.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse" relationship="GENERALIZATION">
+      <point x="0.0" y="-29.5" />
+      <point x="985.4999999999991" y="1725.0" />
+      <point x="831.4997387669746" y="1725.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="REALIZATION">
+      <point x="-132.0" y="-94.0" />
+      <point x="1394.916666666666" y="1795.0" />
+      <point x="99.49999999999909" y="1795.0" />
+      <point x="99.49999999999909" y="367.0" />
+      <point x="625.4836729362542" y="367.0" />
+      <point x="625.4836729362542" y="297.0" />
+      <point x="493.78396029258056" y="297.0" />
+      <point x="52.75" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.HelpCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="0.0" y="-94.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.InfoCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="0.0" y="-106.5" />
+      <point x="2213.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand" target="ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand.FilterLessPosCommandResponse" relationship="DEPENDENCY">
+      <point x="91.0" y="157.5" />
+      <point x="4573.567267502612" y="1645.0" />
+      <point x="4762.567006269587" y="1645.0" />
+      <point x="4762.567006269587" y="1805.0" />
+      <point x="5257.608934169279" y="1805.0" />
+      <point x="101.66666666666652" y="-43.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" target="ru.bardinpetr.itmo.lab5.models.fields.Field" relationship="DEPENDENCY">
+      <point x="38.5" y="-170.0" />
+      <point x="5520.942267502612" y="1795.0" />
+      <point x="4904.317006269587" y="1795.0" />
+      <point x="4904.317006269587" y="1665.0" />
+      <point x="4675.067267502612" y="1665.0" />
+      <point x="4675.067267502612" y="367.0" />
+      <point x="4620.499738766975" y="367.0" />
+      <point x="4620.499738766975" y="277.0" />
+      <point x="5216.499999999999" y="277.0" />
+      <point x="-50.75" y="145.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.InfoCommand.InfoCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.InfoCommand" relationship="INNER_CLASS">
+      <point x="29.625" y="-69.0" />
+      <point x="2167.374999999999" y="1805.0" />
+      <point x="2135.9997387669746" y="1805.0" />
+      <point x="-77.25" y="106.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Organization" target="ru.bardinpetr.itmo.lab5.models.data.OrganizationType" relationship="TO_ONE">
+      <point x="-72.25" y="-157.5" />
+      <point x="4928.999999999999" y="-107.0" />
+      <point x="4939.499999999999" y="-107.0" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ShowCommand" target="ru.bardinpetr.itmo.lab5.models.commands.ShowCommand.ShowCommandResponse" relationship="DEPENDENCY">
+      <point x="-105.33333333333348" y="-106.5" />
+      <point x="4724.52533960292" y="2248.0" />
+      <point x="4772.192006269587" y="2248.0" />
+      <point x="-61.75" y="43.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+      <point x="-46.0" y="-29.5" />
+      <point x="6596.408045977006" y="1206.0" />
+      <point x="6150.442006269587" y="1206.0" />
+      <point x="6150.442006269587" y="1176.0" />
+      <point x="6087.567267502612" y="1176.0" />
+      <point x="-99.5" y="382.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ShowCommand.ShowCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse" relationship="GENERALIZATION">
+      <point x="-61.75" y="-43.0" />
+      <point x="4772.192006269587" y="1725.0" />
+      <point x="831.4997387669746" y="1725.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response" relationship="DEPENDENCY">
+      <point x="-103.0" y="-29.5" />
+      <point x="882.4999999999991" y="1805.0" />
+      <point x="88.74999999999909" y="1805.0" />
+      <point x="88.74999999999909" y="1695.0" />
+      <point x="-63.0" y="1695.0" />
+      <point x="0.0" y="245.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+      <point x="88.0" y="-195.0" />
+      <point x="6164.442267502612" y="1805.0" />
+      <point x="6356.124738766975" y="1805.0" />
+      <point x="6356.124738766975" y="1625.0" />
+      <point x="7319.749738766975" y="1625.0" />
+      <point x="7319.749738766975" y="357.0" />
+      <point x="5856.541405433642" y="357.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddIfMaxCommand" target="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" relationship="GENERALIZATION">
+      <point x="0.0" y="-94.0" />
+      <point x="5457.442006269587" y="2248.0" />
+      <point x="5482.442267502612" y="2248.0" />
+      <point x="0.0" y="170.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="91.75" y="-145.0" />
+      <point x="1511.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidation" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-68.0" />
+      <point x="7488.249738766975" y="327.0" />
+      <point x="5856.541405433642" y="327.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddCommand.AddCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="REALIZATION">
+      <point x="0.0" y="-69.0" />
+      <point x="1098.4997387669746" y="367.0" />
+      <point x="625.4836729362542" y="367.0" />
+      <point x="625.4836729362542" y="297.0" />
+      <point x="493.78396029258056" y="297.0" />
+      <point x="52.75" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.RemoveGreaterCommand" target="ru.bardinpetr.itmo.lab5.models.fields.Field" relationship="DEPENDENCY">
+      <point x="0.0" y="-157.5" />
+      <point x="5790.442267502612" y="1805.0" />
+      <point x="5571.317006269587" y="1805.0" />
+      <point x="5571.317006269587" y="1635.0" />
+      <point x="4675.067267502612" y="1635.0" />
+      <point x="4675.067267502612" y="367.0" />
+      <point x="4620.499738766975" y="367.0" />
+      <point x="4620.499738766975" y="277.0" />
+      <point x="5216.499999999999" y="277.0" />
+      <point x="-50.75" y="145.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.PrintDescendingCommand" target="ru.bardinpetr.itmo.lab5.models.commands.PrintDescendingCommand.PrintDescendingCommandResponse" relationship="DEPENDENCY">
+      <point x="96.5" y="106.5" />
+      <point x="3346.2497387669746" y="1655.0" />
+      <point x="3844.0330459770057" y="1655.0" />
+      <point x="3844.0330459770057" y="1805.0" />
+      <point x="3175.416666666666" y="1805.0" />
+      <point x="110.66666666666697" y="-43.0" />
+    </edge>
+    <edge source="WorkerValidationTest" target="ru.bardinpetr.itmo.lab5.models.data.Organization" relationship="TO_ONE">
+      <point x="0.0" y="-55.5" />
+      <point x="5442.817267502612" y="307.0" />
+      <point x="5073.499999999999" y="307.0" />
+      <point x="72.25" y="157.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="132.66666666666697" y="-95.0" />
+      <point x="2736.8589341692787" y="2248.0" />
+      <point x="3676.2497387669746" y="2248.0" />
+      <point x="3676.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidation" target="ru.bardinpetr.itmo.lab5.models.data.Coordinates" relationship="DEPENDENCY">
+      <point x="0.0" y="-68.0" />
+      <point x="7488.249738766975" y="337.0" />
+      <point x="7645.749999999999" y="337.0" />
+      <point x="7645.749999999999" y="317.0" />
+      <point x="7464.533045977006" y="317.0" />
+      <point x="54.75" y="157.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc" target="ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator" relationship="TO_ONE">
+      <point x="-2.2737367544323206E-13" y="-145.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand.FilterLessPosCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand" relationship="INNER_CLASS">
+      <point x="0.0" y="-43.0" />
+      <point x="5155.942267502612" y="1715.0" />
+      <point x="4391.567267502612" y="1715.0" />
+      <point x="-91.0" y="157.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.InfoCommand.InfoCommandResponse" target="ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo" relationship="TO_ONE">
+      <point x="-29.625" y="-69.0" />
+      <point x="2108.124999999999" y="1775.0" />
+      <point x="1883.2497387669746" y="1775.0" />
+      <point x="0.0" y="182.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-245.0" />
+      <point x="-63.0" y="367.0" />
+      <point x="88.49999999999909" y="367.0" />
+      <point x="88.49999999999909" y="297.0" />
+      <point x="388.28396029258056" y="297.0" />
+      <point x="-52.75" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand" target="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse" relationship="DEPENDENCY">
+      <point x="-122.33333333333303" y="145.0" />
+      <point x="1297.1664054336416" y="1695.0" />
+      <point x="88.74999999999909" y="1695.0" />
+      <point x="88.74999999999909" y="1805.0" />
+      <point x="882.4999999999991" y="1805.0" />
+      <point x="-103.0" y="-29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="-121.33333333333348" y="-157.5" />
+      <point x="4361.233934169279" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.base.Command" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-144.0" />
+      <point x="1868.1589602925806" y="307.0" />
+      <point x="88.49999999999909" y="307.0" />
+      <point x="88.49999999999909" y="297.0" />
+      <point x="388.28396029258056" y="297.0" />
+      <point x="-52.75" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+      <point x="123.33333333333326" y="-145.0" />
+      <point x="5970.150600835945" y="1206.0" />
+      <point x="5977.567267502612" y="1206.0" />
+      <point x="5977.567267502612" y="357.0" />
+      <point x="5856.541405433642" y="357.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand" target="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-95.0" />
+      <point x="2604.1922675026117" y="2238.0" />
+      <point x="1625.916666666666" y="2238.0" />
+      <point x="99.0" y="94.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand" target="ru.bardinpetr.itmo.lab5.models.fields.Field" relationship="DEPENDENCY">
+      <point x="0.0" y="-157.5" />
+      <point x="4482.567267502612" y="367.0" />
+      <point x="4620.499738766975" y="367.0" />
+      <point x="4620.499738766975" y="277.0" />
+      <point x="5216.499999999999" y="277.0" />
+      <point x="-50.75" y="145.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidation" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-55.5" />
+      <point x="5140.317267502612" y="347.0" />
+      <point x="5856.541405433642" y="347.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+      <point x="0.0" y="-105.5" />
+      <point x="6940.408045977006" y="1186.0" />
+      <point x="6150.442006269587" y="1186.0" />
+      <point x="6150.442006269587" y="1176.0" />
+      <point x="6087.567267502612" y="1176.0" />
+      <point x="-99.5" y="382.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.RemoveGreaterCommand" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="TO_ONE">
+      <point x="89.33333333333337" y="-157.5" />
+      <point x="5879.775600835945" y="1785.0" />
+      <point x="6315.567267502612" y="1785.0" />
+      <point x="6315.567267502612" y="1196.0" />
+      <point x="6310.567267502612" y="1196.0" />
+      <point x="6310.567267502612" y="1176.0" />
+      <point x="6286.567267502612" y="1176.0" />
+      <point x="99.5" y="382.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ShowCommand.ShowCommandResponse" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+      <point x="61.75" y="-43.0" />
+      <point x="4895.692006269587" y="1765.0" />
+      <point x="6063.567267502612" y="1765.0" />
+      <point x="6063.567267502612" y="1206.0" />
+      <point x="6150.442006269587" y="1206.0" />
+      <point x="6150.442006269587" y="1176.0" />
+      <point x="6087.567267502612" y="1176.0" />
+      <point x="-99.5" y="382.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Worker" target="ru.bardinpetr.itmo.lab5.models.data.Coordinates" relationship="TO_ONE">
+      <point x="-99.5" y="-382.5" />
+      <point x="6087.567267502612" y="367.0" />
+      <point x="5640.817267502612" y="367.0" />
+      <point x="5640.817267502612" y="277.0" />
+      <point x="5388.499999999999" y="277.0" />
+      <point x="5388.499999999999" y="257.0" />
+      <point x="7355.033045977006" y="257.0" />
+      <point x="-54.75" y="157.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UniqueOrganisationCommand" target="ru.bardinpetr.itmo.lab5.models.commands.UniqueOrganisationCommand.UniqueOrganisationCommandResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-106.5" />
+      <point x="478.4997387669746" y="1206.0" />
+      <point x="500.66640543364156" y="1206.0" />
+      <point x="90.0" y="69.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="REALIZATION">
+      <point x="0.0" y="-69.0" />
+      <point x="831.4997387669746" y="367.0" />
+      <point x="625.4836729362542" y="367.0" />
+      <point x="625.4836729362542" y="297.0" />
+      <point x="493.78396029258056" y="297.0" />
+      <point x="52.75" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.RemoveGreaterCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" relationship="DEPENDENCY">
+      <point x="0.0" y="-157.5" />
+      <point x="5790.442267502612" y="1805.0" />
+      <point x="5571.317006269587" y="1805.0" />
+      <point x="5571.317006269587" y="1755.0" />
+      <point x="5723.999738766975" y="1755.0" />
+      <point x="5723.999738766975" y="1615.0" />
+      <point x="6940.408045977006" y="1615.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" target="ru.bardinpetr.itmo.lab5.models.data.Coordinates" relationship="DEPENDENCY">
+      <point x="0.0" y="-105.5" />
+      <point x="6940.408045977006" y="1196.0" />
+      <point x="7656.749738766975" y="1196.0" />
+      <point x="7656.749738766975" y="327.0" />
+      <point x="7645.749999999999" y="327.0" />
+      <point x="7645.749999999999" y="317.0" />
+      <point x="7464.533045977006" y="317.0" />
+      <point x="54.75" y="157.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand" relationship="INNER_CLASS">
+      <point x="103.0" y="-29.5" />
+      <point x="1088.499999999999" y="1805.0" />
+      <point x="1419.4997387669746" y="1805.0" />
+      <point x="0.0" y="145.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.base.Command" target="ru.bardinpetr.itmo.lab5.models.fields.Field" relationship="DEPENDENCY">
+      <point x="0.0" y="-144.0" />
+      <point x="1868.1589602925806" y="317.0" />
+      <point x="4620.499738766975" y="317.0" />
+      <point x="4620.499738766975" y="277.0" />
+      <point x="5216.499999999999" y="277.0" />
+      <point x="-50.75" y="145.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ClearCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="0.0" y="-94.0" />
+      <point x="2935.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="-88.0" y="-195.0" />
+      <point x="5988.442267502612" y="1675.0" />
+      <point x="4123.033045977006" y="1675.0" />
+      <point x="4123.033045977006" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" relationship="DEPENDENCY">
+      <point x="38.5" y="-170.0" />
+      <point x="5520.942267502612" y="1795.0" />
+      <point x="4904.317006269587" y="1795.0" />
+      <point x="4904.317006269587" y="1745.0" />
+      <point x="5723.999738766975" y="1745.0" />
+      <point x="5723.999738766975" y="1615.0" />
+      <point x="6940.408045977006" y="1615.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.InfoCommand.InfoCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="REALIZATION">
+      <point x="-88.875" y="-69.0" />
+      <point x="2048.874999999999" y="1785.0" />
+      <point x="220.16640543364156" y="1785.0" />
+      <point x="220.16640543364156" y="367.0" />
+      <point x="625.4836729362542" y="367.0" />
+      <point x="625.4836729362542" y="297.0" />
+      <point x="493.78396029258056" y="297.0" />
+      <point x="52.75" y="29.5" />
+    </edge>
+    <edge source="WorkerValidationTest" target="ru.bardinpetr.itmo.lab5.models.data.Coordinates" relationship="TO_ONE">
+      <point x="0.0" y="-55.5" />
+      <point x="5442.817267502612" y="297.0" />
+      <point x="5388.499999999999" y="297.0" />
+      <point x="5388.499999999999" y="257.0" />
+      <point x="7355.033045977006" y="257.0" />
+      <point x="-54.75" y="157.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UniqueOrganisationCommand.UniqueOrganisationCommandResponse" target="ru.bardinpetr.itmo.lab5.models.data.Organization" relationship="TO_MANY">
+      <point x="90.0" y="-69.0" />
+      <point x="500.66640543364156" y="327.0" />
+      <point x="5073.499999999999" y="327.0" />
+      <point x="72.25" y="157.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Organization" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="9.094947017729282E-13" y="-157.5" />
+      <point x="5001.25" y="-107.0" />
+      <point x="5690.0" y="-107.00000000000003" />
+      <point x="5690.0" y="-351.0" />
+      <point x="-86.00040543364139" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="TO_ONE">
+      <point x="0.0" y="-195.0" />
+      <point x="6076.442267502612" y="1795.0" />
+      <point x="6539.908045977006" y="1795.0" />
+      <point x="6539.908045977006" y="1196.0" />
+      <point x="6310.567267502612" y="1196.0" />
+      <point x="6310.567267502612" y="1176.0" />
+      <point x="6286.567267502612" y="1176.0" />
+      <point x="99.5" y="382.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddCommand.AddCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" relationship="INNER_CLASS">
+      <point x="-58.75" y="69.0" />
+      <point x="1039.7497387669746" y="1705.0" />
+      <point x="5366.942267502612" y="1705.0" />
+      <point x="-115.5" y="-170.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand" target="ru.bardinpetr.itmo.lab5.models.data.Position" relationship="TO_ONE">
+      <point x="121.33333333333348" y="-157.5" />
+      <point x="4603.900600835945" y="1206.0" />
+      <point x="5630.317267502612" y="1206.0" />
+      <point x="5630.317267502612" y="327.0" />
+      <point x="5567.124738766975" y="327.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.SaveCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="0.0" y="-94.0" />
+      <point x="2712.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.RemoveByIdCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="-61.75" y="-145.0" />
+      <point x="3927.2830459770057" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddIfMinCommand" target="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" relationship="GENERALIZATION">
+      <point x="0.0" y="-94.0" />
+      <point x="5681.942006269587" y="2248.0" />
+      <point x="5482.442267502612" y="2248.0" />
+      <point x="0.0" y="170.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Position" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="93.50026123302541" y="-0.0" />
+      <point x="5690.0" y="77.5" />
+      <point x="5690.0" y="-351.0" />
+      <point x="-86.00040543364139" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand" relationship="GENERALIZATION">
+      <point x="0.0" y="-94.0" />
+      <point x="1526.916666666666" y="1805.0" />
+      <point x="1541.8330721003076" y="1805.0" />
+      <point x="122.33333333333303" y="145.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" target="ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidation" relationship="DEPENDENCY">
+      <point x="0.0" y="-105.5" />
+      <point x="6940.408045977006" y="1196.0" />
+      <point x="7488.249738766975" y="1196.0" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="-38.5" y="-170.0" />
+      <point x="5443.942267502612" y="1695.0" />
+      <point x="3855.0330459770057" y="1695.0" />
+      <point x="3855.0330459770057" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.base.Command" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-144.0" />
+      <point x="1868.1589602925806" y="337.0" />
+      <point x="5856.541405433642" y="337.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-29.5" />
+      <point x="5846.817267502612" y="357.0" />
+      <point x="5856.541405433642" y="357.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.RemoveByIdCommand" target="ru.bardinpetr.itmo.lab5.models.fields.Field" relationship="DEPENDENCY">
+      <point x="61.75" y="-145.0" />
+      <point x="4050.7830459770057" y="1196.0" />
+      <point x="4157.283045977006" y="1196.0" />
+      <point x="4157.283045977006" y="367.0" />
+      <point x="4620.499738766975" y="367.0" />
+      <point x="4620.499738766975" y="277.0" />
+      <point x="5216.499999999999" y="277.0" />
+      <point x="-50.75" y="145.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.FilterLessPosCommand.FilterLessPosCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse" relationship="GENERALIZATION">
+      <point x="-101.66666666666652" y="-43.0" />
+      <point x="5054.275600835946" y="1725.0" />
+      <point x="831.4997387669746" y="1725.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection" target="ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.5" />
+      <point x="43.75" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.RemoveGreaterCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="GENERALIZATION">
+      <point x="-89.33333333333326" y="-157.5" />
+      <point x="5701.108934169279" y="1685.0" />
+      <point x="4123.033045977006" y="1685.0" />
+      <point x="4123.033045977006" y="1206.0" />
+      <point x="3564.2497387669746" y="1206.0" />
+      <point x="3564.2497387669746" y="1196.0" />
+      <point x="1964.1589602925806" y="1196.0" />
+      <point x="96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
+      <point x="-103.0" y="-29.5" />
+      <point x="882.4999999999991" y="1805.0" />
+      <point x="88.74999999999909" y="1805.0" />
+      <point x="88.49999999999909" y="297.0" />
+      <point x="388.28396029258056" y="297.0" />
+      <point x="-52.75" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+      <point x="38.5" y="-170.0" />
+      <point x="5520.942267502612" y="1795.0" />
+      <point x="4904.317006269587" y="1795.0" />
+      <point x="4904.317006269587" y="1665.0" />
+      <point x="5651.317267502612" y="1665.0" />
+      <point x="5651.317267502612" y="357.0" />
+      <point x="5856.541405433642" y="357.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Worker" target="ru.bardinpetr.itmo.lab5.models.data.Position" relationship="TO_ONE">
+      <point x="-99.5" y="-382.5" />
+      <point x="6087.567267502612" y="367.0" />
+      <point x="5640.817267502612" y="367.0" />
+      <point x="5640.817267502612" y="267.0" />
+      <point x="5567.124738766975" y="267.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc" target="ru.bardinpetr.itmo.lab5.models.fields.Field" relationship="GENERALIZATION">
+      <point x="-123.33333333333348" y="-145.0" />
+      <point x="5723.483934169279" y="1196.0" />
+      <point x="5311.817267502612" y="1196.0" />
+      <point x="5311.817267502612" y="327.0" />
+      <point x="5317.999999999999" y="327.0" />
+      <point x="50.75" y="145.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Worker" target="ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity" relationship="REALIZATION">
+      <point x="99.5" y="-382.5" />
+      <point x="6286.567267502612" y="347.0" />
+      <point x="7842.749999999999" y="347.0" />
+      <point x="7842.749999999999" y="337.0" />
+      <point x="7765.249999999999" y="337.0" />
+      <point x="-43.75" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand" relationship="INNER_CLASS">
+      <point x="-99.0" y="94.0" />
+      <point x="1427.916666666666" y="2248.0" />
+      <point x="2471.5256008359447" y="2248.0" />
+      <point x="-132.66666666666697" y="-95.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="TO_ONE">
+      <point x="115.5" y="-170.0" />
+      <point x="5597.942267502612" y="1775.0" />
+      <point x="6310.567267502612" y="1775.0" />
+      <point x="6310.567267502612" y="1176.0" />
+      <point x="6286.567267502612" y="1176.0" />
+      <point x="99.5" y="382.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.RemoveGreaterCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-157.5" />
+      <point x="5790.442267502612" y="1805.0" />
+      <point x="5571.317006269587" y="1805.0" />
+      <point x="5571.317006269587" y="1635.0" />
+      <point x="6744.908045977006" y="1635.0" />
+      <point x="6744.908045977006" y="357.0" />
+      <point x="5856.541405433642" y="357.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.PrintDescendingCommand.PrintDescendingCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse" relationship="GENERALIZATION">
+      <point x="-110.66666666666697" y="-43.0" />
+      <point x="2954.083333333332" y="1725.0" />
+      <point x="831.4997387669746" y="1725.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+      <point x="0.0" y="-105.5" />
+      <point x="6940.408045977006" y="357.0" />
+      <point x="5856.541405433642" y="357.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="TO_MANY">
+      <point x="-91.75" y="-145.0" />
+      <point x="1327.7497387669746" y="1186.0" />
+      <point x="1772.1589602925806" y="1186.0" />
+      <point x="-96.0" y="144.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.ShowCommand.ShowCommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.ShowCommand" relationship="INNER_CLASS">
+      <point x="61.75" y="43.0" />
+      <point x="4895.692006269587" y="2248.0" />
+      <point x="4829.858672936254" y="2248.0" />
+      <point x="0.0" y="-106.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.PrintDescendingCommand.PrintDescendingCommandResponse" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+      <point x="110.66666666666697" y="-43.0" />
+      <point x="3175.416666666666" y="1805.0" />
+      <point x="3844.0330459770057" y="1805.0" />
+      <point x="3844.0330459770057" y="1655.0" />
+      <point x="6063.567267502612" y="1655.0" />
+      <point x="6063.567267502612" y="1206.0" />
+      <point x="6150.442006269587" y="1206.0" />
+      <point x="6150.442006269587" y="1176.0" />
+      <point x="6087.567267502612" y="1176.0" />
+      <point x="-99.5" y="382.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.InfoCommand" target="ru.bardinpetr.itmo.lab5.models.commands.InfoCommand.InfoCommandResponse" relationship="DEPENDENCY">
+      <point x="77.25" y="106.5" />
+      <point x="2290.4997387669746" y="1805.0" />
+      <point x="2226.624999999999" y="1805.0" />
+      <point x="88.875" y="-69.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.Worker" target="ru.bardinpetr.itmo.lab5.models.data.Organization" relationship="TO_ONE">
+      <point x="-99.5" y="-382.5" />
+      <point x="6087.567267502612" y="367.0" />
+      <point x="5640.817267502612" y="367.0" />
+      <point x="5640.817267502612" y="287.0" />
+      <point x="5073.499999999999" y="287.0" />
+      <point x="72.25" y="157.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" relationship="DEPENDENCY">
+      <point x="88.0" y="-195.0" />
+      <point x="6164.442267502612" y="1805.0" />
+      <point x="6356.124738766975" y="1805.0" />
+      <point x="6356.124738766975" y="1665.0" />
+      <point x="5723.999738766975" y="1665.0" />
+      <point x="5723.999738766975" y="1615.0" />
+      <point x="6940.408045977006" y="1615.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" target="ru.bardinpetr.itmo.lab5.models.commands.AddCommand.AddCommandResponse" relationship="DEPENDENCY">
+      <point x="38.5" y="-170.0" />
+      <point x="5520.942267502612" y="1795.0" />
+      <point x="4904.317006269587" y="1795.0" />
+      <point x="4904.317006269587" y="1665.0" />
+      <point x="1157.2497387669746" y="1665.0" />
+      <point x="58.75" y="69.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand" target="ru.bardinpetr.itmo.lab5.models.fields.Field" relationship="DEPENDENCY">
+      <point x="88.0" y="-195.0" />
+      <point x="6164.442267502612" y="1805.0" />
+      <point x="6356.124738766975" y="1805.0" />
+      <point x="6356.124738766975" y="1625.0" />
+      <point x="4968.817267502612" y="1625.0" />
+      <point x="4968.817267502612" y="367.0" />
+      <point x="4620.499738766975" y="367.0" />
+      <point x="4620.499738766975" y="277.0" />
+      <point x="5216.499999999999" y="277.0" />
+      <point x="-50.75" y="145.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7139457451118217" showDependencies="true" x="5416.642838664219" y="16.451474436697254" />
+  <SelectedNodes>
+    <node>java.lang.Comparable</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,201 @@
+
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+'skinparam CircledCharacterFontSize 0
+'skinparam CircledCharacterRadius 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Command {
+  + Command(): 
+  + getType(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + createResponse(): ICommandResponse
+  + getInteractArgs(): Field[]
+  + validate(): ValidationResponse
+  + getInlineArgs(): Field[]
+}
+class Exception {
+  + Exception(Throwable): 
+  + Exception(String, Throwable): 
+  + Exception(): 
+  # Exception(String, Throwable, boolean, boolean): 
+  + Exception(String): 
+  ~ serialVersionUID: long
+}
+class Executor {
+  + Executor(): 
+  - childExecutors: List<Executor>
+  - operationMap: Map<Class<Command>, Operation<Command, ICommandResponse>>
+  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + execute(Command): Response<ICommandResponse>
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  + registerExecutor(Executor): void
+}
+class FileAccessException {
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(File, OperationType): 
+  - path: String
+  - type: OperationType
+  + getPath(): String
+  + getType(): OperationType
+}
+class FileController {
+  + FileController(String): 
+  # file: File
+  + check(): boolean
+  + getPath(): String
+  # checkWriteAccess(): void
+  - loadPath(String): File
+  # checkReadAccess(): void
+  # ensureExistence(boolean): boolean
+  - checkAccess(): void
+  - checkExistence(): boolean
+}
+class FileIOController {
+  + FileIOController(String): 
+  + write(byte[]): void
+  + openWriteStream(): FileOutputStream
+  + openReadStream(): FileInputStream
+  + read(): byte[]
+  + clear(): void
+}
+interface ICommandResponse << interface >> {
+  + getUserMessage(): String
+}
+class InvalidDataFileException {
+  + InvalidDataFileException(String, byte[], SerDesException): 
+  - path: String
+  - contents: byte[]
+  + getContents(): byte[]
+  + getPath(): String
+}
+interface NoReturnOperation<T> << interface >> {
+  + apply(T): void
+}
+class ObjectMapperFactory {
+  + ObjectMapperFactory(): 
+  {static} + createMapper(): ObjectMapper
+}
+interface Operation<T, V> << interface >> {
+  + apply(T): V
+}
+enum OperationType << enumeration >> {
+  - OperationType(String): 
+  - OperationType(): 
+  + READ: 
+  + CREATE: 
+  + OPEN: 
+  + WRITE: 
+  + SET_PERMISSION: 
+  + PERM_WRITE: 
+  + PERM_READ: 
+  - description: String
+  + getDescription(): String
+  + valueOf(String): OperationType
+  + values(): OperationType[]
+}
+class Response<T> {
+  + Response(boolean, boolean, String, T): 
+  + Response(): 
+  - text: String
+  - success: boolean
+  - resolved: boolean
+  - payload: T
+  + isSuccess(): boolean
+  + isResolved(): boolean
+  + hashCode(): int
+  # canEqual(Object): boolean
+  + getText(): String
+  + getPayload(): T
+  + setSuccess(boolean): void
+  + toString(): String
+  + equals(Object): boolean
+  + setResolved(boolean): void
+  + setText(String): void
+  + setPayload(T): void
+  + noResolve(): Response<T>
+  + error(String): Response<T>
+  + success(T): Response<T>
+  + error(Exception): Response<T>
+}
+class SerDesException {
+  + SerDesException(Type, Exception): 
+  - direction: Type
+  - internalException: Exception
+  + getInternalException(): Exception
+  + toString(): String
+  + getDirection(): Type
+}
+abstract class SerDesService<T>  <<abstract>> {
+  + SerDesService(Class<T>): 
+  - baseClass: Class<T>
+  - mapper: ObjectMapper
+  {abstract} # getObjectMapper(): ObjectMapper
+  + serialize(T): byte[]
+  + deserialize(byte[]): T
+}
+enum Type << enumeration >> {
+  + Type(): 
+  + DESERIALIZE: 
+  + SERIALIZE: 
+  + values(): Type[]
+  + valueOf(String): Type
+}
+class ValueDeserializer {
+  + ValueDeserializer(): 
+  - mapper: ObjectMapper
+  + deserialize(Class<K>, String): K
+}
+class XMLSerDesService<T> {
+  + XMLSerDesService(Class<T>): 
+  # getObjectMapper(): ObjectMapper
+}
+
+Command                   ..>  ICommandResponse         
+Executor                  ..>  Command                  
+Executor                  ..>  ICommandResponse         
+Executor                  ..>  NoReturnOperation        
+Executor                 "1" *--> "operationMap\n*" Operation                
+Executor                  ..>  Response                 
+FileAccessException       --^  Exception                
+FileAccessException      "1" *--> "type\n1" OperationType            
+FileController            ..>  FileAccessException      
+FileIOController          ..>  FileAccessException      
+FileIOController          --^  FileController           
+InvalidDataFileException  --^  Exception                
+InvalidDataFileException  ..>  SerDesException          
+NoReturnOperation         ..>  Command                  
+Operation                 ..>  Command                  
+Operation                 ..>  ICommandResponse         
+OperationType             +--  FileAccessException      
+Response                  ..>  ICommandResponse         
+SerDesException           --^  Exception                
+SerDesException          "1" *--> "internalException\n1" Exception                
+SerDesException          "1" *--> "direction\n1" Type                     
+SerDesService             ..>  SerDesException          
+Type                      +--  SerDesException          
+XMLSerDesService          --^  SerDesService            
+@enduml
