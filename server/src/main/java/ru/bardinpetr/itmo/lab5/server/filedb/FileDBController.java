@@ -21,8 +21,9 @@ public class FileDBController<T> {
      * If file exists, data from it is loaded. If not, empty collection created.
      *
      * @param fileIO file controller for storing database
+     * @throws FileAccessException thrown if file can't be accessed
      */
-    public FileDBController(FileIOController fileIO, Class<T> baseCollectionClass) {
+    public FileDBController(FileIOController fileIO, Class<T> baseCollectionClass) throws FileAccessException {
         this.baseCollectionClass = baseCollectionClass;
         this.fileIO = fileIO;
 
@@ -36,19 +37,15 @@ public class FileDBController<T> {
      * If there are problems with permissions and issue could not be resolved automatically,
      * returns false and logs for administrator to fix.
      *
-     * @return if operation was successful
+     * @throws FileAccessException if file can't be accessed or created
      */
-    public boolean load() {
+    public void load() throws FileAccessException {
         try {
             collection = storage.loadObject();
         } catch (InvalidDataFileException ex) {
             System.err.println("[DB] DB file recreated as it contained invalid data. Collection cleared");
             clear();
-        } catch (FileAccessException e) {
-            System.err.printf("[DB] could not read from file. Fix by hand please. \nError: %s", e);
-            return false;
         }
-        return true;
     }
 
     /**

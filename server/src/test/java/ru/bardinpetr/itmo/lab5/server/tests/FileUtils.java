@@ -67,7 +67,7 @@ public class FileUtils {
         try (var st = new FileInputStream(file)) {
             res = st.readAllBytes();
         } catch (IOException e) {
-            throw new RuntimeException("Can't create file");
+            throw new RuntimeException("Can't read file");
         }
         return new String(res);
     }

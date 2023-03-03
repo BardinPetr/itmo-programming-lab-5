@@ -2,8 +2,11 @@ package ru.bardinpetr.itmo.lab5.server.tests.utils;
 
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
-public class TestEntity implements IKeyedEntity<Integer> {
+public class TestEntity implements IKeyedEntity<Integer>, Comparable<TestEntity> {
     private Integer id;
+
+    public TestEntity() {
+    }
 
     public TestEntity(Integer id) {
         this.id = id;
@@ -21,5 +24,10 @@ public class TestEntity implements IKeyedEntity<Integer> {
     @Override
     public void setPrimaryKey(Integer key) {
         id = key;
+    }
+
+    @Override
+    public int compareTo(TestEntity o) {
+        return id.compareTo(o.id);
     }
 }
