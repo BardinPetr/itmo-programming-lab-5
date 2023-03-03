@@ -26,5 +26,13 @@ public class ServerExecuteScriptCommand extends Command {
                 return new ExecuteScriptCommandResponse();
         }
         public static class ExecuteScriptCommandResponse extends ListCommandResponse<Response<ICommandResponse>> {
+                @Override
+                public String getUserMessage() {
+                        String respond = "";
+                        for (var i : getResult()) {
+                                respond += i.getPayload().getUserMessage() + "\n";
+                        }
+                        return respond;
+                }
         }
 }

@@ -24,7 +24,7 @@ public class CommandScriptController {
     public List<Command> run(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
 
-        CommandParser cmdParser = cmdRegister.getParser(mapper, scanner, new View() {
+        CommandParser cmdParser = cmdRegister.getParser(scanner, new View() {
         });
 
         List<Command> commandList = new ArrayList<>();

@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.parser;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.tui.View;
+import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
 
@@ -39,7 +39,7 @@ public class CommandRegister {
         map.put(cmd.getType(), cmd);
     }
 
-    public CommandParser getParser(ObjectMapper mapper, Scanner scanner, View viewer) {
-        return new CommandParser(map, mapper, scanner, viewer);
+    public CommandParser getParser(Scanner scanner, View viewer) {
+        return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, viewer);
     }
 }
