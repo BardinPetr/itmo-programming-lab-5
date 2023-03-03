@@ -18,7 +18,7 @@ public class Coordinates implements Comparable<Coordinates> {
 
     /**
      * @param other the object to be compared.
-     * @return < 0 than other object is greater, > 0 this object is greater
+     * @return {@literal <} 0 than other object is greater, {@literal >} 0 this object is greater
      */
     @Override
     public int compareTo(Coordinates other) {
