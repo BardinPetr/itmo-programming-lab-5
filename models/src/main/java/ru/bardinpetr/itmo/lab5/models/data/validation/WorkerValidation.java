@@ -1,6 +1,5 @@
 package ru.bardinpetr.itmo.lab5.models.data.validation;
 
-import lombok.NonNull;
 import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
@@ -15,7 +14,7 @@ public class WorkerValidation {
      * @param name Worker's name
      * @return response with error message
      */
-    public static ValidationResponse validateName(@NonNull String name) {
+    public static ValidationResponse validateName(String name) {
         return name.isEmpty() ?
                 new ValidationResponse(false, "Name must not be empty") :
                 new ValidationResponse(true, "");
@@ -54,7 +53,6 @@ public class WorkerValidation {
      * @return response with error message
      */
     public static ValidationResponse validateSalary(Float salary) {
-        if (salary == null) return new ValidationResponse(false, "salary can't be null");
         return salary > 0 ?
                 new ValidationResponse(true, "") :
                 new ValidationResponse(false, "salary must be greater than 0");

@@ -16,6 +16,9 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for ObjectScanner class which check scanning Worker, Coordinates, Organization classes with fields validation
+ */
 public class ObjectScannerTest {
 
     private ObjectScanner getScanner(String string) {
@@ -29,6 +32,9 @@ public class ObjectScannerTest {
 
     }
 
+    /**
+     * Tests for coordinate scanner which check correct data, invalid data, null data
+     */
     @DisplayName("Coordinates scanner")
     @Test
     void coordinatesScanTest() {
@@ -44,42 +50,58 @@ public class ObjectScannerTest {
 
         assertThrows(ParserException.class, () -> {
             getScanner("""
+                    773
+                    100""").scan(Coordinates.class);
+        }, "X coordinate can't be greater than 773 (1 test)");
+
+        assertThrows(ParserException.class, () -> {
+            getScanner("""
                     1000
                     100""").scan(Coordinates.class);
-        });
+        }, "X coordinate can't be greater than 773 (2 test)");
 
         assertThrows(ParserException.class, () -> {
             getScanner("""
                     100
                     -1000""").scan(Coordinates.class);
-        });
+        }, "Y coordinate can't be less than -413 (1 test)");
+
+        assertThrows(ParserException.class, () -> {
+            getScanner("""
+                    100
+                    -413""").scan(Coordinates.class);
+        }, "Y coordinate can't be less than -413 (1 test)");
 
         assertThrows(ParserException.class, () -> {
             getScanner("""
                     adadaf
                     -100""").scan(Coordinates.class);
-        });
+        }, "X coordinate must be integer");
 
         assertThrows(ParserException.class, () -> {
             getScanner("""
                     100
-                    acas""").scan(Coordinates.class);
-        });
+                    sfs""").scan(Coordinates.class);
+        }, "Y coordinate must be integer");
 
         assertThrows(ParserException.class, () -> {
             getScanner("""
                                                 
                     100""").scan(Coordinates.class);
-        });
+        }, "X can't be null");
 
         assertThrows(ParserException.class, () -> {
             getScanner("""
                     100
                                                 
                     """).scan(Coordinates.class);
-        });
+        }, "Y can't be null");
 
     }
+
+    /**
+     * Test for Organization scanner which check correct data, invalid data, null data
+     */
     @DisplayName("Organization scanner")
     @Test
     void organizationScanTest() {
@@ -114,6 +136,9 @@ public class ObjectScannerTest {
         }, "Type should not be null");
     }
 
+    /**
+     * Tests for Worker scanner which check only worker's field with correct data, invalid data, null, data
+     */
     @DisplayName("Worker scanner")
     @Test
     void workerScannerTest() {
@@ -126,6 +151,7 @@ public class ObjectScannerTest {
                             02-03-2023
                             13
                             12
+                            C
                             ITMO
                             PUBLIC
                             CLEANER""").scan(Worker.class),
@@ -144,7 +170,144 @@ public class ObjectScannerTest {
             );
         });
 
-        assertThrows(NullPointerException.class,
+        assertDoesNotThrow(() -> {
+            assertEquals(
+                    getScanner("""
+                            Artem
+                            12.3
+                            02-03-2023
+                                                        
+                            13
+                            12
+                            C
+                            ITMO
+                            PUBLIC
+                            CLEANER""").scan(Worker.class),
+                    new Worker(
+                            1,
+                            ZonedDateTime.now(),
+                            "Artem",
+                            new Coordinates(13, 12),
+                            12.3f,
+                            new Date(2023 - 1900, Calendar.MARCH, 2),
+                            new Organization("ITMO", OrganizationType.PUBLIC),
+                            null,
+                            Position.CLEANER
+                    ),
+                    "Correct data with null endDate"
+            );
+        });
+
+        assertDoesNotThrow(() -> {
+            assertEquals(
+                    getScanner("""
+                            Artem
+                            12.3
+                            02-03-2023
+                            02-03-2023
+                            13
+                            12
+                            C
+                            ITMO
+                            PUBLIC
+                                                        
+                            """).scan(Worker.class),
+                    new Worker(
+                            2,
+                            ZonedDateTime.now(),
+                            "Artem",
+                            new Coordinates(13, 12),
+                            12.3f,
+                            new Date(2023 - 1900, Calendar.MARCH, 2),
+                            new Organization("ITMO", OrganizationType.PUBLIC),
+                            LocalDate.of(2023, Month.MARCH, 2),
+                            null
+                    ),
+                    "Correct data with null Position"
+            );
+        });
+
+        assertDoesNotThrow(() -> {
+            assertEquals(
+                    getScanner("""
+                            Artem
+                            12.3
+                            02-03-2023
+                                                        
+                            13
+                            12
+                            N
+                            CLEANER""").scan(Worker.class),
+                    new Worker(
+                            3,
+                            ZonedDateTime.now(),
+                            "Artem",
+                            new Coordinates(13, 12),
+                            12.3f,
+                            new Date(2023 - 1900, Calendar.MARCH, 2),
+                            null,
+                            null,
+                            Position.CLEANER
+                    ),
+                    "Correct data with null Organization"
+            );
+        });
+
+        assertDoesNotThrow(() -> {
+            assertEquals(
+                    getScanner("""
+                            Artem
+                            12.3
+                            02-03-2023
+                            02-03-2023
+                            13
+                            12
+                            N
+                                                        
+                            """).scan(Worker.class),
+                    new Worker(
+                            4,
+                            ZonedDateTime.now(),
+                            "Artem",
+                            new Coordinates(13, 12),
+                            12.3f,
+                            new Date(2023 - 1900, Calendar.MARCH, 2),
+                            null,
+                            LocalDate.of(2023, Month.MARCH, 2),
+                            null
+                    ),
+                    "Correct data with null Organization and Position"
+            );
+        });
+
+        assertDoesNotThrow(() -> {
+            assertEquals(
+                    getScanner("""
+                            Artem
+                            12.3
+                            02-03-2023
+                                                        
+                            13
+                            12
+                            N
+                                                        
+                            """).scan(Worker.class),
+                    new Worker(
+                            5,
+                            ZonedDateTime.now(),
+                            "Artem",
+                            new Coordinates(13, 12),
+                            12.3f,
+                            new Date(2023 - 1900, Calendar.MARCH, 2),
+                            null,
+                            null,
+                            null
+                    ),
+                    "Correct data with null Organization and Position and endDate"
+            );
+        });
+
+        assertThrows(ParserException.class,
                 () -> {
                     getScanner("""
                                                             
@@ -153,6 +316,7 @@ public class ObjectScannerTest {
                             02-03-2023
                             13
                             12
+                            C
                             ITMO
                             PUBLIC
                             CLEANER""").scan(Worker.class);
@@ -168,13 +332,14 @@ public class ObjectScannerTest {
                             02-03-2023
                             13
                             12
+                            C
                             ITMO
                             PUBLIC
                             CLEANER""").scan(Worker.class);
                 },
                 "Salary must be float");
 
-        assertThrows(NullPointerException.class,
+        assertThrows(ParserException.class,
                 () -> {
                     getScanner("""
                             Artem
@@ -183,6 +348,7 @@ public class ObjectScannerTest {
                             02-03-2023
                             13
                             12
+                            C
                             ITMO
                             PUBLIC
                             CLEANER""").scan(Worker.class);
@@ -198,6 +364,7 @@ public class ObjectScannerTest {
                             02-03-2023
                             13
                             12
+                            C
                             ITMO
                             PUBLIC
                             CLEANER""").scan(Worker.class);
@@ -213,6 +380,7 @@ public class ObjectScannerTest {
                             02-03-2023
                             13
                             12
+                            C
                             ITMO
                             PUBLIC
                             CLEANER""").scan(Worker.class);
@@ -228,6 +396,7 @@ public class ObjectScannerTest {
                             32-03-2023
                             13
                             12
+                            C
                             ITMO
                             PUBLIC
                             CLEANER""").scan(Worker.class);
@@ -243,6 +412,7 @@ public class ObjectScannerTest {
                             12-33-2023
                             13
                             12
+                            C
                             ITMO
                             PUBLIC
                             CLEANER""").scan(Worker.class);
@@ -258,6 +428,7 @@ public class ObjectScannerTest {
                             12-33-2023
                             13
                             12
+                            C
                             ITMO
                             PUBLIC
                             CLEA2NER""").scan(Worker.class);

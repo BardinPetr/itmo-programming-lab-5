@@ -27,44 +27,50 @@ public class DescriptionHolder {
                                 "name",
                                 String.class,
                                 RussianText.get(TextKeys.NAMEINTERACT),
-                                WorkerValidation::validateName)
+                                WorkerValidation::validateName,
+                                false)
                         );
                         add(new FieldWithDesc<>(
                                 "salary",
                                 Float.class,
                                 RussianText.get(TextKeys.SALARYINTERACT),
-                                WorkerValidation::validateSalary)
+                                WorkerValidation::validateSalary,
+                                false)
                         );
-
                         add(new FieldWithDesc<>(
                                         "startDate",
                                         Date.class,
                                         RussianText.get(TextKeys.STARTDAYINTERACT),
-                                        WorkerValidation::validateStartDate
+                                        WorkerValidation::validateStartDate,
+                                        false
                                 )
                         );
                         add(new FieldWithDesc<>(
                                         "endDate",
                                         LocalDate.class,
-                                        RussianText.get(TextKeys.ENDNDATEINTERACT)
+                                        RussianText.get(TextKeys.ENDNDATEINTERACT),
+                                        true
                                 )
                         );
                         add(new FieldWithDesc<>(
                                 "coordinates",
                                 Coordinates.class,
                                 RussianText.get(TextKeys.COORDINATESINTERACT),
-                                CoordinatesValidation::validateAll)
+                                CoordinatesValidation::validateAll,
+                                false)
                         );
                         add(new FieldWithDesc<>(
                                 "organization",
                                 Organization.class,
                                 RussianText.get(TextKeys.ORGANIZATIONINTERACT),
-                                OrganizationValidation::validateAll)
+                                OrganizationValidation::validateAll,
+                                true)
                         );
                         add(new FieldWithDesc<>(
                                 "position",
                                 Position.class,
-                                RussianText.get(TextKeys.POSITIONINTERACT))
+                                RussianText.get(TextKeys.POSITIONINTERACT),
+                                true)
                         );
 
 
@@ -79,13 +85,15 @@ public class DescriptionHolder {
                                 "x",
                                 Integer.class,
                                 RussianText.get(TextKeys.COORXINTERACT),
-                                CoordinatesValidation::validateX)
+                                CoordinatesValidation::validateX,
+                                false)
                         );
                         add(new FieldWithDesc<>(
                                 "y",
                                 Float.class,
                                 RussianText.get(TextKeys.COORYINTERACT),
-                                CoordinatesValidation::validateY)
+                                CoordinatesValidation::validateY,
+                                false)
                         );
 
                     }
@@ -99,12 +107,14 @@ public class DescriptionHolder {
                                 "fullName",
                                 String.class,
                                 RussianText.get(TextKeys.ORGANISATIONNAMEINTERACT),
-                                OrganizationValidation::validateFullName)
+                                OrganizationValidation::validateFullName,
+                                false)
                         );
                         add(new FieldWithDesc<>(
                                         "type",
                                         OrganizationType.class,
-                                RussianText.get(TextKeys.ORGANISATIONTYPEINTERACT)
+                                        RussianText.get(TextKeys.ORGANISATIONTYPEINTERACT),
+                                        true
                                 )
                         );
 
