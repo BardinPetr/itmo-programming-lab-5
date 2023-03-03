@@ -4,9 +4,17 @@ plugins {
 
 group = "ru.bardinpetr.itmo.lab5.client"
 
-//task<Jar>("fatJar").manifest.attributes["Main-Class"] = "$group.Main"
-
 application.mainClass.set("$group.Main")
+
+tasks.register<Jar>("fatJar") {
+    manifest.attributes["Main-Class"] = application.mainClass
+    archiveClassifier.set("fat")
+    from(sourceSets.main.get().output)
+    dependsOn(configurations.runtimeClasspath)
+    from({ configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) } })
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 
 dependencies {
     implementation(project(":models"))

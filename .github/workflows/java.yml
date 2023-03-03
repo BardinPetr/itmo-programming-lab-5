@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "build"
+  group: "java"
   cancel-in-progress: true
 
 jobs:
@@ -29,15 +29,41 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
-      - name: Gradle build
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build
+      #      - name: Gradle build
+      #        uses: gradle/gradle-build-action@v2
+      #        with:
+      #          arguments: build
 
-      - name: Execute Gradle build
-        run: ./gradlew javadoc
+      - name: Assemble dist
+        run: ./gradlew assembleDist
 
-      - uses: actions/upload-artifact@v3
+      - name: Generate fatjars
+        run: ./gradlew fatJar
+
+      - name: Build docs
+        run: ./gradlew aggregateJavadoc
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: Docs
-          path: docs/javadoc
+          path: './build/docs/aggregateJavadoc/'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
+      - name: Archive jars
+        uses: actions/upload-artifact@v3
+        with:
+          name: fatjars
+          path: |
+            ./client/build/libs/client-fat.jar
+            ./server/build/libs/server-fat.jar
+
+      - name: Archive distribuitions
+        uses: actions/upload-artifact@v3
+        with:
+          name: fatjars
+          path: |
+            ./client/build/distributions/client.tar
+            ./server/build/distributions/server.tar
