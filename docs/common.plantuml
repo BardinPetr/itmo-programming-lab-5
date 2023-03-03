@@ -1,0 +1,173 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Command {
+  + Command(): 
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + createResponse(): ICommandResponse
+  + validate(): ValidationResponse
+   inlineArgs: Field[]
+   type: String
+   interactArgs: Field[]
+}
+class Executor {
+  + Executor(): 
+  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + execute(Command): Response<ICommandResponse>
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  + registerExecutor(Executor): void
+}
+class FileAccessException {
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(File, OperationType): 
+  - path: String
+  - type: OperationType
+   type: OperationType
+   path: String
+}
+class FileController {
+  + FileController(String): 
+  + check(): boolean
+  # checkWriteAccess(): void
+  - loadPath(String): File
+  # checkReadAccess(): void
+  # ensureExistence(boolean): boolean
+  - checkAccess(): void
+  - checkExistence(): boolean
+   path: String
+}
+class FileIOController {
+  + FileIOController(String): 
+  + write(byte[]): void
+  + openWriteStream(): FileOutputStream
+  + openReadStream(): FileInputStream
+  + read(): byte[]
+  + clear(): void
+}
+class FileUtils {
+  + FileUtils(): 
+  + createFile(Path, String): File
+  + read(File): String
+  + deleteDir(Path): void
+  + parsePermissions(String): FileAttribute<Set<PosixFilePermission>>
+  + createDir(String): Path
+  + checkParentDirectoryPermissions(File): boolean
+  + exists(File): boolean
+  + getParentDir(File): File
+  + write(File, String): void
+  + delete(File): void
+}
+interface ICommandResponse << interface >> {
+   userMessage: String
+}
+class InvalidDataFileException {
+  + InvalidDataFileException(String, byte[], SerDesException): 
+  - path: String
+  - contents: byte[]
+   path: String
+   contents: byte[]
+}
+interface NoReturnOperation<T> << interface >> {
+  + apply(T): void
+}
+class ObjectMapperFactory {
+  + ObjectMapperFactory(): 
+  + createMapper(): ObjectMapper
+}
+interface Operation<T, V> << interface >> {
+  + apply(T): V
+}
+enum OperationType << enumeration >> {
+  - OperationType(String): 
+  - OperationType(): 
+  - description: String
+  + valueOf(String): OperationType
+  + values(): OperationType[]
+   description: String
+}
+class Response<T> {
+  + Response(boolean, boolean, String, T): 
+  + Response(): 
+  - text: String
+  - success: boolean
+  - resolved: boolean
+  - payload: T
+  + hashCode(): int
+  + toString(): String
+  # canEqual(Object): boolean
+  + equals(Object): boolean
+  + noResolve(): Response<T>
+  + error(String): Response<T>
+  + success(T): Response<T>
+  + error(Exception): Response<T>
+   text: String
+   success: boolean
+   resolved: boolean
+   payload: T
+}
+class SerDesException {
+  + SerDesException(Type, Exception): 
+  - direction: Type
+  - internalException: Exception
+  + toString(): String
+   internalException: Exception
+   direction: Type
+}
+class SerDesService<T> {
+  + SerDesService(Class<T>): 
+  + serialize(T): byte[]
+  + deserialize(byte[]): T
+   objectMapper: ObjectMapper
+}
+enum Type << enumeration >> {
+  + Type(): 
+  + values(): Type[]
+  + valueOf(String): Type
+}
+class ValueDeserializer {
+  + ValueDeserializer(): 
+  + deserialize(Class<K>, String): K
+}
+class XMLSerDesService<T> {
+  + XMLSerDesService(Class<T>): 
+   objectMapper: ObjectMapper
+}
+
+Command                   -[#595959,dashed]->  ICommandResponse         
+Executor                  -[#595959,dashed]->  Command                  
+Executor                 "1" *-[#595959,plain]-> "childExecutors\n*" Executor                 
+Executor                  -[#595959,dashed]->  ICommandResponse         
+Executor                  -[#595959,dashed]->  NoReturnOperation        
+Executor                 "1" *-[#595959,plain]-> "operationMap\n*" Operation                
+Executor                  -[#595959,dashed]->  Response                 
+FileAccessException       -[#595959,dashed]->  FileAccessException      
+FileAccessException      "1" *-[#595959,plain]-> "type\n1" OperationType            
+FileController            -[#595959,dashed]->  FileAccessException      : "«create»"
+FileController            -[#595959,dashed]->  FileController           
+FileIOController          -[#595959,dashed]->  FileAccessException      : "«create»"
+FileIOController          -[#000082,plain]-^  FileController           
+FileIOController          -[#595959,dashed]->  FileIOController         
+FileUtils                 -[#595959,dashed]->  FileUtils                
+InvalidDataFileException  -[#595959,dashed]->  SerDesException          
+NoReturnOperation         -[#595959,dashed]->  Command                  
+Operation                 -[#595959,dashed]->  Command                  
+Operation                 -[#595959,dashed]->  ICommandResponse         
+OperationType             +-[#820000,plain]-  FileAccessException      
+Response                  -[#595959,dashed]->  ICommandResponse         
+Response                  -[#595959,dashed]->  Response                 : "«create»"
+SerDesException           -[#595959,dashed]->  SerDesException          
+SerDesException          "1" *-[#595959,plain]-> "direction\n1" Type                     
+SerDesService             -[#595959,dashed]->  SerDesException          : "«create»"
+SerDesService             -[#595959,dashed]->  SerDesService            
+Type                      +-[#820000,plain]-  SerDesException          
+XMLSerDesService          -[#000082,plain]-^  SerDesService            
+@enduml

@@ -11,6 +11,4 @@ application.mainClass.set("$group.Main")
 dependencies {
     implementation(project(":models"))
     implementation(project(":common"))
-    testImplementation(project(mapOf("path" to ":common")))
-    testRuntimeOnly(project(":common"))
 }
