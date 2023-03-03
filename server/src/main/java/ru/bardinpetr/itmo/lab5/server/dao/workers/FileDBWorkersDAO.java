@@ -1,13 +1,9 @@
 package ru.bardinpetr.itmo.lab5.server.dao.workers;
 
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
-import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO;
 import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
-
-import java.time.ZonedDateTime;
-import java.util.Date;
 
 /**
  * Implementation of collection DAO for workers database.
@@ -31,17 +27,5 @@ public class FileDBWorkersDAO extends FileDBDAO<Integer, Worker> implements IWor
         var key = nextPrimaryKey();
         super.add(item.withId(key));
         return key;
-    }
-
-    @Override
-    public CollectionInfo getCollectionInfo() {
-        var info = super.getCollectionInfo();
-        var first = readAll()
-                .stream()
-                .map(Worker::getCreationDate)
-                .sorted()
-                .findFirst().orElse(ZonedDateTime.now());
-        info.setInitializationDate(Date.from(first.toInstant()));
-        return info;
     }
 }

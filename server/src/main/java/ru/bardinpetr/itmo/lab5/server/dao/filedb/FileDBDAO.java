@@ -4,11 +4,11 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 import ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection;
+import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.server.dao.ICollectionFilteredDAO;
 import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -59,9 +59,9 @@ public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> imple
     @Override
     public CollectionInfo getCollectionInfo() {
         return new CollectionInfo(
-                Worker.class.getCanonicalName(),
+                WorkerCollection.class.getSimpleName(),
                 Worker.class.getName(),
-                new Date(),
+                controller.info().creationDate(),
                 controller.data().size()
         );
     }

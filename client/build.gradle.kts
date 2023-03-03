@@ -4,9 +4,9 @@ plugins {
 
 group = "ru.bardinpetr.itmo.lab5.client"
 
-application {
-    mainClass.set("${group}.Main")
-}
+//task<Jar>("fatJar").manifest.attributes["Main-Class"] = "$group.Main"
+
+application.mainClass.set("$group.Main")
 
 dependencies {
     implementation(project(":models"))

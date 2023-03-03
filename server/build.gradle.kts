@@ -4,11 +4,13 @@ plugins {
 
 group = "ru.bardinpetr.itmo.lab5.server"
 
-application {
-    mainClass.set("${group}.Main")
-}
+//task<Jar>("fatJar").manifest.attributes["Main-Class"] = "$group.Main"
+
+application.mainClass.set("$group.Main")
 
 dependencies {
     implementation(project(":models"))
     implementation(project(":common"))
+    testImplementation(project(mapOf("path" to ":common")))
+    testRuntimeOnly(project(":common"))
 }
