@@ -184,7 +184,7 @@ public class ObjectScannerTest {
                             PUBLIC
                             CLEANER""").scan(Worker.class),
                     new Worker(
-                            1,
+                            0,
                             ZonedDateTime.now(),
                             "Artem",
                             new Coordinates(13, 12),
@@ -213,7 +213,7 @@ public class ObjectScannerTest {
                                                         
                             """).scan(Worker.class),
                     new Worker(
-                            2,
+                            0,
                             ZonedDateTime.now(),
                             "Artem",
                             new Coordinates(13, 12),
@@ -239,7 +239,7 @@ public class ObjectScannerTest {
                             N
                             CLEANER""").scan(Worker.class),
                     new Worker(
-                            3,
+                            0,
                             ZonedDateTime.now(),
                             "Artem",
                             new Coordinates(13, 12),
@@ -266,7 +266,7 @@ public class ObjectScannerTest {
                                                         
                             """).scan(Worker.class),
                     new Worker(
-                            4,
+                            0,
                             ZonedDateTime.now(),
                             "Artem",
                             new Coordinates(13, 12),
@@ -293,7 +293,7 @@ public class ObjectScannerTest {
                                                         
                             """).scan(Worker.class),
                     new Worker(
-                            5,
+                            0,
                             ZonedDateTime.now(),
                             "Artem",
                             new Coordinates(13, 12),
