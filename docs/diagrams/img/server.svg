@@ -1,0 +1,3278 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css"
+     height="3224px" preserveAspectRatio="none" style="width:4100px;height:3224px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 4100 3224" width="4100px" zoomAndPan="magnify">
+    <defs/>
+    <g><!--MD5=[ea4e3642cac949f553ea20a93caa8821]
+class CollectionInfo-->
+        <g id="elem_CollectionInfo">
+            <rect codeLine="24" fill="#FFFFFF" height="332.2637" id="CollectionInfo" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="404" x="2048.5" y="2088"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="110" x="2195.5" y="2107.0752">CollectionInfo
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2049.5" x2="2451.5" y1="2115.0146" y2="2115.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="150" x="2054.5"
+                  y="2133.0898">-itemsCount: Integer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="99" x="2054.5"
+                  y="2150.1045">-name: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="92" x="2054.5"
+                  y="2167.1191">-type: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="233" x="2054.5"
+                  y="2184.1338">-initializationDate: LocalDateTime
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2049.5" x2="2451.5" y1="2191.0732" y2="2191.0732"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="392" x="2054.5"
+                  y="2209.1484">+CollectionInfo(String, String, LocalDateTime, Integer):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="302" x="2054.5"
+                  y="2226.1631">+setInitializationDate(LocalDateTime): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="139" x="2054.5"
+                  y="2243.1777">+getName(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="2054.5"
+                  y="2260.1924">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="134" x="2054.5"
+                  y="2277.207">+getType(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="274" x="2054.5"
+                  y="2294.2217">+getInitializationDate(): LocalDateTime
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="191" x="2054.5"
+                  y="2311.2363">+getItemsCount(): Integer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="2054.5"
+                  y="2328.251">+setName(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="162" x="2054.5"
+                  y="2345.2656">+setType(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="219" x="2054.5"
+                  y="2362.2803">+setItemsCount(Integer): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="2054.5"
+                  y="2379.2949">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="2054.5"
+                  y="2396.3096">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="2054.5"
+                  y="2413.3242">+hashCode(): int
+            </text>
+        </g><!--MD5=[521817ab83e81da341a3f4b5e91bae41]
+class Command-->
+        <g id="elem_Command">
+            <rect codeLine="43" fill="#FFFFFF" height="213.1611" id="Command" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="303" x="3790" y="974"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="78" x="3902.5" y="993.0752">Command
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3791" x2="4092" y1="1001.0146" y2="1001.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3791" x2="4092" y1="1009.0146" y2="1009.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="100" x="3796"
+                  y="1027.0898">+Command():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="134" x="3796"
+                  y="1044.1045">+getType(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="3796"
+                  y="1061.1191">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="3796"
+                  y="1078.1338">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="3796"
+                  y="1095.1484">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="3796"
+                  y="1112.1631">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="291" x="3796"
+                  y="1129.1777">+createResponse(): ICommandResponse
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="188" x="3796"
+                  y="1146.1924">+getInteractArgs(): Field[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="224" x="3796"
+                  y="1163.207">+validate(): ValidationResponse
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="170" x="3796"
+                  y="1180.2217">+getInlineArgs(): Field[]
+            </text>
+        </g><!--MD5=[7a4729d26b999f6a4650b01106c103c5]
+class Comparable-->
+        <g id="elem_Comparable">
+            <rect codeLine="55" fill="#FFFFFF" height="74.6133" id="Comparable" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="151" x="2607" y="3143"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="2643" y="3160.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="94" x="2630" y="3176.6592">Comparable
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="2752" y="3140"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="2753" y="3153.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2608" x2="2757" y1="3184.5986" y2="3184.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2608" x2="2757" y1="3192.5986" y2="3192.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="139" x="2613"
+                  y="3210.6738">+compareTo(T): int
+            </text>
+        </g><!--MD5=[f8ed75971b0a6b6896f5b0ea32ec4e3d]
+class Coordinates-->
+        <g id="elem_Coordinates">
+            <rect codeLine="58" fill="#FFFFFF" height="264.2051" id="Coordinates" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="227" x="2653" y="2480"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="94" x="2719.5" y="2499.0752">Coordinates
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2654" x2="2879" y1="2507.0146" y2="2507.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="57" x="2659"
+                  y="2525.0898">-y: float
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="78" x="2659"
+                  y="2542.1045">-x: Integer
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2654" x2="2879" y1="2549.0439" y2="2549.0439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="206" x="2659"
+                  y="2567.1191">+Coordinates(Integer, float):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="114" x="2659"
+                  y="2584.1338">+Coordinates():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="118" x="2659"
+                  y="2601.1484">+getX(): Integer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="97" x="2659"
+                  y="2618.1631">+getY(): float
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="146" x="2659"
+                  y="2635.1777">+setX(Integer): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="125" x="2659"
+                  y="2652.1924">+setY(float): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="2659"
+                  y="2669.207">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="2659"
+                  y="2686.2217">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="2659"
+                  y="2703.2363">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="2659"
+                  y="2720.251">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="215" x="2659"
+                  y="2737.2656">+compareTo(Coordinates): int
+            </text>
+        </g><!--MD5=[a0a1f7f9662f43ef0ece806266f72a6f]
+class Executor-->
+        <g id="elem_Executor">
+            <rect codeLine="73" fill="#FFFFFF" height="213.1611" id="Executor" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="632" x="3271.5" y="428.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="69" x="3553" y="447.5752">Executor
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3272.5" x2="3902.5" y1="455.5146" y2="455.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="221" x="3277.5"
+                  y="473.5898">+MAX_RECURSION_DEPTH: int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="620" x="3277.5"
+                  y="490.6045">-operationMap: Map&lt;Class&lt;Command&gt;, Operation&lt;Command, ICommandResponse&gt;&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="230" x="3277.5"
+                  y="507.6191">-childExecutors: List&lt;Executor&gt;
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3272.5" x2="3902.5" y1="514.5586" y2="514.5586"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="92" x="3277.5"
+                  y="532.6338">+Executor():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="396" x="3277.5"
+                  y="549.6484">+execute(Command): Response&lt;ICommandResponse&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="462" x="3277.5"
+                  y="566.6631">+registerVoidOperation(Class&lt;T&gt;, NoReturnOperation&lt;T&gt;): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="519" x="3277.5"
+                  y="583.6777">+registerOperation(Class&lt;T&gt;, Operation&lt;T, ICommandResponse&gt;): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="424" x="3277.5"
+                  y="600.6924">#execute(Command, int): Response&lt;ICommandResponse&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="243" x="3277.5"
+                  y="617.707">+registerExecutor(Executor): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="530" x="3277.5"
+                  y="634.7217">+executeBatch(List&lt;Command&gt;): List&lt;Response&lt;ICommandResponse&gt;&gt;
+            </text>
+        </g><!--MD5=[b0e40f0c39f625d643b1f5b496d53d35]
+class FileAccessException-->
+        <g id="elem_FileAccessException">
+            <rect codeLine="85" fill="#FFFFFF" height="179.1318" id="FileAccessException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="415" x="203" y="2522.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="154" x="333.5" y="2541.5752">FileAccessException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="204" x2="617" y1="2549.5146" y2="2549.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="93" x="209"
+                  y="2567.5898">-path: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="152" x="209"
+                  y="2584.6045">-type: OperationType
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="204" x2="617" y1="2591.5439" y2="2591.5439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="403" x="209"
+                  y="2609.6191">+FileAccessException(Exception, String, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="303" x="209"
+                  y="2626.6338">+FileAccessException(File, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="382" x="209"
+                  y="2643.6484">+FileAccessException(Exception, File, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="324" x="209"
+                  y="2660.6631">+FileAccessException(String, OperationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="194" x="209"
+                  y="2677.6777">+getType(): OperationType
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="131" x="209"
+                  y="2694.6924">+getPath(): String
+            </text>
+        </g><!--MD5=[76871b30d076a363697fb5a0f2f18e71]
+class FileDBController-->
+        <g id="elem_FileDBController">
+            <rect codeLine="95" fill="#FFFFFF" height="179.1318" id="FileDBController" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="338" x="804.5" y="991"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="126" x="905" y="1010.0752">FileDBController
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="1136.5" y="988"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="1137.5" y="1001.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="805.5" x2="1141.5" y1="1018.0146" y2="1018.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="250" x="810.5"
+                  y="1036.0898">-storage: FileStorageController&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="223" x="810.5"
+                  y="1053.1045">-baseCollectionClass: Class&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="91" x="810.5"
+                  y="1070.1191">-collection: T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="805.5" x2="1141.5" y1="1077.0586" y2="1077.0586"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="326" x="810.5"
+                  y="1095.1338">+FileDBController(FileIOController, Class&lt;T&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="126" x="810.5"
+                  y="1112.1484">+store(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="121" x="810.5"
+                  y="1129.1631">+clear(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="118" x="810.5"
+                  y="1146.1777">+load(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="74" x="810.5"
+                  y="1163.1924">+data(): T
+            </text>
+        </g><!--MD5=[54be845eb36798a0919ba0108475f7a2]
+class FileDBDAO-->
+        <g id="elem_FileDBDAO">
+            <rect codeLine="105" fill="#FFFFFF" height="298.2344" id="FileDBDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="398" x="1410.5" y="386"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="82" x="1554.5" y="405.0752">FileDBDAO
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="1785.5" y="383"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="1786.5" y="396.0645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1411.5" x2="1807.5" y1="413.0146" y2="413.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="366" x="1416.5"
+                  y="431.0898">-controller: FileDBController&lt;ISetCollection&lt;K, V&gt;&gt;
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1411.5" x2="1807.5" y1="438.0293" y2="438.0293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="386" x="1416.5"
+                  y="456.1045">+FileDBDAO(FileDBController&lt;ISetCollection&lt;K, V&gt;&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="85" x="1416.5"
+                  y="473.1191">+read(K): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="80" x="1416.5"
+                  y="490.1338">+add(V): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="1416.5"
+                  y="507.1484">-asStream(): Stream&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="1416.5"
+                  y="524.1631">+clear(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="1416.5"
+                  y="541.1777">+getMax(): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="247" x="1416.5"
+                  y="558.1924">+getCollectionInfo(): CollectionInfo
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="1416.5"
+                  y="575.207">+getMin(): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="138" x="1416.5"
+                  y="592.2217">+readAll(): List&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="151" x="1416.5"
+                  y="609.2363">+remove(K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="254" x="1416.5"
+                  y="626.251">+readAll(Comparator&lt;V&gt;): List&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="142" x="1416.5"
+                  y="643.2656">+update(K, V): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="1416.5"
+                  y="660.2803">+save(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="154" x="1416.5"
+                  y="677.2949">+nextPrimaryKey(): K
+            </text>
+        </g><!--MD5=[dc0a969c436de3529230b1d6370962cb]
+class FileDBInfo-->
+        <g id="elem_FileDBInfo">
+            <rect codeLine="122" fill="#FFFFFF" height="142.6719" id="FileDBInfo" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="266" x="2768.5" y="12"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="53" x="2875" y="29.0645">«record»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="82" x="2860.5" y="45.6592">FileDBInfo
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2769.5" x2="3033.5" y1="53.5986" y2="53.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="111" x="2774.5"
+                  y="71.6738">-filePath: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="208" x="2774.5"
+                  y="88.6885">-creationDate: LocalDateTime
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2769.5" x2="3033.5" y1="95.6279" y2="95.6279"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="254" x="2774.5"
+                  y="113.7031">+FileDBInfo(String, LocalDateTime):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="127" x="2774.5"
+                  y="130.7178">+filePath(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="224" x="2774.5"
+                  y="147.7324">+creationDate(): LocalDateTime
+            </text>
+        </g><!--MD5=[013b70b66ea875723896f22404f1efdb]
+class FileDBWorkersDAO-->
+        <g id="elem_FileDBWorkersDAO">
+            <rect codeLine="129" fill="#FFFFFF" height="111.0732" id="FileDBWorkersDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="429" x="2057" y="215"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="148" x="2197.5" y="234.0752">FileDBWorkersDAO
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2058" x2="2485" y1="242.0146" y2="242.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2058" x2="2485" y1="250.0146" y2="250.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="417" x="2063"
+                  y="268.0898">+FileDBWorkersDAO(FileDBController&lt;WorkerCollection&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="195" x="2063"
+                  y="285.1045">+nextPrimaryKey(): Integer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="247" x="2063"
+                  y="302.1191">+getCollectionInfo(): CollectionInfo
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="163" x="2063"
+                  y="319.1338">+add(Worker): Integer
+            </text>
+        </g><!--MD5=[a9a1cf1effea8b0a49d86e314f79dfde]
+class FileIOController-->
+        <g id="elem_FileIOController">
+            <rect codeLine="135" fill="#FFFFFF" height="145.1025" id="FileIOController" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="293" x="12" y="2181.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="124" x="96.5" y="2200.5752">FileIOController
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="13" x2="304" y1="2208.5146" y2="2208.5146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="13" x2="304" y1="2216.5146" y2="2216.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="179" x="18"
+                  y="2234.5898">+FileIOController(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="140" x="18"
+                  y="2251.6045">+write(byte[]): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="18"
+                  y="2268.6191">+clear(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="281" x="18"
+                  y="2285.6338">+openWriteStream(): FileOutputStream
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="108" x="18"
+                  y="2302.6484">+read(): byte[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="266" x="18"
+                  y="2319.6631">+openReadStream(): FileInputStream
+            </text>
+        </g><!--MD5=[f2570971d1dbd6d65715c098141dc42e]
+class FileStorageController-->
+        <g id="elem_FileStorageController">
+            <rect codeLine="143" fill="#FFFFFF" height="145.1025" id="FileStorageController" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="437" x="483" y="1680"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="165" x="613.5" y="1699.0752">FileStorageController
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="914" y="1677"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="915" y="1690.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="484" x2="919" y1="1707.0146" y2="1707.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="249" x="489"
+                  y="1725.0898">-serDesService: SerDesService&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="144" x="489"
+                  y="1742.1045">-file: FileIOController
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="484" x2="919" y1="1749.0439" y2="1749.0439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="425" x="489"
+                  y="1767.1191">+FileStorageController(FileIOController, SerDesService&lt;T&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="118" x="489"
+                  y="1784.1338">+loadObject(): T
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="489"
+                  y="1801.1484">+clear(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="155" x="489"
+                  y="1818.1631">+storeObject(T): void
+            </text>
+        </g><!--MD5=[b77c9b93e38cff0662ffbe66ce4f10f1]
+class ICollectionBaseDAO-->
+        <g id="elem_ICollectionBaseDAO">
+            <rect codeLine="151" fill="#FFFFFF" height="261.7744" id="ICollectionBaseDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="266" x="2280.5" y="1621.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="2365.5" y="1638.5645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="155" x="2322" y="1655.1592">ICollectionBaseDAO
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="2523.5" y="1618.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="2524.5" y="1631.5645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2281.5" x2="2545.5" y1="1663.0986" y2="1663.0986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2281.5" x2="2545.5" y1="1671.0986" y2="1671.0986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="247" x="2286.5"
+                  y="1689.1738">+getCollectionInfo(): CollectionInfo
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="138" x="2286.5"
+                  y="1706.1885">+readAll(): List&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="80" x="2286.5"
+                  y="1723.2031">+add(V): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="2286.5"
+                  y="1740.2178">+getMax(): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="254" x="2286.5"
+                  y="1757.2324">+readAll(Comparator&lt;V&gt;): List&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="2286.5"
+                  y="1774.2471">+getMin(): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="151" x="2286.5"
+                  y="1791.2617">+remove(K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="2286.5"
+                  y="1808.2764">+clear(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="2286.5"
+                  y="1825.291">+save(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="142" x="2286.5"
+                  y="1842.3057">+update(K, V): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="85" x="2286.5"
+                  y="1859.3203">+read(K): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="154" x="2286.5"
+                  y="1876.335">+nextPrimaryKey(): K
+            </text>
+        </g><!--MD5=[835aeec729fcd52ce2e6f202789198b6]
+class ICollectionFilteredDAO-->
+        <g id="elem_ICollectionFilteredDAO">
+            <rect codeLine="165" fill="#FFFFFF" height="108.6426" id="ICollectionFilteredDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="290" x="1928.5" y="1026"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="2025.5" y="1043.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="176" x="1971.5" y="1059.6592">ICollectionFilteredDAO
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="2195.5" y="1023"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="2196.5" y="1036.0645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1929.5" x2="2217.5" y1="1067.5986" y2="1067.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1929.5" x2="2217.5" y1="1075.5986" y2="1075.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="210" x="1934.5"
+                  y="1093.6738">+remove(Predicate&lt;V&gt;): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="217" x="1934.5"
+                  y="1110.6885">+filter(Predicate&lt;V&gt;): List&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="278" x="1934.5"
+                  y="1127.7031">+getMapped(Function&lt;V, T&gt;): List&lt;T&gt;
+            </text>
+        </g><!--MD5=[7b82ae2f2c4d9bced7a59f0fe064a814]
+class ICommandResponse-->
+        <g id="elem_ICommandResponse">
+            <rect codeLine="170" fill="#FFFFFF" height="74.6133" id="ICommandResponse" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="204" x="3670.5" y="1715"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="3738.5" y="1732.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="164" x="3690.5" y="1748.6592">ICommandResponse
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3671.5" x2="3873.5" y1="1756.5986" y2="1756.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3671.5" x2="3873.5" y1="1764.5986" y2="1764.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="192" x="3676.5"
+                  y="1782.6738">+getUserMessage(): String
+            </text>
+        </g><!--MD5=[7cbe4c0dc25da1518ccdfaa6d9dbe509]
+class IKeyedEntity-->
+        <g id="elem_IKeyedEntity">
+            <rect codeLine="173" fill="#FFFFFF" height="91.6279" id="IKeyedEntity" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="185" x="1828" y="2208"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="1880.5" y="2225.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="100" x="1864.5" y="2241.6592">IKeyedEntity
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="10" x="2006" y="2205"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="8" x="2007" y="2218.0645">K
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1829" x2="2012" y1="2249.5986" y2="2249.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1829" x2="2012" y1="2257.5986" y2="2257.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="145" x="1834"
+                  y="2275.6738">+getPrimaryKey(): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="173" x="1834"
+                  y="2292.6885">+setPrimaryKey(K): void
+            </text>
+        </g><!--MD5=[7202668ebec2946d749add76918688bd]
+class ISetCollection-->
+        <g id="elem_ISetCollection">
+            <rect codeLine="177" fill="#FFFFFF" height="57.5986" id="ISetCollection" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="142" x="1538.5" y="1051.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="1561.5" y="1068.5645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="108" x="1541.5" y="1085.1592">ISetCollection
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="1657.5" y="1048.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="1658.5" y="1061.5645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1539.5" x2="1679.5" y1="1093.0986" y2="1093.0986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1539.5" x2="1679.5" y1="1101.0986" y2="1101.0986"/>
+        </g><!--MD5=[f8f7fc8686fc969567f0486ebc4052ca]
+class IWorkerCollectionDAO-->
+        <g id="elem_IWorkerCollectionDAO">
+            <rect codeLine="178" fill="#FFFFFF" height="142.6719" id="IWorkerCollectionDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="353" x="2334" y="463.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="2476.5" y="480.5645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="176" x="2422.5" y="497.1592">IWorkerCollectionDAO
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2335" x2="2686" y1="505.0986" y2="505.0986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2335" x2="2686" y1="513.0986" y2="513.0986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="341" x="2340"
+                  y="531.1738">+filterLessThanPosition(Position): List&lt;Worker&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="179" x="2340"
+                  y="548.1885">+addIfMax(Worker): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="174" x="2340"
+                  y="565.2031">+addIfMin(Worker): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="230" x="2340"
+                  y="582.2178">+removeIfGreater(Worker): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="337" x="2340"
+                  y="599.2324">+getUniqueOrganizations(): Set&lt;Organization&gt;
+            </text>
+        </g><!--MD5=[5a85cc44919b3ca52dba57e77f440a41]
+class InvalidDataFileException-->
+        <g id="elem_InvalidDataFileException">
+            <rect codeLine="185" fill="#FFFFFF" height="128.0879" id="InvalidDataFileException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="436" x="624.5" y="2190"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="191" x="747" y="2209.0752">InvalidDataFileException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="625.5" x2="1059.5" y1="2217.0146" y2="2217.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="93" x="630.5"
+                  y="2235.0898">-path: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="123" x="630.5"
+                  y="2252.1045">-contents: byte[]
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="625.5" x2="1059.5" y1="2259.0439" y2="2259.0439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="424" x="630.5"
+                  y="2277.1191">+InvalidDataFileException(String, byte[], SerDesException):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="131" x="630.5"
+                  y="2294.1338">+getPath(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="165" x="630.5"
+                  y="2311.1484">+getContents(): byte[]
+            </text>
+        </g><!--MD5=[a7ac1f28f9c0a221ac4056afa676b7c7]
+class MainExecutor-->
+        <g id="elem_MainExecutor">
+            <rect codeLine="192" fill="#FFFFFF" height="77.0439" id="MainExecutor" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="497" x="2236" y="45"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="105" x="2432" y="64.0752">MainExecutor
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2237" x2="2732" y1="72.0146" y2="72.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2237" x2="2732" y1="80.0146" y2="80.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="230" x="2242"
+                  y="98.0898">+MainExecutor(FileIOController):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="485" x="2242"
+                  y="115.1045">-processScript(ServerExecuteScriptCommand): ICommandResponse
+            </text>
+        </g><!--MD5=[cc4941acd9f25cf973013d8901d108c0]
+class OperationType-->
+        <g id="elem_OperationType">
+            <rect codeLine="196" fill="#FFFFFF" height="278.7891" id="OperationType" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="244" x="288.5" y="2804"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="93" x="364" y="2821.0645">«enumeration»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="115" x="353" y="2837.6592">OperationType
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="289.5" x2="531.5" y1="2845.5986" y2="2845.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="138" x="294.5"
+                  y="2863.6738">-description: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="104" x="294.5"
+                  y="2880.6885">+PERM_READ:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="112" x="294.5"
+                  y="2897.7031">+PERM_WRITE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="74" x="294.5"
+                  y="2914.7178">+CREATE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="65" x="294.5"
+                  y="2931.7324">+WRITE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="143" x="294.5"
+                  y="2948.7471">+SET_PERMISSION:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="55" x="294.5"
+                  y="2965.7617">+OPEN:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="57" x="294.5"
+                  y="2982.7764">+READ:
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="289.5" x2="531.5" y1="2989.7158" y2="2989.7158"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="171" x="294.5"
+                  y="3007.791">-OperationType(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="128" x="294.5"
+                  y="3024.8057">-OperationType():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="193" x="294.5"
+                  y="3041.8203">+values(): OperationType[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="179" x="294.5"
+                  y="3058.835">+getDescription(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="232" x="294.5"
+                  y="3075.8496">+valueOf(String): OperationType
+            </text>
+        </g><!--MD5=[86c7c362de55a38b660185a1328fe18d]
+class Organization-->
+        <g id="elem_Organization">
+            <rect codeLine="211" fill="#FFFFFF" height="264.2051" id="Organization" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="306" x="3062.5" y="1620.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="99" x="3166" y="1639.5752">Organization
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3063.5" x2="3367.5" y1="1647.5146" y2="1647.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="124" x="3068.5"
+                  y="1665.5898">~fullName: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="176" x="3068.5"
+                  y="1682.6045">~type: OrganizationType
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3063.5" x2="3367.5" y1="1689.5439" y2="1689.5439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="294" x="3068.5"
+                  y="1707.6191">+Organization(String, OrganizationType):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="118" x="3068.5"
+                  y="1724.6338">+Organization():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="219" x="3068.5"
+                  y="1741.6484">+compareTo(Organization): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="162" x="3068.5"
+                  y="1758.6631">+getFullName(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="214" x="3068.5"
+                  y="1775.6777">+getType(): OrganizationType
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="190" x="3068.5"
+                  y="1792.6924">+setFullName(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="242" x="3068.5"
+                  y="1809.707">+setType(OrganizationType): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="3068.5"
+                  y="1826.7217">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="3068.5"
+                  y="1843.7363">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="3068.5"
+                  y="1860.751">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="3068.5"
+                  y="1877.7656">+toString(): String
+            </text>
+        </g><!--MD5=[33f804a163dbdf190e91e19270476992]
+class OrganizationType-->
+        <g id="elem_OrganizationType">
+            <rect codeLine="226" fill="#FFFFFF" height="210.7305" id="OrganizationType" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="264" x="3067.5" y="2838"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="93" x="3153" y="2855.0645">«enumeration»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="137" x="3131" y="2871.6592">OrganizationType
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3068.5" x2="3330.5" y1="2879.5986" y2="2879.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="68" x="3073.5"
+                  y="2897.6738">+PUBLIC:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="72" x="3073.5"
+                  y="2914.6885">-value: int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="112" x="3073.5"
+                  y="2931.7031">+COMMERCIAL:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="223" x="3073.5"
+                  y="2948.7178">+PRIVATE_LIMITED_COMPANY:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="242" x="3073.5"
+                  y="2965.7324">+OPEN_JOINT_STOCK_COMPANY:
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3068.5" x2="3330.5" y1="2972.6719" y2="2972.6719"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="166" x="3073.5"
+                  y="2990.7471">-OrganizationType(int):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="113" x="3073.5"
+                  y="3007.7617">+getValue(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="213" x="3073.5"
+                  y="3024.7764">+values(): OrganizationType[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="252" x="3073.5"
+                  y="3041.791">+valueOf(String): OrganizationType
+            </text>
+        </g><!--MD5=[a64a835c3d62471a77f615251fdde58a]
+class Position-->
+        <g id="elem_Position">
+            <rect codeLine="237" fill="#FFFFFF" height="210.7305" id="Position" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="210" x="2817.5" y="1647"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="93" x="2876" y="1664.0645">«enumeration»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="62" x="2891.5" y="1680.6592">Position
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2818.5" x2="3026.5" y1="1688.5986" y2="1688.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="83" x="2823.5"
+                  y="1706.6738">+CLEANER:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="2823.5"
+                  y="1723.6885">+ENGINEER:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="149" x="2823.5"
+                  y="1740.7031">+LEAD_DEVELOPER:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="190" x="2823.5"
+                  y="1757.7178">+HEAD_OF_DEPARTMENT:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="76" x="2823.5"
+                  y="1774.7324">+value: int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="198" x="2823.5"
+                  y="1791.7471">+MANAGER_OF_CLEANING:
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2818.5" x2="3026.5" y1="1798.6865" y2="1798.6865"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="98" x="2823.5"
+                  y="1816.7617">-Position(int):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="184" x="2823.5"
+                  y="1833.7764">+valueOf(String): Position
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="145" x="2823.5"
+                  y="1850.791">+values(): Position[]
+            </text>
+        </g><!--MD5=[62ba8ad8b61caf20139235a169a8c31d]
+class Response-->
+        <g id="elem_Response">
+            <rect codeLine="248" fill="#FFFFFF" height="417.3369" id="Response" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="302" x="3452.5" y="872"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="75" x="3560.5" y="891.0752">Response
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="3748.5" y="869"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="3749.5" y="882.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3453.5" x2="3753.5" y1="899.0146" y2="899.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="3458.5"
+                  y="917.0898">-text: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="128" x="3458.5"
+                  y="934.1045">-success: boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="132" x="3458.5"
+                  y="951.1191">-resolved: boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="81" x="3458.5"
+                  y="968.1338">-payload: T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3453.5" x2="3753.5" y1="975.0732" y2="975.0732"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="290" x="3458.5"
+                  y="993.1484">+Response(boolean, boolean, String, T):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="98" x="3458.5"
+                  y="1010.1631">+Response():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="132" x="3458.5"
+                  y="1027.1777">+getText(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="157" x="3458.5"
+                  y="1044.1924">+isSuccess(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="3458.5"
+                  y="1061.207">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="163" x="3458.5"
+                  y="1078.2217">+isResolved(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="119" x="3458.5"
+                  y="1095.2363">+getPayload(): T
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="3458.5"
+                  y="1112.251">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="3458.5"
+                  y="1129.2656">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="3458.5"
+                  y="1146.2803">+setSuccess(boolean): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="203" x="3458.5"
+                  y="1163.2949">+setResolved(boolean): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="160" x="3458.5"
+                  y="1180.3096">+setText(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="3458.5"
+                  y="1197.3242">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="147" x="3458.5"
+                  y="1214.3389">+setPayload(T): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="206" x="3458.5"
+                  y="1231.3535">+noResolve(): Response&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="212" x="3458.5"
+                  y="1248.3682">+error(String): Response&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="198" x="3458.5"
+                  y="1265.3828">+success(T): Response&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="238" x="3458.5"
+                  y="1282.3975">+error(Exception): Response&lt;T&gt;
+            </text>
+        </g><!--MD5=[fc26920c0028197b58c483e6ce4f83b6]
+class SerDesException-->
+        <g id="elem_SerDesException">
+            <rect codeLine="272" fill="#FFFFFF" height="145.1025" id="SerDesException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="274" x="705.5" y="2539.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="130" x="777.5" y="2558.5752">SerDesException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="706.5" x2="978.5" y1="2566.5146" y2="2566.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="112" x="711.5"
+                  y="2584.5898">-direction: Type
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="208" x="711.5"
+                  y="2601.6045">-internalException: Exception
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="706.5" x2="978.5" y1="2608.5439" y2="2608.5439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="262" x="711.5"
+                  y="2626.6191">+SerDesException(Type, Exception):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="153" x="711.5"
+                  y="2643.6338">+getDirection(): Type
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="249" x="711.5"
+                  y="2660.6484">+getInternalException(): Exception
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="711.5"
+                  y="2677.6631">+toString(): String
+            </text>
+        </g><!--MD5=[3a6b3ac2109cf17577e54c40a11f263c]
+class SerDesService-->
+        <g id="elem_SerDesService">
+            <rect codeLine="280" fill="#FFFFFF" height="145.1025" id="SerDesService" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="263" x="1096" y="2181.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="110" x="1167" y="2200.5752">SerDesService
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="1353" y="2178.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="1354" y="2191.5645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1097" x2="1358" y1="2208.5146" y2="2208.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="1102"
+                  y="2226.5898">-mapper: ObjectMapper
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="156" x="1102"
+                  y="2243.6045">-baseClass: Class&lt;T&gt;
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1097" x2="1358" y1="2250.5439" y2="2250.5439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="198" x="1102"
+                  y="2268.6191">+SerDesService(Class&lt;T&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="141" x="1102"
+                  y="2285.6338">+serialize(T): byte[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="251" x="1102"
+                  y="2302.6484">#getObjectMapper(): ObjectMapper
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="158" x="1102"
+                  y="2319.6631">+deserialize(byte[]): T
+            </text>
+        </g><!--MD5=[73145e46247802284b2f7aaef1fa1797]
+class Set-->
+        <g id="elem_Set">
+            <rect codeLine="288" fill="#FFFFFF" height="551.0234" id="Set" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="295" x="1634" y="1477"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="1741.5" y="1494.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="25" x="1763" y="1510.6592">Set
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="10" x="1922" y="1474"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="8" x="1923" y="1487.0645">E
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1635" x2="1928" y1="1518.5986" y2="1518.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1635" x2="1928" y1="1526.5986" y2="1526.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="79" x="1640"
+                  y="1544.6738">+size(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="283" x="1640"
+                  y="1561.6885">+of(E, E, E, E, E, E, E, E, E, E): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="112" x="1640"
+                  y="1578.7031">+of(E): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="129" x="1640"
+                  y="1595.7178">+toArray(T[]): T[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="187" x="1640"
+                  y="1612.7324">+remove(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="261" x="1640"
+                  y="1629.7471">+containsAll(Collection&lt;?&gt;): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="103" x="1640"
+                  y="1646.7617">+of(): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="1640"
+                  y="1663.7764">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="145" x="1640"
+                  y="1680.791">+isEmpty(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="124" x="1640"
+                  y="1697.8057">+add(E): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="242" x="1640"
+                  y="1714.8203">+retainAll(Collection&lt;?&gt;): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="171" x="1640"
+                  y="1731.835">+iterator(): Iterator&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="245" x="1640"
+                  y="1748.8496">+of(E, E, E, E, E, E, E, E): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="124" x="1640"
+                  y="1765.8643">+of(E[]): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="1640"
+                  y="1782.8789">+clear(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="226" x="1640"
+                  y="1799.8936">+of(E, E, E, E, E, E, E): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="211" x="1640"
+                  y="1816.9082">+spliterator(): Spliterator&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="254" x="1640"
+                  y="1833.9229">+removeAll(Collection&lt;?&gt;): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="145" x="1640"
+                  y="1850.9375">+toArray(): Object[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="169" x="1640"
+                  y="1867.9521">+of(E, E, E, E): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="1640"
+                  y="1884.9668">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="264" x="1640"
+                  y="1901.9814">+of(E, E, E, E, E, E, E, E, E): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="229" x="1640"
+                  y="1918.9961">+addAll(Collection&lt;E&gt;): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="207" x="1640"
+                  y="1936.0107">+of(E, E, E, E, E, E): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="236" x="1640"
+                  y="1953.0254">+copyOf(Collection&lt;E&gt;): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="194" x="1640"
+                  y="1970.04">+contains(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="131" x="1640"
+                  y="1987.0547">+of(E, E): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="150" x="1640"
+                  y="2004.0693">+of(E, E, E): Set&lt;E&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="188" x="1640"
+                  y="2021.084">+of(E, E, E, E, E): Set&lt;E&gt;
+            </text>
+        </g><!--MD5=[4296a1ab0576a383a1a509d52c22ebf0]
+class Type-->
+        <g id="elem_Type">
+            <rect codeLine="319" fill="#FFFFFF" height="142.6719" id="Type" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="175" x="755" y="2872"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="93" x="796" y="2889.0645">«enumeration»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="38" x="823.5" y="2905.6592">Type
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="756" x2="929" y1="2913.5986" y2="2913.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="93" x="761"
+                  y="2931.6738">+SERIALIZE:
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="113" x="761"
+                  y="2948.6885">+DESERIALIZE:
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="756" x2="929" y1="2955.6279" y2="2955.6279"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="63" x="761"
+                  y="2973.7031">+Type():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="124" x="761"
+                  y="2990.7178">+values(): Type[]
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="163" x="761"
+                  y="3007.7324">+valueOf(String): Type
+            </text>
+        </g><!--MD5=[7b5bd88a8a025decccf0c9eac4aaabe9]
+class Worker-->
+        <g id="elem_Worker">
+            <rect codeLine="326" fill="#FFFFFF" height="672.5566" id="Worker" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="739" x="2395" y="744"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="58" x="2735.5" y="763.0752">Worker
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2396" x2="3133" y1="771.0146" y2="771.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="81" x="2401"
+                  y="789.0898">-id: Integer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="2401"
+                  y="806.1045">-salary: float
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="145" x="2401"
+                  y="823.1191">-endDate: LocalDate
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="185" x="2401"
+                  y="840.1338">-coordinates: Coordinates
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="194" x="2401"
+                  y="857.1484">-organization: Organization
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="129" x="2401"
+                  y="874.1631">-position: Position
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="115" x="2401"
+                  y="891.1777">-nextId: Integer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="118" x="2401"
+                  y="908.1924">-startDate: Date
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="99" x="2401"
+                  y="925.207">-name: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="218" x="2401"
+                  y="942.2217">-creationDate: ZonedDateTime
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2396" x2="3133" y1="949.1611" y2="949.1611"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="727" x="2401"
+                  y="967.2363">+Worker(Integer, ZonedDateTime, String, Coordinates, float, Date, Organization,
+                LocalDate, Position):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="81" x="2401"
+                  y="984.251">+Worker():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="260" x="2401"
+                  y="1001.2656">+getCreationDate(): ZonedDateTime
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="2401"
+                  y="1018.2803">+getId(): Integer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="139" x="2401"
+                  y="1035.2949">+getName(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="159" x="2401"
+                  y="1052.3096">+setSalary(float): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="213" x="2401"
+                  y="1069.3242">+setEndDate(LocalDate): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="227" x="2401"
+                  y="1086.3389">+getCoordinates(): Coordinates
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="195" x="2401"
+                  y="1103.3535">+setPosition(Position): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="131" x="2401"
+                  y="1120.3682">+getSalary(): float
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="159" x="2401"
+                  y="1137.3828">+getStartDate(): Date
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="235" x="2401"
+                  y="1154.3975">+getOrganization(): Organization
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="2401"
+                  y="1171.4121">+withId(Integer): Worker
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="318" x="2401"
+                  y="1188.4268">+withCreationDate(ZonedDateTime): Worker
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="185" x="2401"
+                  y="1205.4414">+getEndDate(): LocalDate
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="2401"
+                  y="1222.4561">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="2401"
+                  y="1239.4707">+getPosition(): Position
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="187" x="2401"
+                  y="1256.4854">+setStartDate(Date): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="255" x="2401"
+                  y="1273.5">+setCoordinates(Coordinates): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="263" x="2401"
+                  y="1290.5146">+setOrganization(Organization): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="2401"
+                  y="1307.5293">+setName(String): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="285" x="2401"
+                  y="1324.5439">+nicePrintFormat(List&lt;Worker&gt;): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="182" x="2401"
+                  y="1341.5586">+compareTo(Worker): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="186" x="2401"
+                  y="1358.5732">+getPrimaryKey(): Integer
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="214" x="2401"
+                  y="1375.5879">+setPrimaryKey(Integer): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="2401"
+                  y="1392.6025">+equals(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="299" x="2401"
+                  y="1409.6172">+getComparator(): Comparator&lt;Worker&gt;
+            </text>
+        </g><!--MD5=[4acdb45e35aead0f556f529705d49aea]
+class WorkerCollection-->
+        <g id="elem_WorkerCollection">
+            <rect codeLine="365" fill="#FFFFFF" height="60.0293" id="WorkerCollection" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="160" x="1923.5" y="505"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="134" x="1936.5" y="524.0752">WorkerCollection
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1924.5" x2="2082.5" y1="532.0146" y2="532.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1924.5" x2="2082.5" y1="540.0146" y2="540.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="148" x="1929.5"
+                  y="558.0898">+WorkerCollection():
+            </text>
+        </g><!--MD5=[1ca26ae532d5b84b7f7ec191296b7666]
+class WorkersDAOExecutor-->
+        <g id="elem_WorkersDAOExecutor">
+            <rect codeLine="368" fill="#FFFFFF" height="111.0732" id="WorkersDAOExecutor" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="352" x="2682.5" y="215"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="169" x="2774" y="234.0752">WorkersDAOExecutor
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2683.5" x2="3033.5" y1="242.0146" y2="242.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="200" x="2688.5"
+                  y="260.0898">-dao: IWorkerCollectionDAO
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2683.5" x2="3033.5" y1="267.0293" y2="267.0293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="340" x="2688.5"
+                  y="285.1045">+WorkersDAOExecutor(IWorkerCollectionDAO):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="154" x="2688.5"
+                  y="302.1191">-registerCRUD(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="174" x="2688.5"
+                  y="319.1338">-registerComplex(): void
+            </text>
+        </g><!--MD5=[968951716562b046ac42ee688e9ebd5b]
+class XMLSerDesService-->
+        <g id="elem_XMLSerDesService">
+            <rect codeLine="374" fill="#FFFFFF" height="77.0439" id="XMLSerDesService" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="263" x="1027" y="1714"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="143" x="1081.5" y="1733.0752">XMLSerDesService
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="1284" y="1711"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="1285" y="1724.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1028" x2="1289" y1="1741.0146" y2="1741.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1028" x2="1289" y1="1749.0146" y2="1749.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="227" x="1033"
+                  y="1767.0898">+XMLSerDesService(Class&lt;T&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="251" x="1033"
+                  y="1784.1045">#getObjectMapper(): ObjectMapper
+            </text>
+        </g><!--MD5=[b2a0bf17c1ea0efabfb34b5cc24fe483]
+link Command to ICommandResponse-->
+        <g id="link_Command_ICommandResponse">
+            <path codeLine="379" d="M3832.25,1187.35 C3832.25,1187.35 3832.25,1709.8 3832.25,1709.8 " fill="none"
+                  id="Command-to-ICommandResponse" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3832.25,1714.8,3836.25,1705.8,3832.25,1709.8,3828.25,1705.8,3832.25,1714.8"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[c9516d9987333be5c9beda5ba3e63002]
+link Coordinates to Comparable-->
+        <g id="link_Coordinates_Comparable">
+            <path codeLine="380" d="M2688,2744.21 C2688,2744.21 2688,3122.86 2688,3122.86 " fill="none"
+                  id="Coordinates-to-Comparable" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2695,3122.86,2688,3142.86,2681,3122.86,2695,3122.86"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6821661e3b5af139cdbb4b06c0151e9a]
+link Executor to Command-->
+        <g id="link_Executor_Command">
+            <path codeLine="381" d="M3846.75,641.8 C3846.75,641.8 3846.75,968.96 3846.75,968.96 " fill="none"
+                  id="Executor-to-Command" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3846.75,973.96,3850.75,964.96,3846.75,968.96,3842.75,964.96,3846.75,973.96"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[513406298a3da3cd701e25fce19c06e3]
+link Executor to ICommandResponse-->
+        <g id="link_Executor_ICommandResponse">
+            <path codeLine="382" d="M3772.25,641.71 C3772.25,641.71 3772.25,1709.78 3772.25,1709.78 " fill="none"
+                  id="Executor-to-ICommandResponse" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="3772.25,1714.78,3776.25,1705.78,3772.25,1709.78,3768.25,1705.78,3772.25,1714.78"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[86d5f901449b5dd0904a7e3d114db375]
+link Executor to Response-->
+        <g id="link_Executor_Response">
+            <path codeLine="383" d="M3603.5,641.8 C3603.5,641.8 3603.5,866.77 3603.5,866.77 " fill="none"
+                  id="Executor-to-Response" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3603.5,871.77,3607.5,862.77,3603.5,866.77,3599.5,862.77,3603.5,871.77"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[e37b1099d9d87c206acdfb6c2a87d170]
+link FileAccessException to OperationType-->
+        <g id="link_FileAccessException_OperationType">
+            <path codeLine="384" d="M369.83,2713.71 C369.83,2713.71 369.83,2790.82 369.83,2790.82 " fill="none"
+                  id="FileAccessException-OperationType" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="369.83,2803.82,373.83,2794.82,369.83,2798.82,365.83,2794.82,369.83,2803.82"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="369.83" x2="369.83" y1="2798.82" y2="2790.82"/>
+            <polygon fill="#000000" points="369.83,2701.71,365.83,2707.71,369.83,2713.71,373.83,2707.71,369.83,2701.71"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="359.2475"
+                  y="2793.4102">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="30"
+                  x="335.5678" y="2722.8528">type
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="346.5678"
+                  y="2738.6522">1
+            </text>
+        </g><!--MD5=[d8da52b434e5862642b8d99f374c4917]
+reverse link OperationType to FileAccessException-->
+        <g id="link_OperationType_FileAccessException">
+            <path codeLine="434" d="M451.17,2788.87 C451.17,2788.87 451.17,2701.9 451.17,2701.9 " fill="none"
+                  id="OperationType-backto-FileAccessException" style="stroke:#000000;stroke-width:1.0;"/>
+            <ellipse cx="451.17" cy="2795.87" fill="#FFFFFF" rx="8" ry="8" style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="451.17" x2="451.17" y1="2787.87" y2="2803.87"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="459.17" x2="443.17" y1="2795.87" y2="2795.87"/>
+        </g><!--MD5=[3f25d8f417a5b1d34a8015ade4af8bdf]
+link FileDBController to FileAccessException-->
+        <g id="link_FileDBController_FileAccessException">
+            <path codeLine="385" d="M804.33,1081 C633.28,1081 394,1081 394,1081 C394,1081 394,2517.23 394,2517.23 "
+                  fill="none" id="FileDBController-to-FileAccessException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="394,2522.23,398,2513.23,394,2517.23,390,2513.23,394,2522.23"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[9b6830d0cf4125dfce4fd31486e05c9e]
+link FileDBController to FileIOController-->
+        <g id="link_FileDBController_FileIOController">
+            <path codeLine="386"
+                  d="M955.67,1170.19 C955.67,1433.85 955.67,2188 955.67,2188 C955.67,2188 310.18,2188 310.18,2188 "
+                  fill="none" id="FileDBController-to-FileIOController"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="305.18,2188,314.18,2192,310.18,2188,314.18,2184,305.18,2188"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[97b40a14d96b68811d4301a140ba96ba]
+link FileDBController to FileStorageController-->
+        <g id="link_FileDBController_FileStorageController">
+            <path codeLine="387" d="M862.25,1182.08 C862.25,1182.08 862.25,1666.98 862.25,1666.98 " fill="none"
+                  id="FileDBController-FileStorageController" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="862.25,1679.98,866.25,1670.98,862.25,1674.98,858.25,1670.98,862.25,1679.98"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="862.25" x2="862.25" y1="1674.98" y2="1666.98"/>
+            <polygon fill="#000000" points="862.25,1170.08,858.25,1176.08,862.25,1182.08,866.25,1176.08,862.25,1170.08"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="871.3945"
+                  y="1669.3357">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="50"
+                  x="801.8184" y="1191.2129">storage
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="822.8184"
+                  y="1207.0122">1
+            </text>
+        </g><!--MD5=[78913c1ff77960a8bf32cfc5b8009845]
+link FileDBController to InvalidDataFileException-->
+        <g id="link_FileDBController_InvalidDataFileException">
+            <path codeLine="388" d="M991.33,1170.15 C991.33,1170.15 991.33,2184.78 991.33,2184.78 " fill="none"
+                  id="FileDBController-to-InvalidDataFileException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="991.33,2189.78,995.33,2180.78,991.33,2184.78,987.33,2180.78,991.33,2189.78"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[ff1c455da1bd00830cd6c090b68c39a7]
+link FileDBController to SerDesException-->
+        <g id="link_FileDBController_SerDesException">
+            <path codeLine="389"
+                  d="M1142.55,1153 C1255.98,1153 1384.75,1153 1384.75,1153 C1384.75,1153 1384.75,2612 1384.75,2612 C1384.75,2612 984.68,2612 984.68,2612 "
+                  fill="none" id="FileDBController-to-SerDesException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="979.68,2612,988.68,2616,984.68,2612,988.68,2608,979.68,2612"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[0fe7c577301e4a49677fc0122e280ad0]
+link FileDBController to XMLSerDesService-->
+        <g id="link_FileDBController_XMLSerDesService">
+            <path codeLine="390" d="M1084.75,1170.08 C1084.75,1170.08 1084.75,1708.68 1084.75,1708.68 " fill="none"
+                  id="FileDBController-to-XMLSerDesService"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="1084.75,1713.68,1088.75,1704.68,1084.75,1708.68,1080.75,1704.68,1084.75,1713.68"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[2aa178ec258e7d5cb99cccbd7e800d79]
+link FileDBDAO to CollectionInfo-->
+        <g id="link_FileDBDAO_CollectionInfo">
+            <path codeLine="391"
+                  d="M1808.73,670 C1993.2,670 2239.17,670 2239.17,670 C2239.17,670 2239.17,2082.85 2239.17,2082.85 "
+                  fill="none" id="FileDBDAO-to-CollectionInfo"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="2239.17,2087.85,2243.17,2078.85,2239.17,2082.85,2235.17,2078.85,2239.17,2087.85"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[4f95a37f82779c246415a60fcbff7b9b]
+link FileDBDAO to Comparable-->
+        <g id="link_FileDBDAO_Comparable">
+            <path codeLine="392"
+                  d="M1474.5,684.36 C1474.5,1243.48 1474.5,3181 1474.5,3181 C1474.5,3181 2601.93,3181 2601.93,3181 "
+                  fill="none" id="FileDBDAO-to-Comparable"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2606.93,3181,2597.93,3177,2601.93,3181,2597.93,3185,2606.93,3181"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6b7c9a6e33356574ca4166b3ee75c8a5]
+link FileDBDAO to FileDBController-->
+        <g id="link_FileDBDAO_FileDBController">
+            <path codeLine="393"
+                  d="M1442.5,696.04 C1442.5,696.04 1442.5,1003 1442.5,1003 C1442.5,1003 1155.82,1003 1155.82,1003 "
+                  fill="none" id="FileDBDAO-FileDBController" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="1142.82,1003,1151.82,1007,1147.82,1003,1151.82,999,1142.82,1003"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1147.82" x2="1155.82" y1="1003" y2="1003"/>
+            <polygon fill="#000000" points="1442.5,684.04,1438.5,690.04,1442.5,696.04,1446.5,690.04,1442.5,684.04"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1425.6828" y="705.196">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="62"
+                  x="1150.645" y="981.4461">controller
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="1177.645"
+                  y="997.2454">1
+            </text>
+        </g><!--MD5=[5f0c42a993f78cfa3b40b4d6e061f3b0]
+link FileDBDAO to ICollectionFilteredDAO-->
+        <g id="link_FileDBDAO_ICollectionFilteredDAO">
+            <path codeLine="394"
+                  d="M1765.83,684.17 C1765.83,832.79 1765.83,1039 1765.83,1039 C1765.83,1039 1908.23,1039 1908.23,1039 "
+                  fill="none" id="FileDBDAO-to-ICollectionFilteredDAO"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="1908.23,1032,1928.23,1039,1908.23,1046,1908.23,1032"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[18ae7f4c92144b26da7a0e941c8df13f]
+link FileDBDAO to IKeyedEntity-->
+        <g id="link_FileDBDAO_IKeyedEntity">
+            <path codeLine="395"
+                  d="M1506.5,684.05 C1506.5,1104.58 1506.5,2270 1506.5,2270 C1506.5,2270 1822.85,2270 1822.85,2270 "
+                  fill="none" id="FileDBDAO-to-IKeyedEntity"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1827.85,2270,1818.85,2266,1822.85,2270,1818.85,2274,1827.85,2270"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[911cbb398a5f687e225774125e35bebf]
+link FileDBDAO to ISetCollection-->
+        <g id="link_FileDBDAO_ISetCollection">
+            <path codeLine="396" d="M1609.5,684.06 C1609.5,684.06 1609.5,1046.28 1609.5,1046.28 " fill="none"
+                  id="FileDBDAO-to-ISetCollection" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1609.5,1051.28,1613.5,1042.28,1609.5,1046.28,1605.5,1042.28,1609.5,1051.28"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[a3b255058dd53850d1523be8f49e4874]
+link FileDBDAO to Set-->
+        <g id="link_FileDBDAO_Set">
+            <path codeLine="397" d="M1723.17,684.29 C1723.17,684.29 1723.17,1471.8 1723.17,1471.8 " fill="none"
+                  id="FileDBDAO-to-Set" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1723.17,1476.8,1727.17,1467.8,1723.17,1471.8,1719.17,1467.8,1723.17,1476.8"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[aedbbaff60f46aa76c340260654e2151]
+link FileDBDAO to Worker-->
+        <g id="link_FileDBDAO_Worker">
+            <path codeLine="398"
+                  d="M1808.73,656 C2069.11,656 2492.33,656 2492.33,656 C2492.33,656 2492.33,738.96 2492.33,738.96 "
+                  fill="none" id="FileDBDAO-to-Worker"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2492.33,743.96,2496.33,734.96,2492.33,738.96,2488.33,734.96,2492.33,743.96"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[046a5a46fca9d1f75a89e4b2befe09b5]
+link FileDBWorkersDAO to CollectionInfo-->
+        <g id="link_FileDBWorkersDAO_CollectionInfo">
+            <path codeLine="399" d="M2259.83,326.14 C2259.83,326.14 2259.83,2082.91 2259.83,2082.91 " fill="none"
+                  id="FileDBWorkersDAO-to-CollectionInfo"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="2259.83,2087.91,2263.83,2078.91,2259.83,2082.91,2255.83,2078.91,2259.83,2087.91"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[d414365c3c76e86f22ff186c4892503b]
+link FileDBWorkersDAO to FileDBController-->
+        <g id="link_FileDBWorkersDAO_FileDBController">
+            <path codeLine="400"
+                  d="M2128.5,326.15 C2128.5,499 2128.5,1015 2128.5,1015 C2128.5,1015 1147.68,1015 1147.68,1015 "
+                  fill="none" id="FileDBWorkersDAO-to-FileDBController"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1142.68,1015,1151.68,1019,1147.68,1015,1151.68,1011,1142.68,1015"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[e33c31494ded37af1b0e873d265b1b70]
+link FileDBWorkersDAO to FileDBDAO-->
+        <g id="link_FileDBWorkersDAO_FileDBDAO">
+            <path codeLine="401"
+                  d="M2065.83,326.03 C2065.83,364.19 2065.83,408 2065.83,408 C2065.83,408 1828.66,408 1828.66,408 "
+                  fill="none" id="FileDBWorkersDAO-to-FileDBDAO" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1828.66,415,1808.66,408,1828.66,401,1828.66,415"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[4feb67621ed4f279ea72bfb07e64f324]
+link FileDBWorkersDAO to ICollectionFilteredDAO-->
+        <g id="link_FileDBWorkersDAO_ICollectionFilteredDAO">
+            <path codeLine="402" d="M2173.5,326.17 C2173.5,326.17 2173.5,1020.77 2173.5,1020.77 " fill="none"
+                  id="FileDBWorkersDAO-to-ICollectionFilteredDAO"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2173.5,1025.77,2177.5,1016.77,2173.5,1020.77,2169.5,1016.77,2173.5,1025.77"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[73bdc6202d9ef97afc2ebf0d38f4a820]
+link FileDBWorkersDAO to IWorkerCollectionDAO-->
+        <g id="link_FileDBWorkersDAO_IWorkerCollectionDAO">
+            <path codeLine="403" d="M2410,326.27 C2410,326.27 2410,443.2 2410,443.2 " fill="none"
+                  id="FileDBWorkersDAO-to-IWorkerCollectionDAO"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2417,443.2,2410,463.2,2403,443.2,2417,443.2"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[7fd1dc892354616e28963af8b2686142]
+link FileDBWorkersDAO to Worker-->
+        <g id="link_FileDBWorkersDAO_Worker">
+            <path codeLine="404"
+                  d="M2298.33,326.15 C2298.33,467.09 2298.33,827 2298.33,827 C2298.33,827 2389.92,827 2389.92,827 "
+                  fill="none" id="FileDBWorkersDAO-to-Worker"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2394.92,827,2385.92,823,2389.92,827,2385.92,831,2394.92,827"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[99abd04b5dc73c2879bacb4a8776a02c]
+link FileDBWorkersDAO to WorkerCollection-->
+        <g id="link_FileDBWorkersDAO_WorkerCollection">
+            <path codeLine="405" d="M2074.67,326.27 C2074.67,326.27 2074.67,499.8 2074.67,499.8 " fill="none"
+                  id="FileDBWorkersDAO-to-WorkerCollection"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2074.67,504.8,2078.67,495.8,2074.67,499.8,2070.67,495.8,2074.67,504.8"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[675ebdb9eb2686e7dde9fb30c460e98d]
+link FileIOController to FileAccessException-->
+        <g id="link_FileIOController_FileAccessException">
+            <path codeLine="406" d="M254,2326.88 C254,2326.88 254,2517.4 254,2517.4 " fill="none"
+                  id="FileIOController-to-FileAccessException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="254,2522.4,258,2513.4,254,2517.4,250,2513.4,254,2522.4"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[0ac6d468a6a87bec6fa8b3907deaa423]
+link FileStorageController to FileAccessException-->
+        <g id="link_FileStorageController_FileAccessException">
+            <path codeLine="407" d="M550.5,1825.04 C550.5,1825.04 550.5,2517.19 550.5,2517.19 " fill="none"
+                  id="FileStorageController-to-FileAccessException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="550.5,2522.19,554.5,2513.19,550.5,2517.19,546.5,2513.19,550.5,2522.19"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[cfb9232694c27cd0ea664f9da8229c14]
+link FileStorageController to FileIOController-->
+        <g id="link_FileStorageController_FileIOController">
+            <path codeLine="408"
+                  d="M516.75,1837.38 C516.75,1837.38 516.75,2185 516.75,2185 C516.75,2185 318.25,2185 318.25,2185 "
+                  fill="none" id="FileStorageController-FileIOController" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="305.25,2185,314.25,2189,310.25,2185,314.25,2181,305.25,2185"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="310.25" x2="318.25" y1="2185" y2="2185"/>
+            <polygon fill="#000000" points="516.75,1825.38,512.75,1831.38,516.75,1837.38,520.75,1831.38,516.75,1825.38"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="490.7598"
+                  y="1846.1442">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="19"
+                  x="312.8184" y="2162.9889">file
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="318.3184"
+                  y="2178.7882">1
+            </text>
+        </g><!--MD5=[a028f719f63dade239f9615f99a4c856]
+link FileStorageController to InvalidDataFileException-->
+        <g id="link_FileStorageController_InvalidDataFileException">
+            <path codeLine="409" d="M772.25,1825.15 C772.25,1825.15 772.25,2184.67 772.25,2184.67 " fill="none"
+                  id="FileStorageController-to-InvalidDataFileException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="772.25,2189.67,776.25,2180.67,772.25,2184.67,768.25,2180.67,772.25,2189.67"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[7a041ee1bb9ba5fe0a4a2afbf9fbbb22]
+link FileStorageController to SerDesException-->
+        <g id="link_FileStorageController_SerDesException">
+            <path codeLine="410"
+                  d="M584.25,1825.08 C584.25,1978.34 584.25,2321 584.25,2321 C584.25,2321 774,2321 774,2321 C774,2321 774,2534.32 774,2534.32 "
+                  fill="none" id="FileStorageController-to-SerDesException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="774,2539.32,778,2530.32,774,2534.32,770,2530.32,774,2539.32"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[31f74608db7cf4f60acaca11271399f4]
+link FileStorageController to SerDesService-->
+        <g id="link_FileStorageController_SerDesService">
+            <path codeLine="411"
+                  d="M932.33,1808 C932.33,1808 1160.67,1808 1160.67,1808 C1160.67,1808 1160.67,2168.35 1160.67,2168.35 "
+                  fill="none" id="FileStorageController-SerDesService" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="1160.67,2181.35,1164.67,2172.35,1160.67,2176.35,1156.67,2172.35,1160.67,2181.35"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1160.67" x2="1160.67" y1="2176.35" y2="2168.35"/>
+            <polygon fill="#000000" points="920.33,1808,926.33,1812,932.33,1808,926.33,1804,920.33,1808"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="928.338"
+                  y="1807.8073">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="93"
+                  x="1056.8682" y="2155.0417">serDesService
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1099.3682" y="2170.841">1
+            </text>
+        </g><!--MD5=[01c005960478b22d1c108617ee147849]
+link ICollectionBaseDAO to CollectionInfo-->
+        <g id="link_ICollectionBaseDAO_CollectionInfo">
+            <path codeLine="412" d="M2366.5,1883.61 C2366.5,1883.61 2366.5,2082.68 2366.5,2082.68 " fill="none"
+                  id="ICollectionBaseDAO-to-CollectionInfo"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2366.5,2087.68,2370.5,2078.68,2366.5,2082.68,2362.5,2078.68,2366.5,2087.68"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[9c7f5f504aae04a3401d202f6e4bdd45]
+link ICollectionBaseDAO to IKeyedEntity-->
+        <g id="link_ICollectionBaseDAO_IKeyedEntity">
+            <path codeLine="413"
+                  d="M2280.42,1753 C2156.91,1753 1992,1753 1992,1753 C1992,1753 1992,2202.77 1992,2202.77 " fill="none"
+                  id="ICollectionBaseDAO-to-IKeyedEntity"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1992,2207.77,1996,2198.77,1992,2202.77,1988,2198.77,1992,2207.77"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[a02fc741000bee7508096d96c23f80a0]
+link ICollectionFilteredDAO to ICollectionBaseDAO-->
+        <g id="link_ICollectionFilteredDAO_ICollectionBaseDAO">
+            <path codeLine="414"
+                  d="M2218.51,1099 C2270.34,1099 2316.17,1099 2316.17,1099 C2316.17,1099 2316.17,1601.43 2316.17,1601.43 "
+                  fill="none" id="ICollectionFilteredDAO-to-ICollectionBaseDAO"
+                  style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="2323.17,1601.43,2316.17,1621.43,2309.17,1601.43,2323.17,1601.43"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[c616181651d9d00ac69e17dc2d8b635b]
+link ICollectionFilteredDAO to IKeyedEntity-->
+        <g id="link_ICollectionFilteredDAO_IKeyedEntity">
+            <path codeLine="415" d="M1950,1135.14 C1950,1135.14 1950,2202.87 1950,2202.87 " fill="none"
+                  id="ICollectionFilteredDAO-to-IKeyedEntity"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1950,2207.87,1954,2198.87,1950,2202.87,1946,2198.87,1950,2207.87"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6d0ea27e5594d40aea92be524c932b46]
+link ISetCollection to IKeyedEntity-->
+        <g id="link_ISetCollection_IKeyedEntity">
+            <path codeLine="416"
+                  d="M1586.25,1109.72 C1586.25,1289.59 1586.25,2239 1586.25,2239 C1586.25,2239 1822.84,2239 1822.84,2239 "
+                  fill="none" id="ISetCollection-to-IKeyedEntity"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1827.84,2239,1818.84,2235,1822.84,2239,1818.84,2243,1827.84,2239"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[025ceaa3d03920bde29c2088c2021c8f]
+link ISetCollection to Set-->
+        <g id="link_ISetCollection_Set">
+            <path codeLine="417" d="M1657.25,1109.81 C1657.25,1109.81 1657.25,1456.69 1657.25,1456.69 " fill="none"
+                  id="ISetCollection-to-Set" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1664.25,1456.69,1657.25,1476.69,1650.25,1456.69,1664.25,1456.69"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[f906a44ab6ba53d4e0b890c8694db0c4]
+link IWorkerCollectionDAO to ICollectionBaseDAO-->
+        <g id="link_IWorkerCollectionDAO_ICollectionBaseDAO">
+            <path codeLine="418" d="M2358.4,606.61 C2358.4,606.61 2358.4,1616.2 2358.4,1616.2 " fill="none"
+                  id="IWorkerCollectionDAO-to-ICollectionBaseDAO"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2358.4,1621.2,2362.4,1612.2,2358.4,1616.2,2354.4,1612.2,2358.4,1621.2"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[d89bbbb118dbf3b322081da6cf77a8a5]
+link IWorkerCollectionDAO to ICollectionFilteredDAO-->
+        <g id="link_IWorkerCollectionDAO_ICollectionFilteredDAO">
+            <path codeLine="419"
+                  d="M2346.2,606.76 C2346.2,751.12 2346.2,1063 2346.2,1063 C2346.2,1063 2238.63,1063 2238.63,1063 "
+                  fill="none" id="IWorkerCollectionDAO-to-ICollectionFilteredDAO"
+                  style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="2238.63,1070,2218.63,1063,2238.63,1056,2238.63,1070"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[5f108f58f85b7147b1b9a025e0678ca7]
+link IWorkerCollectionDAO to Organization-->
+        <g id="link_IWorkerCollectionDAO_Organization">
+            <path codeLine="420"
+                  d="M2687.23,535 C2885.54,535 3179.83,535 3179.83,535 C3179.83,535 3179.83,1615.47 3179.83,1615.47 "
+                  fill="none" id="IWorkerCollectionDAO-to-Organization"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="3179.83,1620.47,3183.83,1611.47,3179.83,1615.47,3175.83,1611.47,3179.83,1620.47"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[c553f9394219e6c45ac3adbd10b241cc]
+link IWorkerCollectionDAO to Position-->
+        <g id="link_IWorkerCollectionDAO_Position">
+            <path codeLine="421"
+                  d="M2382.8,606.56 C2382.8,821.56 2382.8,1447 2382.8,1447 C2382.8,1447 2887.5,1447 2887.5,1447 C2887.5,1447 2887.5,1641.94 2887.5,1641.94 "
+                  fill="none" id="IWorkerCollectionDAO-to-Position"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2887.5,1646.94,2891.5,1637.94,2887.5,1641.94,2883.5,1637.94,2887.5,1646.94"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[a6db897077f3637e81373c6932bb703e]
+link IWorkerCollectionDAO to Set-->
+        <g id="link_IWorkerCollectionDAO_Set">
+            <path codeLine="422"
+                  d="M2333.64,586 C2151.71,586 1894.75,586 1894.75,586 C1894.75,586 1894.75,1471.79 1894.75,1471.79 "
+                  fill="none" id="IWorkerCollectionDAO-to-Set"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000"
+                     points="1894.75,1476.79,1898.75,1467.79,1894.75,1471.79,1890.75,1467.79,1894.75,1476.79"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[505158c6999c1ff16a3cbd7ff114986c]
+link IWorkerCollectionDAO to Worker-->
+        <g id="link_IWorkerCollectionDAO_Worker">
+            <path codeLine="423" d="M2589.67,606.59 C2589.67,606.59 2589.67,738.98 2589.67,738.98 " fill="none"
+                  id="IWorkerCollectionDAO-to-Worker"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2589.67,743.98,2593.67,734.98,2589.67,738.98,2585.67,734.98,2589.67,743.98"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[55626b4ac6c39c66792d51386d375961]
+link InvalidDataFileException to SerDesException-->
+        <g id="link_InvalidDataFileException_SerDesException">
+            <path codeLine="424" d="M842.5,2318 C842.5,2318 842.5,2534.31 842.5,2534.31 " fill="none"
+                  id="InvalidDataFileException-to-SerDesException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="842.5,2539.31,846.5,2530.31,842.5,2534.31,838.5,2530.31,842.5,2539.31"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[140c332c60ed0e8f8601df192320cd13]
+link MainExecutor to Command-->
+        <g id="link_MainExecutor_Command">
+            <path codeLine="425"
+                  d="M2720.38,122.04 C2720.38,147.05 2720.38,175 2720.38,175 C2720.38,175 3998.25,175 3998.25,175 C3998.25,175 3998.25,968.96 3998.25,968.96 "
+                  fill="none" id="MainExecutor-to-Command"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3998.25,973.96,4002.25,964.96,3998.25,968.96,3994.25,964.96,3998.25,973.96"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[b9ac64800db549222097e1f06bdc8d83]
+link MainExecutor to Executor-->
+        <g id="link_MainExecutor_Executor">
+            <path codeLine="426"
+                  d="M2551.5,122.24 C2551.5,216.85 2551.5,452 2551.5,452 C2551.5,452 3251.39,452 3251.39,452 "
+                  fill="none" id="MainExecutor-to-Executor" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="3251.39,445,3271.39,452,3251.39,459,3251.39,445"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[0fa3394d2bab27e78db5290fa4220a0d]
+link MainExecutor to FileDBController-->
+        <g id="link_MainExecutor_FileDBController">
+            <path codeLine="427" d="M2235.84,84 C1806.92,84 973.5,84 973.5,84 C973.5,84 973.5,985.75 973.5,985.75 "
+                  fill="none" id="MainExecutor-to-FileDBController"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="973.5,990.75,977.5,981.75,973.5,985.75,969.5,981.75,973.5,990.75"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[fe2f6dcbaafaf03a832f0f85c7539350]
+link MainExecutor to FileDBWorkersDAO-->
+        <g id="link_MainExecutor_FileDBWorkersDAO">
+            <path codeLine="428" d="M2361,122.25 C2361,122.25 2361,209.78 2361,209.78 " fill="none"
+                  id="MainExecutor-to-FileDBWorkersDAO"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2361,214.78,2365,205.78,2361,209.78,2357,205.78,2361,214.78"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[ed95c01e1489282c683855f940308842]
+link MainExecutor to FileIOController-->
+        <g id="link_MainExecutor_FileIOController">
+            <path codeLine="429" d="M2235.85,65 C1635.99,65 158.5,65 158.5,65 C158.5,65 158.5,2176.48 158.5,2176.48 "
+                  fill="none" id="MainExecutor-to-FileIOController"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="158.5,2181.48,162.5,2172.48,158.5,2176.48,154.5,2172.48,158.5,2181.48"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[9612eee8d8fc27cc72ab512230528676]
+link MainExecutor to ICommandResponse-->
+        <g id="link_MainExecutor_ICommandResponse">
+            <path codeLine="430"
+                  d="M2707.75,122.18 C2707.75,154.39 2707.75,195 2707.75,195 C2707.75,195 3225.67,195 3225.67,195 C3225.67,195 3225.67,1353 3225.67,1353 C3225.67,1353 3698.5,1353 3698.5,1353 C3698.5,1353 3698.5,1709.92 3698.5,1709.92 "
+                  fill="none" id="MainExecutor-to-ICommandResponse"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3698.5,1714.92,3702.5,1705.92,3698.5,1709.92,3694.5,1705.92,3698.5,1714.92"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[cc84d28a40475c909ea3580d415d7c54]
+link MainExecutor to WorkerCollection-->
+        <g id="link_MainExecutor_WorkerCollection">
+            <path codeLine="431"
+                  d="M2235.93,103 C2112.85,103 1990.25,103 1990.25,103 C1990.25,103 1990.25,499.97 1990.25,499.97 "
+                  fill="none" id="MainExecutor-to-WorkerCollection"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="1990.25,504.97,1994.25,495.97,1990.25,499.97,1986.25,495.97,1990.25,504.97"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[df1a63164050a7c6756f4cae7de45f09]
+link MainExecutor to WorkersDAOExecutor-->
+        <g id="link_MainExecutor_WorkersDAOExecutor">
+            <path codeLine="432" d="M2695.12,122.25 C2695.12,122.25 2695.12,209.78 2695.12,209.78 " fill="none"
+                  id="MainExecutor-to-WorkersDAOExecutor"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2695.12,214.78,2699.12,205.78,2695.12,209.78,2691.12,205.78,2695.12,214.78"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[260b85b6dd206b77459224bade542ea2]
+link OperationType to Comparable-->
+        <g id="link_OperationType_Comparable">
+            <path codeLine="433"
+                  d="M532.63,3066 C995.55,3066 2616.2,3066 2616.2,3066 C2616.2,3066 2616.2,3122.69 2616.2,3122.69 "
+                  fill="none" id="OperationType-to-Comparable"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2623.2,3122.69,2616.2,3142.69,2609.2,3122.69,2623.2,3122.69"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[853c9c6f5b338ccca6f9344732c1c6d8]
+link Organization to Comparable-->
+        <g id="link_Organization_Comparable">
+            <path codeLine="435"
+                  d="M3062.29,1871 C2892.95,1871 2643.8,1871 2643.8,1871 C2643.8,1871 2643.8,3122.72 2643.8,3122.72 "
+                  fill="none" id="Organization-to-Comparable"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2650.8,3122.72,2643.8,3142.72,2636.8,3122.72,2650.8,3122.72"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[d4f7af47702d65ee59fa69d15a01d001]
+link Organization to OrganizationType-->
+        <g id="link_Organization_OrganizationType">
+            <path codeLine="436" d="M3199.5,1896.51 C3199.5,1896.51 3199.5,2824.88 3199.5,2824.88 " fill="none"
+                  id="Organization-OrganizationType" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="3199.5,2837.88,3203.5,2828.88,3199.5,2832.88,3195.5,2828.88,3199.5,2837.88"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3199.5" x2="3199.5" y1="2832.88" y2="2824.88"/>
+            <polygon fill="#000000" points="3199.5,1884.51,3195.5,1890.51,3199.5,1896.51,3203.5,1890.51,3199.5,1884.51"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="3191.1938" y="2827.33">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="30"
+                  x="3167.8047" y="1905.6575">type
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="3178.8047" y="1921.4569">1
+            </text>
+        </g><!--MD5=[a570f379531151d949d09b8cef6c1f8d]
+link OrganizationType to Comparable-->
+        <g id="link_OrganizationType_Comparable">
+            <path codeLine="437"
+                  d="M3067.4,3032 C2926.38,3032 2723,3032 2723,3032 C2723,3032 2723,3122.64 2723,3122.64 " fill="none"
+                  id="OrganizationType-to-Comparable"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2730,3122.64,2723,3142.64,2716,3122.64,2730,3122.64"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[bc9784b80717223999ff0eb6e7130522]
+link Position to Comparable-->
+        <g id="link_Position_Comparable">
+            <path codeLine="438"
+                  d="M2953.75,1858.12 C2953.75,2188.6 2953.75,3181 2953.75,3181 C2953.75,3181 2778.06,3181 2778.06,3181 "
+                  fill="none" id="Position-to-Comparable"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2778.06,3188,2758.06,3181,2778.06,3174,2778.06,3188"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[ab011aa00e43d299f2e5ec67eedcec32]
+link Response to ICommandResponse-->
+        <g id="link_Response_ICommandResponse">
+            <path codeLine="439" d="M3726.5,1289.44 C3726.5,1289.44 3726.5,1709.85 3726.5,1709.85 " fill="none"
+                  id="Response-to-ICommandResponse" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="3726.5,1714.85,3730.5,1705.85,3726.5,1709.85,3722.5,1705.85,3726.5,1714.85"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[f6c4f979d4fbe30a468e906baf634c76]
+link SerDesException to Type-->
+        <g id="link_SerDesException_Type">
+            <path codeLine="440" d="M813.33,2696.75 C813.33,2696.75 813.33,2858.78 813.33,2858.78 " fill="none"
+                  id="SerDesException-Type" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="813.33,2871.78,817.33,2862.78,813.33,2866.78,809.33,2862.78,813.33,2871.78"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="813.33" x2="813.33" y1="2866.78" y2="2858.78"/>
+            <polygon fill="#000000" points="813.33,2684.75,809.33,2690.75,813.33,2696.75,817.33,2690.75,813.33,2684.75"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="801.702"
+                  y="2861.2468">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="57"
+                  x="751.1938" y="2705.7017">direction
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="775.6938"
+                  y="2721.501">1
+            </text>
+        </g><!--MD5=[cfe92338ec0548272e453952adabaae8]
+reverse link Type to SerDesException-->
+        <g id="link_Type_SerDesException">
+            <path codeLine="443" d="M871.67,2856.98 C871.67,2856.98 871.67,2684.54 871.67,2684.54 " fill="none"
+                  id="Type-backto-SerDesException" style="stroke:#000000;stroke-width:1.0;"/>
+            <ellipse cx="871.67" cy="2863.98" fill="#FFFFFF" rx="8" ry="8" style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="871.67" x2="871.67" y1="2855.98" y2="2871.98"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="879.67" x2="863.67" y1="2863.98" y2="2863.98"/>
+        </g><!--MD5=[aa4514fda377d24f5a4977360085f112]
+link SerDesService to SerDesException-->
+        <g id="link_SerDesService_SerDesException">
+            <path codeLine="441" d="M1095.57,2324 C1008.72,2324 911,2324 911,2324 C911,2324 911,2534.33 911,2534.33 "
+                  fill="none" id="SerDesService-to-SerDesException"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="911,2539.33,915,2530.33,911,2534.33,907,2530.33,911,2539.33"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[c1c554b9d8507abfae985666db6dc60a]
+link Type to Comparable-->
+        <g id="link_Type_Comparable">
+            <path codeLine="442"
+                  d="M930,2944 C1288.41,2944 2625.4,2944 2625.4,2944 C2625.4,2944 2625.4,3122.76 2625.4,3122.76 "
+                  fill="none" id="Type-to-Comparable"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2632.4,3122.76,2625.4,3142.76,2618.4,3122.76,2632.4,3122.76"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[ad322e68a6cd83b1759707d0a5133ca5]
+link Worker to Comparable-->
+        <g id="link_Worker_Comparable">
+            <path codeLine="444" d="M2634.6,1417.03 C2634.6,1417.03 2634.6,3122.83 2634.6,3122.83 " fill="none"
+                  id="Worker-to-Comparable" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2641.6,3122.83,2634.6,3142.83,2627.6,3122.83,2641.6,3122.83"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[031d911b74a114962e266eac75244d10]
+link Worker to Coordinates-->
+        <g id="link_Worker_Coordinates">
+            <path codeLine="445" d="M2735.25,1429.07 C2735.25,1429.07 2735.25,2466.56 2735.25,2466.56 " fill="none"
+                  id="Worker-Coordinates" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="2735.25,2479.56,2739.25,2470.56,2735.25,2474.56,2731.25,2470.56,2735.25,2479.56"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2735.25" x2="2735.25" y1="2474.56" y2="2466.56"/>
+            <polygon fill="#000000"
+                     points="2735.25,1417.07,2731.25,1423.07,2735.25,1429.07,2739.25,1423.07,2735.25,1417.07"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="2725.102"
+                  y="2469.1203">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="77"
+                  x="2656.8738" y="1437.3018">coordinates
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2691.3738" y="1453.1011">1
+            </text>
+        </g><!--MD5=[a95d05e18a6b4a212f3bda9fbc3130c8]
+link Worker to IKeyedEntity-->
+        <g id="link_Worker_IKeyedEntity">
+            <path codeLine="446" d="M2394.76,1294 C2187.8,1294 1971,1294 1971,1294 C1971,1294 1971,2187.7 1971,2187.7 "
+                  fill="none" id="Worker-to-IKeyedEntity"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="1978,2187.7,1971,2207.7,1964,2187.7,1978,2187.7"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[87f5070d116d66e835ff51d08a67e73b]
+link Worker to Organization-->
+        <g id="link_Worker_Organization">
+            <path codeLine="447" d="M3098.25,1429.48 C3098.25,1429.48 3098.25,1607.19 3098.25,1607.19 " fill="none"
+                  id="Worker-Organization" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000"
+                     points="3098.25,1620.19,3102.25,1611.19,3098.25,1615.19,3094.25,1611.19,3098.25,1620.19"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3098.25" x2="3098.25" y1="1615.19" y2="1607.19"/>
+            <polygon fill="#000000"
+                     points="3098.25,1417.48,3094.25,1423.48,3098.25,1429.48,3102.25,1423.48,3098.25,1417.48"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="3082.8613" y="1609.7583">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="80"
+                  x="3024.2168" y="1437.7202">organization
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="3060.2168" y="1453.5195">1
+            </text>
+        </g><!--MD5=[d73fd268e440f1ffcbdc38881d6865dc]
+link Worker to Position-->
+        <g id="link_Worker_Position">
+            <path codeLine="448" d="M2957.5,1429.48 C2957.5,1429.48 2957.5,1633.76 2957.5,1633.76 " fill="none"
+                  id="Worker-Position" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="2957.5,1646.76,2961.5,1637.76,2957.5,1641.76,2953.5,1637.76,2957.5,1646.76"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2957.5" x2="2957.5" y1="1641.76" y2="1633.76"/>
+            <polygon fill="#000000" points="2957.5,1417.48,2953.5,1423.48,2957.5,1429.48,2961.5,1423.48,2957.5,1417.48"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2951.8734" y="1636.2008">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="51"
+                  x="2909.9023" y="1437.7202">position
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2931.4023" y="1453.5195">1
+            </text>
+        </g><!--MD5=[09607ab4a1031cf9f9cdd416930ff700]
+link WorkerCollection to ISetCollection-->
+        <g id="link_WorkerCollection_ISetCollection">
+            <path codeLine="449"
+                  d="M1923.3,525 C1880.78,525 1837.25,525 1837.25,525 C1837.25,525 1837.25,1081 1837.25,1081 C1837.25,1081 1700.62,1081 1700.62,1081 "
+                  fill="none" id="WorkerCollection-to-ISetCollection"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="1700.62,1088,1680.62,1081,1700.62,1074,1700.62,1088"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[f4b0f29369a20c08ffdd948a337e75b8]
+link WorkerCollection to Set-->
+        <g id="link_WorkerCollection_Set">
+            <path codeLine="450" d="M1923.12,545 C1893.03,545 1866,545 1866,545 C1866,545 1866,1456.99 1866,1456.99 "
+                  fill="none" id="WorkerCollection-to-Set"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="1873,1456.99,1866,1476.99,1859,1456.99,1873,1456.99"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[d033bc3fec15a48a77adf4c4487f4088]
+link WorkerCollection to Worker-->
+        <g id="link_WorkerCollection_Worker">
+            <path codeLine="451" d="M2006,565.29 C2006,654.33 2006,909 2006,909 C2006,909 2389.97,909 2389.97,909 "
+                  fill="none" id="WorkerCollection-to-Worker"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2394.97,909,2385.97,905,2389.97,909,2385.97,913,2394.97,909"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6767786b93993a7f5703e842d0ba473e]
+link WorkersDAOExecutor to Executor-->
+        <g id="link_WorkersDAOExecutor_Executor">
+            <path codeLine="452"
+                  d="M2918.67,326.33 C2918.67,376.05 2918.67,441 2918.67,441 C2918.67,441 3251.2,441 3251.2,441 "
+                  fill="none" id="WorkersDAOExecutor-to-Executor" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="3251.2,434,3271.2,441,3251.2,448,3251.2,434"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[7b974f8b2be2e2ee5c10435121e52ffd]
+link WorkersDAOExecutor to ICollectionBaseDAO-->
+        <g id="link_WorkersDAOExecutor_ICollectionBaseDAO">
+            <path codeLine="453"
+                  d="M2802.83,326.22 C2802.83,445.34 2802.83,714 2802.83,714 C2802.83,714 2370.6,714 2370.6,714 C2370.6,714 2370.6,1616.5 2370.6,1616.5 "
+                  fill="none" id="WorkersDAOExecutor-to-ICollectionBaseDAO"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#000000" points="2370.6,1621.5,2374.6,1612.5,2370.6,1616.5,2366.6,1612.5,2370.6,1621.5"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[fde717dc774f58decac43e4699489635]
+link WorkersDAOExecutor to IWorkerCollectionDAO-->
+        <g id="link_WorkersDAOExecutor_IWorkerCollectionDAO">
+            <path codeLine="454" d="M2670.35,271 C2670.35,271 2617,271 2617,271 C2617,271 2617,450.21 2617,450.21 "
+                  fill="none" id="WorkersDAOExecutor-IWorkerCollectionDAO" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="2617,463.21,2621,454.21,2617,458.21,2613,454.21,2617,463.21"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2617" x2="2617" y1="458.21" y2="450.21"/>
+            <polygon fill="#000000" points="2682.35,271,2676.35,267,2670.35,271,2676.35,275,2682.35,271"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2666.7499" y="268.7898">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="24"
+                  x="2602.007" y="437.0042">dao
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="2610.007"
+                  y="452.8035">1
+            </text>
+        </g><!--MD5=[f9e188e19f5582a771bbec8164801049]
+link XMLSerDesService to SerDesService-->
+        <g id="link_XMLSerDesService_SerDesService">
+            <path codeLine="455" d="M1225.33,1791.02 C1225.33,1791.02 1225.33,2161.24 1225.33,2161.24 " fill="none"
+                  id="XMLSerDesService-to-SerDesService" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1232.33,2161.24,1225.33,2181.24,1218.33,2161.24,1232.33,2161.24"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[8888e89c0484479003b26f358fcc0269]
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+'skinparam CircledCharacterFontSize 0
+'skinparam CircledCharacterRadius 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class CollectionInfo {
+  + CollectionInfo(String, String, LocalDateTime, Integer): 
+  - itemsCount: Integer
+  - name: String
+  - type: String
+  - initializationDate: LocalDateTime
+  + setInitializationDate(LocalDateTime): void
+  + getName(): String
+  + toString(): String
+  + getType(): String
+  + getInitializationDate(): LocalDateTime
+  + getItemsCount(): Integer
+  + setName(String): void
+  + setType(String): void
+  + setItemsCount(Integer): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+}
+class Command {
+  + Command(): 
+  + getType(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + createResponse(): ICommandResponse
+  + getInteractArgs(): Field[]
+  + validate(): ValidationResponse
+  + getInlineArgs(): Field[]
+}
+interface Comparable<T> << interface >> {
+  + compareTo(T): int
+}
+class Coordinates {
+  + Coordinates(Integer, float): 
+  + Coordinates(): 
+  - y: float
+  - x: Integer
+  + getX(): Integer
+  + getY(): float
+  + setX(Integer): void
+  + setY(float): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + compareTo(Coordinates): int
+}
+class Executor {
+  + Executor(): 
+  + MAX_RECURSION_DEPTH: int
+  - operationMap: Map<Class<Command>, Operation<Command, ICommandResponse>>
+  - childExecutors: List<Executor>
+  + execute(Command): Response<ICommandResponse>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  # execute(Command, int): Response<ICommandResponse>
+  + registerExecutor(Executor): void
+  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+}
+class FileAccessException {
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(File, OperationType): 
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
+  - path: String
+  - type: OperationType
+  + getType(): OperationType
+  + getPath(): String
+}
+class FileDBController<T> {
+  + FileDBController(FileIOController, Class<T>): 
+  - storage: FileStorageController<T>
+  - baseCollectionClass: Class<T>
+  - collection: T
+  + store(): boolean
+  + clear(): boolean
+  + load(): boolean
+  + data(): T
+}
+class FileDBDAO<K, V> {
+  + FileDBDAO(FileDBController<ISetCollection<K, V>>): 
+  - controller: FileDBController<ISetCollection<K, V>>
+  + read(K): V
+  + add(V): K
+  - asStream(): Stream<V>
+  + clear(): void
+  + getMax(): V
+  + getCollectionInfo(): CollectionInfo
+  + getMin(): V
+  + readAll(): List<V>
+  + remove(K): boolean
+  + readAll(Comparator<V>): List<V>
+  + update(K, V): void
+  + save(): void
+  + nextPrimaryKey(): K
+}
+entity FileDBInfo << record >> {
+  + FileDBInfo(String, LocalDateTime): 
+  - filePath: String
+  - creationDate: LocalDateTime
+  + filePath(): String
+  + creationDate(): LocalDateTime
+}
+class FileDBWorkersDAO {
+  + FileDBWorkersDAO(FileDBController<WorkerCollection>): 
+  + nextPrimaryKey(): Integer
+  + getCollectionInfo(): CollectionInfo
+  + add(Worker): Integer
+}
+class FileIOController {
+  + FileIOController(String): 
+  + write(byte[]): void
+  + clear(): void
+  + openWriteStream(): FileOutputStream
+  + read(): byte[]
+  + openReadStream(): FileInputStream
+}
+class FileStorageController<T> {
+  + FileStorageController(FileIOController, SerDesService<T>): 
+  - serDesService: SerDesService<T>
+  - file: FileIOController
+  + loadObject(): T
+  + clear(): void
+  + storeObject(T): void
+}
+interface ICollectionBaseDAO<K, V> << interface >> {
+  + getCollectionInfo(): CollectionInfo
+  + readAll(): List<V>
+  + add(V): K
+  + getMax(): V
+  + readAll(Comparator<V>): List<V>
+  + getMin(): V
+  + remove(K): boolean
+  + clear(): void
+  + save(): void
+  + update(K, V): void
+  + read(K): V
+  + nextPrimaryKey(): K
+}
+interface ICollectionFilteredDAO<K, V> << interface >> {
+  + remove(Predicate<V>): void
+  + filter(Predicate<V>): List<V>
+  + getMapped(Function<V, T>): List<T>
+}
+interface ICommandResponse << interface >> {
+  + getUserMessage(): String
+}
+interface IKeyedEntity<K> << interface >> {
+  + getPrimaryKey(): K
+  + setPrimaryKey(K): void
+}
+interface ISetCollection<K, V> << interface >>
+interface IWorkerCollectionDAO << interface >> {
+  + filterLessThanPosition(Position): List<Worker>
+  + addIfMax(Worker): void
+  + addIfMin(Worker): void
+  + removeIfGreater(Worker): void
+  + getUniqueOrganizations(): Set<Organization>
+}
+class InvalidDataFileException {
+  + InvalidDataFileException(String, byte[], SerDesException): 
+  - path: String
+  - contents: byte[]
+  + getPath(): String
+  + getContents(): byte[]
+}
+class MainExecutor {
+  + MainExecutor(FileIOController): 
+  - processScript(ServerExecuteScriptCommand): ICommandResponse
+}
+enum OperationType << enumeration >> {
+  - OperationType(String): 
+  - OperationType(): 
+  - description: String
+  + PERM_READ: 
+  + PERM_WRITE: 
+  + CREATE: 
+  + WRITE: 
+  + SET_PERMISSION: 
+  + OPEN: 
+  + READ: 
+  + values(): OperationType[]
+  + getDescription(): String
+  + valueOf(String): OperationType
+}
+class Organization {
+  + Organization(String, OrganizationType): 
+  + Organization(): 
+  ~ fullName: String
+  ~ type: OrganizationType
+  + compareTo(Organization): int
+  + getFullName(): String
+  + getType(): OrganizationType
+  + setFullName(String): void
+  + setType(OrganizationType): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+enum OrganizationType << enumeration >> {
+  - OrganizationType(int): 
+  + PUBLIC: 
+  - value: int
+  + COMMERCIAL: 
+  + PRIVATE_LIMITED_COMPANY: 
+  + OPEN_JOINT_STOCK_COMPANY: 
+  + getValue(): int
+  + values(): OrganizationType[]
+  + valueOf(String): OrganizationType
+}
+enum Position << enumeration >> {
+  - Position(int): 
+  + CLEANER: 
+  + ENGINEER: 
+  + LEAD_DEVELOPER: 
+  + HEAD_OF_DEPARTMENT: 
+  + value: int
+  + MANAGER_OF_CLEANING: 
+  + valueOf(String): Position
+  + values(): Position[]
+}
+class Response<T> {
+  + Response(boolean, boolean, String, T): 
+  + Response(): 
+  - text: String
+  - success: boolean
+  - resolved: boolean
+  - payload: T
+  + getText(): String
+  + isSuccess(): boolean
+  + equals(Object): boolean
+  + isResolved(): boolean
+  + getPayload(): T
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + setSuccess(boolean): void
+  + setResolved(boolean): void
+  + setText(String): void
+  + toString(): String
+  + setPayload(T): void
+  + noResolve(): Response<T>
+  + error(String): Response<T>
+  + success(T): Response<T>
+  + error(Exception): Response<T>
+}
+class SerDesException {
+  + SerDesException(Type, Exception): 
+  - direction: Type
+  - internalException: Exception
+  + getDirection(): Type
+  + getInternalException(): Exception
+  + toString(): String
+}
+class SerDesService<T> {
+  + SerDesService(Class<T>): 
+  - mapper: ObjectMapper
+  - baseClass: Class<T>
+  + serialize(T): byte[]
+  # getObjectMapper(): ObjectMapper
+  + deserialize(byte[]): T
+}
+interface Set<E> << interface >> {
+  + size(): int
+  + of(E, E, E, E, E, E, E, E, E, E): Set<E>
+  + of(E): Set<E>
+  + toArray(T[]): T[]
+  + remove(Object): boolean
+  + containsAll(Collection<?>): boolean
+  + of(): Set<E>
+  + hashCode(): int
+  + isEmpty(): boolean
+  + add(E): boolean
+  + retainAll(Collection<?>): boolean
+  + iterator(): Iterator<E>
+  + of(E, E, E, E, E, E, E, E): Set<E>
+  + of(E[]): Set<E>
+  + clear(): void
+  + of(E, E, E, E, E, E, E): Set<E>
+  + spliterator(): Spliterator<E>
+  + removeAll(Collection<?>): boolean
+  + toArray(): Object[]
+  + of(E, E, E, E): Set<E>
+  + equals(Object): boolean
+  + of(E, E, E, E, E, E, E, E, E): Set<E>
+  + addAll(Collection<E>): boolean
+  + of(E, E, E, E, E, E): Set<E>
+  + copyOf(Collection<E>): Set<E>
+  + contains(Object): boolean
+  + of(E, E): Set<E>
+  + of(E, E, E): Set<E>
+  + of(E, E, E, E, E): Set<E>
+}
+enum Type << enumeration >> {
+  + Type(): 
+  + SERIALIZE: 
+  + DESERIALIZE: 
+  + values(): Type[]
+  + valueOf(String): Type
+}
+class Worker {
+  + Worker(Integer, ZonedDateTime, String, Coordinates, float, Date, Organization, LocalDate, Position): 
+  + Worker(): 
+  - id: Integer
+  - salary: float
+  - endDate: LocalDate
+  - coordinates: Coordinates
+  - organization: Organization
+  - position: Position
+  - nextId: Integer
+  - startDate: Date
+  - name: String
+  - creationDate: ZonedDateTime
+  + getCreationDate(): ZonedDateTime
+  + getId(): Integer
+  + getName(): String
+  + setSalary(float): void
+  + setEndDate(LocalDate): void
+  + getCoordinates(): Coordinates
+  + setPosition(Position): void
+  + getSalary(): float
+  + getStartDate(): Date
+  + getOrganization(): Organization
+  + withId(Integer): Worker
+  + withCreationDate(ZonedDateTime): Worker
+  + getEndDate(): LocalDate
+  + toString(): String
+  + getPosition(): Position
+  + setStartDate(Date): void
+  + setCoordinates(Coordinates): void
+  + setOrganization(Organization): void
+  + setName(String): void
+  + nicePrintFormat(List<Worker>): String
+  + compareTo(Worker): int
+  + getPrimaryKey(): Integer
+  + setPrimaryKey(Integer): void
+  + equals(Object): boolean
+  + getComparator(): Comparator<Worker>
+}
+class WorkerCollection {
+  + WorkerCollection(): 
+}
+class WorkersDAOExecutor {
+  + WorkersDAOExecutor(IWorkerCollectionDAO): 
+  - dao: IWorkerCollectionDAO
+  - registerCRUD(): void
+  - registerComplex(): void
+}
+class XMLSerDesService<T> {
+  + XMLSerDesService(Class<T>): 
+  # getObjectMapper(): ObjectMapper
+}
+
+Command                   ..>  ICommandResponse         
+Coordinates               ..^  Comparable               
+Executor                  ..>  Command                  
+Executor                  ..>  ICommandResponse         
+Executor                  ..>  Response                 
+FileAccessException      "1" *- -> "type\n1" OperationType            
+FileDBController          ..>  FileAccessException      
+FileDBController          ..>  FileIOController         
+FileDBController         "1" *- -> "storage\n1" FileStorageController    
+FileDBController          ..>  InvalidDataFileException 
+FileDBController          ..>  SerDesException          
+FileDBController          ..>  XMLSerDesService         
+FileDBDAO                 ..>  CollectionInfo           
+FileDBDAO                 ..>  Comparable               
+FileDBDAO                "1" *- -> "controller\n1" FileDBController         
+FileDBDAO                 ..^  ICollectionFilteredDAO   
+FileDBDAO                 ..>  IKeyedEntity             
+FileDBDAO                 ..>  ISetCollection           
+FileDBDAO                 ..>  Set                      
+FileDBDAO                 ..>  Worker                   
+FileDBWorkersDAO          ..>  CollectionInfo           
+FileDBWorkersDAO          ..>  FileDBController         
+FileDBWorkersDAO          - -^  FileDBDAO                
+FileDBWorkersDAO          ..>  ICollectionFilteredDAO   
+FileDBWorkersDAO          ..^  IWorkerCollectionDAO     
+FileDBWorkersDAO          ..>  Worker                   
+FileDBWorkersDAO          ..>  WorkerCollection         
+FileIOController          ..>  FileAccessException      
+FileStorageController     ..>  FileAccessException      
+FileStorageController    "1" *- -> "file\n1" FileIOController         
+FileStorageController     ..>  InvalidDataFileException 
+FileStorageController     ..>  SerDesException          
+FileStorageController    "1" *- -> "serDesService\n1" SerDesService            
+ICollectionBaseDAO        ..>  CollectionInfo           
+ICollectionBaseDAO        ..>  IKeyedEntity             
+ICollectionFilteredDAO    - -^  ICollectionBaseDAO       
+ICollectionFilteredDAO    ..>  IKeyedEntity             
+ISetCollection            ..>  IKeyedEntity             
+ISetCollection            - -^  Set                      
+IWorkerCollectionDAO      ..>  ICollectionBaseDAO       
+IWorkerCollectionDAO      - -^  ICollectionFilteredDAO   
+IWorkerCollectionDAO      ..>  Organization             
+IWorkerCollectionDAO      ..>  Position                 
+IWorkerCollectionDAO      ..>  Set                      
+IWorkerCollectionDAO      ..>  Worker                   
+InvalidDataFileException  ..>  SerDesException          
+MainExecutor              ..>  Command                  
+MainExecutor              - -^  Executor                 
+MainExecutor              ..>  FileDBController         
+MainExecutor              ..>  FileDBWorkersDAO         
+MainExecutor              ..>  FileIOController         
+MainExecutor              ..>  ICommandResponse         
+MainExecutor              ..>  WorkerCollection         
+MainExecutor              ..>  WorkersDAOExecutor       
+OperationType             ..^  Comparable               
+OperationType             +- -  FileAccessException      
+Organization              ..^  Comparable               
+Organization             "1" *- -> "type\n1" OrganizationType         
+OrganizationType          ..^  Comparable               
+Position                  ..^  Comparable               
+Response                  ..>  ICommandResponse         
+SerDesException          "1" *- -> "direction\n1" Type                     
+SerDesService             ..>  SerDesException          
+Type                      ..^  Comparable               
+Type                      +- -  SerDesException          
+Worker                    ..^  Comparable               
+Worker                   "1" *- -> "coordinates\n1" Coordinates              
+Worker                    ..^  IKeyedEntity             
+Worker                   "1" *- -> "organization\n1" Organization             
+Worker                   "1" *- -> "position\n1" Position                 
+WorkerCollection          ..^  ISetCollection           
+WorkerCollection          ..^  Set                      
+WorkerCollection          ..>  Worker                   
+WorkersDAOExecutor        - -^  Executor                 
+WorkersDAOExecutor        ..>  ICollectionBaseDAO       
+WorkersDAOExecutor       "1" *- -> "dao\n1" IWorkerCollectionDAO     
+XMLSerDesService          - -^  SerDesService            
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+<style>
+  root {
+    BackgroundColor white
+    FontColor black
+    FontName Verdana
+    HyperLinkColor blue
+    LineColor black
+    LineThickness 1
+    Margin 5
+  }
+  caption {
+    LineThickness 0
+  }
+  footer {
+    LineThickness 0
+  }
+  header {
+    LineThickness 0
+  }
+  node {
+    MaximumWidth 300
+  }
+  title {
+    FontSize 22
+    LineThickness 0
+  }
+</style>
+
+skinparam ArrowLollipopColor black
+skinparam BackgroundColor white
+skinparam DefaultFontName Verdana
+skinparam DefaultMonospacedFontName Courier
+skinparam LifelineStrategy nosolid
+skinparam ParticipantPadding 10
+skinparam SequenceLifeLineBorderColor black
+skinparam Shadowing false
+skinparam UseBetaStyle true
+
+skinparam Activity {
+  BackgroundColor white
+  BarColor black
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam Boundary {
+  FontColor black
+}
+skinparam Box {
+  Padding 5
+}
+skinparam CircledCharacter {
+  FontColor black
+  FontName Courier
+  Radius 9
+}
+skinparam Class {
+  BackgroundColor white
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassAttribute {
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassStereotype {
+  FontColor black
+  FontName Verdana
+}
+skinparam Footer {
+  FontColor black
+  FontName Verdana
+}
+skinparam Header {
+  FontColor black
+  FontName Verdana
+}
+skinparam Hyperlink {
+  Color blue
+}
+skinparam IconPackage {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPrivate {
+  Color black
+  BackgroundColor white
+}
+skinparam IconProtected {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPublic {
+  Color black
+  BackgroundColor white
+}
+skinparam Note {
+  FontColor black
+  FontName Verdana
+}
+skinparam Object {
+  BorderColor black
+}
+skinparam Package {
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam State {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeA {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeC {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeE {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeI {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeN {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam UseCaseStereoType {
+  FontColor black
+  FontName Verdana
+}
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+
+
+
+
+
+
+
+<style>
+  root {
+    BackgroundColor white
+    FontColor black
+    FontName Verdana
+    HyperLinkColor blue
+    LineColor black
+    LineThickness 1
+    Margin 5
+  }
+  caption {
+    LineThickness 0
+  }
+  footer {
+    LineThickness 0
+  }
+  header {
+    LineThickness 0
+  }
+  node {
+    MaximumWidth 300
+  }
+  title {
+    FontSize 22
+    LineThickness 0
+  }
+</style>
+
+skinparam ArrowLollipopColor black
+skinparam BackgroundColor white
+skinparam DefaultFontName Verdana
+skinparam DefaultMonospacedFontName Courier
+skinparam LifelineStrategy nosolid
+skinparam ParticipantPadding 10
+skinparam SequenceLifeLineBorderColor black
+skinparam Shadowing false
+skinparam UseBetaStyle true
+
+skinparam Activity {
+  BackgroundColor white
+  BarColor black
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam Boundary {
+  FontColor black
+}
+skinparam Box {
+  Padding 5
+}
+skinparam CircledCharacter {
+  FontColor black
+  FontName Courier
+  Radius 9
+}
+skinparam Class {
+  BackgroundColor white
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassAttribute {
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassStereotype {
+  FontColor black
+  FontName Verdana
+}
+skinparam Footer {
+  FontColor black
+  FontName Verdana
+}
+skinparam Header {
+  FontColor black
+  FontName Verdana
+}
+skinparam Hyperlink {
+  Color blue
+}
+skinparam IconPackage {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPrivate {
+  Color black
+  BackgroundColor white
+}
+skinparam IconProtected {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPublic {
+  Color black
+  BackgroundColor white
+}
+skinparam Note {
+  FontColor black
+  FontName Verdana
+}
+skinparam Object {
+  BorderColor black
+}
+skinparam Package {
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam State {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeA {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeC {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeE {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeI {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeN {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam UseCaseStereoType {
+  FontColor black
+  FontName Verdana
+}
+top to bottom direction
+skinparam linetype ortho
+
+class CollectionInfo {
+  + CollectionInfo(String, String, LocalDateTime, Integer): 
+  - itemsCount: Integer
+  - name: String
+  - type: String
+  - initializationDate: LocalDateTime
+  + setInitializationDate(LocalDateTime): void
+  + getName(): String
+  + toString(): String
+  + getType(): String
+  + getInitializationDate(): LocalDateTime
+  + getItemsCount(): Integer
+  + setName(String): void
+  + setType(String): void
+  + setItemsCount(Integer): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+}
+class Command {
+  + Command(): 
+  + getType(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + createResponse(): ICommandResponse
+  + getInteractArgs(): Field[]
+  + validate(): ValidationResponse
+  + getInlineArgs(): Field[]
+}
+interface Comparable<T> << interface >> {
+  + compareTo(T): int
+}
+class Coordinates {
+  + Coordinates(Integer, float): 
+  + Coordinates(): 
+  - y: float
+  - x: Integer
+  + getX(): Integer
+  + getY(): float
+  + setX(Integer): void
+  + setY(float): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + compareTo(Coordinates): int
+}
+class Executor {
+  + Executor(): 
+  + MAX_RECURSION_DEPTH: int
+  - operationMap: Map<Class<Command>, Operation<Command, ICommandResponse>>
+  - childExecutors: List<Executor>
+  + execute(Command): Response<ICommandResponse>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  # execute(Command, int): Response<ICommandResponse>
+  + registerExecutor(Executor): void
+  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+}
+class FileAccessException {
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(File, OperationType): 
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
+  - path: String
+  - type: OperationType
+  + getType(): OperationType
+  + getPath(): String
+}
+class FileDBController<T> {
+  + FileDBController(FileIOController, Class<T>): 
+  - storage: FileStorageController<T>
+  - baseCollectionClass: Class<T>
+  - collection: T
+  + store(): boolean
+  + clear(): boolean
+  + load(): boolean
+  + data(): T
+}
+class FileDBDAO<K, V> {
+  + FileDBDAO(FileDBController<ISetCollection<K, V>>): 
+  - controller: FileDBController<ISetCollection<K, V>>
+  + read(K): V
+  + add(V): K
+  - asStream(): Stream<V>
+  + clear(): void
+  + getMax(): V
+  + getCollectionInfo(): CollectionInfo
+  + getMin(): V
+  + readAll(): List<V>
+  + remove(K): boolean
+  + readAll(Comparator<V>): List<V>
+  + update(K, V): void
+  + save(): void
+  + nextPrimaryKey(): K
+}
+entity FileDBInfo << record >> {
+  + FileDBInfo(String, LocalDateTime): 
+  - filePath: String
+  - creationDate: LocalDateTime
+  + filePath(): String
+  + creationDate(): LocalDateTime
+}
+class FileDBWorkersDAO {
+  + FileDBWorkersDAO(FileDBController<WorkerCollection>): 
+  + nextPrimaryKey(): Integer
+  + getCollectionInfo(): CollectionInfo
+  + add(Worker): Integer
+}
+class FileIOController {
+  + FileIOController(String): 
+  + write(byte[]): void
+  + clear(): void
+  + openWriteStream(): FileOutputStream
+  + read(): byte[]
+  + openReadStream(): FileInputStream
+}
+class FileStorageController<T> {
+  + FileStorageController(FileIOController, SerDesService<T>): 
+  - serDesService: SerDesService<T>
+  - file: FileIOController
+  + loadObject(): T
+  + clear(): void
+  + storeObject(T): void
+}
+interface ICollectionBaseDAO<K, V> << interface >> {
+  + getCollectionInfo(): CollectionInfo
+  + readAll(): List<V>
+  + add(V): K
+  + getMax(): V
+  + readAll(Comparator<V>): List<V>
+  + getMin(): V
+  + remove(K): boolean
+  + clear(): void
+  + save(): void
+  + update(K, V): void
+  + read(K): V
+  + nextPrimaryKey(): K
+}
+interface ICollectionFilteredDAO<K, V> << interface >> {
+  + remove(Predicate<V>): void
+  + filter(Predicate<V>): List<V>
+  + getMapped(Function<V, T>): List<T>
+}
+interface ICommandResponse << interface >> {
+  + getUserMessage(): String
+}
+interface IKeyedEntity<K> << interface >> {
+  + getPrimaryKey(): K
+  + setPrimaryKey(K): void
+}
+interface ISetCollection<K, V> << interface >>
+interface IWorkerCollectionDAO << interface >> {
+  + filterLessThanPosition(Position): List<Worker>
+  + addIfMax(Worker): void
+  + addIfMin(Worker): void
+  + removeIfGreater(Worker): void
+  + getUniqueOrganizations(): Set<Organization>
+}
+class InvalidDataFileException {
+  + InvalidDataFileException(String, byte[], SerDesException): 
+  - path: String
+  - contents: byte[]
+  + getPath(): String
+  + getContents(): byte[]
+}
+class MainExecutor {
+  + MainExecutor(FileIOController): 
+  - processScript(ServerExecuteScriptCommand): ICommandResponse
+}
+enum OperationType << enumeration >> {
+  - OperationType(String): 
+  - OperationType(): 
+  - description: String
+  + PERM_READ: 
+  + PERM_WRITE: 
+  + CREATE: 
+  + WRITE: 
+  + SET_PERMISSION: 
+  + OPEN: 
+  + READ: 
+  + values(): OperationType[]
+  + getDescription(): String
+  + valueOf(String): OperationType
+}
+class Organization {
+  + Organization(String, OrganizationType): 
+  + Organization(): 
+  ~ fullName: String
+  ~ type: OrganizationType
+  + compareTo(Organization): int
+  + getFullName(): String
+  + getType(): OrganizationType
+  + setFullName(String): void
+  + setType(OrganizationType): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+enum OrganizationType << enumeration >> {
+  - OrganizationType(int): 
+  + PUBLIC: 
+  - value: int
+  + COMMERCIAL: 
+  + PRIVATE_LIMITED_COMPANY: 
+  + OPEN_JOINT_STOCK_COMPANY: 
+  + getValue(): int
+  + values(): OrganizationType[]
+  + valueOf(String): OrganizationType
+}
+enum Position << enumeration >> {
+  - Position(int): 
+  + CLEANER: 
+  + ENGINEER: 
+  + LEAD_DEVELOPER: 
+  + HEAD_OF_DEPARTMENT: 
+  + value: int
+  + MANAGER_OF_CLEANING: 
+  + valueOf(String): Position
+  + values(): Position[]
+}
+class Response<T> {
+  + Response(boolean, boolean, String, T): 
+  + Response(): 
+  - text: String
+  - success: boolean
+  - resolved: boolean
+  - payload: T
+  + getText(): String
+  + isSuccess(): boolean
+  + equals(Object): boolean
+  + isResolved(): boolean
+  + getPayload(): T
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + setSuccess(boolean): void
+  + setResolved(boolean): void
+  + setText(String): void
+  + toString(): String
+  + setPayload(T): void
+  + noResolve(): Response<T>
+  + error(String): Response<T>
+  + success(T): Response<T>
+  + error(Exception): Response<T>
+}
+class SerDesException {
+  + SerDesException(Type, Exception): 
+  - direction: Type
+  - internalException: Exception
+  + getDirection(): Type
+  + getInternalException(): Exception
+  + toString(): String
+}
+class SerDesService<T> {
+  + SerDesService(Class<T>): 
+  - mapper: ObjectMapper
+  - baseClass: Class<T>
+  + serialize(T): byte[]
+  # getObjectMapper(): ObjectMapper
+  + deserialize(byte[]): T
+}
+interface Set<E> << interface >> {
+  + size(): int
+  + of(E, E, E, E, E, E, E, E, E, E): Set<E>
+  + of(E): Set<E>
+  + toArray(T[]): T[]
+  + remove(Object): boolean
+  + containsAll(Collection<?>): boolean
+  + of(): Set<E>
+  + hashCode(): int
+  + isEmpty(): boolean
+  + add(E): boolean
+  + retainAll(Collection<?>): boolean
+  + iterator(): Iterator<E>
+  + of(E, E, E, E, E, E, E, E): Set<E>
+  + of(E[]): Set<E>
+  + clear(): void
+  + of(E, E, E, E, E, E, E): Set<E>
+  + spliterator(): Spliterator<E>
+  + removeAll(Collection<?>): boolean
+  + toArray(): Object[]
+  + of(E, E, E, E): Set<E>
+  + equals(Object): boolean
+  + of(E, E, E, E, E, E, E, E, E): Set<E>
+  + addAll(Collection<E>): boolean
+  + of(E, E, E, E, E, E): Set<E>
+  + copyOf(Collection<E>): Set<E>
+  + contains(Object): boolean
+  + of(E, E): Set<E>
+  + of(E, E, E): Set<E>
+  + of(E, E, E, E, E): Set<E>
+}
+enum Type << enumeration >> {
+  + Type(): 
+  + SERIALIZE: 
+  + DESERIALIZE: 
+  + values(): Type[]
+  + valueOf(String): Type
+}
+class Worker {
+  + Worker(Integer, ZonedDateTime, String, Coordinates, float, Date, Organization, LocalDate, Position): 
+  + Worker(): 
+  - id: Integer
+  - salary: float
+  - endDate: LocalDate
+  - coordinates: Coordinates
+  - organization: Organization
+  - position: Position
+  - nextId: Integer
+  - startDate: Date
+  - name: String
+  - creationDate: ZonedDateTime
+  + getCreationDate(): ZonedDateTime
+  + getId(): Integer
+  + getName(): String
+  + setSalary(float): void
+  + setEndDate(LocalDate): void
+  + getCoordinates(): Coordinates
+  + setPosition(Position): void
+  + getSalary(): float
+  + getStartDate(): Date
+  + getOrganization(): Organization
+  + withId(Integer): Worker
+  + withCreationDate(ZonedDateTime): Worker
+  + getEndDate(): LocalDate
+  + toString(): String
+  + getPosition(): Position
+  + setStartDate(Date): void
+  + setCoordinates(Coordinates): void
+  + setOrganization(Organization): void
+  + setName(String): void
+  + nicePrintFormat(List<Worker>): String
+  + compareTo(Worker): int
+  + getPrimaryKey(): Integer
+  + setPrimaryKey(Integer): void
+  + equals(Object): boolean
+  + getComparator(): Comparator<Worker>
+}
+class WorkerCollection {
+  + WorkerCollection(): 
+}
+class WorkersDAOExecutor {
+  + WorkersDAOExecutor(IWorkerCollectionDAO): 
+  - dao: IWorkerCollectionDAO
+  - registerCRUD(): void
+  - registerComplex(): void
+}
+class XMLSerDesService<T> {
+  + XMLSerDesService(Class<T>): 
+  # getObjectMapper(): ObjectMapper
+}
+
+Command                   ..>  ICommandResponse         
+Coordinates               ..^  Comparable               
+Executor                  ..>  Command                  
+Executor                  ..>  ICommandResponse         
+Executor                  ..>  Response                 
+FileAccessException      "1" *- -> "type\n1" OperationType            
+FileDBController          ..>  FileAccessException      
+FileDBController          ..>  FileIOController         
+FileDBController         "1" *- -> "storage\n1" FileStorageController    
+FileDBController          ..>  InvalidDataFileException 
+FileDBController          ..>  SerDesException          
+FileDBController          ..>  XMLSerDesService         
+FileDBDAO                 ..>  CollectionInfo           
+FileDBDAO                 ..>  Comparable               
+FileDBDAO                "1" *- -> "controller\n1" FileDBController         
+FileDBDAO                 ..^  ICollectionFilteredDAO   
+FileDBDAO                 ..>  IKeyedEntity             
+FileDBDAO                 ..>  ISetCollection           
+FileDBDAO                 ..>  Set                      
+FileDBDAO                 ..>  Worker                   
+FileDBWorkersDAO          ..>  CollectionInfo           
+FileDBWorkersDAO          ..>  FileDBController         
+FileDBWorkersDAO          - -^  FileDBDAO                
+FileDBWorkersDAO          ..>  ICollectionFilteredDAO   
+FileDBWorkersDAO          ..^  IWorkerCollectionDAO     
+FileDBWorkersDAO          ..>  Worker                   
+FileDBWorkersDAO          ..>  WorkerCollection         
+FileIOController          ..>  FileAccessException      
+FileStorageController     ..>  FileAccessException      
+FileStorageController    "1" *- -> "file\n1" FileIOController         
+FileStorageController     ..>  InvalidDataFileException 
+FileStorageController     ..>  SerDesException          
+FileStorageController    "1" *- -> "serDesService\n1" SerDesService            
+ICollectionBaseDAO        ..>  CollectionInfo           
+ICollectionBaseDAO        ..>  IKeyedEntity             
+ICollectionFilteredDAO    - -^  ICollectionBaseDAO       
+ICollectionFilteredDAO    ..>  IKeyedEntity             
+ISetCollection            ..>  IKeyedEntity             
+ISetCollection            - -^  Set                      
+IWorkerCollectionDAO      ..>  ICollectionBaseDAO       
+IWorkerCollectionDAO      - -^  ICollectionFilteredDAO   
+IWorkerCollectionDAO      ..>  Organization             
+IWorkerCollectionDAO      ..>  Position                 
+IWorkerCollectionDAO      ..>  Set                      
+IWorkerCollectionDAO      ..>  Worker                   
+InvalidDataFileException  ..>  SerDesException          
+MainExecutor              ..>  Command                  
+MainExecutor              - -^  Executor                 
+MainExecutor              ..>  FileDBController         
+MainExecutor              ..>  FileDBWorkersDAO         
+MainExecutor              ..>  FileIOController         
+MainExecutor              ..>  ICommandResponse         
+MainExecutor              ..>  WorkerCollection         
+MainExecutor              ..>  WorkersDAOExecutor       
+OperationType             ..^  Comparable               
+OperationType             +- -  FileAccessException      
+Organization              ..^  Comparable               
+Organization             "1" *- -> "type\n1" OrganizationType         
+OrganizationType          ..^  Comparable               
+Position                  ..^  Comparable               
+Response                  ..>  ICommandResponse         
+SerDesException          "1" *- -> "direction\n1" Type                     
+SerDesService             ..>  SerDesException          
+Type                      ..^  Comparable               
+Type                      +- -  SerDesException          
+Worker                    ..^  Comparable               
+Worker                   "1" *- -> "coordinates\n1" Coordinates              
+Worker                    ..^  IKeyedEntity             
+Worker                   "1" *- -> "organization\n1" Organization             
+Worker                   "1" *- -> "position\n1" Position                 
+WorkerCollection          ..^  ISetCollection           
+WorkerCollection          ..^  Set                      
+WorkerCollection          ..>  Worker                   
+WorkersDAOExecutor        - -^  Executor                 
+WorkersDAOExecutor        ..>  ICollectionBaseDAO       
+WorkersDAOExecutor       "1" *- -> "dao\n1" IWorkerCollectionDAO     
+XMLSerDesService          - -^  SerDesService            
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 20:01:30 MSK 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+-->
+    </g>
+</svg>

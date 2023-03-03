@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * Abstract Data Access Object for operating with Set-based collection of entries with primary key.
+ * Data Access Object for operating with Set-based collection of entries with primary key.
  * Implements base CRUD operations.
  * Uses FileDB backend.
  *
