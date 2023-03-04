@@ -78,8 +78,11 @@ public class ObjectScanner {
                     objectMap.put(i.getName(), null);
                     continue;
                 }
-                if (!answer.equals("C"))
-                    throw new ParserException("Invalid argument: ");
+                if (!answer.equals("C")) {
+                    viewer.show("Invalid argument");
+                    j--;
+                    continue;
+                }
                 viewer.show("Continue interaction");
             }
             Object value;
