@@ -44,6 +44,14 @@ public interface ICollectionBaseDAO<K, V extends IKeyedEntity<K>> {
     }
 
     /**
+     * Check if collection has an object with this key
+     *
+     * @param id primary key
+     * @return true if exists
+     */
+    boolean has(K id);
+
+    /**
      * Insert element into collection
      *
      * @param worker item to insert

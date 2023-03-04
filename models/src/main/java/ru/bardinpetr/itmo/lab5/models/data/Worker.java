@@ -62,11 +62,11 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
         return id;
     }
 
-    @JsonIgnore
-    @Override
-    public void setPrimaryKey(Integer key) {
+//    @JsonIgnore
+//    @Override
+//    public void setPrimaryKey(Integer key) {
 //        this.id = key;
-    }
+//    }
 
     /**
      * @param worker the object to be compared.

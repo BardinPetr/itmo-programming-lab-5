@@ -39,7 +39,7 @@ public interface ICollectionFilteredDAO<K, V extends IKeyedEntity<K>> extends IC
      * @param extractor function to map from collection item to output object
      * @return list of extracted fields for all items
      */
-    default <T> List<T> getMapped(Function<V, T> extractor) {
+    default <T> List<T> getAllMapped(Function<V, T> extractor) {
         return readAll().stream().map(extractor).toList();
     }
 }

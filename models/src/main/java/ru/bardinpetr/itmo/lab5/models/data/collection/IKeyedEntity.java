@@ -16,5 +16,5 @@ public interface IKeyedEntity<K> {
     /**
      * Sets primary key for object
      */
-    void setPrimaryKey(K key);
+//    void setPrimaryKey(K key);
 }

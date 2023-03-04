@@ -95,14 +95,21 @@ public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> imple
     }
 
     @Override
+    public boolean has(K id) {
+        return asStream().anyMatch(i -> i.getPrimaryKey().equals(id));
+    }
+
+    @Override
     public K add(V item) {
         controller.data().add(item);
         return item.getPrimaryKey();
     }
 
     public void update(K id, V updateObject) {
+        if (!has(id))
+            throw new IndexOutOfBoundsException("no object with such id");
         remove(id);
-        add(updateObject);
+        controller.data().add(updateObject);
     }
 
     @Override

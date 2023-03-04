@@ -19,7 +19,7 @@ public class FileDBWorkersDAO extends FileDBDAO<Integer, Worker> implements IWor
      */
     @Override
     public Integer nextPrimaryKey() {
-        return getMapped(Worker::getPrimaryKey).stream().max(Integer::compareTo).orElse(0) + 1;
+        return getAllMapped(Worker::getPrimaryKey).stream().max(Integer::compareTo).orElse(0) + 1;
     }
 
     @Override
@@ -27,5 +27,18 @@ public class FileDBWorkersDAO extends FileDBDAO<Integer, Worker> implements IWor
         var key = nextPrimaryKey();
         super.add(item.withId(key));
         return key;
+    }
+
+    @Override
+    public void update(Integer id, Worker updateObject) {
+        var cur = read(id);
+        if (cur == null)
+            throw new IndexOutOfBoundsException("no object with such id");
+        super.update(
+                id,
+                updateObject
+                        .withId(id)
+                        .withCreationDate(cur.getCreationDate())
+        );
     }
 }
