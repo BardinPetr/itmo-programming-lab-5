@@ -99,11 +99,14 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
         for (var i : list) {
             String coordinates = "(x: " + i.getCoordinates().getX() + "," +
                     "y: " + i.getCoordinates().getX() + ')';
-            String organization = String.format(
-                    "(full name: %s, type: %s)",
-                    i.getOrganization().getFullName(),
-                    i.getOrganization().getType()
-            );
+            String organization = "";
+            if (i.getOrganization() != null) {
+                organization = String.format(
+                        "(full name: %s, type: %s)",
+                        i.getOrganization().getFullName(),
+                        i.getOrganization().getType()
+                );
+            } else organization = "null";
             s += "\n\tid: " + i.getId() +
                     ",\n\t creationDate: " + i.getCreationDate() +
                     ",\n\t name: '" + i.getName() + '\'' +
