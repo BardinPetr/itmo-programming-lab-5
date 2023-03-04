@@ -22,12 +22,12 @@ public class CommandParser {
     private ObjectScanner objectScanner;
 
 
-    public CommandParser(HashMap<String, Command> cmdMap, ObjectMapper mapper, Scanner scanner, View viewer) {
+    public CommandParser(HashMap<String, Command> cmdMap, ObjectMapper mapper, Scanner scanner, View viewer, Runnable callback) {
         this.cmdMap = cmdMap;
         this.mapper = mapper;
         this.viewer = viewer;
         this.scanner = scanner;
-        this.objectScanner = new ObjectScanner(scanner, viewer, mapper);
+        this.objectScanner = new ObjectScanner(scanner, viewer, mapper, callback);
 
     }
 

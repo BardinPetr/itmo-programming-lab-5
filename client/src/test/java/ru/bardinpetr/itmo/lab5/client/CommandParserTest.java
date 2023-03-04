@@ -12,6 +12,8 @@ public class CommandParserTest {
     private CommandParser getParser(String text) {
         var t = new CommandRegister();
         return t.getParser(new Scanner(text), new View() {
+        }, () -> {
+            System.exit(0);
         });
     }
 

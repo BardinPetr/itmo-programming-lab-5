@@ -40,7 +40,9 @@ public class CLIController {
 
         this.viewer = viewer;
 
-        cmdParser = cmdRegister.getParser(scanner, viewer);
+        cmdParser = cmdRegister.getParser(scanner, viewer, () -> {
+            System.exit(0);
+        });
     }
 
     /**

@@ -16,21 +16,22 @@ public class ObjectScanner {
     private final Scanner scanner;
     private final View viewer;
     private final ObjectMapper mapper;
+    Runnable callback;
 
-    public ObjectScanner(Scanner scanner, View viewer, ObjectMapper mapper) {
+    public ObjectScanner(Scanner scanner, View viewer, ObjectMapper mapper, Runnable callback) {
         this.scanner = scanner;
         this.viewer = viewer;
         this.mapper = mapper;
+        this.callback = callback;
     }
 
 
     private String scan() {
-        String string;
+        String string = "";
         try {
             string = scanner.nextLine();
         } catch (NoSuchElementException ignored) {
-            System.exit(0);
-            return null;
+            callback.run();
         }
         return string.isEmpty() ? null : string;
     }
@@ -42,7 +43,7 @@ public class ObjectScanner {
      * @param <T>    Type of value
      * @return object if required type
      */
-    private <T> T interactValue(Class<T> kClass) throws IllegalArgumentException, ParserException {
+    private <T> T interactValue(Class<T> kClass) throws IllegalArgumentException, ParserException, RuntimeException {
         if (!dataDescription.containsKey(kClass))
             try {
                 return mapper.convertValue(scan(), kClass);
@@ -65,7 +66,9 @@ public class ObjectScanner {
     public <T> T scan(Class<T> kClass) throws ParserException {
         Map<String, Object> objectMap = new HashMap<>();
         List<FieldWithDesc<?>> fields = dataDescription.get(kClass);
-        for (var i : fields) {
+
+        for (int j = 0; j < fields.size(); j++) {
+            var i = fields.get(j);
             viewer.show(i.getPromptMsg());
 
             if (dataDescription.containsKey(i.getValueClass()) && i.isNullAble()) {
@@ -79,17 +82,30 @@ public class ObjectScanner {
                     throw new ParserException("Invalid argument: ");
                 viewer.show("Continue interaction");
             }
+            Object value;
+            try {
+                value = interactValue(i.getValueClass());
+            } catch (ParserException ex) {
+                viewer.show("Invalid argument");
+                j--;
+                continue;
+            } catch (RuntimeException ex) {
+                throw new ParserException(ex.getMessage());
+            }
+            if ((!i.isNullAble()) && value == null) {
+                viewer.show("Invalid argument: Argument can't be null");
+                j--;
+                continue;
+            }
 
-            var value = interactValue(i.getValueClass());
-            if ((!i.isNullAble()) && value == null)
-                throw new ParserException("Invalid argument: Argument can't be null");
             IValidator val = i.getValidator();
             @SuppressWarnings("unchecked")
             var res = val.validate(i.getValueClass().cast(value));
             if (res.isAllowed()) {
                 objectMap.put(i.getName(), value);
             } else {
-                throw new ParserException("Invalid argument: " + res.getMsg());
+                viewer.show("Invalid argument: " + res.getMsg());
+                j--;
             }
         }
         return mapper.convertValue(objectMap, kClass);

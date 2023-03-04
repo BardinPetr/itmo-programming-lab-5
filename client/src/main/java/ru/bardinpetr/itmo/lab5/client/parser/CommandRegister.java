@@ -49,7 +49,7 @@ public class CommandRegister {
      * @param viewer  viewer for parser
      * @return command parser
      */
-    public CommandParser getParser(Scanner scanner, View viewer) {
-        return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, viewer);
+    public CommandParser getParser(Scanner scanner, View viewer, Runnable callback) {
+        return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, viewer, callback);
     }
 }

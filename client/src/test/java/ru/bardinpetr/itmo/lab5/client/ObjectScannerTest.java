@@ -13,7 +13,6 @@ import java.time.Month;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +28,10 @@ public class ObjectScannerTest {
                 scanner,
                 new View() {
                 },
-                ObjectMapperFactory.createMapper()
+                ObjectMapperFactory.createMapper(),
+                () -> {
+                    throw new RuntimeException();
+                }
         );
 
     }
@@ -130,7 +132,7 @@ public class ObjectScannerTest {
                     PUBLI2C""").scan(Organization.class);
         }, "Type should be from enum list");
 
-        assertThrows(NoSuchElementException.class, () ->
+        assertThrows(ParserException.class, () ->
         {
             getScanner("""
                     ITMO

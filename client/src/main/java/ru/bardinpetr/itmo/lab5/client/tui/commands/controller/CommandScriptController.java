@@ -34,6 +34,8 @@ public class CommandScriptController {
         Scanner scanner = new Scanner(inputStream);
 
         CommandParser cmdParser = cmdRegister.getParser(scanner, new View() {
+        }, () -> {
+            throw new RuntimeException("invalid script");
         });
 
         List<Command> commandList = new ArrayList<>();
