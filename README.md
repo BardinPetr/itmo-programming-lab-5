@@ -4,6 +4,7 @@
 
 - `docs/report.pdf` - отчет по выполнению
 - `docs/diagrams/img/*.svg` - UML диаграммы классов программного комплекса
+- [Онлайн-документация](https://bardinpetr.github.io/itmo-programming-lab-5/)
 
 # Задача:
 
