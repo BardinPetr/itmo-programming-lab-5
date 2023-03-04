@@ -1,3 +1,5 @@
+package ru.bardinpetr.itmo.lab5.models;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
@@ -15,6 +17,7 @@ public class WorkerValidationTest {
 
     private final Coordinates testCoords = new Coordinates(0, 0);
     private final Organization testOrg = new Organization("", OrganizationType.COMMERCIAL);
+
     @DisplayName("Worker all-fields logic validator test")
     @Test
     void testWorkerValidation() {
@@ -24,6 +27,7 @@ public class WorkerValidationTest {
         assertNotNull(res);
         assertFalse(res.isAllowed(), "Empty worker names should not be allowed");
     }
+
     @DisplayName("Worker validation null field values test")
     @Test
     void testWorkerNullValidation() {

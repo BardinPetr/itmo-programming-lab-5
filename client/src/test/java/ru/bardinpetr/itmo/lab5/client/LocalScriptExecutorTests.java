@@ -1,3 +1,5 @@
+package ru.bardinpetr.itmo.lab5.client;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,8 +25,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LocalScriptExecutorTests {
     Path path = Paths.get("scripts");
 
-    private String ordPath = path.toAbsolutePath().toString();
-    private String elementText = """
+    private final String ordPath = path.toAbsolutePath().toString();
+    private final String elementText = """
             Artem
             12.3
             02-03-2023
@@ -354,9 +356,9 @@ public class LocalScriptExecutorTests {
             createScript(ordPath + "DoubleScript3.zb", String.format("""
                     execute_script %sDoubleScrip5t4.zb
                     """, ordPath));
-            createScript(ordPath + "DoubleScript4.zb", String.format("""
+            createScript(ordPath + "DoubleScript4.zb", """
                     info
-                    """));
+                    """);
             executeScript(ordPath + "DoubleScript1.zb",
                     new ArrayList<>() {{
                         add(new ClearCommand());

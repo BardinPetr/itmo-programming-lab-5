@@ -10,6 +10,7 @@ import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 /**
@@ -43,12 +44,20 @@ public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> imple
 
     @Override
     public V getMax() {
-        return controller.data().last();
+        try {
+            return controller.data().last();
+        } catch (NoSuchElementException ignored) {
+            return null;
+        }
     }
 
     @Override
     public V getMin() {
-        return controller.data().first();
+        try {
+            return controller.data().first();
+        } catch (NoSuchElementException ignored) {
+            return null;
+        }
     }
 
     @Override

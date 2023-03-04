@@ -12,14 +12,20 @@ import java.util.stream.Collectors;
 public interface IWorkerCollectionDAO extends ICollectionFilteredDAO<Integer, Worker> {
     default void addIfMax(Worker worker) {
         var curMax = getMax();
+        if (curMax == null) throw new RuntimeException("No elements");
         if (curMax.compareTo(worker) < 0)
             add(worker);
+        else
+            throw new RuntimeException("Not maximum");
     }
 
     default void addIfMin(Worker worker) {
         var curMin = getMin();
+        if (curMin == null) throw new RuntimeException("No elements");
         if (curMin.compareTo(worker) > 0)
             add(worker);
+        else
+            throw new RuntimeException("Not minimum");
     }
 
     default void removeIfGreater(Worker worker) {

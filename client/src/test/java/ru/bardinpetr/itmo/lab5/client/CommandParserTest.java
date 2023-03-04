@@ -1,3 +1,5 @@
+package ru.bardinpetr.itmo.lab5.client;
+
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandParser;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
