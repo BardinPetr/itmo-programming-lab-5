@@ -13,9 +13,8 @@ import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 
 public class MainExecutor extends Executor {
 
-    private FileDBController<WorkerCollection> db;
-
     public MainExecutor(FileIOController fileIOController) {
+        FileDBController<WorkerCollection> db;
         try {
             db = new FileDBController<>(fileIOController, WorkerCollection.class);
         } catch (FileAccessException e) {
@@ -29,10 +28,6 @@ public class MainExecutor extends Executor {
 
         registerOperation(ServerExecuteScriptCommand.class, this::processScript);
         registerOperation(LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse.class, this::processScript);
-    }
-
-    public FileDBController<WorkerCollection> getDb() {
-        return db;
     }
 
     private ICommandResponse processScript(ServerExecuteScriptCommand req) {

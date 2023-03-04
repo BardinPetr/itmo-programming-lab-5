@@ -43,7 +43,7 @@ public class FileDBController<T> {
         try {
             collection = storage.loadObject();
         } catch (InvalidDataFileException ex) {
-            System.err.println("[DB] DB file recreated as it contained invalid data. Collection cleared");
+            System.err.printf("[DB] DB file recreated as it contained invalid data. Original error: %s", ex);
             clear();
         }
     }

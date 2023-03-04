@@ -21,9 +21,10 @@ java {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+
+    testLogging.events("PASSED", "SKIPPED", "FAILED")
 }
 
 tasks.javadoc {
-//    setDestinationDir(projectDir.resolve("javadoc"))
     source = sourceSets.main.get().allJava
 }
