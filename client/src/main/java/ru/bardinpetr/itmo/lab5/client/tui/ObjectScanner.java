@@ -6,19 +6,16 @@ import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator;
 import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Class for interacting data objects
  */
 public class ObjectScanner {
-    private Scanner scanner;
-    private View viewer;
-    private ObjectMapper mapper;
     private final Map<Class<?>, List<FieldWithDesc<?>>> dataDescription = DescriptionHolder.dataDescriptions;
+    private final Scanner scanner;
+    private final View viewer;
+    private final ObjectMapper mapper;
 
     public ObjectScanner(Scanner scanner, View viewer, ObjectMapper mapper) {
         this.scanner = scanner;
@@ -28,7 +25,13 @@ public class ObjectScanner {
 
 
     private String scan() {
-        String string = scanner.nextLine();
+        String string;
+        try {
+            string = scanner.nextLine();
+        } catch (NoSuchElementException ignored) {
+            System.exit(0);
+            return null;
+        }
         return string.isEmpty() ? null : string;
     }
 

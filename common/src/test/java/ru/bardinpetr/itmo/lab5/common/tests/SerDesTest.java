@@ -3,18 +3,31 @@ package ru.bardinpetr.itmo.lab5.common.tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService;
-import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.models.data.*;
+
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.bardinpetr.itmo.lab5.common.tests.utils.WorkerGenerator.generateWorker;
 
 public class SerDesTest {
 
     @Test
     @DisplayName("Deserialization of serialized Worker object should succeed and return the same object")
     void workerSerializationTest() {
-        var worker = generateWorker();
+        var worker = new Worker(
+                1,
+                ZonedDateTime.now(),
+                "test_name",
+                new Coordinates(11, 22.33f),
+                44.55f,
+                new Date(),
+                new Organization("test_org", OrganizationType.COMMERCIAL),
+                LocalDate.now(),
+                Position.CLEANER
+        );
 
         var service = new XMLSerDesService<>(Worker.class);
         assertDoesNotThrow(() -> {

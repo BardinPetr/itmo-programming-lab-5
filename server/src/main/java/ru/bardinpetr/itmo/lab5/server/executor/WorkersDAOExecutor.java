@@ -80,7 +80,7 @@ public class WorkersDAOExecutor extends Executor {
                 PrintDescendingCommand.class,
                 req -> {
                     var resp = req.createResponse();
-                    resp.setResult(dao.readAll(Comparator.naturalOrder()));
+                    resp.setResult(dao.readAll(Comparator.reverseOrder()));
                     return resp;
                 }
         );

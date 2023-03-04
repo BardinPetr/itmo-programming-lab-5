@@ -13,13 +13,15 @@ import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
 
 public class MainExecutor extends Executor {
 
+    private FileDBController<WorkerCollection> db;
+
     public MainExecutor(FileIOController fileIOController) {
-        FileDBController<WorkerCollection> db = null;
         try {
             db = new FileDBController<>(fileIOController, WorkerCollection.class);
         } catch (FileAccessException e) {
             System.err.printf("[DB] could not read from file. Fix by hand please. \nError: %s", e);
             System.exit(1);
+            return;
         }
 
         var dao = new FileDBWorkersDAO(db);
@@ -27,6 +29,10 @@ public class MainExecutor extends Executor {
 
         registerOperation(ServerExecuteScriptCommand.class, this::processScript);
         registerOperation(LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse.class, this::processScript);
+    }
+
+    public FileDBController<WorkerCollection> getDb() {
+        return db;
     }
 
     private ICommandResponse processScript(ServerExecuteScriptCommand req) {

@@ -29,14 +29,17 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
+      - name: Build
+        run: ./gradlew build
+
       - name: Run tests
         run: ./gradlew test
 
-      - uses: dorny/test-reporter@v1
-        with:
-          name: Java Tests
-          path: './**/build/test-results/test/*.xml'
-          reporter: java-junit
+  #      - uses: dorny/test-reporter@v1
+  #        with:
+  #          name: Java Tests
+  #          path: './**/build/test-results/test/*.xml'
+  #          reporter: java-junit
 
   build:
     needs: [ test ]

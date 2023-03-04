@@ -14,12 +14,16 @@ public interface IWorkerCollectionDAO extends ICollectionFilteredDAO<Integer, Wo
         var curMax = getMax();
         if (curMax.compareTo(worker) < 0)
             add(worker);
+        else
+            throw new RuntimeException("Not maximum");
     }
 
     default void addIfMin(Worker worker) {
         var curMin = getMin();
         if (curMin.compareTo(worker) > 0)
             add(worker);
+        else
+            throw new RuntimeException("Not minimum");
     }
 
     default void removeIfGreater(Worker worker) {
