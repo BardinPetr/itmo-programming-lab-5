@@ -65,7 +65,7 @@ public class ObjectScanner {
         Map<String, Object> objectMap = new HashMap<>();
         List<FieldWithDesc<?>> fields = dataDescription.get(kClass);
 
-        for (int i = 0; i < fields.size(); ) {
+        for (int i = 0; i < fields.size(); i++) {
             var cur = fields.get(i);
             viewer.show(cur.getPromptMsg());
 
@@ -78,6 +78,7 @@ public class ObjectScanner {
                 }
                 if (!answer.equals("C")) {
                     viewer.show("Invalid argument");
+                    i--;
                     continue;
                 }
                 viewer.show("Continue interaction");
@@ -87,12 +88,14 @@ public class ObjectScanner {
                 value = interactValue(cur.getValueClass());
             } catch (ParserException ex) {
                 viewer.show("Invalid argument");
+                i--;
                 continue;
             } catch (RuntimeException ex) {
                 throw new ParserException(ex.getMessage());
             }
             if ((!cur.isNullAble()) && value == null) {
                 viewer.show("Invalid argument: Argument can't be null");
+                i--;
                 continue;
             }
 
@@ -103,9 +106,8 @@ public class ObjectScanner {
                 objectMap.put(cur.getName(), value);
             } else {
                 viewer.show("Invalid argument: " + res.getMsg());
+                i--;
             }
-
-            i++;
         }
         return mapper.convertValue(objectMap, kClass);
     }
