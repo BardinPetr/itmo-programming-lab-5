@@ -62,8 +62,8 @@ public class RussianText {
                     PUBLIC,
                     PRIVATE_LIMITED_COMPANY,
                     OPEN_JOINT_STOCK_COMPANY""");
-
-
+        put(TextKeys.INVALID_APP_ARGUMENTS, "Please call this program with single argument - path to database file");
+        put(TextKeys.FILEIO_ERROR_MESSAGE_TEMLPATE, "Could not access db file: \n%s\n\nExiting...");
     }};
 
 

@@ -11,8 +11,7 @@ public class FileAccessException extends Exception {
 
     public FileAccessException(Exception originalException, String path, OperationType type) {
         super(
-                "Failed to get %s access to file %s: %s".formatted(
-                        type.name(), path, type.getDescription()),
+                "Failed to access file %s -- %s".formatted(path, type.getDescription()),
                 originalException
         );
         this.type = type;
@@ -49,10 +48,10 @@ public class FileAccessException extends Exception {
      * Types for actions causing exception
      */
     public enum OperationType {
-        READ, WRITE,
+        READ("read failed"), WRITE("write failed"),
         PERM_READ("no read permission for current user"),
         PERM_WRITE("no write permission for current user"),
-        CREATE,
+        CREATE("no permissions to create file"),
         OPEN("may be not a regular file or have invalid path"),
         SET_PERMISSION("failed to update permissions");
 

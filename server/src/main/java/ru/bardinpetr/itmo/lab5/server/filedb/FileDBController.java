@@ -42,8 +42,8 @@ public class FileDBController<T> {
     public void load() throws FileAccessException {
         try {
             collection = storage.loadObject();
-        } catch (InvalidDataFileException ex) {
-            System.err.printf("[DB] DB file recreated as it contained invalid data. Original error: %s", ex);
+        } catch (InvalidDataFileException ignore) {
+            System.out.println("\n[INFO] DB file recreated as it contained invalid data");
             clear();
         }
     }
@@ -63,7 +63,7 @@ public class FileDBController<T> {
         } catch (SerDesException ignored) {
             System.err.println("[DB] serialization error");
         } catch (FileAccessException e) {
-            System.err.printf("[DB] could not write to file. Fix by hand please. Error: %s", e);
+            System.err.printf("[DB] could not write to file: \n%s\n", e.getMessage());
         }
         return false;
     }
