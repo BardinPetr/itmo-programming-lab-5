@@ -115,7 +115,7 @@ public class DescriptionHolder {
                                         "type",
                                         OrganizationType.class,
                                         RussianText.get(TextKeys.ORGANISATIONTYPEINTERACT),
-                                        true
+                                        false
                                 )
                         );
 

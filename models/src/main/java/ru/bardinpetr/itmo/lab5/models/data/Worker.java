@@ -13,8 +13,6 @@ import java.util.List;
 
 import static java.util.Comparator.naturalOrder;
 import static java.util.Comparator.nullsLast;
-
-
 @Data
 @AllArgsConstructor
 public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
@@ -37,17 +35,15 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
 
     private java.time.LocalDate endDate;
     private Position position;
-
     public Worker() {
         id = 0;
         creationDate = ZonedDateTime.now();//ZonedDateTime.of(2023, 10, 10, 12, 12, 12, 12, ZoneId.of("UTC"));//TODO correct
     }
-
     public static Comparator<Worker> getComparator() {
         return Comparator
                 .comparing(Worker::getOrganization, nullsLast(naturalOrder()))
-                .thenComparing(Worker::getPosition, nullsLast(naturalOrder()))
                 .thenComparing(Worker::getName)
+                .thenComparing(Worker::getPosition, nullsLast(naturalOrder()))
                 .thenComparing(Worker::getSalary)
                 .thenComparing((x, y) -> -1 * x.startDate.compareTo(y.startDate))
                 .thenComparing(Worker::getEndDate, nullsLast(naturalOrder()))
@@ -91,8 +87,6 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
             return false;
         return getPosition() == worker.getPosition();
     }
-
-
     public static String nicePrintFormat(List<Worker> list) {
         String s = "";
         for (var i : list) {
