@@ -87,6 +87,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
             return false;
         return getPosition() == worker.getPosition();
     }
+
     public static String nicePrintFormat(List<Worker> list) {
         String s = "";
         for (var i : list) {

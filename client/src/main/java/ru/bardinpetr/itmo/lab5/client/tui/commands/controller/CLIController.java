@@ -93,7 +93,7 @@ public class CLIController {
             } catch (IllegalArgumentException e) {
                 System.out.println("Invalid argument. Stop command interaction");
             } catch (ParserException e) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
             viewer.suggestInput();
         }
