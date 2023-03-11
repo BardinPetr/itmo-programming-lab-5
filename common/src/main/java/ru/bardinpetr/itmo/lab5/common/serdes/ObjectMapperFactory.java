@@ -30,8 +30,6 @@ public class ObjectMapperFactory {
                         .addDeserializer(LocalDate.class, new LocalDateDeserializer(localDateFormatter))
                         .addSerializer(LocalDate.class, new LocalDateSerializer(localDateFormatter));
         mapper.registerModule(timeModule);
-//        mapper.registerModule(new JavaTimeModule());
-        //mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
         return mapper;
     }

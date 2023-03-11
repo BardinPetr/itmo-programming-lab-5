@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.common.serdes;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -32,6 +33,7 @@ public class XMLSerDesService<T> extends SerDesService<T> {
                         .addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(formatter))
                         .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(formatter));
 
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapper.disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
