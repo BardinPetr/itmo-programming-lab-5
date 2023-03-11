@@ -9,8 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 /**
  * Class implementing low level filesystem operations (rw) with required checks.
@@ -138,10 +138,10 @@ public class FileController {
         return file.getAbsolutePath();
     }
 
-    public LocalDateTime creationDate() {
+    public ZonedDateTime creationDate() {
         try {
             var attrs = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
-            return LocalDateTime.ofEpochSecond(attrs.creationTime().toInstant().getEpochSecond(), 0, ZoneOffset.UTC);
+            return ZonedDateTime.ofInstant(attrs.creationTime().toInstant(), ZoneId.systemDefault());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
