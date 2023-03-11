@@ -18,7 +18,7 @@ public class MainExecutor extends Executor {
         try {
             db = new FileDBController<>(fileIOController, WorkerCollection.class);
         } catch (FileAccessException e) {
-            System.err.printf("[DB] could not read from file. Fix by hand please. \nError: %s", e);
+            System.err.printf("[DB] could not read from file. \n%s", e.getMessage());
             System.exit(1);
             return;
         }

@@ -27,4 +27,9 @@ public class InvalidDataFileException extends Exception {
     public byte[] getContents() {
         return contents;
     }
+
+    @Override
+    public String getMessage() {
+        return super.getMessage();
+    }
 }

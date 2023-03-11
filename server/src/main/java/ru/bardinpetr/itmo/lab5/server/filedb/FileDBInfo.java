@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.server.filedb;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * Information of current file database
@@ -8,5 +8,5 @@ import java.time.LocalDateTime;
  * @param filePath     full path to db file
  * @param creationDate db file creation date
  */
-public record FileDBInfo(String filePath, LocalDateTime creationDate) {
+public record FileDBInfo(String filePath, ZonedDateTime creationDate) {
 }
