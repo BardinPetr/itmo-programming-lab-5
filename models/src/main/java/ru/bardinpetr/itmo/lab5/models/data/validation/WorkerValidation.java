@@ -54,9 +54,9 @@ public class WorkerValidation {
      * @return response with error message
      */
     public static ValidationResponse validateSalary(Float salary) {
-        return salary > 0 ?
+        return (salary > 0 && (salary < Float.MAX_VALUE) && (!salary.isInfinite())) ?
                 new ValidationResponse(true, "") :
-                new ValidationResponse(false, "salary must be greater than 0");
+                new ValidationResponse(false, String.format("salary must be greater than 0 and less then %.1f", Float.MAX_VALUE));
     }
 
     /**

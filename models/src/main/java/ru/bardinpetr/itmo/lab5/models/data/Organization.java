@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
+import java.util.Comparator;
+
 @Data
 @AllArgsConstructor
 public class Organization implements Comparable<Organization> {
@@ -15,9 +17,9 @@ public class Organization implements Comparable<Organization> {
 
     @Override
     public int compareTo(Organization org) {
-        if (type.getValue() != org.type.getValue())
-            return type.getValue() - org.type.getValue();
-        else
-            return fullName.compareTo(org.fullName);
+        Comparator<Organization> comparator = Comparator
+                .comparing(Organization::getType)
+                .thenComparing(Organization::getFullName);
+        return comparator.compare(this, org);
     }
 }
