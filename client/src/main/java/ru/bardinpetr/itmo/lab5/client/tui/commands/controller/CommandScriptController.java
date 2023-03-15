@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandParser;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
-import ru.bardinpetr.itmo.lab5.client.tui.View;
+import ru.bardinpetr.itmo.lab5.client.tui.Printer;
 import ru.bardinpetr.itmo.lab5.client.tui.commands.controller.exceptions.ScriptExecuteException;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
@@ -33,7 +33,7 @@ public class CommandScriptController {
     public List<Command> run(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
 
-        CommandParser cmdParser = cmdRegister.getParser(scanner, new View() {
+        CommandParser cmdParser = cmdRegister.getParser(scanner, new Printer() {
         }, () -> {
             throw new RuntimeException("invalid script");
         });

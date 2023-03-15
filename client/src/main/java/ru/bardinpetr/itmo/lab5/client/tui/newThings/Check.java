@@ -1,6 +1,6 @@
-package ru.bardinpetr.itmo.lab5.server;
+package ru.bardinpetr.itmo.lab5.client.tui.newThings;
 
-import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
+import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.models.data.*;
 
 import java.time.LocalDate;
@@ -9,9 +9,9 @@ import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Main {
-    public static void main(String[] args) throws FileAccessException {
-        new Worker(
+public class Check {
+    public static void main(String[] args) throws ParserException {
+        var t = new Worker(
                 0,
                 ZonedDateTime.now(),
                 "Artem",
@@ -23,6 +23,7 @@ public class Main {
                 Position.CLEANER
         );
 
-
+        var scanner = new ObjectScanner();
+        System.out.println(scanner.scan(int.class, Integer.getInteger("1")));
     }
 }

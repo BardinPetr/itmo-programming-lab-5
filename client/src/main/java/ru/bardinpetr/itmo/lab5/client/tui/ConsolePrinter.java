@@ -3,7 +3,8 @@ package ru.bardinpetr.itmo.lab5.client.tui;
 /**
  * Class for writing in console
  */
-public class ConsolePrinter implements View {
+@Deprecated
+public class ConsolePrinter implements Printer {
     public void show(String str) {
         System.out.println(str);
     }

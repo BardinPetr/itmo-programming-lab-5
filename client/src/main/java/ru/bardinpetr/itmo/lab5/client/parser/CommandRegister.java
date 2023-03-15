@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.parser;
 
-import ru.bardinpetr.itmo.lab5.client.tui.View;
+import ru.bardinpetr.itmo.lab5.client.tui.Printer;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
 import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
@@ -11,6 +11,7 @@ import java.util.Scanner;
 /**
  * Class for commands registration
  */
+@Deprecated
 public class CommandRegister {
     private final Command[] cmdList = new Command[]{
             new AddCommand(),
@@ -49,7 +50,7 @@ public class CommandRegister {
      * @param viewer  viewer for parser
      * @return command parser
      */
-    public CommandParser getParser(Scanner scanner, View viewer, Runnable callback) {
+    public CommandParser getParser(Scanner scanner, Printer viewer, Runnable callback) {
         return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, viewer, callback);
     }
 }

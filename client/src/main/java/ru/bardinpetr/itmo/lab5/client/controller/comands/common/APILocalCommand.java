@@ -16,5 +16,9 @@ public class APILocalCommand extends AbstractLocalCommand {
         this.apiClient = apiClient;
     }
 
-    
+
+    @Override
+    public void execute(String commandName, Object[] inlineArgs) {
+
+    }
 }
