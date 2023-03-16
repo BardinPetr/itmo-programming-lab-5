@@ -3,7 +3,7 @@ package ru.bardinpetr.itmo.lab5.client.logic;
 import ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CommandScriptController;
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -54,7 +54,7 @@ public class ScriptExecutor extends Executor {
      */
 
     private LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse executeScript(LocalExecuteScriptCommand scriptCommand, Set<String> paths) {
-        List<Command> list = scriptController.run(fileInputStream(scriptCommand));
+        List<APICommand> list = scriptController.run(fileInputStream(scriptCommand));
         list = list.stream().flatMap(i -> {
             if (i.getClass() == LocalExecuteScriptCommand.class) {
                 var path = ((LocalExecuteScriptCommand) i).getFileName();

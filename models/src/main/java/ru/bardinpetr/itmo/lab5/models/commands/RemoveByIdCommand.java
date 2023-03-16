@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 /**
@@ -13,7 +13,7 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RemoveByIdCommand extends Command {
+public class RemoveByIdCommand extends APICommand {
     @NonNull
     public Integer id;
 

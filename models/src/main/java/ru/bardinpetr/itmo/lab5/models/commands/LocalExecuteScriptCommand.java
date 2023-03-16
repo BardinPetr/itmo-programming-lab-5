@@ -2,13 +2,13 @@ package ru.bardinpetr.itmo.lab5.models.commands;
 
 import lombok.Data;
 import lombok.NonNull;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.List;
 
-public class LocalExecuteScriptCommand extends Command {
+public class LocalExecuteScriptCommand extends APICommand {
     @NonNull
     private String fileName;
 
@@ -35,9 +35,10 @@ public class LocalExecuteScriptCommand extends Command {
 
     @Data
     public static class LocalExecuteScriptCommandResponse extends ServerExecuteScriptCommand implements ICommandResponse {
-        public LocalExecuteScriptCommandResponse(@NonNull List<Command> commands) {
+        public LocalExecuteScriptCommandResponse(@NonNull List<APICommand> commands) {
             super(commands);
         }
+
         @Override
         public String getUserMessage() {
             return null;

@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
@@ -9,7 +9,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
  * Class of print_descending command
  */
 @Data
-public class PrintDescendingCommand extends Command {
+public class PrintDescendingCommand extends APICommand {
 
     @Override
     public String getType() {

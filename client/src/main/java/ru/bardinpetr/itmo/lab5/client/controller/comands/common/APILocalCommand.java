@@ -1,20 +1,58 @@
 package ru.bardinpetr.itmo.lab5.client.controller.comands.common;
 
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
+import ru.bardinpetr.itmo.lab5.client.tui.UIReceiver;
+import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
+import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
-public class APILocalCommand extends AbstractLocalCommand {
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-    private APIClientReceiver apiClient;
+public abstract class APILocalCommand extends UILocalCommand {
 
-    public APIClientReceiver getApiClient() {
-        if (apiClient == null)
-            throw new RuntimeException("Not initialized");
-        return apiClient;
+    private final APIClientReceiver apiClientReceiver;
+    private final ObjectMapper mapper;
+
+    public APILocalCommand(APIClientReceiver api, UIReceiver ui) {
+        super(ui);
+        this.apiClientReceiver = api;
+        this.mapper = ObjectMapperFactory.createMapper();
     }
 
-    public void setApiClient(APIClientReceiver apiClient) {
-        this.apiClient = apiClient;
+    protected APICommand retriveAPICommand(String name) {
+        var base = CommandRegister.getCommand(name);
+        if (base == null)
+            throw new RuntimeException("No such command");
+        return base;
     }
 
-    
+    @Override
+    public List<Field> getCommandInlineArgs(String cmdName) {
+        return List.of(retriveAPICommand(cmdName).getInlineArgs());
+    }
+
+    protected APICommand prepareAPIMessage(String name, Map<String, Object> args) {
+        var base = retriveAPICommand(name);
+
+        var objectMap = new HashMap<>(args);
+        for (Field i : base.getInteractArgs())
+            objectMap.put(i.getName(), uiReceiver.fill(i.getValueClass()));
+
+        return mapper.convertValue(objectMap, base.getClass());
+    }
+
+    @Override
+    public CommandResponse execute(String cmdName, Map<String, Object> args) {
+        var cmd = prepareAPIMessage(cmdName, args);
+        var serverResp = apiClientReceiver.call(cmd);
+        // TODO: insert payload to CommandResponse
+        var res = new CommandResponse(serverResp.isSuccess(), serverResp.getText());
+        outputResponse(res);
+        return null;
+    }
 }

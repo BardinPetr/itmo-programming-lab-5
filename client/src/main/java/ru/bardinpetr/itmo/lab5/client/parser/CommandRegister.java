@@ -3,16 +3,17 @@ package ru.bardinpetr.itmo.lab5.client.parser;
 import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  * Class for commands registration
  */
 public class CommandRegister {
-    private final Command[] cmdList = new Command[]{
+    private static final List<APICommand> cmdList = List.of(
             new AddCommand(),
             new AddIfMaxCommand(),
             new AddIfMinCommand(),
@@ -29,17 +30,16 @@ public class CommandRegister {
             new SaveCommand(),
             new ShowCommand(),
             new UpdateCommand()
-    };
-    private final HashMap<String, Command> map = new HashMap<>();
+    );
 
-    public CommandRegister() {
-        for (Command i : cmdList) {
-            addCommand(i);
-        }
+    private static final HashMap<String, APICommand> map = new HashMap<>();
+
+    static {
+        cmdList.forEach(cmd -> map.put(cmd.getType(), cmd));
     }
 
-    private void addCommand(Command cmd) {
-        map.put(cmd.getType(), cmd);
+    public static APICommand getCommand(String name) {
+        return map.get(name);
     }
 
     /**
@@ -49,7 +49,7 @@ public class CommandRegister {
      * @param viewer  viewer for parser
      * @return command parser
      */
-    public CommandParser getParser(Scanner scanner, View viewer, Runnable callback) {
+    public static CommandParser getParser(Scanner scanner, View viewer, Runnable callback) {
         return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, viewer, callback);
     }
 }

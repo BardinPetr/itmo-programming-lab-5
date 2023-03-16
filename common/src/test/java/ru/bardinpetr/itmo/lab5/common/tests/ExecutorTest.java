@@ -3,7 +3,7 @@ package ru.bardinpetr.itmo.lab5.common.tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -174,7 +174,7 @@ public class ExecutorTest {
         exec.execute(new TestCmd2());
     }
 
-    static class TestCmd extends Command {
+    static class TestCmd extends APICommand {
         public String value;
 
         public TestCmd(String value) {
@@ -197,7 +197,7 @@ public class ExecutorTest {
     }
 
 
-    static class TestCmd2 extends Command {
+    static class TestCmd2 extends APICommand {
         @Override
         public String getType() {
             return "test2";

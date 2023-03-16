@@ -11,7 +11,7 @@ import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
 
@@ -40,7 +40,7 @@ public class CLIController {
 
         this.viewer = viewer;
 
-        cmdParser = cmdRegister.getParser(scanner, viewer, () -> {
+        cmdParser = CommandRegister.getParser(scanner, viewer, () -> {
             System.exit(0);
         });
     }
@@ -73,13 +73,13 @@ public class CLIController {
         viewer.suggestInput();
         while (scanner.hasNextLine()) {
             try {
-                Command cmd = cmdParser.parse();
+                APICommand cmd = cmdParser.parse();
                 var resp = callback.callback(cmd);
                 if (resp.isSuccess()) {
                     ICommandResponse payload = resp.getPayload();
                     if (payload != null) {
                         if (payload.getClass() == LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse.class) {
-                            var resp2 = callback.callback((Command) payload);
+                            var resp2 = callback.callback((APICommand) payload);
                             runScript(resp2);
                         } else {
                             viewer.show(payload.getUserMessage()); // print general command response

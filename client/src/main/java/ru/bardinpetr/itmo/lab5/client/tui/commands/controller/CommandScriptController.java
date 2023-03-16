@@ -7,7 +7,7 @@ import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.client.tui.commands.controller.exceptions.ScriptExecuteException;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -30,18 +30,18 @@ public class CommandScriptController {
      * @param inputStream Input Stream for scanner.
      * @return list of fulfilled commands
      */
-    public List<Command> run(InputStream inputStream) {
+    public List<APICommand> run(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
 
-        CommandParser cmdParser = cmdRegister.getParser(scanner, new View() {
+        CommandParser cmdParser = CommandRegister.getParser(scanner, new View() {
         }, () -> {
             throw new RuntimeException("invalid script");
         });
 
-        List<Command> commandList = new ArrayList<>();
+        List<APICommand> commandList = new ArrayList<>();
         while (scanner.hasNextLine()) {
             try {
-                Command cmd = cmdParser.parse();
+                APICommand cmd = cmdParser.parse();
                 commandList.add(cmd);
             } catch (ParserException e) {
                 throw new ScriptExecuteException("Invalid script: " + e.getMessage());

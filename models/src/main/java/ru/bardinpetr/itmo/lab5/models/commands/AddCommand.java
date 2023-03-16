@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.models.commands;
 
 import lombok.*;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
@@ -14,7 +14,7 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class AddCommand extends Command {
+public class AddCommand extends APICommand {
     @NonNull
     public Worker element;
 

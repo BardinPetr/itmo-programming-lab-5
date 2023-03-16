@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.ObjectScanner;
 import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.HashMap;
@@ -15,14 +15,14 @@ import java.util.Scanner;
  * Main class for parsing command from String. Text is entered via scanner.
  */
 public class CommandParser {
-    private final HashMap<String, Command> cmdMap;
-    private ObjectMapper mapper;
-    private Scanner scanner;
-    private View viewer;
-    private ObjectScanner objectScanner;
+    private final HashMap<String, APICommand> cmdMap;
+    private final ObjectMapper mapper;
+    private final Scanner scanner;
+    private final View viewer;
+    private final ObjectScanner objectScanner;
 
 
-    public CommandParser(HashMap<String, Command> cmdMap, ObjectMapper mapper, Scanner scanner, View viewer, Runnable callback) {
+    public CommandParser(HashMap<String, APICommand> cmdMap, ObjectMapper mapper, Scanner scanner, View viewer, Runnable callback) {
         this.cmdMap = cmdMap;
         this.mapper = mapper;
         this.viewer = viewer;
@@ -38,7 +38,7 @@ public class CommandParser {
      * @return Command with all completed fields
      * @throws ParserException Exception can be thrown during parsing type of validation
      */
-    public Command parse() throws ParserException {
+    public APICommand parse() throws ParserException {
         ValueDeserializer valueDes = new ValueDeserializer();
 
         String[] userArgs = scanner.nextLine().split(" ");
