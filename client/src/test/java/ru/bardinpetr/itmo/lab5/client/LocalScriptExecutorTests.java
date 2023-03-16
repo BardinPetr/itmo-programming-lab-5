@@ -76,7 +76,7 @@ public class LocalScriptExecutorTests {
                 objectMap, LocalExecuteScriptCommand.class);
 
         ScriptExecutor executor = new ScriptExecutor();
-        var respond = (ServerExecuteScriptCommand) executor.execute(cmd).getPayload();
+        var respond = (ExecuteScriptCommand) executor.execute(cmd).getPayload();
 
         assertEquals(result, respond.getCommands());
 

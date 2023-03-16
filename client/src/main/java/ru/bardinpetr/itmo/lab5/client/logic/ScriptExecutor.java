@@ -52,7 +52,6 @@ public class ScriptExecutor extends Executor {
      * @param paths         paths to files that have already been encountered earlier in the recursion
      * @return response with list of commands
      */
-
     private LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse executeScript(LocalExecuteScriptCommand scriptCommand, Set<String> paths) {
         List<APICommand> list = scriptController.run(fileInputStream(scriptCommand));
         list = list.stream().flatMap(i -> {

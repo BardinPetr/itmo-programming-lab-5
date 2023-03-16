@@ -1,12 +1,10 @@
 package ru.bardinpetr.itmo.lab5.client.tui.commands.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandParser;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.client.tui.commands.controller.exceptions.ScriptExecuteException;
-import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 
 import java.io.InputStream;
@@ -18,8 +16,6 @@ import java.util.Scanner;
  * Class for script executing. It will be validated during executing.
  */
 public class CommandScriptController {
-    private final ObjectMapper mapper = ObjectMapperFactory.createMapper();
-    private final CommandRegister cmdRegister = new CommandRegister();
 
     public CommandScriptController() {
     }

@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.client.controller.comands.common;
+package ru.bardinpetr.itmo.lab5.client.controller.common;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 public abstract class APILocalCommand extends UILocalCommand {
 
-    private final APIClientReceiver apiClientReceiver;
+    protected final APIClientReceiver apiClientReceiver;
     private final ObjectMapper mapper;
 
     public APILocalCommand(APIClientReceiver api, UIReceiver ui) {

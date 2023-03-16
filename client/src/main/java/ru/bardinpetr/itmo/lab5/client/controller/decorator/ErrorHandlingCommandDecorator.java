@@ -1,7 +1,7 @@
-package ru.bardinpetr.itmo.lab5.client.controller.comands.decorator;
+package ru.bardinpetr.itmo.lab5.client.controller.decorator;
 
-import ru.bardinpetr.itmo.lab5.client.controller.comands.common.AbstractLocalCommand;
-import ru.bardinpetr.itmo.lab5.client.controller.comands.common.CommandResponse;
+import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractLocalCommand;
+import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
 
 import java.util.Map;
 

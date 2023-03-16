@@ -34,7 +34,7 @@ public class LocalExecuteScriptCommand extends APICommand {
     }
 
     @Data
-    public static class LocalExecuteScriptCommandResponse extends ServerExecuteScriptCommand implements ICommandResponse {
+    public static class LocalExecuteScriptCommandResponse extends ExecuteScriptCommand implements ICommandResponse {
         public LocalExecuteScriptCommandResponse(@NonNull List<APICommand> commands) {
             super(commands);
         }

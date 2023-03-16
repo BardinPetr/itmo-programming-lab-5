@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.client.controller.comands.common;
+package ru.bardinpetr.itmo.lab5.client.controller.common;
 
 import ru.bardinpetr.itmo.lab5.client.tui.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer;

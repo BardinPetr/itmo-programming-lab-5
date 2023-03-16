@@ -100,6 +100,17 @@ public class Executor {
      * @return list of response payloads for each command in input order
      */
     public List<Response<ICommandResponse>> executeBatch(List<APICommand> cmds) {
-        return cmds.stream().map(this::execute).toList();
+        var result = new ArrayList<Response<ICommandResponse>>();
+        boolean anyFailed = false;
+        for (var cmd : cmds) {
+            if (anyFailed) {
+                result.add(Response.error("%s skipped".formatted(cmd.getType())));
+                continue;
+            }
+            var resp = execute(cmd);
+            if (!resp.isSuccess()) anyFailed = true;
+            result.add(resp);
+        }
+        return result;
     }
 }

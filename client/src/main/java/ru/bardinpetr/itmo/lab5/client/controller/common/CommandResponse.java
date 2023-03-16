@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.client.controller.comands.common;
+package ru.bardinpetr.itmo.lab5.client.controller.common;
 
 public record CommandResponse(boolean isSuccess, String message) {
     public static CommandResponse ok() {

@@ -10,4 +10,6 @@ public interface UIReceiver {
     void ok();
 
     void error(String message);
+
+    void print(String s);
 }
