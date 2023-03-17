@@ -1,13 +1,13 @@
 package ru.bardinpetr.itmo.lab5.client.controller.registry;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.controller.commands.*;
 import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
-import ru.bardinpetr.itmo.lab5.client.controller.decorator.ErrorHandlingCommandDecorator;
-import ru.bardinpetr.itmo.lab5.client.parser.APICommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.tui.ScriptExecutor;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.controller.decorators.ErrorHandlingCommandDecorator;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
+import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 
 import java.util.Collection;

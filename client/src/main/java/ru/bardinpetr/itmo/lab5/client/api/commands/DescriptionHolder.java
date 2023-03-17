@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.client.parser;
+package ru.bardinpetr.itmo.lab5.client.api.commands;
 
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;

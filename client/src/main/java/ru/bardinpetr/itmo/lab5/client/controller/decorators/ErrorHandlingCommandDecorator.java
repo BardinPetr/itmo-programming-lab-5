@@ -1,5 +1,6 @@
-package ru.bardinpetr.itmo.lab5.client.controller.decorator;
+package ru.bardinpetr.itmo.lab5.client.controller.decorators;
 
+import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractCommandDecorator;
 import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
 

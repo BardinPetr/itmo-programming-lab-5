@@ -22,11 +22,6 @@ public class TestEntity implements IKeyedEntity<Integer>, Comparable<TestEntity>
     }
 
     @Override
-    public void setPrimaryKey(Integer key) {
-        id = key;
-    }
-
-    @Override
     public int compareTo(TestEntity o) {
         return id.compareTo(o.id);
     }

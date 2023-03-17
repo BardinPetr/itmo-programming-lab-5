@@ -4,9 +4,10 @@ import ru.bardinpetr.itmo.lab5.client.api.connectors.LocalExecutorAPIConnector;
 import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
-import ru.bardinpetr.itmo.lab5.client.tui.ScriptExecutor;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.CLIUtilityController;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsolePrinter;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.CLIController;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.Interpreter;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.server.MainExecutor;
 
 import java.nio.file.Path;
@@ -23,12 +24,13 @@ public class Main {
         var serverExecutor = new MainExecutor(Path.of(args[0]));
         var api = new LocalExecutorAPIConnector(serverExecutor);
 
-        var ui = new CLIUtilityController(ConsolePrinter.getStub(), new Scanner(System.in));
+        var ui = new CLIController(ConsolePrinter.getStub(), new Scanner(System.in));
 
         var se = new ScriptExecutor();
 
         var registry = new CommandRegistry(api, ui, se);
 
-
+        var interpreter = new Interpreter(registry, ui);
+        interpreter.run();
     }
 }

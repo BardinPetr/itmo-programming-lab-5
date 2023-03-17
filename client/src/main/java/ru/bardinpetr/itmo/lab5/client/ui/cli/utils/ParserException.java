@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.client.parser.error;
+package ru.bardinpetr.itmo.lab5.client.ui.cli.utils;
 
 /**
  * Expression in parsing commands

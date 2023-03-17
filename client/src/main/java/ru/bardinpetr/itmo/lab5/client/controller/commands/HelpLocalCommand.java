@@ -4,7 +4,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 
 import java.util.Map;
 

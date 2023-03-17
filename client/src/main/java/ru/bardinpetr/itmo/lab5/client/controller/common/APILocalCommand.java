@@ -3,8 +3,8 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
-import ru.bardinpetr.itmo.lab5.client.parser.APICommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
+import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;

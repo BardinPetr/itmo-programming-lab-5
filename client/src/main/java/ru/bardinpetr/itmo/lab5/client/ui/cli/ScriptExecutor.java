@@ -1,14 +1,12 @@
-package ru.bardinpetr.itmo.lab5.client.tui;
+package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.CLIUtilityController;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsolePrinter;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
+import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,14 +22,14 @@ public class ScriptExecutor {
         FileIOController fileIOController = new FileIOController(path);
         var scanner = new Scanner(fileIOController.openReadStream());
 
-        UIReceiver uiReceiver = new CLIUtilityController(ConsolePrinter.getStub(), scanner);
-
+        UIReceiver uiReceiver = new CLIController(ConsolePrinter.getStub(), scanner);
+        var currentRegistry = registryCommand.withUI(uiReceiver);
         while (scanner.hasNextLine()) {
             String[] userArgs = scanner.nextLine().split("\s+");
             String commandName = userArgs[0];
 
-            var command = (UILocalCommand) registryCommand.getCommand(commandName);
-            command.executeWithArgs(new ArrayList<>(List.of(userArgs))); //TODO delete first arg
+            var command = (UILocalCommand) currentRegistry.getCommand(commandName);
+            command.executeWithArgs(List.of(userArgs));
         }
     }
 }

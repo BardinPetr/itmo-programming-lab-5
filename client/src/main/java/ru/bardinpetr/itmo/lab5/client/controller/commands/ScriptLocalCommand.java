@@ -3,8 +3,8 @@ package ru.bardinpetr.itmo.lab5.client.controller.commands;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
-import ru.bardinpetr.itmo.lab5.client.tui.ScriptExecutor;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
+import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 

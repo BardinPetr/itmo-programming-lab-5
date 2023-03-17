@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.client.tui.cli;
+package ru.bardinpetr.itmo.lab5.client.ui.cli.utils;
 
 public class ConsolePrinter {
     public void display(String text) {
@@ -9,10 +9,6 @@ public class ConsolePrinter {
         System.out.print(text);
     }
 
-    public void suggestInput() {
-        System.out.print("> ");
-    }
-
     public static ConsolePrinter getStub() {
         return new ConsolePrinter() {
             @Override
@@ -21,10 +17,6 @@ public class ConsolePrinter {
 
             @Override
             public void displayInLine(String text) {
-            }
-
-            @Override
-            public void suggestInput() {
             }
         };
     }
