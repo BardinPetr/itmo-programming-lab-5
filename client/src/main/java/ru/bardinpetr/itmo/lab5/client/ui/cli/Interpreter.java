@@ -25,11 +25,13 @@ public class Interpreter {
      */
     public void run() {
         uiReceiver.display(RussianText.get(TextKeys.GREEETING));
-        uiReceiver.display("> ");
+        uiReceiver.interactSuggestion();
         while (uiReceiver.hasNextLine()) {
             var userArgs = uiReceiver.nextLine().split("\\s+");
             var command = (UILocalCommand) registryCommand.getCommand(userArgs[0]);
             command.executeWithArgs(List.of(userArgs));
+
+            uiReceiver.interactSuggestion();
         }
     }
 }

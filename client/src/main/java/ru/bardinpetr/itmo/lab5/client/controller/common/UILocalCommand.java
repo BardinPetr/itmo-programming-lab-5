@@ -59,9 +59,10 @@ public abstract class UILocalCommand extends AbstractLocalCommand {
     }
 
     protected void outputResponse(CommandResponse result) {
-        if (result.isSuccess())
-            uiReceiver.display(result.payload().getUserMessage());
-        else
+        if (result.isSuccess()) {
+            if (result.payload() != null) uiReceiver.display(result.payload().getUserMessage());
+            else uiReceiver.ok();
+        } else
             uiReceiver.error(result.message());
     }
 

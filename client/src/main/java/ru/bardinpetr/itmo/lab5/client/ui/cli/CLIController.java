@@ -44,6 +44,11 @@ public class CLIController implements UIReceiver {
     }
 
     @Override
+    public void interactSuggestion() {
+        System.out.print("> ");
+    }
+
+    @Override
     public void ok() {
         printer.display("OK!");
     }
