@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.parser;
 
-import ru.bardinpetr.itmo.lab5.client.tui.View;
+import ru.bardinpetr.itmo.lab5.client.tui.Printer;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
@@ -54,7 +54,7 @@ public class APICommandRegistry {
      * @param viewer  viewer for parser
      * @return command parser
      */
-    public static CommandParser getParser(Scanner scanner, View viewer, Runnable callback) {
+    public static CommandParser getParser(Scanner scanner, Printer viewer, Runnable callback) {
         return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, viewer, callback);
     }
 }

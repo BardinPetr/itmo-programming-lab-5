@@ -1,87 +1,46 @@
 package ru.bardinpetr.itmo.lab5.client.tui.commands.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import ru.bardinpetr.itmo.lab5.client.parser.APICommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.parser.CommandParser;
-import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
+import ru.bardinpetr.itmo.lab5.client.controller.commands.IRRegistryCommand;
+import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
-import ru.bardinpetr.itmo.lab5.client.tui.ICommandIOCallback;
-import ru.bardinpetr.itmo.lab5.client.tui.View;
-import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
-import ru.bardinpetr.itmo.lab5.models.commands.ExecuteScriptCommand.ExecuteScriptCommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
+import ru.bardinpetr.itmo.lab5.client.tui.Printer;
+import ru.bardinpetr.itmo.lab5.client.tui.newThings.CLIUtilityController;
+import ru.bardinpetr.itmo.lab5.client.tui.newThings.ConsolePrinter;
+import ru.bardinpetr.itmo.lab5.client.tui.newThings.ConsoleReader;
+import ru.bardinpetr.itmo.lab5.client.tui.newThings.UIReceiver;
 
 import java.io.InputStream;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class for console UI
  */
-public class CLIController {
-
-    protected Scanner scanner;
-
-    protected CommandParser cmdParser;
-    protected View viewer;
-    protected ICommandIOCallback callback;
-    protected ObjectMapper mapper = ObjectMapperFactory.createMapper();
-
-    public CLIController(View viewer, InputStream inputStream, ICommandIOCallback callback) {
-        scanner = new Scanner(inputStream);
-
-        this.callback = callback;
-
-        this.viewer = viewer;
-
-        cmdParser = APICommandRegistry.getParser(scanner, viewer, () -> {
-            System.exit(0);
-        });
+public class CLIController{
+    UIReceiver uiReceiver;
+    ConsolePrinter printer = new ConsolePrinter();
+    ConsoleReader reader = new ConsoleReader();
+    private IRRegistryCommand registryCommand;
+    public CLIController(Printer viewer, InputStream inputStream) {
+        uiReceiver = new CLIUtilityController();
     }
 
-    /**
-     * method for script output
-     *
-     * @param resp2 script response
-     */
-    private void runScript(Response<ICommandResponse> resp2) {
-        if (resp2.isSuccess()) {
-            ExecuteScriptCommandResponse payload2 = (ExecuteScriptCommandResponse) resp2.getPayload();
-            payload2.getResult().forEach(
-                    i -> {
-                        if (i.getPayload() != null) {
-                            viewer.show(i.getPayload().getUserMessage());
-                        }
-                    }); // print script command responses
-        } else {
-            viewer.show("Error: " + resp2.getText());
-        }
-
-    }
 
     /**
      * method for starting program execution
      */
     public void run() {
-        viewer.show(RussianText.get(TextKeys.GREEETING));
-        viewer.suggestInput();
-        while (scanner.hasNextLine()) {
-            try {
-                APICommand cmd = cmdParser.parse();
-                var resp = callback.callback(cmd);
-                if (resp.isSuccess()) {
-                    ICommandResponse payload = resp.getPayload();
-                } else {
-                    viewer.show("Error: " + resp.getText());
-                }
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid argument. Stop command interaction");
-            } catch (ParserException e) {
-                System.err.println(e.getMessage());
-            }
-            viewer.suggestInput();
+        printer.display(RussianText.get(TextKeys.GREEETING));
+        printer.suggestInput();
+        while (reader.hasNextLine()) {
+            String[] userArgs = reader.readLine().split(" ");
+            String commandName = userArgs[0];
+
+            UILocalCommand command = null;
+            command = (UILocalCommand) registryCommand.getByName(commandName);
+            command.executeWithArgs(new ArrayList<>(List.of(userArgs))); //TODO delete first arg
+
         }
     }
 }

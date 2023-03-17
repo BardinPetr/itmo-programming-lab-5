@@ -14,7 +14,7 @@ import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 @Getter
 @ToString
 @EqualsAndHashCode
-public class FieldWithDesc<T> extends Field {
+public class FieldWithDesc<T> extends Field<T> {
     private final String promptMsg;
     private final IValidator<T> validator;
     private final boolean nullAble;
