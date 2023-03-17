@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.server.filedb;
+package ru.bardinpetr.itmo.lab5.server.db.filedb;
 
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;

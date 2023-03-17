@@ -12,7 +12,7 @@ import java.util.List;
  * @param <K> Type of primary key
  * @param <V> Entity type
  */
-public interface ICollectionBaseDAO<K, V extends IKeyedEntity<K>> {
+public interface ICollectionCRUDDAO<K, V extends IKeyedEntity<K>> {
     /**
      * @return collection stats and basic information
      */

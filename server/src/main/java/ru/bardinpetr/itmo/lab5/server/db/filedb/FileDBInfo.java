@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.server.filedb;
+package ru.bardinpetr.itmo.lab5.server.db.filedb;
 
 import java.time.ZonedDateTime;
 

@@ -1,28 +1,33 @@
 package ru.bardinpetr.itmo.lab5.server;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
-import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
-import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
-import ru.bardinpetr.itmo.lab5.server.dao.workers.FileDBWorkersDAO;
+import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
+import ru.bardinpetr.itmo.lab5.server.dao.workers.WorkerCollectionDAOFactory;
+import ru.bardinpetr.itmo.lab5.server.db.filedb.FileDBController;
+import ru.bardinpetr.itmo.lab5.server.db.filedb.FileDBControllerFactory;
 import ru.bardinpetr.itmo.lab5.server.executor.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.server.executor.WorkersCRUDExecutor;
 import ru.bardinpetr.itmo.lab5.server.executor.WorkersSpecialExecutor;
-import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
+
+import java.nio.file.Path;
 
 public class MainExecutor extends Executor {
 
-    public MainExecutor(FileIOController fileIOController) {
-        FileDBController<WorkerCollection> db;
+    public MainExecutor(Path dbFile) {
+        var dbControllerFactory = new FileDBControllerFactory<>(dbFile, WorkerCollection.class);
+        var daoFactory = new WorkerCollectionDAOFactory();
+
+        IWorkerCollectionDAO dao;
         try {
-            db = new FileDBController<>(fileIOController, WorkerCollection.class);
-        } catch (FileAccessException e) {
+            FileDBController<WorkerCollection> ctrl = dbControllerFactory.createController();
+            dao = (IWorkerCollectionDAO) daoFactory.createDAO(ctrl);
+        } catch (Exception e) {
             System.err.printf("[DB] could not read from file. \n%s", e.getMessage());
             System.exit(1);
             return;
         }
 
-        var dao = new FileDBWorkersDAO(db);
         registerExecutor(new WorkersCRUDExecutor(dao));
         registerExecutor(new WorkersSpecialExecutor(dao));
         registerExecutor(new ScriptExecutor(this));

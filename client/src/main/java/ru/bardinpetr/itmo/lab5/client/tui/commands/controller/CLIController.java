@@ -35,9 +35,6 @@ public class CLIController {
 
         this.callback = callback;
 
-
-        CommandRegister cmdRegister = new CommandRegister();
-
         this.viewer = viewer;
 
         cmdParser = CommandRegister.getParser(scanner, viewer, () -> {
