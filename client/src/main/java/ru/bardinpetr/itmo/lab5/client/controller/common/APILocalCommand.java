@@ -4,7 +4,7 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.parser.APICommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.tui.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class APILocalCommand extends UILocalCommand {
+
     protected final APIClientReceiver apiClientReceiver;
     private final ObjectMapper mapper;
 
@@ -43,8 +44,13 @@ public abstract class APILocalCommand extends UILocalCommand {
         var base = retrieveAPICommand(name);
 
         var objectMap = new HashMap<>(args);
-        for (Field i : base.getInteractArgs())
-            objectMap.put(i.getName(), uiReceiver.fill(i.getValueClass()));
+        for (Field i : base.getInteractArgs()) {
+            try {
+                objectMap.put(i.getName(), uiReceiver.fill(i.getValueClass()));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         return mapper.convertValue(objectMap, base.getClass());
     }

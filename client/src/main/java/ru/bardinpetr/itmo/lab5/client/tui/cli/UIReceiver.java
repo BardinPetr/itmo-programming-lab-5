@@ -9,9 +9,9 @@ public interface UIReceiver {
         return fill(target, null);
     }
 
-    <T> T fill(Class<T> target, T defaultObject) throws NoSuchDataException, ParserException;
+    <T> T fill(Class<T> target, T defaultObject);
 
-    public void display(String text);
+    void display(String text);
 
 
     void ok();
