@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.common.serdes;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -31,6 +32,7 @@ public class ObjectMapperFactory {
                         .addSerializer(LocalDate.class, new LocalDateSerializer(localDateFormatter));
         mapper.registerModule(timeModule);
 
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return mapper;
     }
 }

@@ -8,7 +8,6 @@ import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class ScriptExecutor {
     private CommandRegistry registryCommand;
