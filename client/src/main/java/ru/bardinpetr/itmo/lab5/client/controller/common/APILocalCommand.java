@@ -3,7 +3,7 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
-import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
+import ru.bardinpetr.itmo.lab5.client.parser.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.tui.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
@@ -25,7 +25,7 @@ public abstract class APILocalCommand extends UILocalCommand {
     }
 
     protected APICommand retriveAPICommand(String name) {
-        var base = CommandRegister.getCommand(name);
+        var base = APICommandRegistry.getCommand(name);
         if (base == null)
             throw new RuntimeException("No such command");
         return base;

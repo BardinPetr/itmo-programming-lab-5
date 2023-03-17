@@ -1,8 +1,8 @@
 package ru.bardinpetr.itmo.lab5.client.tui.commands.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.bardinpetr.itmo.lab5.client.parser.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandParser;
-import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
@@ -10,7 +10,6 @@ import ru.bardinpetr.itmo.lab5.client.tui.ICommandIOCallback;
 import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.ExecuteScriptCommand.ExecuteScriptCommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
@@ -37,7 +36,7 @@ public class CLIController {
 
         this.viewer = viewer;
 
-        cmdParser = CommandRegister.getParser(scanner, viewer, () -> {
+        cmdParser = APICommandRegistry.getParser(scanner, viewer, () -> {
             System.exit(0);
         });
     }
@@ -74,16 +73,6 @@ public class CLIController {
                 var resp = callback.callback(cmd);
                 if (resp.isSuccess()) {
                     ICommandResponse payload = resp.getPayload();
-                    if (payload != null) {
-                        if (payload.getClass() == LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse.class) {
-                            var resp2 = callback.callback((APICommand) payload);
-                            runScript(resp2);
-                        } else {
-                            viewer.show(payload.getUserMessage()); // print general command response
-                        }
-                    } else {
-                        viewer.show("OK!");
-                    }
                 } else {
                     viewer.show("Error: " + resp.getText());
                 }

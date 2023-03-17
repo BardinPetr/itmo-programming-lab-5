@@ -17,5 +17,8 @@ public class Main {
 
         var serverExecutor = new MainExecutor(Path.of(args[0]));
         var api = new LocalExecutorAPIConnector(serverExecutor);
+
+//        var ui = new CLIController(null, null, null);
+//        var registry = CommandRegistry.getInstance(api, ui);
     }
 }

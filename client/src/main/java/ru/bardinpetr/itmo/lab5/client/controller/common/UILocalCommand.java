@@ -11,13 +11,19 @@ import java.util.Map;
 
 public abstract class UILocalCommand extends AbstractLocalCommand {
     public static final String NAME_ARG = "cmdName";
-    protected final UIReceiver uiReceiver;
+    protected UIReceiver uiReceiver;
     private final ValueDeserializer valueDes;
 
     public UILocalCommand(UIReceiver receiver) {
         valueDes = new ValueDeserializer();
         uiReceiver = receiver;
     }
+
+    public void setUiReceiver(UIReceiver uiReceiver) {
+        this.uiReceiver = uiReceiver;
+    }
+
+    public abstract String getExternalName();
 
     public List<Field> getCommandInlineArgs(String cmdName) {
         return List.of();

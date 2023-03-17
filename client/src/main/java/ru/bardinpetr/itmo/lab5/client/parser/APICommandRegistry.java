@@ -12,35 +12,37 @@ import java.util.Scanner;
 /**
  * Class for commands registration
  */
-public class CommandRegister {
-    private static final List<APICommand> cmdList = List.of(
+public class APICommandRegistry {
+    public static final List<APICommand> cmdList = List.of(
             new AddCommand(),
             new AddIfMaxCommand(),
             new AddIfMinCommand(),
             new ClearCommand(),
-            new LocalExecuteScriptCommand(),
-            new ExitCommand(),
             new FilterLessPosCommand(),
-            new HelpCommand(),
             new InfoCommand(),
             new PrintDescendingCommand(),
             new UniqueOrganisationCommand(),
             new RemoveByIdCommand(),
             new RemoveGreaterCommand(),
             new SaveCommand(),
-            new ShowCommand(),
-            new UpdateCommand()
+            new ShowCommand()
     );
 
     private static final HashMap<String, APICommand> map = new HashMap<>();
 
-    private CommandRegister() {
+    private APICommandRegistry() {
     }
 
     static {
         cmdList.forEach(cmd -> map.put(cmd.getType(), cmd));
     }
 
+    /**
+     * Get API command object for name
+     *
+     * @param name command name
+     * @return command object
+     */
     public static APICommand getCommand(String name) {
         return map.get(name);
     }

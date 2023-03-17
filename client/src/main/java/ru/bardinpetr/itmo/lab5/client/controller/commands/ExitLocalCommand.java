@@ -14,6 +14,11 @@ public class ExitLocalCommand extends UILocalCommand {
     }
 
     @Override
+    public String getExternalName() {
+        return "exit";
+    }
+
+    @Override
     public CommandResponse execute(String cmdName, Map<String, Object> args) {
         System.exit(0);
         return CommandResponse.ok();

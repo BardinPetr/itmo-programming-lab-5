@@ -20,6 +20,11 @@ public class UpdateAPILocalCommand extends APILocalCommand {
     }
 
     @Override
+    public String getExternalName() {
+        return "update";
+    }
+
+    @Override
     protected APICommand retriveAPICommand(String name) {
         return new UpdateCommand();
     }

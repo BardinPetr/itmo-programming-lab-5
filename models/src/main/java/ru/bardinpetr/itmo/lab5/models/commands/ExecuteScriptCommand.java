@@ -21,7 +21,7 @@ public class ExecuteScriptCommand extends APICommand {
 
     @Override
     public String getType() {
-        return "server_execute_script";
+        return "execute_script";
     }
 
     @Override

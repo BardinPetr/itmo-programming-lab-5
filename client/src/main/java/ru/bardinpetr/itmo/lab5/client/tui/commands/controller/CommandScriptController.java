@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.tui.commands.controller;
 
+import ru.bardinpetr.itmo.lab5.client.parser.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandParser;
-import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.View;
 import ru.bardinpetr.itmo.lab5.client.tui.commands.controller.exceptions.ScriptExecuteException;
@@ -29,7 +29,7 @@ public class CommandScriptController {
     public List<APICommand> run(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
 
-        CommandParser cmdParser = CommandRegister.getParser(scanner, new View() {
+        CommandParser cmdParser = APICommandRegistry.getParser(scanner, new View() {
         }, () -> {
             throw new RuntimeException("invalid script");
         });

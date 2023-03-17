@@ -17,6 +17,11 @@ public class ScriptAPILocalCommand extends APILocalCommand {
     }
 
     @Override
+    public String getExternalName() {
+        return "execute_script";
+    }
+
+    @Override
     protected APICommand retriveAPICommand(String name) {
         return new ExecuteScriptCommand();
     }
