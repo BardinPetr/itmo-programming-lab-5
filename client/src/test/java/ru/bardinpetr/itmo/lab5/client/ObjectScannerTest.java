@@ -3,8 +3,8 @@ package ru.bardinpetr.itmo.lab5.client;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner;
 import ru.bardinpetr.itmo.lab5.client.tui.Printer;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.ObjectScanner;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.data.*;
 

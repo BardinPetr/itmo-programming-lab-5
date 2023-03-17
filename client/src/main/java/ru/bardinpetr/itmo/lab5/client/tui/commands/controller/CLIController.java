@@ -4,10 +4,10 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
 import ru.bardinpetr.itmo.lab5.client.tui.Printer;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.CLIUtilityController;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.ConsolePrinter;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.ConsoleReader;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.CLIUtilityController;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsolePrinter;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsoleReader;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
 
 import java.io.InputStream;
 

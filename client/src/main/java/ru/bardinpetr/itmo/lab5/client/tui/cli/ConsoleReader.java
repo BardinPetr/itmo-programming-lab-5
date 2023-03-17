@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.client.tui.newThings;
+package ru.bardinpetr.itmo.lab5.client.tui.cli;
 
 import java.util.Scanner;
 

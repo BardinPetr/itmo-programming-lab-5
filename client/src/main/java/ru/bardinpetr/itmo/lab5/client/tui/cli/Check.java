@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.client.tui.newThings;
+package ru.bardinpetr.itmo.lab5.client.tui.cli;
 
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.models.data.*;
