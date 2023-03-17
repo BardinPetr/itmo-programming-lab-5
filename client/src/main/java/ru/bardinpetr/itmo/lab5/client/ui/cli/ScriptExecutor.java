@@ -8,7 +8,6 @@ import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class ScriptExecutor {
     private CommandRegistry registryCommand;
@@ -20,12 +19,15 @@ public class ScriptExecutor {
     public void process(String path) throws FileAccessException {
         if (registryCommand == null) throw new RuntimeException("No command registry");
         FileIOController fileIOController = new FileIOController(path);
-        var scanner = new Scanner(fileIOController.openReadStream());
 
-        UIReceiver uiReceiver = new CLIController(ConsolePrinter.getStub(), scanner);
+        UIReceiver uiReceiver = new CLIController(
+                ConsolePrinter.getStub(),
+                fileIOController.openReadStream()
+        );
+
         var currentRegistry = registryCommand.withUI(uiReceiver);
-        while (scanner.hasNextLine()) {
-            String[] userArgs = scanner.nextLine().split("\s+");
+        while (uiReceiver.hasNextLine()) {
+            String[] userArgs = uiReceiver.nextLine().split("\\s+");
             String commandName = userArgs[0];
 
             var command = (UILocalCommand) currentRegistry.getCommand(commandName);
