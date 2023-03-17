@@ -24,7 +24,6 @@ public class ScriptLocalCommand extends APILocalCommand {
         this.scriptExecutor = scriptExecutor;
     }
 
-
     @Override
     public List<Field> getCommandInlineArgs(String cmdName) {
         return List.of(new Field[]{new Field<>("fileName", String.class)});

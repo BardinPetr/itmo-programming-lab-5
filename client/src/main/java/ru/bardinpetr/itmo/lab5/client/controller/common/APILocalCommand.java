@@ -40,13 +40,8 @@ public abstract class APILocalCommand extends UILocalCommand {
         var base = retrieveAPICommand(name);
 
         var objectMap = new HashMap<>(args);
-        for (Field i : base.getInteractArgs()) {
-            try {
-                objectMap.put(i.getName(), uiReceiver.fill(i.getValueClass()));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
+        for (var i : base.getInteractArgs())
+            objectMap.put(i.getName(), uiReceiver.fill(i.getValueClass()));
 
         return mapper.convertValue(objectMap, base.getClass());
     }
@@ -54,9 +49,9 @@ public abstract class APILocalCommand extends UILocalCommand {
     @Override
     public CommandResponse execute(String cmdName, Map<String, Object> args) {
         var cmd = prepareAPIMessage(cmdName, args);
+        if (cmd == null)
+            throw new RuntimeException("Command was not build properly");
         var serverResp = apiClientReceiver.call(cmd);
-        var res = new CommandResponse(serverResp.isSuccess(), serverResp.getText(), serverResp.getPayload());
-        outputResponse(res);
-        return null;
+        return new CommandResponse(serverResp.isSuccess(), serverResp.getText(), serverResp.getPayload());
     }
 }
