@@ -24,7 +24,7 @@ public class ScriptLocalCommand extends APILocalCommand {
 
     @Override
     public List<Field> getCommandInlineArgs(String cmdName) {
-        return List.of(new Field[]{new Field<>("script_path", String.class)});
+        return List.of(new Field[]{new Field<>("fileName", String.class)});
     }
 
     @Override
