@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ObjectScanner;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ParserException;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ParserException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 
 import java.io.InputStream;
@@ -30,12 +30,20 @@ public class CLIController implements UIReceiver {
 
     @Override
     public boolean hasNextLine() {
-        return scanner.hasNextLine();
+        try {
+            return scanner.hasNextLine();
+        } catch (IllegalStateException ignored) {
+            return false;
+        }
     }
 
     @Override
     public String nextLine() {
-        return scanner.nextLine();
+        try {
+            return scanner.nextLine();
+        } catch (Exception ignored) {
+            return null;
+        }
     }
 
     @Override

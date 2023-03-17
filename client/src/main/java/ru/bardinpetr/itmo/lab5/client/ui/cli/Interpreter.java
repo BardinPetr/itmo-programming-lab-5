@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
-import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
+import ru.bardinpetr.itmo.lab5.client.controller.common.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
@@ -27,8 +27,16 @@ public class Interpreter {
         uiReceiver.display(RussianText.get(TextKeys.GREEETING));
         uiReceiver.display("> ");
         while (uiReceiver.hasNextLine()) {
-            var userArgs = uiReceiver.nextLine().split("\\s+");
-            var command = (UILocalCommand) registryCommand.getCommand(userArgs[0]);
+            var line = uiReceiver.nextLine();
+            if (line == null) System.exit(0);
+
+            var userArgs = line.split("\\s+");
+            var command = (UICallableCommand) registryCommand.getCommand(userArgs[0]);
+            if (command == null) {
+                uiReceiver.display("Command not found");
+                continue;
+            }
+
             command.executeWithArgs(List.of(userArgs));
         }
     }

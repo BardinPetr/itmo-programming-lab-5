@@ -27,7 +27,7 @@ public class CommandRegistry {
 
         register(new ExitLocalCommand(ui));
         register(new HelpLocalCommand(ui));
-        register(new UpdateAPILocalCommand(api, ui));
+        register(new UpdateLocalCommand(api, ui));
         register(new ScriptLocalCommand(api, ui, scriptExecutor));
         registerFromAPI(
                 APICommandRegistry.cmdList,
@@ -65,13 +65,16 @@ public class CommandRegistry {
     }
 
     /**
-     * Map command to its name
+     * Map command to its name.
+     * Command automatically decorated with ErrorHandlingCommandDecorator
      *
      * @param name    user input command name
      * @param command command object
      */
     private void register(String name, AbstractLocalCommand command) {
-        commandMap.put(name, command);
+        var decorated = (UILocalCommand.class.isAssignableFrom(command.getClass())) ?
+                decorateErrorHandling((UILocalCommand) command) : command;
+        commandMap.put(name, decorated);
     }
 
     /**
@@ -100,7 +103,7 @@ public class CommandRegistry {
      * @param command target command
      * @return ErrorHandlingCommandDecorator
      */
-    private AbstractLocalCommand decorateErrorHandling(AbstractLocalCommand command) {
+    private AbstractLocalCommand decorateErrorHandling(UILocalCommand command) {
         return new ErrorHandlingCommandDecorator(command);
     }
 }
