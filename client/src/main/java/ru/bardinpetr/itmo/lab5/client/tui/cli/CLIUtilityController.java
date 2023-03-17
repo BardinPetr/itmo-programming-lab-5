@@ -1,26 +1,25 @@
-package ru.bardinpetr.itmo.lab5.client.tui.newThings;
+package ru.bardinpetr.itmo.lab5.client.tui.cli;
 
 import ru.bardinpetr.itmo.lab5.client.parser.DescriptionHolder;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
-import ru.bardinpetr.itmo.lab5.client.tui.exception.NoSuchDataException;
 import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
-public class CLIUtilityController implements UIReceiver{
-    private ConsolePrinter printer;
-    private ConsoleReader reader;
-    private ObjectScanner objectScanner = new ObjectScanner();
+public class CLIUtilityController implements UIReceiver {
+    private final ConsolePrinter printer;
+    private final ObjectScanner objectScanner;
     private final Map<Class<?>, List<FieldWithDesc<?>>> map = DescriptionHolder.dataDescriptions;
 
-    public CLIUtilityController() {
-        this.printer = new ConsolePrinter();
-        this.reader = new ConsoleReader();
+    public CLIUtilityController(ConsolePrinter printer, Scanner scanner) {
+        this.objectScanner = new ObjectScanner(printer, scanner);
+        this.printer = printer;
     }
 
     @Override
-    public <T> T fill(Class<T> target, T defaultObject) throws NoSuchDataException, ParserException {
+    public <T> T fill(Class<T> target, T defaultObject) throws ParserException {
         return objectScanner.scan(target, defaultObject);
     }
 

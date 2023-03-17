@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.parser;
 
-import ru.bardinpetr.itmo.lab5.client.tui.Printer;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
@@ -48,10 +48,10 @@ public class CommandRegister {
      * Method for getting oarser with registered commands
      *
      * @param scanner scanner for oarser
-     * @param viewer  viewer for parser
+     * @param printer printer for parser
      * @return command parser
      */
-    public CommandParser getParser(Scanner scanner, Printer viewer, Runnable callback) {
-        return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, viewer, callback);
+    public CommandParser getParser(Scanner scanner, ConsolePrinter printer, Runnable callback) {
+        return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, printer, callback);
     }
 }

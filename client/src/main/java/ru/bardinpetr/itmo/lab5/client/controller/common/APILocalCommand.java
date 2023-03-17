@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
 import ru.bardinpetr.itmo.lab5.client.tui.exception.NoSuchDataException;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
@@ -25,7 +25,7 @@ public abstract class APILocalCommand extends UILocalCommand {
         this.mapper = ObjectMapperFactory.createMapper();
     }
 
-    protected APICommand retriveAPICommand(String name) {
+    protected APICommand retrieveAPICommand(String name) {
         var base = CommandRegister.getCommand(name);
         if (base == null)
             throw new RuntimeException("No such command");
@@ -34,11 +34,11 @@ public abstract class APILocalCommand extends UILocalCommand {
 
     @Override
     public List<Field> getCommandInlineArgs(String cmdName) {
-        return List.of(retriveAPICommand(cmdName).getInlineArgs());
+        return List.of(retrieveAPICommand(cmdName).getInlineArgs());
     }
 
     protected APICommand prepareAPIMessage(String name, Map<String, Object> args) throws ParserException, NoSuchDataException {
-        var base = retriveAPICommand(name);
+        var base = retrieveAPICommand(name);
 
         var objectMap = new HashMap<>(args);
         for (Field i : base.getInteractArgs())

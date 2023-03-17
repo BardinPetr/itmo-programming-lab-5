@@ -2,8 +2,8 @@ package ru.bardinpetr.itmo.lab5.client.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
-import ru.bardinpetr.itmo.lab5.client.tui.Printer;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsolePrinter;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.ObjectScanner;
 import ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
@@ -19,15 +19,15 @@ public class CommandParser {
     private final HashMap<String, APICommand> cmdMap;
     private ObjectMapper mapper;
     private Scanner scanner;
-    private Printer viewer;
+    private ConsolePrinter printer;
     private ObjectScanner objectScanner;
 
-    public CommandParser(HashMap<String, APICommand> cmdMap, ObjectMapper mapper, Scanner scanner, Printer viewer, Runnable callback) {
+    public CommandParser(HashMap<String, APICommand> cmdMap, ObjectMapper mapper, Scanner scanner, ConsolePrinter printer, Runnable callback) {
         this.cmdMap = cmdMap;
         this.mapper = mapper;
-        this.viewer = viewer;
+        this.printer = printer;
         this.scanner = scanner;
-        this.objectScanner = new ObjectScanner();
+        this.objectScanner = new ObjectScanner(printer, scanner);
 
     }
 

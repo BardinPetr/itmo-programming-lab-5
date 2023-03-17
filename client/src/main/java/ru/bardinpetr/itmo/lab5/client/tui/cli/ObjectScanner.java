@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.client.tui.newThings;
+package ru.bardinpetr.itmo.lab5.client.tui.cli;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.parser.DescriptionHolder;
@@ -14,15 +14,19 @@ import java.util.*;
  */
 public class ObjectScanner {
     private final Map<Class<?>, List<FieldWithDesc<?>>> dataDescription = DescriptionHolder.dataDescriptions;
-    private final ConsoleReader reader = new ConsoleReader();
-    private final ConsolePrinter printer = new ConsolePrinter();
+    private final Scanner scaner;
+    private final ConsolePrinter printer;
     private final ObjectMapper mapper = ObjectMapperFactory.createMapper();
     Runnable callback;
-    public ObjectScanner() {
+
+    public ObjectScanner(ConsolePrinter printer, Scanner scaner) {
+        this.printer = printer;
+        this.scaner = scaner;
     }
+
     private String scan() {
         String string = "";
-        string = reader.readLine();
+        string = scaner.nextLine();
 
         return string.isEmpty() ? null : string;
     }
@@ -53,7 +57,7 @@ public class ObjectScanner {
      * @return fulfilled object
      */
     public <T> T scan(Class<T> kClass, T defaultObject) throws ParserException, NoSuchElementException {
-        HashMap defaultObjectMap = mapper.convertValue(defaultObject, HashMap.class);
+        var defaultObjectMap = mapper.convertValue(defaultObject, HashMap.class);
 
         Map<String, Object> objectMap = new HashMap<>();
         List<FieldWithDesc<?>> fields = dataDescription.get(kClass);
@@ -69,7 +73,7 @@ public class ObjectScanner {
 
                 printer.displayInLine(String.format("Default is \"%s\". ", curDefaultVar.toString()));
                 printer.display("Press N to enter a new value, or press Enter to continue with default one.");
-                String resp = reader.readLine();
+                String resp = scaner.nextLine();
                 if (resp.equals("")){
                     objectMap.put(cur.getName(), curDefaultVar);
                     printer.display("Default value was used");
@@ -103,7 +107,7 @@ public class ObjectScanner {
     private <T> int enterField(FieldWithDesc<T> cur, Map<String, Object> objectMap, Object curDefaultVar) throws ParserException {
         if (cur.isNullAble()) {
             printer.display("If object does not exist press Enter. To continue interaction enter C");
-            String answer = reader.readLine();
+            String answer = scaner.nextLine();
             if (answer.equals("")) {
                 objectMap.put(cur.getName(), null);
                 return 0;

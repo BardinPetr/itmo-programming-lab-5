@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.client.tui.newThings;
+package ru.bardinpetr.itmo.lab5.client.tui.cli;
 
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.models.data.*;
@@ -8,6 +8,7 @@ import java.time.Month;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Check {
     public static void main(String[] args) throws ParserException {
@@ -23,7 +24,7 @@ public class Check {
                 Position.CLEANER
         );
 
-        var scanner = new ObjectScanner();
-        System.out.println(scanner.scan(int.class, Integer.getInteger("1")));
+        var scanner = new ObjectScanner(new ConsolePrinter(), new Scanner(System.in));
+        System.out.println(scanner.scan(Worker.class, t));
     }
 }

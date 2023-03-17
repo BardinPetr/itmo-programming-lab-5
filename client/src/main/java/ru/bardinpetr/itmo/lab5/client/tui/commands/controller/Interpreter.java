@@ -4,26 +4,33 @@ import ru.bardinpetr.itmo.lab5.client.controller.commands.IRRegistryCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
-import ru.bardinpetr.itmo.lab5.client.tui.Printer;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.CLIUtilityController;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.ConsolePrinter;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.ConsoleReader;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.CLIUtilityController;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsolePrinter;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Class for console UI
  */
-public class CLIController{
+public class Interpreter {
     UIReceiver uiReceiver;
-    ConsolePrinter printer = new ConsolePrinter();
-    ConsoleReader reader = new ConsoleReader();
+    ConsolePrinter printer;
+    Scanner scanner;
     private IRRegistryCommand registryCommand;
-    public CLIController(Printer viewer, InputStream inputStream) {
-        uiReceiver = new CLIUtilityController();
+
+    public Interpreter(ConsolePrinter printer, InputStream inputStream) {
+        this.printer = printer;
+        this.scanner = new Scanner(inputStream);
+        uiReceiver = new CLIUtilityController(printer, scanner);
+    }
+
+    public Interpreter(InputStream inputStream) {
+        this.scanner = new Scanner(inputStream);
+        uiReceiver = new CLIUtilityController(printer, scanner);
     }
 
 
@@ -33,12 +40,12 @@ public class CLIController{
     public void run() {
         printer.display(RussianText.get(TextKeys.GREEETING));
         printer.suggestInput();
-        while (reader.hasNextLine()) {
-            String[] userArgs = reader.readLine().split(" ");
+        while (scanner.hasNextLine()) {
+            String[] userArgs = scanner.nextLine().split(" ");
             String commandName = userArgs[0];
 
             UILocalCommand command = null;
-            command = (UILocalCommand) registryCommand.getByName(commandName);
+            command = registryCommand.getByName(commandName);
             command.executeWithArgs(new ArrayList<>(List.of(userArgs))); //TODO delete first arg
 
         }

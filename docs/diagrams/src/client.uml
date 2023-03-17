@@ -7,7 +7,7 @@
     <node x="781.0" y="1441.0">ru.bardinpetr.itmo.lab5.client.logic.ScriptExecutor</node>
     <node x="219.0" y="2287.0">ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory</node>
     <node x="1047.5" y="2171.0">ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException</node>
-    <node x="1924.5" y="2011.0">ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner</node>
+    <node x="1924.5" y="2011.0">ru.bardinpetr.itmo.lab5.client.tui.cli.ObjectScanner</node>
     <node x="899.0" y="996.0">ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand</node>
     <node x="-317.0" y="1918.5">ru.bardinpetr.itmo.lab5.client.texts.TextKeys</node>
     <node x="448.0" y="1155.5">ru.bardinpetr.itmo.lab5.client.tui.Printer</node>
@@ -35,7 +35,7 @@
     <node x="1097.5" y="1937.0">ru.bardinpetr.itmo.lab5.common.io.FileIOController</node>
     <node x="63.5" y="-144.0">ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response</node>
     <node x="1943.5" y="120.5">ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse</node>
-    <node x="442.5" y="491.0">ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController</node>
+    <node x="442.5" y="491.0">ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter</node>
     <node x="210.0" y="2081.0">ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CommandScriptController</node>
   </nodes>
   <notes />
@@ -82,13 +82,13 @@
       <point x="1673.0" y="1095.0" />
       <point x="-5.0" y="-93.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="DEPENDENCY">
       <point x="0.0" y="119.0" />
       <point x="638.0" y="806.5" />
       <point x="193.0" y="806.5" />
       <point x="-5.0" y="-143.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.client.parser.error.ParserException" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.client.parser.error.ParserException" relationship="DEPENDENCY">
       <point x="-195.5" y="49.75" />
       <point x="414.5" y="659.75" />
       <point x="76.5" y="-29.5" />
@@ -102,7 +102,7 @@
       <point x="0.0" y="-29.5" />
       <point x="0.0" y="294.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner" target="ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.cli.ObjectScanner" target="ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc" relationship="DEPENDENCY">
       <point x="-0.0" y="119.0" />
       <point x="2118.0" y="2505.0" />
       <point x="-203.0" y="-5.0" />
@@ -122,7 +122,7 @@
       <point x="-106.75" y="-144.0" />
       <point x="-6.75" y="143.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand" relationship="DEPENDENCY">
       <point x="195.5" y="10.0" />
       <point x="1023.5" y="620.0" />
       <point x="-74.5" y="-94.0" />
@@ -137,7 +137,7 @@
       <point x="-337.0" y="2872.0" />
       <point x="-169.0" y="5.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.client.tui.Printer" relationship="TO_ONE">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.client.tui.Printer" relationship="TO_ONE">
       <point x="-195.5" y="59.75" />
       <point x="434.5" y="669.75" />
       <point x="434.5" y="1205.0" />
@@ -149,7 +149,7 @@
       <point x="-167.0" y="-146.0" />
       <point x="-5.0" y="-29.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.Main" target="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.Main" target="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" relationship="DEPENDENCY">
       <point x="80.0" y="-5.0" />
       <point x="841.0" y="1205.0" />
       <point x="841.0" y="630.0" />
@@ -159,7 +159,7 @@
       <point x="-73.5" y="144.0" />
       <point x="0.0" y="-93.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.client.texts.TextKeys" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.client.texts.TextKeys" relationship="DEPENDENCY">
       <point x="-195.5" y="84.375" />
       <point x="-182.25" y="694.375" />
       <point x="19.75" y="-231.5" />
@@ -174,12 +174,12 @@
       <point x="2763.0" y="1710.0" />
       <point x="183.5" y="0.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner" target="ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.cli.ObjectScanner" target="ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator" relationship="DEPENDENCY">
       <point x="5.0" y="-119.0" />
       <point x="2123.0" y="1890.0" />
       <point x="-117.5" y="0.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response" relationship="DEPENDENCY">
       <point x="-0.0" y="-119.0" />
       <point x="638.0" y="287.25" />
       <point x="134.5" y="137.25" />
@@ -203,7 +203,7 @@
       <point x="1878.0" y="1085.0" />
       <point x="100.0" y="-169.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory" relationship="DEPENDENCY">
       <point x="-195.5" y="94.375" />
       <point x="-58.5" y="704.375" />
       <point x="-58.5" y="2330.0" />
@@ -235,7 +235,7 @@
       <point x="2542.0" y="1935.0" />
       <point x="-16.0" y="-156.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse" relationship="DEPENDENCY">
       <point x="195.5" y="-44.25" />
       <point x="2093.0" y="565.75" />
       <point x="-5.0" y="29.5" />
@@ -255,7 +255,7 @@
       <point x="450.0" y="1523.5" />
       <point x="112.0" y="-69.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
       <point x="-10.0" y="119.0" />
       <point x="628.0" y="761.5" />
       <point x="-114.375" y="761.5" />
@@ -322,7 +322,7 @@
       <point x="-154.5" y="0.0" />
       <point x="134.5" y="0.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner" target="ru.bardinpetr.itmo.lab5.client.tui.Printer" relationship="TO_ONE">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.cli.ObjectScanner" target="ru.bardinpetr.itmo.lab5.client.tui.Printer" relationship="TO_ONE">
       <point x="-193.5" y="-44.0" />
       <point x="1459.25" y="2086.0" />
       <point x="1459.25" y="1255.0" />
@@ -354,7 +354,7 @@
       <point x="267.25" y="1710.0" />
       <point x="69.25" y="143.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.parser.CommandParser" target="ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner" relationship="TO_ONE">
+    <edge source="ru.bardinpetr.itmo.lab5.client.parser.CommandParser" target="ru.bardinpetr.itmo.lab5.client.tui.cli.ObjectScanner" relationship="TO_ONE">
       <point x="231.5" y="-3.0" />
       <point x="-193.5" y="17.0" />
     </edge>
@@ -368,13 +368,13 @@
       <point x="1176.0" y="994.0" />
       <point x="-82.0" y="29.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.client.texts.RussianText" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.client.texts.RussianText" relationship="DEPENDENCY">
       <point x="-195.5" y="39.75" />
       <point x="404.5" y="649.75" />
       <point x="404.5" y="1830.0" />
       <point x="114.5" y="0.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.cli.ObjectScanner" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
       <point x="193.5" y="0.0" />
       <point x="-129.5" y="0.0" />
     </edge>
@@ -398,7 +398,7 @@
       <point x="1417.0" y="1218.5" />
       <point x="179.0" y="-119.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand.LocalExecuteScriptCommandResponse" relationship="DEPENDENCY">
       <point x="195.5" y="-24.25" />
       <point x="1722.0" y="585.75" />
       <point x="44.0" y="-93.0" />
@@ -407,7 +407,7 @@
       <point x="-15.0" y="29.5" />
       <point x="-15.0" y="-143.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner" target="ru.bardinpetr.itmo.lab5.client.parser.error.ParserException" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.cli.ObjectScanner" target="ru.bardinpetr.itmo.lab5.client.parser.error.ParserException" relationship="DEPENDENCY">
       <point x="-5.0" y="-119.0" />
       <point x="2113.0" y="1916.5" />
       <point x="338.0" y="1916.5" />
@@ -417,7 +417,7 @@
       <point x="-203.0" y="5.0" />
       <point x="106.5" y="5.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.client.parser.CommandParser" relationship="TO_ONE">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.client.parser.CommandParser" relationship="TO_ONE">
       <point x="195.5" y="-34.25" />
       <point x="1886.5" y="575.75" />
       <point x="1886.5" y="2150.0" />
@@ -438,7 +438,7 @@
       <point x="1103.0" y="1310.0" />
       <point x="5.0" y="94.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.client.parser.CommandRegister" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.client.parser.CommandRegister" relationship="DEPENDENCY">
       <point x="10.0" y="119.0" />
       <point x="10.0" y="-81.5" />
     </edge>
@@ -446,11 +446,11 @@
       <point x="128.0" y="0.0" />
       <point x="-231.5" y="0.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.CLIController" target="ru.bardinpetr.itmo.lab5.client.tui.ICommandIOCallback" relationship="TO_ONE">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.commands.controller.Interpreter" target="ru.bardinpetr.itmo.lab5.client.tui.ICommandIOCallback" relationship="TO_ONE">
       <point x="-195.5" y="0.0" />
       <point x="184.5" y="0.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner" target="ru.bardinpetr.itmo.lab5.models.fields.Field" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.client.tui.cli.ObjectScanner" target="ru.bardinpetr.itmo.lab5.models.fields.Field" relationship="DEPENDENCY">
       <point x="-193.5" y="61.0" />
       <point x="1791.25" y="2191.0" />
       <point x="13.25" y="-169.0" />
