@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.client;
 
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ObjectScanner;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ParserException;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ParserException;
 import ru.bardinpetr.itmo.lab5.models.data.*;
 
 import java.time.LocalDate;

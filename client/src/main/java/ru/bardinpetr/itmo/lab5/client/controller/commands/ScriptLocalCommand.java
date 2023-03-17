@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * Command for processing nested scripts
+ */
 public class ScriptLocalCommand extends APILocalCommand {
     private final ScriptExecutor scriptExecutor;
 
@@ -37,6 +40,13 @@ public class ScriptLocalCommand extends APILocalCommand {
         return "execute_script";
     }
 
+    /**
+     * Using ScriptExecutor recursively parse script file
+     *
+     * @param cmdName should be "execute_script"
+     * @param args    should contain "fileName" key with script file path
+     * @return execution result
+     */
     @Override
     public CommandResponse execute(String cmdName, Map<String, Object> args) {
         String path = (String) args.get("fileName");
@@ -48,6 +58,7 @@ public class ScriptLocalCommand extends APILocalCommand {
         } catch (FileAccessException e) {
             throw new RuntimeException("Can't get access to script");
         }
+
         return CommandResponse.ok();
     }
 }

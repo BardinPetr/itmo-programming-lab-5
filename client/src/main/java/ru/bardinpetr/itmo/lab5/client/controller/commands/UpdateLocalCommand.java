@@ -12,9 +12,9 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import java.util.Map;
 
 
-public class UpdateAPILocalCommand extends APILocalCommand {
+public class UpdateLocalCommand extends APILocalCommand {
 
-    public UpdateAPILocalCommand(APIClientReceiver api, UIReceiver ui) {
+    public UpdateLocalCommand(APIClientReceiver api, UIReceiver ui) {
         super(api, ui);
     }
 

@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.client.ui.cli.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.commands.DescriptionHolder;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ParserException;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator;
 import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;

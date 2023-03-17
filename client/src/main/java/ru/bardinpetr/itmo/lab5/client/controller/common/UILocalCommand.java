@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class UILocalCommand extends AbstractLocalCommand {
+public abstract class UILocalCommand extends AbstractLocalCommand implements UICallableCommand {
     public static final String NAME_ARG = "cmdName";
     protected final UIReceiver uiReceiver;
     private final ValueDeserializer valueDes;
@@ -33,6 +33,7 @@ public abstract class UILocalCommand extends AbstractLocalCommand {
         return data;
     }
 
+    @Override
     public void executeWithArgs(List<String> args) {
         if (args.size() == 0)
             throw new RuntimeException("Not command name");
@@ -45,7 +46,6 @@ public abstract class UILocalCommand extends AbstractLocalCommand {
         var objectMap = new HashMap<String, Object>();
         try {
             for (int i = 0; i < args.size(); i++) {
-                // TODO: handle exceptions & retries
                 objectMap.put(
                         defs.get(i).getName(),
                         valueDes.deserialize(defs.get(i).getValueClass(), args.get(i))
