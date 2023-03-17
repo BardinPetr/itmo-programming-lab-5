@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
 import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UICallableCommand;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 
 import java.util.List;
@@ -17,24 +18,35 @@ public class UICommandInvoker {
         this.screenUIReceiver = screenUIReceiver;
     }
 
-    public void invoke(UICallableCommand command, List<String> args) {
+    public void invoke(UICallableCommand command, List<String> args) throws ScriptException {
         CommandResponse resp;
         try {
             resp = command.executeWithArgs(args);
+        } catch (ScriptException ex) {
+            throw ex; // Should be handled by ScriptExecutor and ScriptLocalCommand
         } catch (Exception ex) {
             resp = CommandResponse.error(ex.getMessage());
         }
         if (resp == null) resp = CommandResponse.ok();
 
-        print(resp);
+        if (args.size() > 0)
+            print(args.get(0), resp);
+        else
+            print(null, resp);
     }
 
-    protected void print(CommandResponse result) {
+    protected void print(String caller, CommandResponse result) {
         if (result.isSuccess()) {
-            if (result.payload() != null)
+            var msg = result.message();
+            if (result.payload() != null) {
                 screenUIReceiver.display(result.payload().getUserMessage());
-            else
+            } else if (msg != null && !msg.isEmpty()) {
+                screenUIReceiver.display(msg);
+            } else if (caller != null) {
+                screenUIReceiver.ok(caller);
+            } else {
                 screenUIReceiver.ok();
+            }
         } else {
             screenUIReceiver.error(result.message());
         }

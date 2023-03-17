@@ -43,7 +43,7 @@ public class ScriptRecursionController {
     /**
      * @return Count of nested scripts
      */
-    private int getDepth() {
+    public int getDepth() {
         return visitedPaths.size();
     }
 }

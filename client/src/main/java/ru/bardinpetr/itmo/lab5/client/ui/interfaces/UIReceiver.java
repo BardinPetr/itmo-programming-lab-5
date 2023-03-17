@@ -7,5 +7,7 @@ public interface UIReceiver extends UIInputReceiver {
 
     void ok();
 
+    void ok(String cmd);
+
     void error(String message);
 }

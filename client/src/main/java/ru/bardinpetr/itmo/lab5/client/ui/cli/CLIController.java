@@ -62,6 +62,11 @@ public class CLIController implements UIReceiver {
     }
 
     @Override
+    public void ok(String cmd) {
+        printer.display("Command %s successful".formatted(cmd));
+    }
+
+    @Override
     public void error(String message) {
         printer.display("Error: %s".formatted(message));
     }

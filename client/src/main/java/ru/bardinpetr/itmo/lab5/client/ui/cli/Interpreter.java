@@ -16,10 +16,10 @@ public class Interpreter {
     private final CommandRegistry registryCommand;
     private final UICommandInvoker invoker;
 
-    public Interpreter(CommandRegistry registryCommand, UIReceiver uiReceiver) {
+    public Interpreter(CommandRegistry registryCommand, UIReceiver uiReceiver, UICommandInvoker invoker) {
         this.registryCommand = registryCommand;
         this.uiReceiver = uiReceiver;
-        this.invoker = new UICommandInvoker(uiReceiver);
+        this.invoker = invoker;
     }
 
     /**

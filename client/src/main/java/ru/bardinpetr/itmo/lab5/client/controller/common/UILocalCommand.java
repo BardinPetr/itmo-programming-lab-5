@@ -19,7 +19,6 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
         uiReceiver = receiver;
     }
 
-
     public abstract String getExternalName();
 
     public List<Field> getCommandInlineArgs(String cmdName) {

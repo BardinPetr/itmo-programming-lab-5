@@ -19,7 +19,11 @@ public class FileIOController extends FileController {
      * @param filePath path to the target file, will be saved and reused
      */
     public FileIOController(@NonNull String filePath) throws FileAccessException {
-        super(filePath);
+        this(filePath, true);
+    }
+
+    public FileIOController(@NonNull String filePath, boolean createIfNotExists) throws FileAccessException {
+        super(filePath, createIfNotExists);
     }
 
     /**

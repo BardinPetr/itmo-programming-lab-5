@@ -5,6 +5,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ScriptRecursionController;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptRecursionRootException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
@@ -16,9 +17,11 @@ import java.util.List;
  */
 public class ScriptExecutor {
     private final ScriptRecursionController recursionController;
+    private final UICommandInvoker invoker;
     private CommandRegistry commandRegistry = null;
 
-    public ScriptExecutor() {
+    public ScriptExecutor(UICommandInvoker invoker) {
+        this.invoker = invoker;
         this.recursionController = new ScriptRecursionController();
     }
 
@@ -35,19 +38,18 @@ public class ScriptExecutor {
      * Open and execute all commands in file with specified path
      *
      * @param path file path
-     * @throws FileAccessException if script could not be read
-     * @throws ScriptException     if recursion occurs
+     * @throws FileAccessException          if script could not be read
+     * @throws ScriptException              if recursion occurs in nested scripts (not root) - should be passed to parent executor calls
+     * @throws ScriptRecursionRootException if recursion occurs and the root of execution tree has been reached when going backwards - only this should be handled as the error
      */
     public void process(String path) throws FileAccessException, ScriptException {
         if (commandRegistry == null) throw new RuntimeException("No command registry");
 
         var isNormal = recursionController.enter(path);
-        if (!isNormal) {
-            recursionController.clear();
+        if (!isNormal)
             throw new ScriptException("Recursion detected at %s".formatted(path));
-        }
 
-        FileIOController fileIOController = new FileIOController(path);
+        FileIOController fileIOController = new FileIOController(path, false);
 
         UIReceiver uiReceiver = new CLIController(
                 ConsolePrinter.getStub(),
@@ -59,17 +61,17 @@ public class ScriptExecutor {
             var line = uiReceiver.nextLine();
             if (line == null) break;
 
-            var userArgs = line.split("\\s+");
-            var command = (UICallableCommand) currentRegistry.getCommand(userArgs[0]);
-            if (command == null) {
-                uiReceiver.display("Command not found");
-                continue;
-            }
+            var userArgs = List.of(line.split("\\s+"));
+            var command = (UICallableCommand) currentRegistry.getCommand(userArgs.get(0));
+            if (command == null)
+                throw new RuntimeException("Command not found");
 
             try {
-                command.executeWithArgs(List.of(userArgs));
+                invoker.invoke(command, userArgs);
             } catch (ScriptException ex) {
-                recursionController.clear();
+                recursionController.leave(path);
+                if (recursionController.getDepth() == 0)
+                    throw new ScriptRecursionRootException(ex.getMessage());
                 throw ex;
             }
         }

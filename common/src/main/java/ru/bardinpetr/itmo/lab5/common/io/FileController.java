@@ -25,8 +25,12 @@ public class FileController {
      * @param filePath path to the target file, will be saved and reused
      */
     public FileController(@NonNull String filePath) throws FileAccessException {
+        this(filePath, true);
+    }
+
+    public FileController(@NonNull String filePath, boolean createIfNotExists) throws FileAccessException {
         file = loadPath(filePath);
-        ensureExistence(true);
+        ensureExistence(createIfNotExists);
         checkAccess();
     }
 

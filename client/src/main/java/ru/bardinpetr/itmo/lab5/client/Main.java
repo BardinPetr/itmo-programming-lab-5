@@ -7,6 +7,7 @@ import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.CLIController;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.Interpreter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.UICommandInvoker;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.server.MainExecutor;
 
@@ -25,11 +26,12 @@ public class Main {
 
         var ui = new CLIController(new ConsolePrinter(), System.in);
 
-        var se = new ScriptExecutor();
+        var invoker = new UICommandInvoker(ui);
+        var se = new ScriptExecutor(invoker);
 
         var registry = new CommandRegistry(api, ui, se);
 
-        var interpreter = new Interpreter(registry, ui);
+        var interpreter = new Interpreter(registry, ui, invoker);
         interpreter.run();
     }
 }
