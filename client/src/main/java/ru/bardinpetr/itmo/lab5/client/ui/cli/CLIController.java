@@ -5,6 +5,7 @@ import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ObjectScanner;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ParserException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class CLIController implements UIReceiver {
@@ -12,10 +13,10 @@ public class CLIController implements UIReceiver {
     private final ObjectScanner objectScanner;
     private final Scanner scanner;
 
-    public CLIController(ConsolePrinter printer, Scanner scanner) {
-        this.objectScanner = new ObjectScanner(printer, scanner);
+    public CLIController(ConsolePrinter printer, InputStream inputStream) {
+        this.objectScanner = new ObjectScanner(printer, new Scanner(inputStream));
         this.printer = printer;
-        this.scanner = scanner;
+        this.scanner = new Scanner(inputStream);
     }
 
     @Override

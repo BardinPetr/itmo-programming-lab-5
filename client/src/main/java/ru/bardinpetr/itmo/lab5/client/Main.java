@@ -11,7 +11,6 @@ import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.server.MainExecutor;
 
 import java.nio.file.Path;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,7 +23,7 @@ public class Main {
         var serverExecutor = new MainExecutor(Path.of(args[0]));
         var api = new LocalExecutorAPIConnector(serverExecutor);
 
-        var ui = new CLIController(ConsolePrinter.getStub(), new Scanner(System.in));
+        var ui = new CLIController(new ConsolePrinter(), System.in);
 
         var se = new ScriptExecutor();
 
