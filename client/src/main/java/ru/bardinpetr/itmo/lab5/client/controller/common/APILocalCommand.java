@@ -55,8 +55,7 @@ public abstract class APILocalCommand extends UILocalCommand {
     public CommandResponse execute(String cmdName, Map<String, Object> args) {
         var cmd = prepareAPIMessage(cmdName, args);
         var serverResp = apiClientReceiver.call(cmd);
-        // TODO: insert payload to CommandResponse
-        var res = new CommandResponse(serverResp.isSuccess(), serverResp.getText());
+        var res = new CommandResponse(serverResp.isSuccess(), serverResp.getText(), serverResp.getPayload());
         outputResponse(res);
         return null;
     }
