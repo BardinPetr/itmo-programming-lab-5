@@ -2,8 +2,9 @@ package ru.bardinpetr.itmo.lab5.client.controller.commands;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APILocalCommand;
-import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
-import ru.bardinpetr.itmo.lab5.client.tui.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
+import ru.bardinpetr.itmo.lab5.client.tui.exception.NoSuchDataException;
+import ru.bardinpetr.itmo.lab5.client.tui.newThings.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.GetWorkerCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.GetWorkerIdsCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand;
@@ -25,7 +26,7 @@ public class UpdateAPILocalCommand extends APILocalCommand {
     }
 
     @Override
-    protected APICommand prepareAPIMessage(String name, Map<String, Object> args) {
+    protected APICommand prepareAPIMessage(String name, Map<String, Object> args) throws ParserException, NoSuchDataException {
         var id = (Integer) args.get("id");
         if (id == null)
             throw new RuntimeException("Object id to update not specified");
@@ -47,10 +48,5 @@ public class UpdateAPILocalCommand extends APILocalCommand {
                 id,
                 uiReceiver.fill(Worker.class, current)
         );
-    }
-
-    @Override
-    public CommandResponse execute(String cmdName, Map<String, Object> args) {
-        return super.execute(cmdName, args);
     }
 }

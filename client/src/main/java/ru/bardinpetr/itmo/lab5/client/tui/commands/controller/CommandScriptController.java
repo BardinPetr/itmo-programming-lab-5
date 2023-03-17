@@ -29,7 +29,7 @@ public class CommandScriptController {
     public List<APICommand> run(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
 
-        CommandParser cmdParser = CommandRegister.getParser(scanner, new Printer() {
+        CommandParser cmdParser = (new CommandRegister()).getParser(scanner, new Printer() {
         }, () -> {
             throw new RuntimeException("invalid script");
         });

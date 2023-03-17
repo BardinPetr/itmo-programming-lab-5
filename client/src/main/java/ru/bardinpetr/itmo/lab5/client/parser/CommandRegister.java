@@ -35,8 +35,6 @@ public class CommandRegister {
 
     private static final HashMap<String, APICommand> map = new HashMap<>();
 
-    private CommandRegister() {
-    }
 
     static {
         cmdList.forEach(cmd -> map.put(cmd.getType(), cmd));

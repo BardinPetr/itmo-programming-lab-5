@@ -14,5 +14,7 @@ public interface UIReceiver {
     public void display(String text);
 
 
+    void ok();
 
+    void error(String message);
 }

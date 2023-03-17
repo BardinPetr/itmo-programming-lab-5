@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.client.controller.commands;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APILocalCommand;
-import ru.bardinpetr.itmo.lab5.client.tui.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.tui.newThings.UIReceiver;
 
 
 public class GeneralAPILocalCommand extends APILocalCommand {

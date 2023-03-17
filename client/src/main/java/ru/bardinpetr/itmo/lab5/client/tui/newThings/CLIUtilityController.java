@@ -28,4 +28,14 @@ public class CLIUtilityController implements UIReceiver{
     public void display(String text) {
         printer.display(text);
     }
+
+    @Override
+    public void ok() {
+        printer.display("OK!");
+    }
+
+    @Override
+    public void error(String message) {
+        printer.display("Error %s".formatted(message));
+    }
 }

@@ -2,8 +2,8 @@ package ru.bardinpetr.itmo.lab5.client.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
-import ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner;
 import ru.bardinpetr.itmo.lab5.client.tui.Printer;
+import ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner;
 import ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
@@ -16,7 +16,7 @@ import java.util.Scanner;
  * Main class for parsing command from String. Text is entered via scanner.
  */
 public class CommandParser {
-    private final HashMap<String, Command> cmdMap;
+    private final HashMap<String, APICommand> cmdMap;
     private ObjectMapper mapper;
     private Scanner scanner;
     private Printer viewer;

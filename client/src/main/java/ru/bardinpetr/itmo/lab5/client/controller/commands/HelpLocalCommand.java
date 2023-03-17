@@ -4,7 +4,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
-import ru.bardinpetr.itmo.lab5.client.tui.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.tui.newThings.UIReceiver;
 
 import java.util.Map;
 
@@ -17,7 +17,7 @@ public class HelpLocalCommand extends UILocalCommand {
 
     @Override
     public CommandResponse execute(String cmdName, Map<String, Object> args) {
-        uiReceiver.print(RussianText.get(TextKeys.HELP));
+        uiReceiver.display(RussianText.get(TextKeys.HELP));
         return CommandResponse.ok();
     }
 }
