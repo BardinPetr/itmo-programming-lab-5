@@ -39,7 +39,7 @@ public class ObjectScannerTest {
                     new Coordinates(100, 100),
                     getScanner("""
                             100
-                            100""").scan(Coordinates.class),
+                            100""")\.scan(Coordinates.class),
                     "Correct data"
             );
         });

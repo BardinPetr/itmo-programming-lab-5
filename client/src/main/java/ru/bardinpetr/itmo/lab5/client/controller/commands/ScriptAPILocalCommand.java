@@ -22,7 +22,7 @@ public class ScriptAPILocalCommand extends APILocalCommand {
     }
 
     @Override
-    protected APICommand retriveAPICommand(String name) {
+    protected APICommand retrieveAPICommand(String name) {
         return new ExecuteScriptCommand();
     }
 

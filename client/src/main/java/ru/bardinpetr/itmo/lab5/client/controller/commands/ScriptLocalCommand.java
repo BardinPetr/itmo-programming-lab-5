@@ -17,7 +17,6 @@ public class ScriptLocalCommand extends APILocalCommand {
     public ScriptLocalCommand(APIClientReceiver api, UIReceiver ui, ScriptExecutor se) {
         super(api, ui);
         this.se = se;
-
     }
 
     @Override
@@ -28,6 +27,11 @@ public class ScriptLocalCommand extends APILocalCommand {
     @Override
     protected APICommand prepareAPIMessage(String name, Map<String, Object> args) {
         return null;
+    }
+
+    @Override
+    public String getExternalName() {
+        return "execute_script";
     }
 
     @Override

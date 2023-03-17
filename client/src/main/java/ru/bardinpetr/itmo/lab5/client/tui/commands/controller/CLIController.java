@@ -3,13 +3,12 @@ package ru.bardinpetr.itmo.lab5.client.tui.commands.controller;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
-import ru.bardinpetr.itmo.lab5.client.tui.Printer;
 import ru.bardinpetr.itmo.lab5.client.tui.cli.CLIUtilityController;
 import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsolePrinter;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsoleReader;
 import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
 
 import java.io.InputStream;
+import java.util.Scanner;
 
 /**
  * Class for console UI
@@ -17,10 +16,11 @@ import java.io.InputStream;
 public class CLIController {
     UIReceiver uiReceiver;
     ConsolePrinter printer = new ConsolePrinter();
-    ConsoleReader reader = new ConsoleReader();
+    Scanner scanner;
 
-    public CLIController(Printer viewer, InputStream inputStream) {
-        uiReceiver = new CLIUtilityController();
+    public CLIController(ConsolePrinter printer, InputStream inputStream) {
+        uiReceiver = new CLIUtilityController(printer, new Scanner(inputStream));
+        scanner = new Scanner(inputStream);
     }
 
 
@@ -30,8 +30,8 @@ public class CLIController {
     public void run() {
         printer.display(RussianText.get(TextKeys.GREEETING));
         printer.suggestInput();
-        while (reader.hasNextLine()) {
-            String[] userArgs = reader.readLine().split(" ");
+        while (scanner.hasNextLine()) {
+            String[] userArgs = scanner.nextLine().split(" ");
             String commandName = userArgs[0];
 
             UILocalCommand command = null;

@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.tui.commands.controller;
 
-import ru.bardinpetr.itmo.lab5.client.controller.commands.IRRegistryCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
+import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
 import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
 import ru.bardinpetr.itmo.lab5.client.tui.cli.CLIUtilityController;
@@ -20,7 +20,7 @@ public class Interpreter {
     UIReceiver uiReceiver;
     ConsolePrinter printer;
     Scanner scanner;
-    private IRRegistryCommand registryCommand;
+    private CommandRegistry registryCommand;
 
     public Interpreter(ConsolePrinter printer, InputStream inputStream) {
         this.printer = printer;
@@ -45,7 +45,7 @@ public class Interpreter {
             String commandName = userArgs[0];
 
             UILocalCommand command = null;
-            command = registryCommand.getByName(commandName);
+            command = (UILocalCommand) registryCommand.getCommand(commandName);
             command.executeWithArgs(new ArrayList<>(List.of(userArgs))); //TODO delete first arg
 
         }

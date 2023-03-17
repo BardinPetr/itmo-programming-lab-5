@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.decorator.ErrorHandlingCommandDecorator;
 import ru.bardinpetr.itmo.lab5.client.parser.APICommandRegistry;
+import ru.bardinpetr.itmo.lab5.client.tui.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 
@@ -14,22 +15,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandRegistry {
-
     private final Map<String, AbstractLocalCommand> commandMap = new HashMap<>();
     private final APIClientReceiver api;
+    private final ScriptExecutor scriptExecutor;
 
-    public CommandRegistry(APIClientReceiver api, UIReceiver ui) {
+    public CommandRegistry(APIClientReceiver api, UIReceiver ui, ScriptExecutor scriptExecutor) {
+        this.scriptExecutor = scriptExecutor;
         this.api = api;
+
+        scriptExecutor.setRegistry(this);
 
         register(new ExitLocalCommand(ui));
         register(new HelpLocalCommand(ui));
         register(new UpdateAPILocalCommand(api, ui));
-        register(new ScriptAPILocalCommand(api, ui));
+        register(new ScriptLocalCommand(api, ui, scriptExecutor));
         registerFromAPI(
                 APICommandRegistry.cmdList,
                 new GeneralAPILocalCommand(api, ui)
         );
-
     }
 
     /**
@@ -39,7 +42,7 @@ public class CommandRegistry {
      * @return this command registry with all commands and changed ui dependency
      */
     public CommandRegistry withUI(UIReceiver otherUI) {
-        return new CommandRegistry(api, otherUI);
+        return new CommandRegistry(api, otherUI, scriptExecutor);
     }
 
     /**

@@ -19,8 +19,12 @@ public class CLIUtilityController implements UIReceiver {
     }
 
     @Override
-    public <T> T fill(Class<T> target, T defaultObject) throws ParserException {
-        return objectScanner.scan(target, defaultObject);
+    public <T> T fill(Class<T> target, T defaultObject) {
+        try {
+            return objectScanner.scan(target, defaultObject);
+        } catch (ParserException e) {
+            throw new RuntimeException("Parse exception: " + e.getMessage());
+        }
     }
 
     @Override
