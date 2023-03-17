@@ -28,13 +28,14 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
 
     protected List<Field> getFullInlineArgs(String cmdName) {
         var data = new ArrayList<Field>();
-        data.add(new Field(NAME_ARG, String.class));
-        data.addAll(getCommandInlineArgs(cmdName));
+        data.add(new Field<>(NAME_ARG, String.class));
+        var args = getCommandInlineArgs(cmdName);
+        if (args != null) data.addAll(args);
         return data;
     }
 
     @Override
-    public void executeWithArgs(List<String> args) {
+    public CommandResponse executeWithArgs(List<String> args) {
         if (args.size() == 0)
             throw new RuntimeException("Not command name");
 
@@ -45,25 +46,16 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
 
         var objectMap = new HashMap<String, Object>();
         try {
-            for (int i = 0; i < args.size(); i++) {
+            for (int i = 0; i < args.size(); i++)
                 objectMap.put(
                         defs.get(i).getName(),
                         valueDes.deserialize(defs.get(i).getValueClass(), args.get(i))
                 );
-            }
         } catch (IllegalArgumentException ex) {
             throw new RuntimeException("Command arguments is of invalid type");
         }
 
-        execute((String) objectMap.get(NAME_ARG), objectMap);
-    }
-
-    protected void outputResponse(CommandResponse result) {
-        if (result.isSuccess()) {
-            if (result.payload() != null) uiReceiver.display(result.payload().getUserMessage());
-            else uiReceiver.ok();
-        } else
-            uiReceiver.error(result.message());
+        return execute((String) objectMap.get(NAME_ARG), objectMap);
     }
 
     @Override

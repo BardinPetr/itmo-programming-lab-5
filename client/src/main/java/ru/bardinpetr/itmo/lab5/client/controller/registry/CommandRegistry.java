@@ -5,7 +5,6 @@ import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.controller.commands.*;
 import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
-import ru.bardinpetr.itmo.lab5.client.controller.decorators.ErrorHandlingCommandDecorator;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
@@ -66,15 +65,12 @@ public class CommandRegistry {
 
     /**
      * Map command to its name.
-     * Command automatically decorated with ErrorHandlingCommandDecorator
      *
      * @param name    user input command name
      * @param command command object
      */
     private void register(String name, AbstractLocalCommand command) {
-        var decorated = (UILocalCommand.class.isAssignableFrom(command.getClass())) ?
-                decorateErrorHandling((UILocalCommand) command) : command;
-        commandMap.put(name, decorated);
+        commandMap.put(name, command);
     }
 
     /**
@@ -95,15 +91,5 @@ public class CommandRegistry {
      */
     public AbstractLocalCommand getCommand(String name) {
         return commandMap.get(name);
-    }
-
-    /**
-     * Decorate command for proper try-catch error handling
-     *
-     * @param command target command
-     * @return ErrorHandlingCommandDecorator
-     */
-    private AbstractLocalCommand decorateErrorHandling(UILocalCommand command) {
-        return new ErrorHandlingCommandDecorator(command);
     }
 }

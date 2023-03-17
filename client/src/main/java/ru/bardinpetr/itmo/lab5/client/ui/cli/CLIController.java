@@ -64,11 +64,11 @@ public class CLIController implements UIReceiver {
 
     @Override
     public void ok() {
-        printer.display("OK!");
+        printer.display("Command successful");
     }
 
     @Override
     public void error(String message) {
-        printer.display("Error %s".formatted(message));
+        printer.display("Error: %s".formatted(message));
     }
 }

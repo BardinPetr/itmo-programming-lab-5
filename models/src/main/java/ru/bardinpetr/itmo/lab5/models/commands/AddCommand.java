@@ -47,7 +47,7 @@ public class AddCommand extends APICommand {
 
         @Override
         public String getUserMessage() {
-            return "OK";
+            return "Success";
         }
     }
 }

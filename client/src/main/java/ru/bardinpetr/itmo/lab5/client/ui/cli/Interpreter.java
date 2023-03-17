@@ -14,10 +14,12 @@ import java.util.List;
 public class Interpreter {
     private final UIReceiver uiReceiver;
     private final CommandRegistry registryCommand;
+    private final UICommandInvoker invoker;
 
     public Interpreter(CommandRegistry registryCommand, UIReceiver uiReceiver) {
         this.registryCommand = registryCommand;
         this.uiReceiver = uiReceiver;
+        this.invoker = new UICommandInvoker(uiReceiver);
     }
 
     /**
@@ -30,15 +32,15 @@ public class Interpreter {
             var line = uiReceiver.nextLine();
             if (line == null) System.exit(0);
 
-            var userArgs = line.split("\\s+");
-            var command = (UICallableCommand) registryCommand.getCommand(userArgs[0]);
+            var userArgs = List.of(line.split("\\s+"));
+            var command = (UICallableCommand) registryCommand.getCommand(userArgs.get(0));
             if (command == null) {
                 uiReceiver.display("Command not found");
+                uiReceiver.interactSuggestion();
                 continue;
             }
 
-            command.executeWithArgs(List.of(userArgs));
-
+            invoker.invoke(command, userArgs);
             uiReceiver.interactSuggestion();
         }
     }
