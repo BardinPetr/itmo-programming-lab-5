@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ObjectScanner;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ParserException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 
@@ -12,17 +13,22 @@ public class CLIController implements UIReceiver {
     private final ConsolePrinter printer;
     private final ObjectScanner objectScanner;
     private final Scanner scanner;
+    private final boolean isRepeatable;
 
-    public CLIController(ConsolePrinter printer, InputStream inputStream) {
+
+    public CLIController(ConsolePrinter printer, InputStream inputStream, boolean isRepeatable) {
         this.scanner = new Scanner(inputStream);
         this.objectScanner = new ObjectScanner(printer, scanner);
         this.printer = printer;
+        this.isRepeatable = isRepeatable;
     }
 
     @Override
     public <T> T fill(Class<T> target, T defaultObject) {
         try {
-            return objectScanner.scan(target, defaultObject);
+            var resp = objectScanner.scan(target, defaultObject);
+            if ((!isRepeatable) & resp.countOfRepeat > 0) throw new NotRepeatableException();
+            return resp.getObject();
         } catch (ParserException e) {
             throw new RuntimeException("Parse exception: " + e.getMessage());
         }
