@@ -6,7 +6,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.decorator.ErrorHandlingCommandDecorator;
 import ru.bardinpetr.itmo.lab5.client.parser.APICommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.tui.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.tui.newThings.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 
 import java.util.Collection;
@@ -15,10 +15,12 @@ import java.util.Map;
 
 public class CommandRegistry {
 
-    private static CommandRegistry instance = null;
     private final Map<String, AbstractLocalCommand> commandMap = new HashMap<>();
+    private final APIClientReceiver api;
 
-    private CommandRegistry(APIClientReceiver api, UIReceiver ui) {
+    public CommandRegistry(APIClientReceiver api, UIReceiver ui) {
+        this.api = api;
+
         register(new ExitLocalCommand(ui));
         register(new HelpLocalCommand(ui));
         register(new UpdateAPILocalCommand(api, ui));
@@ -30,10 +32,14 @@ public class CommandRegistry {
 
     }
 
-    public static CommandRegistry getInstance(APIClientReceiver api, UIReceiver ui) {
-        if (instance == null)
-            instance = new CommandRegistry(api, ui);
-        return instance;
+    /**
+     * Create same command invoker with changed ui dependency
+     *
+     * @param otherUI ui receiver to be used
+     * @return this command registry with all commands and changed ui dependency
+     */
+    public CommandRegistry withUI(UIReceiver otherUI) {
+        return new CommandRegistry(api, otherUI);
     }
 
     /**
