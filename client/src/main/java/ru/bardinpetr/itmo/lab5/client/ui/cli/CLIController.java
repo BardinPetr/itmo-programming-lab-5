@@ -14,9 +14,9 @@ public class CLIController implements UIReceiver {
     private final Scanner scanner;
 
     public CLIController(ConsolePrinter printer, InputStream inputStream) {
-        this.objectScanner = new ObjectScanner(printer, new Scanner(inputStream));
-        this.printer = printer;
         this.scanner = new Scanner(inputStream);
+        this.objectScanner = new ObjectScanner(printer, scanner);
+        this.printer = printer;
     }
 
     @Override
