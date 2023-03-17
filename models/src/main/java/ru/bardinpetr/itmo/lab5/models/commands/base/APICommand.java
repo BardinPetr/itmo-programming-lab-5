@@ -9,7 +9,7 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
  * General class for all commands
  */
 @Data
-public abstract class Command {
+public abstract class APICommand {
     public abstract String getType();
 
     /**

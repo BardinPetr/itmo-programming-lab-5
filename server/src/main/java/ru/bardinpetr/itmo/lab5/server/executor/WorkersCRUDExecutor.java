@@ -2,24 +2,14 @@ package ru.bardinpetr.itmo.lab5.server.executor;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
-
-import java.util.Comparator;
 
 /**
  * Executor for resolving workers collection commands to DAO calls
  */
-public class WorkersDAOExecutor extends Executor {
-
-    private final IWorkerCollectionDAO dao;
-
-    public WorkersDAOExecutor(IWorkerCollectionDAO dao) {
-        this.dao = dao;
-        registerCRUD();
-        registerComplex();
-    }
-
-    private void registerCRUD() {
+public class WorkersCRUDExecutor extends Executor {
+    public WorkersCRUDExecutor(IWorkerCollectionDAO dao) {
         registerOperation(
                 InfoCommand.class,
                 req -> {
@@ -32,6 +22,20 @@ public class WorkersDAOExecutor extends Executor {
                 req -> {
                     var resp = req.createResponse();
                     resp.setResult(dao.readAll());
+                    return resp;
+                });
+        registerOperation(
+                GetWorkerCommand.class,
+                req -> {
+                    var resp = req.createResponse();
+                    resp.setWorker(dao.read(req.getId()));
+                    return resp;
+                });
+        registerOperation(
+                GetWorkerIdsCommand.class,
+                req -> {
+                    var resp = req.createResponse();
+                    resp.setResult(dao.getAllMapped(Worker::getId));
                     return resp;
                 });
         registerOperation(
@@ -60,45 +64,6 @@ public class WorkersDAOExecutor extends Executor {
         registerVoidOperation(
                 SaveCommand.class,
                 req -> dao.save()
-        );
-    }
-
-    private void registerComplex() {
-        registerVoidOperation(
-                AddIfMaxCommand.class,
-                req -> dao.addIfMax(req.element)
-        );
-        registerVoidOperation(
-                AddIfMinCommand.class,
-                req -> dao.addIfMin(req.element)
-        );
-        registerVoidOperation(
-                RemoveGreaterCommand.class,
-                req -> dao.removeIfGreater(req.element)
-        );
-        registerOperation(
-                PrintDescendingCommand.class,
-                req -> {
-                    var resp = req.createResponse();
-                    resp.setResult(dao.readAll(Comparator.reverseOrder()));
-                    return resp;
-                }
-        );
-        registerOperation(
-                UniqueOrganisationCommand.class,
-                req -> {
-                    var resp = req.createResponse();
-                    resp.setOrganizations(dao.getUniqueOrganizations());
-                    return resp;
-                }
-        );
-        registerOperation(
-                FilterLessPosCommand.class,
-                req -> {
-                    var resp = req.createResponse();
-                    resp.setResult(dao.filterLessThanPosition(req.position));
-                    return resp;
-                }
         );
     }
 }

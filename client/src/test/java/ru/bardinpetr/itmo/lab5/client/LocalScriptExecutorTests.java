@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.client.logic.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.data.*;
 
 import java.io.FileOutputStream;
@@ -59,7 +59,7 @@ public class LocalScriptExecutorTests {
 
     }
 
-    private void testSingleFile(String text, List<Command> result) throws IOException {
+    private void testSingleFile(String text, List<APICommand> result) throws IOException {
         String fileName = ordPath + "TestScript1.zb";
         createScript(fileName, text);
 
@@ -67,7 +67,7 @@ public class LocalScriptExecutorTests {
 
     }
 
-    private void executeScript(String fileName, List<Command> result) throws IOException {
+    private void executeScript(String fileName, List<APICommand> result) throws IOException {
 
         HashMap<String, Object> objectMap = new HashMap<>();
         objectMap.put("fileName", fileName);
@@ -76,7 +76,7 @@ public class LocalScriptExecutorTests {
                 objectMap, LocalExecuteScriptCommand.class);
 
         ScriptExecutor executor = new ScriptExecutor();
-        var respond = (ServerExecuteScriptCommand) executor.execute(cmd).getPayload();
+        var respond = (ExecuteScriptCommand) executor.execute(cmd).getPayload();
 
         assertEquals(result, respond.getCommands());
 
@@ -222,7 +222,7 @@ public class LocalScriptExecutorTests {
                     new ArrayList<>() {{
                         add(new ClearCommand());
 
-                        List<Command> commands = new ArrayList<>() {{
+                        List<APICommand> commands = new ArrayList<>() {{
                             add(new InfoCommand());
                             var t = new AddCommand();
                             t.setElement(createWorker());
@@ -253,7 +253,7 @@ public class LocalScriptExecutorTests {
                     new ArrayList<>() {{
                         add(new ClearCommand());
 
-                        List<Command> commands = new ArrayList<>() {{
+                        List<APICommand> commands = new ArrayList<>() {{
                             add(new InfoCommand());
                             var t = new AddCommand();
                             t.setElement(createWorker());

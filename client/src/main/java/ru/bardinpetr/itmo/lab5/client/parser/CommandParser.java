@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.newThings.ObjectScanner;
 import ru.bardinpetr.itmo.lab5.client.tui.Printer;
 import ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.HashMap;
@@ -22,8 +22,7 @@ public class CommandParser {
     private Printer viewer;
     private ObjectScanner objectScanner;
 
-
-    public CommandParser(HashMap<String, Command> cmdMap, ObjectMapper mapper, Scanner scanner, Printer viewer, Runnable callback) {
+    public CommandParser(HashMap<String, APICommand> cmdMap, ObjectMapper mapper, Scanner scanner, Printer viewer, Runnable callback) {
         this.cmdMap = cmdMap;
         this.mapper = mapper;
         this.viewer = viewer;
@@ -39,7 +38,7 @@ public class CommandParser {
      * @return Command with all completed fields
      * @throws ParserException Exception can be thrown during parsing type of validation
      */
-    public Command parse() throws ParserException {
+    public APICommand parse() throws ParserException {
         ValueDeserializer valueDes = new ValueDeserializer();
 
         String[] userArgs = scanner.nextLine().split(" ");

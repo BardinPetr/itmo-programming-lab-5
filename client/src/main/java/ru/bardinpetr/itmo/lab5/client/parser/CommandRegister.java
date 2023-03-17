@@ -3,9 +3,10 @@ package ru.bardinpetr.itmo.lab5.client.parser;
 import ru.bardinpetr.itmo.lab5.client.tui.Printer;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
-import ru.bardinpetr.itmo.lab5.models.commands.base.Command;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Scanner;
  */
 @Deprecated
 public class CommandRegister {
-    private final Command[] cmdList = new Command[]{
+    private static final List<APICommand> cmdList = List.of(
             new AddCommand(),
             new AddIfMaxCommand(),
             new AddIfMinCommand(),
@@ -30,17 +31,19 @@ public class CommandRegister {
             new SaveCommand(),
             new ShowCommand(),
             new UpdateCommand()
-    };
-    private final HashMap<String, Command> map = new HashMap<>();
+    );
 
-    public CommandRegister() {
-        for (Command i : cmdList) {
-            addCommand(i);
-        }
+    private static final HashMap<String, APICommand> map = new HashMap<>();
+
+    private CommandRegister() {
     }
 
-    private void addCommand(Command cmd) {
-        map.put(cmd.getType(), cmd);
+    static {
+        cmdList.forEach(cmd -> map.put(cmd.getType(), cmd));
+    }
+
+    public static APICommand getCommand(String name) {
+        return map.get(name);
     }
 
     /**

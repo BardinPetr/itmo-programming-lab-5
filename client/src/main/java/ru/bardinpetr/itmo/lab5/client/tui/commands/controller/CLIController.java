@@ -11,6 +11,12 @@ import ru.bardinpetr.itmo.lab5.client.tui.newThings.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.tui.newThings.ConsoleReader;
 import ru.bardinpetr.itmo.lab5.client.tui.newThings.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.ServerExecuteScriptCommand.ExecuteScriptCommandResponse;
+import ru.bardinpetr.itmo.lab5.client.tui.ICommandIOCallback;
+import ru.bardinpetr.itmo.lab5.client.tui.View;
+import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
+import ru.bardinpetr.itmo.lab5.models.commands.ExecuteScriptCommand.ExecuteScriptCommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.LocalExecuteScriptCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
 
@@ -27,26 +33,7 @@ public class CLIController{
     public CLIController(Printer viewer, InputStream inputStream) {
         uiReceiver = new CLIUtilityController();
     }
-    /**
-     * method for script output
-     *
-     * @param resp2 script response
-     */
-    @Deprecated
-//    private void runScript(Response<ICommandResponse> resp2) {
-//        if (resp2.isSuccess()) {
-//            ExecuteScriptCommandResponse payload2 = (ExecuteScriptCommandResponse) resp2.getPayload();
-//            payload2.getResult().forEach(
-//                    i -> {
-//                        if (i.getPayload() != null) {
-//                            viewer.show(i.getPayload().getUserMessage());
-//                        }
-//                    }); // print script command responses
-//        } else {
-//            viewer.show("Error: " + resp2.getText());
-//        }
-//
-//    }
+
 
     /**
      * method for starting program execution
