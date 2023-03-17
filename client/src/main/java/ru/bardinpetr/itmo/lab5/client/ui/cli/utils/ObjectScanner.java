@@ -67,40 +67,39 @@ public class ObjectScanner {
 
             Object curDefaultVar;
             printer.display(cur.getPromptMsg());
-            if (defaultObjectMap != null){
+            if (defaultObjectMap != null) {
                 curDefaultVar = defaultObjectMap.get(cur.getName());
 
                 printer.displayInLine(String.format("Default is \"%s\". ", curDefaultVar.toString()));
                 printer.display("Press N to enter a new value, or press Enter to continue with default one.");
                 String resp = scaner.nextLine();
-                if (resp.equals("")){
+                if (resp.equals("")) {
                     objectMap.put(cur.getName(), curDefaultVar);
                     printer.display("Default value was used");
                     continue;
                 }
-                if (!resp.equals("N")){
+                if (!resp.equals("N")) {
                     printer.display("Invalid interact");
                     i--;
                     continue;
                 }
                 printer.display(cur.getPromptMsg());
-            }
-            else {
+            } else {
                 curDefaultVar = null;
             }
 
-            while (enterField(cur, objectMap, curDefaultVar) == 1){}
+            while (enterField(cur, objectMap, curDefaultVar) == 1) {
+            }
         }
         return mapper.convertValue(objectMap, kClass);
     }
 
     /**
-     *
-     * @param cur current field
-     * @param objectMap Map of building object
+     * @param cur           current field
+     * @param objectMap     Map of building object
      * @param curDefaultVar default value of current value
+     * @param <T>           type of field
      * @return completed value field
-     * @param <T> type of field
      * @throws ParserException
      */
     private <T> int enterField(FieldWithDesc<T> cur, Map<String, Object> objectMap, Object curDefaultVar) throws ParserException {

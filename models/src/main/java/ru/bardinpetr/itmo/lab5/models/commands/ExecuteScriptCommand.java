@@ -41,9 +41,9 @@ public class ExecuteScriptCommand extends APICommand {
         public String getUserMessage() {
             String respond = "";
             for (var i : getResult()) {
-                                respond += i.getPayload().getUserMessage() + "\n";
-                        }
-                        return respond;
-                }
+                respond += i.getPayload().getUserMessage() + "\n";
+            }
+            return respond;
         }
+    }
 }

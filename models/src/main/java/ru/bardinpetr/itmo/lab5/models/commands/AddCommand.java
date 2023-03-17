@@ -44,6 +44,7 @@ public class AddCommand extends APICommand {
     @Setter
     public static class AddCommandResponse implements ICommandResponse {
         private Integer id;
+
         @Override
         public String getUserMessage() {
             return "OK";

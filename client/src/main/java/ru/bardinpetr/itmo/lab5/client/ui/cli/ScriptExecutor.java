@@ -19,17 +19,19 @@ public class ScriptExecutor {
 
     public void process(String path) throws FileAccessException {
         if (registryCommand == null) throw new RuntimeException("No command registry");
+
         FileIOController fileIOController = new FileIOController(path);
         var scanner = new Scanner(fileIOController.openReadStream());
 
         UIReceiver uiReceiver = new CLIController(ConsolePrinter.getStub(), scanner);
         var currentRegistry = registryCommand.withUI(uiReceiver);
-        while (scanner.hasNextLine()) {
-            String[] userArgs = scanner.nextLine().split("\s+");
-            String commandName = userArgs[0];
 
-            var command = (UILocalCommand) currentRegistry.getCommand(commandName);
+        while (scanner.hasNextLine()) {
+            var userArgs = scanner.nextLine().split("\\s+");
+            var command = (UILocalCommand) currentRegistry.getCommand(userArgs[0]);
             command.executeWithArgs(List.of(userArgs));
         }
     }
+
+
 }

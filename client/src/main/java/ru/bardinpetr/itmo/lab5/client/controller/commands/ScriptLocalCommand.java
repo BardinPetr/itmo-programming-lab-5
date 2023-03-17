@@ -12,11 +12,11 @@ import java.util.Map;
 
 
 public class ScriptLocalCommand extends APILocalCommand {
-    private ScriptExecutor se;
+    private final ScriptExecutor scriptExecutor;
 
-    public ScriptLocalCommand(APIClientReceiver api, UIReceiver ui, ScriptExecutor se) {
+    public ScriptLocalCommand(APIClientReceiver api, UIReceiver ui, ScriptExecutor scriptExecutor) {
         super(api, ui);
-        this.se = se;
+        this.scriptExecutor = scriptExecutor;
     }
 
     @Override
@@ -36,17 +36,15 @@ public class ScriptLocalCommand extends APILocalCommand {
 
     @Override
     public CommandResponse execute(String cmdName, Map<String, Object> args) {
-        var path = args.get("fileName");
+        String path = (String) args.get("fileName");
         if (path == null)
             throw new RuntimeException("No script file passed");
 
-
         try {
-            se.process((String) path);
+            scriptExecutor.process(path);
         } catch (FileAccessException e) {
             throw new RuntimeException("Can't get access to script");
         }
-
-        return null;
+        return CommandResponse.ok();
     }
 }

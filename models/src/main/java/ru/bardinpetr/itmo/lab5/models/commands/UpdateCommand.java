@@ -21,20 +21,24 @@ public class UpdateCommand extends APICommand {
     public Integer id;
     @NonNull
     public Worker element;
+
     @Override
     public String getType() {
         return "update";
     }
+
     @Override
     public ValidationResponse validate() {
         return WorkerValidation.validateAll(element);
     }
+
     @Override
     public Field[] getInlineArgs() {
         return new Field[]{
                 new Field("id", Integer.class)
         };
     }
+
     @Override
     public Field[] getInteractArgs() {
         return new Field[]{

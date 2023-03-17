@@ -12,7 +12,7 @@ import java.util.List;
  * Class for console UI
  */
 public class Interpreter {
-    final UIReceiver uiReceiver;
+    private final UIReceiver uiReceiver;
     private final CommandRegistry registryCommand;
 
     public Interpreter(CommandRegistry registryCommand, UIReceiver uiReceiver) {
@@ -27,10 +27,8 @@ public class Interpreter {
         uiReceiver.display(RussianText.get(TextKeys.GREEETING));
         uiReceiver.display("> ");
         while (uiReceiver.hasNextLine()) {
-            String[] userArgs = uiReceiver.nextLine().split(" ");
-            String commandName = userArgs[0];
-
-            var command = (UILocalCommand) registryCommand.getCommand(commandName);
+            var userArgs = uiReceiver.nextLine().split("\\s+");
+            var command = (UILocalCommand) registryCommand.getCommand(userArgs[0]);
             command.executeWithArgs(List.of(userArgs));
         }
     }
