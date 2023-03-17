@@ -10,4 +10,9 @@ public class GeneralAPILocalCommand extends APILocalCommand {
     public GeneralAPILocalCommand(APIClientReceiver api, UIReceiver ui) {
         super(api, ui);
     }
+
+    @Override
+    public String getExternalName() {
+        return null;
+    }
 }

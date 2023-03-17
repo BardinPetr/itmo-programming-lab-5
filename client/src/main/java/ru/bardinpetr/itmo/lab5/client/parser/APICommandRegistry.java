@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.parser;
 
 import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsolePrinter;
+import ru.bardinpetr.itmo.lab5.client.tui.cli.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.*;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
@@ -12,34 +13,37 @@ import java.util.Scanner;
 /**
  * Class for commands registration
  */
-@Deprecated
-public class CommandRegister {
-    private static final List<APICommand> cmdList = List.of(
+public class APICommandRegistry {
+    public static final List<APICommand> cmdList = List.of(
             new AddCommand(),
             new AddIfMaxCommand(),
             new AddIfMinCommand(),
             new ClearCommand(),
-            new LocalExecuteScriptCommand(),
-            new ExitCommand(),
             new FilterLessPosCommand(),
-            new HelpCommand(),
             new InfoCommand(),
             new PrintDescendingCommand(),
             new UniqueOrganisationCommand(),
             new RemoveByIdCommand(),
             new RemoveGreaterCommand(),
             new SaveCommand(),
-            new ShowCommand(),
-            new UpdateCommand()
+            new ShowCommand()
     );
 
     private static final HashMap<String, APICommand> map = new HashMap<>();
 
+    private APICommandRegistry() {
+    }
 
     static {
         cmdList.forEach(cmd -> map.put(cmd.getType(), cmd));
     }
 
+    /**
+     * Get API command object for name
+     *
+     * @param name command name
+     * @return command object
+     */
     public static APICommand getCommand(String name) {
         return map.get(name);
     }
@@ -51,7 +55,7 @@ public class CommandRegister {
      * @param printer printer for parser
      * @return command parser
      */
-    public CommandParser getParser(Scanner scanner, ConsolePrinter printer, Runnable callback) {
-        return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, printer, callback);
+    public static CommandParser getParser(Scanner scanner, ConsolePrinter viewer, Runnable callback) {
+        return new CommandParser(map, ObjectMapperFactory.createMapper(), scanner, viewer, callback);
     }
 }

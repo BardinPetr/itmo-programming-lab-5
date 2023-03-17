@@ -1,16 +1,17 @@
-package ru.bardinpetr.itmo.lab5.server.filedb;
+package ru.bardinpetr.itmo.lab5.server.db.filedb;
 
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException;
 import ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService;
 import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
+import ru.bardinpetr.itmo.lab5.server.db.DBController;
 
 /**
  * Database main controller.
  * Stores local collection T and provides interface for storing and loading it to the file.
  */
-public class FileDBController<T> {
+public class FileDBController<T> implements DBController {
     private final FileStorageController<T> storage;
     private final Class<T> baseCollectionClass;
     private final FileIOController fileIO;

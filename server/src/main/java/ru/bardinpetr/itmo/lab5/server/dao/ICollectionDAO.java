@@ -12,7 +12,7 @@ import java.util.function.Predicate;
  * @param <K> Type of primary key
  * @param <V> Entity type
  */
-public interface ICollectionFilteredDAO<K, V extends IKeyedEntity<K>> extends ICollectionBaseDAO<K, V> {
+public interface ICollectionDAO<K, V extends IKeyedEntity<K>> extends ICollectionCRUDDAO<K, V> {
 
     /**
      * Return all items from collection matching predicate

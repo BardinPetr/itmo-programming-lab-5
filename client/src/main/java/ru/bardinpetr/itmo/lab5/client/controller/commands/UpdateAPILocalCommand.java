@@ -3,8 +3,8 @@ package ru.bardinpetr.itmo.lab5.client.controller.commands;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
-import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
 import ru.bardinpetr.itmo.lab5.client.tui.exception.NoSuchDataException;
+import ru.bardinpetr.itmo.lab5.client.tui.newThings.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.GetWorkerCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.GetWorkerIdsCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand;
@@ -21,7 +21,12 @@ public class UpdateAPILocalCommand extends APILocalCommand {
     }
 
     @Override
-    protected APICommand retrieveAPICommand(String name) {
+    public String getExternalName() {
+        return "update";
+    }
+
+    @Override
+    protected APICommand retriveAPICommand(String name) {
         return new UpdateCommand();
     }
 

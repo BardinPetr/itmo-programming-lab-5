@@ -6,7 +6,7 @@ import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService;
 import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
-import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
+import ru.bardinpetr.itmo.lab5.server.db.filedb.FileDBController;
 import ru.bardinpetr.itmo.lab5.server.utils.TestEntity;
 import ru.bardinpetr.itmo.lab5.server.utils.TestEntityCollection;
 

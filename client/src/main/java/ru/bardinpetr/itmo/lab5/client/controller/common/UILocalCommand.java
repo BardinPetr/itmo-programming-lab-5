@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.controller.common;
 
 import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
+import ru.bardinpetr.itmo.lab5.client.tui.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
@@ -19,13 +20,15 @@ public abstract class UILocalCommand extends AbstractLocalCommand {
         uiReceiver = receiver;
     }
 
+
+    public abstract String getExternalName();
+
     public List<Field> getCommandInlineArgs(String cmdName) {
         return List.of();
     }
 
     protected List<Field> getFullInlineArgs(String cmdName) {
         var data = new ArrayList<Field>();
-        // TODO: fix cast
         data.add(new Field(NAME_ARG, String.class));
         data.addAll(getCommandInlineArgs(cmdName));
         return data;
@@ -43,7 +46,7 @@ public abstract class UILocalCommand extends AbstractLocalCommand {
         var objectMap = new HashMap<String, Object>();
         try {
             for (int i = 0; i < args.size(); i++) {
-                // TODO fix cast
+                // TODO: handle exceptions & retries
                 objectMap.put(
                         defs.get(i).getName(),
                         valueDes.deserialize(defs.get(i).getValueClass(), args.get(i))
@@ -57,7 +60,7 @@ public abstract class UILocalCommand extends AbstractLocalCommand {
     }
 
     protected void outputResponse(CommandResponse result) {
-        // TODO: Add payload print artem
+        // TODO: Add payload print
         if (result.isSuccess())
             uiReceiver.ok();
         else

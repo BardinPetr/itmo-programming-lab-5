@@ -5,8 +5,8 @@ import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 import ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
-import ru.bardinpetr.itmo.lab5.server.dao.ICollectionFilteredDAO;
-import ru.bardinpetr.itmo.lab5.server.filedb.FileDBController;
+import ru.bardinpetr.itmo.lab5.server.dao.ICollectionDAO;
+import ru.bardinpetr.itmo.lab5.server.db.filedb.FileDBController;
 
 import java.util.Comparator;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.stream.Stream;
  * @param <K> Key for identifying objects
  * @param <V> Objects in collection
  */
-public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> implements ICollectionFilteredDAO<K, V> {
+public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> implements ICollectionDAO<K, V> {
     private final FileDBController<? extends ISetCollection<K, V>> controller;
 
     public FileDBDAO(FileDBController<? extends ISetCollection<K, V>> controller) {

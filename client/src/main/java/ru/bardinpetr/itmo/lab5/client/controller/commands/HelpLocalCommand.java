@@ -16,6 +16,11 @@ public class HelpLocalCommand extends UILocalCommand {
     }
 
     @Override
+    public String getExternalName() {
+        return "help";
+    }
+
+    @Override
     public CommandResponse execute(String cmdName, Map<String, Object> args) {
         uiReceiver.display(RussianText.get(TextKeys.HELP));
         return CommandResponse.ok();

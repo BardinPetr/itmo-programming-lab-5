@@ -3,6 +3,8 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.parser.APICommandRegistry;
+import ru.bardinpetr.itmo.lab5.client.tui.UIReceiver;
 import ru.bardinpetr.itmo.lab5.client.parser.CommandRegister;
 import ru.bardinpetr.itmo.lab5.client.parser.error.ParserException;
 import ru.bardinpetr.itmo.lab5.client.tui.cli.UIReceiver;
@@ -26,7 +28,7 @@ public abstract class APILocalCommand extends UILocalCommand {
     }
 
     protected APICommand retrieveAPICommand(String name) {
-        var base = CommandRegister.getCommand(name);
+        var base = APICommandRegistry.getCommand(name);
         if (base == null)
             throw new RuntimeException("No such command");
         return base;
@@ -37,7 +39,7 @@ public abstract class APILocalCommand extends UILocalCommand {
         return List.of(retrieveAPICommand(cmdName).getInlineArgs());
     }
 
-    protected APICommand prepareAPIMessage(String name, Map<String, Object> args) throws ParserException, NoSuchDataException {
+    protected APICommand prepareAPIMessage(String name, Map<String, Object> args) {
         var base = retrieveAPICommand(name);
 
         var objectMap = new HashMap<>(args);
@@ -49,12 +51,7 @@ public abstract class APILocalCommand extends UILocalCommand {
 
     @Override
     public CommandResponse execute(String cmdName, Map<String, Object> args) {
-        APICommand cmd;
-        try {
-            cmd = prepareAPIMessage(cmdName, args);
-        } catch (Exception e) {
-            throw new RuntimeException("Command fields not built", e);
-        }
+        var cmd = prepareAPIMessage(cmdName, args);
         var serverResp = apiClientReceiver.call(cmd);
         // TODO: insert payload to CommandResponse
         var res = new CommandResponse(serverResp.isSuccess(), serverResp.getText());
