@@ -4,6 +4,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ScriptRecursionController;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
@@ -51,7 +52,8 @@ public class ScriptExecutor {
 
         UIReceiver uiReceiver = new CLIController(
                 ConsolePrinter.getStub(),
-                fileIOController.openReadStream()
+                fileIOController.openReadStream(),
+                false
         );
 
         var currentRegistry = commandRegistry.withUI(uiReceiver);
@@ -68,7 +70,7 @@ public class ScriptExecutor {
 
             try {
                 command.executeWithArgs(List.of(userArgs));
-            } catch (ScriptException ex) {
+            } catch (ScriptException | NotRepeatableException ex) {
                 recursionController.clear();
                 throw ex;
             }

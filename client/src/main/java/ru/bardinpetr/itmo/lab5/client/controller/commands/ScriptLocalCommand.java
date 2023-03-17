@@ -4,6 +4,7 @@ import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
@@ -57,6 +58,8 @@ public class ScriptLocalCommand extends APILocalCommand {
             scriptExecutor.process(path);
         } catch (FileAccessException e) {
             throw new RuntimeException("Can't get access to script");
+        } catch (NotRepeatableException e) {
+            throw new RuntimeException("Invalid Script");
         }
 
         return CommandResponse.ok();

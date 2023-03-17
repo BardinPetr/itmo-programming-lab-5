@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
 import ru.bardinpetr.itmo.lab5.client.api.commands.DescriptionHolder;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ParserException;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
@@ -38,10 +39,10 @@ public class ObjectScanner {
      * @param <T>    Type of value
      * @return object if required type
      */
-    private <T> T interactValue(Class<T> kClass, T defaultValue) throws ParserException, RuntimeException {
+    private <T> ScannerRespond<T> interactValue(Class<T> kClass, T defaultValue) throws ParserException, RuntimeException {
         try {
             if (!dataDescription.containsKey(kClass))
-                return mapper.convertValue(scan(), kClass);
+                return new ScannerRespond<>(mapper.convertValue(scan(), kClass), 0);
             else
                 return scan(kClass, defaultValue);
         } catch (IllegalArgumentException e) {
@@ -56,12 +57,14 @@ public class ObjectScanner {
      * @param <T>    class of scanned object
      * @return fulfilled object
      */
-    public <T> T scan(Class<T> kClass, T defaultObject) throws ParserException, NoSuchElementException {
+    public <T> ScannerRespond<T> scan(Class<T> kClass, T defaultObject) throws ParserException, NoSuchElementException {
         var defaultObjectMap = mapper.convertValue(defaultObject, HashMap.class);
 
         Map<String, Object> objectMap = new HashMap<>();
         List<FieldWithDesc<?>> fields = dataDescription.get(kClass);
         if (fields == null) throw new ParserException(kClass.getName());
+
+        int countOfRepeat = 0;
 
         for (int i = 0; i < fields.size(); i++) {
             var cur = fields.get(i);
@@ -95,9 +98,11 @@ public class ObjectScanner {
             }
 
             while (enterField(cur, objectMap, curDefaultVar) == 1) {
+                if (!scaner.hasNextLine()) throw new ParserException("Not enough lines in script");
+                countOfRepeat++;
             }
         }
-        return mapper.convertValue(objectMap, kClass);
+        return new ScannerRespond<>(mapper.convertValue(objectMap, kClass), countOfRepeat);
     }
 
     /**
@@ -111,6 +116,7 @@ public class ObjectScanner {
     private <T> int enterField(FieldWithDesc<T> cur, Map<String, Object> objectMap, Object curDefaultVar) throws ParserException {
         if (cur.isNullAble()) {
             printer.display("If object does not exist press Enter. To continue interaction enter C");
+            if (!scaner.hasNextLine()) return 1;
             String answer = scaner.nextLine();
             if (answer.equals("")) {
                 objectMap.put(cur.getName(), null);
@@ -129,9 +135,10 @@ public class ObjectScanner {
         Object value = null;
         try {
             var cls = cur.getValueClass();
-            value = interactValue(cls, mapper.convertValue(curDefaultVar, cls));
+            value = interactValue(cls, mapper.convertValue(curDefaultVar, cls)).object;
         } catch (ParserException ex) {
             printer.display("Invalid argument");
+            printer.display(cur.getPromptMsg());
             return 1;
         } catch (RuntimeException ex) {
             throw new ParserException(ex.getMessage());
@@ -152,5 +159,11 @@ public class ObjectScanner {
             return 1;
         }
         return 0;
+    }
+
+    @Data
+    public static class ScannerRespond<T> {
+        public final T object;
+        public final int countOfRepeat;
     }
 }
