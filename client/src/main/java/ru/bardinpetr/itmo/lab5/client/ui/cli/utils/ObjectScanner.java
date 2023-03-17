@@ -70,8 +70,13 @@ public class ObjectScanner {
             printer.display(cur.getPromptMsg());
             if (defaultObjectMap != null) {
                 curDefaultVar = defaultObjectMap.get(cur.getName());
+                String str;
+                if (curDefaultVar != null)
+                    str = curDefaultVar.toString();
+                else
+                    str = "null";
 
-                printer.displayInLine(String.format("Default is \"%s\". ", curDefaultVar.toString()));
+                printer.displayInLine(String.format("Default is \"%s\". ", str));
                 printer.display("Press N to enter a new value, or press Enter to continue with default one.");
                 String resp = scaner.nextLine();
                 if (resp.equals("")) {
@@ -113,9 +118,11 @@ public class ObjectScanner {
             }
             if (!answer.equals("C")) {
                 printer.display("Invalid argument");
+                printer.display(cur.getPromptMsg());
                 return 1;
             }
             printer.display("Continue interaction");
+            printer.display(cur.getPromptMsg());
         }
 
 

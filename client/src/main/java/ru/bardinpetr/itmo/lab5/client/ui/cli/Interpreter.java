@@ -25,7 +25,7 @@ public class Interpreter {
      */
     public void run() {
         uiReceiver.display(RussianText.get(TextKeys.GREEETING));
-        uiReceiver.display("> ");
+        uiReceiver.interactSuggestion();
         while (uiReceiver.hasNextLine()) {
             var line = uiReceiver.nextLine();
             if (line == null) System.exit(0);
@@ -38,6 +38,8 @@ public class Interpreter {
             }
 
             command.executeWithArgs(List.of(userArgs));
+
+            uiReceiver.interactSuggestion();
         }
     }
 }

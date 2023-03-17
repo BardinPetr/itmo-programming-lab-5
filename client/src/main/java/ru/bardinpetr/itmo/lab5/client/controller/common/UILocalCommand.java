@@ -59,10 +59,10 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
     }
 
     protected void outputResponse(CommandResponse result) {
-        // TODO: Add payload print
-        if (result.isSuccess())
-            uiReceiver.ok();
-        else
+        if (result.isSuccess()) {
+            if (result.payload() != null) uiReceiver.display(result.payload().getUserMessage());
+            else uiReceiver.ok();
+        } else
             uiReceiver.error(result.message());
     }
 
