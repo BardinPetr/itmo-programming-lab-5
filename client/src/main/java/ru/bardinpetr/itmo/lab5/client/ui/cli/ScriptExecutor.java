@@ -70,7 +70,9 @@ public class ScriptExecutor {
                 throw new RuntimeException("Command not found");
 
             try {
-                invoker.invoke(command, userArgs);
+                var successful = invoker.invoke(command, userArgs);
+                if (!successful)
+                    throw new ScriptException("failed");
             } catch (ScriptException ex) {
                 recursionController.leave(path);
                 if (recursionController.getDepth() == 0)

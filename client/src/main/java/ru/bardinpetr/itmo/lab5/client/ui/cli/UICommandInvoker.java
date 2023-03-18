@@ -23,9 +23,10 @@ public class UICommandInvoker {
      *
      * @param command command object
      * @param args    command argument from CLI
+     * @return true if command succeeded
      * @throws ScriptException this exception is passed to the root of nested scripts and only there should be handled
      */
-    public void invoke(UICallableCommand command, List<String> args) throws ScriptException {
+    public boolean invoke(UICallableCommand command, List<String> args) throws ScriptException {
         CommandResponse resp;
         try {
             resp = command.executeWithArgs(args);
@@ -40,6 +41,8 @@ public class UICommandInvoker {
             print(args.get(0), resp);
         else
             print(null, resp);
+
+        return resp.isSuccess();
     }
 
     /**
@@ -61,7 +64,7 @@ public class UICommandInvoker {
                 screenUIReceiver.ok();
             }
         } else {
-            screenUIReceiver.error(result.message());
+            screenUIReceiver.error("[cmd: %s] %s".formatted(caller == null ? "" : caller, result.message()));
         }
     }
 }
