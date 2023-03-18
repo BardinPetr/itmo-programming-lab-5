@@ -3,7 +3,7 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 import java.util.List;
 
 /**
- *
+ * Local command that can be executed from UI
  */
 public interface UICallableCommand {
 

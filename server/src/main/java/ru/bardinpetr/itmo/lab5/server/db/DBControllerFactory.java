@@ -2,6 +2,9 @@ package ru.bardinpetr.itmo.lab5.server.db;
 
 import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 
+/**
+ * Interface for DB controller factories
+ */
 public interface DBControllerFactory {
     /**
      * Create DBController

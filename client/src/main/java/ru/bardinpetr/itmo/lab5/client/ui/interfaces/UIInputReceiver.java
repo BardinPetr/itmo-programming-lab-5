@@ -1,5 +1,8 @@
 package ru.bardinpetr.itmo.lab5.client.ui.interfaces;
 
+/**
+ * Interface for communication with UI for entering information
+ */
 public interface UIInputReceiver {
 
     /**

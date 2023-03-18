@@ -1,5 +1,8 @@
 package ru.bardinpetr.itmo.lab5.client.ui.interfaces;
 
+/**
+ * Interface for communication with UI for entering information and displaying data
+ */
 public interface UIReceiver extends UIInputReceiver {
     /**
      * print text on screen

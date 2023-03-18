@@ -12,6 +12,9 @@ import ru.bardinpetr.itmo.lab5.server.executor.WorkersSpecialExecutor;
 
 import java.nio.file.Path;
 
+/**
+ * Server main controller
+ */
 public class MainExecutor extends Executor {
 
     public MainExecutor(Path dbFile) {

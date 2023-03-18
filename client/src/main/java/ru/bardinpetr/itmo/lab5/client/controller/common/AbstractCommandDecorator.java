@@ -2,6 +2,9 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 
 import java.util.Map;
 
+/**
+ * Base decorator for commands
+ */
 public class AbstractCommandDecorator extends AbstractLocalCommand {
     protected final AbstractLocalCommand decoratee;
 

@@ -7,6 +7,9 @@ import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 
 import java.util.List;
 
+/**
+ * Class for running local commands in UI and parsing their return values and handle errors
+ */
 public class UICommandInvoker {
 
     private final UIReceiver screenUIReceiver;
