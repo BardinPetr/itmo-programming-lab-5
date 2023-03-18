@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Class for commands registration
+ * Class for storing information on available APICommand
  */
 public class APICommandRegistry {
     public static final List<APICommand> cmdList = List.of(

@@ -12,6 +12,9 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import java.util.Map;
 
 
+/**
+ * Worker update command
+ */
 public class UpdateLocalCommand extends APILocalCommand {
 
     public UpdateLocalCommand(APIClientReceiver api, UIReceiver ui) {
@@ -28,6 +31,13 @@ public class UpdateLocalCommand extends APILocalCommand {
         return new UpdateCommand();
     }
 
+    /**
+     * Builds update command with checks of ID and with use of default values
+     *
+     * @param name command name
+     * @param args arguments
+     * @return UpdateCommand
+     */
     @Override
     protected APICommand prepareAPIMessage(String name, Map<String, Object> args) {
         var id = (Integer) args.get("id");

@@ -23,7 +23,7 @@ public class Interpreter {
     }
 
     /**
-     * method for starting program execution
+     * Get commands from CLI and execute them
      */
     public void run() {
         uiReceiver.display(RussianText.get(TextKeys.GREEETING));

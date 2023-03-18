@@ -7,8 +7,10 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * Class for all commands that can be triggered from UI and have a receiver to communicate with the UI in real time
+ */
 public abstract class UILocalCommand extends AbstractLocalCommand implements UICallableCommand {
     public static final String NAME_ARG = "cmdName";
     protected final UIReceiver uiReceiver;
@@ -19,13 +21,25 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
         uiReceiver = receiver;
     }
 
+    /**
+     * @return get name which should identify command on user input or null if not applicable
+     */
     public abstract String getExternalName();
 
+    /**
+     * Inline arguments for calling command from TUI
+     *
+     * @param cmdName command name if command realization depends
+     * @return list of fileds descriptions
+     */
     public List<Field> getCommandInlineArgs(String cmdName) {
         return List.of();
     }
 
-    protected List<Field> getFullInlineArgs(String cmdName) {
+    /**
+     * Like getCommandInlineArgs but have NAME_ARG as argument #0.
+     */
+    private List<Field> getFullInlineArgs(String cmdName) {
         var data = new ArrayList<Field>();
         data.add(new Field<>(NAME_ARG, String.class));
         var args = getCommandInlineArgs(cmdName);
@@ -33,6 +47,12 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
         return data;
     }
 
+    /**
+     * Parses arguments according to field descriptions of command base object
+     *
+     * @param args list of arguments including command name as args[0]
+     * @return command execution result
+     */
     @Override
     public CommandResponse executeWithArgs(List<String> args) {
         if (args.size() == 0)
@@ -55,10 +75,5 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
         }
 
         return execute((String) objectMap.get(NAME_ARG), objectMap);
-    }
-
-    @Override
-    public CommandResponse execute(String cmdName, Map<String, Object> args) {
-        return CommandResponse.ok();
     }
 }

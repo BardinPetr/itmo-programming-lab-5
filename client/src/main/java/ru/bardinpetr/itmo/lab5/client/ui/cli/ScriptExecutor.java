@@ -36,7 +36,9 @@ public class ScriptExecutor {
     }
 
     /**
-     * Open and execute all commands in file with specified path
+     * Open and execute all commands in file with specified path.
+     * If recursion occurred or script command was invalid, the exception is passed to first process() in the chain
+     * meanwhile stopping the processing of all nested scripts, at root ScriptRecursionRootException should be handled
      *
      * @param path file path
      * @throws FileAccessException          if script could not be read

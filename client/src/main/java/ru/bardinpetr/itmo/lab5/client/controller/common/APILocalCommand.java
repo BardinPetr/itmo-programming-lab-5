@@ -4,7 +4,6 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
@@ -14,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Base class for all local commands that have API call as a result
+ */
 public abstract class APILocalCommand extends UILocalCommand {
 
     protected final APIClientReceiver apiClientReceiver;
@@ -25,6 +27,12 @@ public abstract class APILocalCommand extends UILocalCommand {
         this.mapper = ObjectMapperFactory.createMapper();
     }
 
+    /**
+     * Get api message object by command name from underling APICommand
+     *
+     * @param name api command name
+     * @return api message object
+     */
     protected APICommand retrieveAPICommand(String name) {
         var base = APICommandRegistry.getCommand(name);
         if (base == null)
@@ -32,11 +40,23 @@ public abstract class APILocalCommand extends UILocalCommand {
         return base;
     }
 
+    /**
+     * Get inline args from underling APICommand
+     *
+     * @param cmdName command name if command realization depends
+     */
     @Override
     public List<Field> getCommandInlineArgs(String cmdName) {
         return List.of(retrieveAPICommand(cmdName).getInlineArgs());
     }
 
+    /**
+     * Build APICommand object from "inline arguments" and ask via UI for "interact args"
+     *
+     * @param name command name
+     * @param args arguments
+     * @return build APICommand object filled with request data
+     */
     protected APICommand prepareAPIMessage(String name, Map<String, Object> args) {
         var base = retrieveAPICommand(name);
 
@@ -47,6 +67,13 @@ public abstract class APILocalCommand extends UILocalCommand {
         return mapper.convertValue(objectMap, base.getClass());
     }
 
+    /**
+     * Build APICommand with prepareAPIMessage and call server
+     *
+     * @param cmdName command handler/name - used for commands with multiple realizations
+     * @param args    arguments of command parsed according to fields
+     * @return APICommand response as CommandResponse
+     */
     @Override
     public CommandResponse execute(String cmdName, Map<String, Object> args) {
         var cmd = prepareAPIMessage(cmdName, args);

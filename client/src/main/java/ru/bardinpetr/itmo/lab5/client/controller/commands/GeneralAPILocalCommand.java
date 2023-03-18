@@ -5,6 +5,9 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.APILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 
 
+/**
+ * Command that can be used to encapsulate any APICommand in one LocalCommand
+ */
 public class GeneralAPILocalCommand extends APILocalCommand {
 
     public GeneralAPILocalCommand(APIClientReceiver api, UIReceiver ui) {

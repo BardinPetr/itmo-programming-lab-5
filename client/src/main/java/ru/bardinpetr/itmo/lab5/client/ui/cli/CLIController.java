@@ -9,6 +9,9 @@ import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import java.io.InputStream;
 import java.util.Scanner;
 
+/**
+ * Main CLI interaction object
+ */
 public class CLIController implements UIReceiver {
     private final ConsolePrinter printer;
     private final ObjectScanner objectScanner;
@@ -23,6 +26,14 @@ public class CLIController implements UIReceiver {
         this.isRepeatable = isRepeatable;
     }
 
+    /**
+     * Fill object from UI
+     *
+     * @param target        class of object to request from user
+     * @param defaultObject object from which to take field default values
+     * @param <T>           object type
+     * @return built object
+     */
     @Override
     public <T> T fill(Class<T> target, T defaultObject) {
         try {
@@ -34,6 +45,9 @@ public class CLIController implements UIReceiver {
         }
     }
 
+    /**
+     * @return true if there is next line to read from stream
+     */
     @Override
     public boolean hasNextLine() {
         try {
@@ -43,6 +57,11 @@ public class CLIController implements UIReceiver {
         }
     }
 
+    /**
+     * read line from stream.
+     *
+     * @return line or null if stream closed
+     */
     @Override
     public String nextLine() {
         try {
@@ -52,26 +71,45 @@ public class CLIController implements UIReceiver {
         }
     }
 
+    /**
+     * print text on screen
+     */
     @Override
     public void display(String text) {
         printer.display(text);
     }
 
+    /**
+     * for CLI print an invitation for command enter
+     */
     @Override
     public void interactSuggestion() {
         System.out.print("> ");
     }
 
+    /**
+     * Print successful message
+     */
     @Override
     public void ok() {
         printer.display("Command successful");
     }
 
+    /**
+     * Print successful message mentioning specific command
+     *
+     * @param cmd command name
+     */
     @Override
     public void ok(String cmd) {
         printer.display("Command %s successful".formatted(cmd));
     }
 
+    /**
+     * print error message
+     *
+     * @param message text
+     */
     @Override
     public void error(String message) {
         printer.display("Error: %s".formatted(message));

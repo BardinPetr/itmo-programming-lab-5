@@ -9,6 +9,9 @@ import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import java.util.Map;
 
 
+/**
+ * Command to print help
+ */
 public class HelpLocalCommand extends UILocalCommand {
 
     public HelpLocalCommand(UIReceiver ui) {

@@ -13,6 +13,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class for storing prepared client-side commands with their handlers-name to invoke via
+ */
 public class CommandRegistry {
     private final Map<String, AbstractLocalCommand> commandMap = new HashMap<>();
     private final APIClientReceiver api;
