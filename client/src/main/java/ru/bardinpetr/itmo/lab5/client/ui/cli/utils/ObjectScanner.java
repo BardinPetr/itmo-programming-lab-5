@@ -164,6 +164,11 @@ public class ObjectScanner {
         return 0;
     }
 
+    /**
+     * Object Scanner response class with built object and count of iterations
+     *
+     * @param <T> Type of respond object
+     */
     @Data
     public static class ScannerRespond<T> {
         public final T object;
