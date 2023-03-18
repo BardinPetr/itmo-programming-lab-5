@@ -116,8 +116,8 @@ public class ObjectScanner {
      * @throws ParserException
      */
     private <T> int enterField(FieldWithDesc<T> cur, Map<String, Object> objectMap, Object curDefaultVar) throws ParserException {
+        printer.display("-> " + cur.getName() + " interaction");
         if (cur.isNullAble()) {
-            printer.display(cur.getName() + " interaction");
             printer.display("If object does not exist press Enter. To continue interaction enter C");
             if (!scaner.hasNextLine()) return 1;
             String answer = scaner.nextLine();
@@ -130,7 +130,7 @@ public class ObjectScanner {
                 //printer.display(cur.getPromptMsg());
                 return 1;
             }
-            printer.display("Continue interaction");
+            //printer.display("Continue interaction");
             printer.display(cur.getPromptMsg());
         }
 
