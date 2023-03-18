@@ -4,7 +4,6 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ScriptRecursionController;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptRecursionRootException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
@@ -72,7 +71,7 @@ public class ScriptExecutor {
 
             try {
                 invoker.invoke(command, userArgs);
-            } catch (ScriptException | NotRepeatableException ex) {
+            } catch (ScriptException ex) {
                 recursionController.leave(path);
                 if (recursionController.getDepth() == 0)
                     throw new ScriptRecursionRootException(ex.getMessage());

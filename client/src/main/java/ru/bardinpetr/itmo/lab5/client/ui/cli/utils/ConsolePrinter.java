@@ -1,5 +1,8 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli.utils;
 
+/**
+ * Class for printing in console
+ */
 public class ConsolePrinter {
     public static ConsolePrinter getStub() {
         return new ConsolePrinter() {

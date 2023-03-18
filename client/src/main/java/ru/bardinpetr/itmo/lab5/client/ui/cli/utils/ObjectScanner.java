@@ -92,7 +92,7 @@ public class ObjectScanner {
                     i--;
                     continue;
                 }
-                printer.display(cur.getPromptMsg());
+                //printer.display(cur.getPromptMsg());
             } else {
                 curDefaultVar = null;
             }
@@ -106,6 +106,8 @@ public class ObjectScanner {
     }
 
     /**
+     * enteraction single field
+     *
      * @param cur           current field
      * @param objectMap     Map of building object
      * @param curDefaultVar default value of current value
@@ -115,6 +117,7 @@ public class ObjectScanner {
      */
     private <T> int enterField(FieldWithDesc<T> cur, Map<String, Object> objectMap, Object curDefaultVar) throws ParserException {
         if (cur.isNullAble()) {
+            printer.display(cur.getName() + " interaction");
             printer.display("If object does not exist press Enter. To continue interaction enter C");
             if (!scaner.hasNextLine()) return 1;
             String answer = scaner.nextLine();
@@ -123,8 +126,8 @@ public class ObjectScanner {
                 return 0;
             }
             if (!answer.equals("C")) {
-                printer.display("Invalid argument");
-                printer.display(cur.getPromptMsg());
+                printer.display("Invalid choice");
+                //printer.display(cur.getPromptMsg());
                 return 1;
             }
             printer.display("Continue interaction");
