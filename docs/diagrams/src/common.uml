@@ -1,199 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>JAVA</ID>
-  <OriginalElement>/home/petr/Desktop/itmo-programming-lab-5/common</OriginalElement>
+  <OriginalElement>/home/petr/Desktop/itmo-programming-lab-5/common/src/main/java/ru/bardinpetr/itmo/lab5/common</OriginalElement>
   <nodes>
-    <node x="1214.359375" y="709.0">ru.bardinpetr.itmo.lab5.common.executor.Executor</node>
-    <node x="1457.5546875" y="598.0">ru.bardinpetr.itmo.lab5.common.executor.operations.NoReturnOperation</node>
-    <node x="785.875" y="840.0">ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService</node>
-    <node x="412.875" y="-155.0">java.lang.Exception</node>
-    <node x="82.0" y="1021.0">ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory</node>
-    <node x="-192.0" y="83.0">ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException</node>
-    <node x="640.3194444444445" y="108.0">ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException</node>
-    <node x="770.875" y="-143.5">ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException.Type</node>
-    <node x="785.875" y="462.5">ru.bardinpetr.itmo.lab5.common.serdes.SerDesService</node>
-    <node x="8.375" y="790.0">ru.bardinpetr.itmo.lab5.common.io.FileIOController</node>
-    <node x="-163.1250000000001" y="375.0">ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException.OperationType</node>
-    <node x="-192.0" y="1021.0">ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer</node>
-    <node x="1395.375" y="107.0">ru.bardinpetr.itmo.lab5.models.commands.base.Command</node>
-    <node x="88.875" y="412.5">ru.bardinpetr.itmo.lab5.common.io.FileController</node>
-    <node x="1318.3046875" y="-155.0">ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse</node>
-    <node x="1708.5546875" y="598.0">ru.bardinpetr.itmo.lab5.common.executor.operations.Operation</node>
-    <node x="1106.375" y="-44.0">ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response</node>
-    <node x="369.875" y="475.0">ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException</node>
+    <node x="-228.0" y="105.0">ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException.OperationType</node>
+    <node x="-303.0" y="951.0">ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException</node>
+    <node x="449.0" y="30.0">ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException</node>
+    <node x="-88.5" y="511.0">ru.bardinpetr.itmo.lab5.common.executor.operations.Operation</node>
+    <node x="412.0" y="951.0">ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory</node>
+    <node x="-303.0" y="-181.0">ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException</node>
+    <node x="347.0" y="511.0">ru.bardinpetr.itmo.lab5.common.serdes.SerDesService</node>
+    <node x="695.0" y="951.0">ru.bardinpetr.itmo.lab5.common.executor.operations.NoReturnOperation</node>
+    <node x="138.0" y="951.0">ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer</node>
+    <node x="133.0" y="-181.0">ru.bardinpetr.itmo.lab5.common.io.FileController</node>
+    <node x="347.0" y="747.0">ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService</node>
+    <node x="486.5" y="-181.0">ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException.Type</node>
+    <node x="-303.0" y="620.0">ru.bardinpetr.itmo.lab5.common.executor.Executor</node>
+    <node x="123.0" y="205.0">ru.bardinpetr.itmo.lab5.common.io.FileIOController</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="ru.bardinpetr.itmo.lab5.common.executor.Executor" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response" relationship="DEPENDENCY">
-      <point x="-141.25" y="-119.0" />
-      <point x="1355.609375" y="688.0" />
-      <point x="1322.109375" y="688.0" />
-      <point x="1322.109375" y="678.0" />
-      <point x="1240.875" y="678.0" />
-      <point x="0.0" y="294.0" />
+    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException.Type" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" relationship="INNER_CLASS">
+      <point x="-42.0" y="80.5" />
+      <point x="528.5" y="5.0" />
+      <point x="509.75" y="5.0" />
+      <point x="-60.75" y="-93.0" />
     </edge>
     <edge source="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException.OperationType" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" relationship="INNER_CLASS">
-      <point x="-57.75" y="-181.5" />
-      <point x="-105.37500000000011" y="353.0" />
-      <point x="-128.5" y="353.0" />
-      <point x="-127.0" y="119.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.io.FileIOController" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" relationship="DEPENDENCY">
-      <point x="-70.25" y="-93.0" />
-      <point x="78.375" y="353.0" />
-      <point x="156.81944444444446" y="353.0" />
-      <point x="156.81944444444446" y="343.0" />
-      <point x="125.5" y="343.0" />
-      <point x="127.0" y="119.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.executor.operations.Operation" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="DEPENDENCY">
-      <point x="0.0" y="-29.5" />
-      <point x="1796.5546875" y="566.0" />
-      <point x="1539.375" y="566.0" />
-      <point x="0.0" y="143.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException.OperationType" relationship="TO_ONE">
-      <point x="0.0" y="119.0" />
-      <point x="-1.5" y="353.0" />
-      <point x="10.124999999999886" y="353.0" />
-      <point x="57.75" y="-181.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.executor.Executor" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
-      <point x="-141.25" y="-119.0" />
-      <point x="1355.609375" y="688.0" />
-      <point x="1322.109375" y="688.0" />
-      <point x="1322.109375" y="678.0" />
-      <point x="1095.875" y="678.0" />
-      <point x="1095.875" y="-70.0" />
-      <point x="1423.8046875" y="-70.0" />
-      <point x="0.0" y="29.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.commands.base.Command" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
-      <point x="0.0" y="-143.0" />
-      <point x="1539.375" y="-70.0" />
-      <point x="1423.8046875" y="-70.0" />
-      <point x="0.0" y="29.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException" target="java.lang.Exception" relationship="GENERALIZATION">
-      <point x="-99.0" y="-81.5" />
-      <point x="468.875" y="353.0" />
-      <point x="570.8194444444445" y="353.0" />
-      <point x="570.8194444444445" y="62.0" />
-      <point x="554.6527777777778" y="62.0" />
-      <point x="554.6527777777778" y="52.0" />
-      <point x="497.375" y="52.0" />
-      <point x="-84.5" y="93.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.executor.operations.NoReturnOperation" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="DEPENDENCY">
-      <point x="0.0" y="-29.5" />
-      <point x="1573.0546875" y="576.0" />
-      <point x="1539.375" y="576.0" />
-      <point x="0.0" y="143.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" target="java.lang.Exception" relationship="GENERALIZATION">
-      <point x="-86.66666666666669" y="-94.0" />
-      <point x="683.6527777777778" y="62.0" />
-      <point x="554.6527777777778" y="62.0" />
-      <point x="554.6527777777778" y="52.0" />
-      <point x="497.375" y="52.0" />
-      <point x="-84.5" y="93.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" relationship="DEPENDENCY">
-      <point x="99.0" y="-81.5" />
-      <point x="666.875" y="353.0" />
-      <point x="770.3194444444445" y="353.0" />
-      <point x="0.0" y="94.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException.Type" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" relationship="INNER_CLASS">
-      <point x="42.0" y="81.5" />
-      <point x="896.875" y="62.0" />
-      <point x="856.9861111111111" y="62.0" />
-      <point x="86.66666666666669" y="-94.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.executor.Executor" target="ru.bardinpetr.itmo.lab5.common.executor.operations.NoReturnOperation" relationship="DEPENDENCY">
-      <point x="-141.25" y="-119.0" />
-      <point x="1355.609375" y="688.0" />
-      <point x="1322.109375" y="688.0" />
-      <point x="1322.109375" y="678.0" />
-      <point x="1573.0546875" y="678.0" />
-      <point x="0.0" y="29.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
-      <point x="0.0" y="-294.0" />
-      <point x="1240.875" y="-70.0" />
-      <point x="1423.8046875" y="-70.0" />
-      <point x="0.0" y="29.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.io.FileController" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" relationship="DEPENDENCY">
-      <point x="0.0" y="-144.0" />
-      <point x="219.375" y="353.0" />
-      <point x="156.81944444444446" y="353.0" />
-      <point x="156.81944444444446" y="343.0" />
-      <point x="125.5" y="343.0" />
-      <point x="127.0" y="119.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.executor.Executor" target="ru.bardinpetr.itmo.lab5.common.executor.operations.Operation" relationship="TO_MANY">
-      <point x="141.25" y="-119.0" />
-      <point x="1638.109375" y="688.0" />
-      <point x="1796.5546875" y="688.0" />
-      <point x="0.0" y="29.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.SerDesService" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" relationship="DEPENDENCY">
-      <point x="0.0" y="-94.0" />
-      <point x="915.375" y="353.0" />
-      <point x="770.3194444444445" y="353.0" />
-      <point x="0.0" y="94.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.executor.operations.Operation" target="ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse" relationship="DEPENDENCY">
-      <point x="0.0" y="-29.5" />
-      <point x="1796.5546875" y="-70.0" />
-      <point x="1423.8046875" y="-70.0" />
-      <point x="0.0" y="29.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.executor.Executor" target="ru.bardinpetr.itmo.lab5.models.commands.base.Command" relationship="DEPENDENCY">
-      <point x="-141.25" y="-119.0" />
-      <point x="1355.609375" y="688.0" />
-      <point x="1322.109375" y="688.0" />
-      <point x="1322.109375" y="678.0" />
-      <point x="1411.6875" y="678.0" />
-      <point x="1411.6875" y="576.0" />
-      <point x="1539.375" y="576.0" />
-      <point x="0.0" y="143.0" />
+      <point x="57.75" y="-180.5" />
+      <point x="-54.75" y="80.0" />
+      <point x="-17.25" y="80.0" />
+      <point x="95.25" y="118.0" />
     </edge>
     <edge source="ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService" target="ru.bardinpetr.itmo.lab5.common.serdes.SerDesService" relationship="GENERALIZATION">
-      <point x="0.0" y="-43.0" />
-      <point x="0.0" y="94.0" />
+      <point x="0.0" y="-42.5" />
+      <point x="0.0" y="93.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException.Type" relationship="TO_ONE">
-      <point x="0.0" y="-94.0" />
-      <point x="770.3194444444445" y="62.0" />
-      <point x="778.5416666666666" y="62.0" />
-      <point x="778.5416666666666" y="52.0" />
-      <point x="812.875" y="52.0" />
-      <point x="-42.0" y="81.5" />
+    <edge source="ru.bardinpetr.itmo.lab5.common.executor.Executor" target="ru.bardinpetr.itmo.lab5.common.executor.operations.Operation" relationship="DEPENDENCY">
+      <point x="0.0" y="-143.0" />
+      <point x="0.0" y="29.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" target="java.lang.Exception" relationship="GENERALIZATION">
-      <point x="0.0" y="-119.0" />
-      <point x="-1.5" y="62.0" />
-      <point x="554.6527777777778" y="62.0" />
-      <point x="554.6527777777778" y="52.0" />
-      <point x="497.375" y="52.0" />
-      <point x="-84.5" y="93.0" />
+    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" target="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException.Type" relationship="DEPENDENCY">
+      <point x="60.75" y="-93.0" />
+      <point x="631.25" y="5.0" />
+      <point x="612.5" y="5.0" />
+      <point x="42.0" y="80.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException" target="ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException.OperationType" relationship="DEPENDENCY">
+      <point x="-95.25" y="118.0" />
+      <point x="-207.75" y="80.0" />
+      <point x="-170.25" y="80.0" />
+      <point x="-57.75" y="-180.5" />
     </edge>
     <edge source="ru.bardinpetr.itmo.lab5.common.io.FileIOController" target="ru.bardinpetr.itmo.lab5.common.io.FileController" relationship="GENERALIZATION">
-      <point x="70.25" y="-93.0" />
-      <point x="0.0" y="144.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException" target="java.lang.Exception" relationship="TO_ONE">
-      <point x="0.0" y="-94.0" />
-      <point x="770.3194444444445" y="62.0" />
-      <point x="778.5416666666666" y="62.0" />
-      <point x="778.5416666666666" y="52.0" />
-      <point x="666.375" y="52.0" />
-      <point x="84.5" y="93.0" />
+      <point x="0.0" y="-105.0" />
+      <point x="0.0" y="168.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="0.4446142093200916" showDependencies="true" x="1668.191580756014" y="162.74570446735402" />
+  <settings layout="Hierarchic" zoom="0.5374091332712023" showDependencies="true" x="489.28738467674793" y="603.3377746514292" />
   <SelectedNodes />
   <Categories>
     <Category>Constructors</Category>

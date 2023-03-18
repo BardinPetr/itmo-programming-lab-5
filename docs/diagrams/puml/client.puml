@@ -20,88 +20,119 @@ classDiagram {
 top to bottom direction
 skinparam linetype ortho
 
-class CLIController {
-  + CLIController(View, InputStream, ICommandIOCallback): 
-  # cmdParser: CommandParser
-  # scanner: Scanner
-  # mapper: ObjectMapper
-  # viewer: View
-  # callback: ICommandIOCallback
-  + run(): void
-  - runScript(Response<ICommandResponse>): void
+interface APIClientReceiver << interface >> {
+  + call(APICommand): Response<ICommandResponse>
 }
-class Command {
-  + Command(): 
-  + getType(): String
+class APICommand {
+  + APICommand(): 
   + equals(Object): boolean
   # canEqual(Object): boolean
   + hashCode(): int
   + toString(): String
-  + createResponse(): ICommandResponse
-  + getInteractArgs(): Field[]
   + validate(): ValidationResponse
+  + getType(): String
+  + getInteractArgs(): Field[]
   + getInlineArgs(): Field[]
+  + createResponse(): ICommandResponse
 }
-class CommandParser {
-  + CommandParser(HashMap<String, Command>, ObjectMapper, Scanner, View): 
-  - cmdMap: HashMap<String, Command>
-  - viewer: View
-  - objectScanner: ObjectScanner
+class APICommandRegistry {
+  - APICommandRegistry(): 
+  {static} + cmdList: List<APICommand>
+  {static} - map: HashMap<String, APICommand>
+  {static} + getCommand(String): APICommand
+}
+abstract class APILocalCommand <<abstract>> {
+  + APILocalCommand(APIClientReceiver, UIReceiver): 
+  # apiClientReceiver: APIClientReceiver
   - mapper: ObjectMapper
+  + execute(String, Map<String, Object>): CommandResponse
+  # retrieveAPICommand(String): APICommand
+  # prepareAPIMessage(String, Map<String, Object>): APICommand
+  + getCommandInlineArgs(String): List<Field>
+}
+class AbstractCommandDecorator {
+  + AbstractCommandDecorator(AbstractLocalCommand): 
+  # decoratee: AbstractLocalCommand
+  + execute(String, Map<String, Object>): CommandResponse
+}
+abstract class AbstractLocalCommand <<abstract>> {
+  + AbstractLocalCommand():
+  {abstract} + execute(String, Map<String, Object>): CommandResponse
+}
+class CLIController {
+  + CLIController(ConsolePrinter, InputStream, boolean): 
   - scanner: Scanner
-  + parse(): Command
+  - isRepeatable: boolean
+  - printer: ConsolePrinter
+  - objectScanner: ObjectScanner
+  + nextLine(): String
+  + ok(String): void
+  + display(String): void
+  + interactSuggestion(): void
+  + hasNextLine(): boolean
+  + fill(Class<T>, T): T
+  + error(String): void
+  + ok(): void
 }
-class CommandRegister {
-  + CommandRegister(): 
-  - cmdList: Command[]
-  - map: HashMap<String, Command>
-  + getParser(ObjectMapper, Scanner, View): CommandParser
-  - addCommand(Command): void
+class CommandRegistry {
+  + CommandRegistry(APIClientReceiver, UIReceiver, ScriptExecutor): 
+  - scriptExecutor: ScriptExecutor
+  - api: APIClientReceiver
+  - commandMap: Map<String, AbstractLocalCommand>
+  - register(Collection<String>, AbstractLocalCommand): void
+  - register(UILocalCommand): void
+  - registerFromAPI(Collection<APICommand>, AbstractLocalCommand): void
+  + withUI(UIReceiver): CommandRegistry
+  - register(String, AbstractLocalCommand): void
+  + getCommand(String): AbstractLocalCommand
 }
-class CommandScriptController {
-  + CommandScriptController(): 
-  - cmdRegister: CommandRegister
-  - mapper: ObjectMapper
-  + run(InputStream): List<Command>
+entity CommandResponse << record >> {
+  + CommandResponse(boolean, String, ICommandResponse): 
+  - payload: ICommandResponse
+  - message: String
+  - isSuccess: boolean
+  + payload(): ICommandResponse
+  {static} + ok(): CommandResponse
+  {static} + error(String): CommandResponse
+  + isSuccess(): boolean
+  + message(): String
 }
 class ConsolePrinter {
   + ConsolePrinter(): 
-  + suggestInput(): void
-  + show(String): void
-  + showLine(String): void
+  + displayInLine(String): void
+  + display(String): void
+  {static} + getStub(): ConsolePrinter
 }
-class Exception {
-  + Exception(Throwable): 
-  + Exception(String, Throwable): 
-  + Exception(): 
-  # Exception(String, Throwable, boolean, boolean): 
-  + Exception(String): 
-  ~ serialVersionUID: long
-}
-class ExecuteScriptCommandResponse {
-  + ExecuteScriptCommandResponse(): 
+class DescriptionHolder {
+  + DescriptionHolder(): 
+  {static} + dataDescriptions: Map<Class<?>, List<FieldWithDesc<?>>>
 }
 class Executor {
   + Executor(): 
-  + MAX_RECURSION_DEPTH: int
-  - operationMap: Map<Class<Command>, Operation<Command, ICommandResponse>>
+  - operationMap: Map<Class<APICommand>, Operation<APICommand, ICommandResponse>>
   - childExecutors: List<Executor>
-  + execute(Command): Response<ICommandResponse>
-  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
-  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
-  # execute(Command, int): Response<ICommandResponse>
+  + MAX_RECURSION_DEPTH: int
   + registerExecutor(Executor): void
-  + executeBatch(List<Command>): List<Response<ICommandResponse>>
+  + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
+  + execute(APICommand): Response<ICommandResponse>
+  + executeBatch(List<APICommand>): List<Response<ICommandResponse>>
+  + registerOperation(Class<T>, Operation<T, ICommandResponse>): void
+  # execute(APICommand, int): Response<ICommandResponse>
 }
-class Field {
-  + Field(String, Class<?>): 
+class ExitLocalCommand {
+  + ExitLocalCommand(UIReceiver): 
+  + execute(String, Map<String, Object>): CommandResponse
+  + getExternalName(): String
+}
+class Field<T> {
   + Field(): 
-  - valueClass: Class<?>
+  + Field(String, Class<T>): 
+  - valueClass: Class<T>
   - name: String
   + getName(): String
-  + getValueClass(): Class<?>
+  + getValueClass(): Class<T>
   + setName(String): void
-  + setValueClass(Class<?>): void
+  + setValueClass(Class<T>): void
   + equals(Object): boolean
   # canEqual(Object): boolean
   + hashCode(): int
@@ -111,8 +142,8 @@ class FieldWithDesc<T> {
   + FieldWithDesc(String, Class<T>, String, IValidator<T>, boolean): 
   + FieldWithDesc(String, Class<T>, String, boolean): 
   - promptMsg: String
-  - validator: IValidator<T>
   - nullAble: boolean
+  - validator: IValidator<T>
   + equals(Object): boolean
   # canEqual(Object): boolean
   + hashCode(): int
@@ -121,26 +152,23 @@ class FieldWithDesc<T> {
   + isNullAble(): boolean
   + toString(): String
 }
-class FileAccessException {
-  + FileAccessException(Exception, String, OperationType): 
-  + FileAccessException(File, OperationType): 
-  + FileAccessException(Exception, File, OperationType): 
-  + FileAccessException(String, OperationType): 
-  - path: String
-  - type: OperationType
-  + getType(): OperationType
-  + getPath(): String
-}
 class FileIOController {
+  + FileIOController(String, boolean): 
   + FileIOController(String): 
   + write(byte[]): void
-  + clear(): void
   + openWriteStream(): FileOutputStream
-  + read(): byte[]
+  + clear(): void
   + openReadStream(): FileInputStream
+  + read(): byte[]
 }
-interface ICommandIOCallback << interface >> {
-  + callback(Command): Response<ICommandResponse>
+class GeneralAPILocalCommand {
+  + GeneralAPILocalCommand(APIClientReceiver, UIReceiver): 
+  + getExternalName(): String
+}
+class HelpLocalCommand {
+  + HelpLocalCommand(UIReceiver): 
+  + execute(String, Map<String, Object>): CommandResponse
+  + getExternalName(): String
 }
 interface ICommandResponse << interface >> {
   + getUserMessage(): String
@@ -148,54 +176,43 @@ interface ICommandResponse << interface >> {
 interface IValidator<T> << interface >> {
   + validate(T): ValidationResponse
 }
-class LocalExecuteScriptCommand {
-  + LocalExecuteScriptCommand(): 
-  - fileName: String
-  + getType(): String
-  + createResponse(): LocalExecuteScriptCommandResponse
-  + getFileName(): String
-  + getInlineArgs(): Field[]
+class Interpreter {
+  + Interpreter(CommandRegistry, UIReceiver, UICommandInvoker): 
+  - invoker: UICommandInvoker
+  - registryCommand: CommandRegistry
+  - uiReceiver: UIReceiver
+  + run(): void
 }
-class LocalExecuteScriptCommandResponse {
-  + LocalExecuteScriptCommandResponse(List<Command>): 
-  + equals(Object): boolean
-  # canEqual(Object): boolean
-  + hashCode(): int
-  + toString(): String
-  + getUserMessage(): String
+class LocalExecutorAPIConnector {
+  + LocalExecutorAPIConnector(Executor): 
+  - currentExecutor: Executor
+  + call(APICommand): Response<ICommandResponse>
 }
 class Main {
   + Main(): 
   + main(String[]): void
+}
+class MainExecutor {
+  + MainExecutor(Path): 
+}
+class NotRepeatableException {
+  + NotRepeatableException(): 
 }
 class ObjectMapperFactory {
   + ObjectMapperFactory(): 
   + createMapper(): ObjectMapper
 }
 class ObjectScanner {
-  + ObjectScanner(Scanner, View, ObjectMapper): 
+  + ObjectScanner(ConsolePrinter, Scanner): 
   - dataDescription: Map<Class<?>, List<FieldWithDesc<?>>>
-  - viewer: View
-  - scanner: Scanner
+  - printer: ConsolePrinter
   - mapper: ObjectMapper
+  ~ callback: Runnable
+  - scaner: Scanner
+  - interactValue(Class<T>, T): ScannerRespond<T>
+  - enterField(FieldWithDesc<T>, Map<String, Object>, Object): int
   - scan(): String?
-  - interactValue(Class<T>): T
-  + scan(Class<T>): T
-}
-enum OperationType << enumeration >> {
-  - OperationType(String): 
-  - OperationType(): 
-  - description: String
-  + PERM_READ: 
-  + PERM_WRITE: 
-  + CREATE: 
-  + WRITE: 
-  + SET_PERMISSION: 
-  + OPEN: 
-  + READ: 
-  + values(): OperationType[]
-  + getDescription(): String
-  + valueOf(String): OperationType
+  + scan(Class<T>, T): ScannerRespond<T>
 }
 class ParserException {
   + ParserException(String): 
@@ -205,197 +222,265 @@ class Response<T> {
   + Response(): 
   - text: String
   - success: boolean
-  - resolved: boolean
   - payload: T
-  + getText(): String
-  + isSuccess(): boolean
+  - resolved: boolean
   + isResolved(): boolean
-  + hashCode(): int
-  + equals(Object): boolean
-  + getPayload(): T
+  + isSuccess(): boolean
   # canEqual(Object): boolean
+  + getText(): String
+  + getPayload(): T
   + setSuccess(boolean): void
+  + equals(Object): boolean
+  + toString(): String
   + setResolved(boolean): void
   + setText(String): void
   + setPayload(T): void
-  + toString(): String
-  + noResolve(): Response<T>
+  + hashCode(): int
   + error(String): Response<T>
-  + success(T): Response<T>
   + error(Exception): Response<T>
-}
-class RuntimeException {
-  # RuntimeException(String, Throwable, boolean, boolean): 
-  + RuntimeException(): 
-  + RuntimeException(String): 
-  + RuntimeException(String, Throwable): 
-  + RuntimeException(Throwable): 
-  ~ serialVersionUID: long
+  + noResolve(): Response<T>
+  + success(T): Response<T>
 }
 class RussianText {
   + RussianText(): 
-  - textList: Map<TextKeys, String>
+  {static} - textList: Map<TextKeys, String>
   {static} + get(TextKeys): String
 }
-class ScriptExecuteException {
-  + ScriptExecuteException(String): 
-}
-class ScriptExecutor {
-  + ScriptExecutor(): 
-  - scriptController: CommandScriptController
-  - fileInputStream(LocalExecuteScriptCommand): FileInputStream
-  - executeScript(LocalExecuteScriptCommand, Set<String>): LocalExecuteScriptCommandResponse
-}
-class ServerExecuteScriptCommand {
-  + ServerExecuteScriptCommand(): 
-  + ServerExecuteScriptCommand(List<Command>): 
-  - commands: List<Command>
-  + createResponse(): ExecuteScriptCommandResponse
-  + getCommands(): List<Command>
-  + setCommands(List<Command>): void
+class ScannerRespond<T> {
+  + ScannerRespond(T, int): 
+  + countOfRepeat: int
+  + object: T
+  + getObject(): T
+  + getCountOfRepeat(): int
   + equals(Object): boolean
   # canEqual(Object): boolean
   + hashCode(): int
   + toString(): String
-  + getType(): String
+}
+class ScriptException {
+  + ScriptException(String): 
+}
+class ScriptExecutor {
+  + ScriptExecutor(UICommandInvoker): 
+  - recursionController: ScriptRecursionController
+  - invoker: UICommandInvoker
+  - commandRegistry: CommandRegistry
+  + setRegistry(CommandRegistry): void
+  + process(String): void
+}
+class ScriptLocalCommand {
+  + ScriptLocalCommand(APIClientReceiver, UIReceiver, ScriptExecutor): 
+  - scriptExecutor: ScriptExecutor
+  + getCommandInlineArgs(String): List<Field>
+  + getExternalName(): String
+  + execute(String, Map<String, Object>): CommandResponse
+  # prepareAPIMessage(String, Map<String, Object>): APICommand
+}
+class ScriptRecursionController {
+  + ScriptRecursionController(): 
+  - visitedPaths: Set<String>
+  + getDepth(): int
+  + leave(String): void
+  + clear(): void
+  + enter(String): boolean
+}
+class ScriptRecursionRootException {
+  + ScriptRecursionRootException(String): 
 }
 enum TextKeys << enumeration >> {
   + TextKeys(): 
-  + COORDINATESINTERACT: 
+  + WORKERINTERACT: 
   + COORXINTERACT: 
-  + HELP: 
-  + NAMEINTERACT: 
-  + COORYINTERACT: 
-  + ORGANIZATIONINTERACT: 
-  + SALARYINTERACT: 
   + ORGANISATIONTYPEINTERACT: 
+  + ORGANIZATIONINTERACT: 
+  + NAMEINTERACT: 
+  + SALARYINTERACT: 
+  + INVALID_APP_ARGUMENTS: 
+  + HELP: 
   + ENDNDATEINTERACT: 
+  + COORDINATESINTERACT: 
+  + ORGANISATIONNAMEINTERACT: 
+  + COORYINTERACT: 
+  + GREEETING: 
+  + FILEIO_ERROR_MESSAGE_TEMLPATE: 
   + STARTDAYINTERACT: 
   + POSITIONINTERACT: 
-  + GREEETING: 
-  + WORKERINTERACT: 
-  + ORGANISATIONNAMEINTERACT: 
-  + values(): TextKeys[]
   + valueOf(String): TextKeys
+  + values(): TextKeys[]
 }
-class UIExecutor {
-  + UIExecutor(): 
+interface UICallableCommand << interface >> {
+  + executeWithArgs(List<String>): CommandResponse
 }
-class ValidationResponse {
-  + ValidationResponse(boolean, String): 
-  - allowed: boolean
-  - msg: String
-  + equals(Object): boolean
-  # canEqual(Object): boolean
-  + hashCode(): int
-  + isAllowed(): boolean
-  + getMsg(): String
-  + setAllowed(boolean): void
-  + setMsg(String): void
-  + toString(): String
+class UICommandInvoker {
+  + UICommandInvoker(UIReceiver): 
+  - screenUIReceiver: UIReceiver
+  # print(String, CommandResponse): void
+  + invoke(UICallableCommand, List<String>): void
+}
+interface UIInputReceiver << interface >> {
+  + fill(Class<T>, T): T
+  + fill(Class<T>): T
+  + hasNextLine(): boolean
+  + nextLine(): String
+}
+abstract class UILocalCommand <<abstract>> {
+  + UILocalCommand(UIReceiver): 
+  - valueDes: ValueDeserializer
+  # uiReceiver: UIReceiver
+  {static} + NAME_ARG: String
+  {abstract} + getExternalName(): String
+  + getCommandInlineArgs(String): List<Field>
+  - getFullInlineArgs(String): List<Field>
+  + executeWithArgs(List<String>): CommandResponse
+}
+interface UIReceiver << interface >> {
+  + error(String): void
+  + ok(): void
+  + interactSuggestion(): void
+  + display(String): void
+  + ok(String): void
+}
+class UpdateLocalCommand {
+  + UpdateLocalCommand(APIClientReceiver, UIReceiver): 
+  + getExternalName(): String
+  # retrieveAPICommand(String): APICommand
+  # prepareAPIMessage(String, Map<String, Object>): APICommand
 }
 class ValueDeserializer {
   + ValueDeserializer(): 
   - mapper: ObjectMapper
   + deserialize(Class<K>, String): K
 }
-interface View << interface >> {
-  + suggestInput(): void
-  + show(String): void
-  + showLine(String): void
-}
 
-CLIController                      ..>  Command                           
-CLIController                     "1" *--> "cmdParser\n1" CommandParser                     
-CLIController                      ..>  CommandRegister                   
-CLIController                      ..>  ExecuteScriptCommandResponse      
-CLIController                     "1" *--> "callback\n1" ICommandIOCallback                
-CLIController                      ..>  ICommandResponse                  
-CLIController                      ..>  LocalExecuteScriptCommand         
-CLIController                      ..>  LocalExecuteScriptCommandResponse 
-CLIController                      ..>  ObjectMapperFactory               
-CLIController                      ..>  ParserException                   
-CLIController                      ..>  Response                          
-CLIController                      ..>  RussianText                       
-CLIController                      ..>  TextKeys                          
-CLIController                     "1" *--> "viewer\n1" View                              
-Command                            ..>  Field                             
-Command                            ..>  ICommandResponse                  
-Command                            ..>  ValidationResponse                
-CommandParser                     "1" *--> "cmdMap\n*" Command                           
-CommandParser                      ..>  Field                             
-CommandParser                     "1" *--> "objectScanner\n1" ObjectScanner                     
-CommandParser                      ..>  ParserException                   
-CommandParser                      ..>  ValueDeserializer                 
-CommandParser                     "1" *--> "viewer\n1" View                              
-CommandRegister                   "1" *--> "cmdList\n*" Command                           
-CommandRegister                    ..>  CommandParser                     
-CommandRegister                    ..>  LocalExecuteScriptCommand         
-CommandRegister                    ..>  View                              
-CommandScriptController            ..>  Command                           
-CommandScriptController            ..>  CommandParser                     
-CommandScriptController           "1" *--> "cmdRegister\n1" CommandRegister                   
-CommandScriptController            ..>  ObjectMapperFactory               
-CommandScriptController            ..>  ParserException                   
-CommandScriptController            ..>  ScriptExecuteException            
-CommandScriptController            ..>  View                              
-ConsolePrinter                     ..^  View                              
-ExecuteScriptCommandResponse       ..^  ICommandResponse                  
-ExecuteScriptCommandResponse       ..>  Response                          
-ExecuteScriptCommandResponse       +--  ServerExecuteScriptCommand        
-Executor                           ..>  Command                           
-Executor                           ..>  Exception                         
-Executor                           ..>  ICommandResponse                  
-Executor                           ..>  Response                          
-Executor                           ..>  ValidationResponse                
-FieldWithDesc                      --^  Field                             
-FieldWithDesc                     "1" *--> "validator\n1" IValidator                        
-FieldWithDesc                      ..>  ValidationResponse                
-FileAccessException                --^  Exception                         
-FileAccessException               "1" *--> "type\n1" OperationType                     
-FileIOController                   ..>  FileAccessException               
-ICommandIOCallback                 ..>  Command                           
-ICommandIOCallback                 ..>  ICommandResponse                  
-ICommandIOCallback                 ..>  Response                          
-IValidator                         ..>  ValidationResponse                
-LocalExecuteScriptCommand          --^  Command                           
-LocalExecuteScriptCommand          ..>  Field                             
-LocalExecuteScriptCommand          ..>  LocalExecuteScriptCommandResponse 
-LocalExecuteScriptCommandResponse  ..>  Command                           
-LocalExecuteScriptCommandResponse  ..^  ICommandResponse                  
-LocalExecuteScriptCommandResponse  +--  LocalExecuteScriptCommand         
-LocalExecuteScriptCommandResponse  --^  ServerExecuteScriptCommand        
-Main                               ..>  CLIController                     
-Main                               ..>  ConsolePrinter                    
-Main                               ..>  Executor                          
-Main                               ..>  FileAccessException               
-Main                               ..>  FileIOController                  
-Main                               ..>  ScriptExecutor                    
-Main                               ..>  UIExecutor                        
-Main                               ..>  View                              
-ObjectScanner                      ..>  Field                             
-ObjectScanner                      ..>  FieldWithDesc                     
-ObjectScanner                      ..>  IValidator                        
-ObjectScanner                      ..>  ParserException                   
-ObjectScanner                      ..>  ValidationResponse                
-ObjectScanner                     "1" *--> "viewer\n1" View                              
-OperationType                      +--  FileAccessException               
-ParserException                    --^  Exception                         
-Response                           ..>  Exception                         
-Response                           ..>  ICommandResponse                  
-RuntimeException                   --^  Exception                         
-RussianText                       "1" *--> "textList\n*" TextKeys                          
-ScriptExecuteException             --^  RuntimeException                  
-ScriptExecutor                     ..>  Command                           
-ScriptExecutor                    "1" *--> "scriptController\n1" CommandScriptController           
-ScriptExecutor                     --^  Executor                          
-ScriptExecutor                     ..>  LocalExecuteScriptCommand         
-ScriptExecutor                     ..>  LocalExecuteScriptCommandResponse 
-ScriptExecutor                     ..>  RuntimeException                  
-ServerExecuteScriptCommand         --^  Command                           
-ServerExecuteScriptCommand        "1" *--> "commands\n*" Command                           
-ServerExecuteScriptCommand         ..>  ExecuteScriptCommandResponse      
-UIExecutor                         --^  Executor                          
-UIExecutor                         ..>  RussianText                       
-UIExecutor                         ..>  TextKeys                          
+APIClientReceiver             ..>  APICommand                   
+APIClientReceiver             ..>  ICommandResponse             
+APIClientReceiver             ..>  Response                     
+APICommand                    ..>  Field                        
+APICommand                    ..>  ICommandResponse             
+APICommandRegistry           "1" *--> "cmdList\n*" APICommand                   
+APILocalCommand              "1" *--> "apiClientReceiver\n1" APIClientReceiver            
+APILocalCommand               ..>  APICommand                   
+APILocalCommand               ..>  APICommandRegistry           
+APILocalCommand               ..>  CommandResponse              
+APILocalCommand               ..>  Field                        
+APILocalCommand               ..>  ObjectMapperFactory          
+APILocalCommand               ..>  Response                     
+APILocalCommand               ..>  UIInputReceiver              
+APILocalCommand               --^  UILocalCommand               
+APILocalCommand               ..>  UIReceiver                   
+AbstractCommandDecorator      --^  AbstractLocalCommand         
+AbstractCommandDecorator     "1" *--> "decoratee\n1" AbstractLocalCommand         
+AbstractCommandDecorator      ..>  CommandResponse              
+AbstractLocalCommand          ..>  CommandResponse              
+CLIController                "1" *--> "printer\n1" ConsolePrinter               
+CLIController                 ..>  NotRepeatableException       
+CLIController                "1" *--> "objectScanner\n1" ObjectScanner                
+CLIController                 ..>  ParserException              
+CLIController                 ..>  ScannerRespond               
+CLIController                 ..^  UIReceiver                   
+CommandRegistry              "1" *--> "api\n1" APIClientReceiver            
+CommandRegistry               ..>  APICommand                   
+CommandRegistry               ..>  APICommandRegistry           
+CommandRegistry              "1" *--> "commandMap\n*" AbstractLocalCommand         
+CommandRegistry               ..>  ExitLocalCommand             
+CommandRegistry               ..>  GeneralAPILocalCommand       
+CommandRegistry               ..>  HelpLocalCommand             
+CommandRegistry              "1" *--> "scriptExecutor\n1" ScriptExecutor               
+CommandRegistry               ..>  ScriptLocalCommand           
+CommandRegistry               ..>  UILocalCommand               
+CommandRegistry               ..>  UIReceiver                   
+CommandRegistry               ..>  UpdateLocalCommand           
+CommandResponse               ..>  ICommandResponse             
+DescriptionHolder             ..>  FieldWithDesc                
+DescriptionHolder             ..>  RussianText                  
+DescriptionHolder             ..>  TextKeys                     
+Executor                      ..>  APICommand                   
+Executor                      ..>  ICommandResponse             
+Executor                      ..>  Response                     
+ExitLocalCommand              ..>  CommandResponse              
+ExitLocalCommand              --^  UILocalCommand               
+ExitLocalCommand              ..>  UIReceiver                   
+FieldWithDesc                 --^  Field                        
+FieldWithDesc                "1" *--> "validator\n1" IValidator                   
+GeneralAPILocalCommand        ..>  APIClientReceiver            
+GeneralAPILocalCommand        --^  APILocalCommand              
+GeneralAPILocalCommand        ..>  UIReceiver                   
+HelpLocalCommand              ..>  CommandResponse              
+HelpLocalCommand              ..>  RussianText                  
+HelpLocalCommand              ..>  TextKeys                     
+HelpLocalCommand              --^  UILocalCommand               
+HelpLocalCommand              ..>  UIReceiver                   
+Interpreter                  "1" *--> "registryCommand\n1" CommandRegistry              
+Interpreter                   ..>  RussianText                  
+Interpreter                   ..>  TextKeys                     
+Interpreter                   ..>  UICallableCommand            
+Interpreter                  "1" *--> "invoker\n1" UICommandInvoker             
+Interpreter                   ..>  UIInputReceiver              
+Interpreter                  "1" *--> "uiReceiver\n1" UIReceiver                   
+LocalExecutorAPIConnector     ..^  APIClientReceiver            
+LocalExecutorAPIConnector     ..>  APICommand                   
+LocalExecutorAPIConnector    "1" *--> "currentExecutor\n1" Executor                     
+LocalExecutorAPIConnector     ..>  ICommandResponse             
+LocalExecutorAPIConnector     ..>  Response                     
+Main                          ..>  CLIController                
+Main                          ..>  CommandRegistry              
+Main                          ..>  ConsolePrinter               
+Main                          ..>  Interpreter                  
+Main                          ..>  LocalExecutorAPIConnector    
+Main                          ..>  MainExecutor                 
+Main                          ..>  RussianText                  
+Main                          ..>  ScriptExecutor               
+Main                          ..>  TextKeys                     
+Main                          ..>  UICommandInvoker             
+MainExecutor                  --^  Executor                     
+ObjectScanner                "1" *--> "printer\n1" ConsolePrinter               
+ObjectScanner                 ..>  DescriptionHolder            
+ObjectScanner                 ..>  Field                        
+ObjectScanner                 ..>  FieldWithDesc                
+ObjectScanner                 ..>  IValidator                   
+ObjectScanner                 ..>  ObjectMapperFactory          
+ObjectScanner                 ..>  ParserException              
+ObjectScanner                 ..>  ScannerRespond               
+Response                      ..>  ICommandResponse             
+RussianText                  "1" *--> "textList\n*" TextKeys                     
+ScannerRespond                +--  ObjectScanner                
+ScriptExecutor                ..>  CLIController                
+ScriptExecutor               "1" *--> "commandRegistry\n1" CommandRegistry              
+ScriptExecutor                ..>  ConsolePrinter               
+ScriptExecutor                ..>  FileIOController             
+ScriptExecutor                ..>  NotRepeatableException       
+ScriptExecutor                ..>  ScriptException              
+ScriptExecutor               "1" *--> "recursionController\n1" ScriptRecursionController    
+ScriptExecutor                ..>  ScriptRecursionRootException 
+ScriptExecutor                ..>  UICallableCommand            
+ScriptExecutor               "1" *--> "invoker\n1" UICommandInvoker             
+ScriptExecutor                ..>  UIInputReceiver              
+ScriptExecutor                ..>  UIReceiver                   
+ScriptLocalCommand            ..>  APIClientReceiver            
+ScriptLocalCommand            ..>  APICommand                   
+ScriptLocalCommand            --^  APILocalCommand              
+ScriptLocalCommand            ..>  CommandResponse              
+ScriptLocalCommand            ..>  Field                        
+ScriptLocalCommand            ..>  NotRepeatableException       
+ScriptLocalCommand           "1" *--> "scriptExecutor\n1" ScriptExecutor               
+ScriptLocalCommand            ..>  UIReceiver                   
+UICallableCommand             ..>  CommandResponse              
+UICommandInvoker              ..>  CommandResponse              
+UICommandInvoker              ..>  ICommandResponse             
+UICommandInvoker              ..>  ScriptException              
+UICommandInvoker              ..>  UICallableCommand            
+UICommandInvoker             "1" *--> "screenUIReceiver\n1" UIReceiver                   
+UILocalCommand                --^  AbstractLocalCommand         
+UILocalCommand                ..>  CommandResponse              
+UILocalCommand                ..>  Field                        
+UILocalCommand                ..^  UICallableCommand            
+UILocalCommand               "1" *--> "uiReceiver\n1" UIReceiver                   
+UILocalCommand               "1" *--> "valueDes\n1" ValueDeserializer            
+UIReceiver                    --^  UIInputReceiver              
+UpdateLocalCommand            ..>  APIClientReceiver            
+UpdateLocalCommand            ..>  APICommand                   
+UpdateLocalCommand            --^  APILocalCommand              
+UpdateLocalCommand            ..>  Response                     
+UpdateLocalCommand            ..>  UIInputReceiver              
+UpdateLocalCommand            ..>  UIReceiver                   
 @enduml
