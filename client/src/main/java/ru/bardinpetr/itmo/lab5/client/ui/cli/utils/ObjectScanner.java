@@ -6,23 +6,26 @@ import ru.bardinpetr.itmo.lab5.client.api.commands.DescriptionHolder;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ParserException;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator;
+import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
  * Class for interacting data objects
  */
 public class ObjectScanner {
-    private final Map<Class<?>, List<FieldWithDesc<?>>> dataDescription = DescriptionHolder.dataDescriptions;
+    private final Map<Class<?>, List<FieldWithDesc<?>>> dataDescription;
     private final Scanner scaner;
     private final ConsolePrinter printer;
     private final ObjectMapper mapper = ObjectMapperFactory.createMapper();
-    Runnable callback;
 
-    public ObjectScanner(ConsolePrinter printer, Scanner scaner) {
+    public ObjectScanner(DescriptionHolder dataDescription, ConsolePrinter printer, Scanner scanner) {
+        this.dataDescription = dataDescription.getDataDescriptions();
         this.printer = printer;
-        this.scaner = scaner;
+        this.scaner = scanner;
+
     }
 
     private String scan() {
@@ -154,7 +157,12 @@ public class ObjectScanner {
 
         IValidator val = cur.getValidator();
         @SuppressWarnings("unchecked")
-        var res = val.validate(cur.getValueClass().cast(value));
+        ValidationResponse res = null;
+        try {
+            res = val.validate(cur.getValueClass().cast(value));
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
         if (res.isAllowed()) {
             objectMap.put(cur.getName(), value);
         } else {

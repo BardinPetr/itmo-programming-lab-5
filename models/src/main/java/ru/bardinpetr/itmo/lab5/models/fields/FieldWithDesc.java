@@ -22,15 +22,17 @@ public class FieldWithDesc<T> extends Field<T> {
     public FieldWithDesc(String name, Class<T> kClass, String requestMsg, IValidator<T> validator, boolean nullAble) {
         super(name, kClass);
         this.promptMsg = requestMsg;
-        this.validator = validator;
+        this.validator = (validator == null)
+                ? s -> new ValidationResponse(true, "")
+                : validator;
+
         this.nullAble = nullAble;
     }
-
-    public FieldWithDesc(String name, Class<T> kclass, String requestMsg, boolean nullAble) {
-        super(name, kclass);
-        this.promptMsg = requestMsg;
-        this.validator = s -> new ValidationResponse(true, "");
-        this.nullAble = nullAble;
-
-    }
+//    public FieldWithDesc(String name, Class<T> kclass, String requestMsg, boolean nullAble) {
+//        super(name, kclass);
+//        this.promptMsg = requestMsg;
+//        this.validator = s -> new ValidationResponse(true, "");
+//        this.nullAble = nullAble;
+//
+//    }
 }

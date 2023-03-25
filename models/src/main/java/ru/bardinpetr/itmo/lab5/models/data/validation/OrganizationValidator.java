@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Organization;
 /**
  * A class for organisation's data validation
  */
-public class OrganizationValidation {
+public class OrganizationValidator implements Validator {
     /**
      * @param s x coordinate
      * @return response with error message

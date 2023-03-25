@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
+import ru.bardinpetr.itmo.lab5.client.api.commands.DescriptionHolder;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ObjectScanner;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
@@ -19,9 +20,9 @@ public class CLIController implements UIReceiver {
     private final boolean isRepeatable;
 
 
-    public CLIController(ConsolePrinter printer, InputStream inputStream, boolean isRepeatable) {
+    public CLIController(DescriptionHolder descriptionHolder, ConsolePrinter printer, InputStream inputStream, boolean isRepeatable) {
         this.scanner = new Scanner(inputStream);
-        this.objectScanner = new ObjectScanner(printer, scanner);
+        this.objectScanner = new ObjectScanner(descriptionHolder, printer, scanner);
         this.printer = printer;
         this.isRepeatable = isRepeatable;
     }

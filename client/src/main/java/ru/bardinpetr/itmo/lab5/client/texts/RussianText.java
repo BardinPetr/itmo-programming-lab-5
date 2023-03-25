@@ -40,28 +40,6 @@ public class RussianText {
         );
 
         put(TextKeys.WORKERINTERACT, "Enter employee details");
-        put(TextKeys.NAMEINTERACT, "Enter a name");
-        put(TextKeys.COORDINATESINTERACT, "Enter coordinates");
-        put(TextKeys.ORGANIZATIONINTERACT, "Enter an organization");
-        put(TextKeys.SALARYINTERACT, "Enter salary");
-        put(TextKeys.COORXINTERACT, "Enter x coordinate");
-        put(TextKeys.COORYINTERACT, "Enter y coordinate");
-        put(TextKeys.STARTDAYINTERACT, "Enter start date in DD-MM-YYYY format");
-        put(TextKeys.ENDNDATEINTERACT, "Enter end date in DD-MM-YYYY format");
-        put(TextKeys.POSITIONINTERACT, """
-                Enter position from list:
-                    ENGINEER,
-                    HEAD_OF_DEPARTMENT,
-                    LEAD_DEVELOPER,
-                    CLEANER,
-                    MANAGER_OF_CLEANING""");
-        put(TextKeys.ORGANISATIONNAMEINTERACT, "Enter organisation name");
-        put(TextKeys.ORGANISATIONTYPEINTERACT, """
-                Enter organisation type from list:
-                    COMMERCIAL,
-                    PUBLIC,
-                    PRIVATE_LIMITED_COMPANY,
-                    OPEN_JOINT_STOCK_COMPANY""");
         put(TextKeys.INVALID_APP_ARGUMENTS, "Please call this program with single argument - path to database file");
         put(TextKeys.FILEIO_ERROR_MESSAGE_TEMLPATE, "Could not access db file: \n%s\n\nExiting...");
     }};

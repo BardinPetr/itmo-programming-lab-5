@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
+import ru.bardinpetr.itmo.lab5.client.api.commands.DescriptionHolder;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
@@ -19,8 +20,10 @@ public class ScriptExecutor {
     private final ScriptRecursionController recursionController;
     private final UICommandInvoker invoker;
     private CommandRegistry commandRegistry = null;
+    private DescriptionHolder descriptionHolder;
 
-    public ScriptExecutor(UICommandInvoker invoker) {
+    public ScriptExecutor(DescriptionHolder descriptionHolder, UICommandInvoker invoker) {
+        this.descriptionHolder = descriptionHolder;
         this.invoker = invoker;
         this.recursionController = new ScriptRecursionController();
     }
@@ -54,6 +57,7 @@ public class ScriptExecutor {
         FileIOController fileIOController = new FileIOController(path, false);
 
         UIReceiver uiReceiver = new CLIController(
+                descriptionHolder,
                 ConsolePrinter.getStub(),
                 fileIOController.openReadStream(),
                 false
