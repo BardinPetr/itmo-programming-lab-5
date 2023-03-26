@@ -10,8 +10,6 @@ import ru.bardinpetr.itmo.lab5.client.ui.cli.Interpreter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.UICommandInvoker;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
-import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
-import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.server.MainExecutor;
 
@@ -29,9 +27,7 @@ public class Main {
         var api = new LocalExecutorAPIConnector(serverExecutor);
 
         DescriptionHolder descriptionHolder = new DescriptionHolder(new Class[]{
-                Worker.class,
-                Organization.class,
-                Coordinates.class
+                Worker.class
         });
 
         var ui = new CLIController(

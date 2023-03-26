@@ -7,13 +7,12 @@ import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 public class Check {
 
 
-    public static void main(String[] args) throws NoSuchFieldException, InvocationTargetException, ParserException {
+    public static void main(String[] args) throws ParserException {
         var objectScanner = new ObjectScanner(
                 new DescriptionHolder(new Class[]{
                         Worker.class,

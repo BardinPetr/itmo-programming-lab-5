@@ -21,6 +21,8 @@ import java.util.Map;
 
 /**
  * Class for describing data class's fields with their name, type, prompt message and validation function
+ * <p>
+ * In constructor you need just to specify root classes and their field's classes will be registered with recursion
  */
 @Data
 public class DescriptionHolder {
@@ -32,22 +34,7 @@ public class DescriptionHolder {
 
     public DescriptionHolder(Class<?>[] listOfClasses) {
         for (var i : listOfClasses) {
-            var fieldsList = new ArrayList<FieldWithDesc<?>>();
-            for (var field : i.getDeclaredFields()) {
-                if (!field.isAnnotationPresent(NotPromptRequired.class)) {
-                    //System.out.println(field.getName());
-                    fieldsList.add(new FieldWithDesc<>(
-                            field.getName(),
-                            ClassUtils.wrap(field.getType()),
-                            field.getAnnotation(InteractText.class).value(),
-                            getValidator(
-                                    field.getAnnotation(FieldValidator.class).value(),
-                                    field),
-                            (!(field.getClass().isPrimitive()) && field.isAnnotationPresent(Nullable.class))
-                    ));
-                }
-            }
-            this.dataDescriptions.put(i, fieldsList);
+            addToMap(i);
         }
 
 //        this.dataDescriptions = new HashMap<>() {{
@@ -155,6 +142,36 @@ public class DescriptionHolder {
 //            );
 //
 //        }};
+    }
+
+    /**
+     * method for recurrent class registration
+     *
+     * @param addedClass
+     */
+
+    private void addToMap(Class addedClass) {
+        var fieldsList = new ArrayList<FieldWithDesc<?>>();
+        for (var field : addedClass.getDeclaredFields()) {
+            if (!field.isAnnotationPresent(NotPromptRequired.class)) {
+                //System.out.println(field.getName());
+                if (field.getType().getPackage() == addedClass.getPackage() && (!field.getType().isEnum()) && (!dataDescriptions.containsKey(field.getType()))) {
+                    System.out.println(field.getName());
+                    addToMap(field.getType());
+                }
+                fieldsList.add(new FieldWithDesc<>(
+                        field.getName(),
+                        ClassUtils.wrap(field.getType()),
+                        field.getAnnotation(InteractText.class).value(),
+                        getValidator(
+                                field.getAnnotation(FieldValidator.class).value(),
+                                field),
+                        (!(field.getClass().isPrimitive()) && field.isAnnotationPresent(Nullable.class))
+                ));
+            }
+        }
+        this.dataDescriptions.put(addedClass, fieldsList);
+
     }
 
     public static <T> IValidator<T> getValidator(Class<? extends Validator> validatorClass, Field field) {
