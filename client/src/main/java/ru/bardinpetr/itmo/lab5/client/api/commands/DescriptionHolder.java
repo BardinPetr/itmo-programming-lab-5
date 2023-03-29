@@ -156,9 +156,7 @@ public class DescriptionHolder {
         var fieldsList = new ArrayList<FieldWithDesc<?>>();
         for (var field : addedClass.getDeclaredFields()) {
             if (!field.isAnnotationPresent(NotPromptRequired.class)) {
-                //System.out.println(field.getName());
                 if (field.getType().getPackage() == addedClass.getPackage() && (!field.getType().isEnum()) && (!dataDescriptions.containsKey(field.getType()))) {
-                    System.out.println(field.getName());
                     addToMap(field.getType());
                 }
                 fieldsList.add(new FieldWithDesc<>(
@@ -195,7 +193,6 @@ public class DescriptionHolder {
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
         } catch (NoSuchMethodException e) {
-            //System.out.println(field.getName()+" "+e.getMessage());
             return s -> new ValidationResponse(true, "Auto create");
         } catch (InstantiationException e) {
             throw new Error("Constructor: " + e);
