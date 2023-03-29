@@ -151,6 +151,8 @@ public class DescriptionHolder {
      */
 
     private void addToMap(Class addedClass) {
+        this.dataDescriptions.put(addedClass, null);
+
         var fieldsList = new ArrayList<FieldWithDesc<?>>();
         for (var field : addedClass.getDeclaredFields()) {
             if (!field.isAnnotationPresent(NotPromptRequired.class)) {
