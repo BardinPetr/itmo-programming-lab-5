@@ -10,7 +10,6 @@ import ru.bardinpetr.itmo.lab5.models.commands.responses.Response;
  * Allows to connect server executor as backend provider in client without using any communication
  */
 public class LocalExecutorAPIConnector implements APIClientReceiver {
-
     private final Executor currentExecutor;
 
     public LocalExecutorAPIConnector(Executor currentExecutor) {

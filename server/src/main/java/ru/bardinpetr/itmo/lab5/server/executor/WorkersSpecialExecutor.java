@@ -2,11 +2,12 @@ package ru.bardinpetr.itmo.lab5.server.executor;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.api.*;
+import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
 
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.stream.Collectors;
 
 /**
  * Executor for resolving workers collection commands to DAO calls
@@ -27,8 +28,9 @@ public class WorkersSpecialExecutor extends Executor {
     }
 
     private FilterLessPosCommand.FilterLessPosCommandResponse filterLess(FilterLessPosCommand req) {
-        var data = dao.filter(worker -> worker.getPosition().compareTo(req.position) < 0);
+        var data = new ArrayList<>(dao.filter(worker -> (worker.getPosition() != null && worker.getPosition().compareTo(req.position) < 0)));
         var resp = req.createResponse();
+        data.sort(Worker.getComparator());
         resp.setResult(data);
         return resp;
     }
@@ -45,7 +47,11 @@ public class WorkersSpecialExecutor extends Executor {
 
     private UniqueOrganisationCommand.UniqueOrganisationCommandResponse uniqueOrgs(UniqueOrganisationCommand req) {
         var resp = req.createResponse();
-        resp.setOrganizations(dao.readAll().stream().map(Worker::getOrganization).collect(Collectors.toSet()));
+        var data = new java.util.ArrayList<>(dao.readAll().stream()
+                .map(Worker::getOrganization)
+                .filter(organization -> organization != null).distinct().toList());
+        data.sort(Organization.getComparator());
+        resp.setOrganizations(data);
         return resp;
     }
 

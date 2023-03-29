@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Class of print_unique_organization  command
@@ -24,13 +24,13 @@ public class UniqueOrganisationCommand extends APICommand {
     }
 
     public static class UniqueOrganisationCommandResponse implements APICommandResponse {
-        private Set<Organization> organizations;
+        private List<Organization> organizations;
 
-        public Set<Organization> getOrganizations() {
+        public List<Organization> getOrganizations() {
             return organizations;
         }
 
-        public void setOrganizations(Set<Organization> organizations) {
+        public void setOrganizations(List<Organization> organizations) {
             this.organizations = organizations;
         }
 

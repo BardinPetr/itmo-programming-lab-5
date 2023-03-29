@@ -21,7 +21,8 @@ public class WorkersCRUDExecutor extends Executor {
                 ShowCommand.class,
                 req -> {
                     var resp = req.createResponse();
-                    resp.setResult(dao.readAll());
+                    var data = dao.readAll(Worker.getComparator());
+                    resp.setResult(data);
                     return resp;
                 });
         registerOperation(
