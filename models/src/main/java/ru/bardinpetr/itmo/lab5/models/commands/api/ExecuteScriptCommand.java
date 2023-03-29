@@ -1,13 +1,13 @@
-package ru.bardinpetr.itmo.lab5.models.commands;
+package ru.bardinpetr.itmo.lab5.models.commands.api;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.ListCommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.Response;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class ExecuteScriptCommand extends APICommand {
         return new ExecuteScriptCommandResponse();
     }
 
-    public static class ExecuteScriptCommandResponse extends ListCommandResponse<Response<ICommandResponse>> {
+    public static class ExecuteScriptCommandResponse extends ListCommandResponse<Response<APICommandResponse>> {
         @Override
         public String getUserMessage() {
             String respond = "";

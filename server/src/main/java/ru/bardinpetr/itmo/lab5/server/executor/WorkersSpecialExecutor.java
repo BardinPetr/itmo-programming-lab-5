@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.server.executor;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
-import ru.bardinpetr.itmo.lab5.models.commands.*;
+import ru.bardinpetr.itmo.lab5.models.commands.api.*;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;

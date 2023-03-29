@@ -3,8 +3,8 @@ package ru.bardinpetr.itmo.lab5.common.tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -191,7 +191,7 @@ public class ExecutorTest {
             return new TestCmdResponse();
         }
 
-        public static class TestCmdResponse implements ICommandResponse {
+        public static class TestCmdResponse implements APICommandResponse {
             public String value;
         }
     }

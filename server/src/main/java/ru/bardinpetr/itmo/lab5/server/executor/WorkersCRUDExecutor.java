@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.server.executor;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
-import ru.bardinpetr.itmo.lab5.models.commands.*;
+import ru.bardinpetr.itmo.lab5.models.commands.api.*;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
 
@@ -61,10 +61,6 @@ public class WorkersCRUDExecutor extends Executor {
         registerVoidOperation(
                 ClearCommand.class,
                 req -> dao.clear()
-        );
-        registerVoidOperation(
-                SaveCommand.class,
-                req -> dao.save()
         );
     }
 }

@@ -9,5 +9,6 @@ dependencies {
 
     implementation(Deps.jacksonDatabind)
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${Deps.jacksonVersion}")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-protobuf:${Deps.jacksonVersion}")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Deps.jacksonVersion}")
 }

@@ -1,8 +1,8 @@
 package ru.bardinpetr.itmo.lab5.server.executor;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
-import ru.bardinpetr.itmo.lab5.models.commands.ExecuteScriptCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.api.ExecuteScriptCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
 /**
  * Runs command batches via specified target executor for ExecuteScriptCommand
@@ -26,7 +26,7 @@ public class ScriptExecutor extends Executor {
      * @param req call script command
      * @return response with list of responses for executed commands
      */
-    private ICommandResponse processScript(ExecuteScriptCommand req) {
+    private APICommandResponse processScript(ExecuteScriptCommand req) {
         var resp = req.createResponse();
         var commands = req.getCommands();
         if (commands.isEmpty()) throw new RuntimeException("No commands");

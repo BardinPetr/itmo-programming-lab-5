@@ -1,8 +1,8 @@
 package ru.bardinpetr.itmo.lab5.client.api;
 
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.Response;
 
 /**
  * Interface to call server via APICommand interface
@@ -15,5 +15,5 @@ public interface APIClientReceiver {
      * @param cmd command to execute on server
      * @return Response with ICommandResponse from execution
      */
-    Response<ICommandResponse> call(APICommand cmd);
+    Response<APICommandResponse> call(APICommand cmd);
 }

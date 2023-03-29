@@ -26,25 +26,6 @@ public abstract class SerDesService<T> {
         this.baseClass = baseClass;
 
         mapper = getObjectMapper();
-//        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
-        // Allow to deserialize all classes from .lab5.models and standard java types
-//        var modelsPackage = getClass().getPackageName().replaceFirst("\\.\\w+$", "");
-//        var validator =
-//                BasicPolymorphicTypeValidator
-//                        .builder()
-//                        .allowIfBaseType(Pattern.compile(".*"))
-//                        .allowIfSubType(modelsPackage)
-//                        .allowIfSubTypeIsArray()
-//                        .allowIfSubType("java")
-//                        .build();
-//
-//        // Include type info as property (works for XML, as well as for JSON)
-//        mapper.activateDefaultTyping(
-//                validator,
-//                ObjectMapper.DefaultTyping.NON_FINAL,
-//                JsonTypeInfo.As.WRAPPER_OBJECT
-//        );
     }
 
     /**

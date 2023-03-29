@@ -3,10 +3,10 @@ package ru.bardinpetr.itmo.lab5.client.controller.commands;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
-import ru.bardinpetr.itmo.lab5.models.commands.GetWorkerCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.GetWorkerIdsCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.GetWorkerCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.GetWorkerIdsCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.UpdateCommand;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import java.util.Map;

@@ -1,7 +1,7 @@
-package ru.bardinpetr.itmo.lab5.models.commands;
+package ru.bardinpetr.itmo.lab5.models.commands.api;
 
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
 
 /**
  * Class of clear command

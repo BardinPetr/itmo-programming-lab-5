@@ -7,7 +7,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
 
 import java.util.Collection;
 import java.util.HashMap;

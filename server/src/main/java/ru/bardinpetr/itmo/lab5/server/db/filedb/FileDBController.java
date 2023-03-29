@@ -59,6 +59,7 @@ public class FileDBController<T> implements DBController {
      */
     public boolean store() {
         try {
+            System.err.println("saving");
             storage.storeObject(collection);
             return true;
         } catch (SerDesException ignored) {

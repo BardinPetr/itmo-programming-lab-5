@@ -33,5 +33,9 @@ public class MainExecutor extends Executor {
         registerExecutor(new WorkersCRUDExecutor(dao));
         registerExecutor(new WorkersSpecialExecutor(dao));
         registerExecutor(new ScriptExecutor(this));
+
+        Runtime
+                .getRuntime()
+                .addShutdownHook(new Thread(dao::save));
     }
 }
