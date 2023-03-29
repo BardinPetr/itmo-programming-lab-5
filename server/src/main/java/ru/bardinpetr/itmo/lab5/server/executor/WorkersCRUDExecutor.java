@@ -61,5 +61,9 @@ public class WorkersCRUDExecutor extends Executor {
                 ClearCommand.class,
                 req -> dao.clear()
         );
+        registerVoidOperation(
+                SaveCommand.class,
+                req -> dao.save()
+        );
     }
 }
