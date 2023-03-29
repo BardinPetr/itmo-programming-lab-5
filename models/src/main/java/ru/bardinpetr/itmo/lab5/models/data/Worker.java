@@ -5,7 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.With;
+import ru.bardinpetr.itmo.lab5.models.data.annotation.FieldValidator;
+import ru.bardinpetr.itmo.lab5.models.data.annotation.InteractText;
+import ru.bardinpetr.itmo.lab5.models.data.annotation.NotPromptRequired;
+import ru.bardinpetr.itmo.lab5.models.data.annotation.Nullable;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
+import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
 
 import java.time.ZonedDateTime;
 import java.util.Comparator;
@@ -17,24 +22,55 @@ import static java.util.Comparator.nullsLast;
 @Data
 @AllArgsConstructor
 public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
-    private static Integer nextId = 0;
+    //private static Integer nextId = 0;
     @With
     @NonNull
+    @NotPromptRequired
     private final Integer id;
     @With
     @NonNull
+    @NotPromptRequired
     private final java.time.ZonedDateTime creationDate;
 
     @NonNull
+    @InteractText("Enter a name")
+    @FieldValidator(WorkerValidator.class)
     private String name;
-    @NonNull
-    private Coordinates coordinates;
+
+    @InteractText("Enter salary")
+    @FieldValidator(WorkerValidator.class)
     private float salary;
+
     @NonNull
+    @InteractText("Enter start date in DD-MM-YYYY format")
+    @FieldValidator(WorkerValidator.class)
     private java.util.Date startDate;
+
+    @InteractText("Enter end date in DD-MM-YYYY format")
+    @FieldValidator(WorkerValidator.class)
+    @Nullable
+    private java.time.LocalDate endDate;
+
+    @NonNull
+    @InteractText("Enter coordinates")
+    @FieldValidator(WorkerValidator.class)
+    private Coordinates coordinates;
+
+    @InteractText("Enter an organization")
+    @FieldValidator(WorkerValidator.class)
+    @Nullable
     private Organization organization;
 
-    private java.time.LocalDate endDate;
+
+    @InteractText("""
+            Enter position from list:
+                ENGINEER,
+                HEAD_OF_DEPARTMENT,
+                LEAD_DEVELOPER,
+                CLEANER,
+                MANAGER_OF_CLEANING""")
+    @FieldValidator(WorkerValidator.class)
+    @Nullable
     private Position position;
 
     public Worker() {

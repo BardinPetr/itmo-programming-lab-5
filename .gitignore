@@ -174,3 +174,4 @@ db.xml
 docs/javadoc
 javadoc
 *.zb
+client/src/main/java/ru/bardinpetr/itmo/lab5/client/api/commands/Check.java

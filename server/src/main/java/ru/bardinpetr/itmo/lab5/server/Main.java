@@ -15,11 +15,11 @@ public class Main {
                 0,
                 ZonedDateTime.now(),
                 "Artem",
-                new Coordinates(13, 12),
                 12.3f,
                 new Date(2023 - 1900, Calendar.MARCH, 2),
-                new Organization("ITMO", OrganizationType.PUBLIC),
                 LocalDate.of(2023, Month.MARCH, 2),
+                new Coordinates(13, 12),
+                new Organization("ITMO", OrganizationType.PUBLIC),
                 Position.CLEANER
         );
 

@@ -20,8 +20,8 @@
     <node x="4282.589150943399" y="1553.0">ru.bardinpetr.itmo.lab5.models.commands.GetWorkerCommand.GetWorkerCommandResponse</node>
     <node x="5186.382547169814" y="2175.5">ru.bardinpetr.itmo.lab5.models.commands.AddCommand</node>
     <node x="5514.382547169814" y="2188.0">ru.bardinpetr.itmo.lab5.models.commands.RemoveGreaterCommand</node>
-    <node x="-204.0" y="728.5">ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidation</node>
-    <node x="5303.25" y="716.0">ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidation</node>
+    <node x="-204.0" y="728.5">ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidator</node>
+    <node x="5303.25" y="716.0">ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidator</node>
     <node x="731.3825471698137" y="2326.5">ru.bardinpetr.itmo.lab5.models.commands.GetWorkerIdsCommand.GetWorkerIdsCommandResponse</node>
     <node x="1091.9333333333352" y="2251.0">ru.bardinpetr.itmo.lab5.models.commands.UniqueOrganisationCommand</node>
     <node x="2384.3825471698137" y="2188.0">ru.bardinpetr.itmo.lab5.models.commands.ExecuteScriptCommand</node>
@@ -38,7 +38,7 @@
     <node x="1032.8825471698137" y="1590.5">ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse</node>
     <node x="754.2499999999995" y="2768.5">ru.bardinpetr.itmo.lab5.models.commands.ExecuteScriptCommand.ExecuteScriptCommandResponse</node>
     <node x="4916.382547169814" y="2138.0">ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand</node>
-    <node x="5517.592452830188" y="1566.0">ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation</node>
+    <node x="5517.592452830188" y="1566.0">ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator</node>
     <node x="6320.882547169814" y="315.5">ru.bardinpetr.itmo.lab5.models.data.Worker</node>
     <node x="1518.9333333333352" y="2263.5">ru.bardinpetr.itmo.lab5.models.commands.SaveCommand</node>
     <node x="5393.757547169814" y="-170.0">ru.bardinpetr.itmo.lab5.models.data.Coordinates</node>
@@ -128,7 +128,7 @@
       <point x="1721.8391509433986" y="1296.0" />
       <point x="-52.75" y="29.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidation" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidator" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
       <point x="0.0" y="-55.0" />
       <point x="-43.0" y="262.0" />
       <point x="3171.1000000000026" y="262.0" />
@@ -140,7 +140,7 @@
       <point x="2101.9999999999995" y="2076.0" />
       <point x="-72.0" y="142.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator" target="ru.bardinpetr.itmo.lab5.models.data.Worker" relationship="DEPENDENCY">
       <point x="0.0" y="-105.0" />
       <point x="5702.592452830188" y="1316.0" />
       <point x="6601.382547169814" y="1316.0" />
@@ -188,7 +188,7 @@
       <point x="1827.3391509433986" y="1296.0" />
       <point x="52.75" y="29.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidation" target="ru.bardinpetr.itmo.lab5.models.data.Organization" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidator" target="ru.bardinpetr.itmo.lab5.models.data.Organization" relationship="DEPENDENCY">
       <point x="0.0" y="-55.0" />
       <point x="-43.0" y="252.0" />
       <point x="282.83915094339864" y="252.0" />
@@ -218,7 +218,7 @@
       <point x="1827.3391509433986" y="1296.0" />
       <point x="52.75" y="29.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.commands.RemoveGreaterCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.RemoveGreaterCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator" relationship="DEPENDENCY">
       <point x="0.0" y="-168.0" />
       <point x="5636.882547169814" y="2096.0" />
       <point x="5241.75" y="2096.0" />
@@ -244,7 +244,7 @@
       <point x="2245.9999999999995" y="2066.0" />
       <point x="72.0" y="142.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" target="ru.bardinpetr.itmo.lab5.models.data.Coordinates" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator" target="ru.bardinpetr.itmo.lab5.models.data.Coordinates" relationship="DEPENDENCY">
       <point x="0.0" y="-105.0" />
       <point x="5702.592452830188" y="1306.0" />
       <point x="5817.0" y="1306.0" />
@@ -290,7 +290,7 @@
       <point x="2245.9999999999995" y="2066.0" />
       <point x="72.0" y="142.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.AddCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator" relationship="DEPENDENCY">
       <point x="0.0" y="-180.5" />
       <point x="5340.382547169814" y="2106.0" />
       <point x="4786.7591194968545" y="2106.0" />
@@ -416,7 +416,7 @@
       <point x="1827.3391509433986" y="1296.0" />
       <point x="52.75" y="29.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" target="ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidation" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator" target="ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidator" relationship="DEPENDENCY">
       <point x="0.0" y="-105.0" />
       <point x="5702.592452830188" y="1306.0" />
       <point x="5461.25" y="1306.0" />
@@ -522,7 +522,7 @@
       <point x="7475.217452830188" y="1356.0" />
       <point x="0.0" y="480.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidation" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidator" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
       <point x="0.0" y="-67.5" />
       <point x="5461.25" y="252.0" />
       <point x="3171.1000000000026" y="252.0" />
@@ -614,7 +614,7 @@
       <point x="7175.717452830188" y="282.0" />
       <point x="-43.75" y="29.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidation" target="ru.bardinpetr.itmo.lab5.models.data.Coordinates" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesValidator" target="ru.bardinpetr.itmo.lab5.models.data.Coordinates" relationship="DEPENDENCY">
       <point x="0.0" y="-67.5" />
       <point x="5461.25" y="262.0" />
       <point x="5732.75" y="262.0" />
@@ -682,7 +682,7 @@
       <point x="1156.8825471698137" y="2116.0" />
       <point x="0.0" y="80.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator" target="ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse" relationship="DEPENDENCY">
       <point x="0.0" y="-105.0" />
       <point x="5702.592452830188" y="1306.0" />
       <point x="5279.25" y="1306.0" />
@@ -718,7 +718,7 @@
       <point x="3669.3391509433986" y="2056.0" />
       <point x="0.0" y="80.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation" relationship="DEPENDENCY">
+    <edge source="ru.bardinpetr.itmo.lab5.models.commands.UpdateCommand" target="ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator" relationship="DEPENDENCY">
       <point x="0.0" y="-218.0" />
       <point x="5041.382547169814" y="2116.0" />
       <point x="4683.92751572327" y="2116.0" />

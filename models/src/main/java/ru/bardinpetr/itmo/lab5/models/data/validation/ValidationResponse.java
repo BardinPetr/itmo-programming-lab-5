@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ValidationResponse {
+public class ValidationResponse implements Validator {
     /**
      * Was the validation passed successfully?
      */

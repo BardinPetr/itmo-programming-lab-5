@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
-import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation;
+import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 /**
@@ -29,7 +29,7 @@ public class UpdateCommand extends APICommand {
 
     @Override
     public ValidationResponse validate() {
-        return WorkerValidation.validateAll(element);
+        return (new WorkerValidator()).validateAll(element);
     }
 
     @Override

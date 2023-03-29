@@ -6,7 +6,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
-import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidation;
+import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
 
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -23,7 +23,7 @@ public class WorkerValidationTest {
     void testWorkerValidation() {
         var testWorker = new Worker(
                 0, ZonedDateTime.now(), "", testCoords, 0F, new Date(), testOrg, null, null);
-        var res = WorkerValidation.validateAll(testWorker);
+        var res = (new WorkerValidator()).validateAll(testWorker);
         assertNotNull(res);
         assertFalse(res.isAllowed(), "Empty worker names should not be allowed");
     }

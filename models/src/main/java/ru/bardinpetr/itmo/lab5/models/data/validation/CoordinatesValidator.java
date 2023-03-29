@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 /**
  * A class for coordinate's data validation
  */
-public class CoordinatesValidation {
+public class CoordinatesValidator implements Validator {
     /**
      * @param x x coordinate
      * @return response with error message
