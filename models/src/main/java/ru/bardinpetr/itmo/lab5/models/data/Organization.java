@@ -30,11 +30,14 @@ public class Organization implements Comparable<Organization> {
     public Organization() {
     }
 
-    @Override
-    public int compareTo(Organization org) {
-        Comparator<Organization> comparator = Comparator
+    public static Comparator<Organization> getComparator() {
+        return Comparator
                 .comparing(Organization::getType)
                 .thenComparing(Organization::getFullName);
-        return comparator.compare(this, org);
+    }
+
+    @Override
+    public int compareTo(Organization org) {
+        return getComparator().compare(this, org);
     }
 }
