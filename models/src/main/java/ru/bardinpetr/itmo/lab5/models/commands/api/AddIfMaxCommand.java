@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.models.commands;
+package ru.bardinpetr.itmo.lab5.models.commands.api;
 
 import lombok.Data;
 

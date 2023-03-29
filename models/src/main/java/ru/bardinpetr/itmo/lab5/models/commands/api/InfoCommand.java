@@ -1,8 +1,8 @@
-package ru.bardinpetr.itmo.lab5.models.commands;
+package ru.bardinpetr.itmo.lab5.models.commands.api;
 
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 
 /**
@@ -20,7 +20,7 @@ public class InfoCommand extends APICommand {
         return new InfoCommand.InfoCommandResponse();
     }
 
-    public static class InfoCommandResponse implements ICommandResponse {
+    public static class InfoCommandResponse implements APICommandResponse {
         private CollectionInfo result;
 
         public CollectionInfo getResult() {

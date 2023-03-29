@@ -1,11 +1,11 @@
-package ru.bardinpetr.itmo.lab5.models.commands;
+package ru.bardinpetr.itmo.lab5.models.commands.api;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ListCommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.ListCommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Position;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;

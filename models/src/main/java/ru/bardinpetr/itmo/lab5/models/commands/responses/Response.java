@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.models.commands.base.responses;
+package ru.bardinpetr.itmo.lab5.models.commands.responses;
 
 
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Response<T extends ICommandResponse> {
+public class Response<T extends APICommandResponse> {
     private boolean success = true;
     private boolean resolved = true;
     private String text = null;
@@ -26,7 +26,7 @@ public class Response<T extends ICommandResponse> {
      * @param <T>     payload type
      * @return created response object
      */
-    public static <T extends ICommandResponse> Response<T> success(T payload) {
+    public static <T extends APICommandResponse> Response<T> success(T payload) {
         return new Response<>(true, true, null, payload);
     }
 
@@ -36,7 +36,7 @@ public class Response<T extends ICommandResponse> {
      * @param text string message to return to client
      * @return created response object
      */
-    public static <T extends ICommandResponse> Response<T> error(String text) {
+    public static <T extends APICommandResponse> Response<T> error(String text) {
         return new Response<>(false, true, text, null);
     }
 
@@ -46,7 +46,7 @@ public class Response<T extends ICommandResponse> {
      * @param cause exception which message will be sent to client
      * @return created response object
      */
-    public static <T extends ICommandResponse> Response<T> error(Exception cause) {
+    public static <T extends APICommandResponse> Response<T> error(Exception cause) {
         return new Response<>(false, true, cause.toString(), null);
     }
 
@@ -55,7 +55,7 @@ public class Response<T extends ICommandResponse> {
      *
      * @return created response object
      */
-    public static <T extends ICommandResponse> Response<T> noResolve() {
+    public static <T extends APICommandResponse> Response<T> noResolve() {
         return new Response<>(false, false, "no command implementation on server", null);
     }
 }

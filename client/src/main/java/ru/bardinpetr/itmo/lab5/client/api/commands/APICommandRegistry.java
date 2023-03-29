@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.api.commands;
 
-import ru.bardinpetr.itmo.lab5.models.commands.*;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.*;
 
 import java.util.HashMap;
 import java.util.List;

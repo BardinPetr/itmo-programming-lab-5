@@ -1,8 +1,8 @@
-package ru.bardinpetr.itmo.lab5.models.commands.base.responses;
+package ru.bardinpetr.itmo.lab5.models.commands.responses;
 
 import java.util.List;
 
-public class ListCommandResponse<T> implements ICommandResponse {
+public class ListCommandResponse<T> implements APICommandResponse {
     private List<T> result;
 
     public List<T> getResult() {

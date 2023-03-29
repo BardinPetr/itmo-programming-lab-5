@@ -1,8 +1,8 @@
-package ru.bardinpetr.itmo.lab5.models.commands;
+package ru.bardinpetr.itmo.lab5.models.commands.api;
 
 import lombok.*;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
@@ -42,7 +42,7 @@ public class AddCommand extends APICommand {
 
     @Getter
     @Setter
-    public static class AddCommandResponse implements ICommandResponse {
+    public static class AddCommandResponse implements APICommandResponse {
         private Integer id;
 
         @Override

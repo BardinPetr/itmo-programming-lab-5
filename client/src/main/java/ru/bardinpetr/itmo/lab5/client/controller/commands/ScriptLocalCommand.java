@@ -7,7 +7,7 @@ import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.List;

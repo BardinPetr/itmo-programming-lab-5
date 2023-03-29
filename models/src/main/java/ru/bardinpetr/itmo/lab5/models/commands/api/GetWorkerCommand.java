@@ -1,11 +1,11 @@
-package ru.bardinpetr.itmo.lab5.models.commands;
+package ru.bardinpetr.itmo.lab5.models.commands.api;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 /**
@@ -30,7 +30,7 @@ public class GetWorkerCommand extends APICommand {
 
     @Data
     @NoArgsConstructor
-    public static class GetWorkerCommandResponse implements ICommandResponse {
+    public static class GetWorkerCommandResponse implements APICommandResponse {
         @NonNull
         private Worker worker;
     }

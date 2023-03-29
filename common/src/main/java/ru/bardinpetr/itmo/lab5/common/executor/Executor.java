@@ -2,9 +2,9 @@ package ru.bardinpetr.itmo.lab5.common.executor;
 
 import ru.bardinpetr.itmo.lab5.common.executor.operations.NoReturnOperation;
 import ru.bardinpetr.itmo.lab5.common.executor.operations.Operation;
-import ru.bardinpetr.itmo.lab5.models.commands.base.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.ICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.base.responses.Response;
+import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.Response;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class Executor {
     public static int MAX_RECURSION_DEPTH = 10;
 
-    private final Map<Class<? extends APICommand>, Operation<APICommand, ICommandResponse>> operationMap = new HashMap<>();
+    private final Map<Class<? extends APICommand>, Operation<APICommand, APICommandResponse>> operationMap = new HashMap<>();
     private final List<Executor> childExecutors = new ArrayList<>();
 
     /**
@@ -29,8 +29,8 @@ public class Executor {
      * @param operation function taking input Command and returning Response object
      * @param <T>       type of command
      */
-    public <T extends APICommand> void registerOperation(Class<T> cmdClass, Operation<T, ICommandResponse> operation) {
-        @SuppressWarnings("unchecked") var baseOperation = (Operation<APICommand, ICommandResponse>) operation;
+    public <T extends APICommand> void registerOperation(Class<T> cmdClass, Operation<T, APICommandResponse> operation) {
+        @SuppressWarnings("unchecked") var baseOperation = (Operation<APICommand, APICommandResponse>) operation;
         operationMap.put(cmdClass, baseOperation);
     }
 
@@ -43,7 +43,7 @@ public class Executor {
      * @param <T>       type of command
      */
     public <T extends APICommand> void registerVoidOperation(Class<T> cmdClass, NoReturnOperation<T> operation) {
-        var baseOperation = (Operation<APICommand, ICommandResponse>) (cmd) -> {
+        var baseOperation = (Operation<APICommand, APICommandResponse>) (cmd) -> {
             @SuppressWarnings("unchecked") var command = (T) cmd;
             operation.apply(command);
             return cmd.createResponse();
@@ -67,11 +67,11 @@ public class Executor {
      * @param cmd Command from client
      * @return Response for this command or Response(success=false) if no handler exist
      */
-    public Response<ICommandResponse> execute(APICommand cmd) {
+    public Response<APICommandResponse> execute(APICommand cmd) {
         return execute(cmd, MAX_RECURSION_DEPTH);
     }
 
-    protected Response<ICommandResponse> execute(APICommand cmd, int recursionDepth) {
+    protected Response<APICommandResponse> execute(APICommand cmd, int recursionDepth) {
         var op = operationMap.get(cmd.getClass());
         if (op == null) {
             if (recursionDepth > 0) {
@@ -99,8 +99,8 @@ public class Executor {
      * @param cmds commands
      * @return list of response payloads for each command in input order
      */
-    public List<Response<ICommandResponse>> executeBatch(List<APICommand> cmds) {
-        var result = new ArrayList<Response<ICommandResponse>>();
+    public List<Response<APICommandResponse>> executeBatch(List<APICommand> cmds) {
+        var result = new ArrayList<Response<APICommandResponse>>();
         boolean anyFailed = false;
         for (var cmd : cmds) {
             if (anyFailed) {
