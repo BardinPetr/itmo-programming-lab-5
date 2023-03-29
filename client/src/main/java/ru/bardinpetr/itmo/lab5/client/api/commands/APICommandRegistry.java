@@ -21,7 +21,6 @@ public class APICommandRegistry {
             new UniqueOrganisationCommand(),
             new RemoveByIdCommand(),
             new RemoveGreaterCommand(),
-            new SaveCommand(),
             new ShowCommand()
     );
 
