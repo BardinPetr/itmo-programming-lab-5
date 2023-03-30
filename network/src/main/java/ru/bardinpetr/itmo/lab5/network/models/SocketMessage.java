@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class SocketMessage {
     private final CommandType cmdType;
-    private final long seq;
-    private final long ack;
+    private final long id;
+    private final long replyId;
 
     private Object payload;
 
