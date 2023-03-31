@@ -18,13 +18,6 @@ public class UDPClient extends UDPServerController {
 
     public void send(SocketMessage msg) {
         super.send(serverAddress, msg);
-
-        var pair = receive();
-        if (pair.getSecond().getCmdType().equals(SocketMessage.CommandType.ACK)) {
-            System.out.println("OK!");
-        } else {
-            System.out.println("NOT OK(");
-        }
     }
 
 
