@@ -4,13 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.With;
 
+import java.io.Serializable;
 
 /**
  * Low level message object to passed over channel
  */
 @Data
 @AllArgsConstructor
-public class SocketMessage {
+public class SocketMessage implements Serializable {
+    private static final int payloadSize = 1024;
+
     private final CommandType cmdType;
 
     @With
@@ -19,7 +22,7 @@ public class SocketMessage {
     private final Long replyId;
     private final boolean continued;
 
-    private byte[] payload;
+    private final byte[] payload;
 
 
     /**

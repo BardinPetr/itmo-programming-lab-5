@@ -1,57 +1,54 @@
 package ru.bardinpetr.itmo.lab5.network.server;
 
-import ru.bardinpetr.itmo.lab5.network.server.errors.ServerStartException;
+import ru.bardinpetr.itmo.lab5.network.general.UDPServerController;
+import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
+import ru.bardinpetr.itmo.lab5.network.processing.IMessageHandler;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.channels.DatagramChannel;
+import java.util.HashMap;
+import java.util.Map;
 
-public class UDPServer {
+public class UDPServer extends UDPServerController implements IChannelController<SocketAddress> {
+    private final Map<SocketMessage.CommandType, IMessageHandler<SocketAddress>> serverCmdMap = new HashMap<>();
 
-    private final InetSocketAddress bindAddr;
-    private DatagramChannel channel = null;
-    private boolean running = false;
 
-    public UDPServer(InetSocketAddress bindAddr) {
-        this.bindAddr = bindAddr;
+    public UDPServer(SocketAddress address) throws IOException {
+        super(DatagramChannel.open().bind(address));
     }
 
-    private void run() {
-        if (channel == null)
-            throw new ServerStartException("not initialized");
+    public void run() {
 
-        while (running) {
-            if (!channel.isConnected()) {
-                stop();
-                return;
+        System.out.println("listening..");
+
+        SocketAddress clientAdr;
+
+        while (true) {
+
+            SocketMessage msg;
+            var pair = receive();
+            clientAdr = pair.getFirst();
+            msg = pair.getSecond();
+
+            if (serverCmdMap.containsKey(msg.getCmdType())) {
+                serverCmdMap.get(msg.getCmdType()).handle(clientAdr, msg);
             }
+
+
+        }
+
+    }
+
+    @Override
+    public void subscribe(IMessageHandler<SocketAddress> handler, SocketMessage.CommandType... types) {
+        for (var i : types) {
+            serverCmdMap.put(i, handler);
         }
     }
 
-    public void init() throws ServerStartException {
-        if (channel != null) {
-            stop();
-        }
-
-        try {
-            channel = DatagramChannel
-                    .open()
-                    .bind(bindAddr);
-        } catch (IOException e) {
-            throw new ServerStartException(e);
-        }
-
-        running = true;
-        run();
-    }
-
-    public void stop() {
-        try {
-            channel.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        channel = null;
-        running = false;
+    @Override
+    public void write(SocketAddress address, SocketMessage message) {
+        send(address, message);
     }
 }

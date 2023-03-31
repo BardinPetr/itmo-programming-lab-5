@@ -8,6 +8,7 @@ import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * Executor for resolving workers collection commands to DAO calls
@@ -49,7 +50,7 @@ public class WorkersSpecialExecutor extends Executor {
         var resp = req.createResponse();
         var data = new java.util.ArrayList<>(dao.readAll().stream()
                 .map(Worker::getOrganization)
-                .filter(organization -> organization != null).distinct().toList());
+                .filter(Objects::nonNull).distinct().toList());
         data.sort(Organization.getComparator());
         resp.setOrganizations(data);
         return resp;

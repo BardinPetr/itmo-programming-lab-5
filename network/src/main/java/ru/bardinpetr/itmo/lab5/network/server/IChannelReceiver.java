@@ -14,7 +14,11 @@ public interface IChannelReceiver<K> {
      *
      * @param handler function to be called message arrives
      */
-    void subscribe(IMessageHandler<K> handler);
+    default void subscribe(IMessageHandler<K> handler) {
+        for (var i : SocketMessage.CommandType.values()) {
+            subscribe(handler, i);
+        }
+    }
 
     /**
      * Subscribe on specific messages arrive
