@@ -1,7 +1,10 @@
 package ru.bardinpetr.itmo.lab5.network.session;
 
+import ru.bardinpetr.itmo.lab5.network.models.BaseMessage;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
-import ru.bardinpetr.itmo.lab5.network.server.IChannelSender;
+import ru.bardinpetr.itmo.lab5.network.server.interfaces.IChannelSender;
+import ru.bardinpetr.itmo.lab5.network.session.handlers.SocketMessageHandler;
+import ru.bardinpetr.itmo.lab5.network.session.models.Session;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +41,9 @@ public class SessionSendController<K> {
 
         var isOk = message.getCmdType() == SocketMessage.CommandType.ACK;
         if (!message.isContinued()) {
-            request.callback().onReceive(isOk, message.getPayload());
+            var callback = request.callback();
+            if (callback != null) callback.onReceive(isOk, message.getPayload());
+
             finalizeRequest(replyOn);
         }
     }
@@ -54,7 +59,9 @@ public class SessionSendController<K> {
         var request = pendingMessageBuffer.get(replyOn);
         if (request == null) return;
 
-        request.callback().onReceive(true, message.getPayload());
+        var callback = request.callback();
+        if (callback != null) callback.onReceive(true, message.getPayload());
+
         finalizeRequest(replyOn);
     }
 
@@ -73,7 +80,7 @@ public class SessionSendController<K> {
     /**
      * Send message and wait for it to be handled by recipient, who should send ACK/NACK.
      * After timeout without ack received, the message is considered lost and resent.
-     * If replying party sends ACK command with "waitData" flag set, waits for DATA message with response,
+     * If replying party sends ACK command with "continued" flag set, waits for DATA message with response,
      * otherwise returns at ACK/NACK.
      *
      * @param session   session to which send message
@@ -81,10 +88,11 @@ public class SessionSendController<K> {
      * @param onReceive handler which will be called if ACK/NACK received or when response DATA arrived
      * @param <R>       response payload type
      */
-    public <R> void send(Session<K> session, SocketMessage message, SocketMessageHandler<R> onReceive) {
+    public <R> void send(Session<K> session, BaseMessage message, boolean isContinued, SocketMessageHandler<R> onReceive) {
         var target = session.getAddress();
 
         var preparedMessage = session.prepareSend(message);
+        preparedMessage.setContinued(isContinued);
 
         var msg = new PendingMessage<>(
                 target,
@@ -96,6 +104,14 @@ public class SessionSendController<K> {
         scheduleResend(msg);
 
         controller.write(target, preparedMessage);
+    }
+
+    public <R> void sendResponse(Session<K> session, BaseMessage message, SocketMessageHandler<R> onReceive) {
+        send(session, message, true, onReceive);
+    }
+
+    public <R> void send(Session<K> session, BaseMessage message, SocketMessageHandler<R> onReceive) {
+        send(session, message, false, onReceive);
     }
 
     /**

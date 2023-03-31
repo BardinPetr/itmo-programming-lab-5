@@ -2,7 +2,6 @@ package ru.bardinpetr.itmo.lab5.network.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.With;
 
 import java.io.Serializable;
 
@@ -13,32 +12,19 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class SocketMessage implements Serializable {
     public static final int payloadSize = 1024;
+    private CommandType cmdType;
+    private Long id;
+    private Long replyId;
+    private boolean continued;
+    private byte[] payload;
 
-    private final CommandType cmdType;
-
-    @With
-    private final Long id;
-
-    private final Long replyId;
-    private final boolean continued;
-
-    private final byte[] payload;
-
-
-    /**
-     * @return prepared ACK message
-     */
-    public static SocketMessage ACK() {
-        return new SocketMessage(CommandType.ACK, 0L, 0L, false, null);
+    public SocketMessage(CommandType type) {
+        this(type, 0L, 0L, false, null);
     }
 
-    /**
-     * @return prepared NACK message
-     */
-    public static SocketMessage NACK() {
-        return new SocketMessage(CommandType.NACK, 0L, 0L, false, null);
+    public SocketMessage(CommandType type, Long id, Long replyId) {
+        this(type, id, replyId, false, null);
     }
-
 
     /**
      * @return true if this message is a DATA response for other DATA request

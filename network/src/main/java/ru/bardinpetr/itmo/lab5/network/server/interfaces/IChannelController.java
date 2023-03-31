@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.server;
+package ru.bardinpetr.itmo.lab5.network.server.interfaces;
 
 /**
  * Interface for interacting with low-level socket server/client

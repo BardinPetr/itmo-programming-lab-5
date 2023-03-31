@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.server;
+package ru.bardinpetr.itmo.lab5.network.server.interfaces;
 
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
 import ru.bardinpetr.itmo.lab5.network.processing.IMessageHandler;

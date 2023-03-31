@@ -3,6 +3,7 @@ package ru.bardinpetr.itmo.lab5.network.server;
 import ru.bardinpetr.itmo.lab5.network.general.UDPServerController;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
 import ru.bardinpetr.itmo.lab5.network.processing.IMessageHandler;
+import ru.bardinpetr.itmo.lab5.network.server.interfaces.IChannelController;
 
 import java.io.IOException;
 import java.net.SocketAddress;
