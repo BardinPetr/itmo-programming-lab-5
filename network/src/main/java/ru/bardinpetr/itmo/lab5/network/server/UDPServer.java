@@ -1,57 +1,40 @@
 package ru.bardinpetr.itmo.lab5.network.server;
 
-import ru.bardinpetr.itmo.lab5.network.server.errors.ServerStartException;
+import ru.bardinpetr.itmo.lab5.network.general.ServerController;
+import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.channels.DatagramChannel;
 
-public class UDPServer {
+public class UDPServer extends ServerController {
 
-    private final InetSocketAddress bindAddr;
-    private DatagramChannel channel = null;
-    private boolean running = false;
-
-    public UDPServer(InetSocketAddress bindAddr) {
-        this.bindAddr = bindAddr;
+    public UDPServer(SocketAddress address) throws IOException {
+        super(DatagramChannel.open().bind(address));
     }
 
-    private void run() {
-        if (channel == null)
-            throw new ServerStartException("not initialized");
+    public void run() {
 
-        while (running) {
-            if (!channel.isConnected()) {
-                stop();
-                return;
+        System.out.println("listening..");
+
+        SocketAddress clientAdr;
+
+        while (true) {
+
+            SocketMessage msg;
+            try {
+                var pair = receive();
+                clientAdr = pair.getFirst();
+                msg = pair.getSecond();
+
+                System.out.println(msg);
+                send(new SocketMessage(SocketMessage.CommandType.NACK, 132, 2112, false, null), clientAdr);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+                //continue;
             }
         }
-    }
 
-    public void init() throws ServerStartException {
-        if (channel != null) {
-            stop();
-        }
-
-        try {
-            channel = DatagramChannel
-                    .open()
-                    .bind(bindAddr);
-        } catch (IOException e) {
-            throw new ServerStartException(e);
-        }
-
-        running = true;
-        run();
-    }
-
-    public void stop() {
-        try {
-            channel.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        channel = null;
-        running = false;
     }
 }
