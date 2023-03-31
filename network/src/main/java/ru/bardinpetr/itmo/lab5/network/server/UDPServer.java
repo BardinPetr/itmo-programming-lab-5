@@ -1,13 +1,18 @@
 package ru.bardinpetr.itmo.lab5.network.server;
 
-import ru.bardinpetr.itmo.lab5.network.general.ServerController;
+import ru.bardinpetr.itmo.lab5.network.general.UDPServerController;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
+import ru.bardinpetr.itmo.lab5.network.processing.IMessageHandler;
 
 import java.io.IOException;
 import java.net.SocketAddress;
 import java.nio.channels.DatagramChannel;
+import java.util.HashMap;
+import java.util.Map;
 
-public class UDPServer extends ServerController {
+public class UDPServer extends UDPServerController implements IChannelController<SocketAddress> {
+    private final Map<SocketMessage.CommandType, IMessageHandler<SocketAddress>> serverCmdMap = new HashMap<>();
+
 
     public UDPServer(SocketAddress address) throws IOException {
         super(DatagramChannel.open().bind(address));
@@ -22,19 +27,28 @@ public class UDPServer extends ServerController {
         while (true) {
 
             SocketMessage msg;
-            try {
-                var pair = receive();
-                clientAdr = pair.getFirst();
-                msg = pair.getSecond();
+            var pair = receive();
+            clientAdr = pair.getFirst();
+            msg = pair.getSecond();
 
-                System.out.println(msg);
-                send(new SocketMessage(SocketMessage.CommandType.NACK, 132, 2112, false, null), clientAdr);
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-                //continue;
+            if (serverCmdMap.containsKey(msg.getCmdType())) {
+                serverCmdMap.get(msg.getCmdType()).handle(clientAdr, msg);
             }
+
+
         }
 
+    }
+
+    @Override
+    public void subscribe(IMessageHandler<SocketAddress> handler, SocketMessage.CommandType... types) {
+        for (var i : types) {
+            serverCmdMap.put(i, handler);
+        }
+    }
+
+    @Override
+    public void write(SocketAddress address, SocketMessage message) {
+        send(address, message);
     }
 }

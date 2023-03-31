@@ -1,13 +1,13 @@
-package ru.bardinpetr.itmo.lab5.network.client;
+package ru.bardinpetr.itmo.lab5.network.server;
 
-import ru.bardinpetr.itmo.lab5.network.general.ServerController;
+import ru.bardinpetr.itmo.lab5.network.general.UDPServerController;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
 
 import java.io.IOException;
 import java.net.SocketAddress;
 import java.nio.channels.DatagramChannel;
 
-public class UDPClient extends ServerController {
+public class UDPClient extends UDPServerController {
     private final SocketAddress serverAddress;
 
 
@@ -16,8 +16,8 @@ public class UDPClient extends ServerController {
         this.serverAddress = socketAddress;
     }
 
-    public void send(SocketMessage msg) throws IOException {
-        super.send(msg, serverAddress);
+    public void send(SocketMessage msg) {
+        super.send(serverAddress, msg);
 
         var pair = receive();
         if (pair.getSecond().getCmdType().equals(SocketMessage.CommandType.ACK)) {

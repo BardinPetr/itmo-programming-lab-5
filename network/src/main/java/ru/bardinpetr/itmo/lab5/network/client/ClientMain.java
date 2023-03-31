@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.network.client;
 
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
+import ru.bardinpetr.itmo.lab5.network.server.UDPClient;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
