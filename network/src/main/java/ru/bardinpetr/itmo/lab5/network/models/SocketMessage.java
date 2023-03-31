@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 public class SocketMessage implements Serializable {
-    private static final int payloadSize = 1024;
+    public static final int payloadSize = 1024;
 
     private final CommandType cmdType;
 
