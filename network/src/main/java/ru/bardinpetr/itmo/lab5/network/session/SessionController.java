@@ -1,6 +1,8 @@
 package ru.bardinpetr.itmo.lab5.network.session;
 
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
+import ru.bardinpetr.itmo.lab5.network.processing.IMessageHandler;
+import ru.bardinpetr.itmo.lab5.network.processing.ISessionMessageHandler;
 import ru.bardinpetr.itmo.lab5.network.server.IChannelController;
 
 import java.util.HashMap;
@@ -22,25 +24,57 @@ public class SessionController<K> {
         this.sendController = new SessionSendController<>(controller);
         this.controller = controller;
 
-        controller.subscribe(this::handleACK, SocketMessage.CommandType.ACK, SocketMessage.CommandType.NACK);
-        controller.subscribe(this::handleSession, SocketMessage.CommandType.INIT, SocketMessage.CommandType.HALT);
-        controller.subscribe(this::handleData, SocketMessage.CommandType.DATA);
+        controller.subscribe(
+                loadSessionAdapter(this::handleACKCmd),
+                SocketMessage.CommandType.ACK, SocketMessage.CommandType.NACK
+        );
+        controller.subscribe(
+                loadSessionAdapter(this::handleSessionInitCmd),
+                SocketMessage.CommandType.INIT
+        );
+        controller.subscribe(
+                loadSessionAdapter(this::handleSessionHaltCmd),
+                SocketMessage.CommandType.HALT
+        );
+        controller.subscribe(
+                loadSessionAdapter(this::handleDataCmd),
+                SocketMessage.CommandType.DATA
+        );
     }
 
-    private void handleSession(K sender, SocketMessage message) {
-        var curSession = getSession(sender);
+    private void handleSessionInitCmd(Session<K> session, SocketMessage message) {
     }
 
-    private void handleData(K sender, SocketMessage message) {
-        var curSession = getSession(sender);
-        sendController.onReceivedData(curSession, message);
+    private void handleSessionHaltCmd(Session<K> session, SocketMessage message) {
     }
 
-    private void handleACK(K sender, SocketMessage message) {
-        sendController.onReceivedACK(getSession(sender), message);
+    private void handleDataCmd(Session<K> session, SocketMessage message) {
+        if (message.isResponse()) {
+            sendController.onReceivedDataResponse(message);
+        } else {
+            // TODO handle request for us
+        }
     }
 
-    private Session<K> getSession(K sender) {
-        return sessions.get(sender);
+    private void handleACKCmd(Session<K> session, SocketMessage message) {
+        sendController.onReceivedACK(message);
+    }
+
+    private IMessageHandler<K> loadSessionAdapter(ISessionMessageHandler<K> inputEvent) {
+        return (sender, message) -> {
+            Session<K> curSession = sessions.get(sender);
+            if (curSession != null) {
+                var state = curSession.registerIncoming(message);
+
+                if (state == Session.IncomingMessageState.DUPLICATE) {
+                    sendController.handleDuplicateRequest(curSession, message);
+                    return;
+                } else if (state == Session.IncomingMessageState.EARLY) {
+                    // TODO handle early messages
+                }
+            }
+
+            inputEvent.handle(curSession, message);
+        };
     }
 }

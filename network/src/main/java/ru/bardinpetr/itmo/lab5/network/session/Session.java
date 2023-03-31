@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.network.session;
 
 import lombok.Data;
+import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
 
 /**
  * Handles session with other party
@@ -13,9 +14,24 @@ public class Session<K> {
     private Long selfMessageCounter = 0L;
     private K address;
 
-    public void send() {
-        selfMessageCounter++;
+    public SocketMessage prepareSend(SocketMessage source) {
+        return source.withId(selfMessageCounter++);
     }
 
-//    public Long get
+    public IncomingMessageState registerIncoming(SocketMessage message) {
+        var id = message.getId();
+        if (id == recipientMessageCounter) {
+            recipientMessageCounter++;
+            return IncomingMessageState.HEAD;
+        } else if (id < recipientMessageCounter) {
+            return IncomingMessageState.DUPLICATE;
+        }
+        return IncomingMessageState.EARLY;
+    }
+
+    public enum IncomingMessageState {
+        HEAD,
+        DUPLICATE,
+        EARLY
+    }
 }

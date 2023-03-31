@@ -8,8 +8,10 @@ import java.util.Map;
 
 /**
  * Service for handling message sending queue with acknowledgements and retransmits on timeout
+ * Message order should be enforced before calling this module
  */
 public class SessionSendController<K> {
+    // Maps pending outgoing message to its ID => response will have replyId set to getReplyCounter(request)
     private final Map<Long, PendingMessage<K, ?>> pendingMessageBuffer = new HashMap<>();
     private final IChannelSender<K> controller;
 
@@ -24,26 +26,47 @@ public class SessionSendController<K> {
      * Method for processing ACK/NACK for message.
      * Should be called from the receiving party
      *
-     * @param session session for current sender
      * @param message original message
      */
-    public void onReceivedACK(Session<K> session, SocketMessage message) {
-        boolean isOk = message.getCmdType() == SocketMessage.CommandType.ACK;
-        var request = pendingMessageBuffer.get(null); // TODO
-        if (request == null)
+    public void onReceivedACK(SocketMessage message) {
+        var replyOn = message.getReplyId();
+        var request = pendingMessageBuffer.get(replyOn);
+        if (request == null) {
+            // TODO: handle invalid
             return;
+        }
 
-        request.callback().onReceive(isOk, null);
+        var isOk = message.getCmdType() == SocketMessage.CommandType.ACK;
+        if (!message.isContinued()) {
+            request.callback().onReceive(isOk, message.getPayload());
+            finalizeRequest(replyOn);
+        }
     }
 
     /**
      * Method for processing DATA message with response on last write command.
      * Should be called from the receiving party
      *
-     * @param session session for current sender
      * @param message original message
      */
-    public <T> void onReceivedData(Session<K> session, SocketMessage message) {
+    public void onReceivedDataResponse(SocketMessage message) {
+        var replyOn = message.getReplyId();
+        var request = pendingMessageBuffer.get(replyOn);
+        if (request == null) return;
+
+        request.callback().onReceive(true, message.getPayload());
+        finalizeRequest(replyOn);
+    }
+
+    /**
+     * Called when processing of request ended (received either ACK of ACK+DATA)
+     *
+     * @param requestId id of original request
+     */
+    private void finalizeRequest(Long requestId) {
+        var request = pendingMessageBuffer.remove(requestId);
+        if (request == null) return;
+        unscheduleResend(requestId);
     }
 
 
@@ -58,22 +81,21 @@ public class SessionSendController<K> {
      * @param onReceive handler which will be called if ACK/NACK received or when response DATA arrived
      * @param <R>       response payload type
      */
-    public <T, R> void send(Session<K> session, SocketMessage message, SocketMessageHandler<R> onReceive) {
+    public <R> void send(Session<K> session, SocketMessage message, SocketMessageHandler<R> onReceive) {
         var target = session.getAddress();
-        controller.write(target, message);
+
+        var preparedMessage = session.prepareSend(message);
 
         var msg = new PendingMessage<>(
                 target,
-                message,
-                (SocketMessageHandler<R>) (isOk, payload) -> {
-                    // TODO check if need to wait for DATA packet
-                    unscheduleResend(target);
-                    onReceive.onReceive(isOk, payload);
-                }
+                preparedMessage,
+                onReceive
         );
 
-//        pendingMessageBuffer.put(, msg);
+        pendingMessageBuffer.put(preparedMessage.getId(), msg);
         scheduleResend(msg);
+
+        controller.write(target, preparedMessage);
     }
 
     /**
@@ -86,7 +108,17 @@ public class SessionSendController<K> {
     /**
      * Removes timeout timer for ACK waiting
      */
-    private void unscheduleResend(K target) {
+    private void unscheduleResend(Long targetMessage) {
+        // TODO
+    }
+
+    /**
+     * Should be called externally when identified duplicated request.
+     *
+     * @param curSession
+     * @param message
+     */
+    public void handleDuplicateRequest(Session<K> curSession, SocketMessage message) {
         // TODO
     }
 
