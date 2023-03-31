@@ -11,7 +11,8 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 public class SocketMessage implements Serializable {
-    public static final int payloadSize = 1024;
+    public static final int PAYLOAD_SIZE = 1024;
+
     private CommandType cmdType;
     private Long id;
     private Long replyId;

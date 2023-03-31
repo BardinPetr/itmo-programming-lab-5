@@ -19,7 +19,7 @@ public class UDPServerController implements IServerController {
 
     public Pair<SocketAddress, SocketMessage> receive() {
         var buffer = ByteBuffer.allocate(1024);
-        SocketAddress clientAdr = null;
+        SocketAddress clientAdr;
         try {
             clientAdr = datagramChannel.receive(buffer);
         } catch (Exception e) {
