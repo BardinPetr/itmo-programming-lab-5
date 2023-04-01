@@ -27,7 +27,7 @@ public class ClientMain {
         System.out.println("Start id: " + j);
 
         while (true) {
-            client.send(map.get(i++ % 3).withId(j));
+//            client.send(map.get(i++ % 3).withId(j));
             resp = client.receive().getSecond();
             System.out.println(resp.getReplyId() + ": " + resp.getCmdType() + " " + new String(resp.getPayload()));
 

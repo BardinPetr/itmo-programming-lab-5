@@ -44,6 +44,8 @@ public class SessionController<K> {
      * @param address target address
      */
     public void beginSession(K address) {
+        log.info("Starting handshake with %s (step 1)".formatted(address));
+
         if (sessions.containsKey(address)) {
             throw new InvalidSessionException("Session already existed");
         }
@@ -51,7 +53,14 @@ public class SessionController<K> {
         var session = new Session<>(address);
         sessions.put(address, session);
 
-        sendController.send(session, new BaseMessage(SocketMessage.CommandType.INIT, null), (success, payload) -> sessions.get(address).setState(Session.State.WAITING_HANDSHAKE));
+        sendController.send(
+                session,
+                new BaseMessage(SocketMessage.CommandType.INIT, null),
+                (success, payload) -> {
+                    log.info("Handshake with %s (step 2): got ACK ON INIT".formatted(address));
+                    sessions.get(address).setState(Session.State.WAITING_HANDSHAKE);
+                }
+        );
     }
 
     /**
@@ -60,6 +69,8 @@ public class SessionController<K> {
      * @param address
      */
     public void closeSession(K address) {
+        log.info("Initiating session end with %s (step 1)".formatted(address));
+
         var session = sessions.get(address);
 
         if (session == null) {
@@ -69,7 +80,10 @@ public class SessionController<K> {
         sendController.send(
                 session,
                 new BaseMessage(SocketMessage.CommandType.HALT, null),
-                (success, payload) -> session.setState(Session.State.DEAD)
+                (success, payload) -> {
+                    log.debug("Session ending with %s (step 2): got ACK on our HALT".formatted(address));
+                    session.setState(Session.State.DEAD);
+                }
         );
     }
 
@@ -81,6 +95,8 @@ public class SessionController<K> {
      * @param message INIT message
      */
     private void handleSessionInitCmd(K address, SocketMessage message) {
+        log.info("Got request to init session with %s (step 2)".formatted(address));
+
         var existedSession = sessions.get(address);
 
         if (existedSession != null) {
@@ -95,12 +111,16 @@ public class SessionController<K> {
         session.registerIncoming(message);
         sessions.put(address, session);
 
+        log.info("Sending session init invite back to %s (step 3)".formatted(address));
         sendController.send(session, BaseMessage.ACK(), null);
 
         sendController.send(
                 session,
                 new BaseMessage(SocketMessage.CommandType.INIT, null),
-                (success, payload) -> sessions.get(address).setState(Session.State.OPERATING)
+                (success, payload) -> {
+                    log.info("Established session with %s".formatted(address));
+                    sessions.get(address).setState(Session.State.OPERATING);
+                }
         );
     }
 
@@ -111,6 +131,7 @@ public class SessionController<K> {
      * @param message INIT message of opponent
      */
     private void acceptLastHandshake(Session<K> session, SocketMessage message) {
+        log.info("Established session with %s".formatted(session.getAddress()));
         session.setState(Session.State.OPERATING);
         session.registerIncoming(message);
         sendController.send(session, BaseMessage.ACK(), null);
@@ -123,6 +144,7 @@ public class SessionController<K> {
      * @param message HALT message
      */
     private void handleSessionHaltCmd(K address, SocketMessage message) {
+        log.debug("Got request to end session from %s".formatted(address));
         var session = sessions.get(address);
 
         if (session == null) {
@@ -147,6 +169,7 @@ public class SessionController<K> {
     }
 
     private void handleDataCmd(Session<K> session, SocketMessage message) {
+        log.debug("Got DATA message from %s: %s".formatted(session.getAddress(), message));
         if (message.isResponse()) {
             sendController.onReceivedDataResponse(message);
         } else {
@@ -155,6 +178,7 @@ public class SessionController<K> {
     }
 
     private void handleACKCmd(Session<K> session, SocketMessage message) {
+        log.debug("Received ACK from %s".formatted(session.getAddress()));
         sendController.onReceivedACK(message);
     }
 
@@ -163,6 +187,7 @@ public class SessionController<K> {
             Session<K> curSession = sessions.get(sender);
             if (curSession != null) {
                 var state = curSession.registerIncoming(message);
+                log.debug("Processing message %s for session: %s".formatted(state, curSession));
 
                 if (state == Session.IncomingMessageState.DUPLICATE) {
                     sendController.handleDuplicateRequest(curSession, message);
