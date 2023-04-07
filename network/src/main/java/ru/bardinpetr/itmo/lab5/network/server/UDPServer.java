@@ -35,10 +35,7 @@ public class UDPServer extends UDPServerController implements IChannelController
             if (serverCmdMap.containsKey(msg.getCmdType())) {
                 serverCmdMap.get(msg.getCmdType()).handle(clientAdr, msg);
             }
-
-
         }
-
     }
 
     @Override

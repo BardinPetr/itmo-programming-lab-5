@@ -6,4 +6,6 @@ group = "ru.bardinpetr.itmo.lab5.network"
 
 dependencies {
     implementation(project(":common"))
+
+    implementation("com.fasterxml.jackson.core:jackson-annotations:${Deps.jacksonVersion}")
 }

@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.network.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  */
 @Data
 @AllArgsConstructor
+@JsonIgnoreProperties({"response", "request"})
 public class SocketMessage implements Serializable {
     public static final int PAYLOAD_SIZE = 1024;
 
@@ -23,6 +25,9 @@ public class SocketMessage implements Serializable {
         this(type, 0L, 0L, false, null);
     }
 
+    public SocketMessage() {
+    }
+
     public SocketMessage(CommandType type, Long id, Long replyId) {
         this(type, id, replyId, false, null);
     }
@@ -30,6 +35,7 @@ public class SocketMessage implements Serializable {
     /**
      * @return true if this message is a DATA response for other DATA request
      */
+
     public boolean isResponse() {
         return cmdType == CommandType.DATA && replyId > 0;
     }
