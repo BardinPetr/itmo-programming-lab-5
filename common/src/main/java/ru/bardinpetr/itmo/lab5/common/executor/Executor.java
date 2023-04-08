@@ -4,7 +4,7 @@ import ru.bardinpetr.itmo.lab5.common.executor.operations.NoReturnOperation;
 import ru.bardinpetr.itmo.lab5.common.executor.operations.Operation;
 import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.responses.Response;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,11 +67,11 @@ public class Executor {
      * @param cmd Command from client
      * @return Response for this command or Response(success=false) if no handler exist
      */
-    public Response<APICommandResponse> execute(APICommand cmd) {
+    public APIResponse<APICommandResponse> execute(APICommand cmd) {
         return execute(cmd, MAX_RECURSION_DEPTH);
     }
 
-    protected Response<APICommandResponse> execute(APICommand cmd, int recursionDepth) {
+    protected APIResponse<APICommandResponse> execute(APICommand cmd, int recursionDepth) {
         var op = operationMap.get(cmd.getClass());
         if (op == null) {
             if (recursionDepth > 0) {
@@ -80,15 +80,15 @@ public class Executor {
                     if (res.isResolved()) return res;
                 }
             }
-            return Response.noResolve();
+            return APIResponse.noResolve();
         }
         try {
             var validation = cmd.validate();
             if (!validation.isAllowed())
-                return Response.error("Validation failed: %s".formatted(validation.getMsg()));
-            return Response.success(op.apply(cmd));
+                return APIResponse.error("Validation failed: %s".formatted(validation.getMsg()));
+            return APIResponse.success(op.apply(cmd));
         } catch (Exception ex) {
-            return Response.error(ex.getMessage());
+            return APIResponse.error(ex.getMessage());
         }
     }
 
@@ -99,12 +99,12 @@ public class Executor {
      * @param cmds commands
      * @return list of response payloads for each command in input order
      */
-    public List<Response<APICommandResponse>> executeBatch(List<APICommand> cmds) {
-        var result = new ArrayList<Response<APICommandResponse>>();
+    public List<APIResponse<APICommandResponse>> executeBatch(List<APICommand> cmds) {
+        var result = new ArrayList<APIResponse<APICommandResponse>>();
         boolean anyFailed = false;
         for (var cmd : cmds) {
             if (anyFailed) {
-                result.add(Response.error("%s skipped".formatted(cmd.getType())));
+                result.add(APIResponse.error("%s skipped".formatted(cmd.getType())));
                 continue;
             }
             var resp = execute(cmd);

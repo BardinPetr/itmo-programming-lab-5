@@ -1,30 +1,24 @@
 package ru.bardinpetr.itmo.lab5.client;
 
 import ru.bardinpetr.itmo.lab5.client.api.commands.DescriptionHolder;
-import ru.bardinpetr.itmo.lab5.client.api.connectors.LocalExecutorAPIConnector;
+import ru.bardinpetr.itmo.lab5.client.api.connectors.NetworkServerConnector;
 import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
-import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
+import ru.bardinpetr.itmo.lab5.client.ui.ClientConsoleArgumentsParser;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.CLIController;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.Interpreter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.UICommandInvoker;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
-import ru.bardinpetr.itmo.lab5.server.MainExecutor;
-
-import java.nio.file.Path;
+import ru.bardinpetr.itmo.lab5.network.client.APIClientController;
 
 public class Main {
     public static void main(String[] args) {
-        if (args.length != 1) {
-            System.err.println(RussianText.get(TextKeys.INVALID_APP_ARGUMENTS));
-            System.exit(1);
-            return;
-        }
+        var argParse = new ClientConsoleArgumentsParser(args);
 
-        var serverExecutor = new MainExecutor(Path.of(args[0]));
-        var api = new LocalExecutorAPIConnector(serverExecutor);
+        var connector = new NetworkServerConnector(
+                new APIClientController(argParse.getServerFullAddr())
+        );
 
         DescriptionHolder descriptionHolder = new DescriptionHolder(new Class[]{
                 Worker.class
@@ -42,7 +36,7 @@ public class Main {
                 invoker
         );
 
-        var registry = new CommandRegistry(api, ui, se);
+        var registry = new CommandRegistry(connector, ui, se);
 
         var interpreter = new Interpreter(registry, ui, invoker);
         interpreter.run();
