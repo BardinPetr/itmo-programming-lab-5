@@ -15,8 +15,8 @@ import java.nio.file.Path;
 /**
  * Server main controller
  */
-public class MainExecutor extends Executor {
-    public MainExecutor(Path dbFile) {
+public class DBExecutor extends Executor {
+    public DBExecutor(Path dbFile) {
         var dbControllerFactory = new FileDBControllerFactory<>(dbFile, WorkerCollection.class);
         var daoFactory = new WorkerCollectionDAOFactory();
 

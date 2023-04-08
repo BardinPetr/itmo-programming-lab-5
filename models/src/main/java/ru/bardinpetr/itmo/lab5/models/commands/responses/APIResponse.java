@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Response<T extends APICommandResponse> {
+public class APIResponse<T extends APICommandResponse> {
     private boolean success = true;
     private boolean resolved = true;
     private String text = null;
@@ -26,8 +26,8 @@ public class Response<T extends APICommandResponse> {
      * @param <T>     payload type
      * @return created response object
      */
-    public static <T extends APICommandResponse> Response<T> success(T payload) {
-        return new Response<>(true, true, null, payload);
+    public static <T extends APICommandResponse> APIResponse<T> success(T payload) {
+        return new APIResponse<>(true, true, null, payload);
     }
 
     /**
@@ -36,8 +36,8 @@ public class Response<T extends APICommandResponse> {
      * @param text string message to return to client
      * @return created response object
      */
-    public static <T extends APICommandResponse> Response<T> error(String text) {
-        return new Response<>(false, true, text, null);
+    public static <T extends APICommandResponse> APIResponse<T> error(String text) {
+        return new APIResponse<>(false, true, text, null);
     }
 
     /**
@@ -46,8 +46,8 @@ public class Response<T extends APICommandResponse> {
      * @param cause exception which message will be sent to client
      * @return created response object
      */
-    public static <T extends APICommandResponse> Response<T> error(Exception cause) {
-        return new Response<>(false, true, cause.toString(), null);
+    public static <T extends APICommandResponse> APIResponse<T> error(Exception cause) {
+        return new APIResponse<>(false, true, cause.toString(), null);
     }
 
     /**
@@ -55,7 +55,7 @@ public class Response<T extends APICommandResponse> {
      *
      * @return created response object
      */
-    public static <T extends APICommandResponse> Response<T> noResolve() {
-        return new Response<>(false, false, "no command implementation on server", null);
+    public static <T extends APICommandResponse> APIResponse<T> noResolve() {
+        return new APIResponse<>(false, false, "no command implementation on server", null);
     }
 }

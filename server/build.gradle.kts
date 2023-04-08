@@ -19,6 +19,9 @@ tasks.register<Jar>("fatJar") {
 dependencies {
     implementation(project(":models"))
     implementation(project(":common"))
+    implementation(project(":network"))
+
+    implementation("commons-cli:commons-cli:1.5.0")
     testImplementation("com.fasterxml.jackson.core:jackson-annotations:${Deps.jacksonVersion}")
 }
 
