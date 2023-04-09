@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.common.executor;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.executor.operations.NoReturnOperation;
 import ru.bardinpetr.itmo.lab5.common.executor.operations.Operation;
 import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
@@ -16,6 +17,7 @@ import java.util.Map;
  * Class for mapping client Commands to local implementations of these commands.
  * Register handlers with registerOperation
  */
+@Slf4j
 public class Executor {
     public static int MAX_RECURSION_DEPTH = 10;
 
@@ -72,8 +74,12 @@ public class Executor {
     }
 
     protected APIResponse<APICommandResponse> execute(APICommand cmd, int recursionDepth) {
+        log.debug("Executing {} at {}", cmd.getCmdIdentifier(), getClass().getSimpleName());
+
         var op = operationMap.get(cmd.getClass());
         if (op == null) {
+            log.debug("Execution of {} delegated from {}", cmd.getCmdIdentifier(), getClass().getSimpleName());
+
             if (recursionDepth > 0) {
                 for (Executor e : childExecutors) {
                     var res = e.execute(cmd, recursionDepth - 1);

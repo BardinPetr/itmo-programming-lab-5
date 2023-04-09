@@ -21,11 +21,11 @@ public class SerDesTest {
                 1,
                 ZonedDateTime.now(),
                 "test_name",
-                new Coordinates(11, 22.33f),
                 44.55f,
                 new Date(),
-                new Organization("test_org", OrganizationType.COMMERCIAL),
                 LocalDate.now(),
+                new Coordinates(11, 22.33f),
+                new Organization("test_org", OrganizationType.COMMERCIAL),
                 Position.CLEANER
         );
 

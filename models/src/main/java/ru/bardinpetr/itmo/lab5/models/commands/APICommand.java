@@ -9,9 +9,15 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
 /**
  * General class for all commands
  */
-@JsonIgnoreProperties({"type", "inlineArgs", "interactArgs"})
+@JsonIgnoreProperties({"type", "id", "inlineArgs", "interactArgs"})
 @Data
-public abstract class APICommand {
+public abstract class APICommand implements IIdentifiableCommand {
+
+    @Override
+    public String getCmdIdentifier() {
+        return getClass().getCanonicalName();
+    }
+
     public abstract String getType();
 
     /**

@@ -23,11 +23,11 @@ public class WorkerFactory {
                 id++,
                 ZonedDateTime.now(),
                 "test_name%d".formatted(id),
-                coords,
                 salary++,
                 new Date(),
-                org,
                 LocalDate.now(),
+                coords,
+                org,
                 Position.CLEANER
         );
     }

@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.server.db.filedb;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.InvalidDataFileException;
@@ -11,6 +12,7 @@ import ru.bardinpetr.itmo.lab5.server.db.DBController;
  * Database main controller.
  * Stores local collection T and provides interface for storing and loading it to the file.
  */
+@Slf4j
 public class FileDBController<T> implements DBController {
     private final FileStorageController<T> storage;
     private final Class<T> baseCollectionClass;
@@ -44,7 +46,7 @@ public class FileDBController<T> implements DBController {
         try {
             collection = storage.loadObject();
         } catch (InvalidDataFileException ignore) {
-            System.out.println("\n[INFO] DB file recreated as it contained invalid data");
+            log.warn("\nDB invalid. Recreating");
             clear();
         }
     }
