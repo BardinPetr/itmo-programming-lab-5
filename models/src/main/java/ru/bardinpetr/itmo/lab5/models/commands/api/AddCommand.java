@@ -1,8 +1,9 @@
 package ru.bardinpetr.itmo.lab5.models.commands.api;
 
 import lombok.*;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
@@ -14,7 +15,7 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class AddCommand extends APICommand {
+public class AddCommand extends UserAPICommand {
     @NonNull
     public Worker element;
 
@@ -24,9 +25,9 @@ public class AddCommand extends APICommand {
     }
 
     @Override
-    public Field[] getInteractArgs() {
+    public Field<?>[] getInlineArgs() {
         return new Field[]{
-                new Field("element", Worker.class)
+                new Field<>("element", Worker.class)
         };
     }
 
@@ -42,7 +43,7 @@ public class AddCommand extends APICommand {
 
     @Getter
     @Setter
-    public static class AddCommandResponse implements APICommandResponse {
+    public static class AddCommandResponse extends APICommandResponse implements UserPrintableAPICommandResponse {
         private Integer id;
 
         @Override

@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
@@ -16,7 +16,7 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RemoveGreaterCommand extends APICommand {
+public class RemoveGreaterCommand extends UserAPICommand {
     @NonNull
     public Worker element;
 
@@ -31,9 +31,9 @@ public class RemoveGreaterCommand extends APICommand {
     }
 
     @Override
-    public Field[] getInteractArgs() {
+    public Field<?>[] getInteractArgs() {
         return new Field[]{
-                new Field("element", Worker.class)
+                new Field<>("element", Worker.class)
         };
     }
 

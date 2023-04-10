@@ -3,7 +3,8 @@ package ru.bardinpetr.itmo.lab5.common.tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.UserPromptedAPICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,13 +42,12 @@ public class ExecutorTest {
         var resp = exec.execute(new TestCmd(val_req));
         assertTrue(resp.isSuccess());
 
-        var payload = resp.getPayload();
         assertEquals(
-                TestCmd.TestCmdResponse.class, payload.getClass(),
+                TestCmd.TestCmdResponse.class, resp.getClass(),
                 "Response should be of class declared in request command"
         );
 
-        var casted = (TestCmd.TestCmdResponse) payload;
+        var casted = (TestCmd.TestCmdResponse) resp;
         assertEquals(
                 val_res, casted.value,
                 "Response should contain data sent from executor"
@@ -77,9 +77,8 @@ public class ExecutorTest {
         var resp = exec.execute(new TestCmd(val_req));
         assertTrue(resp.isSuccess());
 
-        var payload = resp.getPayload();
         assertEquals(
-                TestCmd.TestCmdResponse.class, payload.getClass(),
+                TestCmd.TestCmdResponse.class, resp.getClass(),
                 "Response should be of class declared in request command"
         );
     }
@@ -98,7 +97,7 @@ public class ExecutorTest {
 
         var resp = exec.execute(new TestCmd2());
         assertFalse(resp.isSuccess(), "Response should have error mark");
-        assertEquals(exception.getMessage(), resp.getText(), "Error text should be in message");
+        assertEquals(exception.getMessage(), resp.getTextualResponse(), "Error text should be in message");
     }
 
     @Test
@@ -152,13 +151,12 @@ public class ExecutorTest {
         assertTrue(resp.isResolved(), "Command handler should be recursively resolved");
         assertTrue(resp.isSuccess());
 
-        var payload = resp.getPayload();
         assertEquals(
-                TestCmd.TestCmdResponse.class, payload.getClass(),
+                TestCmd.TestCmdResponse.class, resp.getClass(),
                 "Response should be of class declared in request command"
         );
 
-        var casted = (TestCmd.TestCmdResponse) payload;
+        var casted = (TestCmd.TestCmdResponse) resp;
         assertEquals(
                 val_res, casted.value,
                 "Response should contain data sent from executor"
@@ -174,7 +172,7 @@ public class ExecutorTest {
         exec.execute(new TestCmd2());
     }
 
-    static class TestCmd extends APICommand {
+    static class TestCmd extends APICommand implements UserPromptedAPICommand {
         public String value;
 
         public TestCmd(String value) {
@@ -191,13 +189,13 @@ public class ExecutorTest {
             return new TestCmdResponse();
         }
 
-        public static class TestCmdResponse implements APICommandResponse {
+        public static class TestCmdResponse extends APICommandResponse {
             public String value;
         }
     }
 
 
-    static class TestCmd2 extends APICommand {
+    static class TestCmd2 extends APICommand implements UserPromptedAPICommand {
         @Override
         public String getType() {
             return "test2";

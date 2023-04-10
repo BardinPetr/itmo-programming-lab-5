@@ -5,9 +5,9 @@ import lombok.Data;
 import ru.bardinpetr.itmo.lab5.client.api.commands.DescriptionHolder;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ParserException;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
-import ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;
+import ru.bardinpetr.itmo.lab5.models.validation.IValidator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;

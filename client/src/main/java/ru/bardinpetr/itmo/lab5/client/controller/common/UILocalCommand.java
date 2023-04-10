@@ -2,11 +2,13 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class for all commands that can be triggered from UI and have a receiver to communicate with the UI in real time
@@ -32,15 +34,15 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
      * @param cmdName command name if command realization depends
      * @return list of fileds descriptions
      */
-    public List<Field> getCommandInlineArgs(String cmdName) {
+    public List<Field<?>> getCommandInlineArgs(String cmdName) {
         return List.of();
     }
 
     /**
      * Like getCommandInlineArgs but have NAME_ARG as argument #0.
      */
-    private List<Field> getFullInlineArgs(String cmdName) {
-        var data = new ArrayList<Field>();
+    private List<Field<?>> getFullInlineArgs(String cmdName) {
+        var data = new ArrayList<Field<?>>();
         data.add(new Field<>(NAME_ARG, String.class));
         var args = getCommandInlineArgs(cmdName);
         if (args != null) data.addAll(args);
@@ -54,7 +56,7 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
      * @return command execution result
      */
     @Override
-    public CommandResponse executeWithArgs(List<String> args) {
+    public CommandResponse<? extends UserPrintableAPICommandResponse> executeWithArgs(List<String> args) {
         if (args.size() == 0)
             throw new RuntimeException("Not command name");
 
@@ -76,4 +78,7 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
 
         return execute((String) objectMap.get(NAME_ARG), objectMap);
     }
+
+    @Override
+    public abstract CommandResponse<? extends UserPrintableAPICommandResponse> execute(String cmdName, Map<String, Object> args);
 }

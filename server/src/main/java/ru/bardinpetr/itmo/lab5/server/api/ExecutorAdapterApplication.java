@@ -2,17 +2,16 @@ package ru.bardinpetr.itmo.lab5.server.api;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponse;
-import ru.bardinpetr.itmo.lab5.network.app.ServerApplication;
+import ru.bardinpetr.itmo.lab5.network.app.APIApplication;
 import ru.bardinpetr.itmo.lab5.network.app.interfaces.IApplicationCommandHandler;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
 
 import static ru.bardinpetr.itmo.lab5.network.app.models.AppResponse.ResponseStatus;
 
 @Slf4j
-public class ExecutorAdapterApplication extends ServerApplication implements IApplicationCommandHandler<APICommand, APIResponse> {
+public class ExecutorAdapterApplication extends APIApplication implements IApplicationCommandHandler<APICommand, APICommandResponse> {
 
     private final Executor target;
 
@@ -22,11 +21,11 @@ public class ExecutorAdapterApplication extends ServerApplication implements IAp
     }
 
     @Override
-    public void handle(AppRequest<APICommand, APIResponse> request) {
+    public void handle(AppRequest<APICommand, APICommandResponse> request) {
         APICommand command = request.cmd();
         log.debug("DBE: New request from {}: {}", request.session().getAddress(), request);
 
-        APIResponse<APICommandResponse> resp = target.execute(command);
+        APICommandResponse resp = target.execute(command);
 
         if (resp.isSuccess()) {
             request.response().status(ResponseStatus.OK);

@@ -9,12 +9,12 @@ public enum Position {
 
     public final int value;
 
-    public int getValue() {
-        return value;
-    }
-
     Position(int value) {
         this.value = value;
+    }
+
+    public int getValue() {
+        return value;
     }
 
 

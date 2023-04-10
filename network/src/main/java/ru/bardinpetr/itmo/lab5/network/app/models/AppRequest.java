@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.network.app.models;
 
-import ru.bardinpetr.itmo.lab5.models.commands.IIdentifiableCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand;
 import ru.bardinpetr.itmo.lab5.network.app.AppResponseController;
 import ru.bardinpetr.itmo.lab5.network.session.models.Session;
 

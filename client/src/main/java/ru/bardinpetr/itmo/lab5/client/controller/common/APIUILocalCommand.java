@@ -6,7 +6,9 @@ import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.HashMap;
@@ -16,12 +18,12 @@ import java.util.Map;
 /**
  * Base class for all local commands that have API call as a result
  */
-public abstract class APILocalCommand extends UILocalCommand {
+public abstract class APIUILocalCommand extends UILocalCommand {
 
     protected final APIClientReceiver apiClientReceiver;
     private final ObjectMapper mapper;
 
-    public APILocalCommand(APIClientReceiver api, UIReceiver ui) {
+    public APIUILocalCommand(APIClientReceiver api, UIReceiver ui) {
         super(ui);
         this.apiClientReceiver = api;
         this.mapper = ObjectMapperFactory.createMapper();
@@ -33,7 +35,7 @@ public abstract class APILocalCommand extends UILocalCommand {
      * @param name api command name
      * @return api message object
      */
-    protected APICommand retrieveAPICommand(String name) {
+    protected UserAPICommand retrieveAPICommand(String name) {
         var base = APICommandRegistry.getCommand(name);
         if (base == null)
             throw new RuntimeException("No such command");
@@ -46,7 +48,7 @@ public abstract class APILocalCommand extends UILocalCommand {
      * @param cmdName command name if command realization depends
      */
     @Override
-    public List<Field> getCommandInlineArgs(String cmdName) {
+    public List<Field<?>> getCommandInlineArgs(String cmdName) {
         return List.of(retrieveAPICommand(cmdName).getInlineArgs());
     }
 
@@ -75,11 +77,11 @@ public abstract class APILocalCommand extends UILocalCommand {
      * @return APICommand response as CommandResponse
      */
     @Override
-    public CommandResponse execute(String cmdName, Map<String, Object> args) {
+    public CommandResponse<APICommandResponse> execute(String cmdName, Map<String, Object> args) {
         var cmd = prepareAPIMessage(cmdName, args);
         if (cmd == null)
             throw new RuntimeException("Command was not build properly");
         var serverResp = apiClientReceiver.call(cmd);
-        return new CommandResponse(serverResp.isSuccess(), serverResp.getText(), serverResp.getPayload());
+        return new CommandResponse<>(serverResp.isSuccess(), serverResp.getTextualResponse(), serverResp);
     }
 }

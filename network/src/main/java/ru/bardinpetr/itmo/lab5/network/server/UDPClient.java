@@ -14,6 +14,7 @@ public class UDPClient extends UDPServerController {
         super(DatagramChannel.open().bind(null));
         this.serverAddress = socketAddress;
     }
+
     public void send(SocketMessage msg) {
         super.send(serverAddress, msg);
     }

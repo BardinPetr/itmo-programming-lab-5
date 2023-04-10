@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.common.executor.operations;
 
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
 /**

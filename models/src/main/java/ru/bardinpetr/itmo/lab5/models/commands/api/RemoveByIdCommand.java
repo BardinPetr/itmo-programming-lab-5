@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 /**
@@ -13,7 +13,7 @@ import ru.bardinpetr.itmo.lab5.models.fields.Field;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RemoveByIdCommand extends APICommand {
+public class RemoveByIdCommand extends UserAPICommand {
     @NonNull
     public Integer id;
 
@@ -23,9 +23,9 @@ public class RemoveByIdCommand extends APICommand {
     }
 
     @Override
-    public Field[] getInlineArgs() {
+    public Field<?>[] getInlineArgs() {
         return new Field[]{
-                new Field("id", Integer.class)
+                new Field<>("id", Integer.class)
         };
     }
 }

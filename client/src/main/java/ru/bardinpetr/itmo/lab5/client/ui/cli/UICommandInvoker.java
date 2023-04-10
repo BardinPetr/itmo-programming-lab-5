@@ -4,6 +4,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class UICommandInvoker {
      * @throws ScriptException this exception is passed to the root of nested scripts and only there should be handled
      */
     public boolean invoke(UICallableCommand command, List<String> args) throws ScriptException {
-        CommandResponse resp;
+        CommandResponse<? extends UserPrintableAPICommandResponse> resp;
         try {
             resp = command.executeWithArgs(args);
         } catch (ScriptException ex) {
@@ -54,7 +55,7 @@ public class UICommandInvoker {
      * @param caller name of called function or null to ignore
      * @param result response of command
      */
-    protected void print(String caller, CommandResponse result) {
+    protected void print(String caller, CommandResponse<? extends UserPrintableAPICommandResponse> result) {
         if (result.isSuccess()) {
             var msg = result.message();
             if (result.payload() != null) {

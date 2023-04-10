@@ -20,7 +20,7 @@ public class Main {
                 new APIClientController(argParse.getServerFullAddr())
         );
 
-        DescriptionHolder descriptionHolder = new DescriptionHolder(new Class[]{
+        var descriptionHolder = new DescriptionHolder(new Class[]{
                 Worker.class
         });
 

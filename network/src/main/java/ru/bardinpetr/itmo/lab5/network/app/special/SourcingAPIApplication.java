@@ -1,8 +1,8 @@
 package ru.bardinpetr.itmo.lab5.network.app.special;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.bardinpetr.itmo.lab5.models.commands.IIdentifiableCommand;
-import ru.bardinpetr.itmo.lab5.network.app.ServerApplication;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand;
+import ru.bardinpetr.itmo.lab5.network.app.APIApplication;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
 
 /**
@@ -11,7 +11,7 @@ import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
  * @param <T> low-level message object to be used as source for AppRequest
  */
 @Slf4j
-public abstract class SourcingServerApplication<T> extends ServerApplication {
+public abstract class SourcingAPIApplication<T> extends APIApplication {
 
     /**
      * Method to be called when new message should be processed

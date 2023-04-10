@@ -3,8 +3,8 @@ package ru.bardinpetr.itmo.lab5.models.fields;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
+import ru.bardinpetr.itmo.lab5.models.validation.IValidator;
 
 /**
  * Class for full field description

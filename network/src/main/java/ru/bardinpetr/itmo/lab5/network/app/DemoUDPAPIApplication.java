@@ -1,12 +1,12 @@
 package ru.bardinpetr.itmo.lab5.network.app;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.bardinpetr.itmo.lab5.models.commands.IIdentifiableCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand;
 import ru.bardinpetr.itmo.lab5.network.app.interfaces.DestinationServerApplication;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppResponse;
-import ru.bardinpetr.itmo.lab5.network.app.special.SourcingServerApplication;
+import ru.bardinpetr.itmo.lab5.network.app.special.SourcingAPIApplication;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
 import ru.bardinpetr.itmo.lab5.network.session.models.Session;
 
@@ -15,9 +15,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 @Slf4j
-public class DemoUDPServerApplication extends SourcingServerApplication<SocketMessage> implements DestinationServerApplication {
+public class DemoUDPAPIApplication extends SourcingAPIApplication<SocketMessage> implements DestinationServerApplication {
 
-    public DemoUDPServerApplication() {
+    public DemoUDPAPIApplication() {
         new Timer().schedule(
                 new TimerTask() {
                     @Override

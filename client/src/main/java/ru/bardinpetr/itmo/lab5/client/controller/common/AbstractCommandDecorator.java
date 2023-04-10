@@ -13,7 +13,7 @@ public class AbstractCommandDecorator extends AbstractLocalCommand {
     }
 
     @Override
-    public CommandResponse execute(String cmdName, Map<String, Object> args) {
+    public CommandResponse<?> execute(String cmdName, Map<String, Object> args) {
         return decoratee.execute(cmdName, args);
     }
 }

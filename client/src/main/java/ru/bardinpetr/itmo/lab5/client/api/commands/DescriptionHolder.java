@@ -3,7 +3,6 @@ package ru.bardinpetr.itmo.lab5.client.api.commands;
 import lombok.Data;
 import ru.bardinpetr.itmo.lab5.client.api.commands.utils.ClassUtils;
 import ru.bardinpetr.itmo.lab5.client.api.commands.utils.StringUtils;
-import ru.bardinpetr.itmo.lab5.models.commands.validation.IValidator;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.FieldValidator;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.InteractText;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.NotPromptRequired;
@@ -11,6 +10,7 @@ import ru.bardinpetr.itmo.lab5.models.data.annotation.Nullable;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 import ru.bardinpetr.itmo.lab5.models.data.validation.Validator;
 import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;
+import ru.bardinpetr.itmo.lab5.models.validation.IValidator;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -144,6 +144,33 @@ public class DescriptionHolder {
 //        }};
     }
 
+    public static <T> IValidator<T> getValidator(Class<? extends Validator> validatorClass, Field field) {
+        try {
+            var method = validatorClass.getMethod(
+                    "validate%s".formatted(
+                            StringUtils.capitalize(field.getName())
+                    ),
+                    ClassUtils.wrap(field.getType())
+            );
+            var constr = validatorClass.getConstructor().newInstance();
+            return s -> {
+                try {
+                    return (ValidationResponse) method.invoke(constr, new Object[]{s});
+                } catch (IllegalAccessException e) {
+                    throw new Error("method access: " + e);
+                }
+            };
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            return s -> new ValidationResponse(true, "Auto create");
+        } catch (InstantiationException e) {
+            throw new Error("Constructor: " + e);
+        } catch (IllegalAccessException e) {
+            throw new Error("Access: " + e);
+        }
+    }
+
     /**
      * method for recurrent class registration
      *
@@ -172,32 +199,5 @@ public class DescriptionHolder {
         }
         this.dataDescriptions.put(addedClass, fieldsList);
 
-    }
-
-    public static <T> IValidator<T> getValidator(Class<? extends Validator> validatorClass, Field field) {
-        try {
-            var method = validatorClass.getMethod(
-                    "validate%s".formatted(
-                            StringUtils.capitalize(field.getName())
-                    ),
-                    ClassUtils.wrap(field.getType())
-            );
-            var constr = validatorClass.getConstructor().newInstance();
-            return s -> {
-                try {
-                    return (ValidationResponse) method.invoke(constr, new Object[]{s});
-                } catch (IllegalAccessException e) {
-                    throw new Error("method access: " + e);
-                }
-            };
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            return s -> new ValidationResponse(true, "Auto create");
-        } catch (InstantiationException e) {
-            throw new Error("Constructor: " + e);
-        } catch (IllegalAccessException e) {
-            throw new Error("Access: " + e);
-        }
     }
 }

@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.models.commands.responses;
 
 import java.util.List;
 
-public class ListCommandResponse<T> implements APICommandResponse {
+public class ListAPICommandResponse<T> extends APICommandResponse {
     private List<T> result;
 
     public List<T> getResult() {
@@ -12,7 +12,6 @@ public class ListCommandResponse<T> implements APICommandResponse {
     public void setResult(List<T> result) {
         this.result = result;
     }
-
 
     @Override
     public String getUserMessage() {

@@ -1,13 +1,13 @@
 package ru.bardinpetr.itmo.lab5.client.controller.commands;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
-import ru.bardinpetr.itmo.lab5.client.controller.common.APILocalCommand;
+import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Command for processing nested scripts
  */
-public class ScriptLocalCommand extends APILocalCommand {
+public class ScriptLocalCommand extends APIUILocalCommand {
     private final ScriptExecutor scriptExecutor;
 
     public ScriptLocalCommand(APIClientReceiver api, UIReceiver ui, ScriptExecutor scriptExecutor) {
@@ -26,7 +26,7 @@ public class ScriptLocalCommand extends APILocalCommand {
     }
 
     @Override
-    public List<Field> getCommandInlineArgs(String cmdName) {
+    public List<Field<?>> getCommandInlineArgs(String cmdName) {
         return List.of(new Field[]{new Field<>("fileName", String.class)});
     }
 

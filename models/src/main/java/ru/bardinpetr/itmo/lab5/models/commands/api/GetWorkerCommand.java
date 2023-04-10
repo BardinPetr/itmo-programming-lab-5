@@ -4,8 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 /**
@@ -14,7 +15,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class GetWorkerCommand extends APICommand {
+public class GetWorkerCommand extends UserAPICommand {
     @NonNull
     public Integer id;
 
@@ -30,8 +31,13 @@ public class GetWorkerCommand extends APICommand {
 
     @Data
     @NoArgsConstructor
-    public static class GetWorkerCommandResponse implements APICommandResponse {
+    public static class GetWorkerCommandResponse extends APICommandResponse implements UserPrintableAPICommandResponse {
         @NonNull
         private Worker worker;
+
+        @Override
+        public String getUserMessage() {
+            return worker.toString();
+        }
     }
 }

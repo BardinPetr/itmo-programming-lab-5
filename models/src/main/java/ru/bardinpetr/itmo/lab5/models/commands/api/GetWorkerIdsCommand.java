@@ -1,14 +1,14 @@
 package ru.bardinpetr.itmo.lab5.models.commands.api;
 
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.responses.ListCommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.ListAPICommandResponse;
 
 /**
  * Class of show command
  */
 @Data
-public class GetWorkerIdsCommand extends APICommand {
+public class GetWorkerIdsCommand extends UserAPICommand {
     @Override
     public String getType() {
         return "gwi";
@@ -19,6 +19,6 @@ public class GetWorkerIdsCommand extends APICommand {
         return new GetWorkerIdsCommandResponse();
     }
 
-    public static class GetWorkerIdsCommandResponse extends ListCommandResponse<Integer> {
+    public static class GetWorkerIdsCommandResponse extends ListAPICommandResponse<Integer> {
     }
 }

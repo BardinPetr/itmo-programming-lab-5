@@ -1,12 +1,13 @@
 package ru.bardinpetr.itmo.lab5.client.controller.commands;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
-import ru.bardinpetr.itmo.lab5.client.controller.common.APILocalCommand;
+import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetWorkerCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetWorkerIdsCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.UpdateCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import java.util.Map;
@@ -15,7 +16,7 @@ import java.util.Map;
 /**
  * Worker update command
  */
-public class UpdateLocalCommand extends APILocalCommand {
+public class UpdateLocalCommand extends APIUILocalCommand {
 
     public UpdateLocalCommand(APIClientReceiver api, UIReceiver ui) {
         super(api, ui);
@@ -27,7 +28,7 @@ public class UpdateLocalCommand extends APILocalCommand {
     }
 
     @Override
-    protected APICommand retrieveAPICommand(String name) {
+    protected UserAPICommand retrieveAPICommand(String name) {
         return new UpdateCommand();
     }
 
@@ -48,14 +49,14 @@ public class UpdateLocalCommand extends APILocalCommand {
         if (!availableIdsResp.isSuccess())
             throw new RuntimeException("Could not retrieve existing data");
 
-        var ids = ((GetWorkerIdsCommand.GetWorkerIdsCommandResponse) availableIdsResp.getPayload()).getResult();
+        var ids = ((GetWorkerIdsCommand.GetWorkerIdsCommandResponse) availableIdsResp).getResult();
         if (!ids.contains(id))
             throw new RuntimeException("No worker with such id");
 
         var currentObjResp = apiClientReceiver.call(new GetWorkerCommand(id));
         if (!currentObjResp.isSuccess())
             throw new RuntimeException("Could not retrieve existing data");
-        var current = ((GetWorkerCommand.GetWorkerCommandResponse) currentObjResp.getPayload()).getWorker();
+        var current = ((GetWorkerCommand.GetWorkerCommandResponse) currentObjResp).getWorker();
 
         return new UpdateCommand(
                 id,

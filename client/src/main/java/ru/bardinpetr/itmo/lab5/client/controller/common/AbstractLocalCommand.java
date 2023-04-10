@@ -14,5 +14,5 @@ public abstract class AbstractLocalCommand {
      * @param args    arguments of command parsed according to fields
      * @return response of execution
      */
-    public abstract CommandResponse execute(String cmdName, Map<String, Object> args);
+    public abstract CommandResponse<?> execute(String cmdName, Map<String, Object> args);
 }

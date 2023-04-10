@@ -7,7 +7,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public class CommandRegistry {
         register(new ScriptLocalCommand(api, ui, scriptExecutor));
         registerFromAPI(
                 APICommandRegistry.cmdList,
-                new GeneralAPILocalCommand(api, ui)
+                new GeneralAPIUILocalCommand(api, ui)
         );
     }
 
@@ -53,7 +53,7 @@ public class CommandRegistry {
      * @param apiCommands APICommand collection to take names from
      * @param command     target command
      */
-    private void registerFromAPI(Collection<APICommand> apiCommands, AbstractLocalCommand command) {
+    private void registerFromAPI(Collection<UserAPICommand> apiCommands, AbstractLocalCommand command) {
         apiCommands.forEach(i -> register(i.getType(), command));
     }
 

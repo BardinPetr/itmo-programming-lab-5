@@ -1,15 +1,15 @@
 package ru.bardinpetr.itmo.lab5.models.commands.api;
 
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.responses.ListCommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.ListAPICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 /**
  * Class of print_descending command
  */
 @Data
-public class PrintDescendingCommand extends APICommand {
+public class PrintDescendingCommand extends UserAPICommand {
 
     @Override
     public String getType() {
@@ -21,7 +21,7 @@ public class PrintDescendingCommand extends APICommand {
         return new PrintDescendingCommandResponse();
     }
 
-    public static class PrintDescendingCommandResponse extends ListCommandResponse<Worker> {
+    public static class PrintDescendingCommandResponse extends ListAPICommandResponse<Worker> {
         @Override
         public String getUserMessage() {
             var result = getResult();

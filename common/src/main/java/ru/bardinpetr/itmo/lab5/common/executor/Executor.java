@@ -3,9 +3,8 @@ package ru.bardinpetr.itmo.lab5.common.executor;
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.executor.operations.NoReturnOperation;
 import ru.bardinpetr.itmo.lab5.common.executor.operations.Operation;
-import ru.bardinpetr.itmo.lab5.models.commands.APICommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,11 +68,11 @@ public class Executor {
      * @param cmd Command from client
      * @return Response for this command or Response(success=false) if no handler exist
      */
-    public APIResponse<APICommandResponse> execute(APICommand cmd) {
+    public APICommandResponse execute(APICommand cmd) {
         return execute(cmd, MAX_RECURSION_DEPTH);
     }
 
-    protected APIResponse<APICommandResponse> execute(APICommand cmd, int recursionDepth) {
+    protected APICommandResponse execute(APICommand cmd, int recursionDepth) {
         log.debug("Executing {} at {}", cmd.getCmdIdentifier(), getClass().getSimpleName());
 
         var op = operationMap.get(cmd.getClass());
@@ -86,15 +85,15 @@ public class Executor {
                     if (res.isResolved()) return res;
                 }
             }
-            return APIResponse.noResolve();
+            return APICommandResponse.noResolve();
         }
         try {
             var validation = cmd.validate();
             if (!validation.isAllowed())
-                return APIResponse.error("Validation failed: %s".formatted(validation.getMsg()));
-            return APIResponse.success(op.apply(cmd));
+                return APICommandResponse.error("Validation failed: %s".formatted(validation.getMsg()));
+            return op.apply(cmd);
         } catch (Exception ex) {
-            return APIResponse.error(ex.getMessage());
+            return APICommandResponse.error(ex.getMessage());
         }
     }
 
@@ -105,12 +104,12 @@ public class Executor {
      * @param cmds commands
      * @return list of response payloads for each command in input order
      */
-    public List<APIResponse<APICommandResponse>> executeBatch(List<APICommand> cmds) {
-        var result = new ArrayList<APIResponse<APICommandResponse>>();
+    public List<APICommandResponse> executeBatch(List<APICommand> cmds) {
+        var result = new ArrayList<APICommandResponse>();
         boolean anyFailed = false;
         for (var cmd : cmds) {
             if (anyFailed) {
-                result.add(APIResponse.error("%s skipped".formatted(cmd.getType())));
+                result.add(APICommandResponse.error("%s skipped".formatted(cmd.getCmdIdentifier())));
                 continue;
             }
             var resp = execute(cmd);
