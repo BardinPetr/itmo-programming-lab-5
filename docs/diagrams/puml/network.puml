@@ -10,7 +10,7 @@ participant Executor as E
 
 U -> CA: APICommand
 activate CA
-CA -> CA: APIRequest
+CA -> CA: prepare APIRequest
 
 CA -> C: send(SocketMessage)
 
@@ -74,6 +74,7 @@ end loop
 deactivate S
 
 C --> CA: SocketMessage
+CA -> CA: process as AppResponse
 deactivate C
 deactivate C
 
