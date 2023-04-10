@@ -18,6 +18,7 @@ import java.util.Map;
  * @param <K> type of object, that uniquely identifies client before message is parsed
  */
 @Slf4j
+@Deprecated(forRemoval = true)
 public class SessionController<K> {
 
     private final Map<K, Session<K>> sessions = new HashMap<>();

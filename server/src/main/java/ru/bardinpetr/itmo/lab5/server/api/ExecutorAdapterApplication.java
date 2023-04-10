@@ -11,7 +11,7 @@ import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
 import static ru.bardinpetr.itmo.lab5.network.app.models.AppResponse.ResponseStatus;
 
 @Slf4j
-public class ExecutorAdapterApplication extends APIApplication implements IApplicationCommandHandler<APICommand, APICommandResponse> {
+public class ExecutorAdapterApplication extends APIApplication<APICommand, APICommandResponse> implements IApplicationCommandHandler<APICommand, APICommandResponse> {
 
     private final Executor target;
 

@@ -9,6 +9,7 @@ import ru.bardinpetr.itmo.lab5.network.session.models.Session;
  * Service for handling input requests and sending responses.
  * Message order should be enforced before calling this module
  */
+@Deprecated(forRemoval = true)
 public class SessionReplyController<K> {
     private final SessionSendController<K> controller;
     private IMessageReplyHandler handler;

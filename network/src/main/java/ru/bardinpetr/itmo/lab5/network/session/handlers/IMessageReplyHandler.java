@@ -5,6 +5,7 @@ import ru.bardinpetr.itmo.lab5.network.session.models.Session;
 /**
  * Interface for server to request for data to send as reply for request
  */
+@Deprecated(forRemoval = true)
 public interface IMessageReplyHandler {
 
     /**

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand;
 import ru.bardinpetr.itmo.lab5.network.app.errors.ApplicationBuildException;
 import ru.bardinpetr.itmo.lab5.network.app.interfaces.IApplicationCommandHandler;
+import ru.bardinpetr.itmo.lab5.network.app.interfaces.IFilteredApplication;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
 
 import java.util.ArrayList;
@@ -17,13 +18,16 @@ import java.util.Map;
  * It is symmetrical, so handling commands on server ends with sending response and on client - with ACK.
  * Moreover, if supported by underlying channel, could be used to make server able to call client at any time within active session.
  * Session handling is not included by default and should be provided via inheritor of SourcingAPIApplication
+ *
+ * @param <S> request base type
+ * @param <R> response base type
  */
 @Slf4j
-public abstract class APIApplication {
+public abstract class APIApplication<S extends IIdentifiableCommand, R> implements IFilteredApplication {
 
-    private final List<APIApplication> processors = new ArrayList<>();
-    private final Map<IIdentifiableCommand, IApplicationCommandHandler<?, ?>> commandHandlers = new HashMap<>();
-    private IApplicationCommandHandler<?, ?> anyCommandHandler;
+    private final List<APIApplication<S, R>> processors = new ArrayList<>();
+    private final Map<S, IApplicationCommandHandler<S, R>> commandHandlers = new HashMap<>();
+    private IApplicationCommandHandler<S, R> anyCommandHandler;
 
     public APIApplication() {
 
@@ -35,11 +39,14 @@ public abstract class APIApplication {
      * If nested app terminated request or any local terminating handler exist, no further processing done
      *
      * @param request applications request object
-     * @param <K>     payload type
      * @return processed request
      */
-    @SuppressWarnings("unchecked")
-    protected <K extends IIdentifiableCommand, R> AppRequest<K, R> process(AppRequest<K, R> request) {
+    protected AppRequest<S, R> process(AppRequest<S, R> request) {
+        if (!filter(request)) {
+            log.debug("Message {} ignored by {}", request.id(), getClass().getSimpleName());
+            return request;
+        }
+
         log.debug("Processing message at {}: {}", getClass().getSimpleName(), request);
 
         for (var app : processors) {
@@ -50,32 +57,32 @@ public abstract class APIApplication {
 
         var terminatingHandler = commandHandlers.get(request.cmd());
         if (terminatingHandler != null) {
-            ((IApplicationCommandHandler<K, R>) terminatingHandler).handle(request);
+            terminatingHandler.handle(request);
             request.response().terminate();
         } else if (anyCommandHandler != null) {
-            ((IApplicationCommandHandler<K, R>) anyCommandHandler).handle(request);
+            anyCommandHandler.handle(request);
             request.response().terminate();
         }
 
         return request;
     }
 
-    public final void use(APIApplication app) {
+    public final void use(APIApplication<S, R> app) {
         processors.add(app);
     }
 
-    public final void on(IIdentifiableCommand cmd, IApplicationCommandHandler<?, ?> handler) {
+    public final void on(S cmd, IApplicationCommandHandler<S, R> handler) {
         if (commandHandlers.containsKey(cmd))
             throw new ApplicationBuildException("Commands should be handled once only");
         commandHandlers.put(cmd, handler);
     }
 
-    public final void on(IApplicationCommandHandler<?, ?> handler, IIdentifiableCommand... cmds) {
+    public final void on(IApplicationCommandHandler<S, R> handler, S... cmds) {
         for (var i : cmds)
             commandHandlers.put(i, handler);
     }
 
-    public final void on(IApplicationCommandHandler<?, ?> handler) {
+    public final void on(IApplicationCommandHandler<S, R> handler) {
         if (anyCommandHandler != null)
             throw new ApplicationBuildException("Only one global handler should exist");
         anyCommandHandler = handler;

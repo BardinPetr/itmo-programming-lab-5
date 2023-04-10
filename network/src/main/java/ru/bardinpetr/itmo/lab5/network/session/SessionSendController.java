@@ -13,6 +13,7 @@ import java.util.Map;
  * Service for handling message sending queue with acknowledgements and retransmits on timeout
  * Message order should be enforced before calling this module
  */
+@Deprecated(forRemoval = true)
 public class SessionSendController<K> {
     // Maps pending outgoing message to its ID => response will have replyId set to getReplyCounter(request)
     private final Map<Long, PendingMessage<K, ?>> pendingMessageBuffer = new HashMap<>();

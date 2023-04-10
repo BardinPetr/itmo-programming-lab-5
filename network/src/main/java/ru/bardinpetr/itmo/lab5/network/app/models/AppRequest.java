@@ -10,5 +10,11 @@ import ru.bardinpetr.itmo.lab5.network.session.models.Session;
  * @param <T>     payload type
  * @param <R>     response type
  */
-public record AppRequest<T extends IIdentifiableCommand, R>(Session session, AppResponseController<R> response, T cmd) {
+public record AppRequest<T extends IIdentifiableCommand, R>(boolean isLocal,
+                                                            Session session,
+                                                            AppResponseController<R> response,
+                                                            T cmd) {
+    public Long id() {
+        return response == null ? -1 : response.getId();
+    }
 }
