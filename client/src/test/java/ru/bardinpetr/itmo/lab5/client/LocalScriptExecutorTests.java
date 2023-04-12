@@ -50,11 +50,11 @@ public class LocalScriptExecutorTests {
 //        HashMap<String, Object> objectMap = new HashMap<>();
 //        objectMap.put("fileName", fileName);
 //
-////        var cmd = (new ObjectMapper()).convertValue(
+////        var payload = (new ObjectMapper()).convertValue(
 ////                objectMap, LocalExecuteScriptCommand.class);
 //
 ////        ScriptExecutor executor = new ScriptExecutor();
-////        var respond = (ExecuteScriptCommand) executor.execute(cmd).getPayload();
+////        var respond = (ExecuteScriptCommand) executor.execute(payload).getPayload();
 //
 ////        assertEquals(result, respond.getCommands());
 //    }

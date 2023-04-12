@@ -68,7 +68,7 @@ public class UICommandInvoker {
                 screenUIReceiver.ok();
             }
         } else {
-            screenUIReceiver.error("[cmd: %s] %s".formatted(caller == null ? "" : caller, result.message()));
+            screenUIReceiver.error("[payload: %s] %s".formatted(caller == null ? "" : caller, result.message()));
         }
     }
 }

@@ -3,6 +3,7 @@ package ru.bardinpetr.itmo.lab5.network.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import ru.bardinpetr.itmo.lab5.network.framelevel.IIdentifiableMessage;
 
 import java.io.Serializable;
 
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @JsonIgnoreProperties({"response", "request"})
-public class SocketMessage implements Serializable {
+public class SocketMessage implements Serializable, IIdentifiableMessage {
     public static final int PAYLOAD_SIZE = 1024;
 
     private CommandType cmdType;

@@ -23,7 +23,7 @@ import java.util.Map;
  * @param <R> response base type
  */
 @Slf4j
-public abstract class APIApplication<S extends IIdentifiableCommand, R> implements IFilteredApplication {
+public abstract class APIApplication<S extends IIdentifiableCommand, R> implements IFilteredApplication<S, R> {
 
     private final List<APIApplication<S, R>> processors = new ArrayList<>();
     private final Map<S, IApplicationCommandHandler<S, R>> commandHandlers = new HashMap<>();
@@ -55,7 +55,7 @@ public abstract class APIApplication<S extends IIdentifiableCommand, R> implemen
                 return request;
         }
 
-        var terminatingHandler = commandHandlers.get(request.cmd());
+        var terminatingHandler = commandHandlers.get(request.payload());
         if (terminatingHandler != null) {
             terminatingHandler.handle(request);
             request.response().terminate();

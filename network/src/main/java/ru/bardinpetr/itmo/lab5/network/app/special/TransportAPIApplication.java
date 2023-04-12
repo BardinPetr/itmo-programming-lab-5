@@ -30,7 +30,4 @@ public abstract class TransportAPIApplication<S extends IIdentifiableCommand, R,
      * @return prepared AppRequest
      */
     protected abstract AppRequest<S, R> buildRequestObject(T sourceMessage);
-
-//    public void send(AppRequest<S, R> ) {
-//    }
 }

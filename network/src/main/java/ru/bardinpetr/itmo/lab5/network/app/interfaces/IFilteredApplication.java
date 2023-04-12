@@ -6,15 +6,15 @@ import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
 /**
  * Allows applications to filter incoming requests
  */
-public interface IFilteredApplication {
+public interface IFilteredApplication<S extends IIdentifiableCommand, R> {
 
     /**
+     * Check if request is appropriate for this app
+     *
      * @param req input request
-     * @param <S> request type
-     * @param <R> response type
      * @return true if request is appropriate for this app
      */
-    default <S extends IIdentifiableCommand, R> boolean filter(AppRequest<S, R> req) {
+    default boolean filter(AppRequest<S, R> req) {
         return true;
     }
 }

@@ -22,7 +22,7 @@ public class ExecutorAdapterApplication extends APIApplication<APICommand, APICo
 
     @Override
     public void handle(AppRequest<APICommand, APICommandResponse> request) {
-        APICommand command = request.cmd();
+        APICommand command = request.payload();
         log.debug("DBE: New request from {}: {}", request.session().getAddress(), request);
 
         APICommandResponse resp = target.execute(command);

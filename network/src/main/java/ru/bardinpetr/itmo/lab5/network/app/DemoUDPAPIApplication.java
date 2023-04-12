@@ -39,7 +39,7 @@ public class DemoUDPAPIApplication extends TransportAPIApplication<APICommand, A
 
         log.info("Initiating request {} from {}: {}", resp.getId(), 1, payload);
 
-        return new AppRequest<>(false, session, resp, payload);
+        return new AppRequest<>(AppRequest.ReqStatus.INIT, session, resp, payload);
     }
 
     @Override

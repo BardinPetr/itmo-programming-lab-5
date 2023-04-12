@@ -5,6 +5,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
 import java.net.InetSocketAddress;
 
+@Deprecated(forRemoval = true)
 public class APIClientController {
 
     public APIClientController(InetSocketAddress server) {
