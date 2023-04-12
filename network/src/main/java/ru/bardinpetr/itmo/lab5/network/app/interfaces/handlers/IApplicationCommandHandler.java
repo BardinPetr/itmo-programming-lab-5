@@ -1,12 +1,10 @@
 package ru.bardinpetr.itmo.lab5.network.app.interfaces.handlers;
 
-import ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand;
-import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.requests.AppRequest;
 
 /**
- * @param <S> request payload type
- * @param <R> response payload type
+ * handler for api commands
  */
-public interface IApplicationCommandHandler<S extends IIdentifiableCommand, R> {
-    void handle(AppRequest<S, R> request);
+public interface IApplicationCommandHandler {
+    void handle(AppRequest request);
 }

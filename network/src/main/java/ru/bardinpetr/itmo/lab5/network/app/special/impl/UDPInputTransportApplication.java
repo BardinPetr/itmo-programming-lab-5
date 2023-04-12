@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService;
 import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.network.app.session.Session;
 import ru.bardinpetr.itmo.lab5.network.app.special.AbstractInputTransportApplication;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
@@ -14,7 +13,7 @@ import java.net.InetSocketAddress;
 
 @Slf4j
 public class UDPInputTransportApplication
-        extends AbstractInputTransportApplication<APICommand, APICommandResponse, InetSocketAddress, SocketMessage> {
+        extends AbstractInputTransportApplication<InetSocketAddress, SocketMessage> {
 
 
     private final JSONSerDesService<APICommand> serDesService;

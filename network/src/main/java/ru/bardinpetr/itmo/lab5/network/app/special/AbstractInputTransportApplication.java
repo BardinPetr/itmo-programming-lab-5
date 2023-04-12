@@ -1,9 +1,9 @@
 package ru.bardinpetr.itmo.lab5.network.app.special;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.network.app.AbstractApplication;
-import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.requests.AppRequest;
 import ru.bardinpetr.itmo.lab5.network.app.session.Session;
 import ru.bardinpetr.itmo.lab5.network.framelevel.models.IIdentifiableMessage;
 import ru.bardinpetr.itmo.lab5.network.transport.IServerTransport;
@@ -12,14 +12,11 @@ import ru.bardinpetr.itmo.lab5.network.transport.IServerTransport;
  * Represents Application capable of sending app-level messages to app-chain build from transport-level messages.
  * Message source (first application in chain) should implement this class.
  *
- * @param <Q> request base type
- * @param <A> response base type
  * @param <U> user identifier type
  * @param <L> low-level message object to be used as source for AppRequest
  */
 @Slf4j
-public abstract class AbstractInputTransportApplication<Q extends IIdentifiableCommand, A, U, L extends IIdentifiableMessage>
-        extends AbstractApplication<Q, A> {
+public abstract class AbstractInputTransportApplication<U, L extends IIdentifiableMessage> extends AbstractApplication {
 
     private final IServerTransport<U, L> transport;
 
@@ -47,7 +44,7 @@ public abstract class AbstractInputTransportApplication<Q extends IIdentifiableC
 
         var session = supplySession(senderID, incomingMessage);
 
-        var appRequest = new AppRequest<Q, A>(
+        var appRequest = new AppRequest(
                 status,
                 incomingMessage.getId(),
                 session,
@@ -73,10 +70,10 @@ public abstract class AbstractInputTransportApplication<Q extends IIdentifiableC
      * @param request low-level request
      * @return deserialized app-level response or null if invalid input
      */
-    protected abstract Q deserialize(L request);
+    protected abstract APICommand deserialize(L request);
 
     @Override
-    public boolean filter(AppRequest<Q, A> req) {
+    public boolean filter(AppRequest req) {
         return true;
     }
 }
