@@ -5,6 +5,7 @@ import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 import ru.bardinpetr.itmo.lab5.network.framelevel.Frame;
 import ru.bardinpetr.itmo.lab5.network.framelevel.FrameController;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
+import ru.bardinpetr.itmo.lab5.network.utils.DatagramPacketUtils;
 import ru.bardinpetr.itmo.lab5.network.utils.Pair;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.nio.channels.DatagramChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UDPServerController implements IServerController {
+public class UDPServerController {
     FrameController frameController;
 
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
@@ -43,9 +44,9 @@ public class UDPServerController implements IServerController {
             for (int i = 0; i < size; i++) {
                 bytesList.add(frameController.receive(
                         clientAdr,
-                        Frame.FIRST_ID + 2 + i * 2
+                        Frame.FIRST_ID + 2 + i * 2L
                 ).getSecond().getPayload());
-                frameController.send(clientAdr, new Frame(Frame.FIRST_ID + 3 + i * 2));
+                frameController.send(clientAdr, new Frame(Frame.FIRST_ID + 3 + i * 2L));
             }
 
             SocketMessage msg;
@@ -82,11 +83,11 @@ public class UDPServerController implements IServerController {
             for (int i = 0; i < packetsList.size(); i++) {
                 frameController.send(address,
                         new Frame(
-                                Frame.FIRST_ID + 2 + i * 2,
+                                Frame.FIRST_ID + 2 + i * 2L,
                                 packetsList.get(i)
                         )
                 );
-                frameController.receive(address, Frame.FIRST_ID + 2 + 1 + i * 2);
+                frameController.receive(address, Frame.FIRST_ID + 2 + 1 + i * 2L);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

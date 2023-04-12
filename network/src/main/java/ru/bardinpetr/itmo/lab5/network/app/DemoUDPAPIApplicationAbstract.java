@@ -4,10 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
-import ru.bardinpetr.itmo.lab5.network.app.interfaces.DestinationServerApplication;
+import ru.bardinpetr.itmo.lab5.network.app.interfaces.types.DestinationServerApplication;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppResponse;
-import ru.bardinpetr.itmo.lab5.network.app.special.TransportAPIApplication;
+import ru.bardinpetr.itmo.lab5.network.app.special.AbstractTransportAPIApplication;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
 import ru.bardinpetr.itmo.lab5.network.session.Session;
 
@@ -16,9 +16,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 @Slf4j
-public class DemoUDPAPIApplication extends TransportAPIApplication<APICommand, APICommandResponse, SocketMessage> implements DestinationServerApplication<APICommand> {
+public class DemoUDPAPIApplicationAbstract extends AbstractTransportAPIApplication<APICommand, APICommandResponse, SocketMessage> implements DestinationServerApplication<APICommand> {
 
-    public DemoUDPAPIApplication() {
+    public DemoUDPAPIApplicationAbstract() {
         new Timer().schedule(
                 new TimerTask() {
                     @Override

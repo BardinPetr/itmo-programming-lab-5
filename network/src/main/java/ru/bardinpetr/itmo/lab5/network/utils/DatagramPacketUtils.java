@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.general;
+package ru.bardinpetr.itmo.lab5.network.utils;
 
 import ru.bardinpetr.itmo.lab5.network.framelevel.Frame;
 

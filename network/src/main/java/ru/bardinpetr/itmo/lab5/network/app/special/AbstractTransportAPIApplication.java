@@ -13,7 +13,7 @@ import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
  * @param <T> low-level message object to be used as source for AppRequest
  */
 @Slf4j
-public abstract class TransportAPIApplication<S extends IIdentifiableCommand, R, T> extends APIApplication<S, R> {
+public abstract class AbstractTransportAPIApplication<S extends IIdentifiableCommand, R, T> extends APIApplication<S, R> {
 
     /**
      * Method to be called when new message should be processed

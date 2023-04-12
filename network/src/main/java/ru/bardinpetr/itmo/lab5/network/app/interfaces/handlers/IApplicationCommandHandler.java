@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.app.interfaces;
+package ru.bardinpetr.itmo.lab5.network.app.interfaces.handlers;
 
 import ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;

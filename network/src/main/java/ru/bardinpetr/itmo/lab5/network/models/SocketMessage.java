@@ -37,7 +37,6 @@ public class SocketMessage implements Serializable, IIdentifiableMessage {
     /**
      * @return true if this message is a DATA response for other DATA request
      */
-
     public boolean isResponse() {
         return cmdType == CommandType.DATA && replyId > 0;
     }

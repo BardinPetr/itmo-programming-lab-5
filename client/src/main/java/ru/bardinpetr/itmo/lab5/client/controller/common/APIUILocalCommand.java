@@ -78,7 +78,7 @@ public abstract class APIUILocalCommand extends UILocalCommand {
      * @return APICommand response as CommandResponse
      */
     @Override
-    public CommandResponse<APICommandResponse> execute(String cmdName, Map<String, Object> args) {
+    public ClientCommandResponse<APICommandResponse> execute(String cmdName, Map<String, Object> args) {
         var cmd = prepareAPIMessage(cmdName, args);
         if (cmd == null)
             throw new RuntimeException("Command was not build properly");
@@ -89,6 +89,6 @@ public abstract class APIUILocalCommand extends UILocalCommand {
             // TODO proper handling of api errors
             throw new RuntimeException(e);
         }
-        return new CommandResponse<>(serverResp.isSuccess(), serverResp.getTextualResponse(), serverResp);
+        return new ClientCommandResponse<>(serverResp.isSuccess(), serverResp.getTextualResponse(), serverResp);
     }
 }

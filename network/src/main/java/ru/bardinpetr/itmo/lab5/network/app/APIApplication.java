@@ -3,8 +3,8 @@ package ru.bardinpetr.itmo.lab5.network.app;
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand;
 import ru.bardinpetr.itmo.lab5.network.app.errors.ApplicationBuildException;
-import ru.bardinpetr.itmo.lab5.network.app.interfaces.IApplicationCommandHandler;
-import ru.bardinpetr.itmo.lab5.network.app.interfaces.IFilteredApplication;
+import ru.bardinpetr.itmo.lab5.network.app.interfaces.handlers.IApplicationCommandHandler;
+import ru.bardinpetr.itmo.lab5.network.app.interfaces.types.IFilteredApplication;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
 
 import java.util.ArrayList;

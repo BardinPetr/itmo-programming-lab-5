@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.network.app;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.bardinpetr.itmo.lab5.network.app.interfaces.DestinationServerApplication;
+import ru.bardinpetr.itmo.lab5.network.app.interfaces.types.DestinationServerApplication;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppResponse;
 
 /**

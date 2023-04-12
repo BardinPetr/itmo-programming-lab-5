@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
-import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
+import ru.bardinpetr.itmo.lab5.client.controller.common.ClientCommandResponse;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
@@ -31,15 +31,15 @@ public class UICommandInvoker {
      * @throws ScriptException this exception is passed to the root of nested scripts and only there should be handled
      */
     public boolean invoke(UICallableCommand command, List<String> args) throws ScriptException {
-        CommandResponse<? extends UserPrintableAPICommandResponse> resp;
+        ClientCommandResponse<? extends UserPrintableAPICommandResponse> resp;
         try {
             resp = command.executeWithArgs(args);
         } catch (ScriptException ex) {
             throw ex; // Should be handled by ScriptExecutor and ScriptLocalCommand
         } catch (Exception ex) {
-            resp = CommandResponse.error(ex.getMessage());
+            resp = ClientCommandResponse.error(ex.getMessage());
         }
-        if (resp == null) resp = CommandResponse.ok();
+        if (resp == null) resp = ClientCommandResponse.ok();
 
         if (args.size() > 0)
             print(args.get(0), resp);
@@ -55,7 +55,7 @@ public class UICommandInvoker {
      * @param caller name of called function or null to ignore
      * @param result response of command
      */
-    protected void print(String caller, CommandResponse<? extends UserPrintableAPICommandResponse> result) {
+    protected void print(String caller, ClientCommandResponse<? extends UserPrintableAPICommandResponse> result) {
         if (result.isSuccess()) {
             var msg = result.message();
             if (result.payload() != null) {

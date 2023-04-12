@@ -28,11 +28,4 @@ public class FieldWithDesc<T> extends Field<T> {
 
         this.nullAble = nullAble;
     }
-//    public FieldWithDesc(String name, Class<T> kclass, String requestMsg, boolean nullAble) {
-//        super(name, kclass);
-//        this.promptMsg = requestMsg;
-//        this.validator = s -> new ValidationResponse(true, "");
-//        this.nullAble = nullAble;
-//
-//    }
 }

@@ -2,8 +2,7 @@ package ru.bardinpetr.itmo.lab5.network.server;
 
 import ru.bardinpetr.itmo.lab5.network.general.UDPServerController;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
-import ru.bardinpetr.itmo.lab5.network.processing.IMessageHandler;
-import ru.bardinpetr.itmo.lab5.network.server.interfaces.IChannelController;
+import ru.bardinpetr.itmo.lab5.network.server.handlers.IMessageHandler;
 
 import java.io.IOException;
 import java.net.SocketAddress;
@@ -11,7 +10,7 @@ import java.nio.channels.DatagramChannel;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UDPServer extends UDPServerController implements IChannelController<SocketAddress> {
+public class UDPServer extends UDPServerController {
     private final Map<SocketMessage.CommandType, IMessageHandler<SocketAddress>> serverCmdMap = new HashMap<>();
 
 
@@ -38,14 +37,12 @@ public class UDPServer extends UDPServerController implements IChannelController
         }
     }
 
-    @Override
     public void subscribe(IMessageHandler<SocketAddress> handler, SocketMessage.CommandType... types) {
         for (var i : types) {
             serverCmdMap.put(i, handler);
         }
     }
 
-    @Override
     public void write(SocketAddress address, SocketMessage message) {
         send(address, message);
     }

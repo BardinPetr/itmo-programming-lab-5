@@ -2,8 +2,8 @@ package ru.bardinpetr.itmo.lab5.network.framelevel;
 
 import ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService;
 import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
-import ru.bardinpetr.itmo.lab5.network.general.DatagramPacketUtils;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
+import ru.bardinpetr.itmo.lab5.network.utils.DatagramPacketUtils;
 
 public class ClientMain {
     static JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);

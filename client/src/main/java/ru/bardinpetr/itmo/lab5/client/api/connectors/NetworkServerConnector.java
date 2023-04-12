@@ -21,7 +21,7 @@ public class NetworkServerConnector implements APIClientReceiver {
         try {
             return apiController.request(cmd);
         } catch (TimeoutException e) {
-            throw new RuntimeException(e);
+            throw new APIClientException(e);
         }
     }
 }

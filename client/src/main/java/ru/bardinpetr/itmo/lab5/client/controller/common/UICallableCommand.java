@@ -15,5 +15,5 @@ public interface UICallableCommand {
      * @param args list of arguments including command name as args[0]
      * @return result of execution
      */
-    CommandResponse<? extends UserPrintableAPICommandResponse> executeWithArgs(List<String> args);
+    ClientCommandResponse<? extends UserPrintableAPICommandResponse> executeWithArgs(List<String> args);
 }

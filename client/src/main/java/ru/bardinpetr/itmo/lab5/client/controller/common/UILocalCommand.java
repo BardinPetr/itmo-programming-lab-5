@@ -56,7 +56,7 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
      * @return command execution result
      */
     @Override
-    public CommandResponse<? extends UserPrintableAPICommandResponse> executeWithArgs(List<String> args) {
+    public ClientCommandResponse<? extends UserPrintableAPICommandResponse> executeWithArgs(List<String> args) {
         if (args.size() == 0)
             throw new RuntimeException("Not command name");
 
@@ -80,5 +80,5 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
     }
 
     @Override
-    public abstract CommandResponse<? extends UserPrintableAPICommandResponse> execute(String cmdName, Map<String, Object> args);
+    public abstract ClientCommandResponse<? extends UserPrintableAPICommandResponse> execute(String cmdName, Map<String, Object> args);
 }

@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.client.controller.commands;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
-import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
+import ru.bardinpetr.itmo.lab5.client.controller.common.ClientCommandResponse;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
@@ -48,7 +48,7 @@ public class ScriptLocalCommand extends APIUILocalCommand {
      * @return execution result
      */
     @Override
-    public CommandResponse execute(String cmdName, Map<String, Object> args) {
+    public ClientCommandResponse execute(String cmdName, Map<String, Object> args) {
         String path = (String) args.get("fileName");
         if (path == null)
             throw new RuntimeException("No script file passed");
@@ -61,6 +61,6 @@ public class ScriptLocalCommand extends APIUILocalCommand {
             throw new RuntimeException("Invalid Script");
         }
 
-        return CommandResponse.ok();
+        return ClientCommandResponse.ok();
     }
 }

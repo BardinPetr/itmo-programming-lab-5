@@ -156,7 +156,6 @@ public class ObjectScanner {
         }
 
         IValidator val = cur.getValidator();
-        @SuppressWarnings("unchecked")
         ValidationResponse res = null;
         try {
             res = val.validate(cur.getValueClass().cast(value));

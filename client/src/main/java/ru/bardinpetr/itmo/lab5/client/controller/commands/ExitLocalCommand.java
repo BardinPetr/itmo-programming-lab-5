@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.controller.commands;
 
-import ru.bardinpetr.itmo.lab5.client.controller.common.CommandResponse;
+import ru.bardinpetr.itmo.lab5.client.controller.common.ClientCommandResponse;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 
@@ -19,8 +19,8 @@ public class ExitLocalCommand extends UILocalCommand {
     }
 
     @Override
-    public CommandResponse execute(String cmdName, Map<String, Object> args) {
+    public ClientCommandResponse execute(String cmdName, Map<String, Object> args) {
         System.exit(0);
-        return CommandResponse.ok();
+        return ClientCommandResponse.ok();
     }
 }
