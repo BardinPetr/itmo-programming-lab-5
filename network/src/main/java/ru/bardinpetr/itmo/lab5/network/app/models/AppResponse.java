@@ -3,23 +3,21 @@ package ru.bardinpetr.itmo.lab5.network.app.models;
 import lombok.Data;
 
 /**
- * @param <K> response payload
+ * @param <U> recipient user identifier
+ * @param <T> response payload
  */
 @Data
-public class AppResponse<K> {
+public class AppResponse<U, T> {
 
     private ResponseStatus status = ResponseStatus.WAITING;
-    private K payload = null;
+    private U recipient = null;
+    private T payload = null;
 
-    public AppResponse(ResponseStatus status, K payload) {
-        this.status = status;
-        this.payload = payload;
-    }
-
-    public AppResponse() {
+    public AppResponse(U recipient) {
+        this.recipient = recipient;
     }
 
     public enum ResponseStatus {
-        OK, CLIENT_ERROR, SERVER_ERROR, WAITING
+        OK, ERROR, WAITING
     }
 }

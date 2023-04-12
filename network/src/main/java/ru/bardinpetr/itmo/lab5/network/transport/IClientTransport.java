@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.framelevel.transport;
+package ru.bardinpetr.itmo.lab5.network.transport;
 
 
 import java.io.IOException;
@@ -14,7 +14,6 @@ public interface IClientTransport<T> {
 
     /**
      * Synchronously send request.
-     * Should ensure r
      */
     void send(T data);
 

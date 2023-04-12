@@ -11,7 +11,7 @@ import ru.bardinpetr.itmo.lab5.client.ui.cli.UICommandInvoker;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.network.client.impl.SocketAPIClient;
-import ru.bardinpetr.itmo.lab5.network.framelevel.transport.UDPClientTransport;
+import ru.bardinpetr.itmo.lab5.network.transport.impl.UDPClientTransport;
 
 public class Main {
     public static void main(String[] args) {

@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.network.framelevel.models.IIdentifiableMessage;
-import ru.bardinpetr.itmo.lab5.network.framelevel.transport.IClientTransport;
+import ru.bardinpetr.itmo.lab5.network.transport.IClientTransport;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -27,6 +27,14 @@ public abstract class AbstractAPIClient<T extends IIdentifiableMessage> {
         this.transport = transport;
     }
 
+    /**
+     * Send APICommand request and synchronously wait for response from server
+     *
+     * @param request request to be sent
+     * @return APICommandResponse response on command
+     * @throws TimeoutException   if response not arrived in timeout
+     * @throws APIClientException if any error raised in process
+     */
     public APICommandResponse request(APICommand request) throws TimeoutException, APIClientException {
         var message = serialize(request);
         if (message == null)
@@ -54,6 +62,12 @@ public abstract class AbstractAPIClient<T extends IIdentifiableMessage> {
         return deserialized;
     }
 
+    /**
+     * Validate if incoming message is formally correct as response
+     *
+     * @param reply incoming low-level message
+     * @return true if valid
+     */
     private boolean validateReply(T reply) {
         return true;
     }

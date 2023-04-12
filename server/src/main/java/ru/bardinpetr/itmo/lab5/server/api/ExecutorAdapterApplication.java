@@ -11,7 +11,7 @@ import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
 import static ru.bardinpetr.itmo.lab5.network.app.models.AppResponse.ResponseStatus;
 
 @Slf4j
-public class ExecutorAdapterApplication extends APIApplication<APICommand, APICommandResponse> implements IApplicationCommandHandler<APICommand, APICommandResponse> {
+public class ExecutorAdapterApplication extends APIApplication implements IApplicationCommandHandler<APICommand, APICommandResponse> {
 
     private final Executor target;
 
@@ -22,19 +22,17 @@ public class ExecutorAdapterApplication extends APIApplication<APICommand, APICo
 
     @Override
     public void handle(AppRequest<APICommand, APICommandResponse> request) {
-        APICommand command = request.payload();
-        log.debug("DBE: New request from {}: {}", request.session().getAddress(), request);
+        APICommand command = request.getPayload();
+        log.debug("DBE: New request from {}: {}", request.getSession().getAddress(), request);
 
         APICommandResponse resp = target.execute(command);
 
         if (resp.isSuccess()) {
-            request.response().status(ResponseStatus.OK);
-        } else if (!resp.isResolved()) {
-            request.response().status(ResponseStatus.SERVER_ERROR);
+            request.getResponse().status(ResponseStatus.OK);
         } else {
-            request.response().status(ResponseStatus.CLIENT_ERROR);
+            request.getResponse().status(ResponseStatus.ERROR);
         }
 
-        request.response().send(resp);
+        request.getResponse().send(resp);
     }
 }

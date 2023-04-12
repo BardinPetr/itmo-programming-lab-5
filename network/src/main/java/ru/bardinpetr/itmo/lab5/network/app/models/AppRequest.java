@@ -1,27 +1,36 @@
 package ru.bardinpetr.itmo.lab5.network.app.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand;
 import ru.bardinpetr.itmo.lab5.network.app.AppResponseController;
-import ru.bardinpetr.itmo.lab5.network.session.Session;
+import ru.bardinpetr.itmo.lab5.network.app.session.Session;
 
 /**
- * @param session
- * @param payload
- * @param <T>     payload type
- * @param <R>     response type
+ * Envelope for handling request during application chain processing
+ *
+ * @param <Q> request type
+ * @param <A> response type
  */
-public record AppRequest<T extends IIdentifiableCommand, R>(
-        ReqStatus status,
-        Session session,
-        AppResponseController<R> response,
-        T payload) {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AppRequest<Q extends IIdentifiableCommand, A> {
+    private ReqStatus status = ReqStatus.UNKNOWN;
+    private Long id;
+    private Session<?> session;
+    private AppResponseController<?, A> response;
+    private Q payload;
+
     public Long id() {
         return response == null ? -1 : response.getId();
     }
 
     public enum ReqStatus {
-        INIT,
-        SESSION_ASSIGNED,
+        UNKNOWN,
+        CREATED,
+        INVALID,
         NORMAL
     }
 }

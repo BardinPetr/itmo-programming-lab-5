@@ -1,6 +1,7 @@
-package ru.bardinpetr.itmo.lab5.network.framelevel.transport;
+package ru.bardinpetr.itmo.lab5.network.transport.impl;
 
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
+import ru.bardinpetr.itmo.lab5.network.transport.IClientTransport;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

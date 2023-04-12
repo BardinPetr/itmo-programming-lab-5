@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.session;
+package ru.bardinpetr.itmo.lab5.network.app.session;
 
 import lombok.Data;
 

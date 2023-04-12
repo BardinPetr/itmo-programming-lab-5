@@ -6,8 +6,8 @@ import ru.bardinpetr.itmo.lab5.models.commands.IAPIMessage;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.network.client.AbstractAPIClient;
-import ru.bardinpetr.itmo.lab5.network.framelevel.transport.IClientTransport;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
+import ru.bardinpetr.itmo.lab5.network.transport.IClientTransport;
 
 public class SocketAPIClient extends AbstractAPIClient<SocketMessage> {
     private final JSONSerDesService<IAPIMessage> serDesService;
