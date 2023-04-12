@@ -13,8 +13,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.IAPIMessage;
 @AllArgsConstructor
 @NoArgsConstructor
 public class APICommandResponse implements UserPrintableAPICommandResponse, IAPIMessage {
-    private boolean success = true;
-    private boolean resolved = true;
+    private Status status = Status.OK;
     private String textualResponse = null;
 
     /**
@@ -23,7 +22,7 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
      * @return created response object
      */
     public static APICommandResponse ok() {
-        return new APICommandResponse(true, true, "ok");
+        return new APICommandResponse(Status.OK, "ok");
     }
 
     /**
@@ -33,7 +32,7 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
      * @return created response object
      */
     public static APICommandResponse error(String text) {
-        return new APICommandResponse(false, true, text);
+        return new APICommandResponse(Status.CLIENT_ERROR, text);
     }
 
     /**
@@ -43,7 +42,7 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
      * @return created response object
      */
     public static APICommandResponse error(Exception cause) {
-        return new APICommandResponse(false, true, cause.toString());
+        return new APICommandResponse(Status.CLIENT_ERROR, cause.toString());
     }
 
     /**
@@ -52,6 +51,21 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
      * @return created response object
      */
     public static APICommandResponse noResolve() {
-        return new APICommandResponse(false, false, "no command implementation on server");
+        return new APICommandResponse(Status.CLIENT_ERROR, "no command implementation on server");
+    }
+
+    public boolean isSuccess() {
+        return status == Status.OK;
+    }
+
+    public boolean isResolved() {
+        return status != Status.NOT_FOUND;
+    }
+
+    public enum Status {
+        OK,
+        CLIENT_ERROR,
+        SERVER_ERROR,
+        NOT_FOUND
     }
 }

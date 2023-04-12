@@ -1,11 +1,11 @@
 package ru.bardinpetr.itmo.lab5.network.app;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.network.app.errors.ApplicationBuildException;
 import ru.bardinpetr.itmo.lab5.network.app.interfaces.handlers.IApplicationCommandHandler;
 import ru.bardinpetr.itmo.lab5.network.app.interfaces.types.IFilteredApplication;
-import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.requests.AppRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,16 +18,13 @@ import java.util.Map;
  * It is symmetrical, so handling commands on server ends with sending response and on client - with ACK.
  * Moreover, if supported by underlying channel, could be used to make server able to call client at any time within active session.
  * Session handling is not included by default and should be provided via inheritor of SourcingAPIApplication
- *
- * @param <S> request base type
- * @param <R> response base type
  */
 @Slf4j
-public abstract class AbstractApplication<S extends IIdentifiableCommand, R> implements IFilteredApplication<S, R> {
+public abstract class AbstractApplication implements IFilteredApplication {
 
-    private final List<AbstractApplication<S, R>> processors = new ArrayList<>();
-    private final Map<S, IApplicationCommandHandler<S, R>> commandHandlers = new HashMap<>();
-    private IApplicationCommandHandler<S, R> anyCommandHandler;
+    private final List<AbstractApplication> processors = new ArrayList<>();
+    private final Map<APICommand, IApplicationCommandHandler> commandHandlers = new HashMap<>();
+    private IApplicationCommandHandler anyCommandHandler;
 
     public AbstractApplication() {
 
@@ -41,7 +38,7 @@ public abstract class AbstractApplication<S extends IIdentifiableCommand, R> imp
      * @param request applications request object
      * @return processed request
      */
-    protected AppRequest<S, R> process(AppRequest<S, R> request) {
+    protected AppRequest process(AppRequest request) {
         if (!filter(request)) {
             log.debug("Message {} ignored by {}", request.id(), getClass().getSimpleName());
             return request;
@@ -67,22 +64,22 @@ public abstract class AbstractApplication<S extends IIdentifiableCommand, R> imp
         return request;
     }
 
-    public final void use(AbstractApplication<S, R> app) {
+    public final void use(AbstractApplication app) {
         processors.add(app);
     }
 
-    public final void on(S cmd, IApplicationCommandHandler<S, R> handler) {
+    public final void on(APICommand cmd, IApplicationCommandHandler handler) {
         if (commandHandlers.containsKey(cmd))
             throw new ApplicationBuildException("Commands should be handled once only");
         commandHandlers.put(cmd, handler);
     }
 
-    public final void on(IApplicationCommandHandler<S, R> handler, S... cmds) {
+    public final void on(IApplicationCommandHandler handler, APICommand... cmds) {
         for (var i : cmds)
             commandHandlers.put(i, handler);
     }
 
-    public final void on(IApplicationCommandHandler<S, R> handler) {
+    public final void on(IApplicationCommandHandler handler) {
         if (anyCommandHandler != null)
             throw new ApplicationBuildException("Only one global handler should exist");
         anyCommandHandler = handler;

@@ -6,12 +6,10 @@ import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.network.app.APIApplication;
 import ru.bardinpetr.itmo.lab5.network.app.interfaces.handlers.IApplicationCommandHandler;
-import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
-
-import static ru.bardinpetr.itmo.lab5.network.app.models.AppResponse.ResponseStatus;
+import ru.bardinpetr.itmo.lab5.network.app.requests.AppRequest;
 
 @Slf4j
-public class ExecutorAdapterApplication extends APIApplication implements IApplicationCommandHandler<APICommand, APICommandResponse> {
+public class ExecutorAdapterApplication extends APIApplication implements IApplicationCommandHandler {
 
     private final Executor target;
 
@@ -21,18 +19,11 @@ public class ExecutorAdapterApplication extends APIApplication implements IAppli
     }
 
     @Override
-    public void handle(AppRequest<APICommand, APICommandResponse> request) {
+    public void handle(AppRequest request) {
         APICommand command = request.getPayload();
         log.debug("DBE: New request from {}: {}", request.getSession().getAddress(), request);
 
         APICommandResponse resp = target.execute(command);
-
-        if (resp.isSuccess()) {
-            request.getResponse().status(ResponseStatus.OK);
-        } else {
-            request.getResponse().status(ResponseStatus.ERROR);
-        }
-
-        request.getResponse().send(resp);
+        request.getResponse().data(resp);
     }
 }
