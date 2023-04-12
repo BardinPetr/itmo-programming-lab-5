@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
+import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
@@ -81,7 +82,13 @@ public abstract class APIUILocalCommand extends UILocalCommand {
         var cmd = prepareAPIMessage(cmdName, args);
         if (cmd == null)
             throw new RuntimeException("Command was not build properly");
-        var serverResp = apiClientReceiver.call(cmd);
+        APICommandResponse serverResp = null;
+        try {
+            serverResp = apiClientReceiver.call(cmd);
+        } catch (APIClientException e) {
+            // TODO proper handling of api errors
+            throw new RuntimeException(e);
+        }
         return new CommandResponse<>(serverResp.isSuccess(), serverResp.getTextualResponse(), serverResp);
     }
 }

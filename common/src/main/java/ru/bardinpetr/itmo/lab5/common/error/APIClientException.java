@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.client.error;
+package ru.bardinpetr.itmo.lab5.common.error;
 
 public class APIClientException extends Throwable {
     public APIClientException(String message) {

@@ -118,12 +118,6 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
 
     }
 
-//    @JsonIgnore
-//    @Override
-//    public void setPrimaryKey(Integer key) {
-//        this.id = key;
-//    }
-
     @JsonIgnore
     @Override
     public Integer getPrimaryKey() {

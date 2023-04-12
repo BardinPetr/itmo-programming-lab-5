@@ -20,7 +20,7 @@ public class ScriptExecutor {
     private final ScriptRecursionController recursionController;
     private final UICommandInvoker invoker;
     private CommandRegistry commandRegistry = null;
-    private DescriptionHolder descriptionHolder;
+    private final DescriptionHolder descriptionHolder;
 
     public ScriptExecutor(DescriptionHolder descriptionHolder, UICommandInvoker invoker) {
         this.descriptionHolder = descriptionHolder;

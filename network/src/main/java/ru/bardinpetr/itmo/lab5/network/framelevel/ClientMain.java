@@ -13,7 +13,6 @@ public class ClientMain {
                 SocketMessage.CommandType.DATA,
                 Frame.FIRST_ID,
                 1L,
-                false,
                 "As".getBytes()
         );
 

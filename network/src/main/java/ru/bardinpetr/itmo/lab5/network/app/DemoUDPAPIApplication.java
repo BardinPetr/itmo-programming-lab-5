@@ -9,7 +9,7 @@ import ru.bardinpetr.itmo.lab5.network.app.models.AppRequest;
 import ru.bardinpetr.itmo.lab5.network.app.models.AppResponse;
 import ru.bardinpetr.itmo.lab5.network.app.special.TransportAPIApplication;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
-import ru.bardinpetr.itmo.lab5.network.session.models.Session;
+import ru.bardinpetr.itmo.lab5.network.session.Session;
 
 import java.util.Random;
 import java.util.Timer;

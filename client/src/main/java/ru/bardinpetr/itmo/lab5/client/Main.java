@@ -10,14 +10,15 @@ import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.UICommandInvoker;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
-import ru.bardinpetr.itmo.lab5.network.client.APIClientController;
+import ru.bardinpetr.itmo.lab5.network.client.impl.SocketAPIClient;
+import ru.bardinpetr.itmo.lab5.network.framelevel.transport.UDPClientTransport;
 
 public class Main {
     public static void main(String[] args) {
         var argParse = new ClientConsoleArgumentsParser(args);
 
         var connector = new NetworkServerConnector(
-                new APIClientController(argParse.getServerFullAddr())
+                new SocketAPIClient(new UDPClientTransport(argParse.getServerFullAddr()))
         );
 
         var descriptionHolder = new DescriptionHolder(new Class[]{

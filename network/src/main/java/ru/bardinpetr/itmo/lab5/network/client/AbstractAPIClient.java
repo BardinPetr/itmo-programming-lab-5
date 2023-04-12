@@ -1,11 +1,11 @@
 package ru.bardinpetr.itmo.lab5.network.client;
 
 import lombok.Setter;
+import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
-import ru.bardinpetr.itmo.lab5.network.client.error.APIClientException;
-import ru.bardinpetr.itmo.lab5.network.framelevel.IClientTransport;
-import ru.bardinpetr.itmo.lab5.network.framelevel.IIdentifiableMessage;
+import ru.bardinpetr.itmo.lab5.network.framelevel.models.IIdentifiableMessage;
+import ru.bardinpetr.itmo.lab5.network.framelevel.transport.IClientTransport;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -16,14 +16,14 @@ import java.util.concurrent.TimeoutException;
  *
  * @param <T> Low level message type
  */
-public abstract class APIClient<T extends IIdentifiableMessage> {
+public abstract class AbstractAPIClient<T extends IIdentifiableMessage> {
     private final IClientTransport<T> transport;
     private Long currentMessageId = 0L;
 
     @Setter
     private Duration timeout = null;
 
-    public APIClient(IClientTransport<T> transport) {
+    public AbstractAPIClient(IClientTransport<T> transport) {
         this.transport = transport;
     }
 
@@ -61,10 +61,16 @@ public abstract class APIClient<T extends IIdentifiableMessage> {
     /**
      * Serialize APICommand into low level T type message object
      *
-     * @param request
-     * @return
+     * @param request application level request
+     * @return serialized transport level message or null if invalid input
      */
     abstract protected T serialize(APICommand request);
 
+    /**
+     * Deserialize response on APICommand (APICommandResponse) from low level T type message object
+     *
+     * @param request low-level request
+     * @return deserialized app-level response or null if invalid input
+     */
     abstract protected APICommandResponse deserialize(T request);
 }

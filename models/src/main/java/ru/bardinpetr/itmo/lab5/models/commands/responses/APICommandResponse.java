@@ -4,6 +4,7 @@ package ru.bardinpetr.itmo.lab5.models.commands.responses;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.bardinpetr.itmo.lab5.models.commands.IAPIMessage;
 
 /**
  * Response for command. Payload should be specified by inheriting this class
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class APICommandResponse implements UserPrintableAPICommandResponse {
+public class APICommandResponse implements UserPrintableAPICommandResponse, IAPIMessage {
     private boolean success = true;
     private boolean resolved = true;
     private String textualResponse = null;

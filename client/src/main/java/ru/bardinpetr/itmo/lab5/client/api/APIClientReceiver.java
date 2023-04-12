@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.api;
 
+import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
@@ -15,5 +16,5 @@ public interface APIClientReceiver {
      * @param cmd command to execute on server
      * @return Response with ICommandResponse from execution
      */
-    APICommandResponse call(APICommand cmd);
+    APICommandResponse call(APICommand cmd) throws APIClientException;
 }

@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.framelevel;
+package ru.bardinpetr.itmo.lab5.network.framelevel.models;
 
 public interface IIdentifiableMessage {
     Long getId();
