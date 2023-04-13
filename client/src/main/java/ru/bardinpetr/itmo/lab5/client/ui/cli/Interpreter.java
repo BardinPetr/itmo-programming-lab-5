@@ -1,9 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
-import ru.bardinpetr.itmo.lab5.client.controller.common.UICallableCommand;
+import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.texts.RussianText;
-import ru.bardinpetr.itmo.lab5.client.texts.TextKeys;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 
 import java.util.List;
@@ -26,7 +24,6 @@ public class Interpreter {
      * Get commands from CLI and execute them
      */
     public void run() {
-        uiReceiver.display(RussianText.get(TextKeys.GREEETING));
         uiReceiver.interactSuggestion();
         while (uiReceiver.hasNextLine()) {
             var line = uiReceiver.nextLine();

@@ -10,8 +10,11 @@ import ru.bardinpetr.itmo.lab5.network.app.requests.AppRequest;
 public class ErrorHandlingApplication extends APIApplication {
     @Override
     protected AppRequest process(AppRequest request) {
-        var resp = request.getResponse();
-        resp.status(APICommandResponse.Status.CLIENT_ERROR);
+        var resp = request.response();
+        if (resp.getStatus() == APICommandResponse.Status.UNPROCESSED)
+            resp.status(APICommandResponse.Status.NOT_FOUND);
+        else if (!resp.getStatus().isError())
+            resp.status(APICommandResponse.Status.SERVER_ERROR);
         resp.send();
         return request;
     }
@@ -21,6 +24,6 @@ public class ErrorHandlingApplication extends APIApplication {
      */
     @Override
     public boolean filter(AppRequest req) {
-        return req.getStatus() == AppRequest.ReqStatus.INVALID && !req.getResponse().isTerminated();
+        return req.status() == AppRequest.ReqStatus.INVALID && !req.response().isTerminated();
     }
 }

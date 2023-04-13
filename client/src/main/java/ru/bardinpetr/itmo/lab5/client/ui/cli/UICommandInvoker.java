@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
-import ru.bardinpetr.itmo.lab5.client.controller.common.ClientCommandResponse;
-import ru.bardinpetr.itmo.lab5.client.controller.common.UICallableCommand;
+import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
+import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;
@@ -58,8 +58,8 @@ public class UICommandInvoker {
     protected void print(String caller, ClientCommandResponse<? extends UserPrintableAPICommandResponse> result) {
         if (result.isSuccess()) {
             var msg = result.message();
-            if (result.getPayload() != null) {
-                screenUIReceiver.display(result.getPayload().getUserMessage());
+            if (result.payload() != null) {
+                screenUIReceiver.display(result.payload().getUserMessage());
             } else if (msg != null && !msg.isEmpty()) {
                 screenUIReceiver.display(msg);
             } else if (caller != null) {

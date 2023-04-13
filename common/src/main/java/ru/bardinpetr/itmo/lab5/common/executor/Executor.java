@@ -85,15 +85,15 @@ public class Executor {
                     if (res.isResolved()) return res;
                 }
             }
-            return APICommandResponse.noResolve();
+            return APICommandResponse.notFound();
         }
         try {
             var validation = cmd.validate();
             if (!validation.isAllowed())
-                return APICommandResponse.error("Validation failed: %s".formatted(validation.getMsg()));
+                return APICommandResponse.clientError("Validation failed: %s".formatted(validation.getMsg()));
             return op.apply(cmd);
         } catch (Exception ex) {
-            return APICommandResponse.error(ex.getMessage());
+            return APICommandResponse.clientError(ex.getMessage());
         }
     }
 
@@ -109,7 +109,7 @@ public class Executor {
         boolean anyFailed = false;
         for (var cmd : cmds) {
             if (anyFailed) {
-                result.add(APICommandResponse.error("%s skipped".formatted(cmd.getCmdIdentifier())));
+                result.add(APICommandResponse.clientError("%s skipped".formatted(cmd.getCmdIdentifier())));
                 continue;
             }
             var resp = execute(cmd);

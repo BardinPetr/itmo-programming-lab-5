@@ -29,7 +29,10 @@ public class WorkersCRUDExecutor extends Executor {
                 GetWorkerCommand.class,
                 req -> {
                     var resp = req.createResponse();
-                    resp.setWorker(dao.read(req.getId()));
+                    var worker = dao.read(req.getId());
+                    if (worker == null)
+                        throw new RuntimeException("No worker with id %d".formatted(req.getId()));
+                    resp.setWorker(worker);
                     return resp;
                 });
         registerOperation(

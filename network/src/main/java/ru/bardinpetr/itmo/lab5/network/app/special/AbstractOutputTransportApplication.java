@@ -29,9 +29,10 @@ public abstract class AbstractOutputTransportApplication<U, L> extends AbstractA
     protected AppRequest process(AppRequest request) {
         var resp = supplyResponse(request);
         request.setResponse(resp);
-        request.getSession().setState(Session.State.OPERATING);
+        request.session().setState(Session.State.OPERATING);
+        request.setStatus(AppRequest.ReqStatus.NORMAL);
 
-        log.info("Message arrived from {} initialized with status {}", request.getSession().getAddress(), request.getStatus());
+        log.info("Message from {} initialized as {}", request.session().getAddress(), request.status());
         return request;
     }
 
@@ -47,7 +48,7 @@ public abstract class AbstractOutputTransportApplication<U, L> extends AbstractA
             return;
         }
 
-        log.info("Sending AppResponse: {}", response);
+        log.info("Sending {} to {}", response, recipient);
         transport.send(recipient, serialized);
     }
 
@@ -58,7 +59,7 @@ public abstract class AbstractOutputTransportApplication<U, L> extends AbstractA
      * @param request incoming message to create response for
      */
     protected AppResponseController<U> supplyResponse(AppRequest request) {
-        return new AppResponseController<U>(request, this::send);
+        return new AppResponseController<>(request, this::send);
     }
 
     /**

@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
-import ru.bardinpetr.itmo.lab5.client.api.commands.DescriptionHolder;
-import ru.bardinpetr.itmo.lab5.client.controller.common.UICallableCommand;
+import ru.bardinpetr.itmo.lab5.client.api.description.APICommandsDescriptionHolder;
+import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ScriptRecursionController;
@@ -20,9 +20,9 @@ public class ScriptExecutor {
     private final ScriptRecursionController recursionController;
     private final UICommandInvoker invoker;
     private CommandRegistry commandRegistry = null;
-    private final DescriptionHolder descriptionHolder;
+    private final APICommandsDescriptionHolder descriptionHolder;
 
-    public ScriptExecutor(DescriptionHolder descriptionHolder, UICommandInvoker invoker) {
+    public ScriptExecutor(APICommandsDescriptionHolder descriptionHolder, UICommandInvoker invoker) {
         this.descriptionHolder = descriptionHolder;
         this.invoker = invoker;
         this.recursionController = new ScriptRecursionController();

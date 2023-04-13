@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.client.ui.cli.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.client.api.commands.DescriptionHolder;
+import ru.bardinpetr.itmo.lab5.client.api.description.APICommandsDescriptionHolder;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ParserException;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
@@ -21,7 +21,7 @@ public class ObjectScanner {
     private final ConsolePrinter printer;
     private final ObjectMapper mapper = ObjectMapperFactory.createMapper();
 
-    public ObjectScanner(DescriptionHolder dataDescription, ConsolePrinter printer, Scanner scanner) {
+    public ObjectScanner(APICommandsDescriptionHolder dataDescription, ConsolePrinter printer, Scanner scanner) {
         this.dataDescription = dataDescription.getDataDescriptions();
         this.printer = printer;
         this.scaner = scanner;
