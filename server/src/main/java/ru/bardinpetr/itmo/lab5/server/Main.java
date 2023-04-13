@@ -2,10 +2,10 @@ package ru.bardinpetr.itmo.lab5.server;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.log.SetupJUL;
-import ru.bardinpetr.itmo.lab5.network.app.special.impl.ErrorHandlingApplication;
-import ru.bardinpetr.itmo.lab5.network.app.special.impl.UDPInputTransportApplication;
-import ru.bardinpetr.itmo.lab5.network.app.special.impl.UDPOutputTransportApplication;
-import ru.bardinpetr.itmo.lab5.network.transport.impl.UDPServerTransport;
+import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.ErrorHandlingApplication;
+import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPInputTransportApplication;
+import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTransportApplication;
+import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerTransport;
 import ru.bardinpetr.itmo.lab5.server.api.ExecutorAdapterApplication;
 import ru.bardinpetr.itmo.lab5.server.executor.DBExecutor;
 import ru.bardinpetr.itmo.lab5.server.ui.ServerConsoleArgumentsParser;
@@ -21,8 +21,9 @@ public class Main {
         var dbApp = new ExecutorAdapterApplication(dbExecutor);
 
         var transport = new UDPServerTransport();
-        var responderApp = new UDPOutputTransportApplication(transport);
+
         var mainApp = new UDPInputTransportApplication(transport);
+        var responderApp = new UDPOutputTransportApplication(transport);
         var errorApp = new ErrorHandlingApplication();
 
         mainApp.use(responderApp);

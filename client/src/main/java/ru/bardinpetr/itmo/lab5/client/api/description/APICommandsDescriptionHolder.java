@@ -4,9 +4,9 @@ import lombok.Data;
 import ru.bardinpetr.itmo.lab5.client.utils.ClassUtils;
 import ru.bardinpetr.itmo.lab5.client.utils.StringUtils;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.FieldValidator;
+import ru.bardinpetr.itmo.lab5.models.data.annotation.InputNullable;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.InteractText;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.NotPromptRequired;
-import ru.bardinpetr.itmo.lab5.models.data.annotation.Nullable;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 import ru.bardinpetr.itmo.lab5.models.data.validation.Validator;
 import ru.bardinpetr.itmo.lab5.models.fields.FieldWithDesc;
@@ -85,7 +85,7 @@ public class APICommandsDescriptionHolder {
                         getValidator(
                                 field.getAnnotation(FieldValidator.class).value(),
                                 field),
-                        (!(field.getClass().isPrimitive()) && field.isAnnotationPresent(Nullable.class))
+                        (!(field.getClass().isPrimitive()) && field.isAnnotationPresent(InputNullable.class))
                 ));
             }
         }

@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NonNull;
 import lombok.With;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.FieldValidator;
+import ru.bardinpetr.itmo.lab5.models.data.annotation.InputNullable;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.InteractText;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.NotPromptRequired;
-import ru.bardinpetr.itmo.lab5.models.data.annotation.Nullable;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
 
@@ -22,7 +22,6 @@ import static java.util.Comparator.nullsLast;
 @Data
 @AllArgsConstructor
 public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
-    //private static Integer nextId = 0;
     @With
     @NonNull
     @NotPromptRequired
@@ -48,7 +47,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
 
     @InteractText("Enter end date in DD-MM-YYYY format")
     @FieldValidator(WorkerValidator.class)
-    @Nullable
+    @InputNullable
     private java.time.LocalDate endDate;
 
     @NonNull
@@ -58,7 +57,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
 
     @InteractText("Enter an organization")
     @FieldValidator(WorkerValidator.class)
-    @Nullable
+    @InputNullable
     private Organization organization;
 
 
@@ -70,7 +69,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
                 CLEANER,
                 MANAGER_OF_CLEANING""")
     @FieldValidator(WorkerValidator.class)
-    @Nullable
+    @InputNullable
     private Position position;
 
     public Worker() {

@@ -9,7 +9,6 @@ import java.util.Date;
  * A class for worker's data validation
  */
 public class WorkerValidator implements Validator {
-
     /**
      * @param name Worker's name
      * @return response with error message
@@ -54,7 +53,7 @@ public class WorkerValidator implements Validator {
      * @return response with error message
      */
     public ValidationResponse validateSalary(Float salary) {
-        return (salary > 0 && (salary < Float.MAX_VALUE) && (!((Float) salary).isInfinite())) ?
+        return (salary > 0 && (salary < Float.MAX_VALUE) && (!salary.isInfinite())) ?
                 new ValidationResponse(true, "") :
                 new ValidationResponse(false, String.format("salary must be greater than 0 and less then %.1f", Float.MAX_VALUE));
     }

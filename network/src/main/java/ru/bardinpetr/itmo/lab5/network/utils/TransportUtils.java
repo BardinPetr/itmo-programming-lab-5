@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.network.utils;
 
-import ru.bardinpetr.itmo.lab5.network.framelevel.Frame;
+import ru.bardinpetr.itmo.lab5.network.transport.models.Frame;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;

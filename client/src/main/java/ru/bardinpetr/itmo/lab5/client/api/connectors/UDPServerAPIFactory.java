@@ -1,8 +1,8 @@
 package ru.bardinpetr.itmo.lab5.client.api.connectors;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
-import ru.bardinpetr.itmo.lab5.network.client.impl.SocketAPIClient;
-import ru.bardinpetr.itmo.lab5.network.transport.impl.UDPClientTransport;
+import ru.bardinpetr.itmo.lab5.network.app.client.impl.SocketAPIClient;
+import ru.bardinpetr.itmo.lab5.network.transport.client.UDPClientTransport;
 
 import java.net.InetSocketAddress;
 
