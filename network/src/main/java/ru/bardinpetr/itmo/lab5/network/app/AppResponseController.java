@@ -6,6 +6,9 @@ import ru.bardinpetr.itmo.lab5.network.app.interfaces.types.IDestinationServerAp
 import ru.bardinpetr.itmo.lab5.network.app.requests.AppRequest;
 
 /**
+ * Object for handling the process of response building and sending it.
+ * Message is marked as terminated when it is no need in continuation of its further processing
+ *
  * @param <U> user identifier
  */
 @Slf4j
@@ -18,43 +21,78 @@ public class AppResponseController<U> {
     private boolean isTerminated = false;
 
     public AppResponseController(AppRequest request, IDestinationServerApplication<U> dst) {
-        this.recipient = (U) request.getSession().getAddress();
+        this.recipient = (U) request.session().getAddress();
         this.response = new APICommandResponse();
         this.destination = dst;
-        this.id = request.getId();
+        this.id = request.id();
     }
 
+    /**
+     * Check if message is still could be processed and was not sent earlier
+     */
     public boolean isTerminated() {
         return isTerminated;
     }
 
+    /**
+     * Mark response as terminated and prevent further processing
+     */
     public void terminate() {
+        log.debug("Message {} terminated", id);
         isTerminated = true;
     }
 
+    /**
+     * Set response status
+     */
     public AppResponseController<U> status(APICommandResponse.Status status) {
         response.setStatus(status);
         log.debug("Response {} is marked as {}", id, status);
         return this;
     }
 
+    /**
+     * @return status of response
+     */
+    public APICommandResponse.Status getStatus() {
+        return response.getStatus();
+    }
+
+    /**
+     * Set response textual message
+     */
     public AppResponseController<U> message(String text) {
         response.setTextualResponse(text);
         return this;
     }
 
+    /**
+     * Call IDestinationServerApplication to send prepared message.
+     * Automatically terminates message
+     */
     public void send() {
         if (isTerminated) return;
-        isTerminated = true;
+        terminate();
+
+        if (response.getStatus() == APICommandResponse.Status.UNPROCESSED)
+            response.setStatus(APICommandResponse.Status.OK);
         destination.send(recipient, response);
         log.debug("Response {} is sent", id);
     }
 
-    public AppResponseController<U> data(APICommandResponse resp) {
+    /**
+     * Set current APICommandResponse from external object
+     *
+     * @param resp prepared response object
+     */
+    public AppResponseController<U> from(APICommandResponse resp) {
         response = resp;
         return this;
     }
 
+    /**
+     * @return response id
+     */
     public Long getId() {
         return id;
     }

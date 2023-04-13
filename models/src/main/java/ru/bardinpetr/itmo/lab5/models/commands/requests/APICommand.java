@@ -9,13 +9,13 @@ import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 /**
  * General class for all commands
  */
-@JsonIgnoreProperties({"type", "id", "inlineArgs", "interactArgs"})
+@JsonIgnoreProperties({"type", "id", "cmdIdentifier", "inlineArgs", "interactArgs"})
 @Data
-public abstract class APICommand implements IIdentifiableCommand, IAPIMessage {
+public abstract class APICommand implements IIdentifiableCommand<Class<? extends APICommand>>, IAPIMessage {
 
     @Override
-    public String getCmdIdentifier() {
-        return getClass().getSimpleName();
+    public Class<? extends APICommand> getCmdIdentifier() {
+        return getClass();
     }
 
     /**

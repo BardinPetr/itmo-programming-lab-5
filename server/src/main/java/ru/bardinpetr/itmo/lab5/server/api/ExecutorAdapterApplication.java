@@ -8,6 +8,10 @@ import ru.bardinpetr.itmo.lab5.network.app.APIApplication;
 import ru.bardinpetr.itmo.lab5.network.app.interfaces.handlers.IApplicationCommandHandler;
 import ru.bardinpetr.itmo.lab5.network.app.requests.AppRequest;
 
+/**
+ * API Application to forward all messages to Executor instance.
+ * Request commands are meant to be identical to App and Exector.
+ */
 @Slf4j
 public class ExecutorAdapterApplication extends APIApplication implements IApplicationCommandHandler {
 
@@ -20,10 +24,12 @@ public class ExecutorAdapterApplication extends APIApplication implements IAppli
 
     @Override
     public void handle(AppRequest request) {
-        APICommand command = request.getPayload();
-        log.debug("DBE: New request from {}: {}", request.getSession().getAddress(), request);
+        APICommand command = request.payload();
+        log.debug("DBE: New request from {}: {}", request.session().getAddress(), request);
 
         APICommandResponse resp = target.execute(command);
-        request.getResponse().data(resp);
+        request.response()
+                .from(resp)
+                .send();
     }
 }

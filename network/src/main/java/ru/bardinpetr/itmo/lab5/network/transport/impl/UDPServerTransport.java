@@ -2,8 +2,7 @@ package ru.bardinpetr.itmo.lab5.network.transport.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService;
-import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
-import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.ShowCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
 import ru.bardinpetr.itmo.lab5.network.transport.IServerTransport;
@@ -32,16 +31,16 @@ public class UDPServerTransport implements IServerTransport<InetSocketAddress, S
                                     new InetSocketAddress(123),
                                     new SocketMessage(
                                             SocketMessage.CommandType.DATA, 12L, 0L,
-                                            (new JSONSerDesService<>(APICommand.class)).serialize(new AddCommand())
+                                            (new JSONSerDesService<>(APICommand.class)).serialize(new ShowCommand())
                                     )
                             );
-                        } catch (SerDesException e) {
+                        } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
                     }
                 },
                 1000,
-                1000
+                1000000
         );
     }
 }

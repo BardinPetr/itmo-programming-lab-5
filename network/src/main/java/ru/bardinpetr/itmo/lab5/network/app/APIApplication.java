@@ -10,6 +10,6 @@ public class APIApplication extends AbstractApplication {
 
     @Override
     public boolean filter(AppRequest req) {
-        return req.getStatus() == AppRequest.ReqStatus.NORMAL;
+        return req.status() == AppRequest.ReqStatus.NORMAL;
     }
 }

@@ -18,10 +18,7 @@ import ru.bardinpetr.itmo.lab5.network.transport.IServerTransport;
 @Slf4j
 public abstract class AbstractInputTransportApplication<U, L extends IIdentifiableMessage> extends AbstractApplication {
 
-    private final IServerTransport<U, L> transport;
-
     public AbstractInputTransportApplication(IServerTransport<U, L> transport) {
-        this.transport = transport;
         transport.subscribe(this::handle);
     }
 
@@ -34,7 +31,7 @@ public abstract class AbstractInputTransportApplication<U, L extends IIdentifiab
     private void handle(U senderID, L incomingMessage) {
         var status = AppRequest.ReqStatus.CREATED;
 
-        log.info("New transport message arrived from {}", senderID);
+        log.info("New transport message from {}", senderID);
 
         var msg = deserialize(incomingMessage);
         if (msg == null) {
