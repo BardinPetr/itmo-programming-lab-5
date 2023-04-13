@@ -4,6 +4,7 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
+import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.common.serdes.ObjectMapperFactory;
@@ -22,11 +23,13 @@ import java.util.Map;
 public abstract class APIUILocalCommand extends UILocalCommand {
 
     protected final APIClientReceiver apiClientReceiver;
+    private final APICommandRegistry registry;
     private final ObjectMapper mapper;
 
-    public APIUILocalCommand(APIClientReceiver api, UIReceiver ui) {
+    public APIUILocalCommand(APIClientReceiver api, UIReceiver ui, APICommandRegistry registry) {
         super(ui);
         this.apiClientReceiver = api;
+        this.registry = registry;
         this.mapper = ObjectMapperFactory.createMapper();
     }
 
@@ -37,7 +40,7 @@ public abstract class APIUILocalCommand extends UILocalCommand {
      * @return api message object
      */
     protected UserAPICommand retrieveAPICommand(String name) {
-        var base = APICommandRegistry.getCommand(name);
+        var base = registry.getCommand(name);
         if (base == null)
             throw new RuntimeException("No such command");
         return base;

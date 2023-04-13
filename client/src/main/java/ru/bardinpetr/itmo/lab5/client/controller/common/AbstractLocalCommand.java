@@ -1,5 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.controller.common;
 
+import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
+
 import java.util.Map;
 
 /**

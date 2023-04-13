@@ -1,5 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.controller.common;
 
+import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
+import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.serdes.ValueDeserializer;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;

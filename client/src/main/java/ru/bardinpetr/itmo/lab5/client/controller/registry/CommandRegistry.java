@@ -1,8 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.controller.registry;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
-import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.controller.commands.*;
 import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
@@ -16,25 +14,16 @@ import java.util.Map;
 /**
  * Class for storing prepared client-side commands with their handlers-name to invoke via
  */
-public class CommandRegistry {
+public abstract class CommandRegistry {
     private final Map<String, AbstractLocalCommand> commandMap = new HashMap<>();
-    private final APIClientReceiver api;
-    private final ScriptExecutor scriptExecutor;
+    protected final APIClientReceiver api;
+    protected final ScriptExecutor scriptExecutor;
 
-    public CommandRegistry(APIClientReceiver api, UIReceiver ui, ScriptExecutor scriptExecutor) {
+    public CommandRegistry(APIClientReceiver api, ScriptExecutor scriptExecutor) {
         this.scriptExecutor = scriptExecutor;
         this.api = api;
 
         scriptExecutor.setRegistry(this);
-
-        register(new ExitLocalCommand(ui));
-        register(new HelpLocalCommand(ui));
-        register(new UpdateLocalCommand(api, ui));
-        register(new ScriptLocalCommand(api, ui, scriptExecutor));
-        registerFromAPI(
-                APICommandRegistry.cmdList,
-                new GeneralAPIUILocalCommand(api, ui)
-        );
     }
 
     /**
@@ -43,9 +32,7 @@ public class CommandRegistry {
      * @param otherUI ui receiver to be used
      * @return this command registry with all commands and changed ui dependency
      */
-    public CommandRegistry withUI(UIReceiver otherUI) {
-        return new CommandRegistry(api, otherUI, scriptExecutor);
-    }
+    public abstract CommandRegistry withUI(UIReceiver otherUI);
 
     /**
      * Register command for all name taken from APICommand set
@@ -53,7 +40,7 @@ public class CommandRegistry {
      * @param apiCommands APICommand collection to take names from
      * @param command     target command
      */
-    private void registerFromAPI(Collection<UserAPICommand> apiCommands, AbstractLocalCommand command) {
+    protected void registerFromAPI(Collection<UserAPICommand> apiCommands, AbstractLocalCommand command) {
         apiCommands.forEach(i -> register(i.getType(), command));
     }
 
@@ -62,7 +49,7 @@ public class CommandRegistry {
      *
      * @param command target command
      */
-    private void register(UILocalCommand command) {
+    protected void register(UILocalCommand command) {
         register(command.getExternalName(), command);
     }
 
@@ -72,7 +59,7 @@ public class CommandRegistry {
      * @param name    user input command name
      * @param command command object
      */
-    private void register(String name, AbstractLocalCommand command) {
+    protected void register(String name, AbstractLocalCommand command) {
         commandMap.put(name, command);
     }
 
@@ -82,7 +69,7 @@ public class CommandRegistry {
      * @param names   collection on command names
      * @param command command object
      */
-    private void register(Collection<String> names, AbstractLocalCommand command) {
+    protected void register(Collection<String> names, AbstractLocalCommand command) {
         names.forEach(i -> register(i, command));
     }
 
