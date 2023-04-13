@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
+import ru.bardinpetr.itmo.lab5.client.api.error.APIUIException;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
@@ -52,8 +53,7 @@ public class UpdateLocalCommand extends APIUILocalCommand {
         try {
             availableIdsResp = apiClientReceiver.call(new GetWorkerIdsCommand());
         } catch (APIClientException e) {
-            // TODO proper api error handling
-            throw new RuntimeException(e);
+            throw new APIUIException(e);
         }
         if (!availableIdsResp.isSuccess())
             throw new RuntimeException("Could not retrieve existing data");
@@ -66,7 +66,7 @@ public class UpdateLocalCommand extends APIUILocalCommand {
         try {
             currentObjResp = apiClientReceiver.call(new GetWorkerCommand(id));
         } catch (APIClientException e) {
-            throw new RuntimeException(e);
+            throw new APIUIException(e);
         }
         if (!currentObjResp.isSuccess())
             throw new RuntimeException("Could not retrieve existing data");
