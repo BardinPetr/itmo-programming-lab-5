@@ -6,12 +6,12 @@ import ru.bardinpetr.itmo.lab5.network.transport.client.UDPClientTransport;
 
 import java.net.InetSocketAddress;
 
-public class UDPServerAPIFactory extends AbstractAPIClientReceiverFactory {
+public class UDPAPIClientFactory extends AbstractAPIClientReceiverFactory {
 
 
     private final InetSocketAddress serverAddress;
 
-    public UDPServerAPIFactory(InetSocketAddress serverAddress) {
+    public UDPAPIClientFactory(InetSocketAddress serverAddress) {
         this.serverAddress = serverAddress;
     }
 

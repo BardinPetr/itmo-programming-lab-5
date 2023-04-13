@@ -9,6 +9,7 @@ import ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiable
 
 import java.io.IOException;
 import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -21,7 +22,7 @@ public abstract class AbstractAPIClient<T extends IIdentifiableMessage> {
     private Long currentMessageId = 0L;
 
     @Setter
-    private Duration timeout = null;
+    private Duration timeout = Duration.of(30, ChronoUnit.SECONDS);
 
     public AbstractAPIClient(IClientTransport<T> transport) {
         this.transport = transport;
