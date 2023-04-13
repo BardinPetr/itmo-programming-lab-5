@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.common.log.SetupJUL;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.ErrorHandlingApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPInputTransportApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTransportApplication;
-import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerTransport;
+import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerFactory;
 import ru.bardinpetr.itmo.lab5.server.api.ExecutorAdapterApplication;
 import ru.bardinpetr.itmo.lab5.server.executor.DBExecutor;
 import ru.bardinpetr.itmo.lab5.server.ui.ServerConsoleArgumentsParser;
@@ -20,7 +20,9 @@ public class Main {
         var dbExecutor = new DBExecutor(argParse.getDatabasePath());
         var dbApp = new ExecutorAdapterApplication(dbExecutor);
 
-        var transport = new UDPServerTransport();
+        var transport = UDPServerFactory.create(
+                argParse.getPort()
+        );
 
         var mainApp = new UDPInputTransportApplication(transport);
         var responderApp = new UDPOutputTransportApplication(transport);

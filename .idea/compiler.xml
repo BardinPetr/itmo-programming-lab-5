@@ -8,7 +8,6 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
         </processorPath>
         <module name="itmo-programming-lab-5.network.main" />
-        <module name="itmo-programming-lab-5.client.clientMain.main" />
         <module name="itmo-programming-lab-5.models.main" />
         <module name="itmo-programming-lab-5.client.clientMain.test" />
         <module name="itmo-programming-lab-5.common.main" />
@@ -16,9 +15,10 @@
         <module name="itmo-programming-lab-5.client.test" />
         <module name="itmo-programming-lab-5.common.test" />
         <module name="itmo-programming-lab-5.server.main" />
-        <module name="itmo-programming-lab-5.client.clientAdmin.main" />
+        <module name="ru.bardinpetr.itmo.lab5.adminclient.itmo-programming-lab-5.client.clientAdmin.main" />
         <module name="itmo-programming-lab-5.models.test" />
         <module name="itmo-programming-lab-5.network.test" />
+        <module name="ru.bardinpetr.itmo.lab5.mainclient.itmo-programming-lab-5.client.clientMain.main" />
         <module name="itmo-programming-lab-5.server.test" />
         <module name="itmo-programming-lab-5.client.clientAdmin.test" />
       </profile>
