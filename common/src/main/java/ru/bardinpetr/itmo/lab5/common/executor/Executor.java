@@ -91,7 +91,9 @@ public class Executor {
             var validation = cmd.validate();
             if (!validation.isAllowed())
                 return APICommandResponse.clientError("Validation failed: %s".formatted(validation.getMsg()));
-            return op.apply(cmd);
+            var resp = op.apply(cmd);
+            resp.setStatus(APICommandResponse.Status.OK);
+            return resp;
         } catch (Exception ex) {
             return APICommandResponse.clientError(ex.getMessage());
         }

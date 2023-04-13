@@ -22,4 +22,9 @@ public interface IServerTransport<U, L> {
      * @param handler message handler
      */
     void subscribe(IMessageHandler<U, L> handler);
+
+    /**
+     * Start main reception loop
+     */
+    void run();
 }

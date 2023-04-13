@@ -11,17 +11,19 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketAddress;
+import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Class for sending and receiving socket message  any length via UPD channel
  */
 public class UDPClientTransport implements IClientTransport<SocketMessage> {
     private final DatagramSocket socket;
-    private final Duration sendDurationTimeout = Duration.ofSeconds(5);
+    private final Duration sendDurationTimeout = Duration.ofMinutes(10); // TODO
     private final SocketAddress serverAddress;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
 
@@ -98,7 +100,7 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
      * @param duration timeout or null if no timeout should be applied
      * @return received socket message
      */
-    public SocketMessage receive(Duration duration) {
+    public SocketMessage receive(Duration duration) throws TimeoutException, IOException {
         try {
             // seg 1 end -> create session
             Frame header = receiveFrame(duration);
@@ -120,8 +122,10 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
 
             return msg;
 
-        } catch (IOException | SerDesException e) {
-            throw new RuntimeException(e);
+        } catch (SocketTimeoutException e) {
+            throw new TimeoutException();
+        } catch (Exception e) {
+            throw new IOException(e);
         }
     }
 }

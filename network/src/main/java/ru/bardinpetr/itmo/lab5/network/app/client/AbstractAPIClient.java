@@ -22,7 +22,7 @@ public abstract class AbstractAPIClient<T extends IIdentifiableMessage> {
     private Long currentMessageId = 0L;
 
     @Setter
-    private Duration timeout = Duration.of(30, ChronoUnit.SECONDS);
+    private Duration timeout = Duration.of(10, ChronoUnit.MINUTES);
 
     public AbstractAPIClient(IClientTransport<T> transport) {
         this.transport = transport;

@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.models.commands.responses;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -73,10 +74,12 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
         return new APICommandResponse(Status.NOT_FOUND, "no command implementation on server");
     }
 
+    @JsonIgnore
     public boolean isSuccess() {
         return status == Status.OK;
     }
 
+    @JsonIgnore
     public boolean isResolved() {
         return status != Status.NOT_FOUND;
     }
@@ -85,8 +88,10 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
         OK,
         CLIENT_ERROR,
         SERVER_ERROR,
-        UNPROCESSED, NOT_FOUND;
+        UNPROCESSED,
+        NOT_FOUND;
 
+        @JsonIgnore
         public boolean isError() {
             return this.equals(CLIENT_ERROR) || this.equals(SERVER_ERROR);
         }

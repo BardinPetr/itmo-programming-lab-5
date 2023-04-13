@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.time.Duration;
+import java.util.concurrent.TimeoutException;
 
 public class ClientMain {
     private static final UDPClientTransport client = new UDPClientTransport(new InetSocketAddress("localhost", 1249));
@@ -26,11 +27,13 @@ public class ClientMain {
         String t;
         while (true) {
             client.send(t1);
-            msg = client.receive(Duration.ofSeconds(2));
+            try {
+                msg = client.receive(Duration.ofSeconds(2));
+            } catch (TimeoutException | IOException e) {
+                continue;
+            }
             t = new String(msg.getPayload());
             System.out.println(msg.getCmdType() + " " + t + " " + t.length());
         }
     }
-
-
 }

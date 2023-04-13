@@ -25,7 +25,7 @@ import java.util.*;
  */
 @Slf4j
 public class UDPServerTransport implements IServerTransport<SocketAddress, SocketMessage> {
-    private static final int TIMEOUT = 3000;
+    private static final int TIMEOUT = 1000;
     private final Selector selector = Selector.open();
     private final Queue<Pair<SocketAddress, Frame>> sendFrameQueue = new ArrayDeque<>();
     private final SelectionKey networkKey;
@@ -42,80 +42,93 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
 
     /**
      * Main loop for receiving client from server and executing
-     *
-     * @throws IOException
      */
-    public void run() throws IOException {
-
+    @Override
+    public void run() {
         System.out.println("listening..");
 
         while (true) {
             // Wait for task or until timeout expires
-            if (selector.select(TIMEOUT) == 0) {
-//                System.out.print(".");
-                continue;
-            }
-            // Get iterator on set of keys with I/O to process
-            var keyIter = selector.selectedKeys().iterator();
-            while (keyIter.hasNext()) {
-                SelectionKey key = keyIter.next(); // Key is bit mask
-                keyIter.remove();
+            try {
+                if (selector.select(TIMEOUT) == 0) continue;
 
-                // Client socket channel has pending data?
-                if (key.isReadable()) {
-                    if (key.equals(networkKey)) { //Data channel message
-                        DatagramChannel channel = (DatagramChannel) key.channel();
+                // Get iterator on set of keys with I/O to process
+                var keyIter = selector.selectedKeys().iterator();
+                while (keyIter.hasNext()) {
+                    SelectionKey key = keyIter.next(); // Key is bit mask
+                    keyIter.remove();
 
-                        ByteBuffer buffer = ByteBuffer.allocate(Frame.MAX_SIZE);
-                        SocketAddress address = channel.receive(buffer);
+                    // Client socket channel has pending data?
+                    if (key.isReadable()) {
+                        if (key.equals(networkKey)) { //Data channel message
+                            DatagramChannel channel = (DatagramChannel) key.channel();
 
-                        Frame frame = Frame.fromBytes(buffer.array());
+                            ByteBuffer buffer = ByteBuffer.allocate(Frame.MAX_SIZE);
+                            SocketAddress address = channel.receive(buffer);
 
-                        if (frame.getId() == Frame.FIRST_ID) {
-                            regRecvClient(address, frame);
-                        } else {
-                            if (clientSinkMap.containsKey(address)) {
-                                var sink = clientSinkMap.get(address);
-                                sink.write(ByteBuffer.wrap(frame.toBytes()));
-                            }
-                        }
+                            Frame frame = Frame.fromBytes(buffer.array());
 
-                    } else { //internal message
-                        TransportSession session = (TransportSession) key.attachment();
-
-                        Frame frame = Frame.fromChannel((Pipe.SourceChannel) key.channel());
-
-                        if (session.getStatus().equals(TransportSession.Status.IDLE)) {
-                            headerFrame(session, frame);
-                        } else if (session.getStatus().equals(TransportSession.Status.READING)) {
-                            readNewFrame(key, frame);
-                        } else if (session.getStatus().equals(TransportSession.Status.SENDING)) {
-                            if (session.getSendFrameList().size() > 0) {
-                                sendFrameQueue.add(
-                                        new Pair<>(
-                                                session.getConsumerAddress(),
-                                                session.getSendFrameList().remove(0)
-                                        )
-                                );
+                            if (frame.getId() == Frame.FIRST_ID) {
+                                regRecvClient(address, frame);
                             } else {
-                                session.setStatus(TransportSession.Status.HALT);
-                                closeSessionByKey(key);
+                                if (clientSinkMap.containsKey(address)) {
+                                    var sink = clientSinkMap.get(address);
+                                    sink.write(ByteBuffer.wrap(frame.toBytes()));
+                                }
                             }
-                        }
 
+                        } else { //internal message
+                            TransportSession session = (TransportSession) key.attachment();
+
+                            Frame frame = Frame.fromChannel((Pipe.SourceChannel) key.channel());
+
+                            if (session.getStatus().equals(TransportSession.Status.IDLE)) {
+                                headerFrame(session, frame);
+                            } else if (session.getStatus().equals(TransportSession.Status.READING)) {
+                                readNewFrame(key, frame);
+                            } else if (session.getStatus().equals(TransportSession.Status.SENDING)) {
+                                if (session.getSendFrameList().size() > 0) {
+                                    scheduleSend(
+                                            new Pair<>(
+                                                    session.getConsumerAddress(),
+                                                    session.getSendFrameList().remove(0)
+                                            )
+                                    );
+                                } else {
+                                    session.setStatus(TransportSession.Status.HALT);
+                                    closeSessionByKey(key);
+                                }
+                            }
+
+                        }
                     }
+
                 }
 
+                for (int i = 0; i < sendFrameQueue.size(); i++) {
+                    var pair = sendFrameQueue.remove();
+                    datagramChannel.send(
+                            ByteBuffer.wrap(pair.getSecond().toBytes()),
+                            pair.getFirst());
+                }
+            } catch (IOException ignored) {
+                continue;
             }
-
-            for (int i = 0; i < sendFrameQueue.size(); i++) {
-                var pair = sendFrameQueue.remove();
-                datagramChannel.send(
-                        ByteBuffer.wrap(pair.getSecond().toBytes()),
-                        pair.getFirst());
-            }
-
         }
+    }
+
+    private void scheduleSend(Pair<SocketAddress, Frame> pair) {
+        var frame = pair.getSecond();
+        var address = pair.getFirst();
+
+        try {
+            datagramChannel.send(
+                    ByteBuffer.wrap(frame.toBytes()),
+                    address
+            );
+        } catch (IOException ignored) {
+        }
+//        sendFrameQueue.add(pair);
     }
 
     /**
@@ -127,15 +140,17 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
     private void readNewFrame(SelectionKey key, Frame frame) {
         TransportSession session = (TransportSession) key.attachment();
         session.addToList(frame);
-        sendFrameQueue.add(
-                new Pair<>(
-                        session.getConsumerAddress(),
-                        new Frame(frame.getId())
-                )
-        );
+
 
         if (session.checkFinishReading()) {
             finishReading(key);
+        } else {
+            scheduleSend(
+                    new Pair<>(
+                            session.getConsumerAddress(),
+                            new Frame(frame.getId())
+                    )
+            );
         }
     }
 
@@ -171,7 +186,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
      */
     private void headerFrame(TransportSession session, Frame frame) {
         int framesCount = ByteBuffer.wrap(frame.getPayload()).getInt();
-        sendFrameQueue.add(
+        scheduleSend(
                 new Pair<>(
                         session.getConsumerAddress(),
                         new Frame(Frame.FIRST_ID + 1)
@@ -283,7 +298,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        sendFrameQueue.add(
+        scheduleSend(
                 new Pair<>(
                         recipient,
                         new Frame(

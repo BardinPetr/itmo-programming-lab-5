@@ -18,7 +18,10 @@ import ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiable
 @Slf4j
 public abstract class AbstractInputTransportApplication<U, L extends IIdentifiableMessage> extends AbstractApplication {
 
+    private final IServerTransport<U, L> transport;
+
     public AbstractInputTransportApplication(IServerTransport<U, L> transport) {
+        this.transport = transport;
         transport.subscribe(this::handle);
     }
 
@@ -72,5 +75,10 @@ public abstract class AbstractInputTransportApplication<U, L extends IIdentifiab
     @Override
     public boolean filter(AppRequest req) {
         return true;
+    }
+
+    @Override
+    public void start() {
+        transport.run();
     }
 }

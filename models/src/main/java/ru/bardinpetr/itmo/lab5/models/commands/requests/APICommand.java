@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.models.commands.requests;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.bardinpetr.itmo.lab5.models.commands.IAPIMessage;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
@@ -11,6 +12,7 @@ import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
  */
 @JsonIgnoreProperties({"type", "cmdIdentifier", "inlineArgs", "interactArgs"})
 @Data
+@NoArgsConstructor
 public abstract class APICommand implements IIdentifiableCommand<Class<? extends APICommand>>, IAPIMessage {
 
     @Override
