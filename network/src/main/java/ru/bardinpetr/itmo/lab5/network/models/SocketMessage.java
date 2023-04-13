@@ -17,6 +17,9 @@ public class SocketMessage implements Serializable, IIdentifiableMessage {
     private CommandType cmdType;
     private Long id;
     private Long replyId;
+    /**
+     * If payload equals to empty array it means that the message was received in a worng way
+     */
     private byte[] payload;
 
     public SocketMessage(CommandType type) {

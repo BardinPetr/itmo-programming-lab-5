@@ -18,7 +18,15 @@ public class DatagramPacketUtils {
         return buffer.getInt();
     }
 
-    public static byte[] join(List<byte[]> byteList) {
+    public static byte[] joinFromFrames(List<Frame> frameList) {
+        List<byte[]> byteList = new ArrayList<>();
+        for (var i : frameList) {
+            byteList.add(i.getPayload());
+        }
+        return join(byteList);
+    }
+
+    private static byte[] join(List<byte[]> byteList) {
         int size = byteList.stream().mapToInt((a) -> a.length).sum();
 
         ByteBuffer buffer = ByteBuffer.allocate(size);
@@ -28,17 +36,31 @@ public class DatagramPacketUtils {
         return buffer.array();
     }
 
-    public static List<byte[]> separate(byte[] source) {
+
+    public static List<Frame> separateToFrames(byte[] source) {
+        var byteList = separate(source);
+        List<Frame> resList = new ArrayList<>();
+
+        for (int i = 0; i < byteList.size(); i++) {
+            resList.add(new Frame(
+                    i + 2,
+                    byteList.get(i)
+            ));
+        }
+        return resList;
+    }
+
+    private static List<byte[]> separate(byte[] source) {
 
         List<byte[]> resList = new ArrayList<>();
 
         int start = 0;
 
-        for (int i = 0; i < Math.ceil(source.length / (float) Frame.MAX_SIZE) - 1; i++) {
+        for (int i = 0; i < Math.ceil(source.length / (float) Frame.PAYLOAD_SIZE) - 1; i++) {
             resList.add(
-                    Arrays.copyOfRange(source, start, (start + Frame.MAX_SIZE))
+                    Arrays.copyOfRange(source, start, (start + Frame.PAYLOAD_SIZE))
             );
-            start += Frame.MAX_SIZE;
+            start += Frame.PAYLOAD_SIZE;
         }
         resList.add(
                 Arrays.copyOfRange(source, start, source.length)
