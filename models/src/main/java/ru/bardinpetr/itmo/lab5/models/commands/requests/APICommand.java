@@ -9,7 +9,7 @@ import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 /**
  * General class for all commands
  */
-@JsonIgnoreProperties({"type", "id", "cmdIdentifier", "inlineArgs", "interactArgs"})
+@JsonIgnoreProperties({"type", "cmdIdentifier", "inlineArgs", "interactArgs"})
 @Data
 public abstract class APICommand implements IIdentifiableCommand<Class<? extends APICommand>>, IAPIMessage {
 
