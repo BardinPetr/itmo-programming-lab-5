@@ -4,7 +4,7 @@ import ru.bardinpetr.itmo.lab5.adminclient.api.commands.AdminAPICommandRegistry;
 import ru.bardinpetr.itmo.lab5.adminclient.api.commands.AdminAPICommandsDescriptionHolder;
 import ru.bardinpetr.itmo.lab5.adminclient.local.controller.registry.AdminClientCommandRegistry;
 import ru.bardinpetr.itmo.lab5.adminclient.local.ui.texts.AdminTexts;
-import ru.bardinpetr.itmo.lab5.client.api.connectors.UDPServerAPIFactory;
+import ru.bardinpetr.itmo.lab5.client.api.connectors.UDPAPIClientFactory;
 import ru.bardinpetr.itmo.lab5.client.ui.ClientConsoleArgumentsParser;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.CLIController;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.Interpreter;
@@ -17,7 +17,7 @@ public class Main {
         var argParse = new ClientConsoleArgumentsParser(args);
 
         var apiConnector =
-                new UDPServerAPIFactory(argParse.getServerFullAddr())
+                new UDPAPIClientFactory(argParse.getServerFullAddr())
                         .create();
 
         var descriptionHolder = new AdminAPICommandsDescriptionHolder();

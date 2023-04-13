@@ -120,13 +120,8 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
 
             return msg;
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (SerDesException e) {
+        } catch (IOException | SerDesException e) {
             throw new RuntimeException(e);
         }
-
     }
-
-
 }
