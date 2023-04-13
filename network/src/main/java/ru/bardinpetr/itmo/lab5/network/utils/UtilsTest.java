@@ -12,6 +12,6 @@ public class UtilsTest {
         System.out.println(Frame.fromBytes(frame.toBytes()).equals(frame));
 
         var string = "adasdadasdadasdadasdadasdadasd".repeat(10000);
-        System.out.println(new String(DatagramPacketUtils.joinFromFrames(DatagramPacketUtils.separateToFrames(string.getBytes()))).equals(string));
+        System.out.println(new String(TransportUtils.joinFrames(TransportUtils.separateBytes(string.getBytes()))).equals(string));
     }
 }

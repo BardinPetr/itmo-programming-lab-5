@@ -48,7 +48,7 @@ public class Frame {
         return new Frame(id, payload);
     }
 
-    public byte[] toBytes() throws IOException {
+    public byte[] toBytes() {
         var byteChannel = ByteBuffer.allocate(HEADER_SIZE + getPayload().length);
         byteChannel.putInt(getCurrentPayloadSize());
         byteChannel.putLong(getId());

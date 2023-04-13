@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.network.server;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService;
 import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 import ru.bardinpetr.itmo.lab5.network.framelevel.Frame;
@@ -8,8 +9,8 @@ import ru.bardinpetr.itmo.lab5.network.server.session.Session;
 import ru.bardinpetr.itmo.lab5.network.server.session.Status;
 import ru.bardinpetr.itmo.lab5.network.transport.IServerTransport;
 import ru.bardinpetr.itmo.lab5.network.transport.handlers.IMessageHandler;
-import ru.bardinpetr.itmo.lab5.network.utils.DatagramPacketUtils;
 import ru.bardinpetr.itmo.lab5.network.utils.Pair;
+import ru.bardinpetr.itmo.lab5.network.utils.TransportUtils;
 
 import java.io.IOException;
 import java.net.SocketAddress;
@@ -20,11 +21,14 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.util.*;
 
+/**
+ * Server class for receiving and sending messages from clients
+ */
+@Slf4j
 public class UDPSelectorServer implements IServerTransport<SocketAddress, SocketMessage> {
     private static final int TIMEOUT = 3000;
     private final Selector selector = Selector.open();
-    private final List<IMessageHandler<SocketAddress, SocketMessage>> handlerList = new ArrayList<>();
-
+    private IMessageHandler<SocketAddress, SocketMessage> handler = null;
     private final Queue<Pair<SocketAddress, Frame>> sendFrameQueue = new ArrayDeque<>();
     private final SelectionKey networkKey;
     private final DatagramChannel datagramChannel;
@@ -38,11 +42,14 @@ public class UDPSelectorServer implements IServerTransport<SocketAddress, Socket
 
     }
 
+    /**
+     * Main loop for receiving client from server and executing
+     *
+     * @throws IOException
+     */
     public void run() throws IOException {
 
         System.out.println("listening..");
-
-        SocketAddress clientAdr;
 
         while (true) {
             // Wait for task or until timeout expires
@@ -83,7 +90,7 @@ public class UDPSelectorServer implements IServerTransport<SocketAddress, Socket
                         if (session.getStatus().equals(Status.IDLE)) {
                             headerFrame(session, frame);
                         } else if (session.getStatus().equals(Status.READING)) {
-                            readNewFrame(session, frame);
+                            readNewFrame(key, frame);
                         } else if (session.getStatus().equals(Status.SENDING)) {
                             if (session.getSendFrameList().size() > 0) {
                                 sendFrameQueue.add(
@@ -94,7 +101,7 @@ public class UDPSelectorServer implements IServerTransport<SocketAddress, Socket
                                 );
                             } else {
                                 session.setStatus(Status.HALT);
-                                //TODO close session
+                                closeSessionByKey(key);
                             }
                         }
 
@@ -113,7 +120,14 @@ public class UDPSelectorServer implements IServerTransport<SocketAddress, Socket
         }
     }
 
-    private void readNewFrame(Session session, Frame frame) {
+    /**
+     * Adding frame to receiving list, adding ACK to sending list, check if finished
+     *
+     * @param key   Client key
+     * @param frame
+     */
+    private void readNewFrame(SelectionKey key, Frame frame) {
+        Session session = (Session) key.attachment();
         session.addToList(frame);
         sendFrameQueue.add(
                 new Pair<>(
@@ -123,32 +137,42 @@ public class UDPSelectorServer implements IServerTransport<SocketAddress, Socket
         );
 
         if (session.checkFinishReading()) {
-
-            session.setStatus(Status.READINGFINISHED);
-
-            var desBytes = DatagramPacketUtils.joinFromFrames(List.of(session.getReceiveFrameList()));
-            SocketMessage msg;
-            try {
-                msg = serDesService.deserialize(desBytes);
-            } catch (SerDesException e) {
-                msg = new SocketMessage(new byte[]{});
-            }//TODO execution
-            for (var handler : handlerList) {
-                handler.handle(
-                        session.getConsumerAddress(),
-                        msg
-                );
-            }
-//            System.out.println("%s %s %s %s".formatted(msg.getId(), msg.getCmdType(), msg.getReplyId(), new String(msg.getPayload()).equals("A".repeat(121))));
+            finishReading(key);
         }
+    }
+
+    /**
+     * Serialize socket message form received byte list
+     *
+     * @param key client key
+     */
+    private void finishReading(SelectionKey key) {
+        Session session = (Session) key.attachment();
+        session.setStatus(Status.READINGFINISHED);
+
+        var desBytes = TransportUtils.joinFrames(List.of(session.getReceiveFrameList()));
+        SocketMessage msg;
+        try {
+            msg = serDesService.deserialize(desBytes);
+        } catch (SerDesException e) {
+            msg = new SocketMessage(new byte[]{});
+        }
+        handler.handle(
+                session.getConsumerAddress(),
+                msg
+        );
+        closeSessionByKey(key);
 
     }
 
-
+    /**
+     * Receive header frame with frame count
+     *
+     * @param session currnet user session
+     * @param frame   received header frame
+     */
     private void headerFrame(Session session, Frame frame) {
-        int framesCount = DatagramPacketUtils.BytesToInt(
-                ByteBuffer.wrap(frame.getPayload())
-        );
+        int framesCount = ByteBuffer.wrap(frame.getPayload()).getInt();
         sendFrameQueue.add(
                 new Pair<>(
                         session.getConsumerAddress(),
@@ -159,19 +183,42 @@ public class UDPSelectorServer implements IServerTransport<SocketAddress, Socket
         session.setStatus(Status.READING);
     }
 
+    /**
+     * Registration new clint session with IDLE status
+     *
+     * @param address
+     * @param frame
+     * @throws IOException
+     */
     private void regRecvClient(SocketAddress address, Frame frame) throws IOException {
         regClient(address, frame, Status.IDLE, null);
     }
 
+    /**
+     * Registration new client session with SENDING status
+     *
+     * @param address   client address
+     * @param frame     header frame
+     * @param frameList list for sending
+     * @throws IOException
+     */
     private void regSendClient(SocketAddress address, Frame frame, List<Frame> frameList) throws IOException {
         regClient(address, frame, Status.SENDING, frameList);
     }
 
+    /**
+     * @param address  client address
+     * @param frame    header frame
+     * @param status   status
+     * @param sendList frame list for sending
+     * @throws IOException
+     */
     private void regClient(SocketAddress address, Frame frame, Status status, List<Frame> sendList) throws IOException {
         var pipe = Pipe.open();
 
         var sink = pipe.sink();
         var source = pipe.source();
+
 
         source.configureBlocking(false);
         source.register(
@@ -191,13 +238,36 @@ public class UDPSelectorServer implements IServerTransport<SocketAddress, Socket
 
     }
 
+    /**
+     * Close sink and source channels, remove client from clientSinkMap and close this selector channel by key
+     *
+     * @param key selector key to be closed
+     */
+    private void closeSessionByKey(SelectionKey key) {
+        var session = (Session) key.attachment();
+        try {
+            var pipe = session.getPipe();
+            pipe.sink().close();
+            pipe.source().close();
+            clientSinkMap.remove(session.getConsumerAddress());
+            key.cancel();
+        } catch (IOException ignored) {
+        }
+        session = null;
+    }
 
+    /**
+     * Register client session with frame list for sending and put it to the sending queue
+     *
+     * @param recipient
+     * @param data
+     */
     @Override
     public void send(SocketAddress recipient, SocketMessage data) {
         List<Frame> frameList = null;
 
         try {
-            frameList = DatagramPacketUtils.separateToFrames(
+            frameList = TransportUtils.separateBytes(
                     serDesService.serialize(data)
             );
         } catch (SerDesException ignored) {
@@ -208,7 +278,7 @@ public class UDPSelectorServer implements IServerTransport<SocketAddress, Socket
                     recipient,
                     new Frame(
                             Frame.FIRST_ID,
-                            DatagramPacketUtils.IntToBytes(frameList.size()).array()
+                            TransportUtils.IntToBytes(frameList.size()).array()
                     ),
                     frameList
             );
@@ -220,14 +290,19 @@ public class UDPSelectorServer implements IServerTransport<SocketAddress, Socket
                         recipient,
                         new Frame(
                                 Frame.FIRST_ID,
-                                DatagramPacketUtils.IntToBytes(frameList.size()).array()
+                                TransportUtils.IntToBytes(frameList.size()).array()
                         )
                 )
         );
     }
 
+    /**
+     * Register handler for transporting socket message
+     *
+     * @param handler message handler
+     */
     @Override
     public void subscribe(IMessageHandler<SocketAddress, SocketMessage> handler) {
-        handlerList.add(handler);
+        this.handler = handler;
     }
 }

@@ -5,57 +5,66 @@ import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 import ru.bardinpetr.itmo.lab5.network.framelevel.Frame;
 import ru.bardinpetr.itmo.lab5.network.models.SocketMessage;
 import ru.bardinpetr.itmo.lab5.network.transport.IClientTransport;
-import ru.bardinpetr.itmo.lab5.network.utils.DatagramPacketUtils;
+import ru.bardinpetr.itmo.lab5.network.utils.TransportUtils;
 
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.DatagramChannel;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for sending and receiving socket message  any length via UPD channel
+ */
 public class UDPClient implements IClientTransport<SocketMessage> {
-    private final SocketAddress serverAddress;
-    private final DatagramChannel channel;
+    private final DatagramSocket socket;
     //    private final Selector selector;
     private final Duration sendDurationTimeout = Duration.ofSeconds(5);
+    private final SocketAddress serverAddress;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
 
-
-    public UDPClient(SocketAddress socketAddress) throws IOException {
-        channel = DatagramChannel.open().bind(null);
-//        channel.configureBlocking(false);
-
-//        selector = Selector.open();
-//        channel.register(selector, SelectionKey.OP_READ);
-
+    /**
+     * @param socketAddress server address
+     */
+    public UDPClient(SocketAddress socketAddress) {
+        DatagramSocket tmp = null;
+        try {
+            tmp = new DatagramSocket(null);
+            tmp.setReuseAddress(true);
+            tmp.bind(socketAddress);
+        } catch (IOException ignore) {
+        }
+        socket = tmp;
         this.serverAddress = socketAddress;
     }
 
+    /**
+     * Inner function for receiving throw UDP channel
+     *
+     * @param duration timeout duration
+     * @return received frame
+     * @throws IOException exception via receiving
+     */
     private Frame receiveFrame(Duration duration) throws IOException {
-        var start = System.nanoTime();
-        var buffer = ByteBuffer.allocate(Frame.MAX_SIZE);
-        channel.receive(buffer);
-        return Frame.fromBytes(buffer.array());
-//        while (true){
-//            var keyIter = selector.selectedKeys().iterator();
-//            while (keyIter.hasNext()) {
-//                SelectionKey key = keyIter.next(); // Key is bit mask
-//                keyIter.remove();
-//
-//                // Client socket channel has pending data?
-//                if (key.isReadable()) {
-//                    DatagramChannel datagramChannel = (DatagramChannel) key.channel();
-//                    buffer = ByteBuffer.allocate(Frame.MAX_SIZE);
-//                    datagramChannel.receive(buffer);
-//                    return Frame.fromBytes(buffer.array());
-//                }
-//            }
-//        }
-
+        socket.setSoTimeout((int) duration.getSeconds() * 1000);
+        var buffer = new byte[Frame.MAX_SIZE];
+        var packet = new DatagramPacket(buffer, buffer.length);
+        socket.receive(packet);
+        return Frame.fromBytes(packet.getData());
     }
 
+    private void sendFrame(Frame frame) throws IOException {
+        socket.send(new DatagramPacket(frame.toBytes(), frame.toBytes().length, serverAddress));
+    }
+
+    /**
+     * Method for sending socket message any length.
+     *
+     * @param msg message to be send
+     */
     public void send(SocketMessage msg) {
         byte[] msgBytes;
         try {
@@ -64,21 +73,18 @@ public class UDPClient implements IClientTransport<SocketMessage> {
             throw new RuntimeException(e);
         }
 
-        var packetsList = DatagramPacketUtils.separateToFrames(msgBytes);
+        var packetsList = TransportUtils.separateBytes(msgBytes);
 
-        var buffer = DatagramPacketUtils.IntToBytes(packetsList.size());
+        var buffer = TransportUtils.IntToBytes(packetsList.size());
 
         try {
-            channel.send(ByteBuffer.wrap(new Frame(
-                            Frame.FIRST_ID,
-                            buffer.array()).toBytes()),
-                    serverAddress);
+            sendFrame(new Frame(
+                    Frame.FIRST_ID,
+                    buffer.array()));
             receiveFrame(sendDurationTimeout);
 
             for (int i = 0; i < packetsList.size(); i++) {
-                channel.send(ByteBuffer.wrap(packetsList.get(i).toBytes()),
-                        serverAddress
-                );
+                sendFrame(packetsList.get(i));
                 receiveFrame(sendDurationTimeout);
             }
 
@@ -87,27 +93,31 @@ public class UDPClient implements IClientTransport<SocketMessage> {
         }
     }
 
+    /**
+     * Receive socket message from server
+     *
+     * @param duration timeout or null if no timeout should be applied
+     * @return received socket message
+     */
     public SocketMessage receive(Duration duration) {
         try {
             // seg 1 end -> create session
             Frame header = receiveFrame(duration);
 
-            int size = DatagramPacketUtils.BytesToInt(ByteBuffer.wrap(header.getPayload()));
+            int size = ByteBuffer.wrap(header.getPayload()).getInt();
 
-            channel.send(ByteBuffer.wrap(new Frame(Frame.FIRST_ID + 1L).toBytes()),
-                    serverAddress);
+            sendFrame(new Frame(Frame.FIRST_ID + 1L));
+
             // seg 2 end -> wait n packets + set user lock
             List<Frame> frameList = new ArrayList<>();
 
             for (int i = 0; i < size; i++) {
                 frameList.add(receiveFrame(duration));
-                channel.send(
-                        ByteBuffer.wrap(new Frame(Frame.FIRST_ID + 2 + i).toBytes()),
-                        serverAddress);
+                sendFrame(new Frame(Frame.FIRST_ID + 2 + i));
             }
 
             SocketMessage msg;
-            msg = serDesService.deserialize(DatagramPacketUtils.joinFromFrames(frameList));
+            msg = serDesService.deserialize(TransportUtils.joinFrames(frameList));
 
             return msg;
 

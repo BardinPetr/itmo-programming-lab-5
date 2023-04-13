@@ -5,41 +5,32 @@ import ru.bardinpetr.itmo.lab5.network.server.UDPClient;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.time.Duration;
 
 public class ClientMain {
+    private static final UDPClient client = new UDPClient(new InetSocketAddress("localhost", 1249));
+
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
-        var client = new UDPClient(new InetSocketAddress("localhost", 1249));
         var t1 = new SocketMessage(SocketMessage.CommandType.DATA, 123L, 2314L, "Artem the best".getBytes());
 
-        client.send(t1);
 
-        var msg = client.receive(null);
-        var t = new String(msg.getPayload());
-        System.out.println(msg.getCmdType() + " " + t + " " + t.length());
+        for (int i = 0; i < 100; i++) {
+            var thr = new Thread(() -> clientRun(t1));
+            thr.run();
+        }
 
-//        client.send(t1);
-//        var selector = Selector.open();
-//        var p = Pipe.open();
-//
-//        var sink = p.sink();
-//        var source = p.source();
-//
-//        source.configureBlocking(false);
-//        source.register(selector, SelectionKey.OP_READ);
-//
-//
-//        sink.write(ByteBuffer.wrap(new byte[]{1, 2, 3}));
-//
-//        while (true) {
-//            if (selector.select(1L) == 0) continue;
-//
-//            var it = selector.selectedKeys().iterator();
-//            while (it.hasNext()) {
-//                var k = it.next();
-//                it.remove();
-//
-//                var ch = (Pipe.SourceChannel) k.channel();
-//            }
-//        }
     }
+
+    public static void clientRun(SocketMessage t1) {
+        SocketMessage msg;
+        String t;
+        while (true) {
+            client.send(t1);
+            msg = client.receive(Duration.ofSeconds(2));
+            t = new String(msg.getPayload());
+            System.out.println(msg.getCmdType() + " " + t + " " + t.length());
+        }
+    }
+
+
 }
