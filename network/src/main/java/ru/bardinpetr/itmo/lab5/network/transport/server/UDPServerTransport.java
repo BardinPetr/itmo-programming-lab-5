@@ -45,7 +45,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
      */
     @Override
     public void run() {
-        System.out.println("listening..");
+        log.info("listening..");
 
         while (true) {
             // Wait for task or until timeout expires
