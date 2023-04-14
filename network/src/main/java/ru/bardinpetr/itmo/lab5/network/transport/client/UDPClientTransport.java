@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class UDPClientTransport implements IClientTransport<SocketMessage> {
     private final DatagramSocket socket;
-    private final Duration sendDurationTimeout = Duration.ofMinutes(2); // TODO
+    private final Duration sendDurationTimeout = Duration.ofMinutes(2);
     private final SocketAddress serverAddress;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
 

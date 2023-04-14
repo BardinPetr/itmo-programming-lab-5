@@ -269,7 +269,8 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
             pipe.source().close();
             clientSinkMap.remove(session.getConsumerAddress());
             key.cancel();
-        } catch (IOException ignored) {
+        } catch (IOException e) {
+            log.error(e.getMessage());
         }
         session = null;
     }
