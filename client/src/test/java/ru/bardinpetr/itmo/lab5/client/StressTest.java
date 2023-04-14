@@ -49,7 +49,7 @@ public class StressTest {
                                     null
                             )));
 //                    System.out.println(cur.call(new ClearCommand()));
-                    System.out.println(((InfoCommand.InfoCommandResponse) cur.call(new ClearCommand())).getResult().getItemsCount());
+                    System.out.println(((InfoCommand.InfoCommandResponse) cur.call(new InfoCommand())).getResult().getItemsCount());
                 } catch (APIClientException e) {
                     throw new RuntimeException(e);
                 }
