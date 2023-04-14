@@ -33,9 +33,11 @@ public class Frame {
     public static Frame fromChannel(ReadableByteChannel channel) throws IOException {
         var buffer = ByteBuffer.allocate(Frame.MAX_SIZE);
         channel.read(buffer);
-
         return Frame.fromBytes(buffer.array());
+    }
 
+    public boolean checkACK(Frame frame) {
+        return frame.id == id;
     }
 
     public static Frame fromBytes(byte[] bytes) {

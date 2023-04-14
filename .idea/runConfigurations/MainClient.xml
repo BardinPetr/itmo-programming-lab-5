@@ -3,7 +3,7 @@
     <option name="ALTERNATIVE_JRE_PATH" value="temurin-17" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="ru.bardinpetr.itmo.lab5.mainclient.Main" />
-    <module name="itmo-programming-lab-5.client.clientMain" />
+    <module name="ru.bardinpetr.itmo.lab5.mainclient.itmo-programming-lab-5.client.clientMain.main" />
     <option name="PROGRAM_PARAMETERS" value="-h localhost -p 5555" />
     <method v="2">
       <option name="Make" enabled="true" />

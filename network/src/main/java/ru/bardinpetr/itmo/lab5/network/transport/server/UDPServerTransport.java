@@ -68,13 +68,11 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
 
                             Frame frame = Frame.fromBytes(buffer.array());
 
-                            if (frame.getId() == Frame.FIRST_ID) {
+                            if (clientSinkMap.containsKey(address)) {
+                                var sink = clientSinkMap.get(address);
+                                sink.write(ByteBuffer.wrap(frame.toBytes()));
+                            } else if (frame.getId() == Frame.FIRST_ID) {
                                 regRecvClient(address, frame);
-                            } else {
-                                if (clientSinkMap.containsKey(address)) {
-                                    var sink = clientSinkMap.get(address);
-                                    sink.write(ByteBuffer.wrap(frame.toBytes()));
-                                }
                             }
 
                         } else { //internal message
@@ -141,16 +139,14 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
         TransportSession session = (TransportSession) key.attachment();
         session.addToList(frame);
 
-
+        scheduleSend(
+                new Pair<>(
+                        session.getConsumerAddress(),
+                        new Frame(frame.getId())
+                )
+        );
         if (session.checkFinishReading()) {
             finishReading(key);
-        } else {
-            scheduleSend(
-                    new Pair<>(
-                            session.getConsumerAddress(),
-                            new Frame(frame.getId())
-                    )
-            );
         }
     }
 
@@ -170,11 +166,13 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
         } catch (SerDesException e) {
             msg = new SocketMessage(new byte[]{});
         }
+        var address = session.getConsumerAddress();
+        closeSessionByKey(key);
+
         handler.handle(
-                session.getConsumerAddress(),
+                address,
                 msg
         );
-        closeSessionByKey(key);
 
     }
 
@@ -189,7 +187,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
         scheduleSend(
                 new Pair<>(
                         session.getConsumerAddress(),
-                        new Frame(Frame.FIRST_ID + 1)
+                        new Frame(Frame.FIRST_ID)
                 )
         );
         session.setReceiveFrameList(new Frame[framesCount]);
@@ -247,7 +245,9 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
                 address,
                 sink
         );
-        sink.write(ByteBuffer.wrap(frame.toBytes()));
+        if (sendList == null) {
+            sink.write(ByteBuffer.wrap(frame.toBytes()));
+        }
 
     }
 

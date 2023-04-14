@@ -2,28 +2,25 @@ package ru.bardinpetr.itmo.lab5.network.transport.client;
 
 import ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService;
 import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
+import ru.bardinpetr.itmo.lab5.network.transport.errors.TransportException;
 import ru.bardinpetr.itmo.lab5.network.transport.interfaces.IClientTransport;
 import ru.bardinpetr.itmo.lab5.network.transport.models.Frame;
 import ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage;
 import ru.bardinpetr.itmo.lab5.network.utils.TransportUtils;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketAddress;
-import java.net.SocketTimeoutException;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeoutException;
 
 /**
  * Class for sending and receiving socket message  any length via UPD channel
  */
 public class UDPClientTransport implements IClientTransport<SocketMessage> {
     private final DatagramSocket socket;
-    private final Duration sendDurationTimeout = Duration.ofMinutes(10); // TODO
+    private final Duration sendDurationTimeout = Duration.ofMinutes(2); // TODO
     private final SocketAddress serverAddress;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
 
@@ -35,11 +32,11 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
         try {
             tmp = new DatagramSocket(null);
             tmp.setReuseAddress(true);
-            tmp.bind(socketAddress);
         } catch (IOException ignore) {
         }
+
         socket = tmp;
-        this.serverAddress = socketAddress;
+        serverAddress = socketAddress;
     }
 
     /**
@@ -53,12 +50,34 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
         socket.setSoTimeout((int) duration.getSeconds() * 1000);
         var buffer = new byte[Frame.MAX_SIZE];
         var packet = new DatagramPacket(buffer, buffer.length);
-        socket.receive(packet);
+        try {
+            socket.receive(packet);
+        } catch (PortUnreachableException connectExc) {
+            throw new TransportException();
+        } catch (SocketTimeoutException timeoutException) {
+            throw new TransportException("Timeout reached");
+        }
         return Frame.fromBytes(packet.getData());
     }
 
+    private void connect() throws SocketException {
+        try {
+            socket.connect(serverAddress);
+        } catch (SocketException socketException) {
+            throw new TransportException();
+        }
+    }
+
+    private void disconnect() {
+        socket.disconnect();
+    }
+
     private void sendFrame(Frame frame) throws IOException {
-        socket.send(new DatagramPacket(frame.toBytes(), frame.toBytes().length, serverAddress));
+        try {
+            socket.send(new DatagramPacket(frame.toBytes(), frame.toBytes().length, serverAddress));
+        } catch (PortUnreachableException port) {
+            throw new TransportException();
+        }
     }
 
     /**
@@ -67,6 +86,11 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
      * @param msg message to be send
      */
     public void send(SocketMessage msg) {
+        try {
+            connect();
+        } catch (SocketException e) {
+            throw new TransportException(e.getMessage());
+        }
         byte[] msgBytes;
         try {
             msgBytes = serDesService.serialize(msg);
@@ -79,19 +103,25 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
         var buffer = TransportUtils.IntToBytes(packetsList.size());
 
         try {
-            sendFrame(new Frame(
+            var header = new Frame(
                     Frame.FIRST_ID,
-                    buffer.array()));
-            receiveFrame(sendDurationTimeout);
+                    buffer.array());
+
+            sendFrame(header);
+            header.checkACK(receiveFrame(sendDurationTimeout));
 
             for (int i = 0; i < packetsList.size(); i++) {
-                sendFrame(packetsList.get(i));
-                receiveFrame(sendDurationTimeout);
+                var tmpFrame = packetsList.get(i);
+                sendFrame(tmpFrame);
+                tmpFrame.checkACK(receiveFrame(sendDurationTimeout));
             }
 
+        } catch (SocketTimeoutException e) {
+            throw new TransportException("Timeout reached");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        disconnect();
     }
 
     /**
@@ -100,14 +130,14 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
      * @param duration timeout or null if no timeout should be applied
      * @return received socket message
      */
-    public SocketMessage receive(Duration duration) throws TimeoutException, IOException {
+    public SocketMessage receive(Duration duration) throws IOException {
         try {
             // seg 1 end -> create session
             Frame header = receiveFrame(duration);
 
             int size = ByteBuffer.wrap(header.getPayload()).getInt();
 
-            sendFrame(new Frame(Frame.FIRST_ID + 1L));
+            sendFrame(new Frame(Frame.FIRST_ID));
 
             // seg 2 end -> wait n packets + set user lock
             List<Frame> frameList = new ArrayList<>();
@@ -122,8 +152,6 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
 
             return msg;
 
-        } catch (SocketTimeoutException e) {
-            throw new TimeoutException();
         } catch (Exception e) {
             throw new IOException(e);
         }

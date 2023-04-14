@@ -22,7 +22,7 @@ public abstract class AbstractAPIClient<T extends IIdentifiableMessage> {
     private Long currentMessageId = 0L;
 
     @Setter
-    private Duration timeout = Duration.of(10, ChronoUnit.MINUTES);
+    private Duration timeout = Duration.of(2, ChronoUnit.MINUTES);
 
     public AbstractAPIClient(IClientTransport<T> transport) {
         this.transport = transport;
@@ -36,7 +36,7 @@ public abstract class AbstractAPIClient<T extends IIdentifiableMessage> {
      * @throws TimeoutException   if response not arrived in timeout
      * @throws APIClientException if any error raised in process
      */
-    public APICommandResponse request(APICommand request) throws TimeoutException, APIClientException {
+    public APICommandResponse request(APICommand request) throws IOException, APIClientException {
         var message = serialize(request);
         if (message == null)
             throw new APIClientException("Failed to serialize");

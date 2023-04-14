@@ -15,7 +15,7 @@ public interface IClientTransport<T> {
     /**
      * Synchronously send request.
      */
-    void send(T data);
+    void send(T data) throws IOException;
 
     /**
      * Synchronously wait for incoming message
@@ -25,5 +25,5 @@ public interface IClientTransport<T> {
      * @throws TimeoutException if no message arrived before timeout
      * @throws IOException      if channel is not
      */
-    T receive(Duration timeout) throws TimeoutException, IOException;
+    T receive(Duration timeout) throws IOException;
 }
