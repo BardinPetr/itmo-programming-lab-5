@@ -46,7 +46,7 @@ public class FileDBController<T> implements DBController {
         try {
             collection = storage.loadObject();
         } catch (InvalidDataFileException ignore) {
-            log.warn("\nDB invalid. Recreating");
+            log.warn("DB invalid. Recreating");
             clear();
         }
     }

@@ -40,7 +40,7 @@ public class TransportSession {
 
     public boolean addToList(Frame frame) {
         int pos = (int) frame.getId() - 2;
-        if (receiveFrameList[pos] != null) return false;
+        if (pos < 0 || pos >= receiveFrameList.length || receiveFrameList[pos] != null) return false;
 
         receiveFrameList[pos] = frame;
         return true;

@@ -13,6 +13,7 @@ import ru.bardinpetr.itmo.lab5.network.utils.TransportUtils;
 
 import java.io.IOException;
 import java.net.SocketAddress;
+import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.Pipe;
@@ -206,7 +207,18 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
      */
     private void headerFrame(TransportSession session, Frame frame) {
         log.info("Start reading");
-        int framesCount = ByteBuffer.wrap(frame.getPayload()).getInt();
+        int framesCount;
+        try {
+            framesCount = ByteBuffer.wrap(frame.getPayload()).getInt();
+        } catch (BufferUnderflowException ignored) {
+            scheduleSend(
+                    new Pair<>(
+                            session.getConsumerAddress(),
+                            new Frame(Frame.INVALID_ID)
+                    )
+            );
+            return;
+        }
         scheduleSend(
                 new Pair<>(
                         session.getConsumerAddress(),

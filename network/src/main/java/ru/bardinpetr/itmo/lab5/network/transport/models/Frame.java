@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.network.transport.models;
 
 import lombok.Data;
 import ru.bardinpetr.itmo.lab5.network.transport.errors.SizeLimitException;
+import ru.bardinpetr.itmo.lab5.network.transport.errors.TransportException;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -9,12 +10,11 @@ import java.nio.channels.ReadableByteChannel;
 
 @Data
 public class Frame {
+    public static final long INVALID_ID = -1;
+    public static final long FIRST_ID = 0;
     public static int HEADER_SIZE = (Long.SIZE + Integer.SIZE) / 8;
     public static int PAYLOAD_SIZE = 1024 - HEADER_SIZE;
     public static int MAX_SIZE = HEADER_SIZE + PAYLOAD_SIZE;
-
-    public static long FIRST_ID = 0;
-
     private final long id;
     private final int currentPayloadSize;
     private final byte[] payload;
@@ -46,12 +46,9 @@ public class Frame {
         return new Frame(id, payload);
     }
 
-    public boolean checkACK(Frame frame) {
-        if (frame.id == id) {
-            return true;
-        } else {
-            throw new RuntimeException();
-        }
+    public void checkACK(Frame frame) throws TransportException {
+        if (frame.id != id)
+            throw new TransportException("Failed to receive ACK from server. Probably very high load");
     }
 
     public byte[] toBytes() {

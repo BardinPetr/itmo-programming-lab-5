@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
@@ -58,7 +59,7 @@ public class ScriptLocalCommand extends APIUILocalCommand {
             scriptExecutor.process(path);
         } catch (FileAccessException e) {
             throw new RuntimeException("Can't get access to script");
-        } catch (NotRepeatableException e) {
+        } catch (NotRepeatableException | ScriptException e) {
             throw new RuntimeException("Invalid Script");
         }
 
