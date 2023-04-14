@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.mainclient;
+package ru.bardinpetr.itmo.lab5.client;
 
 import ru.bardinpetr.itmo.lab5.client.api.connectors.UDPAPIClientFactory;
 import ru.bardinpetr.itmo.lab5.client.ui.ClientConsoleArgumentsParser;
@@ -29,7 +29,6 @@ public class StressTest {
         try {
             apiConnector.call(new ClearCommand());
         } catch (APIClientException e) {
-            throw new RuntimeException(e);
         }
         for (int i = 0; i < 10000; i++) {
             int finalI = i;
@@ -65,7 +64,6 @@ public class StressTest {
             var res = apiConnector.call(new GetWorkerIdsCommand());
             System.out.println(((GetWorkerIdsCommand.GetWorkerIdsCommandResponse) res).getResult().size());
         } catch (APIClientException e) {
-            throw new RuntimeException(e);
         }
     }
 }
