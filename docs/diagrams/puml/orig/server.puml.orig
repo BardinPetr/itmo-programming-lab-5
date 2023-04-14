@@ -1,21 +1,5 @@
-
 @startuml
 
-!theme plain
-top to bottom direction
-skinparam linetype ortho
-skinparam classAttributeIconSize 0
-hide circle
-
-<style>
-classDiagram {
-    class {
-        header {
-            FontStyle bold
-        }
-    }
-}
-</style>
 !theme plain
 top to bottom direction
 skinparam linetype ortho
@@ -445,43 +429,43 @@ class WorkersSpecialExecutor {
   - removeIfGreater(RemoveGreaterCommand): void
 }
 
-APICommandResponse             "1" *--> "status\n1" Status                         
-AppRequest                     "1" *--> "payload\n1" APICommand                     
-AppRequest                     "1" *--> "response\n1" AppResponseController          
-AppRequest                     "1" *--> "status\n1" ReqStatus                      
-AppResponseController          "1" *--> "response\n1" APICommandResponse             
-DBExecutor                      --^  Executor                       
-ErrorHandlingApplication        --^  APIApplication                 
-ExecuteScriptCommand            --^  APICommand                     
-ExecuteScriptCommand           "1" *--> "commands\n*" APICommand                     
-ExecuteScriptCommandResponse    --^  APICommandResponse             
-ExecuteScriptCommandResponse    +--  ExecuteScriptCommand           
-ExecutorAdapterApplication      --^  APIApplication                 
-ExecutorAdapterApplication     "1" *--> "target\n1" Executor                       
-ExecutorAdapterApplication      ..^  IApplicationCommandHandler     
-FileDBController                ..^  DBController                   
-FileDBController               "1" *--> "storage\n1" FileStorageController          
-FileDBControllerFactory         ..^  DBControllerFactory            
-FileDBDAO                      "1" *--> "controller\n1" FileDBController               
-FileDBDAO                       ..^  ICollectionDAO                 
-FileDBDAO                       ..>  IKeyedEntity                   
-FileDBWorkersDAO                --^  FileDBDAO                      
-FileDBWorkersDAO                ..^  IWorkerCollectionDAO           
-ICollectionCRUDDAO              ..>  IKeyedEntity                   
-ICollectionDAO                  --^  ICollectionCRUDDAO             
-ICollectionDAO                  ..>  IKeyedEntity                   
-ISetCollection                  ..>  IKeyedEntity                   
-IWorkerCollectionDAO            --^  ICollectionDAO                 
-ReqStatus                       +--  AppRequest                     
-ScriptExecutor                  --^  Executor                       
-ScriptExecutor                 "1" *--> "targetExecutor\n1" Executor                       
-ServerConsoleArgumentsParser    --^  AbstractConsoleArgumentsParser 
-Status                          +--  APICommandResponse             
-Worker                          ..^  IKeyedEntity                   
-Worker                         "1" *--> "organization\n1" Organization                   
-Worker                         "1" *--> "position\n1" Position                       
-WorkerCollection                ..^  ISetCollection                 
-WorkersCRUDExecutor             --^  Executor                       
-WorkersSpecialExecutor          --^  Executor                       
-WorkersSpecialExecutor         "1" *--> "dao\n1" IWorkerCollectionDAO           
+APICommandResponse             "1" *-[#595959,plain]-> "status\n1" Status                         
+AppRequest                     "1" *-[#595959,plain]-> "payload\n1" APICommand                     
+AppRequest                     "1" *-[#595959,plain]-> "response\n1" AppResponseController          
+AppRequest                     "1" *-[#595959,plain]-> "status\n1" ReqStatus                      
+AppResponseController          "1" *-[#595959,plain]-> "response\n1" APICommandResponse             
+DBExecutor                      -[#000082,plain]-^  Executor                       
+ErrorHandlingApplication        -[#000082,plain]-^  APIApplication                 
+ExecuteScriptCommand            -[#000082,plain]-^  APICommand                     
+ExecuteScriptCommand           "1" *-[#595959,plain]-> "commands\n*" APICommand                     
+ExecuteScriptCommandResponse    -[#000082,plain]-^  APICommandResponse             
+ExecuteScriptCommandResponse    +-[#820000,plain]-  ExecuteScriptCommand           
+ExecutorAdapterApplication      -[#000082,plain]-^  APIApplication                 
+ExecutorAdapterApplication     "1" *-[#595959,plain]-> "target\n1" Executor                       
+ExecutorAdapterApplication      -[#008200,dashed]-^  IApplicationCommandHandler     
+FileDBController                -[#008200,dashed]-^  DBController                   
+FileDBController               "1" *-[#595959,plain]-> "storage\n1" FileStorageController          
+FileDBControllerFactory         -[#008200,dashed]-^  DBControllerFactory            
+FileDBDAO                      "1" *-[#595959,plain]-> "controller\n1" FileDBController               
+FileDBDAO                       -[#008200,dashed]-^  ICollectionDAO                 
+FileDBDAO                       -[#595959,dashed]->  IKeyedEntity                   
+FileDBWorkersDAO                -[#000082,plain]-^  FileDBDAO                      
+FileDBWorkersDAO                -[#008200,dashed]-^  IWorkerCollectionDAO           
+ICollectionCRUDDAO              -[#595959,dashed]->  IKeyedEntity                   
+ICollectionDAO                  -[#008200,plain]-^  ICollectionCRUDDAO             
+ICollectionDAO                  -[#595959,dashed]->  IKeyedEntity                   
+ISetCollection                  -[#595959,dashed]->  IKeyedEntity                   
+IWorkerCollectionDAO            -[#008200,plain]-^  ICollectionDAO                 
+ReqStatus                       +-[#820000,plain]-  AppRequest                     
+ScriptExecutor                  -[#000082,plain]-^  Executor                       
+ScriptExecutor                 "1" *-[#595959,plain]-> "targetExecutor\n1" Executor                       
+ServerConsoleArgumentsParser    -[#000082,plain]-^  AbstractConsoleArgumentsParser 
+Status                          +-[#820000,plain]-  APICommandResponse             
+Worker                          -[#008200,dashed]-^  IKeyedEntity                   
+Worker                         "1" *-[#595959,plain]-> "organization\n1" Organization                   
+Worker                         "1" *-[#595959,plain]-> "position\n1" Position                       
+WorkerCollection                -[#008200,dashed]-^  ISetCollection                 
+WorkersCRUDExecutor             -[#000082,plain]-^  Executor                       
+WorkersSpecialExecutor          -[#000082,plain]-^  Executor                       
+WorkersSpecialExecutor         "1" *-[#595959,plain]-> "dao\n1" IWorkerCollectionDAO           
 @enduml

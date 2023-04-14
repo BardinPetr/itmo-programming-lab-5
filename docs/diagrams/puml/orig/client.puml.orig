@@ -1,21 +1,5 @@
-
 @startuml
 
-!theme plain
-top to bottom direction
-skinparam linetype ortho
-skinparam classAttributeIconSize 0
-hide circle
-
-<style>
-classDiagram {
-    class {
-        header {
-            FontStyle bold
-        }
-    }
-}
-</style>
 !theme plain
 top to bottom direction
 skinparam linetype ortho
@@ -599,74 +583,74 @@ class WorkerValidator {
   + validateStartDate(Date): ValidationResponse
 }
 
-APICommandResponse                "1" *--> "status\n1" Status                            
-APICommandResponse                 ..^  UserPrintableAPICommandResponse   
-APIUILocalCommand                 "1" *--> "apiClientReceiver\n1" APIClientReceiver                 
-APIUILocalCommand                 "1" *--> "registry\n1" APICommandRegistry                
-APIUILocalCommand                  --^  UILocalCommand                    
-AbstractCommandDecorator           --^  AbstractLocalCommand              
-AbstractCommandDecorator          "1" *--> "decoratee\n1" AbstractLocalCommand              
-AdminAPICommandRegistry            --^  APICommandRegistry                
-AdminAPICommandsDescriptionHolder  --^  APICommandsDescriptionHolder      
-AdminClientCommandRegistry        "1" *--> "registry\n1" APICommandRegistry                
-AdminClientCommandRegistry         --^  CommandRegistry                   
-AdminTexts                        "1" *--> "textList\n*" TextKeys                          
-AdminTexts                         --^  Texts                             
-CLIController                     "1" *--> "printer\n1" ConsolePrinter                    
-CLIController                     "1" *--> "objectScanner\n1" ObjectScanner                     
-CLIController                      ..^  UIReceiver                        
-ClientConsoleArgumentsParser       --^  AbstractConsoleArgumentsParser    
-CommandRegistry                   "1" *--> "api\n1" APIClientReceiver                 
-CommandRegistry                   "1" *--> "commandMap\n*" AbstractLocalCommand              
-CommandRegistry                   "1" *--> "scriptExecutor\n1" ScriptExecutor                    
-CoordinatesValidator               ..^  Validator                         
-ExitLocalCommand                   --^  UILocalCommand                    
-FieldWithDesc                      --^  Field                             
-FieldWithDesc                     "1" *--> "validator\n1" IValidator                        
-FileAccessException               "1" *--> "type\n1" OperationType                     
-GeneralAPIUILocalCommand           --^  APIUILocalCommand                 
-HelpLocalCommand                   --^  UILocalCommand                    
-HelpLocalCommand                   --^  UILocalCommand                    
-Interpreter                       "1" *--> "registryCommand\n1" CommandRegistry                   
-Interpreter                       "1" *--> "invoker\n1" UICommandInvoker                  
-Interpreter                       "1" *--> "uiReceiver\n1" UIReceiver                        
-LocalExecutorAPIConnector          ..^  APIClientReceiver                 
-LocalExecutorAPIConnector         "1" *--> "currentExecutor\n1" Executor                          
-MainClientCommandRegistry         "1" *--> "registry\n1" APICommandRegistry                
-MainClientCommandRegistry          --^  CommandRegistry                   
-MainClientCommandRegistry         "1" *--> "invoker\n1" UICommandInvoker                  
-MainTexts                         "1" *--> "textList\n*" TextKeys                          
-MainTexts                          --^  Texts                             
-NetworkServerConnector             ..^  APIClientReceiver                 
-NetworkServerConnector            "1" *--> "apiController\n1" SocketAPIClient                   
-ObjectScanner                     "1" *--> "printer\n1" ConsolePrinter                    
-OperationType                      +--  FileAccessException               
-OrganizationValidator              ..^  Validator                         
-RepeatLocalCommand                "1" *--> "invoker\n1" UICommandInvoker                  
-RepeatLocalCommand                 --^  UILocalCommand                    
-ScannerRespond                     +--  ObjectScanner                     
-ScriptExecutor                    "1" *--> "descriptionHolder\n1" APICommandsDescriptionHolder      
-ScriptExecutor                    "1" *--> "commandRegistry\n1" CommandRegistry                   
-ScriptExecutor                    "1" *--> "recursionController\n1" ScriptRecursionController         
-ScriptExecutor                    "1" *--> "invoker\n1" UICommandInvoker                  
-ScriptLocalCommand                 --^  APIUILocalCommand                 
-ScriptLocalCommand                "1" *--> "scriptExecutor\n1" ScriptExecutor                    
-Status                             +--  APICommandResponse                
-TextKeys                           +--  AdminTexts                        
-TextKeys                           +--  MainTexts                         
-TextKeys                           +--  Texts                             
-Texts                             "1" *--> "textList\n*" TextKeys                          
-UDPAPIClientFactory                --^  AbstractAPIClientReceiverFactory  
-UICommandInvoker                  "1" *--> "commandHistory\n*" InvocationHistoryItem             
-UICommandInvoker                  "1" *--> "screenUIReceiver\n1" UIReceiver                        
-UILocalCommand                     --^  AbstractLocalCommand              
-UILocalCommand                     ..^  UICallableCommand                 
-UILocalCommand                    "1" *--> "uiReceiver\n1" UIReceiver                        
-UILocalCommand                    "1" *--> "valueDes\n1" ValueDeserializer                 
-UIReceiver                         --^  UIInputReceiver                   
-UpdateLocalCommand                 --^  APIUILocalCommand                 
-UserAPICommandRegistry             --^  APICommandRegistry                
-UserAPICommandsDescriptionHolder   --^  APICommandsDescriptionHolder      
-ValidationResponse                 ..^  Validator                         
-WorkerValidator                    ..^  Validator                         
+APICommandResponse                "1" *-[#595959,plain]-> "status\n1" Status                            
+APICommandResponse                 -[#008200,dashed]-^  UserPrintableAPICommandResponse   
+APIUILocalCommand                 "1" *-[#595959,plain]-> "apiClientReceiver\n1" APIClientReceiver                 
+APIUILocalCommand                 "1" *-[#595959,plain]-> "registry\n1" APICommandRegistry                
+APIUILocalCommand                  -[#000082,plain]-^  UILocalCommand                    
+AbstractCommandDecorator           -[#000082,plain]-^  AbstractLocalCommand              
+AbstractCommandDecorator          "1" *-[#595959,plain]-> "decoratee\n1" AbstractLocalCommand              
+AdminAPICommandRegistry            -[#000082,plain]-^  APICommandRegistry                
+AdminAPICommandsDescriptionHolder  -[#000082,plain]-^  APICommandsDescriptionHolder      
+AdminClientCommandRegistry        "1" *-[#595959,plain]-> "registry\n1" APICommandRegistry                
+AdminClientCommandRegistry         -[#000082,plain]-^  CommandRegistry                   
+AdminTexts                        "1" *-[#595959,plain]-> "textList\n*" TextKeys                          
+AdminTexts                         -[#000082,plain]-^  Texts                             
+CLIController                     "1" *-[#595959,plain]-> "printer\n1" ConsolePrinter                    
+CLIController                     "1" *-[#595959,plain]-> "objectScanner\n1" ObjectScanner                     
+CLIController                      -[#008200,dashed]-^  UIReceiver                        
+ClientConsoleArgumentsParser       -[#000082,plain]-^  AbstractConsoleArgumentsParser    
+CommandRegistry                   "1" *-[#595959,plain]-> "api\n1" APIClientReceiver                 
+CommandRegistry                   "1" *-[#595959,plain]-> "commandMap\n*" AbstractLocalCommand              
+CommandRegistry                   "1" *-[#595959,plain]-> "scriptExecutor\n1" ScriptExecutor                    
+CoordinatesValidator               -[#008200,dashed]-^  Validator                         
+ExitLocalCommand                   -[#000082,plain]-^  UILocalCommand                    
+FieldWithDesc                      -[#000082,plain]-^  Field                             
+FieldWithDesc                     "1" *-[#595959,plain]-> "validator\n1" IValidator                        
+FileAccessException               "1" *-[#595959,plain]-> "type\n1" OperationType                     
+GeneralAPIUILocalCommand           -[#000082,plain]-^  APIUILocalCommand                 
+HelpLocalCommand                   -[#000082,plain]-^  UILocalCommand                    
+HelpLocalCommand                   -[#000082,plain]-^  UILocalCommand                    
+Interpreter                       "1" *-[#595959,plain]-> "registryCommand\n1" CommandRegistry                   
+Interpreter                       "1" *-[#595959,plain]-> "invoker\n1" UICommandInvoker                  
+Interpreter                       "1" *-[#595959,plain]-> "uiReceiver\n1" UIReceiver                        
+LocalExecutorAPIConnector          -[#008200,dashed]-^  APIClientReceiver                 
+LocalExecutorAPIConnector         "1" *-[#595959,plain]-> "currentExecutor\n1" Executor                          
+MainClientCommandRegistry         "1" *-[#595959,plain]-> "registry\n1" APICommandRegistry                
+MainClientCommandRegistry          -[#000082,plain]-^  CommandRegistry                   
+MainClientCommandRegistry         "1" *-[#595959,plain]-> "invoker\n1" UICommandInvoker                  
+MainTexts                         "1" *-[#595959,plain]-> "textList\n*" TextKeys                          
+MainTexts                          -[#000082,plain]-^  Texts                             
+NetworkServerConnector             -[#008200,dashed]-^  APIClientReceiver                 
+NetworkServerConnector            "1" *-[#595959,plain]-> "apiController\n1" SocketAPIClient                   
+ObjectScanner                     "1" *-[#595959,plain]-> "printer\n1" ConsolePrinter                    
+OperationType                      +-[#820000,plain]-  FileAccessException               
+OrganizationValidator              -[#008200,dashed]-^  Validator                         
+RepeatLocalCommand                "1" *-[#595959,plain]-> "invoker\n1" UICommandInvoker                  
+RepeatLocalCommand                 -[#000082,plain]-^  UILocalCommand                    
+ScannerRespond                     +-[#820000,plain]-  ObjectScanner                     
+ScriptExecutor                    "1" *-[#595959,plain]-> "descriptionHolder\n1" APICommandsDescriptionHolder      
+ScriptExecutor                    "1" *-[#595959,plain]-> "commandRegistry\n1" CommandRegistry                   
+ScriptExecutor                    "1" *-[#595959,plain]-> "recursionController\n1" ScriptRecursionController         
+ScriptExecutor                    "1" *-[#595959,plain]-> "invoker\n1" UICommandInvoker                  
+ScriptLocalCommand                 -[#000082,plain]-^  APIUILocalCommand                 
+ScriptLocalCommand                "1" *-[#595959,plain]-> "scriptExecutor\n1" ScriptExecutor                    
+Status                             +-[#820000,plain]-  APICommandResponse                
+TextKeys                           +-[#820000,plain]-  AdminTexts                        
+TextKeys                           +-[#820000,plain]-  MainTexts                         
+TextKeys                           +-[#820000,plain]-  Texts                             
+Texts                             "1" *-[#595959,plain]-> "textList\n*" TextKeys                          
+UDPAPIClientFactory                -[#000082,plain]-^  AbstractAPIClientReceiverFactory  
+UICommandInvoker                  "1" *-[#595959,plain]-> "commandHistory\n*" InvocationHistoryItem             
+UICommandInvoker                  "1" *-[#595959,plain]-> "screenUIReceiver\n1" UIReceiver                        
+UILocalCommand                     -[#000082,plain]-^  AbstractLocalCommand              
+UILocalCommand                     -[#008200,dashed]-^  UICallableCommand                 
+UILocalCommand                    "1" *-[#595959,plain]-> "uiReceiver\n1" UIReceiver                        
+UILocalCommand                    "1" *-[#595959,plain]-> "valueDes\n1" ValueDeserializer                 
+UIReceiver                         -[#008200,plain]-^  UIInputReceiver                   
+UpdateLocalCommand                 -[#000082,plain]-^  APIUILocalCommand                 
+UserAPICommandRegistry             -[#000082,plain]-^  APICommandRegistry                
+UserAPICommandsDescriptionHolder   -[#000082,plain]-^  APICommandsDescriptionHolder      
+ValidationResponse                 -[#008200,dashed]-^  Validator                         
+WorkerValidator                    -[#008200,dashed]-^  Validator                         
 @enduml

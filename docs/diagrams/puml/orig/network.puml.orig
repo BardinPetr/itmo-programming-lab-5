@@ -1,21 +1,5 @@
-
 @startuml
 
-!theme plain
-top to bottom direction
-skinparam linetype ortho
-skinparam classAttributeIconSize 0
-hide circle
-
-<style>
-classDiagram {
-    class {
-        header {
-            FontStyle bold
-        }
-    }
-}
-</style>
 !theme plain
 top to bottom direction
 skinparam linetype ortho
@@ -406,49 +390,49 @@ class UDPServerTransport {
   - regRecvClient(SocketAddress, Frame): void
 }
 
-APIApplication                      --^  AbstractApplication                
-APICommand                          ..^  IAPIMessage                        
-APICommand                          ..^  IIdentifiableCommand               
-APICommandResponse                  ..^  IAPIMessage                        
-APICommandResponse                 "1" *--> "status\n1" Status                             
-AbstractAPIClient                  "1" *--> "transport\n1" IClientTransport                   
-AbstractAPIClient                   ..>  IIdentifiableMessage               
-AbstractApplication                "1" *--> "commandHandlers\n*" IApplicationCommandHandler         
-AbstractApplication                 ..^  IFilteredApplication               
-AbstractInputTransportApplication   --^  AbstractApplication                
-AbstractInputTransportApplication   ..>  IIdentifiableMessage               
-AbstractInputTransportApplication  "1" *--> "transport\n1" IServerTransport                   
-AbstractOutputTransportApplication  --^  AbstractApplication                
-AbstractOutputTransportApplication "1" *--> "transport\n1" IServerTransport                   
-AppRequest                         "1" *--> "payload\n1" APICommand                         
-AppRequest                         "1" *--> "response\n1" AppResponseController              
-AppRequest                         "1" *--> "status\n1" ReqStatus                          
-AppRequest                         "1" *--> "session\n1" Session                            
-AppResponseController              "1" *--> "response\n1" APICommandResponse                 
-AppResponseController              "1" *--> "destination\n1" IDestinationServerApplication      
-ClientMain                         "1" *--> "client\n1" UDPClientTransport                 
-CommandType                         +--  SocketMessage                      
-ErrorHandlingApplication            --^  APIApplication                     
-JSONSerDesService                   --^  SerDesService                      
-ReqStatus                           +--  AppRequest                         
-Session                            "1" *--> "state\n1" State                              
-SocketAPIClient                     --^  AbstractAPIClient                  
-SocketAPIClient                    "1" *--> "serDesService\n1" JSONSerDesService                  
-SocketMessage                      "1" *--> "cmdType\n1" CommandType                        
-SocketMessage                       ..^  IIdentifiableMessage               
-State                               +--  Session                            
-Status                              +--  APICommandResponse                 
-Status                              +--  TransportSession                   
-TransportSession                   "1" *--> "receiveFrameList\n*" Frame                              
-TransportSession                   "1" *--> "status\n1" Status                             
-UDPClientTransport                  ..^  IClientTransport                   
-UDPClientTransport                 "1" *--> "serDesService\n1" JSONSerDesService                  
-UDPInputTransportApplication        --^  AbstractInputTransportApplication  
-UDPInputTransportApplication       "1" *--> "serDesService\n1" JSONSerDesService                  
-UDPOutputTransportApplication       --^  AbstractOutputTransportApplication 
-UDPOutputTransportApplication      "1" *--> "serDesService\n1" JSONSerDesService                  
-UDPServerTransport                 "1" *--> "handler\n1" IMessageHandler                    
-UDPServerTransport                  ..^  IServerTransport                   
-UDPServerTransport                 "1" *--> "serDesService\n1" JSONSerDesService                  
-UDPServerTransport                 "1" *--> "sendFrameQueue\n*" Pair                               
+APIApplication                      -[#000082,plain]-^  AbstractApplication                
+APICommand                          -[#008200,dashed]-^  IAPIMessage                        
+APICommand                          -[#008200,dashed]-^  IIdentifiableCommand               
+APICommandResponse                  -[#008200,dashed]-^  IAPIMessage                        
+APICommandResponse                 "1" *-[#595959,plain]-> "status\n1" Status                             
+AbstractAPIClient                  "1" *-[#595959,plain]-> "transport\n1" IClientTransport                   
+AbstractAPIClient                   -[#595959,dashed]->  IIdentifiableMessage               
+AbstractApplication                "1" *-[#595959,plain]-> "commandHandlers\n*" IApplicationCommandHandler         
+AbstractApplication                 -[#008200,dashed]-^  IFilteredApplication               
+AbstractInputTransportApplication   -[#000082,plain]-^  AbstractApplication                
+AbstractInputTransportApplication   -[#595959,dashed]->  IIdentifiableMessage               
+AbstractInputTransportApplication  "1" *-[#595959,plain]-> "transport\n1" IServerTransport                   
+AbstractOutputTransportApplication  -[#000082,plain]-^  AbstractApplication                
+AbstractOutputTransportApplication "1" *-[#595959,plain]-> "transport\n1" IServerTransport                   
+AppRequest                         "1" *-[#595959,plain]-> "payload\n1" APICommand                         
+AppRequest                         "1" *-[#595959,plain]-> "response\n1" AppResponseController              
+AppRequest                         "1" *-[#595959,plain]-> "status\n1" ReqStatus                          
+AppRequest                         "1" *-[#595959,plain]-> "session\n1" Session                            
+AppResponseController              "1" *-[#595959,plain]-> "response\n1" APICommandResponse                 
+AppResponseController              "1" *-[#595959,plain]-> "destination\n1" IDestinationServerApplication      
+ClientMain                         "1" *-[#595959,plain]-> "client\n1" UDPClientTransport                 
+CommandType                         +-[#820000,plain]-  SocketMessage                      
+ErrorHandlingApplication            -[#000082,plain]-^  APIApplication                     
+JSONSerDesService                   -[#000082,plain]-^  SerDesService                      
+ReqStatus                           +-[#820000,plain]-  AppRequest                         
+Session                            "1" *-[#595959,plain]-> "state\n1" State                              
+SocketAPIClient                     -[#000082,plain]-^  AbstractAPIClient                  
+SocketAPIClient                    "1" *-[#595959,plain]-> "serDesService\n1" JSONSerDesService                  
+SocketMessage                      "1" *-[#595959,plain]-> "cmdType\n1" CommandType                        
+SocketMessage                       -[#008200,dashed]-^  IIdentifiableMessage               
+State                               +-[#820000,plain]-  Session                            
+Status                              +-[#820000,plain]-  APICommandResponse                 
+Status                              +-[#820000,plain]-  TransportSession                   
+TransportSession                   "1" *-[#595959,plain]-> "receiveFrameList\n*" Frame                              
+TransportSession                   "1" *-[#595959,plain]-> "status\n1" Status                             
+UDPClientTransport                  -[#008200,dashed]-^  IClientTransport                   
+UDPClientTransport                 "1" *-[#595959,plain]-> "serDesService\n1" JSONSerDesService                  
+UDPInputTransportApplication        -[#000082,plain]-^  AbstractInputTransportApplication  
+UDPInputTransportApplication       "1" *-[#595959,plain]-> "serDesService\n1" JSONSerDesService                  
+UDPOutputTransportApplication       -[#000082,plain]-^  AbstractOutputTransportApplication 
+UDPOutputTransportApplication      "1" *-[#595959,plain]-> "serDesService\n1" JSONSerDesService                  
+UDPServerTransport                 "1" *-[#595959,plain]-> "handler\n1" IMessageHandler                    
+UDPServerTransport                  -[#008200,dashed]-^  IServerTransport                   
+UDPServerTransport                 "1" *-[#595959,plain]-> "serDesService\n1" JSONSerDesService                  
+UDPServerTransport                 "1" *-[#595959,plain]-> "sendFrameQueue\n*" Pair                               
 @enduml

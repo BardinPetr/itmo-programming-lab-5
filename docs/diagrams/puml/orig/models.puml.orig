@@ -1,21 +1,5 @@
-
 @startuml
 
-!theme plain
-top to bottom direction
-skinparam linetype ortho
-skinparam classAttributeIconSize 0
-hide circle
-
-<style>
-classDiagram {
-    class {
-        header {
-            FontStyle bold
-        }
-    }
-}
-</style>
 !theme plain
 top to bottom direction
 skinparam linetype ortho
@@ -507,72 +491,72 @@ class WorkerValidator {
   + validateSalary(Float): ValidationResponse
 }
 
-APICommand                         ..^  IAPIMessage                       
-APICommand                         ..^  IIdentifiableCommand              
-APICommandResponse                 ..^  IAPIMessage                       
-APICommandResponse                "1" *--> "status\n1" Status                            
-APICommandResponse                 ..^  UserPrintableAPICommandResponse   
-AddCommand                         --^  UserAPICommand                    
-AddCommand                        "1" *--> "element\n1" Worker                            
-AddCommandResponse                 --^  APICommandResponse                
-AddCommandResponse                 +--  AddCommand                        
-AddCommandResponse                 ..^  UserPrintableAPICommandResponse   
-AddIfMaxCommand                    --^  AddCommand                        
-AddIfMinCommand                    --^  AddCommand                        
-ClearCommand                       --^  UserAPICommand                    
-CoordinatesValidator               ..^  Validator                         
-ExecuteScriptCommand              "1" *--> "commands\n*" APICommand                        
-ExecuteScriptCommand               --^  UserAPICommand                    
-ExecuteScriptCommandResponse       +--  ExecuteScriptCommand              
-ExecuteScriptCommandResponse       --^  ListAPICommandResponse            
-FieldWithDesc                      --^  Field                             
-FieldWithDesc                     "1" *--> "validator\n1" IValidator                        
-FilterLessPosCommand              "1" *--> "position\n1" Position                          
-FilterLessPosCommand               --^  UserAPICommand                    
-FilterLessPosCommandResponse       +--  FilterLessPosCommand              
-FilterLessPosCommandResponse       --^  ListAPICommandResponse            
-GetWorkerCommand                   --^  UserAPICommand                    
-GetWorkerCommandResponse           --^  APICommandResponse                
-GetWorkerCommandResponse           +--  GetWorkerCommand                  
-GetWorkerCommandResponse           ..^  UserPrintableAPICommandResponse   
-GetWorkerCommandResponse          "1" *--> "worker\n1" Worker                            
-GetWorkerIdsCommand                --^  UserAPICommand                    
-GetWorkerIdsCommandResponse        +--  GetWorkerIdsCommand               
-GetWorkerIdsCommandResponse        --^  ListAPICommandResponse            
-ISetCollection                     ..>  IKeyedEntity                      
-InfoCommand                        --^  UserAPICommand                    
-InfoCommandResponse                --^  APICommandResponse                
-InfoCommandResponse               "1" *--> "result\n1" CollectionInfo                    
-InfoCommandResponse                +--  InfoCommand                       
-InfoCommandResponse                ..^  UserPrintableAPICommandResponse   
-ListAPICommandResponse             --^  APICommandResponse                
-Organization                      "1" *--> "type\n1" OrganizationType                  
-OrganizationValidator              ..^  Validator                         
-PrintDescendingCommand             --^  UserAPICommand                    
-PrintDescendingCommandResponse     --^  ListAPICommandResponse            
-PrintDescendingCommandResponse     +--  PrintDescendingCommand            
-RemoveByIdCommand                  --^  UserAPICommand                    
-RemoveGreaterCommand               --^  UserAPICommand                    
-RemoveGreaterCommand              "1" *--> "element\n1" Worker                            
-SaveCommand                        --^  UserAPICommand                    
-ShowCommand                        --^  UserAPICommand                    
-ShowCommandResponse                --^  ListAPICommandResponse            
-ShowCommandResponse                +--  ShowCommand                       
-Status                             +--  APICommandResponse                
-UniqueOrganisationCommand          --^  UserAPICommand                    
-UniqueOrganisationCommandResponse  --^  APICommandResponse                
-UniqueOrganisationCommandResponse "1" *--> "organizations\n*" Organization                      
-UniqueOrganisationCommandResponse  +--  UniqueOrganisationCommand         
-UniqueOrganisationCommandResponse  ..^  UserPrintableAPICommandResponse   
-UpdateCommand                      --^  UserAPICommand                    
-UpdateCommand                     "1" *--> "element\n1" Worker                            
-UserAPICommand                     --^  APICommand                        
-UserAPICommand                     ..^  UserPromptedAPICommand            
-ValidationResponse                 ..^  Validator                         
-Worker                            "1" *--> "coordinates\n1" Coordinates                       
-Worker                             ..^  IKeyedEntity                      
-Worker                            "1" *--> "organization\n1" Organization                      
-Worker                            "1" *--> "position\n1" Position                          
-WorkerCollection                   ..^  ISetCollection                    
-WorkerValidator                    ..^  Validator                         
+APICommand                         -[#008200,dashed]-^  IAPIMessage                       
+APICommand                         -[#008200,dashed]-^  IIdentifiableCommand              
+APICommandResponse                 -[#008200,dashed]-^  IAPIMessage                       
+APICommandResponse                "1" *-[#595959,plain]-> "status\n1" Status                            
+APICommandResponse                 -[#008200,dashed]-^  UserPrintableAPICommandResponse   
+AddCommand                         -[#000082,plain]-^  UserAPICommand                    
+AddCommand                        "1" *-[#595959,plain]-> "element\n1" Worker                            
+AddCommandResponse                 -[#000082,plain]-^  APICommandResponse                
+AddCommandResponse                 +-[#820000,plain]-  AddCommand                        
+AddCommandResponse                 -[#008200,dashed]-^  UserPrintableAPICommandResponse   
+AddIfMaxCommand                    -[#000082,plain]-^  AddCommand                        
+AddIfMinCommand                    -[#000082,plain]-^  AddCommand                        
+ClearCommand                       -[#000082,plain]-^  UserAPICommand                    
+CoordinatesValidator               -[#008200,dashed]-^  Validator                         
+ExecuteScriptCommand              "1" *-[#595959,plain]-> "commands\n*" APICommand                        
+ExecuteScriptCommand               -[#000082,plain]-^  UserAPICommand                    
+ExecuteScriptCommandResponse       +-[#820000,plain]-  ExecuteScriptCommand              
+ExecuteScriptCommandResponse       -[#000082,plain]-^  ListAPICommandResponse            
+FieldWithDesc                      -[#000082,plain]-^  Field                             
+FieldWithDesc                     "1" *-[#595959,plain]-> "validator\n1" IValidator                        
+FilterLessPosCommand              "1" *-[#595959,plain]-> "position\n1" Position                          
+FilterLessPosCommand               -[#000082,plain]-^  UserAPICommand                    
+FilterLessPosCommandResponse       +-[#820000,plain]-  FilterLessPosCommand              
+FilterLessPosCommandResponse       -[#000082,plain]-^  ListAPICommandResponse            
+GetWorkerCommand                   -[#000082,plain]-^  UserAPICommand                    
+GetWorkerCommandResponse           -[#000082,plain]-^  APICommandResponse                
+GetWorkerCommandResponse           +-[#820000,plain]-  GetWorkerCommand                  
+GetWorkerCommandResponse           -[#008200,dashed]-^  UserPrintableAPICommandResponse   
+GetWorkerCommandResponse          "1" *-[#595959,plain]-> "worker\n1" Worker                            
+GetWorkerIdsCommand                -[#000082,plain]-^  UserAPICommand                    
+GetWorkerIdsCommandResponse        +-[#820000,plain]-  GetWorkerIdsCommand               
+GetWorkerIdsCommandResponse        -[#000082,plain]-^  ListAPICommandResponse            
+ISetCollection                     -[#595959,dashed]->  IKeyedEntity                      
+InfoCommand                        -[#000082,plain]-^  UserAPICommand                    
+InfoCommandResponse                -[#000082,plain]-^  APICommandResponse                
+InfoCommandResponse               "1" *-[#595959,plain]-> "result\n1" CollectionInfo                    
+InfoCommandResponse                +-[#820000,plain]-  InfoCommand                       
+InfoCommandResponse                -[#008200,dashed]-^  UserPrintableAPICommandResponse   
+ListAPICommandResponse             -[#000082,plain]-^  APICommandResponse                
+Organization                      "1" *-[#595959,plain]-> "type\n1" OrganizationType                  
+OrganizationValidator              -[#008200,dashed]-^  Validator                         
+PrintDescendingCommand             -[#000082,plain]-^  UserAPICommand                    
+PrintDescendingCommandResponse     -[#000082,plain]-^  ListAPICommandResponse            
+PrintDescendingCommandResponse     +-[#820000,plain]-  PrintDescendingCommand            
+RemoveByIdCommand                  -[#000082,plain]-^  UserAPICommand                    
+RemoveGreaterCommand               -[#000082,plain]-^  UserAPICommand                    
+RemoveGreaterCommand              "1" *-[#595959,plain]-> "element\n1" Worker                            
+SaveCommand                        -[#000082,plain]-^  UserAPICommand                    
+ShowCommand                        -[#000082,plain]-^  UserAPICommand                    
+ShowCommandResponse                -[#000082,plain]-^  ListAPICommandResponse            
+ShowCommandResponse                +-[#820000,plain]-  ShowCommand                       
+Status                             +-[#820000,plain]-  APICommandResponse                
+UniqueOrganisationCommand          -[#000082,plain]-^  UserAPICommand                    
+UniqueOrganisationCommandResponse  -[#000082,plain]-^  APICommandResponse                
+UniqueOrganisationCommandResponse "1" *-[#595959,plain]-> "organizations\n*" Organization                      
+UniqueOrganisationCommandResponse  +-[#820000,plain]-  UniqueOrganisationCommand         
+UniqueOrganisationCommandResponse  -[#008200,dashed]-^  UserPrintableAPICommandResponse   
+UpdateCommand                      -[#000082,plain]-^  UserAPICommand                    
+UpdateCommand                     "1" *-[#595959,plain]-> "element\n1" Worker                            
+UserAPICommand                     -[#000082,plain]-^  APICommand                        
+UserAPICommand                     -[#008200,dashed]-^  UserPromptedAPICommand            
+ValidationResponse                 -[#008200,dashed]-^  Validator                         
+Worker                            "1" *-[#595959,plain]-> "coordinates\n1" Coordinates                       
+Worker                             -[#008200,dashed]-^  IKeyedEntity                      
+Worker                            "1" *-[#595959,plain]-> "organization\n1" Organization                      
+Worker                            "1" *-[#595959,plain]-> "position\n1" Position                          
+WorkerCollection                   -[#008200,dashed]-^  ISetCollection                    
+WorkerValidator                    -[#008200,dashed]-^  Validator                         
 @enduml

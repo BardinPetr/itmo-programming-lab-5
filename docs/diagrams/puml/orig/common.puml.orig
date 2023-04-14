@@ -1,21 +1,5 @@
-
 @startuml
 
-!theme plain
-top to bottom direction
-skinparam linetype ortho
-skinparam classAttributeIconSize 0
-hide circle
-
-<style>
-classDiagram {
-    class {
-        header {
-            FontStyle bold
-        }
-    }
-}
-</style>
 !theme plain
 top to bottom direction
 skinparam linetype ortho
@@ -168,9 +152,9 @@ class XMLSerDesService<T> {
   # getObjectMapper(): ObjectMapper
 }
 
-FileIOController                --^  FileController                 
-JSONSerDesService               --^  SerDesService                  
-OperationType                   +--  FileAccessException            
-Type                            +--  SerDesException                
-XMLSerDesService                --^  SerDesService                  
+FileIOController                -[#000082,plain]-^  FileController                 
+JSONSerDesService               -[#000082,plain]-^  SerDesService                  
+OperationType                   +-[#820000,plain]-  FileAccessException            
+Type                            +-[#820000,plain]-  SerDesException                
+XMLSerDesService                -[#000082,plain]-^  SerDesService                  
 @enduml
