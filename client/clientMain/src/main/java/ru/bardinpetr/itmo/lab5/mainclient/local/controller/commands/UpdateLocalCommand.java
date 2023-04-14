@@ -56,7 +56,8 @@ public class UpdateLocalCommand extends APIUILocalCommand {
             throw new APIUIException(e);
         }
         if (!availableIdsResp.isSuccess())
-            throw new RuntimeException("Could not retrieve existing data");
+            throw new RuntimeException("Could not retrieve existing data: " + availableIdsResp.getTextualResponse());
+
 
         var ids = ((GetWorkerIdsCommand.GetWorkerIdsCommandResponse) availableIdsResp).getResult();
         if (!ids.contains(id))
@@ -69,7 +70,7 @@ public class UpdateLocalCommand extends APIUILocalCommand {
             throw new APIUIException(e);
         }
         if (!currentObjResp.isSuccess())
-            throw new RuntimeException("Could not retrieve existing data");
+            throw new RuntimeException("Could not retrieve existing data: " + currentObjResp.getTextualResponse());
         var current = ((GetWorkerCommand.GetWorkerCommandResponse) currentObjResp).getWorker();
 
         return new UpdateCommand(

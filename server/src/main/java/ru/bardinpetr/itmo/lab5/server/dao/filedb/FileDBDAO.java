@@ -78,7 +78,7 @@ public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> imple
     @Override
     public V read(K id) {
         return asStream()
-                .filter(data -> data.getPrimaryKey() == id)
+                .filter(data -> data.getPrimaryKey().equals(id))
                 .findFirst()
                 .orElse(null);
     }
@@ -114,6 +114,6 @@ public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> imple
 
     @Override
     public boolean remove(K id) {
-        return controller.data().removeIf(data -> data.getPrimaryKey() == id);
+        return controller.data().removeIf(data -> data.getPrimaryKey().equals(id));
     }
 }
