@@ -6,6 +6,6 @@ public class APIClientException extends Throwable {
     }
 
     public APIClientException(Throwable cause) {
-        super(cause);
+        super(cause.getMessage());
     }
 }
