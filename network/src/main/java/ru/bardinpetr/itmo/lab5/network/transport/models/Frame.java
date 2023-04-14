@@ -10,7 +10,7 @@ import java.nio.channels.ReadableByteChannel;
 @Data
 public class Frame {
     public static int HEADER_SIZE = (Long.SIZE + Integer.SIZE) / 8;
-    public static int PAYLOAD_SIZE = 200 - HEADER_SIZE;
+    public static int PAYLOAD_SIZE = 1024 - HEADER_SIZE;
     public static int MAX_SIZE = HEADER_SIZE + PAYLOAD_SIZE;
 
     public static long FIRST_ID = 0;
