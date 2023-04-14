@@ -16,13 +16,15 @@ public class ClientMain {
                 SocketMessage.CommandType.DATA,
                 1L,
                 0L,
-                "A".repeat(1231231).getBytes());
+                "A".repeat(1231).getBytes());
+        int i = 0;
         while (true) {
             client.send(t);
             var res = client.receive(Duration.ofMinutes(2));
             String payload = new String(res.getPayload());
             System.out.println(
-                    res.getId() + " " +
+                    i++ + " " +
+                            res.getId() + " " +
                             res.getReplyId() + " " +
                             res.getCmdType() + " " +
                             payload.length()

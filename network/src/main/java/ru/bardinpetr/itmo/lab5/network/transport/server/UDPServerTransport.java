@@ -85,7 +85,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
                             } else if (session.getStatus().equals(TransportSession.Status.READING)) {
                                 readNewFrame(key, frame);
                             } else if (session.getStatus().equals(TransportSession.Status.SENDING)) {
-                                if (session.getSendFrameList().size() > 0) {
+                                if (session.getSendFrameList().size() > 1) {
                                     scheduleSend(
                                             new Pair<>(
                                                     session.getConsumerAddress(),
@@ -93,9 +93,18 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
                                             )
                                     );
                                 } else {
+                                    log.info("Sending finished");
                                     session.setStatus(TransportSession.Status.HALT);
                                     closeSessionByKey(key);
+
+                                    scheduleSend(
+                                            new Pair<>(
+                                                    session.getConsumerAddress(),
+                                                    session.getSendFrameList().remove(0)
+                                            )
+                                    );
                                 }
+
                             }
 
                         }
@@ -141,24 +150,35 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
         TransportSession session = (TransportSession) key.attachment();
         session.addToList(frame);
 
-        scheduleSend(
-                new Pair<>(
-                        session.getConsumerAddress(),
-                        new Frame(frame.getId())
-                )
-        );
         if (session.checkFinishReading()) {
-            finishReading(key);
+            closeSessionByKey(key);
+
+            scheduleSend(
+                    new Pair<>(
+                            session.getConsumerAddress(),
+                            new Frame(frame.getId())
+                    )
+            );
+
+            finishReading((TransportSession) key.attachment());
+        } else {
+            scheduleSend(
+                    new Pair<>(
+                            session.getConsumerAddress(),
+                            new Frame(frame.getId())
+                    )
+            );
         }
+
+
     }
 
     /**
      * Serialize socket message form received byte list
      *
-     * @param key client key
+     * @param session client session
      */
-    private void finishReading(SelectionKey key) {
-        TransportSession session = (TransportSession) key.attachment();
+    private void finishReading(TransportSession session) {
         session.setStatus(TransportSession.Status.READINGFINISHED);
 
         var desBytes = TransportUtils.joinFrames(List.of(session.getReceiveFrameList()));
@@ -169,7 +189,6 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
             msg = new SocketMessage(new byte[]{});
         }
         var address = session.getConsumerAddress();
-        closeSessionByKey(key);
 
         handler.handle(
                 address,

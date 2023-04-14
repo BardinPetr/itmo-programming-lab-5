@@ -47,7 +47,11 @@ public class Frame {
     }
 
     public boolean checkACK(Frame frame) {
-        return frame.id == id;
+        if (frame.id == id) {
+            return true;
+        } else {
+            throw new RuntimeException();
+        }
     }
 
     public byte[] toBytes() {
