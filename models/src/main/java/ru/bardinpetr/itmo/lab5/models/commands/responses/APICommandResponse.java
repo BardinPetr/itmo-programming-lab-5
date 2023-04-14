@@ -86,6 +86,6 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
 
     @Override
     public String getUserMessage() {
-        return "status: %s".formatted(textualResponse);
+        return textualResponse;
     }
 }

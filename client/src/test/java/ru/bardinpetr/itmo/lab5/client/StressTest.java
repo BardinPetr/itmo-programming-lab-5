@@ -6,7 +6,6 @@ import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.ClearCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetWorkerIdsCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.api.InfoCommand;
 import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
@@ -48,7 +47,8 @@ public class StressTest {
                                     null,
                                     null
                             )));
-                    System.out.println(((InfoCommand.InfoCommandResponse) cur.call(new InfoCommand())).getResult().getItemsCount());
+                    System.out.println(cur.call(new ClearCommand()));
+//                    System.out.println(((InfoCommand.InfoCommandResponse) cur.call(new ClearCommand())).getResult().getItemsCount());
                 } catch (APIClientException e) {
                     throw new RuntimeException(e);
                 }

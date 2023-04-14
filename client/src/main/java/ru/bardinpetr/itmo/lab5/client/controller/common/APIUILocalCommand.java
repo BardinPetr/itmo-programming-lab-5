@@ -4,7 +4,6 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
-import ru.bardinpetr.itmo.lab5.client.api.error.APIUIException;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
@@ -90,7 +89,7 @@ public abstract class APIUILocalCommand extends UILocalCommand {
         try {
             serverResp = apiClientReceiver.call(cmd);
         } catch (APIClientException e) {
-            throw new APIUIException(e);
+            return new ClientCommandResponse<>(false, e.getMessage(), null);
         }
         return new ClientCommandResponse<>(serverResp.isSuccess(), serverResp.getTextualResponse(), serverResp);
     }

@@ -48,10 +48,7 @@ public class UICommandInvoker {
         }
         if (resp == null) resp = ClientCommandResponse.ok();
 
-        if (args.size() > 0)
-            print(args.get(0), resp);
-        else
-            print(null, resp);
+        print(args.size() > 0 ? args.get(0) : null, resp);
 
         return resp.isSuccess();
     }
@@ -63,19 +60,28 @@ public class UICommandInvoker {
      * @param result response of command
      */
     protected void print(String caller, ClientCommandResponse<? extends UserPrintableAPICommandResponse> result) {
-        if (result.isSuccess()) {
-            var msg = result.message();
-            if (result.payload() != null) {
-                screenUIReceiver.display(result.payload().getUserMessage());
-            } else if (msg != null && !msg.isEmpty()) {
-                screenUIReceiver.display(msg);
-            } else if (caller != null) {
-                screenUIReceiver.ok(caller);
-            } else {
-                screenUIReceiver.ok();
-            }
+        var payload = result.payload();
+        var textualResponse = result.message();
+
+        var callerText = caller == null ? "" : "command %s: ".formatted(caller);
+        textualResponse = textualResponse == null ? "" : textualResponse;
+
+        if (!result.isSuccess()) {
+            if (payload != null)
+                screenUIReceiver.error(callerText + payload.getUserMessage());
+            else
+                screenUIReceiver.error(callerText + textualResponse);
+            return;
+        }
+
+        if (payload != null) {
+            screenUIReceiver.display(payload.getUserMessage());
+        } else if (!textualResponse.isEmpty()) {
+            screenUIReceiver.display(textualResponse);
+        } else if (caller != null) {
+            screenUIReceiver.ok(caller);
         } else {
-            screenUIReceiver.error((caller == null ? "" : "command %s: ".formatted(caller)) + result.message());
+            screenUIReceiver.ok();
         }
     }
 
