@@ -10,7 +10,7 @@ import java.nio.channels.ReadableByteChannel;
 @Data
 public class Frame {
     public static int HEADER_SIZE = (Long.SIZE + Integer.SIZE) / 8;
-    public static int PAYLOAD_SIZE = 1024 - HEADER_SIZE;
+    public static int PAYLOAD_SIZE = 200 - HEADER_SIZE;
     public static int MAX_SIZE = HEADER_SIZE + PAYLOAD_SIZE;
 
     public static long FIRST_ID = 0;
@@ -36,10 +36,6 @@ public class Frame {
         return Frame.fromBytes(buffer.array());
     }
 
-    public boolean checkACK(Frame frame) {
-        return frame.id == id;
-    }
-
     public static Frame fromBytes(byte[] bytes) {
         var byteChannel = ByteBuffer.wrap(bytes);
         int payloadSize = byteChannel.getInt();
@@ -48,6 +44,10 @@ public class Frame {
         byteChannel.get(payload);
 
         return new Frame(id, payload);
+    }
+
+    public boolean checkACK(Frame frame) {
+        return frame.id == id;
     }
 
     public byte[] toBytes() {

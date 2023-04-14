@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.network.app.server.requests;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 import ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IDestinationServerApplication;
 
 /**
@@ -44,7 +45,7 @@ public class AppResponseController<U> {
     /**
      * Set response status
      */
-    public AppResponseController<U> status(APICommandResponse.Status status) {
+    public AppResponseController<U> status(APIResponseStatus status) {
         response.setStatus(status);
         log.debug("Response {} is marked as {}", id, status);
         return this;
@@ -53,7 +54,7 @@ public class AppResponseController<U> {
     /**
      * @return status of response
      */
-    public APICommandResponse.Status getStatus() {
+    public APIResponseStatus getStatus() {
         return response.getStatus();
     }
 
@@ -73,8 +74,8 @@ public class AppResponseController<U> {
         if (isTerminated) return;
         terminate();
 
-        if (response.getStatus() == APICommandResponse.Status.UNPROCESSED)
-            response.setStatus(APICommandResponse.Status.OK);
+        if (response.getStatus() == APIResponseStatus.UNPROCESSED)
+            response.setStatus(APIResponseStatus.OK);
         destination.send(recipient, response);
         log.debug("Response {} is sent", id);
     }

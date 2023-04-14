@@ -5,6 +5,7 @@ import ru.bardinpetr.itmo.lab5.common.executor.operations.NoReturnOperation;
 import ru.bardinpetr.itmo.lab5.common.executor.operations.Operation;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,7 +93,7 @@ public class Executor {
             if (!validation.isAllowed())
                 return APICommandResponse.clientError("Validation failed: %s".formatted(validation.getMsg()));
             var resp = op.apply(cmd);
-            resp.setStatus(APICommandResponse.Status.OK);
+            resp.setStatus(APIResponseStatus.OK);
             return resp;
         } catch (Exception ex) {
             return APICommandResponse.clientError(ex.getMessage());

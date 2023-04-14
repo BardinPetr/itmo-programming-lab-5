@@ -61,13 +61,13 @@ public class FileDBController<T> implements DBController {
      */
     public boolean store() {
         try {
-            System.err.println("saving");
+            log.info("[DB] saving database");
             storage.storeObject(collection);
             return true;
         } catch (SerDesException ignored) {
-            System.err.println("[DB] serialization error");
+            log.error("[DB] serialization error");
         } catch (FileAccessException e) {
-            System.err.printf("[DB] could not write to file: \n%s\n", e.getMessage());
+            log.error("[DB] could not write to file: \n{}\n", e.getMessage());
         }
         return false;
     }

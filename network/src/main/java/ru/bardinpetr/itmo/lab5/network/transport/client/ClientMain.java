@@ -1,5 +1,7 @@
 package ru.bardinpetr.itmo.lab5.network.transport.client;
 
+import ru.bardinpetr.itmo.lab5.network.transport.errors.TransportException;
+import ru.bardinpetr.itmo.lab5.network.transport.errors.TransportTimeoutException;
 import ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage;
 
 import java.io.IOException;
@@ -8,7 +10,7 @@ import java.time.Duration;
 import java.util.concurrent.TimeoutException;
 
 public class ClientMain {
-    public static void main(String[] args) throws IOException, TimeoutException {
+    public static void main(String[] args) throws IOException, TimeoutException, TransportTimeoutException, TransportException {
         var client = new UDPClientTransport(new InetSocketAddress("localhost", 1249));
         var t = new SocketMessage(
                 SocketMessage.CommandType.DATA,

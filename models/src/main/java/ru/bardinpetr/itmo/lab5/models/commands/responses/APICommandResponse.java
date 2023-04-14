@@ -14,7 +14,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.IAPIMessage;
 @AllArgsConstructor
 @NoArgsConstructor
 public class APICommandResponse implements UserPrintableAPICommandResponse, IAPIMessage {
-    private Status status = Status.UNPROCESSED;
+    private APIResponseStatus status = APIResponseStatus.UNPROCESSED;
     private String textualResponse = null;
 
     /**
@@ -23,7 +23,7 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
      * @return created response object
      */
     public static APICommandResponse ok() {
-        return new APICommandResponse(Status.OK, "ok");
+        return new APICommandResponse(APIResponseStatus.OK, "ok");
     }
 
     /**
@@ -33,7 +33,7 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
      * @return created response object
      */
     public static APICommandResponse clientError(String text) {
-        return new APICommandResponse(Status.CLIENT_ERROR, text);
+        return new APICommandResponse(APIResponseStatus.CLIENT_ERROR, text);
     }
 
     /**
@@ -52,7 +52,7 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
      * @return created response object
      */
     public static APICommandResponse serverError(String text) {
-        return new APICommandResponse(Status.CLIENT_ERROR, text);
+        return new APICommandResponse(APIResponseStatus.CLIENT_ERROR, text);
     }
 
     /**
@@ -71,29 +71,21 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
      * @return created response object
      */
     public static APICommandResponse notFound() {
-        return new APICommandResponse(Status.NOT_FOUND, "no command implementation on server");
+        return new APICommandResponse(APIResponseStatus.NOT_FOUND, "no command implementation on server");
     }
 
     @JsonIgnore
     public boolean isSuccess() {
-        return status == Status.OK;
+        return status == APIResponseStatus.OK;
     }
 
     @JsonIgnore
     public boolean isResolved() {
-        return status != Status.NOT_FOUND;
+        return status != APIResponseStatus.NOT_FOUND;
     }
 
-    public enum Status {
-        OK,
-        CLIENT_ERROR,
-        SERVER_ERROR,
-        UNPROCESSED,
-        NOT_FOUND;
-
-        @JsonIgnore
-        public boolean isError() {
-            return this.equals(CLIENT_ERROR) || this.equals(SERVER_ERROR);
-        }
+    @Override
+    public String getUserMessage() {
+        return "status: %s".formatted(textualResponse);
     }
 }

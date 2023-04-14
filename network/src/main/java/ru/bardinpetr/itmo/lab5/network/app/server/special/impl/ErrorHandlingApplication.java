@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.network.app.server.special.impl;
 
-import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 import ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest;
 
 /**
@@ -10,10 +10,10 @@ public class ErrorHandlingApplication extends APIApplication {
     @Override
     protected AppRequest process(AppRequest request) {
         var resp = request.response();
-        if (resp.getStatus() == APICommandResponse.Status.UNPROCESSED)
-            resp.status(APICommandResponse.Status.NOT_FOUND);
+        if (resp.getStatus() == APIResponseStatus.UNPROCESSED)
+            resp.status(APIResponseStatus.NOT_FOUND);
         else if (!resp.getStatus().isError())
-            resp.status(APICommandResponse.Status.SERVER_ERROR);
+            resp.status(APIResponseStatus.SERVER_ERROR);
         resp.send();
         return request;
     }

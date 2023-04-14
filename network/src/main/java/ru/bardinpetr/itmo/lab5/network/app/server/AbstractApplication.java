@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.network.app.server;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 import ru.bardinpetr.itmo.lab5.network.app.server.errors.ApplicationBuildException;
 import ru.bardinpetr.itmo.lab5.network.app.server.interfaces.handlers.IApplicationCommandHandler;
 import ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IFilteredApplication;
@@ -54,7 +54,11 @@ public abstract class AbstractApplication implements IFilteredApplication {
                 return request;
         }
 
-        var terminatingHandler = commandHandlers.get(request.payload().getCmdIdentifier());
+        var payload = request.payload();
+        if (payload == null)
+            throw new RuntimeException("Payload null");
+
+        var terminatingHandler = commandHandlers.get(payload.getCmdIdentifier());
         if (terminatingHandler != null) {
             safeProcessCall(request, terminatingHandler::handle);
             request.response().terminate();
@@ -79,7 +83,7 @@ public abstract class AbstractApplication implements IFilteredApplication {
         } catch (Throwable ex) {
             req
                     .response()
-                    .status(APICommandResponse.Status.SERVER_ERROR)
+                    .status(APIResponseStatus.SERVER_ERROR)
                     .message(ex.getMessage())
                     .send();
         }

@@ -4,10 +4,11 @@ import lombok.Setter;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.network.transport.errors.TransportException;
+import ru.bardinpetr.itmo.lab5.network.transport.errors.TransportTimeoutException;
 import ru.bardinpetr.itmo.lab5.network.transport.interfaces.IClientTransport;
 import ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiableMessage;
 
-import java.io.IOException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeoutException;
@@ -36,19 +37,23 @@ public abstract class AbstractAPIClient<T extends IIdentifiableMessage> {
      * @throws TimeoutException   if response not arrived in timeout
      * @throws APIClientException if any error raised in process
      */
-    public APICommandResponse request(APICommand request) throws IOException, APIClientException {
+    public APICommandResponse request(APICommand request) throws TransportTimeoutException, APIClientException {
         var message = serialize(request);
         if (message == null)
             throw new APIClientException("Failed to serialize");
 
         message.setId(currentMessageId++);
 
-        transport.send(message);
+        try {
+            transport.send(message);
+        } catch (TransportException e) {
+            throw new APIClientException(e);
+        }
 
         T reply;
         try {
             reply = transport.receive(timeout);
-        } catch (IOException e) {
+        } catch (TransportException e) {
             throw new APIClientException(e);
         }
 

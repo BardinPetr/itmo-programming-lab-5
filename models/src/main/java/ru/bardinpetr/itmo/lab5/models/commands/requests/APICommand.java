@@ -24,7 +24,7 @@ public abstract class APICommand implements IIdentifiableCommand<Class<? extends
      * @return respond for certain command
      */
     public APICommandResponse createResponse() {
-        return null;
+        return APICommandResponse.ok();
     }
 
     /**

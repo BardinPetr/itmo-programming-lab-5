@@ -86,7 +86,7 @@ public abstract class APIUILocalCommand extends UILocalCommand {
         var cmd = prepareAPIMessage(cmdName, args);
         if (cmd == null)
             throw new RuntimeException("Command was not build properly");
-        APICommandResponse serverResp = null;
+        APICommandResponse serverResp;
         try {
             serverResp = apiClientReceiver.call(cmd);
         } catch (APIClientException e) {

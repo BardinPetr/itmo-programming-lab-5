@@ -25,7 +25,7 @@ public class AddCommand extends UserAPICommand {
     }
 
     @Override
-    public Field<?>[] getInlineArgs() {
+    public Field<?>[] getInteractArgs() {
         return new Field[]{
                 new Field<>("element", Worker.class)
         };
