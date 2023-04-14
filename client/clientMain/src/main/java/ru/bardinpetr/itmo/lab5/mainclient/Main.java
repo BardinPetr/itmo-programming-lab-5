@@ -36,7 +36,7 @@ public class Main {
         );
 
         var apiRegistry = new UserAPICommandRegistry();
-        var registry = new MainClientCommandRegistry(apiConnector, scriptExecutor, uiController, apiRegistry);
+        var registry = new MainClientCommandRegistry(apiConnector, scriptExecutor, uiController, apiRegistry, invoker);
 
         var interpreter = new Interpreter(registry, uiController, invoker);
         interpreter.run();

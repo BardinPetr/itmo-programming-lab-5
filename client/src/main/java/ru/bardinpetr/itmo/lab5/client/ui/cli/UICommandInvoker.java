@@ -1,11 +1,14 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
+import ru.bardinpetr.itmo.lab5.client.controller.commands.RepeatLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.UICallableCommand;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.InvocationHistoryItem;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +17,7 @@ import java.util.List;
 public class UICommandInvoker {
 
     private final UIReceiver screenUIReceiver;
+    private final List<InvocationHistoryItem> commandHistory = new ArrayList<>();
 
     /**
      * @param screenUIReceiver UIReceiver for outputting results and errors to user
@@ -38,6 +42,9 @@ public class UICommandInvoker {
             throw ex; // Should be handled by ScriptExecutor and ScriptLocalCommand
         } catch (Exception ex) {
             resp = ClientCommandResponse.error(ex.getMessage());
+        } finally {
+            if (command.getClass() != RepeatLocalCommand.class)
+                commandHistory.add(new InvocationHistoryItem(command, args));
         }
         if (resp == null) resp = ClientCommandResponse.ok();
 
@@ -70,5 +77,20 @@ public class UICommandInvoker {
         } else {
             screenUIReceiver.error("[payload: %s] %s".formatted(caller == null ? "" : caller, result.message()));
         }
+    }
+
+    /**
+     * Call last invoked command and catch all exceptions printing them as CommandResponse.
+     *
+     * @return true if command succeeded
+     * @throws ScriptException  this exception is passed to the root of nested scripts and only there should be handled
+     * @throws RuntimeException if
+     */
+    public boolean invokeLast() {
+        if (commandHistory.isEmpty())
+            throw new RuntimeException("No commands in history");
+
+        var cmd = commandHistory.get(commandHistory.size() - 1);
+        return invoke(cmd.command(), cmd.args());
     }
 }
