@@ -93,7 +93,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
                                             )
                                     );
                                 } else {
-                                    log.info("Sending finished");
+                                    log.debug("Sending finished");
                                     session.setStatus(TransportSession.Status.HALT);
                                     closeSessionByKey(key);
 
@@ -135,7 +135,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
             );
         } catch (IOException ignored) {
         }
-        log.info("send frame %d".formatted(frame.getId()));
+        log.debug("send frame %d".formatted(frame.getId()));
 //        sendFrameQueue.add(pair);
     }
 
@@ -146,7 +146,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
      * @param frame
      */
     private void readNewFrame(SelectionKey key, Frame frame) {
-        log.info("read frame %d".formatted(frame.getId()));
+        log.debug("read frame %d".formatted(frame.getId()));
         TransportSession session = (TransportSession) key.attachment();
         session.addToList(frame);
 
@@ -194,7 +194,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
                 address,
                 msg
         );
-        log.info("Finish reading");
+        log.debug("Finish reading");
 
     }
 
@@ -205,7 +205,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
      * @param frame   received header frame
      */
     private void headerFrame(TransportSession session, Frame frame) {
-        log.info("Start reading");
+        log.debug("Start reading");
         int framesCount = ByteBuffer.wrap(frame.getPayload()).getInt();
         scheduleSend(
                 new Pair<>(
@@ -332,7 +332,7 @@ public class UDPServerTransport implements IServerTransport<SocketAddress, Socke
                         )
                 )
         );
-        log.info("Start sending message");
+        log.debug("Start sending message");
     }
 
     /**
