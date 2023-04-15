@@ -4,7 +4,7 @@ import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
+import ru.bardinpetr.itmo.lab5.client.ui.interfaces.InteractSpecialSymbols;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.PagingAPICommand;
@@ -13,13 +13,12 @@ import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;
 
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Worker update command
  */
 public abstract class PagingLocalCommand extends APIUILocalCommand {
-    private static final int count = 500;
+    private static final int count = 10;
 
     public PagingLocalCommand(APIClientReceiver api, UIReceiver ui, APICommandRegistry registry) {
         super(api, ui, registry);
@@ -40,10 +39,8 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
 
     @Override
     public ClientCommandResponse<? extends UserPrintableAPICommandResponse> executeWithArgs(List<String> args) {
-        var printer = new ConsolePrinter();
-        Scanner scanner = new Scanner(System.in);
         int offset = -count;
-        String input = "U";
+        InteractSpecialSymbols input = InteractSpecialSymbols.UP;
         boolean isOut = false;
         int prevOffset = 0;
         while (true) {
@@ -52,21 +49,21 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
             prevOffset = offset;
             try {
 
-                if (input.equals("U")) {
+                if (input.equals(InteractSpecialSymbols.UP)) {
                     offset += count;
-                } else if (input.equals("D")) {
+                } else if (input.equals(InteractSpecialSymbols.DOWN)) {
 
                     if (offset <= 0) {
-                        printer.display("Encountered start of response");
-                        input = scanner.nextLine(); //TODO
+                        uiReceiver.display("Encountered start of response");
+                        input = uiReceiver.interactSpecial();
                         offset = -count;
                         continue;
                     }
                     offset -= count;
-                } else if (input.equals("E")) {
+                } else if (input.equals(InteractSpecialSymbols.EXIT)) {
                     break;
                 } else {
-                    printer.display("Wrong choice");
+                    uiReceiver.display("Wrong choice");
                 }
 
 
@@ -74,21 +71,21 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
 
                 if (resp.isSuccess()) {
                     var showRes = (PagingAPICommand.DefaultCollectionCommandResponse) resp;
-                    printer.display(showRes.getUserMessage());
+                    uiReceiver.display(showRes.getUserMessage());
                     isOut = false;
                 } else {
                     if (isOut) offset -= count;
                     isOut = true;
-                    printer.display(resp.getTextualResponse());
+                    uiReceiver.display(resp.getTextualResponse());
                 }
 
             } catch (APIClientException e) {
                 offset = prevOffset;
-                printer.display("Server error. Try later.");
+                uiReceiver.display("Server error. Try later.");
             }
 
-            printer.display("↑- предыдущий ↓- следующий end- закончить команду");
-            input = scanner.nextLine();
+            uiReceiver.display("↑- предыдущий ↓- следующий end- закончить команду");
+            input = uiReceiver.interactSpecial();
         }
         return new ClientCommandResponse<>(
                 true,
