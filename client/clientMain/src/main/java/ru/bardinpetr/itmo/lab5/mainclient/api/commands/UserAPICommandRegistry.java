@@ -18,8 +18,7 @@ public class UserAPICommandRegistry extends APICommandRegistry {
                 new PrintDescendingCommand(),
                 new UniqueOrganisationCommand(),
                 new RemoveByIdCommand(),
-                new RemoveGreaterCommand(),
-                new ShowCommand()
+                new RemoveGreaterCommand()
         ));
     }
 }

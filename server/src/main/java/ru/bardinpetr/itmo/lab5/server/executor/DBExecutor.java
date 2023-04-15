@@ -34,6 +34,7 @@ public class DBExecutor extends Executor {
         log.info("DB ready");
 
         registerExecutor(new WorkersCRUDExecutor(dao));
+        registerExecutor(new WorkersPagingExecutor(dao));
         registerExecutor(new WorkersSpecialExecutor(dao));
         registerExecutor(new ScriptExecutor(this));
 

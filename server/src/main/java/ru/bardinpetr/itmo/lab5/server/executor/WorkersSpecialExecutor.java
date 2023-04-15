@@ -7,7 +7,6 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Objects;
 
 /**
@@ -23,7 +22,6 @@ public class WorkersSpecialExecutor extends Executor {
         registerVoidOperation(AddIfMaxCommand.class, this::addIfMax);
         registerVoidOperation(AddIfMinCommand.class, this::addIfMin);
         registerVoidOperation(RemoveGreaterCommand.class, this::removeIfGreater);
-        registerOperation(PrintDescendingCommand.class, this::printDescending);
         registerOperation(UniqueOrganisationCommand.class, this::uniqueOrgs);
         registerOperation(FilterLessPosCommand.class, this::filterLess);
     }
@@ -38,12 +36,6 @@ public class WorkersSpecialExecutor extends Executor {
 
     private void removeIfGreater(RemoveGreaterCommand req) {
         dao.remove(cur -> cur.compareTo(req.element) > 0);
-    }
-
-    private PrintDescendingCommand.PrintDescendingCommandResponse printDescending(PrintDescendingCommand req) {
-        var resp = req.createResponse();
-        resp.setResult(dao.readAll(Comparator.reverseOrder()));
-        return resp;
     }
 
     private UniqueOrganisationCommand.UniqueOrganisationCommandResponse uniqueOrgs(UniqueOrganisationCommand req) {

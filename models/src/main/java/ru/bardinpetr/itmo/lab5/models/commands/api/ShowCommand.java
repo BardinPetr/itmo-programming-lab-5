@@ -1,15 +1,15 @@
 package ru.bardinpetr.itmo.lab5.models.commands.api;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
-import ru.bardinpetr.itmo.lab5.models.commands.responses.ListAPICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.PagingAPICommand;
 
 /**
  * Class of show command
  */
 @Data
-public class ShowCommand extends UserAPICommand {
+@AllArgsConstructor
+public class ShowCommand extends PagingAPICommand {
     @Override
     public String getType() {
         return "show";
@@ -20,12 +20,6 @@ public class ShowCommand extends UserAPICommand {
         return new ShowCommandResponse();
     }
 
-    public static class ShowCommandResponse extends ListAPICommandResponse<Worker> {
-        @Override
-        public String getUserMessage() {
-            var result = getResult();
-            return "the whole collection" +
-                    Worker.nicePrintFormat(result);
-        }
+    public static class ShowCommandResponse extends DefaultCollectionCommandResponse {
     }
 }

@@ -28,7 +28,7 @@ public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> imple
         this.controller = controller;
     }
 
-    private Stream<V> asStream() {
+    public Stream<V> asStream() {
         return controller.data().stream();
     }
 
