@@ -5,6 +5,7 @@ import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * DAO for CRUD operations.
@@ -32,6 +33,13 @@ public interface ICollectionCRUDDAO<K, V extends IKeyedEntity<K>> {
      * @return list of all items
      */
     List<V> readAll();
+
+    /**
+     * Get all entities from collection as stream
+     *
+     * @return list of all items
+     */
+    Stream<V> asStream();
 
     /**
      * Get all entities from collection in order using comparator
