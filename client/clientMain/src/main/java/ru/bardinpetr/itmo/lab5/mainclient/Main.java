@@ -38,23 +38,7 @@ public class Main {
         var apiRegistry = new UserAPICommandRegistry();
         var registry = new MainClientCommandRegistry(apiConnector, scriptExecutor, uiController, apiRegistry, invoker);
 
-//        try {
-//            var res = apiConnector.call(new ShowCommand(0, 10));
-//            var data = ((ShowCommand.ShowCommandResponse) res).getResult();
-//            data.forEach(i -> System.out.println(i.getId()));
-//        } catch (APIClientException e) {
-//            throw new RuntimeException(e);
-//        }
-//        System.out.println("!");
-//        try {
-//            var res = apiConnector.call(new PrintDescendingCommand(234, 10));
-//            System.out.println(res.isSuccess());
-//            System.out.println(res.getTextualResponse());
-//            var data = ((PrintDescendingCommand.PrintDescendingCommandResponse) res).getResult();
-//            data.forEach(i -> System.out.println(i.getId()));
-//        } catch (APIClientException e) {
-//            throw new RuntimeException(e);
-//        }
+        System.out.println("test");
 
         var interpreter = new Interpreter(registry, uiController, invoker);
         interpreter.run();
