@@ -19,7 +19,7 @@ import java.util.Scanner;
  * Worker update command
  */
 public abstract class PagingLocalCommand extends APIUILocalCommand {
-    private static final int count = 500;
+    private static final int count = 5;
 
     public PagingLocalCommand(APIClientReceiver api, UIReceiver ui, APICommandRegistry registry) {
         super(api, ui, registry);
