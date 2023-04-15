@@ -88,7 +88,7 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
                 offset = prevOffset;
                 printer.display("Server error. Try later.");
             }
-            printer.display("↑- предыдущий ↓- следующий end- закончить команду");
+            printer.display("D- предыдущий U- следующий E- закончить команду");
             input = scanner.nextLine();
         }
         return new ClientCommandResponse<>(
