@@ -9,9 +9,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.registry.CommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.UICommandInvoker;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
-import ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands.HelpLocalCommand;
-import ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands.ScriptLocalCommand;
-import ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands.UpdateLocalCommand;
+import ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands.*;
 
 public class MainClientCommandRegistry extends CommandRegistry {
     private final APICommandRegistry registry;
@@ -27,6 +25,8 @@ public class MainClientCommandRegistry extends CommandRegistry {
         register(new HelpLocalCommand(ui));
         register(new RepeatLocalCommand(ui, invoker));
         register(new UpdateLocalCommand(api, ui, registry));
+        register(new ShowLocalCommand(api, ui, registry));
+        register(new DescShowLocalCommand(api, ui, registry));
         register(new ScriptLocalCommand(api, ui, scriptExecutor, registry));
         registerFromAPI(
                 registry.getCommands(),

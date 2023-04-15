@@ -54,7 +54,6 @@ public class ScriptLocalCommand extends APIUILocalCommand {
         String path = (String) args.get("fileName");
         if (path == null)
             throw new RuntimeException("No script file passed");
-
         try {
             scriptExecutor.process(path);
         } catch (FileAccessException e) {

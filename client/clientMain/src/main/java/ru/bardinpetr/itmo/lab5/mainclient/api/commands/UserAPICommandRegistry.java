@@ -15,7 +15,6 @@ public class UserAPICommandRegistry extends APICommandRegistry {
                 new ClearCommand(),
                 new FilterLessPosCommand(),
                 new InfoCommand(),
-                new PrintDescendingCommand(),
                 new UniqueOrganisationCommand(),
                 new RemoveByIdCommand(),
                 new RemoveGreaterCommand()
