@@ -10,11 +10,13 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
  */
 @Data
 public class PagingAPICommand extends UserAPICommand {
+    public static final Integer FULL_COUNT = -1;
+
     @NonNull
     public Integer offset = 0;
 
     @NonNull
-    public Integer count = -1;
+    public Integer count = FULL_COUNT;
 
     @Override
     public String getType() {

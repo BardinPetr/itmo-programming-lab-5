@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.models.commands.api;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.PagingAPICommand;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
@@ -8,6 +9,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
  * Class of print_descending command
  */
 @Data
+@AllArgsConstructor
 public class PrintDescendingCommand extends PagingAPICommand {
     @Override
     public String getType() {

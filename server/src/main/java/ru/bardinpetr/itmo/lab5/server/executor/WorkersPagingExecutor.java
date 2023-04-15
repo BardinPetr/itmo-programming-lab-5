@@ -38,5 +38,4 @@ public class WorkersPagingExecutor extends Executor {
         resp.setResult(pager.paginate(data, req));
         return resp;
     }
-
 }

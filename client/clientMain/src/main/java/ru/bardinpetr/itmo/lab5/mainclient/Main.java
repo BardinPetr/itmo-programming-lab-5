@@ -7,10 +7,12 @@ import ru.bardinpetr.itmo.lab5.client.ui.cli.Interpreter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.UICommandInvoker;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
+import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.mainclient.api.commands.UserAPICommandRegistry;
 import ru.bardinpetr.itmo.lab5.mainclient.api.commands.UserAPICommandsDescriptionHolder;
 import ru.bardinpetr.itmo.lab5.mainclient.local.controller.registry.MainClientCommandRegistry;
 import ru.bardinpetr.itmo.lab5.mainclient.local.ui.texts.MainTexts;
+import ru.bardinpetr.itmo.lab5.models.commands.api.ShowCommand;
 
 public class Main {
     public static void main(String[] args) {
@@ -37,6 +39,13 @@ public class Main {
 
         var apiRegistry = new UserAPICommandRegistry();
         var registry = new MainClientCommandRegistry(apiConnector, scriptExecutor, uiController, apiRegistry, invoker);
+        try {
+            var res = apiConnector.call(new ShowCommand());
+            var data = ((ShowCommand.ShowCommandResponse) res).getResult();
+            System.out.println(data);
+        } catch (APIClientException e) {
+            throw new RuntimeException(e);
+        }
 
         var interpreter = new Interpreter(registry, uiController, invoker);
         interpreter.run();

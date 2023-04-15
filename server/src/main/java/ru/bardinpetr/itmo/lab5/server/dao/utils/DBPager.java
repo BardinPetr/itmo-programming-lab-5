@@ -12,6 +12,9 @@ import java.util.stream.Stream;
  */
 public class DBPager<T> {
     public List<T> paginate(Stream<T> input, PagingAPICommand command) {
-        return input.skip(command.offset).limit(command.count).toList();
+        var base = input.skip(command.offset);
+        if (!command.count.equals(PagingAPICommand.FULL_COUNT))
+            base = base.limit(command.count);
+        return base.toList();
     }
 }
