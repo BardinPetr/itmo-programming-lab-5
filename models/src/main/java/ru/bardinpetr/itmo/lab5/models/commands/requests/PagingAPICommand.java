@@ -13,10 +13,18 @@ public class PagingAPICommand extends UserAPICommand {
     public static final Integer FULL_COUNT = -1;
 
     @NonNull
-    public Integer offset = 0;
+    private Integer offset = 0;
 
     @NonNull
-    public Integer count = FULL_COUNT;
+    private Integer count = FULL_COUNT;
+
+    public PagingAPICommand() {
+    }
+
+    public PagingAPICommand(@NonNull Integer offset, @NonNull Integer count) {
+        this.offset = offset;
+        this.count = count;
+    }
 
     @Override
     public String getType() {

@@ -12,9 +12,18 @@ import java.util.stream.Stream;
  */
 public class DBPager<T> {
     public List<T> paginate(Stream<T> input, PagingAPICommand command) {
-        var base = input.skip(command.offset);
-        if (!command.count.equals(PagingAPICommand.FULL_COUNT))
-            base = base.limit(command.count);
-        return base.toList();
+        if (command.getOffset() < 0 || command.getCount() < 0)
+            throw new RuntimeException("Invalid offset/count");
+
+        var base = input.skip(command.getOffset());
+        var cnt = command.getCount();
+        if (!cnt.equals(PagingAPICommand.FULL_COUNT))
+            base = base.limit(cnt);
+
+        var list = base.toList();
+        if (list.isEmpty())
+            throw new RuntimeException("No elements for such request");
+
+        return list;
     }
 }
