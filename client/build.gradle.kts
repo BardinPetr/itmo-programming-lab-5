@@ -12,4 +12,6 @@ dependencies {
     implementation("commons-cli:commons-cli:1.5.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:${Deps.jacksonVersion}")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Deps.jacksonVersion}")
+
+    implementation("jline:jline:3.0.0.M1")
 }

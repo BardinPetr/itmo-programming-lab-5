@@ -15,11 +15,9 @@ public class ClientConsoleArgumentsParser extends AbstractConsoleArgumentsParser
     protected Options createOptions() {
         var options = new Options();
         Option input = new Option("h", "host", true, "server host address");
-        input.setRequired(true);
         options.addOption(input);
 
         Option output = new Option("p", "port", true, "server port");
-        output.setRequired(true);
         options.addOption(output);
         return options;
     }

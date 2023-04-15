@@ -1,13 +1,19 @@
 package ru.bardinpetr.itmo.lab5.client.ui.cli;
 
+import org.jline.terminal.Terminal;
+import org.jline.terminal.TerminalBuilder;
 import ru.bardinpetr.itmo.lab5.client.api.description.APICommandsDescriptionHolder;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ObjectScanner;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.NotRepeatableException;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ParserException;
+import ru.bardinpetr.itmo.lab5.client.ui.interfaces.InteractSpecialSymbols;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -114,5 +120,49 @@ public class CLIController implements UIReceiver {
     @Override
     public void error(String message) {
         printer.display("Error: %s".formatted(message));
+    }
+
+    public InteractSpecialSymbols interactSpecial() {
+        InteractSpecialSymbols status = InteractSpecialSymbols.EXIT;
+        Terminal terminal;
+        try {
+            terminal = TerminalBuilder.terminal();
+        } catch (IOException ignored) {
+            return InteractSpecialSymbols.EXIT;
+        }
+        terminal.enterRawMode();
+        var reader = terminal.reader();
+
+        List<Integer> sequence = null;
+        while (true) {
+            int symbol;
+            try {
+                symbol = reader.read(10);
+            } catch (IOException ignored) {
+                break;
+            }
+            if (symbol <= 0) continue;
+            if (symbol == 113) break;
+            if (symbol == 27)
+                sequence = new ArrayList<>();
+            if (sequence != null) {
+                sequence.add(symbol);
+                if (sequence.equals(List.of(27, 91, 65))) {
+                    status = InteractSpecialSymbols.UP;
+                    break;
+                } else if (sequence.equals(List.of(27, 91, 66))) {
+                    status = InteractSpecialSymbols.DOWN;
+                    break;
+                }
+            }
+        }
+
+        try {
+            reader.close();
+            terminal.close();
+        } catch (IOException ignored) {
+        }
+
+        return status;
     }
 }

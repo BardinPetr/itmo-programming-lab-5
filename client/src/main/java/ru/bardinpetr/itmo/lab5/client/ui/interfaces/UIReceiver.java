@@ -32,4 +32,6 @@ public interface UIReceiver extends UIInputReceiver {
      * @param message text
      */
     void error(String message);
+
+    InteractSpecialSymbols interactSpecial();
 }
