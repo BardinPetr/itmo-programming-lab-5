@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.network.app.server.special.impl;
 
 import ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication;
-import ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 
 /**
  * Base application for writing API handlers.

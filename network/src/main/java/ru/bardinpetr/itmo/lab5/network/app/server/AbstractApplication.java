@@ -6,7 +6,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 import ru.bardinpetr.itmo.lab5.network.app.server.errors.ApplicationBuildException;
 import ru.bardinpetr.itmo.lab5.network.app.server.interfaces.handlers.IApplicationCommandHandler;
 import ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IFilteredApplication;
-import ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,11 +48,16 @@ public abstract class AbstractApplication implements IFilteredApplication {
 
         log.debug("Processing message at {}: {}", getClass().getSimpleName(), request);
 
+        safeProcessCall(request, this::beforeAll);
+        if (request.isTerminated()) return request;
+
         for (var app : processors) {
             safeProcessCall(request, app::process);
-            if (request.isTerminated())
-                return request;
+            if (request.isTerminated()) return request;
         }
+
+        safeProcessCall(request, this::beforeTerminating);
+        if (request.isTerminated()) return request;
 
         var payload = request.payload();
         if (payload == null)
@@ -69,6 +74,22 @@ public abstract class AbstractApplication implements IFilteredApplication {
 
         log.debug("Message {} left {}", request.id(), getClass().getSimpleName());
         return request;
+    }
+
+    /**
+     * Method called by process() before any delegation
+     *
+     * @param request request to be processed
+     */
+    protected void beforeAll(AppRequest request) {
+    }
+
+    /**
+     * Method called by process() after aby nested application but before self terminating methods
+     *
+     * @param request request to be processed
+     */
+    protected void beforeTerminating(AppRequest request) {
     }
 
     /**

@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.network.app.server.special.impl;
 
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
-import ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 
 /**
  * Application for terminating any requests that was not terminated by other applications or requests that are invalid

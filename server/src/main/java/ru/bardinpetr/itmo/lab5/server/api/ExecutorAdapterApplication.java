@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.network.app.server.interfaces.handlers.IApplicationCommandHandler;
-import ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.APIApplication;
 
 /**

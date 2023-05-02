@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.models.Session;
-import ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 import ru.bardinpetr.itmo.lab5.network.transport.interfaces.IServerTransport;
 import ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiableMessage;
 

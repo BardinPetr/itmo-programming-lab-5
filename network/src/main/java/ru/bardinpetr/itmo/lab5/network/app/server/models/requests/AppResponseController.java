@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.app.server.requests;
+package ru.bardinpetr.itmo.lab5.network.app.server.models.requests;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;

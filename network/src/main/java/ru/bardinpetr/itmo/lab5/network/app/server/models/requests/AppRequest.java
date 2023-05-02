@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.app.server.requests;
+package ru.bardinpetr.itmo.lab5.network.app.server.models.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -29,6 +29,10 @@ public class AppRequest {
 
     public Session<?> session() {
         return session;
+    }
+
+    public void setSession(Session<?> session) {
+        this.session = session;
     }
 
     public AppResponseController<?> response() {

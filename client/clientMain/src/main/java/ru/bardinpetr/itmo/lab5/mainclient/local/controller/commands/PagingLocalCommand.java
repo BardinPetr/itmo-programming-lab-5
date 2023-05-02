@@ -78,7 +78,6 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
                     isOut = true;
                     uiReceiver.display(resp.getTextualResponse());
                 }
-
             } catch (APIClientException e) {
                 offset = prevOffset;
                 uiReceiver.display("Server error. Try later.");

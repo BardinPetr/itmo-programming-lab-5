@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.network.app.server.interfaces.handlers;
 
-import ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 
 /**
  * handler for api commands
