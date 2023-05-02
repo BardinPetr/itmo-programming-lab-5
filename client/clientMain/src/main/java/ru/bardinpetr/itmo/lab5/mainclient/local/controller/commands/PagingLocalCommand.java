@@ -4,7 +4,7 @@ import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
-import ru.bardinpetr.itmo.lab5.client.ui.interfaces.InteractSpecialSymbols;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.PagingAPICommand;
@@ -13,12 +13,13 @@ import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Worker update command
  */
 public abstract class PagingLocalCommand extends APIUILocalCommand {
-    private static final int count = 10;
+    private static final int count = 5;
 
     public PagingLocalCommand(APIClientReceiver api, UIReceiver ui, APICommandRegistry registry) {
         super(api, ui, registry);
@@ -39,8 +40,10 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
 
     @Override
     public ClientCommandResponse<? extends UserPrintableAPICommandResponse> executeWithArgs(List<String> args) {
+        var printer = new ConsolePrinter();
+        Scanner scanner = new Scanner(System.in);
         int offset = -count;
-        InteractSpecialSymbols input = InteractSpecialSymbols.UP;
+        String input = "U";
         boolean isOut = false;
         int prevOffset = 0;
         while (true) {
@@ -49,21 +52,23 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
             prevOffset = offset;
             try {
 
-                if (input.equals(InteractSpecialSymbols.UP)) {
+                if (input.equals("U")) {
                     offset += count;
-                } else if (input.equals(InteractSpecialSymbols.DOWN)) {
+                } else if (input.equals("D")) {
 
                     if (offset <= 0) {
-                        uiReceiver.display("Encountered start of response");
-                        input = uiReceiver.interactSpecial();
+                        printer.display("Encountered start of response");
+                        input = scanner.nextLine(); //TODO
                         offset = -count;
                         continue;
                     }
                     offset -= count;
-                } else if (input.equals(InteractSpecialSymbols.EXIT)) {
+                } else if (input.equals("E")) {
                     break;
                 } else {
-                    uiReceiver.display("Wrong choice");
+                    printer.display("Wrong choice");
+                    input = scanner.nextLine(); //TODO
+                    continue;
                 }
 
 
@@ -71,20 +76,19 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
 
                 if (resp.isSuccess()) {
                     var showRes = (PagingAPICommand.DefaultCollectionCommandResponse) resp;
-                    uiReceiver.display(showRes.getUserMessage());
+                    printer.display(showRes.getUserMessage());
                     isOut = false;
                 } else {
                     if (isOut) offset -= count;
                     isOut = true;
-                    uiReceiver.display(resp.getTextualResponse());
+                    printer.display(resp.getTextualResponse());
                 }
             } catch (APIClientException e) {
                 offset = prevOffset;
-                uiReceiver.display("Server error. Try later.");
+                printer.display("Server error. Try later.");
             }
-
-            uiReceiver.display("↑- предыдущий ↓- следующий end- закончить команду");
-            input = uiReceiver.interactSpecial();
+            printer.display("D- предыдущий U- следующий E- закончить команду");
+            input = scanner.nextLine();
         }
         return new ClientCommandResponse<>(
                 true,
