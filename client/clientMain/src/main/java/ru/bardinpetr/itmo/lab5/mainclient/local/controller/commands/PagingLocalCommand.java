@@ -58,7 +58,7 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
 
                     if (offset <= 0) {
                         printer.display("Encountered start of response");
-                        input = scanner.nextLine(); //TODO
+                        input = scanner.nextLine();
                         offset = -count;
                         continue;
                     }
@@ -67,7 +67,7 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
                     break;
                 } else {
                     printer.display("Wrong choice");
-                    input = scanner.nextLine(); //TODO
+                    input = scanner.nextLine();
                     continue;
                 }
 

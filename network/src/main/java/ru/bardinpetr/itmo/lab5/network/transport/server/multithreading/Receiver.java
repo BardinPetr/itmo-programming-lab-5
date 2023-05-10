@@ -72,13 +72,16 @@ public class Receiver extends RecursiveAction {
             }
             log.info("Deserialized frames to socket message");
 
+            clientsMap.remove(address);
+
             handler.handle(address, msg);
         } catch (IOException e) {
             log.error("Error during receiving session", e);
             throw new TransportException(e);
         } finally {
             try {
-                closeSession();
+                pipe.sink().close();
+                pipe.source().close();
             } catch (IOException e) {
                 log.error("Error during closing receiving session", e);
                 throw new TransportException(e);
@@ -86,9 +89,4 @@ public class Receiver extends RecursiveAction {
         }
     }
 
-    private void closeSession() throws IOException {
-        clientsMap.remove(address);
-        pipe.sink().close();
-        pipe.source().close();
-    }
 }

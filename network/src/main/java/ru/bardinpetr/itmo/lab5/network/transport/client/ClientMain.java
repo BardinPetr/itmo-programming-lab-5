@@ -27,7 +27,7 @@ public class ClientMain {
                             res.getId() + " " +
                             res.getReplyId() + " " +
                             res.getCmdType() + " " +
-                            payload.length()
+                            payload.length() / 5
 //                        +" "+payload
             );
         }

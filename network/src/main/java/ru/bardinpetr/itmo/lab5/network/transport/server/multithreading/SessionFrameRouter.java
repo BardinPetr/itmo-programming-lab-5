@@ -60,11 +60,20 @@ public class SessionFrameRouter implements IServerTransport<SocketAddress, Socke
 
     @Override
     public void send(SocketAddress recipient, SocketMessage data) {
-        forkJoinPool.submit(new Sender(
-                channel,
-                recipient,
-                data
-        ));
+        try {
+            var pipe = Pipe.open();
+            clientPipeMap.put(recipient, pipe);
+
+            forkJoinPool.submit(new Sender(
+                    pipe,
+                    channel,
+                    recipient,
+                    data
+            ));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override

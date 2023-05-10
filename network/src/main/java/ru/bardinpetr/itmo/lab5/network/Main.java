@@ -1,19 +1,18 @@
 package ru.bardinpetr.itmo.lab5.network;
 
+import ru.bardinpetr.itmo.lab5.network.transport.interfaces.IServerTransport;
 import ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage;
 import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerFactory;
-import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerTransport;
 
 import java.io.IOException;
-import java.nio.channels.DatagramChannel;
+import java.net.SocketAddress;
 
 
 public class Main {
     public static void main(String[] args) throws IOException {
 //        SetupJUL.loadProperties(Main.class);
 
-        DatagramChannel channel = null;
-        UDPServerTransport server = (UDPServerTransport) UDPServerFactory.create(1249);
+        IServerTransport<SocketAddress, SocketMessage> server = UDPServerFactory.create(1856);
 
         server.subscribe((sender, message) -> {
             var msg = new SocketMessage(

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
-import java.util.List;
+import java.nio.channels.Pipe;
 import java.util.concurrent.RecursiveAction;
 
 @Slf4j
@@ -20,19 +20,21 @@ public class Sender extends RecursiveAction {
     private final DatagramChannel channel;
     private final SocketAddress address;
     private final SocketMessage message;
+    private final Pipe pipe;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
 
-    public Sender(DatagramChannel channel, SocketAddress address, SocketMessage message) {
+    public Sender(Pipe pipe, DatagramChannel channel, SocketAddress address, SocketMessage message) {
+        this.pipe = pipe;
         this.channel = channel;
         this.address = address;
         this.message = message;
     }
 
     @Override
-    protected void compute() {
-        List<Frame> frameList = null;
+    protected void compute() {  //компот
         try {
-            frameList = TransportUtils.separateBytes(
+
+            var frameList = TransportUtils.separateBytes(
                     serDesService.serialize(message)
             );
             var lenInBytes = TransportUtils.IntToBytes(frameList.size());
@@ -45,13 +47,10 @@ public class Sender extends RecursiveAction {
             receiveAndCheck(0);
 
             for (int i = 0; i < frameList.size(); i++) {
-                channel.send(
-                        packBytesToFrame(
-                                i + 2,
-                                frameList.get(i).toBytes()
-                        ), address);
+                channel.send(ByteBuffer.wrap(frameList.get(i).toBytes()), address);
                 receiveAndCheck(i + 2);
             }
+            log.info("Send message to " + address);
 
         } catch (SerDesException ignored) {
         } catch (IOException e) {
@@ -61,7 +60,7 @@ public class Sender extends RecursiveAction {
     }
 
     private void receiveAndCheck(int id) throws IOException {
-        var frame = Frame.fromChannel(channel);
+        var frame = Frame.fromChannel(pipe.source());
         if (frame.getId() != id) {
             log.error("Expected id %d, but current is %d ", id, frame.getId());
         }

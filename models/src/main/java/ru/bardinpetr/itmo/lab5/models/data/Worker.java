@@ -74,7 +74,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
 
     public Worker() {
         id = 0;
-        creationDate = ZonedDateTime.now();//ZonedDateTime.of(2023, 10, 10, 12, 12, 12, 12, ZoneId.of("UTC"));//TODO correct
+        creationDate = ZonedDateTime.now();
     }
 
     public static Comparator<Worker> getComparator() {
