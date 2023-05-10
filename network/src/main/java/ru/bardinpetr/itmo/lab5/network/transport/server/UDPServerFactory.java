@@ -9,8 +9,8 @@ public class UDPServerFactory {
             DatagramChannel channel = DatagramChannel.open();
             channel.configureBlocking(false);
             channel.socket().bind(new InetSocketAddress("localhost", port));
-
-            return new UDPServerTransport(channel);
+            return new (channel);
+//            return new UDPServerTransport(channel);
         } catch (Exception e) {
             System.err.println("Can't start server: " + e.getMessage());
             System.exit(0);

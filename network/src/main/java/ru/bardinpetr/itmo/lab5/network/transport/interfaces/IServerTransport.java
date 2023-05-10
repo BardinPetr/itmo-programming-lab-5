@@ -9,7 +9,7 @@ import ru.bardinpetr.itmo.lab5.network.transport.handlers.IMessageHandler;
  * @param <U> type of low-level user identifier
  * @param <L> base low-level message type
  */
-public interface IServerTransport<U, L> {
+public interface IServerTransport<U, L> extends Runnable {
 
     /**
      * Synchronously send request.
@@ -26,5 +26,5 @@ public interface IServerTransport<U, L> {
     /**
      * Start main reception loop
      */
-    void run();
+
 }
