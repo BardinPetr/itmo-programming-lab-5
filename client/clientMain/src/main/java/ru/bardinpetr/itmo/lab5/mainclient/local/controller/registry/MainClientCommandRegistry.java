@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.mainclient.local.controller.registry;
 
-import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
+import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.controller.commands.ExitLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.commands.RepeatLocalCommand;
@@ -14,12 +15,14 @@ import ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands.*;
 public class MainClientCommandRegistry extends CommandRegistry {
     private final APICommandRegistry registry;
     private final UICommandInvoker invoker;
+    private final ICredentialsStorage credentialsStorage;
 
-    public MainClientCommandRegistry(APIClientReceiver api, ScriptExecutor scriptExecutor, UIReceiver ui, APICommandRegistry registry, UICommandInvoker invoker) {
+    public MainClientCommandRegistry(APIClientConnector api, ScriptExecutor scriptExecutor, UIReceiver ui, APICommandRegistry registry, UICommandInvoker invoker, ICredentialsStorage credentialsStorage) {
         super(api, scriptExecutor);
 
         this.invoker = invoker;
         this.registry = registry;
+        this.credentialsStorage = credentialsStorage;
 
         register(new ExitLocalCommand(ui));
         register(new HelpLocalCommand(ui));
@@ -36,6 +39,6 @@ public class MainClientCommandRegistry extends CommandRegistry {
 
     @Override
     public MainClientCommandRegistry withUI(UIReceiver otherUI) {
-        return new MainClientCommandRegistry(api, scriptExecutor, otherUI, registry, invoker);
+        return new MainClientCommandRegistry(api, scriptExecutor, otherUI, registry, invoker, credentialsStorage);
     }
 }

@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client.controller.registry;
 
-import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.controller.common.AbstractLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.UILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
@@ -15,11 +15,11 @@ import java.util.Map;
  * Class for storing prepared client-side commands with their handlers-name to invoke via
  */
 public abstract class CommandRegistry {
-    private final Map<String, AbstractLocalCommand> commandMap = new HashMap<>();
-    protected final APIClientReceiver api;
+    protected final APIClientConnector api;
     protected final ScriptExecutor scriptExecutor;
+    private final Map<String, AbstractLocalCommand> commandMap = new HashMap<>();
 
-    public CommandRegistry(APIClientReceiver api, ScriptExecutor scriptExecutor) {
+    public CommandRegistry(APIClientConnector api, ScriptExecutor scriptExecutor) {
         this.scriptExecutor = scriptExecutor;
         this.api = api;
 

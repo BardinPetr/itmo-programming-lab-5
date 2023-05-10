@@ -36,7 +36,7 @@ public abstract class UILocalCommand extends AbstractLocalCommand implements UIC
      * @param cmdName command name if command realization depends
      * @return list of fileds descriptions
      */
-    public List<Field<?>> getCommandInlineArgs(String cmdName) {
+    protected List<Field<?>> getCommandInlineArgs(String cmdName) {
         return List.of();
     }
 

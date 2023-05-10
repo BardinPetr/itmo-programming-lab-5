@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands;
 
-import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
@@ -22,7 +22,7 @@ import java.util.Map;
 public class ScriptLocalCommand extends APIUILocalCommand {
     private final ScriptExecutor scriptExecutor;
 
-    public ScriptLocalCommand(APIClientReceiver api, UIReceiver ui, ScriptExecutor scriptExecutor, APICommandRegistry registry) {
+    public ScriptLocalCommand(APIClientConnector api, UIReceiver ui, ScriptExecutor scriptExecutor, APICommandRegistry registry) {
         super(api, ui, registry);
         this.scriptExecutor = scriptExecutor;
     }

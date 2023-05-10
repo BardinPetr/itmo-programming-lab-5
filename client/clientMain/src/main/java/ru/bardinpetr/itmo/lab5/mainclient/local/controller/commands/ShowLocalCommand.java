@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands;
 
-import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.api.ShowCommand;
@@ -8,7 +8,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.requests.PagingAPICommand;
 
 public class ShowLocalCommand extends PagingLocalCommand {
 
-    public ShowLocalCommand(APIClientReceiver api, UIReceiver ui, APICommandRegistry registry) {
+    public ShowLocalCommand(APIClientConnector api, UIReceiver ui, APICommandRegistry registry) {
         super(api, ui, registry);
     }
 

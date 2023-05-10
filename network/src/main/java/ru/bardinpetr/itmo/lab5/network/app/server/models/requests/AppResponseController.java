@@ -17,29 +17,15 @@ public class AppResponseController<U> {
     private final IDestinationServerApplication<U> destination;
     private final Long id;
     private final U recipient;
+    private final AppRequest parentRequest;
     private APICommandResponse response;
-    private boolean isTerminated = false;
 
     public AppResponseController(AppRequest request, IDestinationServerApplication<U> dst) {
+        this.parentRequest = request;
         this.recipient = (U) request.session().getAddress();
         this.response = new APICommandResponse();
         this.destination = dst;
         this.id = request.id();
-    }
-
-    /**
-     * Check if message is still could be processed and was not sent earlier
-     */
-    public boolean isTerminated() {
-        return isTerminated;
-    }
-
-    /**
-     * Mark response as terminated and prevent further processing
-     */
-    public void terminate() {
-        log.debug("Message {} terminated", id);
-        isTerminated = true;
     }
 
     /**
@@ -71,8 +57,8 @@ public class AppResponseController<U> {
      * Automatically terminates message
      */
     public void send() {
-        if (isTerminated) return;
-        terminate();
+        if (parentRequest.isTerminated()) return;
+        parentRequest.terminate();
 
         if (response.getStatus() == APIResponseStatus.UNPROCESSED)
             response.setStatus(APIResponseStatus.OK);

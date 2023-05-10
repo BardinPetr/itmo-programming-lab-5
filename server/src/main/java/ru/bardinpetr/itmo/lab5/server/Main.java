@@ -3,6 +3,7 @@ package ru.bardinpetr.itmo.lab5.server;
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.log.SetupJUL;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.AuthenticationApplication;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.DefaultAPICommandAuthenticator;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.ErrorHandlingApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPInputTransportApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTransportApplication;
@@ -29,14 +30,11 @@ public class Main {
         var authReceiver = new DBAuthenticationReceiver();
 
         var mainApp = new UDPInputTransportApplication(transport);
-        var authApp = new AuthenticationApplication(authReceiver);
-        var responderApp = new UDPOutputTransportApplication(transport);
-        var errorApp = new ErrorHandlingApplication();
 
-        mainApp.use(responderApp);
-        mainApp.use(authApp);
+        mainApp.use(new UDPOutputTransportApplication(transport));
+        mainApp.use(new AuthenticationApplication<>(DefaultAPICommandAuthenticator.getInstance(), authReceiver));
         mainApp.use(dbApp);
-        mainApp.use(errorApp);
+        mainApp.use(new ErrorHandlingApplication());
 
         mainApp.start();
     }

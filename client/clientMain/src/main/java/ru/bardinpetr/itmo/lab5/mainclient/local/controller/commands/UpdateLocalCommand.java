@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands;
 
-import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.api.error.APIUIException;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class UpdateLocalCommand extends APIUILocalCommand {
 
-    public UpdateLocalCommand(APIClientReceiver api, UIReceiver ui, APICommandRegistry registry) {
+    public UpdateLocalCommand(APIClientConnector api, UIReceiver ui, APICommandRegistry registry) {
         super(api, ui, registry);
     }
 

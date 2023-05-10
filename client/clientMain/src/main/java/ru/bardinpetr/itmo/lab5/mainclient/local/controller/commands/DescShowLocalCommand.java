@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands;
 
-import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.api.PrintDescendingCommand;
@@ -8,7 +8,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.requests.PagingAPICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 
 public class DescShowLocalCommand extends PagingLocalCommand {
-    public DescShowLocalCommand(APIClientReceiver api, UIReceiver ui, APICommandRegistry registry) {
+    public DescShowLocalCommand(APIClientConnector api, UIReceiver ui, APICommandRegistry registry) {
         super(api, ui, registry);
     }
 

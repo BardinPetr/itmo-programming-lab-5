@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public enum APIResponseStatus {
     OK,
     CLIENT_ERROR,
+    AUTH_ERROR,
     SERVER_ERROR,
     UNPROCESSED,
     NOT_FOUND;

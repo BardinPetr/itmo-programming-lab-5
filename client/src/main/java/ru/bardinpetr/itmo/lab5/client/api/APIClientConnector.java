@@ -8,7 +8,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 /**
  * Interface to call server via APICommand interface
  */
-public interface APIClientReceiver {
+public interface APIClientConnector {
 
     /**
      * Send APICommand to server and get result

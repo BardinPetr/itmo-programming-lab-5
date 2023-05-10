@@ -56,7 +56,7 @@ public abstract class AbstractApplication implements IFilteredApplication {
             if (request.isTerminated()) return request;
         }
 
-        safeProcessCall(request, this::beforeTerminating);
+        safeProcessCall(request, this::beforeTermination);
         if (request.isTerminated()) return request;
 
         var payload = request.payload();
@@ -66,10 +66,10 @@ public abstract class AbstractApplication implements IFilteredApplication {
         var terminatingHandler = commandHandlers.get(payload.getCmdIdentifier());
         if (terminatingHandler != null) {
             safeProcessCall(request, terminatingHandler::handle);
-            request.response().terminate();
+            request.terminate();
         } else if (anyCommandHandler != null) {
             safeProcessCall(request, anyCommandHandler::handle);
-            request.response().terminate();
+            request.terminate();
         }
 
         log.debug("Message {} left {}", request.id(), getClass().getSimpleName());
@@ -89,7 +89,7 @@ public abstract class AbstractApplication implements IFilteredApplication {
      *
      * @param request request to be processed
      */
-    protected void beforeTerminating(AppRequest request) {
+    protected void beforeTermination(AppRequest request) {
     }
 
     /**

@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.client;
 
-import ru.bardinpetr.itmo.lab5.client.api.connectors.UDPAPIClientFactory;
+import ru.bardinpetr.itmo.lab5.client.api.connectors.net.UDPAPIClientFactory;
 import ru.bardinpetr.itmo.lab5.client.ui.ClientConsoleArgumentsParser;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;

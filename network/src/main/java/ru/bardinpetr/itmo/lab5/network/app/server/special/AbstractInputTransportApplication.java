@@ -49,7 +49,8 @@ public abstract class AbstractInputTransportApplication<U, L extends IIdentifiab
                 incomingMessage.getId(),
                 session,
                 null,
-                msg
+                msg,
+                false
         );
 
         process(appRequest);

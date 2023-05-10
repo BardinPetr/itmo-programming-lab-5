@@ -1,19 +1,55 @@
 package ru.bardinpetr.itmo.lab5.server.auth;
 
+import ru.bardinpetr.itmo.lab5.models.commands.auth.LoginCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.RegisterCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultLoginResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.LoginResponse;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserExistsException;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserNotFoundException;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.AuthenticationReceiver;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.AuthenticationCredentials;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.AuthenticationRegistrationResponse;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.commands.RegisterAPICommand;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.Authentication;
 
-public class DBAuthenticationReceiver implements AuthenticationReceiver {
+import java.util.HashMap;
+import java.util.Map;
+
+public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse> {
+    private final Map<String, String> testAuth = new HashMap<>() {{
+        put("demouser", "demopass");
+    }};
+
     @Override
-    public Authentication authorize(AuthenticationCredentials request) {
-        return null;
+    public Authentication authorize(DefaultAuthenticationCredentials request) {
+        boolean ok = testAuth.get(request.getUsername()).equals(request.getPassword());
+        return new Authentication(
+                ok ? Authentication.AuthenticationStatus.NORMAL : Authentication.AuthenticationStatus.INVALID,
+                request.getUsername()
+        );
     }
 
     @Override
-    public AuthenticationRegistrationResponse register(RegisterAPICommand command) {
-        return null;
+    public LoginResponse login(LoginCommand command) throws UserNotFoundException {
+        var creds = command.getCredentials();
+        var res = authorize(creds);
+
+        if (res.getStatus() != Authentication.AuthenticationStatus.NORMAL)
+            throw new UserNotFoundException();
+
+        return new DefaultLoginResponse(creds.getUsername());
+    }
+
+    @Override
+    public DefaultLoginResponse register(RegisterCommand command) throws UserExistsException {
+        var creds = command.getCredentials();
+
+        if (testAuth.containsKey(creds.getUsername()))
+            throw new UserExistsException();
+
+        testAuth.put(
+                creds.getUsername(),
+                creds.getPassword()
+        );
+
+        return new DefaultLoginResponse(creds.getUsername());
     }
 }

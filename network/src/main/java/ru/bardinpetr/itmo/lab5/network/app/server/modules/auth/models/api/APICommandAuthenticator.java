@@ -1,32 +1,28 @@
 package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api;
 
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 
 
 /**
  * Helper class for injecting authentication credentials into APICommand
  */
-public final class APICommandAuthenticator {
+public class APICommandAuthenticator<C extends AuthenticationCredentials> {
     public static final String AUTH_HEADER = "Authentication";
-    private static APICommandAuthenticator instance;
 
-    private APICommandAuthenticator() {
-    }
-
-    public static APICommandAuthenticator getInstance() {
-        if (instance == null)
-            instance = new APICommandAuthenticator();
-        return instance;
+    protected APICommandAuthenticator() {
     }
 
     /**
      * Adds authentication header to existing API command
      *
      * @param decoratee command to authenticate
-     * @param authData  credentials
+     * @param authData  credentials or null to leave command unmodified
      * @return command with headers set
      */
-    public APICommand authenticate(APICommand decoratee, AuthenticationCredentials authData) {
+    public APICommand authenticate(APICommand decoratee, C authData) {
+        if (authData == null) return decoratee;
+
         decoratee.getHeader().put(
                 AUTH_HEADER,
                 authData
@@ -40,7 +36,7 @@ public final class APICommandAuthenticator {
      * @param command command with AUTH_HEADER set
      * @return credentials or null if header is not present
      */
-    public AuthenticationCredentials extractAuth(APICommand command) {
-        return (AuthenticationCredentials) command.getHeader().get(AUTH_HEADER);
+    public C extractAuth(APICommand command) {
+        return (C) command.getHeader().get(AUTH_HEADER);
     }
 }

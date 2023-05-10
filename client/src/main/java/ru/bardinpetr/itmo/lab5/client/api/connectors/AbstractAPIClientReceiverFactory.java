@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.api.connectors;
 
-import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 
 public abstract class AbstractAPIClientReceiverFactory {
-    public abstract APIClientReceiver create();
+    public abstract APIClientConnector create();
 }

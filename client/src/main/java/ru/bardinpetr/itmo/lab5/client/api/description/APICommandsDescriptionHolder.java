@@ -75,21 +75,20 @@ public class APICommandsDescriptionHolder {
         var fieldsList = new ArrayList<FieldWithDesc<?>>();
         for (var field : addedClass.getDeclaredFields()) {
             if (!field.isAnnotationPresent(NotPromptRequired.class)) {
-                if (field.getType().getPackage() == addedClass.getPackage() && (!field.getType().isEnum()) && (!dataDescriptions.containsKey(field.getType()))) {
+                if (field.getType().getPackage() == addedClass.getPackage() && (!field.getType().isEnum()) && (!dataDescriptions.containsKey(field.getType())))
                     addToMap(field.getType());
-                }
+
+                var validatorAnnotation = field.getAnnotation(FieldValidator.class);
+
                 fieldsList.add(new FieldWithDesc<>(
                         field.getName(),
                         ClassUtils.wrap(field.getType()),
                         field.getAnnotation(InteractText.class).value(),
-                        getValidator(
-                                field.getAnnotation(FieldValidator.class).value(),
-                                field),
+                        validatorAnnotation == null ? null : getValidator(validatorAnnotation.value(), field),
                         (!(field.getClass().isPrimitive()) && field.isAnnotationPresent(InputNullable.class))
                 ));
             }
         }
         this.dataDescriptions.put(addedClass, fieldsList);
-
     }
 }

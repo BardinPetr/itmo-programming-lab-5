@@ -23,6 +23,6 @@ public class ErrorHandlingApplication extends APIApplication {
      */
     @Override
     public boolean filter(AppRequest req) {
-        return req.status() == AppRequest.ReqStatus.INVALID && !req.response().isTerminated();
+        return req.status() == AppRequest.ReqStatus.INVALID && !req.isTerminated();
     }
 }

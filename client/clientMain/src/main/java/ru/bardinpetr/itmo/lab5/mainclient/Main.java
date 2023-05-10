@@ -1,6 +1,8 @@
 package ru.bardinpetr.itmo.lab5.mainclient;
 
-import ru.bardinpetr.itmo.lab5.client.api.connectors.UDPAPIClientFactory;
+import ru.bardinpetr.itmo.lab5.client.api.auth.AuthenticatedConnectorDecorator;
+import ru.bardinpetr.itmo.lab5.client.api.auth.impl.RAMCredentialsStorage;
+import ru.bardinpetr.itmo.lab5.client.api.connectors.net.UDPAPIClientFactory;
 import ru.bardinpetr.itmo.lab5.client.ui.ClientConsoleArgumentsParser;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.CLIController;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.Interpreter;
@@ -9,16 +11,23 @@ import ru.bardinpetr.itmo.lab5.client.ui.cli.UICommandInvoker;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.mainclient.api.commands.UserAPICommandRegistry;
 import ru.bardinpetr.itmo.lab5.mainclient.api.commands.UserAPICommandsDescriptionHolder;
+import ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands.auth.LoginPage;
 import ru.bardinpetr.itmo.lab5.mainclient.local.controller.registry.MainClientCommandRegistry;
 import ru.bardinpetr.itmo.lab5.mainclient.local.ui.texts.MainTexts;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.DefaultAPICommandAuthenticator;
 
 public class Main {
     public static void main(String[] args) {
         var argParse = new ClientConsoleArgumentsParser(args);
 
-        var apiConnector =
-                new UDPAPIClientFactory(argParse.getServerFullAddr())
-                        .create();
+        var apiCredStorage = new RAMCredentialsStorage<DefaultAuthenticationCredentials>();
+        var baseAPI = new UDPAPIClientFactory(argParse.getServerFullAddr()).create();
+        var authedAPI = new AuthenticatedConnectorDecorator<>(
+                DefaultAPICommandAuthenticator.getInstance(),
+                apiCredStorage,
+                baseAPI
+        );
 
         var descriptionHolder = new UserAPICommandsDescriptionHolder();
 
@@ -36,9 +45,14 @@ public class Main {
         );
 
         var apiRegistry = new UserAPICommandRegistry();
-        var registry = new MainClientCommandRegistry(apiConnector, scriptExecutor, uiController, apiRegistry, invoker);
+        var registry = new MainClientCommandRegistry(authedAPI, scriptExecutor, uiController, apiRegistry, invoker, apiCredStorage);
 
         var interpreter = new Interpreter(registry, uiController, invoker);
-        interpreter.run();
+
+        var loginPage = new LoginPage(
+                authedAPI, uiController, apiCredStorage,
+                interpreter::run
+        );
+        loginPage.run();
     }
 }

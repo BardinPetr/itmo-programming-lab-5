@@ -18,6 +18,22 @@ public class AppRequest {
     private Session<?> session;
     private AppResponseController<?> response;
     private APICommand payload;
+    private boolean isTerminated = false;
+
+
+    /**
+     * Check if message is still could be processed and was not sent earlier
+     */
+    public boolean isTerminated() {
+        return isTerminated;
+    }
+
+    /**
+     * Mark response as terminated and prevent further processing
+     */
+    public void terminate() {
+        isTerminated = true;
+    }
 
     public ReqStatus status() {
         return status;
@@ -45,10 +61,6 @@ public class AppRequest {
 
     public void setResponse(AppResponseController<?> response) {
         this.response = response;
-    }
-
-    public boolean isTerminated() {
-        return response.isTerminated();
     }
 
     public void setStatus(ReqStatus newStatus) {

@@ -25,7 +25,6 @@ public class ObjectScanner {
         this.dataDescription = dataDescription.getDataDescriptions();
         this.printer = printer;
         this.scaner = scanner;
-
     }
 
     private String scan() {

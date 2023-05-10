@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.client.controller.common;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ru.bardinpetr.itmo.lab5.client.api.APIClientReceiver;
+import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
@@ -22,11 +22,11 @@ import java.util.Map;
  */
 public abstract class APIUILocalCommand extends UILocalCommand {
 
-    protected final APIClientReceiver apiClientReceiver;
-    private final APICommandRegistry registry;
+    protected final APIClientConnector apiClientReceiver;
+    protected final APICommandRegistry registry;
     private final ObjectMapper mapper;
 
-    public APIUILocalCommand(APIClientReceiver api, UIReceiver ui, APICommandRegistry registry) {
+    public APIUILocalCommand(APIClientConnector api, UIReceiver ui, APICommandRegistry registry) {
         super(ui);
         this.apiClientReceiver = api;
         this.registry = registry;
@@ -52,7 +52,7 @@ public abstract class APIUILocalCommand extends UILocalCommand {
      * @param cmdName command name if command realization depends
      */
     @Override
-    public List<Field<?>> getCommandInlineArgs(String cmdName) {
+    protected List<Field<?>> getCommandInlineArgs(String cmdName) {
         return List.of(retrieveAPICommand(cmdName).getInlineArgs());
     }
 

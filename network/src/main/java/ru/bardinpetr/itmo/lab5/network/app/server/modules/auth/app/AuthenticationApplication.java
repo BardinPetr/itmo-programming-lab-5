@@ -1,43 +1,77 @@
 package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.LoginCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.RegisterCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredentials;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.LoginResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 import ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.InvalidCredentialsException;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserExistsException;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserNotFoundException;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.AuthenticationReceiver;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.APICommandAuthenticator;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.commands.RegisterAPICommand;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.AuthenticatedSession;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.Authentication;
 
 /**
  * Application for user authentication (in command headers) and registration (via RegisterAPICommand).
+ *
+ * @param <C> type of AuthenticationCredentials used
+ * @param <R> type of RegistrationResponse used
  */
 @Slf4j
-public class AuthenticationApplication extends AbstractApplication {
+public class AuthenticationApplication<C extends AuthenticationCredentials, R extends LoginResponse> extends AbstractApplication {
 
-    private final AuthenticationReceiver authenticationReceiver;
+    private final AuthenticationReceiver<C, R> authenticationReceiver;
+    private final APICommandAuthenticator<C> commandAuthenticator;
 
-    public AuthenticationApplication(AuthenticationReceiver authenticationReceiver) {
+    public AuthenticationApplication(APICommandAuthenticator<C> commandAuthenticator, AuthenticationReceiver<C, R> authenticationReceiver) {
         this.authenticationReceiver = authenticationReceiver;
+        this.commandAuthenticator = commandAuthenticator;
 
-        on(RegisterAPICommand.class, this::registerUser);
+        on(RegisterCommand.class, this::registerUser);
+        on(LoginCommand.class, this::loginUser);
     }
 
+    /**
+     * Handle user login command
+     */
+    protected void loginUser(AppRequest request) {
+        var resp = request.response();
+
+        LoginCommand cmd = (LoginCommand) request.payload();
+        try {
+            var loginResponse = authenticationReceiver.login(cmd);
+
+            resp.from(cmd.createResponse().setData(loginResponse));
+        } catch (UserNotFoundException e) {
+            resp.status(APIResponseStatus.AUTH_ERROR);
+        }
+        resp.send();
+    }
 
     /**
      * Handle user registration command
      */
-    private void registerUser(AppRequest request) {
-        RegisterAPICommand cmd = (RegisterAPICommand) request.payload();
-        var resp = authenticationReceiver.register(cmd);
+    protected void registerUser(AppRequest request) {
+        var resp = request.response();
 
-        request
-                .response()
-                .from(
-                        cmd.createResponse()
-                                .setData(resp)
-                )
-                .send();
+        RegisterCommand cmd = (RegisterCommand) request.payload();
+
+        try {
+            var registerResponse = authenticationReceiver.register(cmd);
+
+            resp.from(cmd.createResponse().setData(registerResponse));
+        } catch (UserExistsException e) {
+            resp.status(APIResponseStatus.AUTH_ERROR).message("User with such name already exist");
+        } catch (InvalidCredentialsException e) {
+            resp.status(APIResponseStatus.AUTH_ERROR).message("Credentials don't met requirements");
+        }
+
+        resp.send();
     }
 
     /**
@@ -47,10 +81,8 @@ public class AuthenticationApplication extends AbstractApplication {
      * @param request request to be processed
      */
     @Override
-    protected void beforeTerminating(AppRequest request) {
-        var authRequest =
-                APICommandAuthenticator.getInstance()
-                        .extractAuth(request.payload());
+    protected void beforeTermination(AppRequest request) {
+        var authRequest = commandAuthenticator.extractAuth(request.payload());
 
         if (authRequest == null) {
             updateSession(

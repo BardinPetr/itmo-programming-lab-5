@@ -20,4 +20,5 @@ dependencies {
     implementation(project(":client"))
     implementation(project(":models"))
     implementation(project(":common"))
+    implementation(project(":network"))
 }
