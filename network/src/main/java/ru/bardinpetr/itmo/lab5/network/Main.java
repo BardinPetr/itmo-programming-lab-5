@@ -13,7 +13,7 @@ public class Main {
 //        SetupJUL.loadProperties(Main.class);
 
         DatagramChannel channel = null;
-        UDPServerTransport server = UDPServerFactory.create(1249);
+        UDPServerTransport server = (UDPServerTransport) UDPServerFactory.create(1249);
 
         server.subscribe((sender, message) -> {
             var msg = new SocketMessage(

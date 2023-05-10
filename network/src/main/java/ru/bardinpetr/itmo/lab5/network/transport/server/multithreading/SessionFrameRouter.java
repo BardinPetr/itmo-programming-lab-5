@@ -14,29 +14,29 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ForkJoinPool;
 
-public class UPDConnector implements IServerTransport<SocketAddress, SocketMessage> {
+public class SessionFrameRouter implements IServerTransport<SocketAddress, SocketMessage> {
     private final Map<SocketAddress, Pipe> clientPipeMap = new ConcurrentHashMap<>();
     private final DatagramChannel channel;
     private IMessageHandler<SocketAddress, SocketMessage> handler;
+    private final ForkJoinPool forkJoinPool = new ForkJoinPool();
 
-    public UPDConnector(DatagramChannel channel) {
+    public SessionFrameRouter(DatagramChannel channel) {
         this.channel = channel;
     }
 
     @Override
     public void run() {
-        var forkJoinPool = new ForkJoinPool(); //count of threads
         while (true) {
             try {
                 ByteBuffer buffer = ByteBuffer.allocate(Frame.MAX_SIZE);
                 SocketAddress address = channel.receive(buffer);
+
                 if (!clientPipeMap.containsKey(address)) {
-                    var pipe = Pipe.open();
-                    clientPipeMap.put(address, pipe);
-                    forkJoinPool.invoke(new Receiver(pipe));
+                    regClient(address);
                 }
 
                 var clientPipe = clientPipeMap.get(address);
+                buffer.flip();
                 clientPipe.sink().write(buffer);
 
             } catch (IOException ignored) {
@@ -45,23 +45,26 @@ public class UPDConnector implements IServerTransport<SocketAddress, SocketMessa
 
     }
 
-    private void regClient(SocketAddress address, ByteBuffer buffer) throws IOException {
+    private void regClient(SocketAddress address) throws IOException {
         var pipe = Pipe.open();
-
-        var sink = pipe.sink();
-        var source = pipe.source();
-
-        source.configureBlocking(false);
-        clientPipeMap.put(
+        clientPipeMap.put(address, pipe);
+        forkJoinPool.submit(new Receiver(
+                pipe,
+                channel,
                 address,
-                pipe
-        );
-        sink.write(buffer);
+                handler,
+                clientPipeMap
+        ));
     }
+
 
     @Override
     public void send(SocketAddress recipient, SocketMessage data) {
-
+        forkJoinPool.submit(new Sender(
+                channel,
+                recipient,
+                data
+        ));
     }
 
     @Override

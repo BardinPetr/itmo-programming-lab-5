@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException;
 
 public class ClientMain {
     public static void main(String[] args) throws IOException, TimeoutException, TransportTimeoutException, TransportException {
-        var client = new UDPClientTransport(new InetSocketAddress("localhost", 1249));
+        var client = new UDPClientTransport(new InetSocketAddress("localhost", 1856));
         var t = new SocketMessage(
                 SocketMessage.CommandType.DATA,
                 1L,
