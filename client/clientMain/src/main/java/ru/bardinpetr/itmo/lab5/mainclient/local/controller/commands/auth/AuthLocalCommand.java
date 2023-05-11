@@ -8,6 +8,7 @@ import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
+import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 
 import java.util.Map;
 
@@ -62,7 +63,11 @@ public abstract class AuthLocalCommand extends APIUILocalCommand {
                 return ClientCommandResponse.ok();
             }
 
-            uiReceiver.display("Invalid auth data");
+            if (resp.getStatus() == APIResponseStatus.SERVER_ERROR) {
+                uiReceiver.error("Server error: %s".formatted(resp.getUserMessage()));
+            } else {
+                uiReceiver.display("Invalid auth data");
+            }
         } catch (Throwable ex) {
             uiReceiver.display("Failed to authenticate: %s".formatted(ex.getMessage()));
         }

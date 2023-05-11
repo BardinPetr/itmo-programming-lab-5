@@ -13,7 +13,6 @@ import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserExists
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserNotFoundException;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.AuthenticationReceiver;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.APICommandAuthenticator;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.AuthenticatedSession;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.Authentication;
 
 /**
@@ -81,7 +80,7 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
      * @param request request to be processed
      */
     @Override
-    protected void beforeTermination(AppRequest request) {
+    protected void apply(AppRequest request) {
         var authRequest = commandAuthenticator.extractAuth(request.payload());
 
         if (authRequest == null) {
@@ -108,9 +107,6 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
      * Replace AppRequest session with Authenticated one
      */
     private void updateSession(AppRequest request, Authentication authentication) {
-        request.setSession(AuthenticatedSession.of(
-                request.session(),
-                authentication
-        ));
+        request.session().setAuth(authentication);
     }
 }

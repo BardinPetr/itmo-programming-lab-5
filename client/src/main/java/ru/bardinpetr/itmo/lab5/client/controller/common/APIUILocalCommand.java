@@ -91,6 +91,6 @@ public abstract class APIUILocalCommand extends UILocalCommand {
         } catch (APIClientException e) {
             return new ClientCommandResponse<>(false, e.getMessage(), null);
         }
-        return new ClientCommandResponse<>(serverResp.isSuccess(), serverResp.getTextualResponse(), serverResp);
+        return new ClientCommandResponse<>(serverResp.isSuccess(), serverResp.getUserMessage(), serverResp);
     }
 }

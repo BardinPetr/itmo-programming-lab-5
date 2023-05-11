@@ -5,10 +5,10 @@ import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 /**
  * Allows applications to filter incoming requests
  */
-public interface IFilteredApplication {
+public interface IRequestFilter {
 
     /**
-     * Check if request is appropriate for this app
+     * Check if request is appropriate for this app/handler
      *
      * @param req input request
      * @return true if request is appropriate for this app

@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.network.app.server.special;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.models.Session;
@@ -26,14 +27,13 @@ public abstract class AbstractOutputTransportApplication<U, L> extends AbstractA
     }
 
     @Override
-    protected AppRequest process(AppRequest request) {
+    public void apply(AppRequest request) {
         var resp = supplyResponse(request);
         request.setResponse(resp);
         request.session().setState(Session.State.OPERATING);
         request.setStatus(AppRequest.ReqStatus.NORMAL);
 
         log.info("Message from {} initialized as {}", request.session().getAddress(), request.status());
-        return request;
     }
 
     /**
@@ -58,7 +58,7 @@ public abstract class AbstractOutputTransportApplication<U, L> extends AbstractA
      *
      * @param request incoming message to create response for
      */
-    protected AppResponseController<U> supplyResponse(AppRequest request) {
+    protected <T extends APICommand> AppResponseController<U> supplyResponse(AppRequest request) {
         return new AppResponseController<>(request, this::send);
     }
 
@@ -70,9 +70,4 @@ public abstract class AbstractOutputTransportApplication<U, L> extends AbstractA
      * @return serialized transport level message or null if invalid input
      */
     abstract protected L serialize(APICommandResponse request);
-
-    @Override
-    public boolean filter(AppRequest req) {
-        return true;
-    }
 }

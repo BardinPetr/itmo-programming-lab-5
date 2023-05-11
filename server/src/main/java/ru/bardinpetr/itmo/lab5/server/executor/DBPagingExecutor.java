@@ -12,12 +12,12 @@ import java.util.Comparator;
 /**
  * Executor for resolving workers collection commands with paging to DAO calls
  */
-public class WorkersPagingExecutor extends Executor {
+public class DBPagingExecutor extends Executor {
 
     private final IWorkerCollectionDAO dao;
     private final DBPager<Worker> pager;
 
-    public WorkersPagingExecutor(IWorkerCollectionDAO dao) {
+    public DBPagingExecutor(IWorkerCollectionDAO dao) {
         this.pager = new DBPager<>();
         this.dao = dao;
 

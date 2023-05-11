@@ -62,6 +62,7 @@ public class AppResponseController<U> {
 
         if (response.getStatus() == APIResponseStatus.UNPROCESSED)
             response.setStatus(APIResponseStatus.OK);
+
         destination.send(recipient, response);
         log.debug("Response {} is sent", id);
     }

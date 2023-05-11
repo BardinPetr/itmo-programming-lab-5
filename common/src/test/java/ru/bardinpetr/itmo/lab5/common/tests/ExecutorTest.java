@@ -97,7 +97,7 @@ public class ExecutorTest {
 
         var resp = exec.execute(new TestCmd2());
         assertFalse(resp.isSuccess(), "Response should have error mark");
-        assertEquals(exception.getMessage(), resp.getTextualResponse(), "Error text should be in message");
+        assertEquals(exception.getMessage(), resp.getUserMessage(), "Error text should be in message");
     }
 
     @Test

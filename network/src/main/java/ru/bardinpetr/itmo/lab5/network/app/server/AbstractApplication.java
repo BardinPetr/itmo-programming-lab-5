@@ -4,13 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 import ru.bardinpetr.itmo.lab5.network.app.server.errors.ApplicationBuildException;
-import ru.bardinpetr.itmo.lab5.network.app.server.interfaces.handlers.IApplicationCommandHandler;
-import ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IFilteredApplication;
+import ru.bardinpetr.itmo.lab5.network.app.server.handlers.IApplicationCommandHandler;
+import ru.bardinpetr.itmo.lab5.network.app.server.handlers.RequestHandler;
+import ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IRequestFilter;
 import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -22,11 +21,11 @@ import java.util.function.Consumer;
  * Session handling is not included by default and should be provided via inheritor of SourcingAPIApplication
  */
 @Slf4j
-public abstract class AbstractApplication implements IFilteredApplication {
+public abstract class AbstractApplication implements IRequestFilter {
 
-    private final List<AbstractApplication> processors = new ArrayList<>();
-    private final Map<Class<? extends APICommand>, IApplicationCommandHandler> commandHandlers = new HashMap<>();
-    private IApplicationCommandHandler anyCommandHandler;
+    private final Map<Class<? extends APICommand>, RequestHandler> commandHandlers = new HashMap<>();
+    private RequestHandler anyCommandHandler;
+    private AbstractApplication nextApp;
 
     public AbstractApplication() {
 
@@ -38,42 +37,56 @@ public abstract class AbstractApplication implements IFilteredApplication {
      * If nested app terminated request or any local terminating handler exist, no further processing done
      *
      * @param request applications request object
-     * @return processed request
      */
-    protected AppRequest process(AppRequest request) {
+    public final void process(AppRequest request) {
         if (!filter(request)) {
             log.debug("Message {} ignored by {}", request.id(), getClass().getSimpleName());
-            return request;
+            forwardToNext(request);
+            return;
         }
 
         log.debug("Processing message at {}: {}", getClass().getSimpleName(), request);
 
-        safeProcessCall(request, this::beforeAll);
-        if (request.isTerminated()) return request;
-
-        for (var app : processors) {
-            safeProcessCall(request, app::process);
-            if (request.isTerminated()) return request;
-        }
-
-        safeProcessCall(request, this::beforeTermination);
-        if (request.isTerminated()) return request;
+        safeProcessCall(request, this::apply);
+        if (request.isTerminated()) return;
 
         var payload = request.payload();
         if (payload == null)
             throw new RuntimeException("Payload null");
 
-        var terminatingHandler = commandHandlers.get(payload.getCmdIdentifier());
-        if (terminatingHandler != null) {
-            safeProcessCall(request, terminatingHandler::handle);
+        for (var curHandler : new RequestHandler[]{
+                commandHandlers.get(payload.getCmdIdentifier()),
+                anyCommandHandler
+        }) {
+            if (curHandler == null) continue;
+
+            safeProcessCall(request, this::beforeTermination);
+            if (request.isTerminated()) return;
+
+            safeProcessCall(request, curHandler::handle);
             request.terminate();
-        } else if (anyCommandHandler != null) {
-            safeProcessCall(request, anyCommandHandler::handle);
-            request.terminate();
+            return;
         }
 
         log.debug("Message {} left {}", request.id(), getClass().getSimpleName());
-        return request;
+
+        forwardToNext(request);
+    }
+
+    private void forwardToNext(AppRequest request) {
+        if (nextApp == null) return;
+        safeProcessCall(request, nextApp::process);
+    }
+
+    /**
+     * Sets next application for current
+     *
+     * @param next application to be run after any handlers declared for this app
+     * @return next application
+     */
+    public AbstractApplication chain(AbstractApplication next) {
+        nextApp = next;
+        return next;
     }
 
     /**
@@ -81,11 +94,11 @@ public abstract class AbstractApplication implements IFilteredApplication {
      *
      * @param request request to be processed
      */
-    protected void beforeAll(AppRequest request) {
+    protected void apply(AppRequest request) {
     }
 
     /**
-     * Method called by process() after aby nested application but before self terminating methods
+     * Method called by process() when terminating method found and should be run next
      *
      * @param request request to be processed
      */
@@ -111,14 +124,6 @@ public abstract class AbstractApplication implements IFilteredApplication {
     }
 
     /**
-     * Add application to chain to last position
-     * All requests will go through app-chain and then processed by this app
-     */
-    public final void use(AbstractApplication app) {
-        processors.add(app);
-    }
-
-    /**
      * Register command handler
      *
      * @param cmd     command to handle
@@ -127,7 +132,7 @@ public abstract class AbstractApplication implements IFilteredApplication {
     public final void on(Class<? extends APICommand> cmd, IApplicationCommandHandler handler) {
         if (commandHandlers.containsKey(cmd))
             throw new ApplicationBuildException("Commands should be handled once only");
-        commandHandlers.put(cmd, handler);
+        commandHandlers.put(cmd, new RequestHandler(handler));
     }
 
     /**
@@ -138,7 +143,7 @@ public abstract class AbstractApplication implements IFilteredApplication {
      */
     public final void on(IApplicationCommandHandler handler, Class<? extends APICommand>... cmds) {
         for (var i : cmds)
-            commandHandlers.put(i, handler);
+            commandHandlers.put(i, new RequestHandler(handler));
     }
 
     /**
@@ -149,7 +154,7 @@ public abstract class AbstractApplication implements IFilteredApplication {
     public final void on(IApplicationCommandHandler handler) {
         if (anyCommandHandler != null)
             throw new ApplicationBuildException("Only one global handler should exist");
-        anyCommandHandler = handler;
+        anyCommandHandler = new RequestHandler(handler);
     }
 
     public void start() {

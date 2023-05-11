@@ -80,10 +80,10 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
                     isOut = false;
                 } else {
                     if (resp.getStatus() == APIResponseStatus.AUTH_ERROR) {
-                        return ClientCommandResponse.error(resp.getTextualResponse());
+                        return ClientCommandResponse.error(resp.getUserMessage());
                     }
 
-                    printer.display(resp.getTextualResponse());
+                    printer.display(resp.getUserMessage());
                     if (isOut) offset -= count;
                     isOut = true;
                 }

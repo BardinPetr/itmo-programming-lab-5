@@ -8,21 +8,19 @@ import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
  */
 public class ErrorHandlingApplication extends APIApplication {
     @Override
-    protected AppRequest process(AppRequest request) {
+    public void apply(AppRequest request) {
         var resp = request.response();
-        if (resp.getStatus() == APIResponseStatus.UNPROCESSED)
-            resp.status(APIResponseStatus.NOT_FOUND);
-        else if (!resp.getStatus().isError())
-            resp.status(APIResponseStatus.SERVER_ERROR);
-        resp.send();
-        return request;
+        resp
+                .message("Method not available")
+                .status(APIResponseStatus.NOT_FOUND)
+                .send();
     }
 
     /**
-     * Allows requests only
+     * Allows only not terminated requests
      */
     @Override
     public boolean filter(AppRequest req) {
-        return req.status() == AppRequest.ReqStatus.INVALID && !req.isTerminated();
+        return !req.isTerminated();
     }
 }
