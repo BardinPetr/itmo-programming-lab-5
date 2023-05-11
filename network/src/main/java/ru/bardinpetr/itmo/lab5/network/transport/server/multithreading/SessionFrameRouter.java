@@ -61,15 +61,17 @@ public class SessionFrameRouter implements IServerTransport<SocketAddress, Socke
     @Override
     public void send(SocketAddress recipient, SocketMessage data) {
         try {
+//            System.out.print("sending");
             var pipe = Pipe.open();
             clientPipeMap.put(recipient, pipe);
 
-            forkJoinPool.submit(new Sender(
+            new Sender(
                     pipe,
                     channel,
                     recipient,
-                    data
-            ));
+                    data,
+                    clientPipeMap
+            ).start();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

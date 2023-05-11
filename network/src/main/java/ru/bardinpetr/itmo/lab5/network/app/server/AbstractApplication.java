@@ -49,15 +49,15 @@ public abstract class AbstractApplication implements IFilteredApplication {
         log.debug("Processing message at {}: {}", getClass().getSimpleName(), request);
 
         safeProcessCall(request, this::beforeAll);
-        if (request.isTerminated()) return request;
+        if (request.response() != null && request.isTerminated()) return request;
 
         for (var app : processors) {
             safeProcessCall(request, app::process);
-            if (request.isTerminated()) return request;
+            if (request.response() != null && request.isTerminated()) return request;
         }
 
         safeProcessCall(request, this::beforeTerminating);
-        if (request.isTerminated()) return request;
+        if (request.response() != null && request.isTerminated()) return request;
 
         var payload = request.payload();
         if (payload == null)

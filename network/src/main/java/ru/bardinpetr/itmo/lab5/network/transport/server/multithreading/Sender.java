@@ -13,25 +13,27 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.Pipe;
-import java.util.concurrent.RecursiveAction;
+import java.util.Map;
 
 @Slf4j
-public class Sender extends RecursiveAction {
+public class Sender extends Thread {
     private final DatagramChannel channel;
     private final SocketAddress address;
     private final SocketMessage message;
     private final Pipe pipe;
+    private final Map<SocketAddress, Pipe> clientsMap;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
 
-    public Sender(Pipe pipe, DatagramChannel channel, SocketAddress address, SocketMessage message) {
+    public Sender(Pipe pipe, DatagramChannel channel, SocketAddress address, SocketMessage message, Map<SocketAddress, Pipe> map) {
         this.pipe = pipe;
         this.channel = channel;
         this.address = address;
         this.message = message;
+        this.clientsMap = map;
     }
 
     @Override
-    protected void compute() {  //компот
+    public void run() {  //компот
         try {
 
             var frameList = TransportUtils.separateBytes(
@@ -56,13 +58,26 @@ public class Sender extends RecursiveAction {
         } catch (IOException e) {
             log.info("Sending frame exception");
             throw new TransportException(e);
+        } finally {
+            closeSession();
+        }
+    }
+
+    private void closeSession() {
+        try {
+            clientsMap.remove(address);
+            pipe.sink().close();
+            pipe.source().close();
+        } catch (IOException e) {
+            log.error("Error during closing receiving session", e);
+            throw new TransportException(e);
         }
     }
 
     private void receiveAndCheck(int id) throws IOException {
         var frame = Frame.fromChannel(pipe.source());
         if (frame.getId() != id) {
-            log.error("Expected id %d, but current is %d ", id, frame.getId());
+            log.error("Expected id %d, but current is %d ".formatted(id, frame.getId()));
         }
 
     }

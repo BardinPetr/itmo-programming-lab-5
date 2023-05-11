@@ -64,29 +64,36 @@ public class Receiver extends RecursiveAction {
             }
 
             var desBytes = TransportUtils.joinFrames(receiveList);
-            SocketMessage msg;
+            SocketMessage tmpMsg;
             try {
-                msg = serDesService.deserialize(desBytes);      //dived to threads
+                tmpMsg = serDesService.deserialize(desBytes);      //dived to threads
             } catch (SerDesException e) {
-                msg = new SocketMessage(new byte[]{});
+                tmpMsg = new SocketMessage(new byte[]{});
             }
             log.info("Deserialized frames to socket message");
+            closeSession();
+            SocketMessage msg = tmpMsg;
 
-            clientsMap.remove(address);
-
-            handler.handle(address, msg);
-        } catch (IOException e) {
+            new Thread(() -> {
+                handler.handle(address, msg);
+            }).start();
+        } catch (Exception e) {
             log.error("Error during receiving session", e);
+            closeSession();
             throw new TransportException(e);
-        } finally {
-            try {
-                pipe.sink().close();
-                pipe.source().close();
-            } catch (IOException e) {
-                log.error("Error during closing receiving session", e);
-                throw new TransportException(e);
-            }
         }
     }
+
+    private void closeSession() {
+        try {
+            clientsMap.remove(address);
+            pipe.sink().close();
+            pipe.source().close();
+        } catch (IOException e) {
+            log.error("Error during closing receiving session", e);
+            throw new TransportException(e);
+        }
+    }
+
 
 }
