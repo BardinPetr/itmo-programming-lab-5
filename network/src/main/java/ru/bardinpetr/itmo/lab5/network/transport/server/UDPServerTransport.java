@@ -25,6 +25,7 @@ import java.util.*;
  * Server class for receiving and sending messages from clients
  */
 @Slf4j
+@Deprecated
 public class UDPServerTransport implements IServerTransport<SocketAddress, SocketMessage> {
     private static final int TIMEOUT = 1000;
     private final Selector selector = Selector.open();

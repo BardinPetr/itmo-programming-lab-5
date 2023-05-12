@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.network.utils;
 
 import ru.bardinpetr.itmo.lab5.network.transport.models.Frame;
+import ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.SessionFrame;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -36,6 +37,14 @@ public class TransportUtils {
         return join(byteList);
     }
 
+    public static byte[] joinSessionFrames(List<SessionFrame> frameList) {
+        List<byte[]> byteList = new ArrayList<>();
+        for (var i : frameList) {
+            byteList.add(i.getPayload());
+        }
+        return join(byteList);
+    }
+
     /**
      * @param byteList
      * @return
@@ -63,6 +72,20 @@ public class TransportUtils {
 
         for (int i = 0; i < byteList.size(); i++) {
             resList.add(new Frame(
+                    i + 2,
+                    byteList.get(i)
+            ));
+        }
+        return resList;
+    }
+
+    public static List<SessionFrame> separateBytes(int sessionId, byte[] source) {
+        var byteList = separate(source);
+        List<SessionFrame> resList = new ArrayList<>();
+
+        for (int i = 0; i < byteList.size(); i++) {
+            resList.add(new SessionFrame(
+                    sessionId,
                     i + 2,
                     byteList.get(i)
             ));

@@ -3,6 +3,7 @@ package ru.bardinpetr.itmo.lab5.network.transport.models;
 import lombok.Data;
 import ru.bardinpetr.itmo.lab5.network.transport.errors.SizeLimitException;
 import ru.bardinpetr.itmo.lab5.network.transport.errors.TransportException;
+import ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.SessionFrame;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -33,7 +34,7 @@ public class Frame {
     public static Frame fromChannel(ReadableByteChannel channel) throws IOException {
         var buffer = ByteBuffer.allocate(Frame.MAX_SIZE);
         channel.read(buffer);
-        return Frame.fromBytes(buffer.array());
+        return SessionFrame.fromBytes(buffer.array());
     }
 
     public static Frame fromBytes(byte[] bytes) {
@@ -46,9 +47,14 @@ public class Frame {
         return new Frame(id, payload);
     }
 
+    public static void argueWithOlga(long currentId, long excepted) {
+        throw new TransportException("Failed to receive ACK from server. Probably very high load. Current %d, expected %d".formatted(currentId, excepted));
+    }
+
     public void checkACK(Frame frame) throws TransportException {
-        if (frame.id != id)
-            throw new TransportException("Failed to receive ACK from server. Probably very high load");
+        if (frame.id != id) {
+            argueWithOlga(frame.getId(), id);
+        }
     }
 
     public byte[] toBytes() {
