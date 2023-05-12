@@ -28,8 +28,8 @@ public class Main {
         var argParse = new ServerConsoleArgumentsParser(args);
 
         var dbConnector = new DBConnector(
-                "jdbc:postgresql://localhost:5432/studs",
-                new BasicAuthProvider("s367079", "aKNKcUmScdpvwhYu")
+                argParse.getDatabaseUrl(),
+                new BasicAuthProvider(argParse.getUsername(), argParse.getPassword())
         );
 
         if (argParse.doBootstrap()) {
@@ -44,7 +44,6 @@ public class Main {
 
         try {
             var orgs = new OrganizationsDBDAO(dbConnector);
-
         } catch (DBCreateException e) {
             throw new RuntimeException(e);
         }
