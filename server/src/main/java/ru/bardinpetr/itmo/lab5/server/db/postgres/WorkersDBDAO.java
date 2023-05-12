@@ -1,14 +1,13 @@
 package ru.bardinpetr.itmo.lab5.server.db.postgres;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.server.db.dto.WorkerDTO;
 import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 
-import java.sql.SQLException;
 import java.util.Collection;
 
 @Slf4j
-public class WorkersDBDAO extends BaseDBDAO<Integer, Worker> {
+public class WorkersDBDAO extends BaseDBDAO<Integer, WorkerDTO> {
 
     public WorkersDBDAO(DBConnector connector) throws DBCreateException {
         super(connector, "worker");
@@ -16,39 +15,26 @@ public class WorkersDBDAO extends BaseDBDAO<Integer, Worker> {
 
     @Override
     public boolean createTable() {
-        try {
-            connection.prepareStatement(
-                    """
-                            CREATE TABLE worker
-                            (
-                                
-                            );
-                            """
-            );
-        } catch (SQLException e) {
-            log.error("");
-            return false;
-        }
         return true;
     }
 
     @Override
-    public boolean insert(Worker data) {
+    public boolean insert(WorkerDTO data) {
         return false;
     }
 
     @Override
-    public boolean update(Integer id, Worker newData) {
+    public boolean update(Integer id, WorkerDTO newData) {
         return false;
     }
 
     @Override
-    public Collection<Worker> select() {
+    public Collection<WorkerDTO> select() {
         return null;
     }
 
     @Override
-    public Worker select(Integer id) {
+    public WorkerDTO select(Integer id) {
         return null;
     }
 

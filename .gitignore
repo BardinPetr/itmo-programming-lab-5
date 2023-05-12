@@ -171,6 +171,7 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java,gradle
 
 
+.idea/runConfigurations/*
 db.xml
 db.xml*
 docs/javadoc

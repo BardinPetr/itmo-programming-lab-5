@@ -8,6 +8,7 @@ import ru.bardinpetr.itmo.lab5.server.db.utils.DBAuthProvider;
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
+import java.io.InputStream;
 import java.sql.SQLException;
 
 @Slf4j
@@ -50,6 +51,22 @@ public class DBConnector {
             return rowSet;
         } catch (SQLException e) {
             throw new RuntimeException("Could not setup RowSet", e);
+        }
+    }
+
+    /**
+     * Runs sql script from input stream
+     *
+     * @return if script succeeded
+     */
+    public boolean bootstrap(InputStream startupFileStream) {
+        try (var conn = getDataSource().getConnection()) {
+            var sql = new String(startupFileStream.readAllBytes());
+            conn.createStatement().executeUpdate(sql);
+            return true;
+        } catch (Exception ex) {
+            log.error("Failed creation of db", ex);
+            return false;
         }
     }
 }

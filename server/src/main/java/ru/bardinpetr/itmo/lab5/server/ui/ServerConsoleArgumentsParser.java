@@ -17,10 +17,33 @@ public class ServerConsoleArgumentsParser extends AbstractConsoleArgumentsParser
         var options = new Options();
         options.addOption(
                 Option.builder()
+                        .option("b")
+                        .longOpt("bootstrap")
+                        .desc("clear database and recreate tables")
+                        .build()
+        );
+        options.addOption(
+                Option.builder()
                         .option("d")
-                        .longOpt("database")
+                        .longOpt("db")
                         .hasArg(true)
-                        .desc("database file")
+                        .desc("database connection url")
+                        .build()
+        );
+        options.addOption(
+                Option.builder()
+                        .option("u")
+                        .longOpt("dbuser")
+                        .hasArg(true)
+                        .desc("database username")
+                        .build()
+        );
+        options.addOption(
+                Option.builder()
+                        .option("p")
+                        .longOpt("dbpass")
+                        .hasArg(true)
+                        .desc("database password")
                         .build()
         );
 
@@ -57,5 +80,9 @@ public class ServerConsoleArgumentsParser extends AbstractConsoleArgumentsParser
             System.exit(1);
         }
         return null;
+    }
+
+    public Boolean doBootstrap() {
+        return getOptions().hasOption("bootstrap");
     }
 }
