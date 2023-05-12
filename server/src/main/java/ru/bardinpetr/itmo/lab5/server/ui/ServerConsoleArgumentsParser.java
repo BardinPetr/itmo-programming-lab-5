@@ -4,9 +4,6 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import ru.bardinpetr.itmo.lab5.common.ui.AbstractConsoleArgumentsParser;
 
-import java.nio.file.InvalidPathException;
-import java.nio.file.Path;
-
 public class ServerConsoleArgumentsParser extends AbstractConsoleArgumentsParser {
     public ServerConsoleArgumentsParser(String[] args) {
         super(args);
@@ -22,54 +19,59 @@ public class ServerConsoleArgumentsParser extends AbstractConsoleArgumentsParser
                         .desc("clear database and recreate tables")
                         .build()
         );
+
+
         options.addOption(
                 Option.builder()
                         .option("d")
-                        .longOpt("db")
+                        .longOpt("dburl")
                         .hasArg(true)
                         .desc("database connection url")
                         .build()
         );
-        options.addOption(
-                Option.builder()
-                        .option("u")
-                        .longOpt("dbuser")
-                        .hasArg(true)
-                        .desc("database username")
-                        .build()
-        );
-        options.addOption(
-                Option.builder()
-                        .option("p")
-                        .longOpt("dbpass")
-                        .hasArg(true)
-                        .desc("database password")
-                        .build()
-        );
 
-        options.addOption(
-                Option.builder()
-                        .option("p")
-                        .longOpt("port")
-                        .hasArg(true)
-                        .desc("UDP port")
-                        .build()
-        );
 
-        Option output = new Option("p", "port", true, "UDP port");
-        output.setRequired(true);
-        options.addOption(output);
+        var dbuser = Option.builder()
+                .option("u")
+                .longOpt("dbuser")
+                .hasArg(true)
+                .desc("database username")
+                .build();
+        dbuser.setRequired(true);
+        options.addOption(dbuser);
+
+
+        var dbpass = Option.builder()
+                .option("p")
+                .longOpt("dbpass")
+                .hasArg(true)
+                .desc("database password")
+                .build();
+        dbpass.setRequired(true);
+        options.addOption(dbpass);
+
+
+        var port = Option.builder()
+                .longOpt("port")
+                .hasArg(true)
+                .desc("UDP port")
+                .build();
+        port.setRequired(true);
+        options.addOption(port);
+
         return options;
     }
 
-    public Path getDatabasePath() {
-        try {
-            return Path.of(getOptions().getOptionValue("database"));
-        } catch (InvalidPathException ignored) {
-            System.err.println("invalid db path");
-            System.exit(1);
-        }
-        return null;
+    public String getDatabaseUrl() {
+        return getOptions().getOptionValue("dburl", "jdbc:postgresql://localhost:5432/studs");
+    }
+
+    public String getUsername() {
+        return getOptions().getOptionValue("dbuser");
+    }
+
+    public String getPassword() {
+        return getOptions().getOptionValue("dbpass");
     }
 
     public Integer getPort() {
