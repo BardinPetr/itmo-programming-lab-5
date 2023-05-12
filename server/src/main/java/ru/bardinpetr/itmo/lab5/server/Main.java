@@ -13,7 +13,9 @@ import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerFactory;
 import ru.bardinpetr.itmo.lab5.server.app.WorkersDAOFactory;
 import ru.bardinpetr.itmo.lab5.server.auth.DBAuthenticationReceiver;
 import ru.bardinpetr.itmo.lab5.server.dao.sync.SynchronizedDAOFactory;
+import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.DBConnector;
+import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.OrganizationsDBDAO;
 import ru.bardinpetr.itmo.lab5.server.db.utils.BasicAuthProvider;
 import ru.bardinpetr.itmo.lab5.server.executor.DBApplication;
 import ru.bardinpetr.itmo.lab5.server.ui.ServerConsoleArgumentsParser;
@@ -37,6 +39,13 @@ public class Main {
                 log.error("Failed to bootstrap DB");
                 return;
             }
+        }
+
+        try {
+            var orgs = new OrganizationsDBDAO(dbConnector);
+
+        } catch (DBCreateException e) {
+            throw new RuntimeException(e);
         }
 
         var workersDB = new WorkersDAOFactory().createDB();

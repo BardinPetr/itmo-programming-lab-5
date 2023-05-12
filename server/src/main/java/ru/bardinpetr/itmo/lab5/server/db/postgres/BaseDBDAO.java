@@ -4,6 +4,7 @@ import org.postgresql.ds.PGSimpleDataSource;
 import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.Collection;
 
 /**
@@ -29,9 +30,7 @@ public abstract class BaseDBDAO<V, T> {
         }
     }
 
-    public abstract boolean createTable();
-
-    public abstract boolean insert(T data);
+    public abstract V insert(T data);
 
     public abstract boolean update(V id, T newData);
 
@@ -40,4 +39,6 @@ public abstract class BaseDBDAO<V, T> {
     public abstract T select(V id);
 
     public abstract boolean delete(V id);
+
+    public abstract T parseRow(ResultSet rs);
 }

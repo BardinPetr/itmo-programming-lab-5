@@ -66,6 +66,11 @@ create or replace trigger trigger_worker_update_restrict
     for row
 execute function worker_update_restrict();
 
+-- insert into organization values
+--                              (default, 'test', 'PUBLIC'),
+--                              (default, 'test2', 'COMMERCIAL');
+--
+-- select * from organization
 
 -- with i as (insert into organization values (default, 'test', 'PUBLIC') returning id)
 -- INSERT INTO worker VALUES (
