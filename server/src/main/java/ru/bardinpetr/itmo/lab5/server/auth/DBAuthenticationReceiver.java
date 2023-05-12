@@ -15,14 +15,14 @@ import java.util.Map;
 
 public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse> {
     private final Map<String, String> testAuth = new HashMap<>() {{
-        put("demouser", "demopass");
+        put("u", "p");
     }};
 
     @Override
     public Authentication authorize(DefaultAuthenticationCredentials request) {
-        boolean ok = testAuth.get(request.getUsername()).equals(request.getPassword());
+        var pass = testAuth.get(request.getUsername());
         return new Authentication(
-                ok ? Authentication.AuthenticationStatus.NORMAL : Authentication.AuthenticationStatus.INVALID,
+                (pass != null && pass.equals(request.getPassword())) ? Authentication.AuthenticationStatus.NORMAL : Authentication.AuthenticationStatus.INVALID,
                 request.getUsername()
         );
     }
