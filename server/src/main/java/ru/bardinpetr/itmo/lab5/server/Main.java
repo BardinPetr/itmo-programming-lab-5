@@ -16,9 +16,20 @@ import ru.bardinpetr.itmo.lab5.server.dao.sync.SynchronizedDAOFactory;
 import ru.bardinpetr.itmo.lab5.server.executor.DBApplication;
 import ru.bardinpetr.itmo.lab5.server.ui.ServerConsoleArgumentsParser;
 
+import java.util.Random;
+import java.util.stream.Collectors;
+
 @Slf4j
 public class Main {
     public static void main(String[] args) {
+        var a = new Random().ints(20, 33, 126).
+                mapToObj(x -> new String(new byte[]{(byte) x})).collect(Collectors.joining(""));
+
+        System.out.println(a);
+
+    }
+
+    public static void main2(String[] args) {
         SetupJUL.loadProperties(Main.class);
 
         var argParse = new ServerConsoleArgumentsParser(args);
