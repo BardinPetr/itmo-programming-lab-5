@@ -4,8 +4,8 @@ import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.api.PrintDescendingCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.ShowCommand;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.server.dao.ICollectionDAO;
 import ru.bardinpetr.itmo.lab5.server.dao.utils.DBPager;
-import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
 
 import java.util.Comparator;
 
@@ -14,10 +14,10 @@ import java.util.Comparator;
  */
 public class DBPagingExecutor extends Executor {
 
-    private final IWorkerCollectionDAO dao;
+    private final ICollectionDAO<Integer, Worker> dao;
     private final DBPager<Worker> pager;
 
-    public DBPagingExecutor(IWorkerCollectionDAO dao) {
+    public DBPagingExecutor(ICollectionDAO<Integer, Worker> dao) {
         this.pager = new DBPager<>();
         this.dao = dao;
 

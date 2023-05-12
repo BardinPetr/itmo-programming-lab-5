@@ -83,4 +83,12 @@ public class AppResponseController<U> {
     public Long getId() {
         return id;
     }
+
+    public void sendOk() {
+        status(APIResponseStatus.OK).message("OK").send();
+    }
+
+    public void sendErr(String err) {
+        status(APIResponseStatus.CLIENT_ERROR).message(err).send();
+    }
 }

@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
-import ru.bardinpetr.itmo.lab5.network.app.server.handlers.IApplicationCommandHandler;
 import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.APIApplication;
 
@@ -13,23 +12,29 @@ import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.APIApplication;
  * Request commands are meant to be identical to App and Executor.
  */
 @Slf4j
-public class ExecutorAdapterApplication extends APIApplication implements IApplicationCommandHandler {
+public class ExecutorAdapterApplication extends APIApplication {
 
     private final Executor target;
 
     public ExecutorAdapterApplication(Executor target) {
         this.target = target;
-        on(this);
     }
 
+    /**
+     * Calls executor and if command not found passes control forward
+     *
+     * @param request request to be processed
+     */
     @Override
-    public void handle(AppRequest request) {
+    protected void apply(AppRequest request) {
         APICommand command = request.payload();
         log.debug("DBE: New request from {}: {}", request.session().getAddress(), request);
 
         APICommandResponse resp = target.execute(command);
-        request.response()
-                .from(resp)
-                .send();
+        if (resp.isResolved()) {
+            request.response()
+                    .from(resp)
+                    .send();
+        }
     }
 }

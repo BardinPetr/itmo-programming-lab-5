@@ -5,15 +5,17 @@ import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
- * DAO for CRUD operations.
+ * DAO read operations.
  *
  * @param <K> Type of primary key
  * @param <V> Entity type
  */
-public interface ICollectionCRUDDAO<K, V extends IKeyedEntity<K>> {
+public interface ICollectionReadDAO<K, V extends IKeyedEntity<K>> {
     /**
      * @return collection stats and basic information
      */
@@ -60,38 +62,23 @@ public interface ICollectionCRUDDAO<K, V extends IKeyedEntity<K>> {
     boolean has(K id);
 
     /**
-     * Insert element into collection
+     * Return all items from collection matching predicate
      *
-     * @param worker item to insert
-     * @return key assigned to object
+     * @param condition if predicate is true item is included
+     * @return list of filtered items
      */
-    K add(V worker);
+    default List<V> filter(Predicate<V> condition) {
+        return readAll().stream().filter(condition).toList();
+    }
 
     /**
-     * Replace entity with given id with new contents
+     * Returns all elements with function applied to each
      *
-     * @param id           entity id to update
-     * @param updateWorker new data
+     * @param extractor function to map from collection item to output object
+     * @return list of extracted fields for all items
      */
-    void update(K id, V updateWorker);
-
-    /**
-     * Remove entity by id
-     *
-     * @param id entity id
-     * @return true if any element deleted
-     */
-    boolean remove(K id);
-
-    /**
-     * Clear collection
-     */
-    void clear();
-
-    /**
-     * Store collection to file
-     */
-    default void save() {
+    default <T> List<T> getAllMapped(Function<V, T> extractor) {
+        return readAll().stream().map(extractor).toList();
     }
 
     /**

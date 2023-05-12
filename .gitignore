@@ -172,6 +172,7 @@ gradle-app.setting
 
 
 db.xml
+db.xml*
 docs/javadoc
 javadoc
 client/src/main/java/ru/bardinpetr/itmo/lab5/client/api/commands/Check.java

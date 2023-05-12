@@ -10,6 +10,7 @@ import ru.bardinpetr.itmo.lab5.models.data.annotation.InputNullable;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.InteractText;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.NotPromptRequired;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
+import ru.bardinpetr.itmo.lab5.models.data.collection.IOwnedEntity;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
 
 import java.time.ZonedDateTime;
@@ -21,7 +22,7 @@ import static java.util.Comparator.nullsLast;
 
 @Data
 @AllArgsConstructor
-public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
+public class Worker implements Comparable<Worker>, IKeyedEntity<Integer>, IOwnedEntity {
     @With
     @NonNull
     @NotPromptRequired
@@ -30,6 +31,10 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
     @NonNull
     @NotPromptRequired
     private final java.time.ZonedDateTime creationDate;
+
+    @With
+    @NotPromptRequired
+    private String owner;
 
     @NonNull
     @InteractText("Enter a name")
@@ -76,6 +81,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
         id = 0;
         creationDate = ZonedDateTime.now();//ZonedDateTime.of(2023, 10, 10, 12, 12, 12, 12, ZoneId.of("UTC"));//TODO correct
     }
+
 
     public static Comparator<Worker> getComparator() {
         return Comparator
@@ -145,5 +151,20 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer> {
         if (getEndDate() != null ? !getEndDate().equals(worker.getEndDate()) : worker.getEndDate() != null)
             return false;
         return getPosition() == worker.getPosition();
+    }
+
+    @Override
+    public String getOwner() {
+        return owner;
+    }
+
+    @Override
+    public boolean setOwner(String owner) {
+        if (this.owner != null) {
+            return false;
+        } else {
+            this.owner = owner;
+            return true;
+        }
     }
 }

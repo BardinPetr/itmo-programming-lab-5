@@ -71,7 +71,7 @@ public class APICommandResponse implements UserPrintableAPICommandResponse, IAPI
      * @return created response object
      */
     public static APICommandResponse notFound() {
-        return new APICommandResponse(APIResponseStatus.NOT_FOUND, "no command implementation on server");
+        return new APICommandResponse(APIResponseStatus.NOT_FOUND, "no such command available");
     }
 
     @JsonIgnore

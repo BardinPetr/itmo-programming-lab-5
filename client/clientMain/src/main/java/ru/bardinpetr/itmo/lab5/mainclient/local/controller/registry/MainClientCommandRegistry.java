@@ -27,6 +27,7 @@ public class MainClientCommandRegistry extends CommandRegistry {
         register(new ExitLocalCommand(ui));
         register(new HelpLocalCommand(ui));
         register(new RepeatLocalCommand(ui, invoker));
+        register(new DemoAddLocalCommand(api, ui, registry));
         register(new UpdateLocalCommand(api, ui, registry));
         register(new ShowLocalCommand(api, ui, registry));
         register(new DescShowLocalCommand(api, ui, registry));

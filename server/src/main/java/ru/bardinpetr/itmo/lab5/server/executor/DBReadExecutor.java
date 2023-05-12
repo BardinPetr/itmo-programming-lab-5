@@ -5,15 +5,15 @@ import ru.bardinpetr.itmo.lab5.models.commands.api.*;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
-import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
+import ru.bardinpetr.itmo.lab5.server.dao.ICollectionDAO;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class DBReadExecutor extends Executor {
-    private final IWorkerCollectionDAO dao;
+    private final ICollectionDAO<Integer, Worker> dao;
 
-    public DBReadExecutor(IWorkerCollectionDAO dao) {
+    public DBReadExecutor(ICollectionDAO<Integer, Worker> dao) {
         this.dao = dao;
 
         registerOperation(

@@ -12,6 +12,7 @@ import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTranspor
 import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerFactory;
 import ru.bardinpetr.itmo.lab5.server.app.WorkersDAOFactory;
 import ru.bardinpetr.itmo.lab5.server.auth.DBAuthenticationReceiver;
+import ru.bardinpetr.itmo.lab5.server.dao.sync.SynchronizedDAOFactory;
 import ru.bardinpetr.itmo.lab5.server.executor.DBApplication;
 import ru.bardinpetr.itmo.lab5.server.ui.ServerConsoleArgumentsParser;
 
@@ -23,6 +24,9 @@ public class Main {
         var argParse = new ServerConsoleArgumentsParser(args);
 
         var workersDB = new WorkersDAOFactory().createDB();
+        var syncDB = SynchronizedDAOFactory.wrap(workersDB);
+        var dbApplication = new DBApplication(syncDB);
+
         var authReceiver = new DBAuthenticationReceiver();
 
         var transport = UDPServerFactory.create(argParse.getPort());
@@ -31,12 +35,10 @@ public class Main {
         mainApp
                 .chain(new UDPOutputTransportApplication(transport))
                 .chain(new AuthenticationApplication<>(DefaultAPICommandAuthenticator.getInstance(), authReceiver))
-                .chain(
-                        new FilteredApplication(
-                                new DBApplication(workersDB),
-                                AuthenticatedFilter.getInstance()
-                        )
-                )
+                .chain(new FilteredApplication(
+                        dbApplication,
+                        AuthenticatedFilter.getInstance()
+                ))
                 .chain(new ErrorHandlingApplication());
 
         mainApp.start();
