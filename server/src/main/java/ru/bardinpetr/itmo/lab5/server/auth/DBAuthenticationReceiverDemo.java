@@ -9,37 +9,28 @@ import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserExists
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserNotFoundException;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.AuthenticationReceiver;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.Authentication;
-import ru.bardinpetr.itmo.lab5.server.auth.interfaces.IPasswordController;
-import ru.bardinpetr.itmo.lab5.server.auth.interfaces.SQLAuthDAO;
-import ru.bardinpetr.itmo.lab5.server.auth.models.AuthorizationObject;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
-public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse> {
-    private final IPasswordController pc = new SHAPasswordController();
-    private SQLAuthDAO sqlController;
+public class DBAuthenticationReceiverDemo implements AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse> {
+    private final Map<String, String> testAuth = new HashMap<>() {{
+        put("u", "p");
+    }};
 
     @Override
     public Authentication authorize(DefaultAuthenticationCredentials request) {
-        var authObj = sqlController.getByUserName(request.getUsername());
-
-        var hashedPassword = pc.getHash(
-                request.getPassword(),
-                authObj.getSalt()
-        );
-
+        var pass = testAuth.get(request.getUsername());
         return new Authentication(
-                (authObj != null && Arrays.equals(authObj.getHashedPassword(), hashedPassword)) ?
-                        Authentication.AuthenticationStatus.NORMAL :
-                        Authentication.AuthenticationStatus.INVALID,
+                (pass != null && pass.equals(request.getPassword())) ? Authentication.AuthenticationStatus.NORMAL : Authentication.AuthenticationStatus.INVALID,
                 request.getUsername()
         );
     }
 
     @Override
     public LoginResponse login(LoginCommand command) throws UserNotFoundException {
-        DefaultAuthenticationCredentials creds = command.getCredentials();
-        Authentication res = authorize(creds);
+        var creds = command.getCredentials();
+        var res = authorize(creds);
 
         if (res.getStatus() != Authentication.AuthenticationStatus.NORMAL)
             throw new UserNotFoundException();
@@ -49,17 +40,14 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
 
     @Override
     public DefaultLoginResponse register(RegisterCommand command) throws UserExistsException {
-        DefaultAuthenticationCredentials creds = command.getCredentials();
+        var creds = command.getCredentials();
 
-        if (sqlController.checkUser(creds.getUsername()))
+        if (testAuth.containsKey(creds.getUsername()))
             throw new UserExistsException();
 
-
-        sqlController.insert(
-                new AuthorizationObject(
-                        creds.getUsername(),
-                        creds.getPassword()
-                )
+        testAuth.put(
+                creds.getUsername(),
+                creds.getPassword()
         );
 
         return new DefaultLoginResponse(creds.getUsername());

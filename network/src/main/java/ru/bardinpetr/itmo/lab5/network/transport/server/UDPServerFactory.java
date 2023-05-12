@@ -14,6 +14,7 @@ public class UDPServerFactory {
             DatagramChannel channel = DatagramChannel.open();
             channel.configureBlocking(true);
             channel.socket().bind(new InetSocketAddress("localhost", port));
+            System.out.println("Server port: %d".formatted(port));
             return new SessionFrameRouter(channel);
 //            return new UDPServerTransport(channel);
         } catch (Exception e) {

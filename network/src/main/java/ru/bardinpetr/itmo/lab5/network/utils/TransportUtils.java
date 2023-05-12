@@ -67,7 +67,7 @@ public class TransportUtils {
      * @return list of Frames
      */
     public static List<Frame> separateBytes(byte[] source) {
-        var byteList = separate(source);
+        var byteList = separate(Frame.PAYLOAD_SIZE, source);
         List<Frame> resList = new ArrayList<>();
 
         for (int i = 0; i < byteList.size(); i++) {
@@ -80,7 +80,7 @@ public class TransportUtils {
     }
 
     public static List<SessionFrame> separateBytes(int sessionId, byte[] source) {
-        var byteList = separate(source);
+        var byteList = separate(SessionFrame.PAYLOAD_SIZE, source);
         List<SessionFrame> resList = new ArrayList<>();
 
         for (int i = 0; i < byteList.size(); i++) {
@@ -93,17 +93,17 @@ public class TransportUtils {
         return resList;
     }
 
-    private static List<byte[]> separate(byte[] source) {
+    private static List<byte[]> separate(int payloadSize, byte[] source) {
 
         List<byte[]> resList = new ArrayList<>();
 
         int start = 0;
 
-        for (int i = 0; i < Math.ceil(source.length / (float) Frame.PAYLOAD_SIZE) - 1; i++) {
+        for (int i = 0; i < Math.ceil(source.length / (float) payloadSize) - 1; i++) {
             resList.add(
-                    Arrays.copyOfRange(source, start, (start + Frame.PAYLOAD_SIZE))
+                    Arrays.copyOfRange(source, start, (start + payloadSize))
             );
-            start += Frame.PAYLOAD_SIZE;
+            start += payloadSize;
         }
         resList.add(
                 Arrays.copyOfRange(source, start, source.length)
