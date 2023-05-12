@@ -1,13 +1,16 @@
 package ru.bardinpetr.itmo.lab5.server.db.postgres.tables;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
+import ru.bardinpetr.itmo.lab5.models.data.Position;
 import ru.bardinpetr.itmo.lab5.server.db.dto.WorkerDTO;
 import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.BaseDBDAO;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.DBConnector;
 
 import java.sql.ResultSet;
-import java.util.Collection;
+import java.sql.SQLException;
+import java.time.ZoneId;
 
 @Slf4j
 public class WorkersDBDAO extends BaseDBDAO<Integer, WorkerDTO> {
@@ -27,22 +30,22 @@ public class WorkersDBDAO extends BaseDBDAO<Integer, WorkerDTO> {
     }
 
     @Override
-    public Collection<WorkerDTO> select() {
-        return null;
-    }
-
-    @Override
-    public WorkerDTO select(Integer id) {
-        return null;
-    }
-
-    @Override
-    public boolean delete(Integer id) {
-        return false;
-    }
-
-    @Override
     public WorkerDTO parseRow(ResultSet rs) {
-        return null;
+        try {
+            return new WorkerDTO(
+                    rs.getInt("id"),
+                    rs.getInt("ownerId"),
+                    rs.getInt("organizationId"),
+                    rs.getTimestamp("creationDate").toInstant().atZone(ZoneId.systemDefault()),
+                    rs.getTimestamp("startDate"),
+                    rs.getTimestamp("endDate").toLocalDateTime().toLocalDate(),
+                    rs.getString("name"),
+                    rs.getFloat("salary"),
+                    (Coordinates) rs.getObject("coordinates"),
+                    Position.valueOf(rs.getString("position")));
+        } catch (SQLException e) {
+            log.error("row parse failed at {}", tableName, e);
+            return null;
+        }
     }
 }

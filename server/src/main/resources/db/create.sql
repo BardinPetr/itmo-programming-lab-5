@@ -81,18 +81,19 @@ execute function worker_update_restrict();
 --
 -- select * from organization
 
--- with i as (insert into organization values (default, 'test', 'PUBLIC') returning id)
--- INSERT INTO worker VALUES (
---                            default,
---                            default,
---                            1,
---                            (select id from i),
---                            'test',
---                            324.3,
---                            current_timestamp,
---                            current_timestamp,
---                            '(234,555.555)',
---                            'CLEANER'
---                           );
+with i as (insert into organization values (default, 'test', 'PUBLIC') returning id)
+INSERT
+INTO worker
+VALUES (default,
+        default,
+        1,
+        (select id from i),
+        'test',
+        324.3,
+        current_timestamp,
+        current_timestamp,
+        '(234,555.555)',
+        'CLEANER');
 
--- select * from worker
+select *
+from worker

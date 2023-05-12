@@ -17,6 +17,7 @@ import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.DBConnector;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.UsersDAO;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.OrganizationsDBDAO;
+import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.WorkersDBDAO;
 import ru.bardinpetr.itmo.lab5.server.db.utils.BasicAuthProvider;
 import ru.bardinpetr.itmo.lab5.server.executor.DBApplication;
 import ru.bardinpetr.itmo.lab5.server.ui.ServerConsoleArgumentsParser;
@@ -44,6 +45,8 @@ public class Main {
 
         try {
             var orgs = new OrganizationsDBDAO(dbConnector);
+            var wrks = new WorkersDBDAO(dbConnector);
+            System.out.println(wrks.select());
         } catch (DBCreateException e) {
             throw new RuntimeException(e);
         }

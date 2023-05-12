@@ -9,10 +9,6 @@ import ru.bardinpetr.itmo.lab5.server.db.postgres.DBConnector;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static ru.bardinpetr.itmo.lab5.server.db.utils.RowSetUtils.rowSetStream;
 
 @Slf4j
 public class OrganizationsDBDAO extends BaseDBDAO<Integer, OrganizationDTO> {
@@ -37,41 +33,6 @@ public class OrganizationsDBDAO extends BaseDBDAO<Integer, OrganizationDTO> {
 
     @Override
     public boolean update(Integer id, OrganizationDTO newData) {
-        return false;
-    }
-
-    @Override
-    public List<OrganizationDTO> select() {
-        try (var rs = connector.getRowSet()) {
-            rs.setCommand("select * from organization");
-            return rowSetStream(rs).map(i -> parseRow(rs)).collect(Collectors.toList());
-        } catch (Exception ex) {
-            log.error("select failed: ", ex);
-        }
-        return null;
-    }
-
-    @Override
-    public OrganizationDTO select(Integer id) {
-        try (var stmt = connection.prepareStatement("select * from organization where id=?")) {
-            stmt.setInt(1, id);
-            var rowSet = stmt.executeQuery();
-            if (!rowSet.next()) return null;
-            return parseRow(rowSet);
-        } catch (Exception ex) {
-            log.error("select failed: ", ex);
-        }
-        return null;
-    }
-
-    @Override
-    public boolean delete(Integer id) {
-        try (var stmt = connection.prepareStatement("delete from organization where id=?")) {
-            stmt.setInt(1, id);
-            return stmt.executeUpdate() > 0;
-        } catch (Exception ex) {
-            log.error("delete failed: ", ex);
-        }
         return false;
     }
 

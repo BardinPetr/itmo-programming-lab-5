@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Collection;
+import java.util.stream.Collectors;
+
+import static ru.bardinpetr.itmo.lab5.server.db.utils.RowSetUtils.rowSetStream;
 
 /**
  * @param <V> primary key type
@@ -37,11 +40,37 @@ public abstract class BaseDBDAO<V, T> {
 
     public abstract boolean update(V id, T newData);
 
-    public abstract Collection<T> select();
+    public Collection<T> select() {
+        try (var rs = connector.getRowSet()) {
+            rs.setCommand("select * from organization");
+            return rowSetStream(rs).map(i -> parseRow(rs)).collect(Collectors.toList());
+        } catch (Exception ex) {
+            log.error("select failed: ", ex);
+        }
+        return null;
+    }
 
-    public abstract T select(V id);
+    public T select(V id) {
+        try (var stmt = connection.prepareStatement("select * from %s where id=?".formatted(tableName))) {
+            stmt.setInt(1, (Integer) id);
+            var rowSet = stmt.executeQuery();
+            if (!rowSet.next()) return null;
+            return parseRow(rowSet);
+        } catch (Exception ex) {
+            log.error("select failed: ", ex);
+        }
+        return null;
+    }
 
-    public abstract boolean delete(V id);
+    public boolean delete(V id) {
+        try (var stmt = connection.prepareStatement("delete from %s where id=?".formatted(tableName))) {
+            stmt.setInt(1, (Integer) id);
+            return stmt.executeUpdate() > 0;
+        } catch (Exception ex) {
+            log.error("delete failed: ", ex);
+        }
+        return false;
+    }
 
     public boolean drop() {
         try {
