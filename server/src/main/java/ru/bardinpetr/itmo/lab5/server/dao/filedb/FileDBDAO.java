@@ -6,7 +6,7 @@ import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 import ru.bardinpetr.itmo.lab5.models.data.collection.ISetCollection;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.server.dao.ICollectionDAO;
-import ru.bardinpetr.itmo.lab5.server.db.filedb.FileDBController;
+import ru.bardinpetr.itmo.lab5.server.db.filedb.RAMCollectionController;
 
 import java.util.Comparator;
 import java.util.List;
@@ -22,9 +22,9 @@ import java.util.stream.Stream;
  * @param <V> Objects in collection
  */
 public class FileDBDAO<K extends Comparable<K>, V extends IKeyedEntity<K>> implements ICollectionDAO<K, V> {
-    private final FileDBController<? extends ISetCollection<K, V>> controller;
+    private final RAMCollectionController<? extends ISetCollection<K, V>> controller;
 
-    public FileDBDAO(FileDBController<? extends ISetCollection<K, V>> controller) {
+    public FileDBDAO(RAMCollectionController<? extends ISetCollection<K, V>> controller) {
         this.controller = controller;
     }
 

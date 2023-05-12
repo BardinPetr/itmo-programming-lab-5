@@ -7,4 +7,12 @@ public class DBCreateException extends Exception {
     public DBCreateException(Exception e) {
         super("Could not set up database", e);
     }
+
+    public DBCreateException(String message) {
+        super(message);
+    }
+
+    public DBCreateException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

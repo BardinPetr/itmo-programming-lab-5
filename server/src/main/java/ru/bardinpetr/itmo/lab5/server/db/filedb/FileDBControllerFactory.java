@@ -27,10 +27,10 @@ public class FileDBControllerFactory<T> implements DBControllerFactory {
      * @throws DBCreateException if db can't be initialized
      */
     @Override
-    public FileDBController<T> createController() throws DBCreateException {
+    public RAMCollectionController<T> createController() throws DBCreateException {
         try {
             var io = new FileIOController(filePath);
-            return new FileDBController<>(io, baseObjectType);
+            return new RAMCollectionController<>(io, baseObjectType);
         } catch (Exception ex) {
             throw new DBCreateException(ex);
         }

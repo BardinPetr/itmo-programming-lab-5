@@ -3,7 +3,7 @@ package ru.bardinpetr.itmo.lab5.server.dao.workers;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO;
-import ru.bardinpetr.itmo.lab5.server.db.filedb.FileDBController;
+import ru.bardinpetr.itmo.lab5.server.db.filedb.RAMCollectionController;
 
 import java.util.Random;
 
@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class FileDBWorkersDAO extends FileDBDAO<Integer, Worker> implements IWorkerCollectionDAO {
 
-    public FileDBWorkersDAO(FileDBController<WorkerCollection> controller) {
+    public FileDBWorkersDAO(RAMCollectionController<WorkerCollection> controller) {
         super(controller);
     }
 

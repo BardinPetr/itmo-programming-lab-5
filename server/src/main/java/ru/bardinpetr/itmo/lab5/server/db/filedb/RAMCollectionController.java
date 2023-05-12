@@ -13,7 +13,7 @@ import ru.bardinpetr.itmo.lab5.server.db.DBController;
  * Stores local collection T and provides interface for storing and loading it to the file.
  */
 @Slf4j
-public class FileDBController<T> implements DBController {
+public class RAMCollectionController<T> implements DBController {
     private final FileStorageController<T> storage;
     private final Class<T> baseCollectionClass;
     private final FileIOController fileIO;
@@ -26,7 +26,7 @@ public class FileDBController<T> implements DBController {
      * @param fileIO file controller for storing database
      * @throws FileAccessException thrown if file can't be accessed
      */
-    public FileDBController(FileIOController fileIO, Class<T> baseCollectionClass) throws FileAccessException {
+    public RAMCollectionController(FileIOController fileIO, Class<T> baseCollectionClass) throws FileAccessException {
         this.baseCollectionClass = baseCollectionClass;
         this.fileIO = fileIO;
 

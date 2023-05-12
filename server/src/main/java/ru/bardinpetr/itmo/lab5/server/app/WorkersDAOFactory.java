@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.IWorkerCollectionDAO;
 import ru.bardinpetr.itmo.lab5.server.dao.workers.WorkerCollectionDAOFactory;
-import ru.bardinpetr.itmo.lab5.server.db.filedb.FileDBController;
 import ru.bardinpetr.itmo.lab5.server.db.filedb.FileDBControllerFactory;
+import ru.bardinpetr.itmo.lab5.server.db.filedb.RAMCollectionController;
 
 import java.nio.file.Path;
 
@@ -19,7 +19,7 @@ public class WorkersDAOFactory {
 
         IWorkerCollectionDAO dao;
         try {
-            FileDBController<WorkerCollection> ctrl = dbControllerFactory.createController();
+            RAMCollectionController<WorkerCollection> ctrl = dbControllerFactory.createController();
 //            ctrl.clear();
             dao = (IWorkerCollectionDAO) daoFactory.createDAO(ctrl);
         } catch (Exception e) {

@@ -6,7 +6,7 @@ import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.common.serdes.XMLSerDesService;
 import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
-import ru.bardinpetr.itmo.lab5.server.db.filedb.FileDBController;
+import ru.bardinpetr.itmo.lab5.server.db.filedb.RAMCollectionController;
 import ru.bardinpetr.itmo.lab5.server.utils.TestEntity;
 import ru.bardinpetr.itmo.lab5.server.utils.TestEntityCollection;
 
@@ -57,9 +57,9 @@ public class FileDBTest {
      * @param dbPath   path to database file
      */
     private void validateEmptyCollection(String taskText, String dbPath) {
-        FileDBController<?> ctrl = null;
+        RAMCollectionController<?> ctrl = null;
         try {
-            ctrl = new FileDBController<>(new FileIOController(dbPath), TEST_COLLECTION);
+            ctrl = new RAMCollectionController<>(new FileIOController(dbPath), TEST_COLLECTION);
         } catch (FileAccessException e) {
             fail("File controller should be successfully initialized in normal environment");
         }
@@ -90,10 +90,10 @@ public class FileDBTest {
      * @param path db path
      * @return controller
      */
-    private FileDBController<TestEntityCollection> initDBAsserted(String path) {
-        FileDBController<TestEntityCollection> ctrl = null;
+    private RAMCollectionController<TestEntityCollection> initDBAsserted(String path) {
+        RAMCollectionController<TestEntityCollection> ctrl = null;
         try {
-            ctrl = new FileDBController<>(new FileIOController(path), TestEntityCollection.class);
+            ctrl = new RAMCollectionController<>(new FileIOController(path), TestEntityCollection.class);
         } catch (FileAccessException e) {
             fail("in normal environment initialization should succeed");
             return null;

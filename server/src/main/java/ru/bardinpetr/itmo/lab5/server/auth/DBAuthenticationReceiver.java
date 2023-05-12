@@ -29,8 +29,8 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
 
     @Override
     public LoginResponse login(LoginCommand command) throws UserNotFoundException {
-        var creds = command.getCredentials();
-        var res = authorize(creds);
+        DefaultAuthenticationCredentials creds = command.getCredentials();
+        Authentication res = authorize(creds);
 
         if (res.getStatus() != Authentication.AuthenticationStatus.NORMAL)
             throw new UserNotFoundException();
@@ -40,7 +40,7 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
 
     @Override
     public DefaultLoginResponse register(RegisterCommand command) throws UserExistsException {
-        var creds = command.getCredentials();
+        DefaultAuthenticationCredentials creds = command.getCredentials();
 
         if (testAuth.containsKey(creds.getUsername()))
             throw new UserExistsException();
