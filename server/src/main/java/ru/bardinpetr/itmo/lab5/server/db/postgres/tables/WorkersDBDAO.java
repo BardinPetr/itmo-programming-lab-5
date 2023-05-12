@@ -1,8 +1,10 @@
-package ru.bardinpetr.itmo.lab5.server.db.postgres;
+package ru.bardinpetr.itmo.lab5.server.db.postgres.tables;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
+import ru.bardinpetr.itmo.lab5.server.db.postgres.BaseDBDAO;
+import ru.bardinpetr.itmo.lab5.server.db.postgres.DBConnector;
 
 import java.sql.SQLException;
 import java.util.Collection;

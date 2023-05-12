@@ -28,8 +28,8 @@ public class Main {
         SetupJUL.loadProperties(Main.class);
 
         var f = new DBConnector(
-                "jdbc:postgresql://localhost:5000/studs",
-                new BasicAuthProvider("s367079", "")
+                "jdbc:postgresql://172.28.21.75:5001/studs",
+                new BasicAuthProvider("s367079", "aKNKcUmScdpvwhYu")
         );
 
         PGSimpleDataSource ds;
