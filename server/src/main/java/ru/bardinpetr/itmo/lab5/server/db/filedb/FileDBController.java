@@ -79,6 +79,7 @@ public class FileDBController<T> implements DBController {
      */
     public boolean clear() {
         try {
+//            collection = (T) Collections.synchronizedSet(new TreeSet<>());
             collection = baseCollectionClass.getDeclaredConstructor().newInstance();
         } catch (Exception ex) {
             throw new RuntimeException(ex);

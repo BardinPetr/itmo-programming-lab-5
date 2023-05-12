@@ -24,6 +24,7 @@ public class DBExecutor extends Executor {
         IWorkerCollectionDAO dao;
         try {
             FileDBController<WorkerCollection> ctrl = dbControllerFactory.createController();
+//            ctrl.clear();
             dao = (IWorkerCollectionDAO) daoFactory.createDAO(ctrl);
         } catch (Exception e) {
             log.error("Could not read DB from file. Error: {}", e.getMessage());

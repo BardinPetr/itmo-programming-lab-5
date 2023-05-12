@@ -6,37 +6,41 @@ import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 import ru.bardinpetr.itmo.lab5.network.transport.errors.TransportException;
 import ru.bardinpetr.itmo.lab5.network.transport.models.Frame;
 import ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage;
+import ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.Session;
+import ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.SessionFrame;
 import ru.bardinpetr.itmo.lab5.network.utils.TransportUtils;
 
 import java.io.IOException;
-import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
-import java.nio.channels.Pipe;
 import java.util.Map;
 
 @Slf4j
 public class Sender extends Thread {
     private final DatagramChannel channel;
-    private final SocketAddress address;
+    private final Session session;
     private final SocketMessage message;
-    private final Pipe pipe;
-    private final Map<SocketAddress, Pipe> clientsMap;
+    private final Map<Integer, Session> clientsMap;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
 
-    public Sender(Pipe pipe, DatagramChannel channel, SocketAddress address, SocketMessage message, Map<SocketAddress, Pipe> map) {
-        this.pipe = pipe;
+    public Sender(
+            Session session,
+            DatagramChannel channel,
+            SocketMessage message,
+            Map<Integer, Session> map) {
         this.channel = channel;
-        this.address = address;
         this.message = message;
         this.clientsMap = map;
+        this.session = session;
     }
 
     @Override
     public void run() {  //компот
+//        System.out.println("C");
         try {
-
+            log.info("Start sending in %d session".formatted(session.getId()));
             var frameList = TransportUtils.separateBytes(
+                    session.getId(),
                     serDesService.serialize(message)
             );
             var lenInBytes = TransportUtils.IntToBytes(frameList.size());
@@ -44,15 +48,15 @@ public class Sender extends Thread {
                     packBytesToFrame(
                             0,
                             lenInBytes.array()
-                    ), address);
+                    ), session.getAddress());
 
-            receiveAndCheck(0);
+            receiveAndCheck(Frame.FIRST_ID);
 
             for (int i = 0; i < frameList.size(); i++) {
-                channel.send(ByteBuffer.wrap(frameList.get(i).toBytes()), address);
+                channel.send(ByteBuffer.wrap(frameList.get(i).toBytes()), session.getAddress());
                 receiveAndCheck(i + 2);
             }
-            log.info("Send message to " + address);
+            log.info("Send message to " + session.getAddress());
 
         } catch (SerDesException ignored) {
         } catch (IOException e) {
@@ -60,30 +64,35 @@ public class Sender extends Thread {
             throw new TransportException(e);
         } finally {
             closeSession();
+            log.info("finish sending");
+//            System.out.println("D");
         }
     }
 
     private void closeSession() {
         try {
-            clientsMap.remove(address);
-            pipe.sink().close();
-            pipe.source().close();
+            log.info("Close session %d".formatted(session.getId()));
+            clientsMap.remove(session.getId());
+            session.getPipe().sink().close();
+            session.getPipe().source().close();
+
         } catch (IOException e) {
             log.error("Error during closing receiving session", e);
             throw new TransportException(e);
         }
     }
 
-    private void receiveAndCheck(int id) throws IOException {
-        var frame = Frame.fromChannel(pipe.source());
+    private void receiveAndCheck(long id) throws IOException {
+        var frame = SessionFrame.fromChannel(session.getPipe().source());
         if (frame.getId() != id) {
-            log.error("Expected id %d, but current is %d ".formatted(id, frame.getId()));
+            Frame.argueWithOlga(frame.getId(), id);
         }
 
     }
 
     private ByteBuffer packBytesToFrame(int id, byte[] bytes) {
-        return ByteBuffer.wrap(new Frame(
+        return ByteBuffer.wrap(new SessionFrame(
+                        session.getId(),
                         id,
                         bytes
                 ).toBytes()

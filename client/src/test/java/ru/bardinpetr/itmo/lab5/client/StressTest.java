@@ -20,7 +20,7 @@ public class StressTest {
     public static void main(String[] args) {
         var argParse = new ClientConsoleArgumentsParser(args);
 
-        var executor = Executors.newFixedThreadPool(16);
+        var executor = Executors.newFixedThreadPool(3);
 
         var apiConnector =
                 new UDPAPIClientFactory(argParse.getServerFullAddr())
@@ -36,21 +36,20 @@ public class StressTest {
                 try {
                     var cur = new UDPAPIClientFactory(argParse.getServerFullAddr())
                             .create();
-                    cur
-                            .call(new AddCommand(new Worker(
-                                    0,
-                                    ZonedDateTime.now(),
-                                    "test%d".formatted(finalI),
-                                    234,
-                                    Date.from(Instant.now()),
-                                    null,
-                                    new Coordinates(123, 123),
-                                    null,
-                                    null
-                            )));
+                    cur.call(new AddCommand(new Worker(
+                            0,
+                            ZonedDateTime.now(),
+                            "test%d".formatted(finalI),
+                            234,
+                            Date.from(Instant.now()),
+                            null,
+                            new Coordinates(123, 123),
+                            null,
+                            null))).getStatus();
 //                    System.out.println(cur.call(new ClearCommand()));
                     System.out.println(((InfoCommand.InfoCommandResponse) cur.call(new InfoCommand())).getResult().getItemsCount());
-                } catch (APIClientException e) {
+//                    System.out.println(cur.call(new InfoCommand()).getTextualResponse());
+                } catch (Throwable e) {
                     throw new RuntimeException(e);
                 }
             });

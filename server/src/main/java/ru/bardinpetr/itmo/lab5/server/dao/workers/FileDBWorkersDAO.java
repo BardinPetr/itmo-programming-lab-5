@@ -5,6 +5,8 @@ import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.server.dao.filedb.FileDBDAO;
 import ru.bardinpetr.itmo.lab5.server.db.filedb.FileDBController;
 
+import java.util.Random;
+
 /**
  * Implementation of collection DAO for workers database.
  */
@@ -19,7 +21,8 @@ public class FileDBWorkersDAO extends FileDBDAO<Integer, Worker> implements IWor
      */
     @Override
     public Integer nextPrimaryKey() {
-        return getAllMapped(Worker::getPrimaryKey).stream().max(Integer::compareTo).orElse(0) + 1;
+        return new Random().nextInt(0, Integer.MAX_VALUE);
+//        return getAllMapped(Worker::getPrimaryKey).stream().max(Integer::compareTo).orElse(0) + 1;
     }
 
     @Override

@@ -7,6 +7,7 @@ import ru.bardinpetr.itmo.lab5.network.transport.errors.TransportTimeoutExceptio
 import ru.bardinpetr.itmo.lab5.network.transport.interfaces.IClientTransport;
 import ru.bardinpetr.itmo.lab5.network.transport.models.Frame;
 import ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage;
+import ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.SessionFrame;
 import ru.bardinpetr.itmo.lab5.network.utils.TransportUtils;
 
 import java.io.IOException;
@@ -21,6 +22,8 @@ import java.util.List;
  */
 public class UDPClientTransport implements IClientTransport<SocketMessage> {
     private final DatagramSocket socket;
+    private int sessionId = -1;
+
     private final Duration sendDurationTimeout = Duration.ofMinutes(2);
     private final SocketAddress serverAddress;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
@@ -47,8 +50,8 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
      * @return received frame
      * @throws TransportException exception via receiving
      */
-    private Frame receiveFrame(Duration duration) throws TransportException, TransportTimeoutException {
-        var buffer = new byte[Frame.MAX_SIZE];
+    private SessionFrame receiveFrame(Duration duration) throws TransportException, TransportTimeoutException {
+        var buffer = new byte[SessionFrame.MAX_SIZE];
         var packet = new DatagramPacket(buffer, buffer.length);
         try {
             socket.setSoTimeout((int) duration.getSeconds() * 1000);
@@ -58,7 +61,8 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
         } catch (IOException connectExc) {
             throw new TransportException();
         }
-        return Frame.fromBytes(packet.getData());
+
+        return SessionFrame.fromBytes(packet.getData());
     }
 
     private void connect() throws TransportException {
@@ -73,7 +77,7 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
         socket.disconnect();
     }
 
-    private void sendFrame(Frame frame) throws TransportException {
+    private void sendFrame(SessionFrame frame) throws TransportException {
         try {
             socket.send(new DatagramPacket(frame.toBytes(), frame.toBytes().length, serverAddress));
         } catch (IOException e) {
@@ -88,6 +92,7 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
      */
     @Override
     public void send(SocketMessage msg) throws TransportException, TransportTimeoutException {
+        sessionId = -1;
         connect();
 
         byte[] msgBytes;
@@ -97,18 +102,23 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
             throw new TransportException("Could not serialize message");
         }
 
-        var packetsList = TransportUtils.separateBytes(msgBytes);
 
-        var buffer = TransportUtils.IntToBytes(packetsList.size());
+        int msgSize = (int) Math.ceil(msgBytes.length / (float) Frame.PAYLOAD_SIZE);
 
-        var header = new Frame(
+        var buffer = TransportUtils.IntToBytes(msgSize);
+
+        var header = new SessionFrame(
+                sessionId,
                 Frame.FIRST_ID,
                 buffer.array());
 
         sendFrame(header);
-        header.checkACK(receiveFrame(sendDurationTimeout));
+        var checkFrame = receiveFrame(sendDurationTimeout);
+        sessionId = checkFrame.getSessionId();
+        header.checkACK(checkFrame);
 
-        for (Frame tmpFrame : packetsList) {
+        var packetsList = TransportUtils.separateBytes(sessionId, msgBytes);
+        for (SessionFrame tmpFrame : packetsList) {
             sendFrame(tmpFrame);
             tmpFrame.checkACK(receiveFrame(sendDurationTimeout));
         }
@@ -123,23 +133,24 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
      */
     public SocketMessage receive(Duration duration) throws TransportException, TransportTimeoutException {
         // seg 1 end -> create session
-        Frame header = receiveFrame(duration);
-
+        sessionId = -1;
+        SessionFrame header = receiveFrame(duration);
+        sessionId = header.getSessionId();
         int size = ByteBuffer.wrap(header.getPayload()).getInt();
 
-        sendFrame(new Frame(Frame.FIRST_ID));
+        sendFrame(new SessionFrame(sessionId, Frame.FIRST_ID));
 
         // seg 2 end -> wait n packets + set user lock
-        List<Frame> frameList = new ArrayList<>();
+        List<SessionFrame> frameList = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
             frameList.add(receiveFrame(duration));
-            sendFrame(new Frame(Frame.FIRST_ID + 2 + i));
+            sendFrame(new SessionFrame(sessionId, Frame.FIRST_ID + 2 + i));
         }
 
         SocketMessage msg;
         try {
-            msg = serDesService.deserialize(TransportUtils.joinFrames(frameList));
+            msg = serDesService.deserialize(TransportUtils.joinSessionFrames(frameList));
         } catch (SerDesException e) {
             throw new TransportException("Could not serialize message");
         }

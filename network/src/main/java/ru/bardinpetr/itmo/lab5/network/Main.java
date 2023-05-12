@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 //        SetupJUL.loadProperties(Main.class);
 
+
         IServerTransport<SocketAddress, SocketMessage> server = UDPServerFactory.create(1856);
 
         server.subscribe((sender, message) -> {
@@ -26,7 +27,7 @@ public class Main {
         });
 
 
-        server.run();
+//        server.run();
     }
 }
 /*
