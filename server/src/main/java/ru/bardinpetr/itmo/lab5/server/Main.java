@@ -16,6 +16,7 @@ import ru.bardinpetr.itmo.lab5.server.dao.sync.SynchronizedDAOFactory;
 import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.DBConnector;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.UsersDAO;
+import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.OrganizationsDBDAO;
 import ru.bardinpetr.itmo.lab5.server.db.utils.BasicAuthProvider;
 import ru.bardinpetr.itmo.lab5.server.executor.DBApplication;
 import ru.bardinpetr.itmo.lab5.server.ui.ServerConsoleArgumentsParser;
@@ -27,7 +28,7 @@ public class Main {
         var argParse = new ServerConsoleArgumentsParser(args);
 
         var dbConnector = new DBConnector(
-                "jdbc:postgresql://172.28.21.75:5432/studs",
+                "jdbc:postgresql://localhost:5432/studs",
                 new BasicAuthProvider("s367079", "aKNKcUmScdpvwhYu")
         );
 
@@ -39,6 +40,13 @@ public class Main {
                 log.error("Failed to bootstrap DB");
                 return;
             }
+        }
+
+        try {
+            var orgs = new OrganizationsDBDAO(dbConnector);
+
+        } catch (DBCreateException e) {
+            throw new RuntimeException(e);
         }
 
         var workersDB = new WorkersDAOFactory().createDB();

@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.util.Collection;
 
 /**
@@ -32,7 +33,7 @@ public abstract class BaseDBDAO<V, T> {
         }
     }
 
-    public abstract boolean insert(T data);
+    public abstract V insert(T data);
 
     public abstract boolean update(V id, T newData);
 
@@ -54,4 +55,7 @@ public abstract class BaseDBDAO<V, T> {
             return false;
         }
     }
+}
+
+    public abstract T parseRow(ResultSet rs);
 }
