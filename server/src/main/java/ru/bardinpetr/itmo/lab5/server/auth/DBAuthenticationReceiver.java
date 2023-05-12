@@ -10,18 +10,25 @@ import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserNotFou
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.AuthenticationReceiver;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.Authentication;
 import ru.bardinpetr.itmo.lab5.server.auth.interfaces.IPasswordController;
-import ru.bardinpetr.itmo.lab5.server.auth.interfaces.SQLAuthDAO;
 import ru.bardinpetr.itmo.lab5.server.auth.models.AuthorizationObject;
+import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.UsersDAO;
 
 import java.util.Arrays;
 
 public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse> {
     private final IPasswordController pc = new SHAPasswordController();
-    private SQLAuthDAO sqlController;
+    private final UsersDAO usersDAO;
+
+    public DBAuthenticationReceiver(UsersDAO usersDAO) {
+        this.usersDAO = usersDAO;
+    }
 
     @Override
     public Authentication authorize(DefaultAuthenticationCredentials request) {
-        var authObj = sqlController.getByUserName(request.getUsername());
+        var authObj = usersDAO.selectByUsername(request.getUsername());
+        if (authObj == null) return new Authentication(
+                Authentication.AuthenticationStatus.INVALID
+        );
 
         var hashedPassword = pc.getHash(
                 request.getPassword(),
@@ -29,7 +36,7 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
         );
 
         return new Authentication(
-                (authObj != null && Arrays.equals(authObj.getHashedPassword(), hashedPassword)) ?
+                Arrays.equals(authObj.getHashedPassword(), hashedPassword) ?
                         Authentication.AuthenticationStatus.NORMAL :
                         Authentication.AuthenticationStatus.INVALID,
                 request.getUsername()
@@ -51,11 +58,11 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
     public DefaultLoginResponse register(RegisterCommand command) throws UserExistsException {
         DefaultAuthenticationCredentials creds = command.getCredentials();
 
-        if (sqlController.checkUser(creds.getUsername()))
+        if (usersDAO.selectByUsername(creds.getUsername()) != null)
             throw new UserExistsException();
 
 
-        sqlController.insert(
+        usersDAO.insert(
                 new AuthorizationObject(
                         creds.getUsername(),
                         creds.getPassword()

@@ -15,10 +15,6 @@ public class WorkersDBDAO extends BaseDBDAO<Integer, WorkerDTO> {
         super(connector, "worker");
     }
 
-    @Override
-    public boolean createTable() {
-        return true;
-    }
 
     @Override
     public boolean insert(WorkerDTO data) {

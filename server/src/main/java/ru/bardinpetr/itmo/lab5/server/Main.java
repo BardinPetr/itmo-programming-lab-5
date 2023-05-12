@@ -13,7 +13,9 @@ import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerFactory;
 import ru.bardinpetr.itmo.lab5.server.app.WorkersDAOFactory;
 import ru.bardinpetr.itmo.lab5.server.auth.DBAuthenticationReceiver;
 import ru.bardinpetr.itmo.lab5.server.dao.sync.SynchronizedDAOFactory;
+import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.DBConnector;
+import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.UsersDAO;
 import ru.bardinpetr.itmo.lab5.server.db.utils.BasicAuthProvider;
 import ru.bardinpetr.itmo.lab5.server.executor.DBApplication;
 import ru.bardinpetr.itmo.lab5.server.ui.ServerConsoleArgumentsParser;
@@ -25,7 +27,7 @@ public class Main {
         var argParse = new ServerConsoleArgumentsParser(args);
 
         var dbConnector = new DBConnector(
-                "jdbc:postgresql://localhost:5432/studs",
+                "jdbc:postgresql://172.28.21.75:5432/studs",
                 new BasicAuthProvider("s367079", "aKNKcUmScdpvwhYu")
         );
 
@@ -40,10 +42,19 @@ public class Main {
         }
 
         var workersDB = new WorkersDAOFactory().createDB();
+
+        UsersDAO usersDB = null;
+        try {
+            usersDB = new UsersDAO(dbConnector);
+        } catch (DBCreateException e) {
+            log.error("Failed to bootstrap DB", e);
+            System.exit(-1);
+        }
+
         var syncDB = SynchronizedDAOFactory.wrap(workersDB);
         var dbApplication = new DBApplication(syncDB);
 
-        var authReceiver = new DBAuthenticationReceiver();
+        var authReceiver = new DBAuthenticationReceiver(usersDB);
 
         var transport = UDPServerFactory.create(argParse.getPort());
 

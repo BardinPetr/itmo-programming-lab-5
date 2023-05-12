@@ -1,15 +1,18 @@
 package ru.bardinpetr.itmo.lab5.server.db.postgres;
 
+import lombok.extern.slf4j.Slf4j;
 import org.postgresql.ds.PGSimpleDataSource;
 import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Collection;
 
 /**
  * @param <V> primary key type
  * @param <T> row DTO type
  */
+@Slf4j
 public abstract class BaseDBDAO<V, T> {
 
     protected final String tableName;
@@ -29,8 +32,6 @@ public abstract class BaseDBDAO<V, T> {
         }
     }
 
-    public abstract boolean createTable();
-
     public abstract boolean insert(T data);
 
     public abstract boolean update(V id, T newData);
@@ -40,4 +41,17 @@ public abstract class BaseDBDAO<V, T> {
     public abstract T select(V id);
 
     public abstract boolean delete(V id);
+
+    public boolean drop() {
+        try {
+            connection.createStatement().execute("""
+                    DROP TABLE IF EXISTS %s CASCADE;
+                    """.formatted(tableName));
+
+            return true;
+        } catch (SQLException e) {
+            log.error("Can't drop", e);
+            return false;
+        }
+    }
 }
