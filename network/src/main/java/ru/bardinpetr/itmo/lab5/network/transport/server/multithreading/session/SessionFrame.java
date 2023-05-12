@@ -9,9 +9,9 @@ import java.nio.channels.ReadableByteChannel;
 
 @Getter
 public class SessionFrame extends Frame {
+    public static int MAX_SIZE = 1024;
     public static int HEADER_SIZE = (Long.SIZE + Integer.SIZE + Integer.SIZE) / 8;
-    public static int PAYLOAD_SIZE = 1024 - HEADER_SIZE;
-    public static int MAX_SIZE = HEADER_SIZE + PAYLOAD_SIZE;
+    public static int PAYLOAD_SIZE = MAX_SIZE - HEADER_SIZE;
     private final int sessionId;
 
     public SessionFrame(int sessionId, long id, byte[] data) {
