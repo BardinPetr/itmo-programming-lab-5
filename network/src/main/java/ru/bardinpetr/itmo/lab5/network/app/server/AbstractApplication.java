@@ -115,6 +115,7 @@ public abstract class AbstractApplication implements IRequestFilter {
         try {
             app.accept(req);
         } catch (Throwable ex) {
+            log.error("Execution error: ", ex);
             req
                     .response()
                     .status(APIResponseStatus.SERVER_ERROR)
