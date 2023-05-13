@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.server.db.dto;
 
 import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Position;
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
 public record WorkerDTO(
@@ -16,6 +17,12 @@ public record WorkerDTO(
         Coordinates coordinates,
         Position position
 ) implements IKeyedEntity<Integer> {
+    public WorkerDTO(Worker original) {
+        this(original.getId(), original.getOwner(), original.getOrganization().getId(),
+                original.getCreationDate(), original.getStartDate(), original.getEndDate(),
+                original.getName(), original.getSalary(), original.getCoordinates(), original.getPosition());
+    }
+
     @Override
     public Integer getPrimaryKey() {
         return id;

@@ -25,7 +25,7 @@ public interface ICollectionWriteDAO<K, V extends IKeyedEntity<K>> {
      * @param id           entity id to update
      * @param updateWorker new data
      */
-    void update(K id, V updateWorker);
+    boolean update(K id, V updateWorker);
 
     /**
      * Remove entity by id

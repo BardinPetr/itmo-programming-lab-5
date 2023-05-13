@@ -13,6 +13,10 @@ import java.util.Comparator;
 @AllArgsConstructor
 public class Organization implements Comparable<Organization> {
     @NonNull
+    @InteractText("Enter org id")
+    Integer id;
+
+    @NonNull
     @InteractText("Enter an organization name")
     @FieldValidator(OrganizationValidator.class)
     String fullName;

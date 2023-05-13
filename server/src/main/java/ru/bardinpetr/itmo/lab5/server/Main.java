@@ -32,26 +32,10 @@ public class Main {
                 )
         );
 
-        tableProvider.getOrganizations();
-
-    }
-
-    public static void main2(String[] args) {
-        SetupJUL.loadProperties(Main.class);
-        var consoleArgs = new ServerConsoleArgumentsParser(args);
-
-        var tableProvider = new DBTableProvider(
-                new PGDBConnector(
-                        consoleArgs.getDatabaseUrl(),
-                        new BasicAuthProvider(consoleArgs.getUsername(), consoleArgs.getPassword())
-                )
-        );
-
         // drop tables and recreate db
         if (consoleArgs.doBootstrap()) tableProvider.bootstrap();
 
-
-        var workersDB = new WorkersDAOFactory().createDB();
+        var workersDB = new WorkersDAOFactory(tableProvider).createDB();
         var syncDB = SynchronizedDAOFactory.wrap(workersDB);
         var dbApplication = new DBApplication(syncDB);
 

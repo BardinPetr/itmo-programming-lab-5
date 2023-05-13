@@ -15,10 +15,6 @@ public class PGWorkerStorageBackend implements DBStorageBackend<WorkerCollection
     }
 
     @Override
-    public void storeCollection(WorkerCollection data) {//later
-    }
-
-    @Override
     public WorkerCollection loadCollection() {
         WorkerCollection collection = new WorkerCollection();
         var t = tableProvider.getWorkers().select();
@@ -34,15 +30,15 @@ public class PGWorkerStorageBackend implements DBStorageBackend<WorkerCollection
                     worker.endDate(),
                     worker.coordinates(),
                     new Organization(
+                            org.id(),
                             org.fullName(),
                             org.type()
                     ),
                     worker.position()
             ));
-            return collection;
         }
 
-        return null;
+        return collection;
     }
 
     @Override
@@ -56,7 +52,7 @@ public class PGWorkerStorageBackend implements DBStorageBackend<WorkerCollection
         return new CollectionInfo(
                 null,
                 null,
-                tableProvider.getOrganizations().,
+                null,
                 null
         );
     }

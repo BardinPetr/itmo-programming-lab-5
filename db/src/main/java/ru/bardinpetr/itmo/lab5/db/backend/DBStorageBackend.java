@@ -4,7 +4,8 @@ import ru.bardinpetr.itmo.lab5.db.errors.DBBackendIOException;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 
 public interface DBStorageBackend<T> {
-    void storeCollection(T data) throws DBBackendIOException;
+    default void storeCollection(T data) throws DBBackendIOException {
+    }
 
     T loadCollection() throws DBBackendIOException;
 

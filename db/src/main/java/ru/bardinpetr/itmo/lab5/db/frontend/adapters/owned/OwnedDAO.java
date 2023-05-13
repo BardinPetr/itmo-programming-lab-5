@@ -85,7 +85,7 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
      * @param updateWorker new data
      */
     @Override
-    public void update(K id, V updateWorker) {
+    public boolean update(K id, V updateWorker) {
         throw new NotOwnedException("unauthorized");
     }
 
