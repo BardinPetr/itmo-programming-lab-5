@@ -34,7 +34,7 @@ public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
         if (data.endDate() != null)
             s.setDate(6, Date.valueOf(data.endDate()));
         else
-            s.setDate(6, null);
+            s.setNull(6, Types.DATE);
 
         s.setString(7, "(%s, %s)".formatted(data.coordinates().getX(), data.coordinates().getY()));
 

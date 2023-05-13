@@ -106,10 +106,14 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
             return null;
 
         var newWorker = worker.withId(res);
-        var org = backend.getTableProvider().getOrganizations().select(worker.getOrganization().getId());
-        newWorker.setOrganization(
-                new Organization(org.id(), org.fullName(), org.type())
-        );
+        OrganizationDTO org = null;
+        if (worker.getOrganization() != null) {
+            org = backend.getTableProvider().getOrganizations().select(worker.getOrganization().getId());
+
+            newWorker.setOrganization(
+                    new Organization(org.id(), org.fullName(), org.type())
+            );
+        } else newWorker.setOrganization(null);
         collection.add(newWorker);
 
         return res;
