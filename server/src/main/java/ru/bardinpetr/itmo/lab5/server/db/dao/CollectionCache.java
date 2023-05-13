@@ -1,13 +1,15 @@
 package ru.bardinpetr.itmo.lab5.server.db.dao;
 
-import ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO;
+import ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionReadDAO;
+import ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionWriteDAO;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
+import ru.bardinpetr.itmo.lab5.server.db.dto.WorkerDTO;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-public class CollectionCache implements ICollectionDAO<Integer, Worker> {
+public class CollectionCache implements ICollectionReadDAO<Integer, Worker>, ICollectionWriteDAO<Integer, WorkerDTO> {
 
     private final DBTableProvider tableProvider;
 
@@ -56,12 +58,12 @@ public class CollectionCache implements ICollectionDAO<Integer, Worker> {
     }
 
     @Override
-    public Integer add(Worker worker) {
+    public Integer add(WorkerDTO worker) {
         return null;
     }
 
     @Override
-    public void update(Integer id, Worker updateWorker) {
+    public void update(Integer id, WorkerDTO updateWorker) {
 
     }
 

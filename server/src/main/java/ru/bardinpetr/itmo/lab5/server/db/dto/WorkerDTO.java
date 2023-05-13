@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.server.db.dto;
 
 import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Position;
+import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
 public record WorkerDTO(
         Integer id,
@@ -14,5 +15,9 @@ public record WorkerDTO(
         Float salary,
         Coordinates coordinates,
         Position position
-) {
+) implements IKeyedEntity<Integer> {
+    @Override
+    public Integer getPrimaryKey() {
+        return id;
+    }
 }
