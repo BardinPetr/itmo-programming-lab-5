@@ -11,7 +11,10 @@ import ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.S
 import ru.bardinpetr.itmo.lab5.network.utils.TransportUtils;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketAddress;
+import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -40,6 +43,10 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
 
         socket = tmp;
         serverAddress = socketAddress;
+
+        connect();
+
+        disconnect();
     }
 
     /**
@@ -67,8 +74,8 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
     private void connect() throws TransportException {
         try {
             socket.connect(serverAddress);
-        } catch (SocketException socketException) {
-            throw new TransportException();
+        } catch (Exception ignored) {
+            throw new TransportException(ignored);
         }
     }
 
