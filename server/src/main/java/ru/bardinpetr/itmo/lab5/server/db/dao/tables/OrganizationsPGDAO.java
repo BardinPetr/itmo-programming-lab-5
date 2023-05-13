@@ -15,6 +15,12 @@ import java.sql.SQLException;
 public class OrganizationsPGDAO extends BasePGDAO<Integer, OrganizationDTO> {
     public OrganizationsPGDAO(PGDBConnector connector) throws DBCreateException {
         super(connector, "organization");
+
+        try {
+            System.out.println(connection.getMetaData().getTimeDateFunctions());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Authentication {
     private AuthenticationStatus status = AuthenticationStatus.GUEST;
-    private String userHandle = null;
+    private Integer userHandle = null;
 
     public Authentication(AuthenticationStatus status) {
         this.status = status;

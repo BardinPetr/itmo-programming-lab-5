@@ -15,9 +15,11 @@
         <module name="clientAdmin.itmo-programming-lab-5.client.clientAdmin.main" />
         <module name="clientMain.itmo-programming-lab-5.client.clientMain.main" />
         <module name="ru.bardinpetr.itmo.lab5.models.itmo-programming-lab-5.models.main" />
+        <module name="itmo-programming-lab-5.db.main" />
         <module name="itmo-programming-lab-5.network.test" />
         <module name="ru.bardinpetr.itmo.lab5.client.itmo-programming-lab-5.client.main" />
         <module name="ru.bardinpetr.itmo.lab5.common.itmo-programming-lab-5.common.main" />
+        <module name="itmo-programming-lab-5.db.test" />
         <module name="ru.bardinpetr.itmo.lab5.server.itmo-programming-lab-5.server.main" />
         <module name="ru.bardinpetr.itmo.lab5.server.itmo-programming-lab-5.server.test" />
         <module name="itmo-programming-lab-5.client.clientAdmin.test" />

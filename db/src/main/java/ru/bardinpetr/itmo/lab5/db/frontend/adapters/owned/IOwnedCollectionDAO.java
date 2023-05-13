@@ -15,19 +15,19 @@ public interface IOwnedCollectionDAO<K, V extends IKeyedEntity<K> & IOwnedEntity
      *
      * @return primary key assigned
      */
-    K add(String user, V obj);
+    K add(Integer user, V obj);
 
     /**
      * Updates object only if it was created by the same user
      *
      * @throws NotOwnedException if user doesn't own object
      */
-    void update(String user, K id, V obj);
+    void update(Integer user, K id, V obj);
 
     /**
      * Removes object only if it was created by the same user
      *
      * @throws NotOwnedException if user doesn't own object
      */
-    boolean remove(String user, K id);
+    boolean remove(Integer user, K id);
 }

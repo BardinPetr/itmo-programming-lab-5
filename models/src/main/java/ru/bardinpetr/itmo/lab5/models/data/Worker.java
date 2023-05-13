@@ -34,7 +34,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer>, IOwned
 
     @With
     @NotPromptRequired
-    private String owner;
+    private Integer owner;
 
     @NonNull
     @InteractText("Enter a name")
@@ -154,12 +154,12 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer>, IOwned
     }
 
     @Override
-    public String getOwner() {
+    public Integer getOwner() {
         return owner;
     }
 
     @Override
-    public boolean setOwner(String owner) {
+    public boolean setOwner(Integer owner) {
         if (this.owner != null) {
             return false;
         } else {

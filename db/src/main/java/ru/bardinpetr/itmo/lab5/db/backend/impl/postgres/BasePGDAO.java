@@ -28,6 +28,7 @@ public abstract class BasePGDAO<V, T> {
         this.connector = connector;
         this.tableName = tableName;
 
+
         try {
             this.datasource = connector.getDataSource();
             this.connection = datasource.getConnection();

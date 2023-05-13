@@ -40,7 +40,7 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
                 Arrays.equals(authObj.getHashedPassword(), hashedPassword) ?
                         Authentication.AuthenticationStatus.NORMAL :
                         Authentication.AuthenticationStatus.INVALID,
-                request.getUsername()
+                authObj.getId()
         );
     }
 

@@ -22,7 +22,7 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
         this.decoratee = decoratee;
     }
 
-    private boolean checkNotOwned(String user, K id) {
+    private boolean checkNotOwned(Integer user, K id) {
         var obj = decoratee.read(id);
         if (obj == null || user == null)
             return true;
@@ -34,7 +34,7 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
      *
      * @return primary key assigned
      */
-    public K add(String user, V obj) {
+    public K add(Integer user, V obj) {
         obj.setOwner(user);
         return decoratee.add(obj);
     }
@@ -44,9 +44,9 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
      *
      * @throws NotOwnedException if user doesn't own object
      */
-    public void update(String user, K id, V obj) {
+    public void update(Integer user, K id, V obj) {
         if (checkNotOwned(user, id))
-            throw new NotOwnedException(user);
+            throw new NotOwnedException(String.valueOf(user));
 
         obj.setOwner(user);
         decoratee.update(id, obj);
@@ -57,9 +57,9 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
      *
      * @throws NotOwnedException if user doesn't own object
      */
-    public boolean remove(String user, K id) {
+    public boolean remove(Integer user, K id) {
         if (checkNotOwned(user, id))
-            throw new NotOwnedException(user);
+            throw new NotOwnedException(String.valueOf(user));
 
         return decoratee.remove(id);
     }

@@ -32,6 +32,21 @@ public class Main {
                 )
         );
 
+        tableProvider.getOrganizations();
+
+    }
+
+    public static void main2(String[] args) {
+        SetupJUL.loadProperties(Main.class);
+        var consoleArgs = new ServerConsoleArgumentsParser(args);
+
+        var tableProvider = new DBTableProvider(
+                new PGDBConnector(
+                        consoleArgs.getDatabaseUrl(),
+                        new BasicAuthProvider(consoleArgs.getUsername(), consoleArgs.getPassword())
+                )
+        );
+
         // drop tables and recreate db
         if (consoleArgs.doBootstrap()) tableProvider.bootstrap();
 

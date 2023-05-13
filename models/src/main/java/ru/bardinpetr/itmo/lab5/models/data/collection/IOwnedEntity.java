@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.models.data.collection;
 
 public interface IOwnedEntity {
-    String getOwner();
+    Integer getOwner();
 
-    boolean setOwner(String owner);
+    boolean setOwner(Integer owner);
 }
