@@ -41,7 +41,7 @@ public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
         if (data.position() != null)
             s.setString(8, data.position().name());
         else
-            s.setNull(8, Types.INTEGER);
+            s.setNull(8, Types.VARCHAR);
     }
 
     @Override
@@ -63,7 +63,6 @@ public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
             log.error("Can't insert into users table", e);
             return null;
         }
-
     }
 
 
