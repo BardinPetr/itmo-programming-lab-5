@@ -12,7 +12,6 @@ import java.util.Comparator;
 @Data
 @AllArgsConstructor
 public class Organization implements Comparable<Organization> {
-    @NonNull
     @InteractText("Enter org id")
     Integer id;
 

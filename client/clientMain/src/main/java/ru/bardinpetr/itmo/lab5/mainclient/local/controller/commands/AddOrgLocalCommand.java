@@ -22,7 +22,7 @@ public class AddOrgLocalCommand extends APIUILocalCommand {
 
     @Override
     public String getExternalName() {
-        return "addorg";
+        return "add_org";
     }
 
     @Override

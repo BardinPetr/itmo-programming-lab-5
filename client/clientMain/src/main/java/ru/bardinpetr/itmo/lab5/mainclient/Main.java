@@ -28,7 +28,6 @@ public class Main {
                 apiCredStorage,
                 baseAPI
         );
-        apiCredStorage.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
 
         var descriptionHolder = new UserAPICommandsDescriptionHolder();
 

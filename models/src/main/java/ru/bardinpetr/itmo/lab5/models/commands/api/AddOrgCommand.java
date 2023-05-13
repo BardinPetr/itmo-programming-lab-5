@@ -19,7 +19,7 @@ public class AddOrgCommand extends UserAPICommand {
 
     @Override
     public String getType() {
-        return "addorg";
+        return "add_org";
     }
 
     @Override

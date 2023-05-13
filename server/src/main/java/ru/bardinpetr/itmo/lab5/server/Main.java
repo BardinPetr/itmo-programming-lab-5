@@ -32,7 +32,6 @@ public class Main {
                 )
         );
 
-        // drop tables and recreate db
         if (consoleArgs.doBootstrap()) tableProvider.bootstrap();
 
         var workersDB = new WorkersDAOFactory(tableProvider).createDB();

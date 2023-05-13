@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.client.api.error.APIUIException;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
+import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetWorkerCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetWorkerIdsCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.UpdateCommand;
@@ -79,6 +80,21 @@ public class UpdateLocalCommand extends APIUILocalCommand {
         if (!currentObjResp.isSuccess())
             throw new RuntimeException("Could not retrieve existing data: " + currentObjResp.getUserMessage());
         var current = ((GetWorkerCommand.GetWorkerCommandResponse) currentObjResp).getWorker();
+
+
+        APICommandResponse accessCheckResp;
+        try {
+            accessCheckResp = apiClientReceiver.call(new GetSelfInfoCommand());
+        } catch (APIClientException e) {
+            throw new APIUIException(e);
+        }
+        if (!accessCheckResp.isSuccess())
+            throw new RuntimeException("Could not retrieve existing data: " + currentObjResp.getUserMessage());
+
+        if (!((GetSelfInfoCommand.GetSelfInfoResponse) accessCheckResp).getId().equals(current.getOwner())) {
+            throw new RuntimeException("Object not owned");
+        }
+
 
         return new UpdateCommand(
                 id,

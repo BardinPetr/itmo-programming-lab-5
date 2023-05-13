@@ -19,7 +19,8 @@ public class MainTexts extends Texts {
                 - info : print information about the collection to standard output (type, initialization date, number of elements, etc.)
                 - show : print to standard output all elements of the collection in string representation
                 - add {element} : add new worker to the collection
-                - addorg {element} : add new organization
+                - add_org {element} : add new organization
+                - get_org : list existing organizations
                 - update id {element} : update the value of the collection element whose id is equal to the given one
                 - remove_by_id id : remove an element from the collection by its id
                 - clear : clear the collection

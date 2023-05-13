@@ -1,10 +1,7 @@
 package ru.bardinpetr.itmo.lab5.server.app.modules.db;
 
 import ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.IOwnedCollectionDAO;
-import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.api.AddIfMaxCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.api.AddIfMinCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.api.AddOrgCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.*;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication;
@@ -22,6 +19,7 @@ public class DBInsertApplication extends AbstractApplication {
         on(AddIfMaxCommand.class, this::addIfMax);
         on(AddIfMinCommand.class, this::addIfMin);
         on(AddOrgCommand.class, this::addOrg);
+        on(GetSelfInfoCommand.class, this::selfInfo);
     }
 
     private void addOrg(AppRequest appRequest) {
@@ -94,5 +92,11 @@ public class DBInsertApplication extends AbstractApplication {
 
         dao.add(extractUser(appRequest), cur);
         resp.sendOk();
+    }
+
+    private void selfInfo(AppRequest request) {
+        var resp = (GetSelfInfoCommand.GetSelfInfoResponse) request.payload().createResponse();
+        resp.setId(extractUser(request));
+        request.response().from(resp).send();
     }
 }
