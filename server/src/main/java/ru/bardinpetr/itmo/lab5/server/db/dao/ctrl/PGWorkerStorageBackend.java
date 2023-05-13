@@ -21,6 +21,14 @@ public class PGWorkerStorageBackend implements DBStorageBackend<WorkerCollection
         var t = tableProvider.getWorkers().select();
         for (var worker : t) {
             var org = tableProvider.getOrganizations().select(worker.organizationId());
+            Organization resOrg = null;
+            if (org != null) {
+                resOrg = new Organization(
+                        org.id(),
+                        org.fullName(),
+                        org.type()
+                );
+            }
             collection.add(new Worker(
                     worker.id(),
                     worker.creationDate(),
@@ -30,11 +38,7 @@ public class PGWorkerStorageBackend implements DBStorageBackend<WorkerCollection
                     worker.startDate(),
                     worker.endDate(),
                     worker.coordinates(),
-                    new Organization(
-                            org.id(),
-                            org.fullName(),
-                            org.type()
-                    ),
+                    resOrg,
                     worker.position()
             ));
         }
