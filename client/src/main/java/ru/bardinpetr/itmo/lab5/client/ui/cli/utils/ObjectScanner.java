@@ -41,12 +41,12 @@ public class ObjectScanner {
      * @param <T>    Type of value
      * @return object if required type
      */
-    private <T> ScannerRespond<T> interactValue(Class<T> kClass, T defaultValue) throws ParserException, RuntimeException {
+    private <T> ScannerRespond<T> interactValue(Class<T> kClass, T defaultValue, List<String> blacklist) throws ParserException, RuntimeException {
         try {
             if (!dataDescription.containsKey(kClass))
                 return new ScannerRespond<>(mapper.convertValue(scan(), kClass), 0);
             else
-                return scan(kClass, defaultValue);
+                return scan(kClass, defaultValue, blacklist);
         } catch (IllegalArgumentException e) {
             throw new ParserException("Invalid argument");
         }
@@ -59,7 +59,7 @@ public class ObjectScanner {
      * @param <T>    class of scanned object
      * @return fulfilled object
      */
-    public <T> ScannerRespond<T> scan(Class<T> kClass, T defaultObject) throws ParserException, NoSuchElementException {
+    public <T> ScannerRespond<T> scan(Class<T> kClass, T defaultObject, List<String> blacklist) throws ParserException, NoSuchElementException {
         var defaultObjectMap = mapper.convertValue(defaultObject, HashMap.class);
 
         Map<String, Object> objectMap = new HashMap<>();
@@ -70,6 +70,7 @@ public class ObjectScanner {
 
         for (int i = 0; i < fields.size(); i++) {
             var cur = fields.get(i);
+            if (blacklist.contains(cur.getName())) continue;
 
             Object curDefaultVar;
             printer.display(cur.getPromptMsg());
@@ -99,7 +100,7 @@ public class ObjectScanner {
                 curDefaultVar = null;
             }
 
-            while (enterField(cur, objectMap, curDefaultVar) == 1) {
+            while (enterField(cur, objectMap, curDefaultVar, blacklist) == 1) {
                 if (!scaner.hasNextLine()) throw new ParserException("Not enough lines in script");
                 countOfRepeat++;
             }
@@ -117,7 +118,10 @@ public class ObjectScanner {
      * @return completed value field
      * @throws ParserException
      */
-    private <T> int enterField(FieldWithDesc<T> cur, Map<String, Object> objectMap, Object curDefaultVar) throws ParserException {
+    private <T> int enterField(FieldWithDesc<T> cur, Map<String, Object> objectMap, Object curDefaultVar, List<String> blacklist) throws ParserException {
+        if (blacklist.contains(cur.getName()))
+            return 0;
+
         printer.display("-> " + cur.getName() + " interaction");
         if (cur.isNullAble()) {
             printer.display("If object does not exist press Enter. To continue interaction enter C");
@@ -140,7 +144,7 @@ public class ObjectScanner {
         Object value = null;
         try {
             var cls = cur.getValueClass();
-            value = interactValue(cls, mapper.convertValue(curDefaultVar, cls)).object;
+            value = interactValue(cls, mapper.convertValue(curDefaultVar, cls), blacklist).object;
         } catch (ParserException ex) {
             printer.display("Invalid argument");
             printer.display(cur.getPromptMsg());

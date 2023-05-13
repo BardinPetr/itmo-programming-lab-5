@@ -1,5 +1,7 @@
 package ru.bardinpetr.itmo.lab5.client.ui.interfaces;
 
+import java.util.List;
+
 /**
  * Interface for communication with UI for entering information
  */
@@ -13,7 +15,7 @@ public interface UIInputReceiver {
      * @return built object
      */
     default <T> T fill(Class<T> target) {
-        return fill(target, null);
+        return fill(target, null, List.of());
     }
 
     /**
@@ -24,7 +26,7 @@ public interface UIInputReceiver {
      * @param <T>           object type
      * @return built object
      */
-    <T> T fill(Class<T> target, T defaultObject);
+    <T> T fill(Class<T> target, T defaultObject, List<String> blacklist);
 
     /**
      * @return true if there is next line to read from stream

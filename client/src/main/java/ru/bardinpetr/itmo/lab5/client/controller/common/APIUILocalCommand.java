@@ -68,9 +68,13 @@ public abstract class APIUILocalCommand extends UILocalCommand {
 
         var objectMap = new HashMap<>(args);
         for (var i : base.getInteractArgs())
-            objectMap.put(i.getName(), uiReceiver.fill(i.getValueClass()));
+            objectMap.put(i.getName(), handleInteractArg(i));
 
         return mapper.convertValue(objectMap, base.getClass());
+    }
+
+    protected <T> T handleInteractArg(Field<T> field) {
+        return uiReceiver.fill(field.getValueClass());
     }
 
     /**

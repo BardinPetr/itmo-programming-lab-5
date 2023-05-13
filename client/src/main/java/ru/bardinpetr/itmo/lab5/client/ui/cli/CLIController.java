@@ -42,9 +42,9 @@ public class CLIController implements UIReceiver {
      * @return built object
      */
     @Override
-    public <T> T fill(Class<T> target, T defaultObject) {
+    public <T> T fill(Class<T> target, T defaultObject, List<String> blacklist) {
         try {
-            var resp = objectScanner.scan(target, defaultObject);
+            var resp = objectScanner.scan(target, defaultObject, blacklist);
             if ((!isRepeatable) & resp.countOfRepeat > 0) throw new NotRepeatableException();
             return resp.getObject();
         } catch (ParserException e) {

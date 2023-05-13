@@ -9,14 +9,13 @@ public class UserAPICommandRegistry extends APICommandRegistry {
 
     public UserAPICommandRegistry() {
         super(List.of(
-                new AddCommand(),
-                new AddOrgCommand(),
                 new AddIfMaxCommand(),
                 new AddIfMinCommand(),
                 new ClearCommand(),
                 new FilterLessPosCommand(),
                 new InfoCommand(),
                 new UniqueOrganisationCommand(),
+                new GetOrgsCommand(),
                 new RemoveByIdCommand(),
                 new RemoveGreaterCommand()
         ));

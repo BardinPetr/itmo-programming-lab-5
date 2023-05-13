@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.db.frontend.dao;
 
+import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
@@ -102,4 +103,6 @@ public interface ICollectionReadDAO<K, V extends IKeyedEntity<K>> {
      * @return primary key could be assigned to new element
      */
     K nextPrimaryKey();
+
+    List<Organization> getOrganizations();
 }

@@ -183,6 +183,11 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
         return decoratee.nextPrimaryKey();
     }
 
+    @Override
+    public List<Organization> getOrganizations() {
+        return decoratee.getOrganizations();
+    }
+
     /**
      * Clear collection
      */

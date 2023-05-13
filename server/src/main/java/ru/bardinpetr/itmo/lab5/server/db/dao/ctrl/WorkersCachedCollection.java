@@ -75,6 +75,17 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
     }
 
     @Override
+    public List<Organization> getOrganizations() {
+        return backend
+                .getTableProvider()
+                .getOrganizations()
+                .select()
+                .stream()
+                .map(i -> new Organization(i.id(), i.fullName(), i.type()))
+                .toList();
+    }
+
+    @Override
     public void clear() {
         collection.clear();
         backend.clearCollection();

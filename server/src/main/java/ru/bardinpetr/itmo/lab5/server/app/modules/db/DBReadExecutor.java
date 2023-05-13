@@ -46,6 +46,14 @@ public class DBReadExecutor extends Executor {
                     return resp;
                 });
 
+        registerOperation(
+                GetOrgsCommand.class,
+                req -> {
+                    var resp = req.createResponse();
+                    resp.setOrganizations(dao.getOrganizations());
+                    return resp;
+                });
+
         registerOperation(UniqueOrganisationCommand.class, this::uniqueOrgs);
         registerOperation(FilterLessPosCommand.class, this::filterLess);
     }
