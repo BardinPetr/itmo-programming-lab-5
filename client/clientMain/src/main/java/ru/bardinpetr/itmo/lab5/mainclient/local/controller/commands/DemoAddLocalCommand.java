@@ -4,7 +4,9 @@ import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.commands.APICommandRegistry;
 import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
+import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.AddOrgCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 import ru.bardinpetr.itmo.lab5.models.data.*;
@@ -22,10 +24,6 @@ import java.util.Random;
  */
 public class DemoAddLocalCommand extends APIUILocalCommand {
 
-    private static final int id = 0;
-    private static final int x = 10;
-    private static final int y = 10;
-    private static final int salary = 10;
     private final Random rng;
 
     public DemoAddLocalCommand(APIClientConnector api, UIReceiver ui, APICommandRegistry registry) {
@@ -52,6 +50,13 @@ public class DemoAddLocalCommand extends APIUILocalCommand {
      */
     @Override
     protected APICommand prepareAPIMessage(String name, Map<String, Object> args) {
+        AddOrgCommand.AddOrgCommandResponse res;
+        try {
+            res = (AddOrgCommand.AddOrgCommandResponse) apiClientReceiver.call(new AddOrgCommand(new Organization(-1, randomString(5), OrganizationType.PUBLIC)));
+        } catch (APIClientException e) {
+            throw new RuntimeException(e);
+        }
+
         return new AddCommand(
                 new Worker(
                         -1,
@@ -66,9 +71,9 @@ public class DemoAddLocalCommand extends APIUILocalCommand {
                                 rng.nextFloat(0, 100)
                         ),
                         new Organization(
-                                1,
-                                randomString(1),
-                                OrganizationType.PUBLIC
+                                res.getId(),
+                                null,
+                                null
                         ),
                         Position.values()[rng.nextInt(0, Position.values().length - 1)]
                 )

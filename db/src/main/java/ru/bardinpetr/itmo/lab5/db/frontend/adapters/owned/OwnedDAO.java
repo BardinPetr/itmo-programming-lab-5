@@ -65,6 +65,28 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
         return decoratee.remove(id);
     }
 
+    /**
+     * Removes all objects owned by a user
+     *
+     * @throws NotOwnedException if user doesn't own object
+     */
+    public boolean clear(Integer user) {
+        decoratee
+                .asStream()
+                .filter(i -> i.getOwner().equals(user))
+                .map(IKeyedEntity::getPrimaryKey)
+                .toList()
+                .forEach(decoratee::remove);
+        return true;
+    }
+
+    /**
+     * Clear collection
+     */
+    @Override
+    public void clear() {
+        throw new NotOwnedException("unauthorized");
+    }
 
     /**
      * Insert element into collection.
@@ -186,14 +208,6 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
     @Override
     public List<Organization> getOrganizations() {
         return decoratee.getOrganizations();
-    }
-
-    /**
-     * Clear collection
-     */
-    @Override
-    public void clear() {
-        decoratee.clear();
     }
 
     @Override

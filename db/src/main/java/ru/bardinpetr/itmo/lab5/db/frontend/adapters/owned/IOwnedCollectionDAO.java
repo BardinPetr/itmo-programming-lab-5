@@ -30,4 +30,9 @@ public interface IOwnedCollectionDAO<K, V extends IKeyedEntity<K> & IOwnedEntity
      * @throws NotOwnedException if user doesn't own object
      */
     boolean remove(Integer user, K id);
+
+    /**
+     * Removes all objects owned by a user
+     */
+    boolean clear(Integer user);
 }
