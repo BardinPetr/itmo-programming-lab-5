@@ -6,6 +6,10 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.server.db.dao.DBTableProvider;
+import ru.bardinpetr.itmo.lab5.server.db.dto.WorkerDTO;
+
+import java.time.ZonedDateTime;
+import java.time.chrono.ChronoZonedDateTime;
 
 public class PGWorkerStorageBackend implements DBStorageBackend<WorkerCollection> {
 
@@ -54,10 +58,11 @@ public class PGWorkerStorageBackend implements DBStorageBackend<WorkerCollection
 
     @Override
     public CollectionInfo getInfo() {
+        var x = getTableProvider().getWorkers().select().stream().map(WorkerDTO::creationDate).min(ChronoZonedDateTime::compareTo);
         return new CollectionInfo(
                 null,
                 null,
-                null,
+                x.orElseGet(ZonedDateTime::now),
                 null
         );
     }

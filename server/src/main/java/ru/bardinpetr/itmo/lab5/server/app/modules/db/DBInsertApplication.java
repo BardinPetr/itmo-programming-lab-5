@@ -38,6 +38,10 @@ public class DBInsertApplication extends AbstractApplication {
         AddCommand req = (AddCommand) appRequest.payload();
         var resp = req.createResponse();
         var pk = dao.add(extractUser(appRequest), req.element);
+        if (pk == null) {
+            appRequest.response().sendErr("Couldn't add");
+            return;
+        }
         resp.setId(pk);
         appRequest.response().from(resp).send();
     }

@@ -27,7 +27,8 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
                 WorkerCollection.class.getSimpleName(),
                 Worker.class.getName(),
                 backend.getInfo().getInitializationDate(),
-                collection.size());
+                collection.size()
+        );
     }
 
     @Override
