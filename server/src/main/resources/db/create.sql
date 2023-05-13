@@ -1,12 +1,13 @@
 DROP TYPE IF EXISTS organization_type CASCADE;
 
 DROP TABLE IF EXISTS users CASCADE;
-CREATE TABLE users(
-        ID int generated always as identity PRIMARY KEY,
-        LOGIN varchar(50) UNIQUE NOT NULL,
-        PASSWORD bytea NOT NULL,
-        SALT varchar(10) NOT NULL
-    );
+CREATE TABLE users
+(
+    ID       int generated always as identity PRIMARY KEY,
+    LOGIN    varchar(50) UNIQUE NOT NULL,
+    PASSWORD bytea              NOT NULL,
+    SALT     varchar(10)        NOT NULL
+);
 
 CREATE TYPE organization_type AS ENUM (
     'COMMERCIAL',

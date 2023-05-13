@@ -21,8 +21,8 @@ import java.util.concurrent.ForkJoinPool;
 public class SessionFrameRouter implements IServerTransport<SocketAddress, SocketMessage> {
     public final Map<Integer, Session> clientPipeMap = new ConcurrentHashMap<>();
     private final DatagramChannel channel;
-    private IMessageHandler<SocketAddress, SocketMessage> handler;
     private final ForkJoinPool forkJoinPool = new ForkJoinPool();
+    private IMessageHandler<SocketAddress, SocketMessage> handler;
 
     public SessionFrameRouter(DatagramChannel channel) {
         this.channel = channel;

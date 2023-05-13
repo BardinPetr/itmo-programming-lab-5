@@ -20,6 +20,7 @@ dependencies {
     implementation(project(":models"))
     implementation(project(":common"))
     implementation(project(":network"))
+    implementation(project(":db"))
 
     implementation("org.postgresql:postgresql:42.6.0")
     implementation("commons-cli:commons-cli:1.5.0")

@@ -19,8 +19,8 @@ import java.util.List;
 public class ScriptExecutor {
     private final ScriptRecursionController recursionController;
     private final UICommandInvoker invoker;
-    private CommandRegistry commandRegistry = null;
     private final APICommandsDescriptionHolder descriptionHolder;
+    private CommandRegistry commandRegistry = null;
 
     public ScriptExecutor(APICommandsDescriptionHolder descriptionHolder, UICommandInvoker invoker) {
         this.descriptionHolder = descriptionHolder;

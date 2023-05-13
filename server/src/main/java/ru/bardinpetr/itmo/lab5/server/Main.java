@@ -2,6 +2,12 @@ package ru.bardinpetr.itmo.lab5.server;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.log.SetupJUL;
+import ru.bardinpetr.itmo.lab5.db.auth.BasicAuthProvider;
+import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector;
+import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PostgresStorageBackend;
+import ru.bardinpetr.itmo.lab5.db.frontend.adapters.sync.SynchronizedDAOFactory;
+import ru.bardinpetr.itmo.lab5.db.frontend.controllers.cached.CachedCollectionController;
+import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.network.app.server.handlers.impl.AuthenticatedFilter;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.AuthenticationApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.DefaultAPICommandAuthenticator;
@@ -10,68 +16,50 @@ import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.FilteredApplicati
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPInputTransportApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTransportApplication;
 import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerFactory;
-import ru.bardinpetr.itmo.lab5.server.app.WorkersDAOFactory;
-import ru.bardinpetr.itmo.lab5.server.auth.DBAuthenticationReceiver;
-import ru.bardinpetr.itmo.lab5.server.dao.sync.SynchronizedDAOFactory;
-import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
-import ru.bardinpetr.itmo.lab5.server.db.postgres.DBConnector;
-import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.UsersDAO;
-import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.OrganizationsDBDAO;
-import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.WorkersDBDAO;
-import ru.bardinpetr.itmo.lab5.server.db.utils.BasicAuthProvider;
-import ru.bardinpetr.itmo.lab5.server.executor.DBApplication;
-import ru.bardinpetr.itmo.lab5.server.ui.ServerConsoleArgumentsParser;
+import ru.bardinpetr.itmo.lab5.server.app.modules.db.DBApplication;
+import ru.bardinpetr.itmo.lab5.server.app.ui.ServerConsoleArgumentsParser;
+import ru.bardinpetr.itmo.lab5.server.auth.recv.DBAuthenticationReceiver;
+import ru.bardinpetr.itmo.lab5.server.db.dao.DBTableProvider;
+import ru.bardinpetr.itmo.lab5.server.db.factories.WorkersDAOFactory;
+
+import java.util.function.Supplier;
 
 @Slf4j
 public class Main {
     public static void main(String[] args) {
         SetupJUL.loadProperties(Main.class);
-        var argParse = new ServerConsoleArgumentsParser(args);
+        var consoleArgs = new ServerConsoleArgumentsParser(args);
 
-        var dbConnector = new DBConnector(
-                argParse.getDatabaseUrl(),
-                new BasicAuthProvider(argParse.getUsername(), argParse.getPassword())
+        var tableProvider = new DBTableProvider(
+                new PGDBConnector(
+                        consoleArgs.getDatabaseUrl(),
+                        new BasicAuthProvider(consoleArgs.getUsername(), consoleArgs.getPassword())
+                )
         );
 
-        if (argParse.doBootstrap()) {
-            var res = dbConnector.bootstrap(Main.class.getResourceAsStream("/db/create.sql"));
-            if (res) {
-                log.info("DB bootstrapped successfully");
-            } else {
-                log.error("Failed to bootstrap DB");
-                return;
-            }
-        }
+        // drop tables and recreate db
+        if (consoleArgs.doBootstrap()) tableProvider.bootstrap();
 
-        try {
-            var orgs = new OrganizationsDBDAO(dbConnector);
-            var wrks = new WorkersDBDAO(dbConnector);
-            System.out.println(wrks.select());
-        } catch (DBCreateException e) {
-            throw new RuntimeException(e);
-        }
+        var wc = new CachedCollectionController<>(
+                new PostgresStorageBackend<>(tableProvider.getWorkers()),
+                (Supplier<WorkerCollection>) WorkerCollection::new
+        );
 
         var workersDB = new WorkersDAOFactory().createDB();
-
-        UsersDAO usersDB = null;
-        try {
-            usersDB = new UsersDAO(dbConnector);
-        } catch (DBCreateException e) {
-            log.error("Failed to bootstrap DB", e);
-            System.exit(-1);
-        }
-
         var syncDB = SynchronizedDAOFactory.wrap(workersDB);
         var dbApplication = new DBApplication(syncDB);
 
-        var authReceiver = new DBAuthenticationReceiver(usersDB);
+        var authReceiver = new DBAuthenticationReceiver(tableProvider.getUsers());
 
-        var transport = UDPServerFactory.create(argParse.getPort());
+        var udpServer = UDPServerFactory.create(consoleArgs.getPort());
 
-        var mainApp = new UDPInputTransportApplication(transport);
+        var mainApp = new UDPInputTransportApplication(udpServer);
         mainApp
-                .chain(new UDPOutputTransportApplication(transport))
-                .chain(new AuthenticationApplication<>(DefaultAPICommandAuthenticator.getInstance(), authReceiver))
+                .chain(new UDPOutputTransportApplication(udpServer))
+                .chain(new AuthenticationApplication<>(
+                        DefaultAPICommandAuthenticator.getInstance(),
+                        authReceiver)
+                )
                 .chain(new FilteredApplication(
                         dbApplication,
                         AuthenticatedFilter.getInstance()
