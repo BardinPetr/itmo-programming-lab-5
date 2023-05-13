@@ -4,10 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.log.SetupJUL;
 import ru.bardinpetr.itmo.lab5.db.auth.BasicAuthProvider;
 import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector;
-import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PostgresStorageBackend;
 import ru.bardinpetr.itmo.lab5.db.frontend.adapters.sync.SynchronizedDAOFactory;
-import ru.bardinpetr.itmo.lab5.db.frontend.controllers.cached.CachedCollectionController;
-import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
 import ru.bardinpetr.itmo.lab5.network.app.server.handlers.impl.AuthenticatedFilter;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.AuthenticationApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.DefaultAPICommandAuthenticator;
@@ -21,8 +18,6 @@ import ru.bardinpetr.itmo.lab5.server.app.ui.ServerConsoleArgumentsParser;
 import ru.bardinpetr.itmo.lab5.server.auth.recv.DBAuthenticationReceiver;
 import ru.bardinpetr.itmo.lab5.server.db.dao.DBTableProvider;
 import ru.bardinpetr.itmo.lab5.server.db.factories.WorkersDAOFactory;
-
-import java.util.function.Supplier;
 
 @Slf4j
 public class Main {
@@ -40,10 +35,6 @@ public class Main {
         // drop tables and recreate db
         if (consoleArgs.doBootstrap()) tableProvider.bootstrap();
 
-        var wc = new CachedCollectionController<>(
-                new PostgresStorageBackend<>(tableProvider.getWorkers()),
-                (Supplier<WorkerCollection>) WorkerCollection::new
-        );
 
         var workersDB = new WorkersDAOFactory().createDB();
         var syncDB = SynchronizedDAOFactory.wrap(workersDB);

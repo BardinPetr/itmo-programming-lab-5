@@ -120,7 +120,7 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
             var s = st.executeQuery();
 
             if (s.next())
-                return new AuthorizationObject(
+                return new UserDTO(
                         s.getInt("id"),
                         s.getString("login"),
                         s.getBytes("password"),
@@ -144,7 +144,7 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
             st.setInt(1, id);
             var s = st.executeQuery();
             s.next();
-            return new AuthorizationObject(
+            return new UserDTO(
                     s.getInt("id"),
                     s.getString("login"),
                     s.getBytes("password"),
@@ -172,10 +172,10 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
     }
 
     @Override
-    public AuthorizationObject parseRow(ResultSet rs) {
+    public UserDTO parseRow(ResultSet rs) {
         try {
             if (rs.next())
-                return new AuthorizationObject(
+                return new UserDTO(
                         rs.getInt("id"),
                         rs.getString("login"),
                         rs.getBytes("password"),
@@ -187,6 +187,4 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
             return null;
         }
     }
-
-
 }
