@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.BasePGDAO;
 import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector;
 import ru.bardinpetr.itmo.lab5.db.errors.DBCreateException;
+import ru.bardinpetr.itmo.lab5.server.db.dao.exception.OverLimitedUsername;
 import ru.bardinpetr.itmo.lab5.server.db.dto.UserDTO;
 
 import java.sql.ResultSet;
@@ -109,8 +110,11 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
         }
     }
 
-    public UserDTO selectByUsername(String username) {
-        if (username.length() > 50) return null;
+    public UserDTO selectByUsername(String username) throws OverLimitedUsername {
+        if (username.length() > 50) {
+            System.out.println("Username is overloaded");
+            throw new OverLimitedUsername();
+        }
         try {
             var st = connection.prepareStatement("""
                     SELECT * FROM users

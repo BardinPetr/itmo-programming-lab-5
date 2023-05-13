@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.server.auth.recv;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.LoginCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.RegisterCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
@@ -11,11 +12,13 @@ import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.Authen
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.Authentication;
 import ru.bardinpetr.itmo.lab5.server.auth.passwords.IPasswordController;
 import ru.bardinpetr.itmo.lab5.server.auth.passwords.SHAPasswordController;
+import ru.bardinpetr.itmo.lab5.server.db.dao.exception.OverLimitedUsername;
 import ru.bardinpetr.itmo.lab5.server.db.dao.tables.UsersPGDAO;
 import ru.bardinpetr.itmo.lab5.server.db.dto.UserDTO;
 
 import java.util.Arrays;
 
+@Slf4j
 public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse> {
     private final IPasswordController pc = new SHAPasswordController();
     private final UsersPGDAO usersDBDAO;
@@ -26,7 +29,14 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
 
     @Override
     public Authentication authorize(DefaultAuthenticationCredentials request) {
-        var authObj = usersDBDAO.selectByUsername(request.getUsername());
+        UserDTO authObj = null;
+        try {
+            authObj = usersDBDAO.selectByUsername(request.getUsername());
+        } catch (OverLimitedUsername e) {
+            return new Authentication(
+                    Authentication.AuthenticationStatus.INVALID
+            );
+        }
         if (authObj == null) return new Authentication(
                 Authentication.AuthenticationStatus.INVALID
         );
@@ -59,9 +69,12 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
     public DefaultLoginResponse register(RegisterCommand command) throws UserExistsException {
         DefaultAuthenticationCredentials creds = command.getCredentials();
 
-        if (usersDBDAO.selectByUsername(creds.getUsername()) != null)
+        try {
+            if (usersDBDAO.selectByUsername(creds.getUsername()) != null)
+                throw new UserExistsException();
+        } catch (OverLimitedUsername e) {
             throw new UserExistsException();
-
+        }
 
         usersDBDAO.insert(
                 new UserDTO(
