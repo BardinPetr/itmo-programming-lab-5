@@ -8,7 +8,6 @@ import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class DBReadExecutor extends Executor {
     private final ICollectionDAO<Integer, Worker> dao;
@@ -60,11 +59,9 @@ public class DBReadExecutor extends Executor {
 
     private UniqueOrganisationCommand.UniqueOrganisationCommandResponse uniqueOrgs(UniqueOrganisationCommand req) {
         var resp = req.createResponse();
-        var data = new java.util.ArrayList<>(dao.readAll().stream()
-                .map(Worker::getOrganization)
-                .filter(Objects::nonNull).distinct().toList());
-        data.sort(Organization.getComparator());
-        resp.setOrganizations(data);
+        var data = dao.getOrganizations();
+        for (var i : data) i.setId(0);
+        resp.setOrganizations(data.stream().distinct().sorted(Organization.getComparator()).toList());
         return resp;
     }
 
