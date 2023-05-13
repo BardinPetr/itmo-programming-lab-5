@@ -18,7 +18,7 @@ public record WorkerDTO(
         Position position
 ) implements IKeyedEntity<Integer> {
     public WorkerDTO(Worker original) {
-        this(original.getId(), original.getOwner(), original.getOrganization().getId(),
+        this(original.getId(), original.getOwner(), original.getOrganization() == null ? null : original.getOrganization().getId(),
                 original.getCreationDate(), original.getStartDate(), original.getEndDate(),
                 original.getName(), original.getSalary(), original.getCoordinates(), original.getPosition());
     }

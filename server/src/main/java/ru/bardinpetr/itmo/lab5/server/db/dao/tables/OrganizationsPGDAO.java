@@ -10,6 +10,7 @@ import ru.bardinpetr.itmo.lab5.server.db.dto.OrganizationDTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 @Slf4j
 public class OrganizationsPGDAO extends BasePGDAO<Integer, OrganizationDTO> {
@@ -33,8 +34,15 @@ public class OrganizationsPGDAO extends BasePGDAO<Integer, OrganizationDTO> {
     }
 
     private void setPreparedStatement(PreparedStatement s, OrganizationDTO data) throws SQLException {
-        s.setString(1, data.fullName());
-        s.setString(2, data.type().name());
+        if (data.fullName() != null)
+            s.setString(1, data.fullName());
+        else
+            s.setNull(1, Types.VARCHAR);
+
+        if (data.type() != null)
+            s.setString(2, data.type().name());
+        else
+            s.setNull(2, Types.VARCHAR);
     }
 
     @Override

@@ -8,10 +8,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Position;
 import ru.bardinpetr.itmo.lab5.server.db.dto.WorkerDTO;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -24,18 +21,27 @@ public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
 
     private void setPreparedStatement(PreparedStatement s, WorkerDTO data) throws SQLException {
         s.setInt(1, data.ownerId());
-        s.setInt(2, data.organizationId());
+
+        if (data.organizationId() != null)
+            s.setInt(2, data.organizationId());
+        else
+            s.setNull(2, Types.INTEGER);
+
         s.setString(3, data.name());
         s.setFloat(4, data.salary());
         s.setDate(5, new Date(data.startDate().getTime()));
+
         if (data.endDate() != null)
             s.setDate(6, Date.valueOf(data.endDate()));
         else
             s.setDate(6, null);
 
         s.setString(7, "(%s, %s)".formatted(data.coordinates().getX(), data.coordinates().getY()));
-        s.setString(8, data.position().name());
 
+        if (data.position() != null)
+            s.setString(8, data.position().name());
+        else
+            s.setNull(8, Types.INTEGER);
     }
 
     @Override
