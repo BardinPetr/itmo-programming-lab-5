@@ -14,7 +14,6 @@ import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
-import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 import java.util.List;
 import java.util.Map;
@@ -37,11 +36,6 @@ public class UpdateLocalCommand extends APIUILocalCommand {
     @Override
     protected UserAPICommand retrieveAPICommand(String name) {
         return new UpdateCommand();
-    }
-
-    @Override
-    protected <T> T handleInteractArg(Field<T> field) {
-        return uiReceiver.fill(field.getValueClass(), null, List.of("fullName", "type"));
     }
 
     /**
@@ -98,7 +92,7 @@ public class UpdateLocalCommand extends APIUILocalCommand {
 
         return new UpdateCommand(
                 id,
-                uiReceiver.fill(Worker.class, current, List.of())
+                uiReceiver.fill(Worker.class, current, List.of("fullName", "type"))
         );
     }
 }
