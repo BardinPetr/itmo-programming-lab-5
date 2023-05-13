@@ -42,7 +42,7 @@ public abstract class BasePGDAO<V, T> {
 
     public Collection<T> select() {
         try (var rs = connector.getRowSet()) {
-            rs.setCommand("select * from organization");
+            rs.setCommand("select * from %s".formatted(tableName));
             return rowSetStream(rs).map(i -> parseRow(rs)).collect(Collectors.toList());
         } catch (Exception ex) {
             log.error("select failed: ", ex);

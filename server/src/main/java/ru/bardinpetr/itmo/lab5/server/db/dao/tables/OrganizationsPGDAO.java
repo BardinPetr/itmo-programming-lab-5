@@ -7,6 +7,7 @@ import ru.bardinpetr.itmo.lab5.db.errors.DBCreateException;
 import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
 import ru.bardinpetr.itmo.lab5.server.db.dto.OrganizationDTO;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -19,8 +20,7 @@ public class OrganizationsPGDAO extends BasePGDAO<Integer, OrganizationDTO> {
     @Override
     public Integer insert(OrganizationDTO data) {
         try (var stmt = connection.prepareStatement("insert into organization values (default, ?, ?::organization_type) returning id")) {
-            stmt.setString(1, data.fullName());
-            stmt.setString(2, data.type().name());
+            setPreparedStatement(stmt, data);
             var rs = stmt.executeQuery();
             if (!rs.next())
                 return null;
@@ -31,9 +31,31 @@ public class OrganizationsPGDAO extends BasePGDAO<Integer, OrganizationDTO> {
         return null;
     }
 
+    private void setPreparedStatement(PreparedStatement s, OrganizationDTO data) throws SQLException {
+        s.setString(1, data.fullName());
+        s.setString(2, data.type().name());
+    }
+
     @Override
     public boolean update(Integer id, OrganizationDTO newData) {
-        return false;
+        try {
+            var s = connection.prepareStatement(
+                    """
+                            UPDATE organization
+                            SET     fullName= ?,
+                                    type= ?::organization_type
+                            WHERE id = ?;
+                            """
+            );
+            setPreparedStatement(s, newData);
+            s.setInt(3, id);
+            return s.executeUpdate() > 0;
+        } catch (SQLException e) {
+            log.error("Can't insert into users table", e);
+            return false;
+        }
+
+
     }
 
     @Override

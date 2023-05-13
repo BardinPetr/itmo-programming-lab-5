@@ -1,54 +1,48 @@
 package ru.bardinpetr.itmo.lab5.server.auth;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.bardinpetr.itmo.lab5.db.auth.BasicAuthProvider;
-import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector;
-import ru.bardinpetr.itmo.lab5.db.errors.DBCreateException;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.RegisterCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserExistsException;
-import ru.bardinpetr.itmo.lab5.server.auth.recv.DBAuthenticationReceiver;
-import ru.bardinpetr.itmo.lab5.server.db.dao.tables.UsersPGDAO;
+import ru.bardinpetr.itmo.lab5.server.db.postgres.tables.UsersDAO;
 
 import java.util.Arrays;
 
 @Slf4j
-public class Test {
+public class Main {
     public static void main(String[] args) {
-        var dbConnector = new PGDBConnector(
-                "jdbc:postgresql://172.28.21.75:5432/studs",
-                new BasicAuthProvider("s367079", "aKNKcUmScdpvwhYu")
-        );
+//        var dbConnector = new DBConnector(
+//                "jdbc:postgresql://172.28.21.75:5432/studs",
+//                new BasicAuthProvider("s367079", "aKNKcUmScdpvwhYu")
+//        );
+//
+//        UsersDAO usersDB = null;
+//        try {
+//            usersDB = new UsersDAO(dbConnector);
+//        } catch (DBCreateException e) {
+//            log.error("Failed to bootstrap DB", e);
+//            System.exit(-1);
+//        }
+//        usersDB.drop();
+//
+//
+//
+//        var ch = new DBAuthenticationReceiver(usersDB);
+//        try {
+//            RegisterCommand t = new RegisterCommand();
+//            t.setCredentials(new DefaultAuthenticationCredentials("Artem".repeat(12121), "12"));
+//            System.out.println(ch.register(t));
+//
+//            t.setCredentials(new DefaultAuthenticationCredentials("Artem2", "34"));
+//            ch.register(t);
+//        } catch (UserExistsException e) {
+//            throw new RuntimeException(e);
+//        }
+//        showDB(usersDB);
+//        System.out.println(ch.authorize(new DefaultAuthenticationCredentials("Artem".repeat(1), "12".repeat(1))));
+//        System.out.println(ch.authorize(new DefaultAuthenticationCredentials("Artem", "122")));
+//        showDB(usersDB);
 
-        UsersPGDAO usersDB = null;
-        try {
-            usersDB = new UsersPGDAO(dbConnector);
-        } catch (DBCreateException e) {
-            log.error("Failed to bootstrap DB", e);
-            System.exit(-1);
-        }
-        usersDB.drop();
-
-        usersDB.createTable();
-
-        var ch = new DBAuthenticationReceiver(usersDB);
-        try {
-            RegisterCommand t = new RegisterCommand();
-            t.setCredentials(new DefaultAuthenticationCredentials("Artem".repeat(12121), "12"));
-            System.out.println(ch.register(t));
-
-            t.setCredentials(new DefaultAuthenticationCredentials("Artem2", "34"));
-            ch.register(t);
-        } catch (UserExistsException e) {
-            throw new RuntimeException(e);
-        }
-        showDB(usersDB);
-        System.out.println(ch.authorize(new DefaultAuthenticationCredentials("Artem".repeat(1), "12".repeat(1))));
-        System.out.println(ch.authorize(new DefaultAuthenticationCredentials("Artem", "122")));
-        showDB(usersDB);
     }
 
-    private static void showDB(UsersPGDAO usersDB) {
+    private static void showDB(UsersDAO usersDB) {
         var t = usersDB.select();
         System.out.println("id\tlogin\tpassword\tsalt");
         for (var i : t) {

@@ -18,25 +18,25 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
         super(connector, "users");
     }
 
-    public boolean createTable() {
-        try {
-            var t = connection.prepareStatement(
-                    """
-                            CREATE TABLE users
-                            (
-                                ID int generated always as identity PRIMARY KEY,
-                                LOGIN varchar(50) UNIQUE NOT NULL,
-                                PASSWORD bytea NOT NULL,
-                                SALT varchar(10) NOT NULL
-                            );
-                            """
-            );
-            return t.executeUpdate() > 0;
-        } catch (SQLException e) {
-            log.error("Can't create users table", e);
-            return false;
-        }
-    }
+//    public boolean createTable() {
+//        try {
+//            var t = connection.prepareStatement(
+//                    """
+//                            CREATE TABLE users
+//                            (
+//                                id int generated always as identity PRIMARY KEY,
+//                                login varchar(50) UNIQUE NOT NULL,
+//                                password bytea NOT NULL,
+//                                salt varchar(10) NOT NULL
+//                            );
+//                            """
+//            );
+//            return t.executeUpdate() > 0;
+//        } catch (SQLException e) {
+//            log.error("Can't create users table", e);
+//            return false;
+//        }
+//    }
 
     @Override
     public Integer insert(UserDTO data) {
@@ -44,15 +44,18 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
         try {
             var s = connection.prepareStatement(
                     """
-                            INSERT INTO users(LOGIN, PASSWORD, SALT)
+                            INSERT INTO users(login, password, salt)
                             VALUES
-                            	(?, ?, ?);
+                            	(?, ?, ?) returning id
                             """
             );
             s.setString(1, data.getUsername());
             s.setBytes(2, data.getHashedPassword());
             s.setString(3, data.getSalt());
-            return s.executeUpdate();
+            var rs = s.executeQuery();
+            if (!rs.next())
+                return null;
+            return rs.getInt("id");
         } catch (SQLException e) {
             log.error("Can't insert into users table", e);
             return null;
@@ -66,10 +69,10 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
             var s = connection.prepareStatement(
                     """
                             UPDATE users
-                            SET LOGIN = ?,
-                                PASSWORD= ?,
-                                SALT= ?
-                            WHERE ID = ?;
+                            SET login = ?,
+                                password= ?,
+                                salt= ?
+                            WHERE id = ?;
                             """
             );
             s.setString(1, newData.getUsername());
@@ -93,10 +96,10 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
             List<UserDTO> res = new ArrayList<>();
             while (s.next()) {
                 res.add(new UserDTO(
-                        s.getInt("ID"),
-                        s.getString("LOGIN"),
-                        s.getBytes("PASSWORD"),
-                        s.getString("SALT")
+                        s.getInt("id"),
+                        s.getString("login"),
+                        s.getBytes("password"),
+                        s.getString("salt")
                 ));
             }
             return res;
@@ -111,17 +114,17 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
         try {
             var st = connection.prepareStatement("""
                     SELECT * FROM users
-                    WHERE LOGIN = ?;
+                    WHERE login = ?;
                     """);
             st.setString(1, username);
             var s = st.executeQuery();
 
             if (s.next())
-                return new UserDTO(
-                        s.getInt("ID"),
-                        s.getString("LOGIN"),
-                        s.getBytes("PASSWORD"),
-                        s.getString("SALT")
+                return new AuthorizationObject(
+                        s.getInt("id"),
+                        s.getString("login"),
+                        s.getBytes("password"),
+                        s.getString("salt")
                 );
             else return null;
         } catch (SQLException e) {
@@ -136,16 +139,16 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
         try {
             var st = connection.prepareStatement("""
                     SELECT * FROM users
-                    WHERE ID = ?;
+                    WHERE id = ?;
                     """);
             st.setInt(1, id);
             var s = st.executeQuery();
             s.next();
-            return new UserDTO(
-                    s.getInt("ID"),
-                    s.getString("LOGIN"),
-                    s.getBytes("PASSWORD"),
-                    s.getString("SALT")
+            return new AuthorizationObject(
+                    s.getInt("id"),
+                    s.getString("login"),
+                    s.getBytes("password"),
+                    s.getString("salt")
             );
         } catch (SQLException e) {
             log.error("Can't select all data", e);
@@ -158,7 +161,7 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
         try {
             var t = connection.prepareStatement("""
                     DELETE FROM users
-                    WHERE ID = ?;
+                    WHERE id = ?;
                     """);
             t.setInt(1, id);
             return t.execute();
@@ -169,8 +172,20 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
     }
 
     @Override
-    public UserDTO parseRow(ResultSet rs) {
-        return null;
+    public AuthorizationObject parseRow(ResultSet rs) {
+        try {
+            if (rs.next())
+                return new AuthorizationObject(
+                        rs.getInt("id"),
+                        rs.getString("login"),
+                        rs.getBytes("password"),
+                        rs.getString("salt")
+                );
+            else return null;
+        } catch (SQLException e) {
+            log.error("Can't parse row");
+            return null;
+        }
     }
 
 
