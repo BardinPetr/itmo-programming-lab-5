@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.mainclient;
 
 import ru.bardinpetr.itmo.lab5.client.api.auth.AuthenticatedConnectorDecorator;
 import ru.bardinpetr.itmo.lab5.client.api.auth.impl.RAMCredentialsStorage;
+import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.api.connectors.net.UDPAPIClientFactory;
 import ru.bardinpetr.itmo.lab5.client.ui.ClientConsoleArgumentsParser;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.CLIController;
@@ -28,6 +29,7 @@ public class Main {
                 apiCredStorage,
                 baseAPI
         );
+        APIProvider.setConnector(authedAPI);
 
         var descriptionHolder = new UserAPICommandsDescriptionHolder();
 

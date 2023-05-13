@@ -1,8 +1,12 @@
 package ru.bardinpetr.itmo.lab5.client.api.description;
 
 import lombok.Data;
+import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.utils.ClassUtils;
 import ru.bardinpetr.itmo.lab5.client.utils.StringUtils;
+import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
+import ru.bardinpetr.itmo.lab5.models.commands.api.GetOrgsCommand;
+import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.FieldValidator;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.InputNullable;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.InteractText;
@@ -38,7 +42,22 @@ public class APICommandsDescriptionHolder {
         }
     }
 
-    public static <T> IValidator<T> getValidator(Class<? extends Validator> validatorClass, Field field) {
+    public static <T> IValidator<T> getValidator(Class<? extends Validator> validatorClass, Field field, Class<?> addedClass) {
+        if (addedClass.equals(Organization.class) && field.getName().equals("id")) {
+            return s -> {
+                var p = APIProvider.getConnector();
+                try {
+                    var res = (GetOrgsCommand.OrganisationCommandResponse) p.call(new GetOrgsCommand());
+                    for (var i : res.getOrganizations()) {
+                        if (i.getId().equals(s)) return new ValidationResponse(true, "");
+                    }
+                    return new ValidationResponse(false, "Unknown id");
+                } catch (APIClientException e) {
+                    return new ValidationResponse(false, "Unknown id");
+                }
+
+            };
+        }
         try {
             var method = validatorClass.getMethod(
                     "validate%s".formatted(
@@ -84,7 +103,7 @@ public class APICommandsDescriptionHolder {
                         field.getName(),
                         ClassUtils.wrap(field.getType()),
                         field.getAnnotation(InteractText.class).value(),
-                        validatorAnnotation == null ? null : getValidator(validatorAnnotation.value(), field),
+                        validatorAnnotation == null ? null : getValidator(validatorAnnotation.value(), field, addedClass),
                         (!(field.getClass().isPrimitive()) && field.isAnnotationPresent(InputNullable.class))
                 ));
             }
