@@ -41,6 +41,7 @@ public class Main {
 
         var authReceiver = new DBAuthenticationReceiver(tableProvider.getUsers());
 
+
         var udpServer = UDPServerFactory.create(consoleArgs.getPort());
 
         var mainApp = new UDPInputTransportApplication(udpServer);
