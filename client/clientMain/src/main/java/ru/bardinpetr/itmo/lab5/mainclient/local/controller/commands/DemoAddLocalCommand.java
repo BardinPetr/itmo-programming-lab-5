@@ -66,7 +66,7 @@ public class DemoAddLocalCommand extends APIUILocalCommand {
                                 rng.nextFloat(0, 100)
                         ),
                         new Organization(
-                                -1,
+                                1,
                                 randomString(1),
                                 OrganizationType.PUBLIC
                         ),

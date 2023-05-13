@@ -1,10 +1,10 @@
-package ru.bardinpetr.itmo.lab5.server.db.dao;
+package ru.bardinpetr.itmo.lab5.server.db.dao.ctrl;
 
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
-import ru.bardinpetr.itmo.lab5.server.db.dao.ctrl.IWorkerCollectionDAO;
+import ru.bardinpetr.itmo.lab5.server.db.dto.OrganizationDTO;
 import ru.bardinpetr.itmo.lab5.server.db.dto.WorkerDTO;
 
 import java.util.List;
@@ -78,6 +78,13 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
     public void clear() {
         collection.clear();
         backend.clearCollection();
+    }
+
+    @Override
+    public Integer addOrg(Organization element) {
+        return backend.getTableProvider().getOrganizations().insert(
+                new OrganizationDTO(element.getId(), element.getFullName(), element.getType())
+        );
     }
 
     @Override

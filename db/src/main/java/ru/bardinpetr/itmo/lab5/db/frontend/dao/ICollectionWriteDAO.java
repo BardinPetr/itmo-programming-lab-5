@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.db.frontend.dao;
 
 
+import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
 /**
@@ -45,4 +46,6 @@ public interface ICollectionWriteDAO<K, V extends IKeyedEntity<K>> {
      */
     default void save() {
     }
+
+    K addOrg(Organization element);
 }

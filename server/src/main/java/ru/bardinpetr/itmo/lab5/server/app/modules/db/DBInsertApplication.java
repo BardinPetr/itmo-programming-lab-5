@@ -4,6 +4,7 @@ import ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.IOwnedCollectionDAO;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddIfMaxCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddIfMinCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.AddOrgCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication;
@@ -20,6 +21,19 @@ public class DBInsertApplication extends AbstractApplication {
         on(AddCommand.class, this::add);
         on(AddIfMaxCommand.class, this::addIfMax);
         on(AddIfMinCommand.class, this::addIfMin);
+        on(AddOrgCommand.class, this::addOrg);
+    }
+
+    private void addOrg(AppRequest appRequest) {
+        AddOrgCommand req = (AddOrgCommand) appRequest.payload();
+        var resp = req.createResponse();
+        var pk = dao.addOrg(req.element);
+        if (pk == null) {
+            appRequest.response().sendErr("Couldn't add");
+            return;
+        }
+        resp.setId(pk);
+        appRequest.response().from(resp).send();
     }
 
     private void add(AppRequest appRequest) {

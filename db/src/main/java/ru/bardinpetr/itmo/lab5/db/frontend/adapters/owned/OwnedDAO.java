@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned;
 
 import ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.error.NotOwnedException;
 import ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO;
+import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IOwnedEntity;
@@ -188,5 +189,10 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
     @Override
     public void clear() {
         decoratee.clear();
+    }
+
+    @Override
+    public K addOrg(Organization element) {
+        return decoratee.addOrg(element);
     }
 }
