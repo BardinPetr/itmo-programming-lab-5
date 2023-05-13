@@ -5,8 +5,8 @@ import org.postgresql.ds.PGSimpleDataSource;
 import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -42,7 +42,7 @@ public abstract class BaseDBDAO<V, T> {
 
     public Collection<T> select() {
         try (var rs = connector.getRowSet()) {
-            rs.setCommand("select * from organization");
+            rs.setCommand("select * from %s".formatted(tableName));
             return rowSetStream(rs).map(i -> parseRow(rs)).collect(Collectors.toList());
         } catch (Exception ex) {
             log.error("select failed: ", ex);
@@ -84,7 +84,7 @@ public abstract class BaseDBDAO<V, T> {
             return false;
         }
     }
-}
+
 
     public abstract T parseRow(ResultSet rs);
 }

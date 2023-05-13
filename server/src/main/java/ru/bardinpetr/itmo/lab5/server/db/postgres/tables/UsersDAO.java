@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.server.db.errors.DBCreateException;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.BaseDBDAO;
 import ru.bardinpetr.itmo.lab5.server.db.postgres.DBConnector;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,44 +18,47 @@ public class UsersDAO extends BaseDBDAO<Integer, AuthorizationObject> {
         super(connector, "users");
     }
 
-    public boolean createTable() {
-        try {
-            var t = connection.prepareStatement(
-                    """
-                            CREATE TABLE users
-                            (
-                                ID int generated always as identity PRIMARY KEY,
-                                LOGIN varchar(50) UNIQUE NOT NULL,
-                                PASSWORD bytea NOT NULL,
-                                SALT varchar(10) NOT NULL
-                            );
-                            """
-            );
-            return t.executeUpdate() > 0;
-        } catch (SQLException e) {
-            log.error("Can't create users table", e);
-            return false;
-        }
-    }
+//    public boolean createTable() {
+//        try {
+//            var t = connection.prepareStatement(
+//                    """
+//                            CREATE TABLE users
+//                            (
+//                                id int generated always as identity PRIMARY KEY,
+//                                login varchar(50) UNIQUE NOT NULL,
+//                                password bytea NOT NULL,
+//                                salt varchar(10) NOT NULL
+//                            );
+//                            """
+//            );
+//            return t.executeUpdate() > 0;
+//        } catch (SQLException e) {
+//            log.error("Can't create users table", e);
+//            return false;
+//        }
+//    }
 
     @Override
-    public boolean insert(AuthorizationObject data) {
-        if (!data.validate()) return false;
+    public Integer insert(AuthorizationObject data) {
+        if (!data.validate()) return null;
         try {
             var s = connection.prepareStatement(
                     """
-                            INSERT INTO users(LOGIN, PASSWORD, SALT)
+                            INSERT INTO users(login, password, salt)
                             VALUES
-                            	(?, ?, ?);
+                            	(?, ?, ?) returning id
                             """
             );
             s.setString(1, data.getUsername());
             s.setBytes(2, data.getHashedPassword());
             s.setString(3, data.getSalt());
-            return s.executeUpdate() > 0;
+            var rs = s.executeQuery();
+            if (!rs.next())
+                return null;
+            return rs.getInt("id");
         } catch (SQLException e) {
             log.error("Can't insert into users table", e);
-            return false;
+            return null;
         }
     }
 
@@ -65,10 +69,10 @@ public class UsersDAO extends BaseDBDAO<Integer, AuthorizationObject> {
             var s = connection.prepareStatement(
                     """
                             UPDATE users
-                            SET LOGIN = ?,
-                                PASSWORD= ?,
-                                SALT= ?
-                            WHERE ID = ?;
+                            SET login = ?,
+                                password= ?,
+                                salt= ?
+                            WHERE id = ?;
                             """
             );
             s.setString(1, newData.getUsername());
@@ -92,10 +96,10 @@ public class UsersDAO extends BaseDBDAO<Integer, AuthorizationObject> {
             List<AuthorizationObject> res = new ArrayList<>();
             while (s.next()) {
                 res.add(new AuthorizationObject(
-                        s.getInt("ID"),
-                        s.getString("LOGIN"),
-                        s.getBytes("PASSWORD"),
-                        s.getString("SALT")
+                        s.getInt("id"),
+                        s.getString("login"),
+                        s.getBytes("password"),
+                        s.getString("salt")
                 ));
             }
             return res;
@@ -110,17 +114,17 @@ public class UsersDAO extends BaseDBDAO<Integer, AuthorizationObject> {
         try {
             var st = connection.prepareStatement("""
                     SELECT * FROM users
-                    WHERE LOGIN = ?;
+                    WHERE login = ?;
                     """);
             st.setString(1, username);
             var s = st.executeQuery();
 
             if (s.next())
                 return new AuthorizationObject(
-                        s.getInt("ID"),
-                        s.getString("LOGIN"),
-                        s.getBytes("PASSWORD"),
-                        s.getString("SALT")
+                        s.getInt("id"),
+                        s.getString("login"),
+                        s.getBytes("password"),
+                        s.getString("salt")
                 );
             else return null;
         } catch (SQLException e) {
@@ -135,16 +139,16 @@ public class UsersDAO extends BaseDBDAO<Integer, AuthorizationObject> {
         try {
             var st = connection.prepareStatement("""
                     SELECT * FROM users
-                    WHERE ID = ?;
+                    WHERE id = ?;
                     """);
             st.setInt(1, id);
             var s = st.executeQuery();
             s.next();
             return new AuthorizationObject(
-                    s.getInt("ID"),
-                    s.getString("LOGIN"),
-                    s.getBytes("PASSWORD"),
-                    s.getString("SALT")
+                    s.getInt("id"),
+                    s.getString("login"),
+                    s.getBytes("password"),
+                    s.getString("salt")
             );
         } catch (SQLException e) {
             log.error("Can't select all data", e);
@@ -157,13 +161,30 @@ public class UsersDAO extends BaseDBDAO<Integer, AuthorizationObject> {
         try {
             var t = connection.prepareStatement("""
                     DELETE FROM users
-                    WHERE ID = ?;
+                    WHERE id = ?;
                     """);
             t.setInt(1, id);
             return t.execute();
         } catch (SQLException e) {
             log.error("Can't drop", e);
             return false;
+        }
+    }
+
+    @Override
+    public AuthorizationObject parseRow(ResultSet rs) {
+        try {
+            if (rs.next())
+                return new AuthorizationObject(
+                        rs.getInt("id"),
+                        rs.getString("login"),
+                        rs.getBytes("password"),
+                        rs.getString("salt")
+                );
+            else return null;
+        } catch (SQLException e) {
+            log.error("Can't parse row");
+            return null;
         }
     }
 

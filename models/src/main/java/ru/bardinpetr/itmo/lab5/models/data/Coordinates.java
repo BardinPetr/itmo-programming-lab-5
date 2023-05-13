@@ -24,6 +24,15 @@ public class Coordinates implements Comparable<Coordinates> {
     public Coordinates() {
     }
 
+    public static Coordinates fromString(String str) {
+        str = str.substring(1, str.length() - 1);
+        var parse = str.split(",");
+        return new Coordinates(
+                Integer.valueOf(parse[0]),
+                Float.parseFloat(parse[1]));
+
+    }
+
     /**
      * @param other the object to be compared.
      * @return {@literal <} 0 than other object is greater, {@literal >} 0 this object is greater
