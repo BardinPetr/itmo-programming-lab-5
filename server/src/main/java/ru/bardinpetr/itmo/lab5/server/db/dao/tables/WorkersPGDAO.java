@@ -101,6 +101,8 @@ public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
                 endDate = rs.getTimestamp("endDate").toLocalDateTime().toLocalDate();
             } else endDate = null;
 
+            var x = rs.getString("position");
+
             return new WorkerDTO(
                     rs.getInt("id"),
                     rs.getInt("ownerId"),
@@ -111,7 +113,7 @@ public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
                     rs.getString("name"),
                     rs.getFloat("salary"),
                     Coordinates.fromString(rs.getString("coordinates")),
-                    Position.valueOf(rs.getString("position")));
+                    x == null ? null : Position.valueOf(x));
         } catch (SQLException e) {
             log.error("row parse failed at {}", tableName, e);
             return null;

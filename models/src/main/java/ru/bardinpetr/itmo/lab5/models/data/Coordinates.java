@@ -25,6 +25,8 @@ public class Coordinates implements Comparable<Coordinates> {
     }
 
     public static Coordinates fromString(String str) {
+        if (str == null) return null;
+
         str = str.substring(1, str.length() - 1);
         var parse = str.split(",");
         return new Coordinates(
