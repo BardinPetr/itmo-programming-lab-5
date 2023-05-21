@@ -15,17 +15,17 @@ import ru.bardinpetr.itmo.lab5.mainclient.api.commands.UserAPICommandsDescriptio
 import ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands.auth.LoginPage;
 import ru.bardinpetr.itmo.lab5.mainclient.local.controller.registry.MainClientCommandRegistry;
 import ru.bardinpetr.itmo.lab5.mainclient.local.ui.texts.MainTexts;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.DefaultAPICommandAuthenticator;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.JWTAuthenticationCredentials;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.JWTAPICommandAuthenticator;
 
 public class Main {
     public static void main(String[] args) {
         var argParse = new ClientConsoleArgumentsParser(args);
 
-        var apiCredStorage = new RAMCredentialsStorage<DefaultAuthenticationCredentials>();
+        var apiCredStorage = new RAMCredentialsStorage<JWTAuthenticationCredentials>();
         var baseAPI = new UDPAPIClientFactory(argParse.getServerFullAddr()).create();
         var authedAPI = new AuthenticatedConnectorDecorator<>(
-                DefaultAPICommandAuthenticator.getInstance(),
+                JWTAPICommandAuthenticator.getInstance(),
                 apiCredStorage,
                 baseAPI
         );
@@ -51,8 +51,9 @@ public class Main {
 
         var interpreter = new Interpreter(registry, uiController, invoker);
 
-        var loginPage = new LoginPage(
-                authedAPI, uiController, apiCredStorage,
+        var loginPage = new LoginPage<>(
+                authedAPI, uiController,
+                apiCredStorage,
                 interpreter::run
         );
         loginPage.run();

@@ -19,8 +19,8 @@ public interface AuthenticationReceiver<C extends AuthenticationCredentials, R e
 
     Authentication authorize(C request);
 
-    LoginResponse login(LoginCommand request) throws UserNotFoundException;
+    R login(LoginCommand request) throws UserNotFoundException, InvalidCredentialsException;
 
-    LoginResponse register(RegisterCommand command) throws UserExistsException, InvalidCredentialsException;
+    R register(RegisterCommand command) throws UserExistsException, InvalidCredentialsException;
 }
 

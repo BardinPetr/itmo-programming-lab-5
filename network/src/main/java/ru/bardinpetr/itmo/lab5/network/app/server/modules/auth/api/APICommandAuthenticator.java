@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api;
+package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api;
 
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
@@ -37,6 +37,10 @@ public class APICommandAuthenticator<C extends AuthenticationCredentials> {
      * @return credentials or null if header is not present
      */
     public C extractAuth(APICommand command) {
-        return (C) command.getHeader().get(AUTH_HEADER);
+        try {
+            return (C) command.getHeader().get(AUTH_HEADER);
+        } catch (Throwable ignored) {
+            return null;
+        }
     }
 }

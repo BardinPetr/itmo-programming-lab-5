@@ -12,7 +12,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.api.InfoCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.DefaultAPICommandAuthenticator;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.DefaultAPICommandAuthenticator;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;

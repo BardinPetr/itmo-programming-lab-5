@@ -6,7 +6,7 @@ import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.APICommandAuthenticator;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.APICommandAuthenticator;
 
 /**
  * API connector decorator for authentication credentials injection

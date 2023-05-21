@@ -5,10 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class DefaultLoginResponse extends LoginResponse {
-    private String username;
-    private Integer userId;
-    private String role;
+@AllArgsConstructor
+public class JWTLoginResponse extends DefaultLoginResponse {
+    private String authToken;
+    private String refreshToken;
 }

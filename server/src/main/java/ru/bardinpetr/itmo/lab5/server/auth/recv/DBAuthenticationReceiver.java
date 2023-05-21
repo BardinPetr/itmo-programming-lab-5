@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.auth.LoginCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.RegisterCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultLoginResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.models.LoginResponse;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.InvalidCredentialsException;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserExistsException;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserNotFoundException;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.AuthenticationReceiver;
@@ -50,23 +50,25 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
                 Arrays.equals(authObj.getHashedPassword(), hashedPassword) ?
                         Authentication.AuthenticationStatus.NORMAL :
                         Authentication.AuthenticationStatus.INVALID,
-                authObj.getId()
+                authObj.getId(),
+                authObj.getUsername(),
+                "user"
         );
     }
 
     @Override
-    public LoginResponse login(LoginCommand command) throws UserNotFoundException {
+    public DefaultLoginResponse login(LoginCommand command) throws UserNotFoundException {
         DefaultAuthenticationCredentials creds = command.getCredentials();
         Authentication res = authorize(creds);
 
         if (res.getStatus() != Authentication.AuthenticationStatus.NORMAL)
             throw new UserNotFoundException();
 
-        return new DefaultLoginResponse(creds.getUsername());
+        return new DefaultLoginResponse(creds.getUsername(), res.getUserHandle(), res.getRole());
     }
 
     @Override
-    public DefaultLoginResponse register(RegisterCommand command) throws UserExistsException {
+    public DefaultLoginResponse register(RegisterCommand command) throws UserExistsException, InvalidCredentialsException {
         DefaultAuthenticationCredentials creds = command.getCredentials();
 
         try {
@@ -76,13 +78,18 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
             throw new UserExistsException();
         }
 
-        usersDBDAO.insert(
-                new UserDTO(
-                        creds.getUsername(),
-                        creds.getPassword()
-                )
-        );
+        Integer id;
+        try {
+            id = usersDBDAO.insert(
+                    new UserDTO(
+                            creds.getUsername(),
+                            creds.getPassword()
+                    )
+            );
+        } catch (Throwable e) {
+            throw new InvalidCredentialsException(e);
+        }
 
-        return new DefaultLoginResponse(creds.getUsername());
+        return new DefaultLoginResponse(creds.getUsername(), id, "user");
     }
 }

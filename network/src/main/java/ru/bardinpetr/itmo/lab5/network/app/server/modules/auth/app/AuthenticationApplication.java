@@ -8,11 +8,10 @@ import ru.bardinpetr.itmo.lab5.models.commands.auth.models.LoginResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 import ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.APICommandAuthenticator;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.InvalidCredentialsException;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserExistsException;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserNotFoundException;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.AuthenticationReceiver;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api.APICommandAuthenticator;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.Authentication;
 
 /**
@@ -46,9 +45,11 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
             var loginResponse = authenticationReceiver.login(cmd);
 
             resp.from(cmd.createResponse().setData(loginResponse));
-        } catch (UserNotFoundException e) {
+        } catch (Throwable e) {
+            log.error("Authentication failed for {}:", cmd.getCredentials().getUsername(), e);
             resp.status(APIResponseStatus.AUTH_ERROR);
         }
+
         resp.send();
     }
 
@@ -67,7 +68,11 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
         } catch (UserExistsException e) {
             resp.status(APIResponseStatus.AUTH_ERROR).message("User with such name already exist");
         } catch (InvalidCredentialsException e) {
+            log.error("Register failed for {}:", cmd.getCredentials().getUsername(), e);
             resp.status(APIResponseStatus.AUTH_ERROR).message("Credentials don't met requirements");
+        } catch (Throwable e) {
+            log.error("Register failed for {}:", cmd.getCredentials().getUsername(), e);
+            resp.status(APIResponseStatus.AUTH_ERROR).message("Invalid authentication");
         }
 
         resp.send();
@@ -94,7 +99,8 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
         Authentication result = new Authentication(Authentication.AuthenticationStatus.GUEST);
         try {
             result = authenticationReceiver.authorize(authRequest);
-        } catch (Exception ignored) {
+        } catch (Throwable e) {
+            log.error("Request authentication failed:", e);
         }
 
         updateSession(
