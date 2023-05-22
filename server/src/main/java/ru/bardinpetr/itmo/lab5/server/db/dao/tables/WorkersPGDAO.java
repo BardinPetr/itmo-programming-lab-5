@@ -11,6 +11,10 @@ import ru.bardinpetr.itmo.lab5.server.db.dto.WorkerDTO;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+import static ru.bardinpetr.itmo.lab5.db.utils.RowSetUtils.rowSetStream;
 
 @Slf4j
 public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
@@ -42,6 +46,20 @@ public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
             s.setString(8, data.position().name());
         else
             s.setNull(8, Types.VARCHAR);
+    }
+
+    @Override
+    public Collection<WorkerDTO> select() {
+        try (var rs = connector.getRowSet()) {
+            rs.setCommand("""
+                    select *
+                    from worker join users on worker.ownerId = users.id
+                    """);
+            return rowSetStream(rs).map(i -> parseRow(rs)).collect(Collectors.toList());
+        } catch (Exception ex) {
+            log.error("select failed: ", ex);
+        }
+        return null;
     }
 
     @Override
@@ -113,7 +131,8 @@ public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
                     rs.getString("name"),
                     rs.getFloat("salary"),
                     Coordinates.fromString(rs.getString("coordinates")),
-                    x == null ? null : Position.valueOf(x));
+                    x == null ? null : Position.valueOf(x),
+                    rs.getString("login"));
         } catch (SQLException e) {
             log.error("row parse failed at {}", tableName, e);
             return null;

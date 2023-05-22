@@ -28,6 +28,10 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer>, IOwned
     @NotPromptRequired
     private final Integer id;
     @With
+    @NotPromptRequired
+    private String ownerUsername = "";
+
+    @With
     @NonNull
     @NotPromptRequired
     private final java.time.ZonedDateTime creationDate;
@@ -111,7 +115,7 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer>, IOwned
             } else organization = "null";
             s += "\n\tid: " + i.getId() +
                     ",\n\t creationDate: " + i.getCreationDate() +
-                    ",\n\t owner: " + i.getOwner() +
+                    ",\n\t owner: " + i.getOwnerUsername() +
                     ",\n\t name: '" + i.getName() + '\'' +
                     ",\n\t coordinates: " + coordinates +
                     ",\n\t salary: " + i.getSalary() +

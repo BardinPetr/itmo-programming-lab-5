@@ -15,12 +15,13 @@ public record WorkerDTO(
         String name,
         Float salary,
         Coordinates coordinates,
-        Position position
+        Position position,
+        String ownerUsername
 ) implements IKeyedEntity<Integer> {
     public WorkerDTO(Worker original) {
         this(original.getId(), original.getOwner(), original.getOrganization() == null ? null : original.getOrganization().getId(),
                 original.getCreationDate(), original.getStartDate(), original.getEndDate(),
-                original.getName(), original.getSalary(), original.getCoordinates(), original.getPosition());
+                original.getName(), original.getSalary(), original.getCoordinates(), original.getPosition(), original.getOwnerUsername());
     }
 
     @Override
