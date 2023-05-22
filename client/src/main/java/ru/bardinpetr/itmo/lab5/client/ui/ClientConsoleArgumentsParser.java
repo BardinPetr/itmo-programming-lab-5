@@ -37,6 +37,12 @@ public class ClientConsoleArgumentsParser extends AbstractConsoleArgumentsParser
     }
 
     public InetSocketAddress getServerFullAddr() {
-        return new InetSocketAddress(getHost(), getPort());
+        try {
+            return new InetSocketAddress(getHost(), getPort());
+        } catch (IllegalArgumentException ignored) {
+            System.err.println("Invalid port");
+            System.exit(1);
+        }
+        return null;
     }
 }

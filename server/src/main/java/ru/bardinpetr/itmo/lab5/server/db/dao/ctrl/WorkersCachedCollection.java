@@ -107,7 +107,7 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
             return null;
 
         var newWorker = worker.withId(res);
-        OrganizationDTO org = null;
+        OrganizationDTO org;
         if (worker.getOrganization() != null) {
             org = backend.getTableProvider().getOrganizations().select(worker.getOrganization().getId());
 
@@ -128,8 +128,17 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
         if (!workers.update(id, new WorkerDTO(updateWorker)))
             return false;
 
-        var org = backend.getTableProvider().getOrganizations().select(updateWorker.getOrganization().getId());
-        var newWorker = updateWorker.withId(orig.id()).withOwner(orig.ownerId()).withCreationDate(orig.creationDate());
+        var org = backend
+                .getTableProvider()
+                .getOrganizations()
+                .select(updateWorker
+                        .getOrganization()
+                        .getId());
+
+        var newWorker = updateWorker
+                .withId(orig.id())
+                .withOwner(orig.ownerId())
+                .withCreationDate(orig.creationDate());
         newWorker.setOrganization(
                 new Organization(org.id(), org.fullName(), org.type())
         );

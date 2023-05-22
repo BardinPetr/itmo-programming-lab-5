@@ -43,8 +43,7 @@ public class DBRemoveApplication extends APIApplication {
     }
 
     private void onClear(AppRequest appRequest) {
-        dao.clear();
-
+        dao.clear(extractUser(appRequest));
         appRequest.response().sendOk();
     }
 }
