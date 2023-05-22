@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/itmo-programming-lab-5.client.test.iml" filepath="$PROJECT_DIR$/.idea/modules/client/itmo-programming-lab-5.client.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/itmo-programming-lab-5.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/itmo-programming-lab-5.common.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/itmo-programming-lab-5.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/itmo-programming-lab-5.common.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db/itmo-programming-lab-5.db.main.iml" filepath="$PROJECT_DIR$/.idea/modules/db/itmo-programming-lab-5.db.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/models/itmo-programming-lab-5.models.main.iml" filepath="$PROJECT_DIR$/.idea/modules/models/itmo-programming-lab-5.models.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/models/itmo-programming-lab-5.models.test.iml" filepath="$PROJECT_DIR$/.idea/modules/models/itmo-programming-lab-5.models.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/network/itmo-programming-lab-5.network.main.iml" filepath="$PROJECT_DIR$/.idea/modules/network/itmo-programming-lab-5.network.main.iml" />
