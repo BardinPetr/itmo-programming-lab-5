@@ -54,15 +54,7 @@ public class JWTAuthConnector extends AuthenticatedConnectorDecorator<JWTAuthent
         var ui = UIProvider.get();
 
         if (refresh.expiration().isBefore(ZonedDateTime.now())) {
-            storage.setCredentials(null);
-
-            new LoginPage<>(
-                    decoratee,
-                    ui,
-                    storage,
-                    () -> {
-                    }
-            ).run();
+            doPasswordLogin();
             return;
         }
 
@@ -72,20 +64,34 @@ public class JWTAuthConnector extends AuthenticatedConnectorDecorator<JWTAuthent
         AuthCommand.AuthCommandResponse result;
         try {
             result = (AuthCommand.AuthCommandResponse) decoratee.call(refreshCmd);
-            if (!result.isSuccess())
-                throw new APIClientException(result.getUserMessage());
-        } catch (APIClientException e) {
-            ui.error("Unable to use refresh token. Retrying");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ignored) {
+            if (!result.isSuccess()) {
+                ui.error("Unable to use refresh token. Retrying");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ignored) {
+                }
+                doRefreshToken(refresh);
+                return;
             }
-            doRefreshToken(refresh);
+        } catch (Throwable e) {
+            doPasswordLogin();
             return;
         }
 
         var creds = new StoredJWTCredentials((JWTLoginResponse) result.getData());
         ui.display("Updated token. Exp for access: %s, for refresh %s".formatted(creds.getAuthToken().expiration(), creds.getRefreshToken().expiration()));
         storage.setCredentials(creds);
+    }
+
+    private void doPasswordLogin() {
+        storage.setCredentials(null);
+
+        new LoginPage<>(
+                decoratee,
+                UIProvider.get(),
+                storage,
+                () -> {
+                }
+        ).run();
     }
 }

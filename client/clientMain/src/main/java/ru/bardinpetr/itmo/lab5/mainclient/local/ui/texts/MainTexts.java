@@ -18,6 +18,7 @@ public class MainTexts extends Texts {
                 - help : display help on available commands
                 - info : print information about the collection to standard output (type, initialization date, number of elements, etc.)
                 - show : print to standard output all elements of the collection in string representation
+                - mine : show all workers belonging to current user
                 - add {element} : add new worker to the collection
                 - add_org {element} : add new organization
                 - get_org : list existing organizations
