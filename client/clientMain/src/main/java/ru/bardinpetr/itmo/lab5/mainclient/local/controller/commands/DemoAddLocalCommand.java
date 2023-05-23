@@ -60,6 +60,7 @@ public class DemoAddLocalCommand extends APIUILocalCommand {
         return new AddCommand(
                 new Worker(
                         -1,
+                        "Artem",
                         ZonedDateTime.now(),
                         null,
                         randomString(20),
