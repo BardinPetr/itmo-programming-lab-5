@@ -49,8 +49,9 @@ public class StressTest {
 
                     authedAPI.call(new AddCommand(new Worker(
                             0,
+                            "",
                             ZonedDateTime.now(),
-                            "u",
+                            12,
                             "test%d".formatted(finalI),
                             234,
                             Date.from(Instant.now()),

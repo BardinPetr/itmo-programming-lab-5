@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class UDPClientTransport implements IClientTransport<SocketMessage> {
     private final DatagramSocket socket;
-    private final Duration sendDurationTimeout = Duration.ofMinutes(2);
+    private final Duration sendDurationTimeout = Duration.ofSeconds(7);
     private final SocketAddress serverAddress;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
     private int sessionId = -1;
@@ -94,7 +94,7 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
     /**
      * Method for sending socket message any length.
      *
-     * @param msg message to be send
+     * @param msg message to be sent
      */
     @Override
     public void send(SocketMessage msg) throws TransportException, TransportTimeoutException {

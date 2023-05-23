@@ -56,6 +56,6 @@ public class Main {
                 interpreter::run
         );
         loginPage.run();
-//        interpreter.run();
+        interpreter.run();
     }
 }

@@ -22,7 +22,7 @@ public class WorkerValidationTest {
     @Test
     void testWorkerValidation() {
         var testWorker = new Worker(
-                0, ZonedDateTime.now(), "", 0F, new Date(), null, testCoords, testOrg, null);
+                0, "", ZonedDateTime.now(), 1, "", 0F, new Date(), null, testCoords, testOrg, null);
         var res = (new WorkerValidator()).validateAll(testWorker);
         assertNotNull(res);
         assertFalse(res.isAllowed(), "Empty worker names should not be allowed");
@@ -33,11 +33,11 @@ public class WorkerValidationTest {
     void testWorkerNullValidation() {
         assertThrows(
                 NullPointerException.class,
-                () -> new Worker(null, null, null, 0f, null, null, null, null, null),
+                () -> new Worker(null, "", null, null, null, 0f, null, null, null, null, null),
                 "Should not be able to create Worker object with null values in non-null fields");
 
         assertDoesNotThrow(
-                () -> new Worker(0, ZonedDateTime.now(), "", 0F, new Date(), null, testCoords, testOrg, null),
+                () -> new Worker(0, "", ZonedDateTime.now(), 1, "", 0f, new Date(), null, testCoords, testOrg, null),
                 "Worker could be created with nulls at endDate and position");
     }
 }

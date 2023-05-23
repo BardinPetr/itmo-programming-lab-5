@@ -35,6 +35,7 @@ public class PGWorkerStorageBackend implements DBStorageBackend<WorkerCollection
             }
             collection.add(new Worker(
                     worker.id(),
+                    worker.ownerUsername(),
                     worker.creationDate(),
                     worker.ownerId(),
                     worker.name(),
