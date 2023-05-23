@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JWTLoginResponse extends DefaultLoginResponse {
-    private String authToken;
-    private String refreshToken;
+    private JWTInfo authToken;
+    private JWTInfo refreshToken;
 }

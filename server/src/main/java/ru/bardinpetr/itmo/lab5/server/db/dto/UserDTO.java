@@ -6,6 +6,8 @@ import ru.bardinpetr.itmo.lab5.server.auth.passwords.SHAPasswordController;
 
 import java.util.Arrays;
 
+
+// TODO implement roles
 @Data
 public class UserDTO {
     private static IPasswordController pc = new SHAPasswordController();

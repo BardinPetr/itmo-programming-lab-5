@@ -11,8 +11,8 @@ import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.APICommandAuthenticator;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.InvalidCredentialsException;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserExistsException;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.AuthenticationReceiver;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.Authentication;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.Authentication;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.recv.AuthenticationReceiver;
 
 /**
  * Application for user authentication (in command headers) and registration (via RegisterAPICommand).
@@ -46,7 +46,7 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
 
             resp.from(cmd.createResponse().setData(loginResponse));
         } catch (Throwable e) {
-            log.error("Authentication failed for {}:", cmd.getCredentials().getUsername(), e);
+            log.error("Authentication failed:", e);
             resp.status(APIResponseStatus.AUTH_ERROR);
         }
 
@@ -68,10 +68,10 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
         } catch (UserExistsException e) {
             resp.status(APIResponseStatus.AUTH_ERROR).message("User with such name already exist");
         } catch (InvalidCredentialsException e) {
-            log.error("Register failed for {}:", cmd.getCredentials().getUsername(), e);
+            log.error("Register failed", e);
             resp.status(APIResponseStatus.AUTH_ERROR).message("Credentials don't met requirements");
         } catch (Throwable e) {
-            log.error("Register failed for {}:", cmd.getCredentials().getUsername(), e);
+            log.error("Register failed", e);
             resp.status(APIResponseStatus.AUTH_ERROR).message("Invalid authentication");
         }
 

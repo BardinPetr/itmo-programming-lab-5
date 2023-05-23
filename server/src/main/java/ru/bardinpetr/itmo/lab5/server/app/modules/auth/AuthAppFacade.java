@@ -1,13 +1,13 @@
 package ru.bardinpetr.itmo.lab5.server.app.modules.auth;
 
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.JWTAPICommandAuthenticator;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.JWTAuthenticationApplication;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.storage.JWTHMACKeyProvider;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAPICommandAuthenticator;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAuthenticationApplication;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.storage.JWTHMACKeyProvider;
 import ru.bardinpetr.itmo.lab5.server.auth.recv.DBAuthenticationReceiver;
 import ru.bardinpetr.itmo.lab5.server.db.dao.DBTableProvider;
 
-import static ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.JWTAuthenticationReceiverAdapter.KID_ACCESS;
-import static ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.interfaces.JWTAuthenticationReceiverAdapter.KID_REFRESH;
+import static ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAuthenticationReceiverAdapter.KID_ACCESS;
+import static ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAuthenticationReceiverAdapter.KID_REFRESH;
 
 public class AuthAppFacade {
 

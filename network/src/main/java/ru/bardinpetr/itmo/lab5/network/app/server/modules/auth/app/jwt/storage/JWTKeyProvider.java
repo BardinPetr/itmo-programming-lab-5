@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.storage;
+package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.storage;
 
 import io.jsonwebtoken.*;
 

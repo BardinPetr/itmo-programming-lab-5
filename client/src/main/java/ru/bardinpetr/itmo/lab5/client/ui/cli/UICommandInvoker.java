@@ -59,7 +59,7 @@ public class UICommandInvoker {
      * @param caller name of called function or null to ignore
      * @param result response of command
      */
-    protected void print(String caller, ClientCommandResponse<? extends UserPrintableAPICommandResponse> result) {
+    public void print(String caller, ClientCommandResponse<? extends UserPrintableAPICommandResponse> result) {
         var payload = result.payload();
         var textualResponse = result.message();
 

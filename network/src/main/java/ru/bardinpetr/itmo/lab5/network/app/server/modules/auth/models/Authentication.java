@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server;
+package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models;
 
 
 import lombok.AllArgsConstructor;

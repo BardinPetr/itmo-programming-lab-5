@@ -1,6 +1,7 @@
-package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api;
+package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt;
 
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.JWTAuthenticationCredentials;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.APICommandAuthenticator;
 
 public class JWTAPICommandAuthenticator extends APICommandAuthenticator<JWTAuthenticationCredentials> {
     private static JWTAPICommandAuthenticator instance;
