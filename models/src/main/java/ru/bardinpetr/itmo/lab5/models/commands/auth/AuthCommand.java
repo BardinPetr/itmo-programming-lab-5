@@ -10,6 +10,9 @@ import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;
 
+/**
+ * @param <T> credentials type
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

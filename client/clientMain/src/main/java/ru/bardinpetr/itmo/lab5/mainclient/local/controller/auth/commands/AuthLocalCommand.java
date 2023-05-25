@@ -18,9 +18,9 @@ import java.util.Map;
 public abstract class AuthLocalCommand<T extends AuthenticationCredentials> extends APIUILocalCommand {
 
     protected final ICredentialsStorage<T> credentialsStorage;
-    private final AuthCommand baseCommand;
+    private final AuthCommand<?> baseCommand;
 
-    public AuthLocalCommand(AuthCommand baseCommand, APIClientConnector api, UIReceiver ui, ICredentialsStorage<T> credentialsStorage) {
+    public AuthLocalCommand(AuthCommand<?> baseCommand, APIClientConnector api, UIReceiver ui, ICredentialsStorage<T> credentialsStorage) {
         super(api, ui, null);
         this.credentialsStorage = credentialsStorage;
         this.baseCommand = baseCommand;
@@ -31,7 +31,7 @@ public abstract class AuthLocalCommand<T extends AuthenticationCredentials> exte
     }
 
     @Override
-    protected final AuthCommand retrieveAPICommand(String name) {
+    protected final AuthCommand<?> retrieveAPICommand(String name) {
         return baseCommand;
     }
 
@@ -52,7 +52,7 @@ public abstract class AuthLocalCommand<T extends AuthenticationCredentials> exte
     public ClientCommandResponse<APICommandResponse> execute(String cmdName, Map<String, Object> args) {
         uiReceiver.display(getPrompt());
 
-        AuthCommand cmd = (AuthCommand) prepareAPIMessage(cmdName, args);
+        AuthCommand<?> cmd = (AuthCommand<?>) prepareAPIMessage(cmdName, args);
 
         try {
             var resp = apiClientReceiver.call(cmd);
@@ -72,6 +72,6 @@ public abstract class AuthLocalCommand<T extends AuthenticationCredentials> exte
             uiReceiver.display("Failed to authenticate: %s".formatted(ex.getMessage()));
         }
 
-        return execute(cmdName, args);
+        return ClientCommandResponse.error("Authentication failed");
     }
 }
