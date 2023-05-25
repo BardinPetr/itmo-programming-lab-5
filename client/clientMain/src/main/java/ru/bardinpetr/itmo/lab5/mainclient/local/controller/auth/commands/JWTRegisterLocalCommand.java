@@ -9,7 +9,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredent
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.JWTLoginResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
-public class JWTRegisterLocalCommand extends LoginLocalCommand<StoredJWTCredentials> {
+public class JWTRegisterLocalCommand extends RegisterLocalCommand<StoredJWTCredentials> {
     public JWTRegisterLocalCommand(APIClientConnector api, UIReceiver ui, ICredentialsStorage<StoredJWTCredentials> credentialsStorage) {
         super(api, ui, credentialsStorage);
     }
