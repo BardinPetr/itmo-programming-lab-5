@@ -53,9 +53,27 @@ public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
         try (var rs = connector.getRowSet()) {
             rs.setCommand("""
                     select *
-                    from worker join users on worker.ownerId = users.id
+                    from worker
+                    join users on worker.ownerId = users.id
                     """);
             return rowSetStream(rs).map(i -> parseRow(rs)).collect(Collectors.toList());
+        } catch (Exception ex) {
+            log.error("select failed: ", ex);
+        }
+        return null;
+    }
+
+    @Override
+    public WorkerDTO select(Integer id) {
+        try (var stmt = connection.prepareStatement("""
+                select *
+                from worker join users on worker.ownerId = users.id
+                where worker.id=?
+                """)) {
+            stmt.setInt(1, id);
+            var rowSet = stmt.executeQuery();
+            if (!rowSet.next()) return null;
+            return parseRow(rowSet);
         } catch (Exception ex) {
             log.error("select failed: ", ex);
         }

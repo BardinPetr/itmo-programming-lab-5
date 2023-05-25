@@ -28,7 +28,7 @@ public class UDPAPIClientFactory extends AbstractAPIClientReceiverFactory {
             return connector;
         } catch (Throwable ignored) {
             System.err.println("Could not connect to server");
-//            System.exit(1);
+            System.exit(1);
         }
 
         return null;
