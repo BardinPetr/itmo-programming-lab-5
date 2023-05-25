@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class UDPClientTransport implements IClientTransport<SocketMessage> {
     private final DatagramSocket socket;
-    private final Duration sendDurationTimeout = Duration.ofSeconds(3600); // TODO
+    private final Duration sendDurationTimeout = Duration.ofSeconds(10);
     private final SocketAddress serverAddress;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
     private int sessionId = -1;
