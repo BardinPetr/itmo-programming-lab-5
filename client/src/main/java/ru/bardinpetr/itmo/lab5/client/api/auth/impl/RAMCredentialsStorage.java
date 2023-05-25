@@ -1,6 +1,5 @@
 package ru.bardinpetr.itmo.lab5.client.api.auth.impl;
 
-import lombok.NonNull;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredentials;
 
@@ -22,7 +21,7 @@ public class RAMCredentialsStorage<C extends AuthenticationCredentials> implemen
     }
 
     @Override
-    public void setCredentials(@NonNull C newCredentials) {
+    public void setCredentials(C newCredentials) {
         creds = newCredentials;
     }
 }

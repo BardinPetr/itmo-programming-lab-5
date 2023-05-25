@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands.auth;
+package ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.commands;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
@@ -6,7 +6,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.APIUILocalCommand;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APIResponseStatus;
 
@@ -15,12 +15,12 @@ import java.util.Map;
 /**
  * Command for processing nested scripts
  */
-public abstract class AuthLocalCommand extends APIUILocalCommand {
+public abstract class AuthLocalCommand<T extends AuthenticationCredentials> extends APIUILocalCommand {
 
-    protected final ICredentialsStorage<DefaultAuthenticationCredentials> credentialsStorage;
+    protected final ICredentialsStorage<T> credentialsStorage;
     private final AuthCommand baseCommand;
 
-    public AuthLocalCommand(AuthCommand baseCommand, APIClientConnector api, UIReceiver ui, ICredentialsStorage<DefaultAuthenticationCredentials> credentialsStorage) {
+    public AuthLocalCommand(AuthCommand baseCommand, APIClientConnector api, UIReceiver ui, ICredentialsStorage<T> credentialsStorage) {
         super(api, ui, null);
         this.credentialsStorage = credentialsStorage;
         this.baseCommand = baseCommand;
@@ -41,7 +41,7 @@ public abstract class AuthLocalCommand extends APIUILocalCommand {
      * @param credentials source credentials with request succeeded
      * @param resp        origin response on APICommand
      */
-    protected abstract void onSuccess(DefaultAuthenticationCredentials credentials, APICommandResponse resp);
+    protected abstract void onSuccess(AuthenticationCredentials credentials, APICommandResponse resp);
 
     /**
      * Method returning user prompt before auth data requested

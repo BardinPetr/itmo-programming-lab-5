@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.network.app.server.handlers.impl;
 
 import ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IRequestFilter;
 import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.Authentication;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.Authentication;
 
 public class AuthenticatedFilter implements IRequestFilter {
     private static AuthenticatedFilter instance;

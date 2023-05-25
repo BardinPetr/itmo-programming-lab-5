@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.api;
+package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api;
 
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
 

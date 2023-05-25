@@ -3,7 +3,7 @@ package ru.bardinpetr.itmo.lab5.network.app.server.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.server.Authentication;
+import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.Authentication;
 
 /**
  * Handles session with other party

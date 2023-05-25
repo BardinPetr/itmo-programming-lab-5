@@ -54,8 +54,10 @@ public abstract class AbstractApplication implements IRequestFilter {
         if (payload == null)
             throw new RuntimeException("Payload null");
 
+        var handler = commandHandlers.keySet().stream().filter(i -> i.isAssignableFrom(payload.getCmdIdentifier())).findFirst().orElse(null);
+
         for (var curHandler : new RequestHandler[]{
-                commandHandlers.get(payload.getCmdIdentifier()),
+                handler == null ? null : commandHandlers.get(handler),
                 anyCommandHandler
         }) {
             if (curHandler == null) continue;
@@ -115,7 +117,7 @@ public abstract class AbstractApplication implements IRequestFilter {
         try {
             app.accept(req);
         } catch (Throwable ex) {
-            log.error("Execution error: ", ex);
+            log.error("Execution error: %s".formatted(ex.getMessage()));
             req
                     .response()
                     .status(APIResponseStatus.SERVER_ERROR)

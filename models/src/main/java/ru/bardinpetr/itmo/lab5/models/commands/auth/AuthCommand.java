@@ -4,26 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.LoginResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.UserPrintableAPICommandResponse;
-import ru.bardinpetr.itmo.lab5.models.fields.Field;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class AuthCommand extends UserAPICommand {
+public abstract class AuthCommand<T extends AuthenticationCredentials> extends UserAPICommand {
     @NonNull
-    private DefaultAuthenticationCredentials credentials;
-
-    @Override
-    public Field<?>[] getInteractArgs() {
-        return new Field[]{
-                new Field<>("credentials", DefaultAuthenticationCredentials.class),
-        };
-    }
+    private T credentials;
 
     @Override
     public AuthCommandResponse createResponse() {

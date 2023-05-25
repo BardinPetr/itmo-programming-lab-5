@@ -40,7 +40,7 @@ public class PagingAPICommand extends UserAPICommand {
         @Override
         public String getUserMessage() {
             var result = getResult();
-            return "the whole collection" +
+            return "Collection" +
                     Worker.nicePrintFormat(result);
         }
     }

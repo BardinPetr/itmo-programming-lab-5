@@ -17,7 +17,8 @@ public class DBApplication extends APIApplication {
                 .chain(new ExecutorAdapterApplication(new DBPagingExecutor(dao)))
                 .chain(new DBInsertApplication(dao))
                 .chain(new DBUpdateApplication(dao))
-                .chain(new DBRemoveApplication(dao));
+                .chain(new DBRemoveApplication(dao))
+                .chain(new DBAuthedApplication(dao));
 
         addExitHook();
     }

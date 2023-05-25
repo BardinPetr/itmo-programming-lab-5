@@ -1,18 +1,18 @@
-package ru.bardinpetr.itmo.lab5.mainclient.local.controller.commands.auth;
+package ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.commands;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.RegisterCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
 /**
  * Register implementation of authentication command
  */
-public class RegisterLocalCommand extends AuthLocalCommand {
+public class RegisterLocalCommand<T extends AuthenticationCredentials> extends AuthLocalCommand<T> {
 
-    public RegisterLocalCommand(APIClientConnector api, UIReceiver ui, ICredentialsStorage<DefaultAuthenticationCredentials> credentialsStorage) {
+    public RegisterLocalCommand(APIClientConnector api, UIReceiver ui, ICredentialsStorage<T> credentialsStorage) {
         super(
                 new RegisterCommand(),
                 api, ui, credentialsStorage
@@ -20,8 +20,8 @@ public class RegisterLocalCommand extends AuthLocalCommand {
     }
 
     @Override
-    protected void onSuccess(DefaultAuthenticationCredentials credentials, APICommandResponse resp) {
-        this.credentialsStorage.setCredentials(credentials);
+    protected void onSuccess(AuthenticationCredentials credentials, APICommandResponse resp) {
+        this.credentialsStorage.setCredentials((T) credentials);
     }
 
     @Override
