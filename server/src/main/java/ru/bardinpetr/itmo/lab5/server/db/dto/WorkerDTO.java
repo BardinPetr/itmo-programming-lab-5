@@ -24,6 +24,7 @@ public record WorkerDTO(
                 original.getName(), original.getSalary(), original.getCoordinates(), original.getPosition(), original.getOwnerUsername());
     }
 
+
     @Override
     public Integer getPrimaryKey() {
         return id;

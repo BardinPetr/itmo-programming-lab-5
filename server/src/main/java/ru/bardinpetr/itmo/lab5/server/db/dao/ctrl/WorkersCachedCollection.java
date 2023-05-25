@@ -115,6 +115,7 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
                     new Organization(org.id(), org.fullName(), org.type())
             );
         } else newWorker.setOrganization(null);
+//        newWorker.setOwnerUsername(workers.select(res).ownerUsername()); //TODO add without errors
         collection.add(newWorker);
 
         return res;

@@ -4,7 +4,7 @@
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="ru.bardinpetr.itmo.lab5.mainclient.Main" />
     <module name="ru.bardinpetr.itmo.lab5.mainclient.itmo-programming-lab-5.client.clientMain.main" />
-    <option name="PROGRAM_PARAMETERS" value="-p 5555" />
+    <option name="PROGRAM_PARAMETERS" value="-p 5000" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="ru.bardinpetr.itmo.lab5.mainclient.*" />
