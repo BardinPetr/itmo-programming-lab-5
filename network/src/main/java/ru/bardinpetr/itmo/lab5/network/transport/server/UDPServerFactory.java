@@ -18,9 +18,9 @@ public class UDPServerFactory {
             channel.socket().bind(new InetSocketAddress("localhost", port));
             log.info("Server port: %d".formatted(port));
             return new SessionFrameRouter(channel);
-        } catch (Exception e) {
-            log.error("Can't start server: " + e.getMessage());
-            System.exit(0);
+        } catch (Throwable e) {
+            log.error("Can't start server: {}", e.getMessage());
+            System.exit(1);
         }
         return null;
     }

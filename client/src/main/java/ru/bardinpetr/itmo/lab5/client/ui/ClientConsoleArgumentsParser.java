@@ -29,8 +29,8 @@ public class ClientConsoleArgumentsParser extends AbstractConsoleArgumentsParser
     public Integer getPort() {
         try {
             return Integer.parseInt(getOptions().getOptionValue("port", "5000"));
-        } catch (NumberFormatException ignored) {
-            System.err.println("invalid port");
+        } catch (Exception ignored) {
+            System.err.println("Invalid port");
             System.exit(1);
         }
         return null;

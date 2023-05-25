@@ -5,7 +5,7 @@ package ru.bardinpetr.itmo.lab5.db.errors;
  */
 public class DBCreateException extends Exception {
     public DBCreateException(Exception e) {
-        super("Could not set up database", e);
+        super("Could not connect to database", e);
     }
 
     public DBCreateException(String message) {

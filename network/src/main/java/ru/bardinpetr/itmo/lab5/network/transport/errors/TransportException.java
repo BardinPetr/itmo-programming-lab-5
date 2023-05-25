@@ -10,6 +10,6 @@ public class TransportException extends RuntimeException {
     }
 
     public TransportException() {
-        super("Server is not available. Please resend later");
+        super("Server is not available");
     }
 }

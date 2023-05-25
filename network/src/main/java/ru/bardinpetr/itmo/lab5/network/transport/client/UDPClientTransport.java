@@ -11,10 +11,7 @@ import ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.S
 import ru.bardinpetr.itmo.lab5.network.utils.TransportUtils;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketAddress;
-import java.net.SocketTimeoutException;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -33,19 +30,13 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
     /**
      * @param socketAddress server address
      */
-    public UDPClientTransport(SocketAddress socketAddress) {
-        DatagramSocket tmp = null;
-        try {
-            tmp = new DatagramSocket(null);
-            tmp.setReuseAddress(true);
-        } catch (IOException ignore) {
-        }
-
-        socket = tmp;
+    public UDPClientTransport(SocketAddress socketAddress) throws SocketException {
         serverAddress = socketAddress;
 
-        connect();
+        socket = new DatagramSocket(null);
+        socket.setReuseAddress(true);
 
+        connect();
         disconnect();
     }
 

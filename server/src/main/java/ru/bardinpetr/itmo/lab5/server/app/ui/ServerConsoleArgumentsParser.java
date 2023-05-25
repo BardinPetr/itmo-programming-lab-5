@@ -1,9 +1,11 @@
 package ru.bardinpetr.itmo.lab5.server.app.ui;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import ru.bardinpetr.itmo.lab5.common.ui.AbstractConsoleArgumentsParser;
 
+@Slf4j
 public class ServerConsoleArgumentsParser extends AbstractConsoleArgumentsParser {
     public ServerConsoleArgumentsParser(String[] args) {
         super(args);
@@ -76,9 +78,12 @@ public class ServerConsoleArgumentsParser extends AbstractConsoleArgumentsParser
 
     public Integer getPort() {
         try {
-            return Integer.parseInt(getOptions().getOptionValue("port", "5000"));
-        } catch (NumberFormatException ignored) {
-            System.err.println("invalid port");
+            var port = Integer.parseInt(getOptions().getOptionValue("port", "5000"));
+            if (port < 1 || port > 65535)
+                throw new Exception();
+            return port;
+        } catch (Exception ignored) {
+            log.error("Invalid port");
             System.exit(1);
         }
         return null;
