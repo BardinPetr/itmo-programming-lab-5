@@ -43,12 +43,12 @@ public class StressTest {
             return;
         }
 
-        var executor = Executors.newFixedThreadPool(2);
+        var executor = Executors.newFixedThreadPool(16);
         for (int i = 0; i < 100000; i++) {
             int finalI = i;
             executor.execute(() -> {
                 try {
-                    var api = getAPI(finalI);
+                    var api = createAPI(argParse.getServerFullAddr());
                     var res = api.call(new AddCommand(new Worker(
                             0,
                             null,

@@ -19,26 +19,6 @@ public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
         super(connector, "users");
     }
 
-//    public boolean createTable() {
-//        try {
-//            var t = connection.prepareStatement(
-//                    """
-//                            CREATE TABLE users
-//                            (
-//                                id int generated always as identity PRIMARY KEY,
-//                                login varchar(50) UNIQUE NOT NULL,
-//                                password bytea NOT NULL,
-//                                salt varchar(10) NOT NULL
-//                            );
-//                            """
-//            );
-//            return t.executeUpdate() > 0;
-//        } catch (SQLException e) {
-//            log.error("Can't create users table", e);
-//            return false;
-//        }
-//    }
-
     @Override
     public Integer insert(UserDTO data) {
         if (!data.validate()) return null;
