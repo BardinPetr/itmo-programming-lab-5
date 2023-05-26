@@ -16,7 +16,12 @@ import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.recv.Authenticati
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class JWTAuthenticationReceiverAdapter implements AuthenticationReceiver<JWTAuthenticationCredentials, JWTLoginResponse> {
 
@@ -28,10 +33,10 @@ public class JWTAuthenticationReceiverAdapter implements AuthenticationReceiver<
     private static final String CLAIM_USERNAME = "username";
     private static final String CLAIM_ROLE = "role";
 
-    private final Set<String> usedUUID = new HashSet<>();
+    private final ConcurrentMap<String, String> usedUUID = new ConcurrentHashMap<>();
     private final AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse> db;
     private final JWTKeyProvider keyProvider;
-    private final JwtParser decoder;
+    private JwtParser decoder;
 
     public JWTAuthenticationReceiverAdapter(AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse> authenticationReceiver, JWTKeyProvider keyProvider) {
         this.db = authenticationReceiver;
@@ -47,6 +52,11 @@ public class JWTAuthenticationReceiverAdapter implements AuthenticationReceiver<
     @Override
     public Authentication authorize(JWTAuthenticationCredentials request) {
         try {
+            decoder = Jwts.parserBuilder()
+                    .setSigningKeyResolver(keyProvider.getDecodeKeyResolver())
+                    .setAllowedClockSkewSeconds(1)
+                    .requireIssuer(ISSUER)
+                    .build();
             var jwt = decoder
                     .parseClaimsJws(request.getToken())
                     .getBody();
@@ -86,7 +96,7 @@ public class JWTAuthenticationReceiverAdapter implements AuthenticationReceiver<
                     .parseClaimsJws(creds.getToken())
                     .getBody();
 
-            if (!usedUUID.add(jwt.getId()))
+            if (usedUUID.put(jwt.getId(), "") != null)
                 throw new InvalidCredentialsException("Token reusage detected");
 
             userId = Integer.parseInt(jwt.getAudience());
