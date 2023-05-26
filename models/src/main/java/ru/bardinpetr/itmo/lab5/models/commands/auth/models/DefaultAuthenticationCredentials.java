@@ -14,4 +14,9 @@ public class DefaultAuthenticationCredentials extends AuthenticationCredentials 
 
     @InteractText("Enter password")
     private String password;
+
+    @Override
+    public String safeIdentifier() {
+        return username;
+    }
 }

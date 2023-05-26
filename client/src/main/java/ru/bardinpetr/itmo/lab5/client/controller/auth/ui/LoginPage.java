@@ -1,12 +1,12 @@
-package ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.ui;
+package ru.bardinpetr.itmo.lab5.client.controller.auth.ui;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
+import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
+import ru.bardinpetr.itmo.lab5.client.controller.auth.commands.AuthLocalCommand;
+import ru.bardinpetr.itmo.lab5.client.controller.auth.commands.JWTLoginLocalCommand;
+import ru.bardinpetr.itmo.lab5.client.controller.auth.commands.JWTRegisterLocalCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
-import ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.api.StoredJWTCredentials;
-import ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.commands.AuthLocalCommand;
-import ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.commands.JWTLoginLocalCommand;
-import ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.commands.JWTRegisterLocalCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredentials;
 
 import java.util.Map;

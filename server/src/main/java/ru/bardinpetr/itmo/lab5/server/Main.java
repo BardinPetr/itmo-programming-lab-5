@@ -23,11 +23,14 @@ public class Main {
                 consoleArgs.doBootstrap()
         );
 
+        var auth = new AuthAppFacade();
+        auth.setDebug(true);
+
         var udpServer = UDPServerFactory.create(consoleArgs.getPort());
         var mainApp = new UDPInputTransportApplication(udpServer);
         mainApp
                 .chain(new UDPOutputTransportApplication(udpServer))
-                .chain(AuthAppFacade.create(tableProvider))
+                .chain(auth.create(tableProvider))
                 .chain(DBApplicationFacade.create(tableProvider))
                 .chain(new ErrorHandlingApplication());
 

@@ -1,11 +1,11 @@
-package ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.api;
+package ru.bardinpetr.itmo.lab5.client.controller.auth.api;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.auth.AuthenticatedConnectorDecorator;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
+import ru.bardinpetr.itmo.lab5.client.controller.auth.ui.LoginPage;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.UIProvider;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
-import ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.ui.LoginPage;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.RefreshLoginCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthStrategy;
@@ -65,7 +65,8 @@ public class JWTAuthConnector extends AuthenticatedConnectorDecorator<JWTAuthent
         try {
             result = (AuthCommand.AuthCommandResponse) decoratee.call(refreshCmd);
             if (!result.isSuccess()) {
-                ui.error("Unable to use refresh token. Retrying");
+                if (ui != null)
+                    ui.error("Unable to use refresh token. Retrying");
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ignored) {
@@ -79,7 +80,8 @@ public class JWTAuthConnector extends AuthenticatedConnectorDecorator<JWTAuthent
         }
 
         var creds = new StoredJWTCredentials((JWTLoginResponse) result.getData());
-        ui.display("Updated token. Exp for access: %s, for refresh %s".formatted(creds.getAuthToken().expiration(), creds.getRefreshToken().expiration()));
+        if (ui != null)
+            ui.display("Updated token. Exp for access: %s, for refresh %s".formatted(creds.getAuthToken().expiration(), creds.getRefreshToken().expiration()));
         storage.setCredentials(creds);
     }
 

@@ -40,13 +40,16 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
     protected void loginUser(AppRequest request) {
         var resp = request.response();
 
-        LoginCommand cmd = (LoginCommand) request.payload();
+        var cmd = (LoginCommand<?>) request.payload();
+
+        var logID = cmd.getCredentials().safeIdentifier();
+        log.info("Login request for {}", logID);
         try {
             var loginResponse = authenticationReceiver.login(cmd);
 
             resp.from(cmd.createResponse().setData(loginResponse));
         } catch (Throwable e) {
-            log.error("Authentication failed:", e);
+            log.error("Login authentication failed for {}: {}", logID, e.getMessage());
             resp.status(APIResponseStatus.AUTH_ERROR);
         }
 
@@ -61,6 +64,8 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
 
         RegisterCommand cmd = (RegisterCommand) request.payload();
 
+        var logID = cmd.getCredentials().safeIdentifier();
+        log.info("Register request for {}", logID);
         try {
             var registerResponse = authenticationReceiver.register(cmd);
 
@@ -68,10 +73,10 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
         } catch (UserExistsException e) {
             resp.status(APIResponseStatus.AUTH_ERROR).message("User with such name already exist");
         } catch (InvalidCredentialsException e) {
-            log.error("Register failed", e);
+            log.error("Register failed for {}: {}", logID, e.getMessage());
             resp.status(APIResponseStatus.AUTH_ERROR).message("Credentials don't met requirements");
         } catch (Throwable e) {
-            log.error("Register failed", e);
+            log.error("Register failed for {}: {}", logID, e.getMessage());
             resp.status(APIResponseStatus.AUTH_ERROR).message("Invalid authentication");
         }
 
@@ -89,6 +94,7 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
         var authRequest = commandAuthenticator.extractAuth(request.payload());
 
         if (authRequest == null) {
+            log.info("Request {} does not contain auth data", request.id());
             updateSession(
                     request,
                     new Authentication(Authentication.AuthenticationStatus.GUEST)
@@ -96,13 +102,15 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
             return;
         }
 
+
         Authentication result = new Authentication(Authentication.AuthenticationStatus.GUEST);
         try {
             result = authenticationReceiver.authorize(authRequest);
         } catch (Throwable e) {
-            log.error("Request authentication failed:", e);
+            log.error("Request authentication failed for {}: {}", authRequest.safeIdentifier(), e.getMessage());
         }
 
+        log.info("Request authentication OK for {}", authRequest.safeIdentifier());
         updateSession(
                 request,
                 result

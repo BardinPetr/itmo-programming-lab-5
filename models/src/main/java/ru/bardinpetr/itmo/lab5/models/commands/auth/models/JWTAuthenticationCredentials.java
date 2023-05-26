@@ -9,4 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class JWTAuthenticationCredentials extends AuthenticationCredentials {
     public String token;
+
+    @Override
+    public String safeIdentifier() {
+        return token;
+    }
 }

@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.api;
+package ru.bardinpetr.itmo.lab5.client.controller.auth.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +17,10 @@ public class StoredJWTCredentials extends AuthenticationCredentials {
 
     public StoredJWTCredentials(JWTLoginResponse source) {
         this(source.getAuthToken(), source.getRefreshToken());
+    }
+
+    @Override
+    public String safeIdentifier() {
+        return authToken.token();
     }
 }

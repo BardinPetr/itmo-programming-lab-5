@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.commands;
+package ru.bardinpetr.itmo.lab5.client.controller.auth.commands;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;

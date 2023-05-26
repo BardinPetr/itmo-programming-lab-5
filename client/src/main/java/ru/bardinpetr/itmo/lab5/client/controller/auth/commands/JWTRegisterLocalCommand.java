@@ -1,9 +1,9 @@
-package ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.commands;
+package ru.bardinpetr.itmo.lab5.client.controller.auth.commands;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
+import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
-import ru.bardinpetr.itmo.lab5.mainclient.local.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.AuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.JWTLoginResponse;
