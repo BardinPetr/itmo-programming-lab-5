@@ -89,7 +89,6 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
      */
     @Override
     public void send(SocketMessage msg) throws TransportException, TransportTimeoutException {
-        sessionId = -1;
         connect();
 
         byte[] msgBytes;
@@ -105,16 +104,16 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
         var buffer = TransportUtils.IntToBytes(msgSize);
 
         var header = new SessionFrame(
-                sessionId,
+                -1,
                 Frame.FIRST_ID,
-                buffer.array());
+                buffer.array(), 1);
 
         sendFrame(header);
         var checkFrame = receiveFrame(sendDurationTimeout);
         sessionId = checkFrame.getSessionId();
         header.checkACK(checkFrame);
 
-        var packetsList = TransportUtils.separateBytes(sessionId, msgBytes);
+        var packetsList = TransportUtils.separateBytes(sessionId, msgBytes, 1);
         for (SessionFrame tmpFrame : packetsList) {
             sendFrame(tmpFrame);
             tmpFrame.checkACK(receiveFrame(sendDurationTimeout));
@@ -135,14 +134,14 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
         sessionId = header.getSessionId();
         int size = ByteBuffer.wrap(header.getPayload()).getInt();
 
-        sendFrame(new SessionFrame(sessionId, Frame.FIRST_ID));
+        sendFrame(new SessionFrame(sessionId, Frame.FIRST_ID, 0));
 
         // seg 2 end -> wait n packets + set user lock
         List<SessionFrame> frameList = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
             frameList.add(receiveFrame(duration));
-            sendFrame(new SessionFrame(sessionId, Frame.FIRST_ID + 2 + i));
+            sendFrame(new SessionFrame(sessionId, Frame.FIRST_ID + 2 + i, 0));
         }
 
         SocketMessage msg;

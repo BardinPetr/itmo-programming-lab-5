@@ -21,7 +21,7 @@ public class MainTexts extends Texts {
                 - mine : show all workers belonging to current user
                 - add {element} : add new worker to the collection
                 - add_org {element} : add new organization
-                - get_org : list existing organizations
+                - get_orgs : list existing organizations
                 - update id {element} : update the value of the collection element whose id is equal to the given one
                 - remove_by_id id : remove an element from the collection by its id
                 - clear : clear the collection

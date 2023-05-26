@@ -30,6 +30,7 @@ public class Receiver extends RecursiveAction {
     private final Session session;
     private final IMessageHandler<SocketAddress, SocketMessage> handler;
     private final Map<Integer, Session> clientsMap;
+    private boolean sessionClosed = false;
     JSONSerDesService<SocketMessage> serDesService = new JSONSerDesService<>(SocketMessage.class);
 
 
@@ -50,7 +51,7 @@ public class Receiver extends RecursiveAction {
     private void respondToFrame(int frameId) throws IOException {
         channel.send(
                 ByteBuffer.wrap(
-                        new SessionFrame(session.getId(), frameId).toBytes()
+                        new SessionFrame(session.getId(), frameId, 0).toBytes()
                 ),
                 session.getAddress());
     }
@@ -62,6 +63,7 @@ public class Receiver extends RecursiveAction {
     protected void compute() {
 //        System.out.println("A");
         log.info("Start receiving message is %d session".formatted(session.getId()));
+
         try {
             var initFrame = SessionFrame.fromChannel(pipeSource);
             if (initFrame.getId() != Frame.FIRST_ID) {
@@ -105,8 +107,6 @@ public class Receiver extends RecursiveAction {
             log.error("Error during receiving session", e);
             closeSession();
             throw new TransportException(e);
-        } finally {
-//            System.out.println("B");
         }
     }
 
@@ -114,10 +114,12 @@ public class Receiver extends RecursiveAction {
      * Close session
      */
     private void closeSession() {
+        if (sessionClosed) return;
         try {
             clientsMap.remove(session.getId());
             session.getPipe().sink().close();
             session.getPipe().source().close();
+            sessionClosed = true;
         } catch (IOException e) {
             log.error("Error during closing receiving session", e);
             throw new TransportException(e);

@@ -41,7 +41,8 @@ public class Sender extends Thread {
             log.info("Start sending in %d session".formatted(session.getId()));
             var frameList = TransportUtils.separateBytes(
                     session.getId(),
-                    serDesService.serialize(message)
+                    serDesService.serialize(message),
+                    1
             );
             var lenInBytes = TransportUtils.IntToBytes(frameList.size());
             channel.send(
@@ -56,6 +57,7 @@ public class Sender extends Thread {
                 channel.send(ByteBuffer.wrap(frameList.get(i).toBytes()), session.getAddress());
                 receiveAndCheck(i + 2);
             }
+
             log.info("Send message to " + session.getAddress());
 
         } catch (SerDesException ignored) {
@@ -94,7 +96,8 @@ public class Sender extends Thread {
         return ByteBuffer.wrap(new SessionFrame(
                         session.getId(),
                         id,
-                        bytes
+                        bytes,
+                        1
                 ).toBytes()
         );
     }

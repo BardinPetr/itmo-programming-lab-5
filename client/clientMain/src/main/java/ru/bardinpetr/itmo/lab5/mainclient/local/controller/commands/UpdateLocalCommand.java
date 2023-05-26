@@ -86,7 +86,7 @@ public class UpdateLocalCommand extends APIUILocalCommand {
             throw new RuntimeException("Could not retrieve existing data: " + currentObjResp.getUserMessage());
 
         if (!((GetSelfInfoCommand.GetSelfInfoResponse) accessCheckResp).getId().equals(current.getOwner())) {
-            throw new RuntimeException("Object not owned");
+            throw new RuntimeException("Object not owned by you");
         }
 
 

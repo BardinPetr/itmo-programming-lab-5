@@ -33,9 +33,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public void clear() {
-        writeLock.lock();
-        decoratee.clear();
-        writeLock.unlock();
+        try {
+            writeLock.lock();
+            decoratee.clear();
+        } finally {
+            writeLock.unlock();
+        }
     }
 
     /**
@@ -47,10 +50,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public K add(V worker) {
-        writeLock.lock();
-        var res = decoratee.add(worker);
-        writeLock.unlock();
-        return res;
+        try {
+            writeLock.lock();
+            return decoratee.add(worker);
+        } finally {
+            writeLock.unlock();
+        }
     }
 
     /**
@@ -62,10 +67,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public boolean update(K id, V updateWorker) {
-        writeLock.lock();
-        var res = decoratee.update(id, updateWorker);
-        writeLock.unlock();
-        return res;
+        try {
+            writeLock.lock();
+            return decoratee.update(id, updateWorker);
+        } finally {
+            writeLock.unlock();
+        }
     }
 
     /**
@@ -77,10 +84,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public boolean remove(K id) {
-        writeLock.lock();
-        var res = decoratee.remove(id);
-        writeLock.unlock();
-        return res;
+        try {
+            writeLock.lock();
+            return decoratee.remove(id);
+        } finally {
+            writeLock.unlock();
+        }
     }
 
 
@@ -89,10 +98,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public CollectionInfo getCollectionInfo() {
-        readLock.lock();
-        var res = decoratee.getCollectionInfo();
-        readLock.unlock();
-        return res;
+        try {
+            readLock.lock();
+            return decoratee.getCollectionInfo();
+        } finally {
+            readLock.unlock();
+        }
     }
 
     /**
@@ -103,10 +114,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public V read(K id) {
-        readLock.lock();
-        var res = decoratee.read(id);
-        readLock.unlock();
-        return res;
+        try {
+            readLock.lock();
+            return decoratee.read(id);
+        } finally {
+            readLock.unlock();
+        }
     }
 
     /**
@@ -116,10 +129,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public List<V> readAll() {
-        readLock.lock();
-        var res = decoratee.readAll();
-        readLock.unlock();
-        return res;
+        try {
+            readLock.lock();
+            return decoratee.readAll();
+        } finally {
+            readLock.unlock();
+        }
     }
 
     /**
@@ -129,10 +144,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public Stream<V> asStream() {
-        readLock.lock();
-        var res = decoratee.readAll().stream();
-        readLock.unlock();
-        return res;
+        try {
+            readLock.lock();
+            return decoratee.readAll().stream();
+        } finally {
+            readLock.unlock();
+        }
     }
 
     /**
@@ -143,10 +160,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public boolean has(K id) {
-        readLock.lock();
-        var res = decoratee.has(id);
-        readLock.unlock();
-        return res;
+        try {
+            readLock.lock();
+            return decoratee.has(id);
+        } finally {
+            readLock.unlock();
+        }
     }
 
     /**
@@ -156,10 +175,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public V getMax() {
-        readLock.lock();
-        var res = decoratee.getMax();
-        readLock.unlock();
-        return res;
+        try {
+            readLock.lock();
+            return decoratee.getMax();
+        } finally {
+            readLock.unlock();
+        }
     }
 
     /**
@@ -169,10 +190,12 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public V getMin() {
-        readLock.lock();
-        var res = decoratee.getMin();
-        readLock.unlock();
-        return res;
+        try {
+            readLock.lock();
+            return decoratee.getMin();
+        } finally {
+            readLock.unlock();
+        }
     }
 
     /**
@@ -182,25 +205,31 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
      */
     @Override
     public K nextPrimaryKey() {
-        readLock.lock();
-        var res = decoratee.nextPrimaryKey();
-        readLock.unlock();
-        return res;
+        try {
+            readLock.lock();
+            return decoratee.nextPrimaryKey();
+        } finally {
+            readLock.unlock();
+        }
     }
 
     @Override
     public List<Organization> getOrganizations() {
-        readLock.lock();
-        var res = decoratee.getOrganizations();
-        readLock.unlock();
-        return res;
+        try {
+            readLock.lock();
+            return decoratee.getOrganizations();
+        } finally {
+            readLock.unlock();
+        }
     }
 
     @Override
     public K addOrg(Organization element) {
-        writeLock.lock();
-        var res = decoratee.addOrg(element);
-        writeLock.unlock();
-        return res;
+        try {
+            writeLock.lock();
+            return decoratee.addOrg(element);
+        } finally {
+            writeLock.unlock();
+        }
     }
 }

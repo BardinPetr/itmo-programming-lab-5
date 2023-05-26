@@ -43,15 +43,13 @@ public class SessionFrameRouter implements IServerTransport<SocketAddress, Socke
             try {
                 ByteBuffer buffer = ByteBuffer.allocate(SessionFrame.MAX_SIZE);
                 SocketAddress address = channel.receive(buffer);
-                var frame = SessionFrame.fromBytes(buffer.array());
+                SessionFrame frame = SessionFrame.fromBytes(buffer.array());
                 int currentSessionId = frame.getSessionId();
 
                 if (frame.getId() == Frame.FIRST_ID) {
                     if (!clientPipeMap.containsKey(frame.getSessionId())) {
                         currentSessionId = regClient(address);
-                    } else if (frame.getPayload().length != 0) {     //Not First ACK for sending session
-                        Frame.argueWithOlga(frame.getId(), Frame.FIRST_ID);
-                    }
+                    } else if (frame.getSending() == 1) Frame.argueWithOlga(Frame.FIRST_ID, 0);
                 }
 
                 var clientPipe = clientPipeMap.get(currentSessionId).getPipe();

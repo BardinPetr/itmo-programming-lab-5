@@ -24,7 +24,7 @@ public class Main {
         );
 
         var auth = new AuthAppFacade();
-        auth.setDebug(true);
+        auth.setDebug(false);
 
         var udpServer = UDPServerFactory.create(consoleArgs.getPort());
         var mainApp = new UDPInputTransportApplication(udpServer);

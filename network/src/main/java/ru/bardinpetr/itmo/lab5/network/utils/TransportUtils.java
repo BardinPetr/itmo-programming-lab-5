@@ -79,7 +79,7 @@ public class TransportUtils {
         return resList;
     }
 
-    public static List<SessionFrame> separateBytes(int sessionId, byte[] source) {
+    public static List<SessionFrame> separateBytes(int sessionId, byte[] source, int sending) {
         var byteList = separate(SessionFrame.PAYLOAD_SIZE, source);
         List<SessionFrame> resList = new ArrayList<>();
 
@@ -87,7 +87,8 @@ public class TransportUtils {
             resList.add(new SessionFrame(
                     sessionId,
                     i + 2,
-                    byteList.get(i)
+                    byteList.get(i),
+                    sending
             ));
         }
         return resList;
