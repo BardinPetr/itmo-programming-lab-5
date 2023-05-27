@@ -6,136 +6,242 @@ skinparam linetype ortho
 
 class APICommand {
   + APICommand(): 
-  + getCmdIdentifier(): Class<APICommand>
-  + validate(): ValidationResponse
-  # canEqual(Object): boolean
-  + hashCode(): int
-  + toString(): String
-  + createResponse(): APICommandResponse
+  - header: Map<String, Object>
+  + getHeader(): Map<String, Object>
   + equals(Object): boolean
+  # canEqual(Object): boolean
+  + createResponse(): APICommandResponse
+  + validate(): ValidationResponse
+  + hashCode(): int
+  + getCmdIdentifier(): Class<APICommand>
+  + toString(): String
 }
 class APICommandResponse {
-  + APICommandResponse(Status, String): 
+  + APICommandResponse(APIResponseStatus, String): 
   + APICommandResponse(): 
-  - status: Status
+  - status: APIResponseStatus
   - textualResponse: String
-  + setTextualResponse(String): void
-  + isSuccess(): boolean
-  + hashCode(): int
-  + equals(Object): boolean
+  + serverError(Exception): APICommandResponse
+  + setStatus(APIResponseStatus): void
   + isResolved(): boolean
   + clientError(Exception): APICommandResponse
-  + serverError(String): APICommandResponse
-  + notFound(): APICommandResponse
-  + setStatus(Status): void
   + toString(): String
-  + getStatus(): Status
-  + getTextualResponse(): String
+  + serverError(String): APICommandResponse
+  + setTextualResponse(String): void
   # canEqual(Object): boolean
-  + serverError(Exception): APICommandResponse
+  + getStatus(): APIResponseStatus
   + clientError(String): APICommandResponse
+  + notFound(): APICommandResponse
+  + getTextualResponse(): String
+  + equals(Object): boolean
+  + hashCode(): int
   + ok(): APICommandResponse
+  + isSuccess(): boolean
+  + getUserMessage(): String
+}
+enum APIResponseStatus << enumeration >> {
+  - APIResponseStatus(): 
+  + OK: 
+  + AUTH_ERROR: 
+  + SERVER_ERROR: 
+  + CLIENT_ERROR: 
+  + UNPROCESSED: 
+  + NOT_FOUND: 
+  + isError(): boolean
+  + values(): APIResponseStatus[]
+  + valueOf(String): APIResponseStatus
 }
 class AddCommand {
-  + AddCommand(): 
   + AddCommand(Worker): 
+  + AddCommand(): 
   + element: Worker
   + createResponse(): AddCommandResponse
-  + getType(): String
-  + getElement(): Worker
   # canEqual(Object): boolean
-  + hashCode(): int
-  + getInlineArgs(): Field<?>[]
+  + equals(Object): boolean
+  + getType(): String
   + toString(): String
   + setElement(Worker): void
+  + getElement(): Worker
   + validate(): ValidationResponse
-  + equals(Object): boolean
+  + getInteractArgs(): Field<?>[]
+  + hashCode(): int
 }
 class AddCommandResponse {
   + AddCommandResponse(): 
+  - id: Integer
+  + getUserMessage(): String
+  + getId(): Integer
+  + setId(Integer): void
+}
+class AddIfMaxCommand {
+  + AddIfMaxCommand(): 
+  + getType(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + toString(): String
+  + hashCode(): int
+}
+class AddIfMinCommand {
+  + AddIfMinCommand(): 
+  + getType(): String
+  + equals(Object): boolean
+  + toString(): String
+  + hashCode(): int
+  # canEqual(Object): boolean
+}
+class AddOrgCommand {
+  + AddOrgCommand(Organization): 
+  + AddOrgCommand(): 
+  + element: Organization
+  + getElement(): Organization
+  + setElement(Organization): void
+  # canEqual(Object): boolean
+  + equals(Object): boolean
+  + hashCode(): int
+  + getInteractArgs(): Field<?>[]
+  + toString(): String
+  + createResponse(): AddOrgCommandResponse
+  + getType(): String
+}
+class AddOrgCommandResponse {
+  + AddOrgCommandResponse(): 
   - id: Integer
   + getId(): Integer
   + getUserMessage(): String
   + setId(Integer): void
 }
-class AddIfMaxCommand {
-  + AddIfMaxCommand(): 
-  + equals(Object): boolean
+class AuthCommand<T> {
+  + AuthCommand(): 
+  + AuthCommand(T): 
+  - credentials: T
+  + getCredentials(): T
   + toString(): String
-  + getType(): String
+  + equals(Object): boolean
   + hashCode(): int
+  + createResponse(): AuthCommandResponse
   # canEqual(Object): boolean
+  + setCredentials(T): void
 }
-class AddIfMinCommand {
-  + AddIfMinCommand(): 
-  + equals(Object): boolean
-  + toString(): String
-  + hashCode(): int
-  + getType(): String
+class AuthCommandResponse {
+  + AuthCommandResponse(): 
+  - data: LoginResponse
+  + setData(LoginResponse): AuthCommandResponse
+  + getData(): LoginResponse
+}
+enum AuthStrategy << enumeration >> {
+  - AuthStrategy(): 
+  + LOGIN_PASS: 
+  + REFRESH_TOKEN: 
+  + values(): AuthStrategy[]
+  + valueOf(String): AuthStrategy
+}
+class AuthenticationCredentials {
+  + AuthenticationCredentials(): 
   # canEqual(Object): boolean
+  + toString(): String
+  + safeIdentifier(): String
+  + equals(Object): boolean
+  + hashCode(): int
 }
 class ClearCommand {
   + ClearCommand(): 
   + getType(): String
-  # canEqual(Object): boolean
-  + hashCode(): int
-  + equals(Object): boolean
   + toString(): String
+  # canEqual(Object): boolean
+  + equals(Object): boolean
+  + hashCode(): int
 }
 class CollectionInfo {
   + CollectionInfo(): 
   + CollectionInfo(String, String, ZonedDateTime, Integer): 
-  - type: String
-  - name: String
-  - initializationDate: ZonedDateTime
   - itemsCount: Integer
-  + setItemsCount(Integer): void
-  + hashCode(): int
-  + getName(): String
-  + setType(String): void
-  + getItemsCount(): Integer
-  + getType(): String
+  - initializationDate: ZonedDateTime
+  - name: String
+  - type: String
   + equals(Object): boolean
+  + getName(): String
+  + getType(): String
   + getInitializationDate(): ZonedDateTime
-  + toString(): String
-  + setName(String): void
-  + setInitializationDate(ZonedDateTime): void
+  + setItemsCount(Integer): void
   # canEqual(Object): boolean
+  + getItemsCount(): Integer
+  + setName(String): void
+  + hashCode(): int
+  + setType(String): void
+  + setInitializationDate(ZonedDateTime): void
+  + toString(): String
 }
 class Coordinates {
   + Coordinates(): 
   + Coordinates(Integer, float): 
   - y: float
   - x: Integer
-  + getX(): Integer
   # canEqual(Object): boolean
-  + hashCode(): int
   + compareTo(Coordinates): int
-  + getY(): float
   + setX(Integer): void
-  + setY(float): void
-  + toString(): String
+  + hashCode(): int
+  + getY(): float
   + equals(Object): boolean
+  + fromString(String): Coordinates
+  + setY(float): void
+  + getX(): Integer
+  + toString(): String
 }
 class CoordinatesValidator {
   + CoordinatesValidator(): 
-  + validateAll(Coordinates): ValidationResponse
-  + validateY(Float): ValidationResponse
   + validateX(Integer): ValidationResponse
+  + validateY(Float): ValidationResponse
+  + validateAll(Coordinates): ValidationResponse
+}
+class DefaultAuthenticationCredentials {
+  + DefaultAuthenticationCredentials(): 
+  + DefaultAuthenticationCredentials(String, String): 
+  - username: String
+  - password: String
+  + toString(): String
+  + setPassword(String): void
+  # canEqual(Object): boolean
+  + getUsername(): String
+  + hashCode(): int
+  + safeIdentifier(): String
+  + getPassword(): String
+  + setUsername(String): void
+  + equals(Object): boolean
+}
+class DefaultCollectionCommandResponse {
+  + DefaultCollectionCommandResponse(): 
+  + getUserMessage(): String
+}
+class DefaultLoginResponse {
+  + DefaultLoginResponse(String, Integer, String): 
+  + DefaultLoginResponse(): 
+  - username: String
+  - role: String
+  - userId: Integer
+  + getUserId(): Integer
+  # canEqual(Object): boolean
+  + setUserId(Integer): void
+  + getUsername(): String
+  + setUsername(String): void
+  + equals(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + getRole(): String
+  + setRole(String): void
 }
 class ExecuteScriptCommand {
-  + ExecuteScriptCommand(List<APICommand>): 
   + ExecuteScriptCommand(): 
+  + ExecuteScriptCommand(List<APICommand>): 
   - commands: List<APICommand>
-  + createResponse(): ExecuteScriptCommandResponse
-  # canEqual(Object): boolean
-  + setCommands(List<APICommand>): void
-  + toString(): String
-  + getCommands(): List<APICommand>
-  + equals(Object): boolean
-  + getType(): String
-  + hashCode(): int
   + getInlineArgs(): Field<?>[]
+  + createResponse(): ExecuteScriptCommandResponse
+  + getCommands(): List<APICommand>
+  + setCommands(List<APICommand>): void
+  + hashCode(): int
+  + getType(): String
+  + toString(): String
+  + equals(Object): boolean
+  # canEqual(Object): boolean
 }
 class ExecuteScriptCommandResponse {
   + ExecuteScriptCommandResponse(): 
@@ -146,81 +252,106 @@ class Field<T> {
   + Field(String, Class<T>): 
   - name: String
   - valueClass: Class<T>
-  + equals(Object): boolean
   + toString(): String
-  + setValueClass(Class<T>): void
-  + getValueClass(): Class<T>
-  # canEqual(Object): boolean
-  + getName(): String
   + hashCode(): int
+  + setValueClass(Class<T>): void
+  + getName(): String
+  # canEqual(Object): boolean
   + setName(String): void
+  + equals(Object): boolean
+  + getValueClass(): Class<T>
 }
 annotation FieldValidator << annotation >> {
   + value(): Class<Validator>
 }
 class FieldWithDesc<T> {
   + FieldWithDesc(String, Class<T>, String, IValidator<T>, boolean): 
-  - promptMsg: String
   - validator: IValidator<T>
+  - promptMsg: String
   - nullAble: boolean
-  + getPromptMsg(): String
-  + isNullAble(): boolean
-  + toString(): String
-  # canEqual(Object): boolean
-  + hashCode(): int
   + getValidator(): IValidator<T>
+  # canEqual(Object): boolean
   + equals(Object): boolean
+  + getPromptMsg(): String
+  + toString(): String
+  + isNullAble(): boolean
+  + hashCode(): int
 }
 class FilterLessPosCommand {
   + FilterLessPosCommand(): 
   + FilterLessPosCommand(Position): 
   + position: Position
-  + getPosition(): Position
-  + getInlineArgs(): Field<?>[]
-  + toString(): String
-  + setPosition(Position): void
-  + equals(Object): boolean
-  + createResponse(): FilterLessPosCommandResponse
-  + getType(): String
-  + hashCode(): int
   # canEqual(Object): boolean
+  + hashCode(): int
+  + getPosition(): Position
+  + createResponse(): FilterLessPosCommandResponse
+  + equals(Object): boolean
+  + toString(): String
+  + getType(): String
+  + getInlineArgs(): Field<?>[]
+  + setPosition(Position): void
 }
 class FilterLessPosCommandResponse {
   + FilterLessPosCommandResponse(): 
   + getUserMessage(): String
 }
-class GetWorkerCommand {
-  + GetWorkerCommand(Integer): 
-  + GetWorkerCommand(): 
-  + id: Integer
-  + setId(Integer): void
-  + toString(): String
+class GetOrgsCommand {
+  + GetOrgsCommand(): 
+  + createResponse(): OrganisationCommandResponse
   + getType(): String
-  + getId(): Integer
+  + hashCode(): int
+  + toString(): String
+  # canEqual(Object): boolean
   + equals(Object): boolean
+}
+class GetSelfInfoCommand {
+  + GetSelfInfoCommand(): 
+  + equals(Object): boolean
+  + createResponse(): GetSelfInfoResponse
   # canEqual(Object): boolean
   + hashCode(): int
+  + getType(): String
+  + toString(): String
+}
+class GetSelfInfoResponse {
+  + GetSelfInfoResponse(): 
+  - id: Integer
+  + getUserMessage(): String
+  + getId(): Integer
+  + setId(Integer): void
+}
+class GetWorkerCommand {
+  + GetWorkerCommand(): 
+  + GetWorkerCommand(Integer): 
+  + id: Integer
+  + setId(Integer): void
+  + equals(Object): boolean
+  + hashCode(): int
+  # canEqual(Object): boolean
+  + toString(): String
   + createResponse(): GetWorkerCommandResponse
+  + getId(): Integer
+  + getType(): String
 }
 class GetWorkerCommandResponse {
   + GetWorkerCommandResponse(): 
   - worker: Worker
-  + toString(): String
   # canEqual(Object): boolean
-  + getUserMessage(): String
-  + getWorker(): Worker
   + equals(Object): boolean
-  + setWorker(Worker): void
+  + toString(): String
   + hashCode(): int
+  + getWorker(): Worker
+  + setWorker(Worker): void
+  + getUserMessage(): String
 }
 class GetWorkerIdsCommand {
   + GetWorkerIdsCommand(): 
-  + equals(Object): boolean
-  + getType(): String
   + createResponse(): GetWorkerIdsCommandResponse
   # canEqual(Object): boolean
-  + toString(): String
+  + equals(Object): boolean
+  + getType(): String
   + hashCode(): int
+  + toString(): String
 }
 class GetWorkerIdsCommandResponse {
   + GetWorkerIdsCommandResponse(): 
@@ -232,187 +363,295 @@ interface IIdentifiableCommand<K> << interface >> {
 interface IKeyedEntity<K> << interface >> {
   + getPrimaryKey(): K
 }
+interface IOwnedEntity << interface >> {
+  + setOwner(Integer): boolean
+  + getOwner(): Integer
+}
 interface ISetCollection<K, V> << interface >>
 interface IValidator<T> << interface >> {
   + validate(T): ValidationResponse
 }
 class InfoCommand {
   + InfoCommand(): 
-  + createResponse(): InfoCommandResponse
   + equals(Object): boolean
   # canEqual(Object): boolean
-  + hashCode(): int
-  + toString(): String
   + getType(): String
+  + hashCode(): int
+  + createResponse(): InfoCommandResponse
+  + toString(): String
 }
 class InfoCommandResponse {
   + InfoCommandResponse(): 
   - result: CollectionInfo
-  + getResult(): CollectionInfo
   + setResult(CollectionInfo): void
   + getUserMessage(): String
+  + getResult(): CollectionInfo
 }
 annotation InputNullable << annotation >>
 annotation InteractText << annotation >> {
   + value(): String
 }
+class JWTAuthenticationCredentials {
+  + JWTAuthenticationCredentials(String): 
+  + JWTAuthenticationCredentials(): 
+  + token: String
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + setToken(String): void
+  + equals(Object): boolean
+  + toString(): String
+  + safeIdentifier(): String
+  + getToken(): String
+}
+entity JWTInfo << record >> {
+  + JWTInfo(String, ZonedDateTime): 
+  - token: String
+  - expiration: ZonedDateTime
+  + token(): String
+  + expiration(): ZonedDateTime
+}
+class JWTLoginResponse {
+  + JWTLoginResponse(): 
+  + JWTLoginResponse(JWTInfo, JWTInfo): 
+  - authToken: JWTInfo
+  - refreshToken: JWTInfo
+  + equals(Object): boolean
+  + hashCode(): int
+  + setRefreshToken(JWTInfo): void
+  + getAuthToken(): JWTInfo
+  + getRefreshToken(): JWTInfo
+  + toString(): String
+  + setAuthToken(JWTInfo): void
+  # canEqual(Object): boolean
+}
 class ListAPICommandResponse<T> {
   + ListAPICommandResponse(): 
   - result: List<T>
-  + setResult(List<T>): void
   + getResult(): List<T>
+  + setResult(List<T>): void
   + getUserMessage(): String
 }
-annotation NotPromptRequired << annotation >>
-class Organization {
-  + Organization(String, OrganizationType): 
-  + Organization(): 
-  ~ fullName: String
-  ~ type: OrganizationType
+class LoginCommand<T> {
+  + LoginCommand(): 
+  # strategy: AuthStrategy
+  + hashCode(): int
+  # canEqual(Object): boolean
+  + setStrategy(AuthStrategy): void
   + equals(Object): boolean
+  + getStrategy(): AuthStrategy
+  + toString(): String
+}
+class LoginResponse {
+  + LoginResponse(): 
+}
+annotation NotPromptRequired << annotation >>
+class OrganisationCommandResponse {
+  + OrganisationCommandResponse(): 
+  - organizations: List<Organization>
+  + getUserMessage(): String
+  + getOrganizations(): List<Organization>
+  + setOrganizations(List<Organization>): void
+}
+class Organization {
+  + Organization(Integer, String, OrganizationType): 
+  + Organization(): 
+  ~ type: OrganizationType
+  ~ fullName: String
+  ~ id: Integer
+  + setId(Integer): void
+  + getType(): OrganizationType
+  + getComparator(): Comparator<Organization>
   + setType(OrganizationType): void
+  + equals(Object): boolean
+  + compareTo(Organization): int
+  + getId(): Integer
   + getFullName(): String
+  + hashCode(): int
   + toString(): String
   + setFullName(String): void
-  + hashCode(): int
-  + compareTo(Organization): int
   # canEqual(Object): boolean
-  + getComparator(): Comparator<Organization>
-  + getType(): OrganizationType
 }
 enum OrganizationType << enumeration >> {
   - OrganizationType(int): 
-  + COMMERCIAL: 
-  + PUBLIC: 
   - value: int
-  + OPEN_JOINT_STOCK_COMPANY: 
+  + PUBLIC: 
   + PRIVATE_LIMITED_COMPANY: 
-  + getValue(): int
+  + COMMERCIAL: 
+  + OPEN_JOINT_STOCK_COMPANY: 
   + valueOf(String): OrganizationType
+  + getValue(): int
   + values(): OrganizationType[]
 }
 class OrganizationValidator {
   + OrganizationValidator(): 
-  + validateAll(Organization): ValidationResponse
   + validateFullName(String): ValidationResponse
+  + validateAll(Organization): ValidationResponse
+}
+class PagingAPICommand {
+  + PagingAPICommand(Integer, Integer): 
+  + PagingAPICommand(): 
+  - offset: Integer
+  - count: Integer
+  + FULL_COUNT: Integer
+  + getCount(): Integer
+  + setCount(Integer): void
+  + toString(): String
+  + getOffset(): Integer
+  # canEqual(Object): boolean
+  + equals(Object): boolean
+  + createResponse(): DefaultCollectionCommandResponse
+  + getType(): String
+  + hashCode(): int
+  + setOffset(Integer): void
+}
+class PasswordLoginCommand {
+  + PasswordLoginCommand(): 
+  + hashCode(): int
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + getType(): String
+  + toString(): String
+  + getInteractArgs(): Field<?>[]
+}
+class PingCommand {
+  + PingCommand(): 
 }
 enum Position << enumeration >> {
   - Position(int): 
+  + LEAD_DEVELOPER: 
+  + MANAGER_OF_CLEANING: 
   + ENGINEER: 
+  + value: int
   + HEAD_OF_DEPARTMENT: 
   + CLEANER: 
-  + LEAD_DEVELOPER: 
-  + value: int
-  + MANAGER_OF_CLEANING: 
-  + getValue(): int
-  + valueOf(String): Position
   + values(): Position[]
+  + valueOf(String): Position
+  + getValue(): int
 }
 class PrintDescendingCommand {
   + PrintDescendingCommand(): 
-  + hashCode(): int
-  # canEqual(Object): boolean
+  + PrintDescendingCommand(Integer, Integer): 
   + createResponse(): PrintDescendingCommandResponse
-  + equals(Object): boolean
-  + getType(): String
+  # canEqual(Object): boolean
   + toString(): String
+  + getType(): String
+  + hashCode(): int
+  + equals(Object): boolean
 }
 class PrintDescendingCommandResponse {
   + PrintDescendingCommandResponse(): 
   + getUserMessage(): String
 }
-class RemoveByIdCommand {
-  + RemoveByIdCommand(): 
-  + RemoveByIdCommand(Integer): 
-  + id: Integer
-  + getId(): Integer
-  + hashCode(): int
-  + getInlineArgs(): Field<?>[]
-  + toString(): String
+class RefreshLoginCommand {
+  + RefreshLoginCommand(): 
+  + equals(Object): boolean
   # canEqual(Object): boolean
   + getType(): String
+  + toString(): String
+  + hashCode(): int
+}
+class RegisterCommand {
+  + RegisterCommand(): 
+  + getType(): String
+  + getInteractArgs(): Field<?>[]
+  + toString(): String
+  + hashCode(): int
   + equals(Object): boolean
+  # canEqual(Object): boolean
+}
+class RemoveByIdCommand {
+  + RemoveByIdCommand(Integer): 
+  + RemoveByIdCommand(): 
+  + id: Integer
+  + getId(): Integer
+  + getType(): String
+  + toString(): String
+  + equals(Object): boolean
+  + hashCode(): int
+  + getInlineArgs(): Field<?>[]
   + setId(Integer): void
+  # canEqual(Object): boolean
 }
 class RemoveGreaterCommand {
   + RemoveGreaterCommand(Worker): 
   + RemoveGreaterCommand(): 
   + element: Worker
+  + setElement(Worker): void
+  + validate(): ValidationResponse
+  + getInteractArgs(): Field<?>[]
   + hashCode(): int
+  + equals(Object): boolean
+  + getType(): String
   # canEqual(Object): boolean
   + toString(): String
-  + validate(): ValidationResponse
-  + getType(): String
-  + getInteractArgs(): Field<?>[]
-  + equals(Object): boolean
-  + setElement(Worker): void
   + getElement(): Worker
 }
 class SaveCommand {
   + SaveCommand(): 
   + equals(Object): boolean
-  + hashCode(): int
   + toString(): String
-  + getType(): String
+  + hashCode(): int
   # canEqual(Object): boolean
+  + getType(): String
 }
 class ShowCommand {
+  + ShowCommand(Integer, Integer): 
   + ShowCommand(): 
   + createResponse(): ShowCommandResponse
-  + hashCode(): int
   + getType(): String
   + toString(): String
-  # canEqual(Object): boolean
   + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
 }
 class ShowCommandResponse {
   + ShowCommandResponse(): 
-  + getUserMessage(): String
 }
-enum Status << enumeration >> {
-  - Status(): 
-  + OK: 
-  + UNPROCESSED: 
-  + CLIENT_ERROR: 
-  + SERVER_ERROR: 
-  + NOT_FOUND: 
-  + isError(): boolean
-  + valueOf(String): Status
-  + values(): Status[]
+class ShowCommandResponse {
+  + ShowCommandResponse(): 
+}
+class ShowMineCommand {
+  + ShowMineCommand(): 
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+  + getType(): String
+  + equals(Object): boolean
+  + createResponse(): ShowCommandResponse
 }
 class UniqueOrganisationCommand {
   + UniqueOrganisationCommand(): 
-  # canEqual(Object): boolean
-  + equals(Object): boolean
+  + toString(): String
   + hashCode(): int
   + createResponse(): UniqueOrganisationCommandResponse
+  # canEqual(Object): boolean
   + getType(): String
-  + toString(): String
+  + equals(Object): boolean
 }
 class UniqueOrganisationCommandResponse {
   + UniqueOrganisationCommandResponse(): 
   - organizations: List<Organization>
-  + setOrganizations(List<Organization>): void
-  + getUserMessage(): String
   + getOrganizations(): List<Organization>
+  + getUserMessage(): String
+  + setOrganizations(List<Organization>): void
 }
 class UpdateCommand {
-  + UpdateCommand(): 
   + UpdateCommand(Integer, Worker): 
+  + UpdateCommand(): 
   + id: Integer
   + element: Worker
-  + getType(): String
   + getElement(): Worker
-  + toString(): String
   + hashCode(): int
-  + validate(): ValidationResponse
-  + setId(Integer): void
-  + getInteractArgs(): Field<?>[]
-  + setElement(Worker): void
-  + getInlineArgs(): Field<?>[]
-  + getId(): Integer
   + equals(Object): boolean
+  + getInlineArgs(): Field<?>[]
   # canEqual(Object): boolean
+  + getId(): Integer
+  + setId(Integer): void
+  + getType(): String
+  + validate(): ValidationResponse
+  + setElement(Worker): void
+  + toString(): String
+  + getInteractArgs(): Field<?>[]
 }
 class UserAPICommand {
   + UserAPICommand(): 
@@ -427,74 +666,89 @@ interface UserPromptedAPICommand << interface >> {
 }
 class ValidationResponse {
   + ValidationResponse(boolean, String): 
-  - allowed: boolean
   - msg: String
-  + equals(Object): boolean
-  + setAllowed(boolean): void
-  + setMsg(String): void
+  - allowed: boolean
   + toString(): String
-  + hashCode(): int
-  # canEqual(Object): boolean
-  + isAllowed(): boolean
   + getMsg(): String
+  + isAllowed(): boolean
+  + hashCode(): int
+  + setAllowed(boolean): void
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + setMsg(String): void
 }
 interface Validator << interface >>
 class Worker {
+  + Worker(Integer, String, ZonedDateTime, Integer, String, float, Date, LocalDate, Coordinates, Organization, Position): 
   + Worker(): 
-  + Worker(Integer, ZonedDateTime, String, float, Date, LocalDate, Coordinates, Organization, Position): 
-  - salary: float
-  - endDate: LocalDate
+  - startDate: Date
   - name: String
+  - endDate: LocalDate
+  - salary: float
+  - organization: Organization
+  - ownerUsername: String
   - coordinates: Coordinates
   - position: Position
+  - owner: Integer
   - id: Integer
-  - organization: Organization
-  - startDate: Date
   - creationDate: ZonedDateTime
-  + withCreationDate(ZonedDateTime): Worker
-  + nicePrintFormat(List<Worker>): String
-  + setEndDate(LocalDate): void
-  + getEndDate(): LocalDate
-  + getOrganization(): Organization
-  + getName(): String
-  + getCreationDate(): ZonedDateTime
-  + setStartDate(Date): void
-  + setPosition(Position): void
-  + setSalary(float): void
-  + equals(Object): boolean
-  + setName(String): void
-  + getCoordinates(): Coordinates
-  + getPosition(): Position
-  + getPrimaryKey(): Integer
-  + getId(): Integer
-  + toString(): String
   + getSalary(): float
-  + setOrganization(Organization): void
+  + getOrganization(): Organization
+  + setEndDate(LocalDate): void
+  + getPrimaryKey(): Integer
   + getComparator(): Comparator<Worker>
-  + getStartDate(): Date
-  + compareTo(Worker): int
+  + withOwnerUsername(String): Worker
+  + setSalary(float): void
   + setCoordinates(Coordinates): void
+  + setOrganization(Organization): void
+  + getCoordinates(): Coordinates
+  + setName(String): void
+  + withOwner(Integer): Worker
+  + getOwnerUsername(): String
+  + getStartDate(): Date
+  + setOwnerUsername(String): void
+  + getCreationDate(): ZonedDateTime
+  + setPosition(Position): void
+  + getName(): String
+  + getEndDate(): LocalDate
+  + getPosition(): Position
+  + getId(): Integer
+  + equals(Object): boolean
+  + setStartDate(Date): void
+  + toString(): String
+  + withCreationDate(ZonedDateTime): Worker
+  + setOwner(Integer): boolean
+  + getOwner(): Integer
+  + nicePrintFormat(List<Worker>): String
   + withId(Integer): Worker
+  + compareTo(Worker): int
 }
 class WorkerCollection {
   + WorkerCollection(): 
   + addAll(Collection<Worker>): boolean
   + add(Worker): boolean
 }
+class WorkerValidationTest {
+  + WorkerValidationTest(): 
+  - testCoords: Coordinates
+  - testOrg: Organization
+  ~ testWorkerValidation(): void
+  ~ testWorkerNullValidation(): void
+}
 class WorkerValidator {
   + WorkerValidator(): 
-  + validateAll(Worker): ValidationResponse
+  + validateSalary(Float): ValidationResponse
   + validateName(String): ValidationResponse
   + validateCoordinates(Coordinates): ValidationResponse
-  + validateStartDate(Date): ValidationResponse
+  + validateAll(Worker): ValidationResponse
   + validateId(Integer): ValidationResponse
-  + validateSalary(Float): ValidationResponse
+  + validateStartDate(Date): ValidationResponse
 }
 
 APICommand                         -[#008200,dashed]-^  IAPIMessage                       
 APICommand                         -[#008200,dashed]-^  IIdentifiableCommand              
+APICommandResponse                "1" *-[#595959,plain]-> "status\n1" APIResponseStatus                 
 APICommandResponse                 -[#008200,dashed]-^  IAPIMessage                       
-APICommandResponse                "1" *-[#595959,plain]-> "status\n1" Status                            
 APICommandResponse                 -[#008200,dashed]-^  UserPrintableAPICommandResponse   
 AddCommand                         -[#000082,plain]-^  UserAPICommand                    
 AddCommand                        "1" *-[#595959,plain]-> "element\n1" Worker                            
@@ -503,8 +757,23 @@ AddCommandResponse                 +-[#820000,plain]-  AddCommand
 AddCommandResponse                 -[#008200,dashed]-^  UserPrintableAPICommandResponse   
 AddIfMaxCommand                    -[#000082,plain]-^  AddCommand                        
 AddIfMinCommand                    -[#000082,plain]-^  AddCommand                        
+AddOrgCommand                     "1" *-[#595959,plain]-> "element\n1" Organization                      
+AddOrgCommand                      -[#000082,plain]-^  UserAPICommand                    
+AddOrgCommandResponse              -[#000082,plain]-^  APICommandResponse                
+AddOrgCommandResponse              +-[#820000,plain]-  AddOrgCommand                     
+AddOrgCommandResponse              -[#008200,dashed]-^  UserPrintableAPICommandResponse   
+AuthCommand                        -[#595959,dashed]->  AuthenticationCredentials         
+AuthCommand                        -[#000082,plain]-^  UserAPICommand                    
+AuthCommandResponse                -[#000082,plain]-^  APICommandResponse                
+AuthCommandResponse                +-[#820000,plain]-  AuthCommand                       
+AuthCommandResponse               "1" *-[#595959,plain]-> "data\n1" LoginResponse                     
+AuthCommandResponse                -[#008200,dashed]-^  UserPrintableAPICommandResponse   
 ClearCommand                       -[#000082,plain]-^  UserAPICommand                    
 CoordinatesValidator               -[#008200,dashed]-^  Validator                         
+DefaultAuthenticationCredentials   -[#000082,plain]-^  AuthenticationCredentials         
+DefaultCollectionCommandResponse   -[#000082,plain]-^  ListAPICommandResponse            
+DefaultCollectionCommandResponse   +-[#820000,plain]-  PagingAPICommand                  
+DefaultLoginResponse               -[#000082,plain]-^  LoginResponse                     
 ExecuteScriptCommand              "1" *-[#595959,plain]-> "commands\n*" APICommand                        
 ExecuteScriptCommand               -[#000082,plain]-^  UserAPICommand                    
 ExecuteScriptCommandResponse       +-[#820000,plain]-  ExecuteScriptCommand              
@@ -515,6 +784,11 @@ FilterLessPosCommand              "1" *-[#595959,plain]-> "position\n1" Position
 FilterLessPosCommand               -[#000082,plain]-^  UserAPICommand                    
 FilterLessPosCommandResponse       +-[#820000,plain]-  FilterLessPosCommand              
 FilterLessPosCommandResponse       -[#000082,plain]-^  ListAPICommandResponse            
+GetOrgsCommand                     -[#000082,plain]-^  UserAPICommand                    
+GetSelfInfoCommand                 -[#000082,plain]-^  UserAPICommand                    
+GetSelfInfoResponse                -[#000082,plain]-^  APICommandResponse                
+GetSelfInfoResponse                +-[#820000,plain]-  GetSelfInfoCommand                
+GetSelfInfoResponse                -[#008200,dashed]-^  UserPrintableAPICommandResponse   
 GetWorkerCommand                   -[#000082,plain]-^  UserAPICommand                    
 GetWorkerCommandResponse           -[#000082,plain]-^  APICommandResponse                
 GetWorkerCommandResponse           +-[#820000,plain]-  GetWorkerCommand                  
@@ -529,20 +803,37 @@ InfoCommandResponse                -[#000082,plain]-^  APICommandResponse
 InfoCommandResponse               "1" *-[#595959,plain]-> "result\n1" CollectionInfo                    
 InfoCommandResponse                +-[#820000,plain]-  InfoCommand                       
 InfoCommandResponse                -[#008200,dashed]-^  UserPrintableAPICommandResponse   
+JWTAuthenticationCredentials       -[#000082,plain]-^  AuthenticationCredentials         
+JWTLoginResponse                   -[#000082,plain]-^  DefaultLoginResponse              
+JWTLoginResponse                  "1" *-[#595959,plain]-> "authToken\n1" JWTInfo                           
 ListAPICommandResponse             -[#000082,plain]-^  APICommandResponse                
+LoginCommand                       -[#000082,plain]-^  AuthCommand                       
+LoginCommand                      "1" *-[#595959,plain]-> "strategy\n1" AuthStrategy                      
+LoginCommand                       -[#595959,dashed]->  AuthenticationCredentials         
+OrganisationCommandResponse        -[#000082,plain]-^  APICommandResponse                
+OrganisationCommandResponse        +-[#820000,plain]-  GetOrgsCommand                    
+OrganisationCommandResponse       "1" *-[#595959,plain]-> "organizations\n*" Organization                      
+OrganisationCommandResponse        -[#008200,dashed]-^  UserPrintableAPICommandResponse   
 Organization                      "1" *-[#595959,plain]-> "type\n1" OrganizationType                  
 OrganizationValidator              -[#008200,dashed]-^  Validator                         
-PrintDescendingCommand             -[#000082,plain]-^  UserAPICommand                    
-PrintDescendingCommandResponse     -[#000082,plain]-^  ListAPICommandResponse            
+PagingAPICommand                   -[#000082,plain]-^  UserAPICommand                    
+PasswordLoginCommand               -[#000082,plain]-^  LoginCommand                      
+PingCommand                        -[#000082,plain]-^  APICommand                        
+PrintDescendingCommand             -[#000082,plain]-^  PagingAPICommand                  
+PrintDescendingCommandResponse     -[#000082,plain]-^  DefaultCollectionCommandResponse  
 PrintDescendingCommandResponse     +-[#820000,plain]-  PrintDescendingCommand            
+RefreshLoginCommand                -[#000082,plain]-^  LoginCommand                      
+RegisterCommand                    -[#000082,plain]-^  AuthCommand                       
 RemoveByIdCommand                  -[#000082,plain]-^  UserAPICommand                    
 RemoveGreaterCommand               -[#000082,plain]-^  UserAPICommand                    
 RemoveGreaterCommand              "1" *-[#595959,plain]-> "element\n1" Worker                            
 SaveCommand                        -[#000082,plain]-^  UserAPICommand                    
-ShowCommand                        -[#000082,plain]-^  UserAPICommand                    
-ShowCommandResponse                -[#000082,plain]-^  ListAPICommandResponse            
+ShowCommand                        -[#000082,plain]-^  PagingAPICommand                  
+ShowCommandResponse                -[#000082,plain]-^  DefaultCollectionCommandResponse  
+ShowCommandResponse                -[#000082,plain]-^  DefaultCollectionCommandResponse  
 ShowCommandResponse                +-[#820000,plain]-  ShowCommand                       
-Status                             +-[#820000,plain]-  APICommandResponse                
+ShowCommandResponse                +-[#820000,plain]-  ShowMineCommand                   
+ShowMineCommand                    -[#000082,plain]-^  UserAPICommand                    
 UniqueOrganisationCommand          -[#000082,plain]-^  UserAPICommand                    
 UniqueOrganisationCommandResponse  -[#000082,plain]-^  APICommandResponse                
 UniqueOrganisationCommandResponse "1" *-[#595959,plain]-> "organizations\n*" Organization                      
@@ -555,8 +846,11 @@ UserAPICommand                     -[#008200,dashed]-^  UserPromptedAPICommand
 ValidationResponse                 -[#008200,dashed]-^  Validator                         
 Worker                            "1" *-[#595959,plain]-> "coordinates\n1" Coordinates                       
 Worker                             -[#008200,dashed]-^  IKeyedEntity                      
+Worker                             -[#008200,dashed]-^  IOwnedEntity                      
 Worker                            "1" *-[#595959,plain]-> "organization\n1" Organization                      
 Worker                            "1" *-[#595959,plain]-> "position\n1" Position                          
 WorkerCollection                   -[#008200,dashed]-^  ISetCollection                    
+WorkerValidationTest              "1" *-[#595959,plain]-> "testCoords\n1" Coordinates                       
+WorkerValidationTest              "1" *-[#595959,plain]-> "testOrg\n1" Organization                      
 WorkerValidator                    -[#008200,dashed]-^  Validator                         
 @enduml

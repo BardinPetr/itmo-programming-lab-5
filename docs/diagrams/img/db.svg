@@ -1,0 +1,1573 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css"
+     height="1304px" preserveAspectRatio="none" style="width:3780px;height:1304px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 3780 1304" width="3780px" zoomAndPan="magnify">
+    <defs/>
+    <g><!--MD5=[bde0439e021d67d94c05097939935c7a]
+class BasePGDAO-->
+        <g id="elem_BasePGDAO">
+            <rect codeLine="22" fill="#FFFFFF" height="281.2197" id="BasePGDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="292" x="770" y="74.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="92" x="856.5" y="93.5752">BasePGDAO
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="25" x="1040" y="71.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="23" x="1041" y="84.5645">V, T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="771" x2="1061" y1="101.5146" y2="101.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="205" x="776"
+                  y="119.5898">#connector: PGDBConnector
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="88" x="776"
+                  y="136.6045">-log: Logger
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="138" x="776"
+                  y="153.6191">#tableName: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="247" x="776"
+                  y="170.6338">#datasource: PGSimpleDataSource
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="177" x="776"
+                  y="187.6484">#connection: Connection
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="771" x2="1061" y1="194.5879" y2="194.5879"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="280" x="776"
+                  y="212.6631">+BasePGDAO(PGDBConnector, String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="776"
+                  y="229.6777">+parseRow(ResultSet): T
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="148" x="776"
+                  y="246.6924">+truncate(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="141" x="776"
+                  y="263.707">+delete(V): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="93" x="776"
+                  y="280.7217">+insert(T): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="172" x="776"
+                  y="297.7363">+select(): Collection&lt;T&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="776"
+                  y="314.751">+update(V, T): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="776"
+                  y="331.7656">+drop(): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="93" x="776"
+                  y="348.7803">+select(V): T
+            </text>
+        </g><!--MD5=[62b7abaf5cecc4b35d5b04f3f9896ee5]
+class BasicAuthProvider-->
+        <g id="elem_BasicAuthProvider">
+            <rect codeLine="38" fill="#FFFFFF" height="196.1465" id="BasicAuthProvider" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="264" x="1111" y="551.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="143" x="1171.5" y="570.5752">BasicAuthProvider
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1112" x2="1374" y1="578.5146" y2="578.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="130" x="1117"
+                  y="596.5898">-username: String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="129" x="1117"
+                  y="613.6045">-password: String
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1112" x2="1374" y1="620.5439" y2="620.5439"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="252" x="1117"
+                  y="638.6191">+BasicAuthProvider(String, String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="170" x="1117"
+                  y="655.6338">+getUsername(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="122" x="1117"
+                  y="672.6484">+hashCode(): int
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="1117"
+                  y="689.6631">+getPassword(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="197" x="1117"
+                  y="706.6777">#canEqual(Object): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="1117"
+                  y="723.6924">+toString(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="1117"
+                  y="740.707">+equals(Object): boolean
+            </text>
+        </g><!--MD5=[552255a0ff058f05bcc433b8aeca364d]
+class DBAuthProvider-->
+        <g id="elem_DBAuthProvider">
+            <rect codeLine="49" fill="#FFFFFF" height="91.6279" id="DBAuthProvider" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="182" x="989" y="884"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="1046" y="901.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="126" x="1017" y="917.6592">DBAuthProvider
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="990" x2="1170" y1="925.5986" y2="925.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="990" x2="1170" y1="933.5986" y2="933.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="995"
+                  y="951.6738">+getPassword(): String
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="170" x="995"
+                  y="968.6885">+getUsername(): String
+            </text>
+        </g><!--MD5=[1a3416a6154280ea591b93144f67fefc]
+class DBBackendIOException-->
+        <g id="elem_DBBackendIOException">
+            <rect codeLine="53" fill="#FFFFFF" height="111.0732" id="DBBackendIOException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="331" x="1097.5" y="159.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="184" x="1171" y="178.5752">DBBackendIOException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1098.5" x2="1427.5" y1="186.5146" y2="186.5146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1098.5" x2="1427.5" y1="194.5146" y2="194.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="237" x="1103.5"
+                  y="212.5898">+DBBackendIOException(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="319" x="1103.5"
+                  y="229.6045">+DBBackendIOException(String, Throwable):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="194" x="1103.5"
+                  y="246.6191">+DBBackendIOException():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="266" x="1103.5"
+                  y="263.6338">+DBBackendIOException(Throwable):
+            </text>
+        </g><!--MD5=[41e55e0f74b2301950db31890d00f9c0]
+class DBControllerFactory-->
+        <g id="elem_DBControllerFactory">
+            <rect codeLine="59" fill="#FFFFFF" height="74.6133" id="DBControllerFactory" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="248" x="29" y="177.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="119" y="194.5645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="158" x="74" y="211.1592">DBControllerFactory
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="30" x2="276" y1="219.0986" y2="219.0986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="30" x2="276" y1="227.0986" y2="227.0986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="236" x="35"
+                  y="245.1738">+createController(): DBController
+            </text>
+        </g><!--MD5=[5dc5b29d246de3ba8c4e0c673046a29a]
+class DBCreateException-->
+        <g id="elem_DBCreateException">
+            <rect codeLine="62" fill="#FFFFFF" height="94.0586" id="DBCreateException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="302" x="1464" y="168"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="149" x="1540.5" y="187.0752">DBCreateException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1465" x2="1765" y1="195.0146" y2="195.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1465" x2="1765" y1="203.0146" y2="203.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="234" x="1470"
+                  y="221.0898">+DBCreateException(Exception):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="208" x="1470"
+                  y="238.1045">+DBCreateException(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="290" x="1470"
+                  y="255.1191">+DBCreateException(String, Throwable):
+            </text>
+        </g><!--MD5=[b689a399e360d3b6a4a998ccd64cfd43]
+class DBError-->
+        <g id="elem_DBError">
+            <rect codeLine="67" fill="#FFFFFF" height="77.0439" id="DBError" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="170" x="1801" y="176.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="63" x="1854.5" y="195.5752">DBError
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1802" x2="1970" y1="203.5146" y2="203.5146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1802" x2="1970" y1="211.5146" y2="211.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="129" x="1807"
+                  y="229.5898">+DBError(String):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="158" x="1807"
+                  y="246.6045">+DBError(Throwable):
+            </text>
+        </g><!--MD5=[8616cb8258bf5533fc7c4592125829d7]
+class DBNotFoundException-->
+        <g id="elem_DBNotFoundException">
+            <rect codeLine="71" fill="#FFFFFF" height="60.0293" id="DBNotFoundException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="200" x="2006" y="185"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="174" x="2019" y="204.0752">DBNotFoundException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2007" x2="2205" y1="212.0146" y2="212.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2007" x2="2205" y1="220.0146" y2="220.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="188" x="2012"
+                  y="238.0898">+DBNotFoundException():
+            </text>
+        </g><!--MD5=[cddf7e85bb1c3231de9309207248e44a]
+class DBStorageBackend-->
+        <g id="elem_DBStorageBackend">
+            <rect codeLine="74" fill="#FFFFFF" height="125.6572" id="DBStorageBackend" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="192" x="312" y="152"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="368.5" y="169.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="150" x="327.5" y="185.6592">DBStorageBackend
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="9" x="498" y="149"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="7" x="499" y="162.0645">T
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="313" x2="503" y1="193.5986" y2="193.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="313" x2="503" y1="201.5986" y2="201.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="176" x="318"
+                  y="219.6738">+storeCollection(T): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="162" x="318"
+                  y="236.6885">+clearCollection(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="139" x="318"
+                  y="253.7031">+loadCollection(): T
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="180" x="318"
+                  y="270.7178">+getInfo(): CollectionInfo
+            </text>
+        </g><!--MD5=[8db60afef7a3447bbe27c5ed187fdac2]
+class Exception-->
+        <g id="elem_Exception">
+            <rect codeLine="80" fill="#FFFFFF" height="145.1025" id="Exception" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="365" x="1703.5" y="577"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="76" x="1848" y="596.0752">Exception
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1704.5" x2="2067.5" y1="604.0146" y2="604.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="167" x="1709.5"
+                  y="622.0898">~serialVersionUID: long
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1704.5" x2="2067.5" y1="629.0293" y2="629.0293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="223" x="1709.5"
+                  y="647.1045">+Exception(String, Throwable):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="98" x="1709.5"
+                  y="664.1191">+Exception():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="170" x="1709.5"
+                  y="681.1338">+Exception(Throwable):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="353" x="1709.5"
+                  y="698.1484">#Exception(String, Throwable, boolean, boolean):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="141" x="1709.5"
+                  y="715.1631">+Exception(String):
+            </text>
+        </g><!--MD5=[dd944755af01d0e018bb2e3a4a8ddc00]
+class ICollectionDAO-->
+        <g id="elem_ICollectionDAO">
+            <rect codeLine="88" fill="#FFFFFF" height="57.5986" id="ICollectionDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="152" x="2908" y="901"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="2936" y="918.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="118" x="2911" y="934.6592">ICollectionDAO
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="3037" y="898"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="3038" y="911.0645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2909" x2="3059" y1="942.5986" y2="942.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2909" x2="3059" y1="950.5986" y2="950.5986"/>
+        </g><!--MD5=[271a7f94f21f2a62553c14bd48bf1cf3]
+class ICollectionReadDAO-->
+        <g id="elem_ICollectionReadDAO">
+            <rect codeLine="89" fill="#FFFFFF" height="261.7744" id="ICollectionReadDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="306" x="2688" y="1036"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="2793" y="1053.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="157" x="2748.5" y="1069.6592">ICollectionReadDAO
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="2971" y="1033"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="2972" y="1046.0645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2689" x2="2993" y1="1077.5986" y2="1077.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2689" x2="2993" y1="1085.5986" y2="1085.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="85" x="2694"
+                  y="1103.6738">+read(K): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="184" x="2694"
+                  y="1120.6885">+asStream(): Stream&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="254" x="2694"
+                  y="1137.7031">+readAll(Comparator&lt;V&gt;): List&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="2694"
+                  y="1154.7178">+getMin(): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="2694"
+                  y="1171.7324">+getMax(): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="138" x="2694"
+                  y="1188.7471">+readAll(): List&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="217" x="2694"
+                  y="1205.7617">+filter(Predicate&lt;V&gt;): List&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="247" x="2694"
+                  y="1222.7764">+getCollectionInfo(): CollectionInfo
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="154" x="2694"
+                  y="1239.791">+nextPrimaryKey(): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="290" x="2694"
+                  y="1256.8057">+getOrganizations(): List&lt;Organization&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="124" x="2694"
+                  y="1273.8203">+has(K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="294" x="2694"
+                  y="1290.835">+getAllMapped(Function&lt;V, T&gt;): List&lt;T&gt;
+            </text>
+        </g><!--MD5=[c869dc49b50a69639803242f240644b9]
+class ICollectionWriteDAO-->
+        <g id="elem_ICollectionWriteDAO">
+            <rect codeLine="103" fill="#FFFFFF" height="159.6865" id="ICollectionWriteDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="197" x="3029.5" y="1087"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="3080" y="1104.0645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="160" x="3034" y="1120.6592">ICollectionWriteDAO
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="3203.5" y="1084"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="3204.5" y="1097.0645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3030.5" x2="3225.5" y1="1128.5986" y2="1128.5986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3030.5" x2="3225.5" y1="1136.5986" y2="1136.5986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="3035.5"
+                  y="1154.6738">+update(K, V): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="185" x="3035.5"
+                  y="1171.6885">+addOrg(Organization): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="151" x="3035.5"
+                  y="1188.7031">+remove(K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="3035.5"
+                  y="1205.7178">+save(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="80" x="3035.5"
+                  y="1222.7324">+add(V): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="3035.5"
+                  y="1239.7471">+clear(): void
+            </text>
+        </g><!--MD5=[b4dee0a2d15110732504a6a27429c96c]
+class IOwnedCollectionDAO-->
+        <g id="elem_IOwnedCollectionDAO">
+            <rect codeLine="111" fill="#FFFFFF" height="125.6572" id="IOwnedCollectionDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="224" x="2723" y="586.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="68" x="2787" y="603.5645">«interface»
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-style="italic" font-weight="bold"
+                  lengthAdjust="spacing" textLength="173" x="2734.5" y="620.1592">IOwnedCollectionDAO
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="2924" y="583.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="2925" y="596.5645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2724" x2="2946" y1="628.0986" y2="628.0986"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2724" x2="2946" y1="636.0986" y2="636.0986"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="203" x="2729"
+                  y="654.1738">+update(Integer, K, V): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="212" x="2729"
+                  y="671.1885">+remove(Integer, K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="172" x="2729"
+                  y="688.2031">+clear(Integer): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="141" x="2729"
+                  y="705.2178">+add(Integer, V): K
+            </text>
+        </g><!--MD5=[74ce48a1d46434a96e736a86b70605b3]
+class NotOwnedException-->
+        <g id="elem_NotOwnedException">
+            <rect codeLine="117" fill="#FFFFFF" height="60.0293" id="NotOwnedException" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="226" x="2241" y="185"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="158" x="2275" y="204.0752">NotOwnedException
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2242" x2="2466" y1="212.0146" y2="212.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2242" x2="2466" y1="220.0146" y2="220.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="214" x="2247"
+                  y="238.0898">+NotOwnedException(String):
+            </text>
+        </g><!--MD5=[ffc93befdcbb7eae2e290435504230fe]
+class OwnedDAO-->
+        <g id="elem_OwnedDAO">
+            <rect codeLine="120" fill="#FFFFFF" height="400.3223" id="OwnedDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="302" x="2502" y="15"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="89" x="2594.5" y="34.0752">OwnedDAO
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="2781" y="12"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="2782" y="25.0645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2503" x2="2803" y1="42.0146" y2="42.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="243" x="2508"
+                  y="60.0898">-decoratee: ICollectionDAO&lt;K, V&gt;
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2503" x2="2803" y1="67.0293" y2="67.0293"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="265" x="2508"
+                  y="85.1045">+OwnedDAO(ICollectionDAO&lt;K, V&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="85" x="2508"
+                  y="102.1191">+read(K): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="203" x="2508"
+                  y="119.1338">+update(Integer, K, V): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="247" x="2508"
+                  y="136.1484">+getCollectionInfo(): CollectionInfo
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="185" x="2508"
+                  y="153.1631">+addOrg(Organization): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="124" x="2508"
+                  y="170.1777">+has(K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="141" x="2508"
+                  y="187.1924">+add(Integer, V): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="80" x="2508"
+                  y="204.207">+add(V): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="2508"
+                  y="221.2217">+getMax(): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="2508"
+                  y="238.2363">+update(K, V): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="184" x="2508"
+                  y="255.251">+asStream(): Stream&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="290" x="2508"
+                  y="272.2656">+getOrganizations(): List&lt;Organization&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="2508"
+                  y="289.2803">+clear(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="172" x="2508"
+                  y="306.2949">+clear(Integer): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="151" x="2508"
+                  y="323.3096">+remove(K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="2508"
+                  y="340.3242">+getMin(): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="268" x="2508"
+                  y="357.3389">-checkNotOwned(Integer, K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="212" x="2508"
+                  y="374.3535">+remove(Integer, K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="138" x="2508"
+                  y="391.3682">+readAll(): List&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="154" x="2508"
+                  y="408.3828">+nextPrimaryKey(): K
+            </text>
+        </g><!--MD5=[4d5e312c9ef39a94b9b9a56830c1f083]
+class PGDBConnector-->
+        <g id="elem_PGDBConnector">
+            <rect codeLine="143" fill="#FFFFFF" height="179.1318" id="PGDBConnector" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="319" x="756.5" y="560"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="124" x="854" y="579.0752">PGDBConnector
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="757.5" x2="1074.5" y1="587.0146" y2="587.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="88" x="762.5"
+                  y="605.0898">-log: Logger
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="239" x="762.5"
+                  y="622.1045">-dbAuthProvider: DBAuthProvider
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="226" x="762.5"
+                  y="639.1191">-rowSetFactory: RowSetFactory
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="135" x="762.5"
+                  y="656.1338">-connectUrl: String
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="757.5" x2="1074.5" y1="663.0732" y2="663.0732"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="307" x="762.5"
+                  y="681.1484">+PGDBConnector(String, DBAuthProvider):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="248" x="762.5"
+                  y="698.1631">+bootstrap(InputStream): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="286" x="762.5"
+                  y="715.1777">+getDataSource(): PGSimpleDataSource
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="196" x="762.5"
+                  y="732.1924">+getRowSet(): JdbcRowSet
+            </text>
+        </g><!--MD5=[de570d420053f6caaeb41de2d30328fe]
+class RowSetUtils-->
+        <g id="elem_RowSetUtils">
+            <rect codeLine="153" fill="#FFFFFF" height="77.0439" id="RowSetUtils" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="282" x="12" y="611"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="93" x="106.5" y="630.0752">RowSetUtils
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="13" x2="293" y1="638.0146" y2="638.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="13" x2="293" y1="646.0146" y2="646.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="113" x="18"
+                  y="664.0898">+RowSetUtils():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="270" x="18"
+                  y="681.1045">+rowSetStream(RowSet): Stream&lt;?&gt;
+            </text>
+        </g><!--MD5=[85143768b719e6b0fd49afeed081492c]
+class SyncDAO-->
+        <g id="elem_SyncDAO">
+            <rect codeLine="157" fill="#FFFFFF" height="349.2783" id="SyncDAO" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="302" x="2982" y="475"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="71" x="3083.5" y="494.0752">SyncDAO
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="3261" y="472"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="3262" y="485.0645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2983" x2="3283" y1="502.0146" y2="502.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="243" x="2988"
+                  y="520.0898">-decoratee: ICollectionDAO&lt;K, V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="148" x="2988"
+                  y="537.1045">-readLock: ReadLock
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="154" x="2988"
+                  y="554.1191">-writeLock: WriteLock
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2983" x2="3283" y1="561.0586" y2="561.0586"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="251" x="2988"
+                  y="579.1338">+SyncDAO(ICollectionDAO&lt;K, V&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="168" x="2988"
+                  y="596.1484">+update(K, V): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="2988"
+                  y="613.1631">+clear(): void
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="184" x="2988"
+                  y="630.1777">+asStream(): Stream&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="85" x="2988"
+                  y="647.1924">+read(K): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="138" x="2988"
+                  y="664.207">+readAll(): List&lt;V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="154" x="2988"
+                  y="681.2217">+nextPrimaryKey(): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="80" x="2988"
+                  y="698.2363">+add(V): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="185" x="2988"
+                  y="715.251">+addOrg(Organization): K
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="124" x="2988"
+                  y="732.2656">+has(K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="90" x="2988"
+                  y="749.2803">+getMin(): V
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="290" x="2988"
+                  y="766.2949">+getOrganizations(): List&lt;Organization&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="247" x="2988"
+                  y="783.3096">+getCollectionInfo(): CollectionInfo
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="151" x="2988"
+                  y="800.3242">+remove(K): boolean
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="95" x="2988"
+                  y="817.3389">+getMax(): V
+            </text>
+        </g><!--MD5=[be5226f9d1e6faa08d55167e89f813d4]
+class SynchronizedDAOFactory-->
+        <g id="elem_SynchronizedDAOFactory">
+            <rect codeLine="177" fill="#FFFFFF" height="77.0439" id="SynchronizedDAOFactory" rx="2.5" ry="2.5"
+                  style="stroke:#000000;stroke-width:1.0;" width="392" x="329" y="611"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="197" x="426.5" y="630.0752">SynchronizedDAOFactory
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="330" x2="720" y1="638.0146" y2="638.0146"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="330" x2="720" y1="646.0146" y2="646.0146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="208" x="335"
+                  y="664.0898">+SynchronizedDAOFactory():
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="380" x="335"
+                  y="681.1045">+wrap(ICollectionDAO&lt;K, V&gt;): ICollectionDAO&lt;K, V&gt;
+            </text>
+        </g><!--MD5=[0225afe46b56f5ea2be488a86162ce63]
+class SynchronizedDAOInvocationHandler-->
+        <g id="elem_SynchronizedDAOInvocationHandler">
+            <rect codeLine="181" fill="#FFFFFF" height="196.1465" id="SynchronizedDAOInvocationHandler" rx="2.5"
+                  ry="2.5" style="stroke:#000000;stroke-width:1.0;" width="450" x="3319" y="551.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="283" x="3388.5" y="570.5752">SynchronizedDAOInvocationHandler
+            </text>
+            <rect fill="#FFFFFF" height="16.584" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="26" x="3746" y="548.5"/>
+            <text fill="#000000" font-family="Verdana" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="24" x="3747" y="561.5645">K, V
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3320" x2="3768" y1="578.5146" y2="578.5146"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="217" x="3325"
+                  y="596.5898">-target: ICollectionDAO&lt;K, V&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="240" x="3325"
+                  y="613.6045">-writeMethodNames: Set&lt;String&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="261" x="3325"
+                  y="630.6191">-blacklistMethodNames: Set&lt;String&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="237" x="3325"
+                  y="647.6338">-readMethodNames: Set&lt;String&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="150" x="3325"
+                  y="664.6484">-lock: ReadWriteLock
+            </text>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3320" x2="3768" y1="671.5879" y2="671.5879"/>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="438" x="3325"
+                  y="689.6631">+SynchronizedDAOInvocationHandler(ICollectionDAO&lt;K, V&gt;):
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="301" x="3325"
+                  y="706.6777">+invoke(Object, Method, Object[]): Object
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="378" x="3325"
+                  y="723.6924">-getInterfaceMethodsNames(Class&lt;?&gt;): Set&lt;String&gt;
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="14" lengthAdjust="spacing" textLength="332" x="3325"
+                  y="740.707">-invokeLocked(Method, Object[], Lock): Object
+            </text>
+        </g><!--MD5=[505af779cd9c466752591e4c6fda2844]
+link BasePGDAO to PGDBConnector-->
+        <g id="link_BasePGDAO_PGDBConnector">
+            <path codeLine="193" d="M916,367.77 C916,367.77 916,546.85 916,546.85 " fill="none"
+                  id="BasePGDAO-PGDBConnector" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="916,559.85,920,550.85,916,554.85,912,550.85,916,559.85"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="916" x2="916" y1="554.85" y2="546.85"/>
+            <polygon fill="#000000" points="916,355.77,912,361.77,916,367.77,920,361.77,916,355.77"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="907.6438"
+                  y="549.2971">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="67"
+                  x="847.2727" y="376.9073">connector
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="876.7727"
+                  y="392.7066">1
+            </text>
+        </g><!--MD5=[2407c16a494174ab62ce117bf9814809]
+link BasicAuthProvider to DBAuthProvider-->
+        <g id="link_BasicAuthProvider_DBAuthProvider">
+            <path codeLine="194" d="M1141,747.61 C1141,747.61 1141,863.84 1141,863.84 " fill="none"
+                  id="BasicAuthProvider-to-DBAuthProvider"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="1148,863.84,1141,883.84,1134,863.84,1148,863.84"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[d624a0f02a691e2ea21fe2b9cbc10e56]
+link DBBackendIOException to Exception-->
+        <g id="link_DBBackendIOException_Exception">
+            <path codeLine="195"
+                  d="M1428.57,267 C1560.89,267 1724.33,267 1724.33,267 C1724.33,267 1724.33,556.65 1724.33,556.65 "
+                  fill="none" id="DBBackendIOException-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1731.33,556.65,1724.33,576.65,1717.33,556.65,1731.33,556.65"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[25d5ebd82a32b2f397f5d2710f6453c2]
+link DBCreateException to Exception-->
+        <g id="link_DBCreateException_Exception">
+            <path codeLine="196" d="M1745.17,262.33 C1745.17,262.33 1745.17,556.63 1745.17,556.63 " fill="none"
+                  id="DBCreateException-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1752.17,556.63,1745.17,576.63,1738.17,556.63,1752.17,556.63"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[6b25a5e5801af0212d99e6ed99136b59]
+link DBError to Exception-->
+        <g id="link_DBError_Exception">
+            <path codeLine="197" d="M1886,253.56 C1886,253.56 1886,556.7 1886,556.7 " fill="none"
+                  id="DBError-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="1893,556.7,1886,576.7,1879,556.7,1893,556.7"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[da63513834b365b5b3ed7d16478ba8bd]
+link DBNotFoundException to Exception-->
+        <g id="link_DBNotFoundException_Exception">
+            <path codeLine="198" d="M2037.25,245.21 C2037.25,245.21 2037.25,556.81 2037.25,556.81 " fill="none"
+                  id="DBNotFoundException-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="2044.25,556.81,2037.25,576.81,2030.25,556.81,2044.25,556.81"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[e9e93d5312ae2f123628bdf3ce9e2369]
+link ICollectionDAO to ICollectionReadDAO-->
+        <g id="link_ICollectionDAO_ICollectionReadDAO">
+            <path codeLine="199" d="M2951,959.06 C2951,959.06 2951,1015.87 2951,1015.87 " fill="none"
+                  id="ICollectionDAO-to-ICollectionReadDAO" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="2958,1015.87,2951,1035.87,2944,1015.87,2958,1015.87"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[ecebfcc1fa03a6620a60d1569065612e]
+link ICollectionDAO to ICollectionWriteDAO-->
+        <g id="link_ICollectionDAO_ICollectionWriteDAO">
+            <path codeLine="200" d="M3044.75,959.06 C3044.75,959.06 3044.75,1066.76 3044.75,1066.76 " fill="none"
+                  id="ICollectionDAO-to-ICollectionWriteDAO" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="3051.75,1066.76,3044.75,1086.76,3037.75,1066.76,3051.75,1066.76"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[9a59c4b013d79ec19c53d5d0bca31925]
+link IOwnedCollectionDAO to ICollectionDAO-->
+        <g id="link_IOwnedCollectionDAO_ICollectionDAO">
+            <path codeLine="201" d="M2927.5,712.8 C2927.5,712.8 2927.5,880.79 2927.5,880.79 " fill="none"
+                  id="IOwnedCollectionDAO-to-ICollectionDAO" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="2934.5,880.79,2927.5,900.79,2920.5,880.79,2934.5,880.79"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[d914b70c588511bb882ef48b4dd092f9]
+link NotOwnedException to Exception-->
+        <g id="link_NotOwnedException_Exception">
+            <path codeLine="202" d="M2354,245.03 C2354,332.68 2354,582 2354,582 C2354,582 2088.62,582 2088.62,582 "
+                  fill="none" id="NotOwnedException-to-Exception" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="none" points="2088.62,589,2068.62,582,2088.62,575,2088.62,589"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[92db3cbd63f3fb0920667849a2f51f31]
+link OwnedDAO to ICollectionDAO-->
+        <g id="link_OwnedDAO_ICollectionDAO">
+            <path codeLine="203"
+                  d="M2711.33,415.42 C2711.33,624.15 2711.33,921 2711.33,921 C2711.33,921 2887.68,921 2887.68,921 "
+                  fill="none" id="OwnedDAO-to-ICollectionDAO"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2887.68,914,2907.68,921,2887.68,928,2887.68,914"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[92db3cbd63f3fb0920667849a2f51f31]
+link OwnedDAO to ICollectionDAO-->
+        <g id="link_OwnedDAO_ICollectionDAO">
+            <path codeLine="204"
+                  d="M2699.67,427.03 C2699.67,427.03 2699.67,940 2699.67,940 C2699.67,940 2894.8,940 2894.8,940 "
+                  fill="none" id="OwnedDAO-ICollectionDAO" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="2907.8,940,2898.8,936,2902.8,940,2898.8,944,2907.8,940"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="2902.8" x2="2894.8" y1="940" y2="940"/>
+            <polygon fill="#000000" points="2699.67,415.03,2695.67,421.03,2699.67,427.03,2703.67,421.03,2699.67,415.03"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2693.3368" y="436.2158">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="67"
+                  x="2833.0867" y="921.7183">decoratee
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2862.5867" y="937.5176">1
+            </text>
+        </g><!--MD5=[03067ee76ffc433c6d0908d4f8b3a52e]
+link OwnedDAO to IOwnedCollectionDAO-->
+        <g id="link_OwnedDAO_IOwnedCollectionDAO">
+            <path codeLine="205" d="M2763.5,415.08 C2763.5,415.08 2763.5,566.16 2763.5,566.16 " fill="none"
+                  id="OwnedDAO-to-IOwnedCollectionDAO"
+                  style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="2770.5,566.16,2763.5,586.16,2756.5,566.16,2770.5,566.16"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[fc3e944e6b18f2665f9aed66c161d891]
+link PGDBConnector to DBAuthProvider-->
+        <g id="link_PGDBConnector_DBAuthProvider">
+            <path codeLine="206" d="M1032.25,751.02 C1032.25,751.02 1032.25,870.63 1032.25,870.63 " fill="none"
+                  id="PGDBConnector-DBAuthProvider" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="1032.25,883.63,1036.25,874.63,1032.25,878.63,1028.25,874.63,1032.25,883.63"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="1032.25" x2="1032.25" y1="878.63" y2="870.63"/>
+            <polygon fill="#000000" points="1032.25,739.02,1028.25,745.02,1032.25,751.02,1036.25,745.02,1032.25,739.02"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="1016.0023" y="873.2076">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="100"
+                  x="937.3223" y="760.1483">dbAuthProvider
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8" x="983.3223"
+                  y="775.9476">1
+            </text>
+        </g><!--MD5=[b9ddfdbfe2754fd96d1e9734c7c876bd]
+link SyncDAO to ICollectionDAO-->
+        <g id="link_SyncDAO_ICollectionDAO">
+            <path codeLine="207" d="M3008,824.35 C3008,824.35 3008,880.73 3008,880.73 " fill="none"
+                  id="SyncDAO-to-ICollectionDAO" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="3015,880.73,3008,900.73,3001,880.73,3015,880.73"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+        </g><!--MD5=[b9ddfdbfe2754fd96d1e9734c7c876bd]
+link SyncDAO to ICollectionDAO-->
+        <g id="link_SyncDAO_ICollectionDAO">
+            <path codeLine="208" d="M3034,836.35 C3034,836.35 3034,887.73 3034,887.73 " fill="none"
+                  id="SyncDAO-ICollectionDAO" style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="3034,900.73,3038,891.73,3034,895.73,3030,891.73,3034,900.73"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3034" x2="3034" y1="895.73" y2="887.73"/>
+            <polygon fill="#000000" points="3034,824.35,3030,830.35,3034,836.35,3038,830.35,3034,824.35"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="3036.6375" y="890.4356">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="67"
+                  x="2961.4102" y="845.457">decoratee
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="2990.9102" y="861.2563">1
+            </text>
+        </g><!--MD5=[ebee2ca4d5c59e3a5b9a771e9a893d33]
+link SynchronizedDAOInvocationHandler to ICollectionDAO-->
+        <g id="link_SynchronizedDAOInvocationHandler_ICollectionDAO">
+            <path codeLine="209" d="M3544,759.61 C3544,759.61 3544,930 3544,930 C3544,930 3073.11,930 3073.11,930 "
+                  fill="none" id="SynchronizedDAOInvocationHandler-ICollectionDAO"
+                  style="stroke:#000000;stroke-width:1.0;"/>
+            <polygon fill="#000000" points="3060.11,930,3069.11,934,3065.11,930,3069.11,926,3060.11,930"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <line style="stroke:#000000;stroke-width:1.0;" x1="3065.11" x2="3073.11" y1="930" y2="930"/>
+            <polygon fill="#000000" points="3544,747.61,3540,753.61,3544,759.61,3548,753.61,3544,747.61"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="3535.6938" y="768.7906">1
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="41"
+                  x="3068.1105" y="910.8276">target
+            </text>
+            <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8"
+                  x="3084.6105" y="926.627">1
+            </text>
+        </g><!--MD5=[c0f8c431664e8ca7878babd155ae0e12]
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class BasePGDAO<V, T> {
+  + BasePGDAO(PGDBConnector, String): 
+  # connector: PGDBConnector
+  - log: Logger
+  # tableName: String
+  # datasource: PGSimpleDataSource
+  # connection: Connection
+  + parseRow(ResultSet): T
+  + truncate(): boolean
+  + delete(V): boolean
+  + insert(T): V
+  + select(): Collection<T>
+  + update(V, T): boolean
+  + drop(): boolean
+  + select(V): T
+}
+class BasicAuthProvider {
+  + BasicAuthProvider(String, String): 
+  - username: String
+  - password: String
+  + getUsername(): String
+  + hashCode(): int
+  + getPassword(): String
+  # canEqual(Object): boolean
+  + toString(): String
+  + equals(Object): boolean
+}
+interface DBAuthProvider << interface >> {
+  + getPassword(): String
+  + getUsername(): String
+}
+class DBBackendIOException {
+  + DBBackendIOException(String): 
+  + DBBackendIOException(String, Throwable): 
+  + DBBackendIOException(): 
+  + DBBackendIOException(Throwable): 
+}
+interface DBControllerFactory << interface >> {
+  + createController(): DBController
+}
+class DBCreateException {
+  + DBCreateException(Exception): 
+  + DBCreateException(String): 
+  + DBCreateException(String, Throwable): 
+}
+class DBError {
+  + DBError(String): 
+  + DBError(Throwable): 
+}
+class DBNotFoundException {
+  + DBNotFoundException(): 
+}
+interface DBStorageBackend<T> << interface >> {
+  + storeCollection(T): void
+  + clearCollection(): void
+  + loadCollection(): T
+  + getInfo(): CollectionInfo
+}
+class Exception {
+  + Exception(String, Throwable): 
+  + Exception(): 
+  + Exception(Throwable): 
+  # Exception(String, Throwable, boolean, boolean): 
+  + Exception(String): 
+  ~ serialVersionUID: long
+}
+interface ICollectionDAO<K, V> << interface >>
+interface ICollectionReadDAO<K, V> << interface >> {
+  + read(K): V
+  + asStream(): Stream<V>
+  + readAll(Comparator<V>): List<V>
+  + getMin(): V
+  + getMax(): V
+  + readAll(): List<V>
+  + filter(Predicate<V>): List<V>
+  + getCollectionInfo(): CollectionInfo
+  + nextPrimaryKey(): K
+  + getOrganizations(): List<Organization>
+  + has(K): boolean
+  + getAllMapped(Function<V, T>): List<T>
+}
+interface ICollectionWriteDAO<K, V> << interface >> {
+  + update(K, V): boolean
+  + addOrg(Organization): K
+  + remove(K): boolean
+  + save(): void
+  + add(V): K
+  + clear(): void
+}
+interface IOwnedCollectionDAO<K, V> << interface >> {
+  + update(Integer, K, V): void
+  + remove(Integer, K): boolean
+  + clear(Integer): boolean
+  + add(Integer, V): K
+}
+class NotOwnedException {
+  + NotOwnedException(String): 
+}
+class OwnedDAO<K, V> {
+  + OwnedDAO(ICollectionDAO<K, V>): 
+  - decoratee: ICollectionDAO<K, V>
+  + read(K): V
+  + update(Integer, K, V): void
+  + getCollectionInfo(): CollectionInfo
+  + addOrg(Organization): K
+  + has(K): boolean
+  + add(Integer, V): K
+  + add(V): K
+  + getMax(): V
+  + update(K, V): boolean
+  + asStream(): Stream<V>
+  + getOrganizations(): List<Organization>
+  + clear(): void
+  + clear(Integer): boolean
+  + remove(K): boolean
+  + getMin(): V
+  - checkNotOwned(Integer, K): boolean
+  + remove(Integer, K): boolean
+  + readAll(): List<V>
+  + nextPrimaryKey(): K
+}
+class PGDBConnector {
+  + PGDBConnector(String, DBAuthProvider): 
+  - log: Logger
+  - dbAuthProvider: DBAuthProvider
+  - rowSetFactory: RowSetFactory
+  - connectUrl: String
+  + bootstrap(InputStream): boolean
+  + getDataSource(): PGSimpleDataSource
+  + getRowSet(): JdbcRowSet
+}
+class RowSetUtils {
+  + RowSetUtils(): 
+  + rowSetStream(RowSet): Stream<?>
+}
+class SyncDAO<K, V> {
+  + SyncDAO(ICollectionDAO<K, V>): 
+  - decoratee: ICollectionDAO<K, V>
+  - readLock: ReadLock
+  - writeLock: WriteLock
+  + update(K, V): boolean
+  + clear(): void
+  + asStream(): Stream<V>
+  + read(K): V
+  + readAll(): List<V>
+  + nextPrimaryKey(): K
+  + add(V): K
+  + addOrg(Organization): K
+  + has(K): boolean
+  + getMin(): V
+  + getOrganizations(): List<Organization>
+  + getCollectionInfo(): CollectionInfo
+  + remove(K): boolean
+  + getMax(): V
+}
+class SynchronizedDAOFactory {
+  + SynchronizedDAOFactory(): 
+  + wrap(ICollectionDAO<K, V>): ICollectionDAO<K, V>
+}
+class SynchronizedDAOInvocationHandler<K, V> {
+  + SynchronizedDAOInvocationHandler(ICollectionDAO<K, V>): 
+  - target: ICollectionDAO<K, V>
+  - writeMethodNames: Set<String>
+  - blacklistMethodNames: Set<String>
+  - readMethodNames: Set<String>
+  - lock: ReadWriteLock
+  + invoke(Object, Method, Object[]): Object
+  - getInterfaceMethodsNames(Class<?>): Set<String>
+  - invokeLocked(Method, Object[], Lock): Object
+}
+
+BasePGDAO                        "1" *- -> "connector\n1" PGDBConnector                    
+BasicAuthProvider                 ..^  DBAuthProvider                   
+DBBackendIOException              - -^  Exception                        
+DBCreateException                 - -^  Exception                        
+DBError                           - -^  Exception                        
+DBNotFoundException               - -^  Exception                        
+ICollectionDAO                    - -^  ICollectionReadDAO               
+ICollectionDAO                    - -^  ICollectionWriteDAO              
+IOwnedCollectionDAO               - -^  ICollectionDAO                   
+NotOwnedException                 - -^  Exception                        
+OwnedDAO                          ..^  ICollectionDAO                   
+OwnedDAO                         "1" *- -> "decoratee\n1" ICollectionDAO                   
+OwnedDAO                          ..^  IOwnedCollectionDAO              
+PGDBConnector                    "1" *- -> "dbAuthProvider\n1" DBAuthProvider                   
+SyncDAO                           ..^  ICollectionDAO                   
+SyncDAO                          "1" *- -> "decoratee\n1" ICollectionDAO                   
+SynchronizedDAOInvocationHandler "1" *- -> "target\n1" ICollectionDAO                   
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+<style>
+  root {
+    BackgroundColor white
+    FontColor black
+    FontName Verdana
+    HyperLinkColor blue
+    LineColor black
+    LineThickness 1
+    Margin 5
+  }
+  caption {
+    LineThickness 0
+  }
+  footer {
+    LineThickness 0
+  }
+  header {
+    LineThickness 0
+  }
+  node {
+    MaximumWidth 300
+  }
+  title {
+    FontSize 22
+    LineThickness 0
+  }
+</style>
+
+skinparam ArrowLollipopColor black
+skinparam BackgroundColor white
+skinparam DefaultFontName Verdana
+skinparam DefaultMonospacedFontName Courier
+skinparam LifelineStrategy nosolid
+skinparam ParticipantPadding 10
+skinparam SequenceLifeLineBorderColor black
+skinparam Shadowing false
+skinparam UseBetaStyle true
+
+skinparam Activity {
+  BackgroundColor white
+  BarColor black
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam Boundary {
+  FontColor black
+}
+skinparam Box {
+  Padding 5
+}
+skinparam CircledCharacter {
+  FontColor black
+  FontName Courier
+  Radius 9
+}
+skinparam Class {
+  BackgroundColor white
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassAttribute {
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassStereotype {
+  FontColor black
+  FontName Verdana
+}
+skinparam Footer {
+  FontColor black
+  FontName Verdana
+}
+skinparam Header {
+  FontColor black
+  FontName Verdana
+}
+skinparam Hyperlink {
+  Color blue
+}
+skinparam IconPackage {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPrivate {
+  Color black
+  BackgroundColor white
+}
+skinparam IconProtected {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPublic {
+  Color black
+  BackgroundColor white
+}
+skinparam Note {
+  FontColor black
+  FontName Verdana
+}
+skinparam Object {
+  BorderColor black
+}
+skinparam Package {
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam State {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeA {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeC {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeE {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeI {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeN {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam UseCaseStereoType {
+  FontColor black
+  FontName Verdana
+}
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+
+
+
+
+
+
+
+<style>
+  root {
+    BackgroundColor white
+    FontColor black
+    FontName Verdana
+    HyperLinkColor blue
+    LineColor black
+    LineThickness 1
+    Margin 5
+  }
+  caption {
+    LineThickness 0
+  }
+  footer {
+    LineThickness 0
+  }
+  header {
+    LineThickness 0
+  }
+  node {
+    MaximumWidth 300
+  }
+  title {
+    FontSize 22
+    LineThickness 0
+  }
+</style>
+
+skinparam ArrowLollipopColor black
+skinparam BackgroundColor white
+skinparam DefaultFontName Verdana
+skinparam DefaultMonospacedFontName Courier
+skinparam LifelineStrategy nosolid
+skinparam ParticipantPadding 10
+skinparam SequenceLifeLineBorderColor black
+skinparam Shadowing false
+skinparam UseBetaStyle true
+
+skinparam Activity {
+  BackgroundColor white
+  BarColor black
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam Boundary {
+  FontColor black
+}
+skinparam Box {
+  Padding 5
+}
+skinparam CircledCharacter {
+  FontColor black
+  FontName Courier
+  Radius 9
+}
+skinparam Class {
+  BackgroundColor white
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassAttribute {
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassStereotype {
+  FontColor black
+  FontName Verdana
+}
+skinparam Footer {
+  FontColor black
+  FontName Verdana
+}
+skinparam Header {
+  FontColor black
+  FontName Verdana
+}
+skinparam Hyperlink {
+  Color blue
+}
+skinparam IconPackage {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPrivate {
+  Color black
+  BackgroundColor white
+}
+skinparam IconProtected {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPublic {
+  Color black
+  BackgroundColor white
+}
+skinparam Note {
+  FontColor black
+  FontName Verdana
+}
+skinparam Object {
+  BorderColor black
+}
+skinparam Package {
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam State {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeA {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeC {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeE {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeI {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeN {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam UseCaseStereoType {
+  FontColor black
+  FontName Verdana
+}
+top to bottom direction
+skinparam linetype ortho
+
+class BasePGDAO<V, T> {
+  + BasePGDAO(PGDBConnector, String): 
+  # connector: PGDBConnector
+  - log: Logger
+  # tableName: String
+  # datasource: PGSimpleDataSource
+  # connection: Connection
+  + parseRow(ResultSet): T
+  + truncate(): boolean
+  + delete(V): boolean
+  + insert(T): V
+  + select(): Collection<T>
+  + update(V, T): boolean
+  + drop(): boolean
+  + select(V): T
+}
+class BasicAuthProvider {
+  + BasicAuthProvider(String, String): 
+  - username: String
+  - password: String
+  + getUsername(): String
+  + hashCode(): int
+  + getPassword(): String
+  # canEqual(Object): boolean
+  + toString(): String
+  + equals(Object): boolean
+}
+interface DBAuthProvider << interface >> {
+  + getPassword(): String
+  + getUsername(): String
+}
+class DBBackendIOException {
+  + DBBackendIOException(String): 
+  + DBBackendIOException(String, Throwable): 
+  + DBBackendIOException(): 
+  + DBBackendIOException(Throwable): 
+}
+interface DBControllerFactory << interface >> {
+  + createController(): DBController
+}
+class DBCreateException {
+  + DBCreateException(Exception): 
+  + DBCreateException(String): 
+  + DBCreateException(String, Throwable): 
+}
+class DBError {
+  + DBError(String): 
+  + DBError(Throwable): 
+}
+class DBNotFoundException {
+  + DBNotFoundException(): 
+}
+interface DBStorageBackend<T> << interface >> {
+  + storeCollection(T): void
+  + clearCollection(): void
+  + loadCollection(): T
+  + getInfo(): CollectionInfo
+}
+class Exception {
+  + Exception(String, Throwable): 
+  + Exception(): 
+  + Exception(Throwable): 
+  # Exception(String, Throwable, boolean, boolean): 
+  + Exception(String): 
+  ~ serialVersionUID: long
+}
+interface ICollectionDAO<K, V> << interface >>
+interface ICollectionReadDAO<K, V> << interface >> {
+  + read(K): V
+  + asStream(): Stream<V>
+  + readAll(Comparator<V>): List<V>
+  + getMin(): V
+  + getMax(): V
+  + readAll(): List<V>
+  + filter(Predicate<V>): List<V>
+  + getCollectionInfo(): CollectionInfo
+  + nextPrimaryKey(): K
+  + getOrganizations(): List<Organization>
+  + has(K): boolean
+  + getAllMapped(Function<V, T>): List<T>
+}
+interface ICollectionWriteDAO<K, V> << interface >> {
+  + update(K, V): boolean
+  + addOrg(Organization): K
+  + remove(K): boolean
+  + save(): void
+  + add(V): K
+  + clear(): void
+}
+interface IOwnedCollectionDAO<K, V> << interface >> {
+  + update(Integer, K, V): void
+  + remove(Integer, K): boolean
+  + clear(Integer): boolean
+  + add(Integer, V): K
+}
+class NotOwnedException {
+  + NotOwnedException(String): 
+}
+class OwnedDAO<K, V> {
+  + OwnedDAO(ICollectionDAO<K, V>): 
+  - decoratee: ICollectionDAO<K, V>
+  + read(K): V
+  + update(Integer, K, V): void
+  + getCollectionInfo(): CollectionInfo
+  + addOrg(Organization): K
+  + has(K): boolean
+  + add(Integer, V): K
+  + add(V): K
+  + getMax(): V
+  + update(K, V): boolean
+  + asStream(): Stream<V>
+  + getOrganizations(): List<Organization>
+  + clear(): void
+  + clear(Integer): boolean
+  + remove(K): boolean
+  + getMin(): V
+  - checkNotOwned(Integer, K): boolean
+  + remove(Integer, K): boolean
+  + readAll(): List<V>
+  + nextPrimaryKey(): K
+}
+class PGDBConnector {
+  + PGDBConnector(String, DBAuthProvider): 
+  - log: Logger
+  - dbAuthProvider: DBAuthProvider
+  - rowSetFactory: RowSetFactory
+  - connectUrl: String
+  + bootstrap(InputStream): boolean
+  + getDataSource(): PGSimpleDataSource
+  + getRowSet(): JdbcRowSet
+}
+class RowSetUtils {
+  + RowSetUtils(): 
+  + rowSetStream(RowSet): Stream<?>
+}
+class SyncDAO<K, V> {
+  + SyncDAO(ICollectionDAO<K, V>): 
+  - decoratee: ICollectionDAO<K, V>
+  - readLock: ReadLock
+  - writeLock: WriteLock
+  + update(K, V): boolean
+  + clear(): void
+  + asStream(): Stream<V>
+  + read(K): V
+  + readAll(): List<V>
+  + nextPrimaryKey(): K
+  + add(V): K
+  + addOrg(Organization): K
+  + has(K): boolean
+  + getMin(): V
+  + getOrganizations(): List<Organization>
+  + getCollectionInfo(): CollectionInfo
+  + remove(K): boolean
+  + getMax(): V
+}
+class SynchronizedDAOFactory {
+  + SynchronizedDAOFactory(): 
+  + wrap(ICollectionDAO<K, V>): ICollectionDAO<K, V>
+}
+class SynchronizedDAOInvocationHandler<K, V> {
+  + SynchronizedDAOInvocationHandler(ICollectionDAO<K, V>): 
+  - target: ICollectionDAO<K, V>
+  - writeMethodNames: Set<String>
+  - blacklistMethodNames: Set<String>
+  - readMethodNames: Set<String>
+  - lock: ReadWriteLock
+  + invoke(Object, Method, Object[]): Object
+  - getInterfaceMethodsNames(Class<?>): Set<String>
+  - invokeLocked(Method, Object[], Lock): Object
+}
+
+BasePGDAO                        "1" *- -> "connector\n1" PGDBConnector                    
+BasicAuthProvider                 ..^  DBAuthProvider                   
+DBBackendIOException              - -^  Exception                        
+DBCreateException                 - -^  Exception                        
+DBError                           - -^  Exception                        
+DBNotFoundException               - -^  Exception                        
+ICollectionDAO                    - -^  ICollectionReadDAO               
+ICollectionDAO                    - -^  ICollectionWriteDAO              
+IOwnedCollectionDAO               - -^  ICollectionDAO                   
+NotOwnedException                 - -^  Exception                        
+OwnedDAO                          ..^  ICollectionDAO                   
+OwnedDAO                         "1" *- -> "decoratee\n1" ICollectionDAO                   
+OwnedDAO                          ..^  IOwnedCollectionDAO              
+PGDBConnector                    "1" *- -> "dbAuthProvider\n1" DBAuthProvider                   
+SyncDAO                           ..^  ICollectionDAO                   
+SyncDAO                          "1" *- -> "decoratee\n1" ICollectionDAO                   
+SynchronizedDAOInvocationHandler "1" *- -> "target\n1" ICollectionDAO                   
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 20:01:30 MSK 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+-->
+    </g>
+</svg>

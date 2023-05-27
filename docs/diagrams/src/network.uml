@@ -3,351 +3,481 @@
   <ID>JAVA</ID>
   <OriginalElement>/home/petr/Desktop/itmo-programming-lab-5/network</OriginalElement>
   <nodes>
-    <node x="2018.0" y="1890.5">ru.bardinpetr.itmo.lab5.network.transport.interfaces.IServerTransport</node>
-    <node x="-263.0" y="649.5">ru.bardinpetr.itmo.lab5.network.app.server.models.Session</node>
-    <node x="1289.875" y="2938.0">ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTransportApplication</node>
-    <node x="164.0" y="2370.0">ru.bardinpetr.itmo.lab5.network.app.client.AbstractAPIClient</node>
-    <node x="2827.145833333333" y="2951.0">ru.bardinpetr.itmo.lab5.network.app.server.special.impl.ErrorHandlingApplication</node>
-    <node x="1722.1009615384614" y="2382.5">ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractInputTransportApplication</node>
-    <node x="1250.1009615384614" y="2220.0">ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerTransport</node>
-    <node x="40.0" y="3169.0">ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerFactory</node>
-    <node x="-40.0" y="587.0">ru.bardinpetr.itmo.lab5.network.app.server.requests.AppResponseController</node>
-    <node x="332.0" y="3169.0">ru.bardinpetr.itmo.lab5.network.app.server.errors.ApplicationBuildException</node>
-    <node x="-149.25" y="1903.0">ru.bardinpetr.itmo.lab5.network.transport.interfaces.IClientTransport</node>
-    <node x="-263.0" y="2370.0">ru.bardinpetr.itmo.lab5.network.transport.client.UDPClientTransport</node>
-    <node x="632.0" y="3169.0">ru.bardinpetr.itmo.lab5.network.transport.errors.SizeLimitException</node>
-    <node x="864.1009615384614" y="2195.0">ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage</node>
-    <node x="189.6095238095238" y="236.5">ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IDestinationServerApplication</node>
-    <node x="-263.0" y="3169.0">ru.bardinpetr.itmo.lab5.network.utils.TransportUtils</node>
-    <node x="412.77083333333337" y="1539.0">ru.bardinpetr.itmo.lab5.common.serdes.SerDesService</node>
-    <node x="-85.5" y="-318.0">ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse.Status</node>
-    <node x="795.859523809524" y="687.0">ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest.ReqStatus</node>
-    <node x="2849.145833333333" y="2458.0">ru.bardinpetr.itmo.lab5.network.app.server.special.impl.APIApplication</node>
-    <node x="1229.6009615384614" y="1915.5">ru.bardinpetr.itmo.lab5.network.transport.handlers.IMessageHandler</node>
-    <node x="2346.0" y="1603.5">ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IFilteredApplication</node>
-    <node x="2326.0" y="1777.0">ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication</node>
-    <node x="2579.0" y="1603.5">ru.bardinpetr.itmo.lab5.network.app.server.interfaces.handlers.IApplicationCommandHandler</node>
-    <node x="3137.645833333333" y="1651.5">ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession.Status</node>
-    <node x="565.6095238095238" y="236.5">ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand</node>
-    <node x="-246.5" y="1183.0">ru.bardinpetr.itmo.lab5.network.app.server.models.Session.State</node>
-    <node x="1490.6009615384614" y="1814.5">ru.bardinpetr.itmo.lab5.network.utils.Pair</node>
-    <node x="316.25" y="1058.0">ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest</node>
-    <node x="2031.5" y="2925.5">ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPInputTransportApplication</node>
-    <node x="3129.145833333333" y="2100.0">ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession</node>
-    <node x="269.6095238095238" y="-202.0">ru.bardinpetr.itmo.lab5.models.commands.IAPIMessage</node>
-    <node x="595.6009615384614" y="2888.0">ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage.CommandType</node>
-    <node x="470.8595238095238" y="674.5">ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand</node>
-    <node x="-168.3904761904762" y="-3.0">ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse</node>
-    <node x="339.27083333333337" y="1889.5">ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService</node>
-    <node x="-196.5" y="2938.0">ru.bardinpetr.itmo.lab5.network.app.client.ClientMain</node>
-    <node x="59.5" y="2938.0">ru.bardinpetr.itmo.lab5.network.app.client.impl.SocketAPIClient</node>
-    <node x="867.6458333333335" y="1903.0">ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiableMessage</node>
-    <node x="3333.645833333333" y="1539.0">ru.bardinpetr.itmo.lab5.network.transport.models.Frame</node>
-    <node x="2178.8509615384614" y="2382.5">ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractOutputTransportApplication</node>
+    <node x="2716.125" y="2977.5">ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractInputTransportApplication</node>
+    <node x="2617.375" y="3640.5">ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.SessionFrameRouter</node>
+    <node x="6324.875" y="3053.0">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.storage.JWTHMACKeyProvider</node>
+    <node x="-30.75" y="4109.0">ru.bardinpetr.itmo.lab5.network.transport.models.Frame</node>
+    <node x="2212.375" y="3066.0">ru.bardinpetr.itmo.lab5.network.transport.handlers.IMessageHandler</node>
+    <node x="2828.0" y="4109.0">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTBuilderInfo</node>
+    <node x="2977.375" y="2032.0">ru.bardinpetr.itmo.lab5.network.app.server.handlers.RequestHandler</node>
+    <node x="552.0" y="4356.5">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.InvalidCredentialsException</node>
+    <node x="6194.875" y="2382.5">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.storage.JWTKeyProvider</node>
+    <node x="3987.979525862069" y="2458.5">ru.bardinpetr.itmo.lab5.network.transport.interfaces.IServerTransport</node>
+    <node x="2015.375" y="3066.0">ru.bardinpetr.itmo.lab5.network.app.server.special.impl.BasicApplication</node>
+    <node x="2483.125" y="3053.0">ru.bardinpetr.itmo.lab5.network.app.server.special.impl.APIApplication</node>
+    <node x="-137.75" y="105.5">ru.bardinpetr.itmo.lab5.network.app.server.models.Session.State</node>
+    <node x="1590.625" y="3615.5">ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.Receiver</node>
+    <node x="-43.5" y="529.0">ru.bardinpetr.itmo.lab5.network.app.server.models.Session</node>
+    <node x="4671.104525862069" y="2432.5">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.APICommandAuthenticator</node>
+    <node x="5365.875" y="3040.0">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.DefaultAPICommandAuthenticator</node>
+    <node x="3661.0" y="4109.0">ru.bardinpetr.itmo.lab5.network.app.server.handlers.IApplicationCommandHandler</node>
+    <node x="2134.0" y="4369.0">ru.bardinpetr.itmo.lab5.network.app.server.errors.ApplicationBuildException</node>
+    <node x="604.689655172414" y="3715.5">ru.bardinpetr.itmo.lab5.network.app.client.impl.SocketAPIClient</node>
+    <node x="-284.0" y="3628.0">ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.Sender</node>
+    <node x="122.75" y="-318.0">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.Authentication.AuthenticationStatus</node>
+    <node x="820.2984913793105" y="2927.5">ru.bardinpetr.itmo.lab5.network.transport.client.UDPClientTransport</node>
+    <node x="-284.0" y="1015.0">ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest</node>
+    <node x="4119.875" y="3715.5">ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTransportApplication</node>
+    <node x="866.0" y="4356.5">ru.bardinpetr.itmo.lab5.network.transport.errors.TransportTimeoutException</node>
+    <node x="-263.5" y="641.5">ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest.ReqStatus</node>
+    <node x="149.0" y="4895.0">ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.SessionFrame</node>
+    <node x="2434.0" y="4109.0">ru.bardinpetr.itmo.lab5.network.utils.TransportUtils</node>
+    <node x="5736.875" y="2815.0">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAuthenticationReceiverAdapter</node>
+    <node x="1154.0" y="4369.0">ru.bardinpetr.itmo.lab5.network.transport.errors.SizeLimitException</node>
+    <node x="2205.375" y="3728.5">ru.bardinpetr.itmo.lab5.network.app.server.special.impl.ErrorHandlingApplication</node>
+    <node x="1397.2456896551723" y="2108.0">ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IRequestFilter</node>
+    <node x="3771.5484913793107" y="2990.0">ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractOutputTransportApplication</node>
+    <node x="3089.375" y="3703.0">ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPInputTransportApplication</node>
+    <node x="4570.875" y="2977.5">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.AuthenticationApplication</node>
+    <node x="5476.298491379311" y="2433.5">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.recv.AuthenticationReceiver</node>
+    <node x="1384.0" y="4344.0">ru.bardinpetr.itmo.lab5.network.transport.errors.TransportException</node>
+    <node x="1907.0" y="4369.0">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserExistsException</node>
+    <node x="52.25" y="-82.0">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.Authentication</node>
+    <node x="-165.5" y="5431.0">ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession.Status</node>
+    <node x="-238.75" y="2382.5">ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage.CommandType</node>
+    <node x="1648.0" y="4369.0">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserNotFoundException</node>
+    <node x="-284.0" y="4745.0">ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession</node>
+    <node x="1337.0" y="4097.0">java.lang.Exception</node>
+    <node x="-248.5" y="2790.0">ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage</node>
+    <node x="1690.625" y="2927.5">ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.Session</node>
+    <node x="3186.169181034483" y="2965.0">ru.bardinpetr.itmo.lab5.network.utils.Pair</node>
+    <node x="363.9956896551721" y="2458.5">ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiableMessage</node>
+    <node x="463.2984913793107" y="2965.0">ru.bardinpetr.itmo.lab5.network.app.client.AbstractAPIClient</node>
+    <node x="3190.0" y="4109.0">ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerFactory</node>
+    <node x="4581.875" y="3754.0">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAuthenticationApplication</node>
+    <node x="201.68965517241395" y="3728.0">ru.bardinpetr.itmo.lab5.network.app.server.special.impl.FilteredApplication</node>
+    <node x="1209.2984913793105" y="3040.0">ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractApplicationDecorator</node>
+    <node x="-89.75" y="1576.0">ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppResponseController</node>
+    <node x="2592.375" y="2295.0">ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication</node>
+    <node x="834.0646551724137" y="2458.5">ru.bardinpetr.itmo.lab5.network.transport.interfaces.IClientTransport</node>
+    <node x="5017.875" y="3040.0">ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAPICommandAuthenticator</node>
+    <node x="171.0" y="1241.0">ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IDestinationServerApplication</node>
+    <node x="3231.4234913793107" y="2432.5">ru.bardinpetr.itmo.lab5.network.app.server.handlers.impl.AuthenticatedFilter</node>
   </nodes>
   <notes />
   <edges>
     <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.ErrorHandlingApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.APIApplication" relationship="GENERALIZATION">
       <point x="0.0" y="-55.0" />
+      <point x="2328.375" y="3472.0" />
+      <point x="2589.625" y="3472.0" />
       <point x="0.0" y="42.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage" target="ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiableMessage" relationship="REALIZATION">
-      <point x="0.0" y="-305.5" />
-      <point x="1047.1009615384614" y="2154.0" />
-      <point x="1027.3958333333335" y="2154.0" />
-      <point x="53.25" y="42.0" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.AuthenticationApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" relationship="GENERALIZATION">
+      <point x="-106.75" y="-118.0" />
+      <point x="4677.625" y="2758.0" />
+      <point x="2923.125" y="2758.0" />
+      <point x="110.25" y="205.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractInputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" relationship="GENERALIZATION">
-      <point x="138.0" y="-118.0" />
-      <point x="2067.1009615384614" y="2164.0" />
-      <point x="2589.0" y="2164.0" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.SessionFrame" target="ru.bardinpetr.itmo.lab5.network.transport.models.Frame" relationship="GENERALIZATION">
+      <point x="0.0" y="-168.0" />
+      <point x="328.0" y="4720.0" />
+      <point x="203.25" y="4720.0" />
+      <point x="78.0" y="293.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.Sender" target="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.Session" relationship="TO_MANY">
+      <point x="0.0" y="-155.5" />
+      <point x="-65.5" y="3452.0" />
+      <point x="1802.625" y="3452.0" />
       <point x="0.0" y="168.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPInputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractInputTransportApplication" relationship="GENERALIZATION">
-      <point x="120.5" y="-80.5" />
-      <point x="2393.0" y="2827.0" />
-      <point x="1929.1009615384614" y="2827.0" />
-      <point x="0.0" y="118.0" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest" target="ru.bardinpetr.itmo.lab5.network.app.server.models.Session" relationship="TO_ONE">
+      <point x="108.75" y="-255.5" />
+      <point x="42.25" y="995.0" />
+      <point x="-61.49999999999997" y="995.0" />
+      <point x="-61.49999999999997" y="985.0" />
+      <point x="80.5" y="985.0" />
+      <point x="0.0" y="218.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest.ReqStatus" target="ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest" relationship="INNER_CLASS">
-      <point x="50.0" y="105.5" />
-      <point x="945.859523809524" y="1038.0" />
-      <point x="647.0" y="1038.0" />
-      <point x="110.25000000000003" y="-218.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.requests.AppResponseController" target="ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse" relationship="TO_ONE">
-      <point x="0.0" y="-205.5" />
-      <point x="179.5" y="561.0" />
-      <point x="0.6095238095238074" y="561.0" />
-      <point x="0.0" y="269.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage" target="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage.CommandType" relationship="TO_ONE">
-      <point x="91.5" y="305.5" />
-      <point x="1138.6009615384614" y="2867.0" />
-      <point x="768.8509615384614" y="2867.0" />
-      <point x="57.75" y="-118.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession" target="ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession.Status" relationship="TO_ONE">
-      <point x="103.25" y="-318.0" />
-      <point x="3438.895833333333" y="2080.0" />
-      <point x="3340.645833333333" y="2080.0" />
-      <point x="3340.645833333333" y="2070.0" />
-      <point x="3269.645833333333" y="2070.0" />
-      <point x="44.0" y="143.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.requests.AppResponseController" target="ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IDestinationServerApplication" relationship="TO_ONE">
-      <point x="0.0" y="-205.5" />
-      <point x="179.5" y="561.0" />
-      <point x="344.6095238095238" y="561.0" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.Receiver" target="ru.bardinpetr.itmo.lab5.network.transport.handlers.IMessageHandler" relationship="TO_ONE">
+      <point x="0.0" y="-168.0" />
+      <point x="1802.625" y="3462.0" />
+      <point x="2332.875" y="3462.0" />
       <point x="0.0" y="29.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.Session" target="ru.bardinpetr.itmo.lab5.network.app.server.models.Session.State" relationship="TO_ONE">
-      <point x="50.75" y="143.0" />
-      <point x="-110.75" y="1018.0" />
-      <point x="-156.5" y="1018.0" />
-      <point x="-156.5" y="1038.0" />
-      <point x="-119.0" y="1038.0" />
-      <point x="42.5" y="-93.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse.Status" relationship="TO_ONE">
-      <point x="-112.66666666666669" y="-269.0" />
-      <point x="-112.05714285714288" y="-29.0" />
-      <point x="-41.5" y="-29.0" />
-      <point x="-44.0" y="131.5" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession" target="ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession.Status" relationship="TO_ONE">
+      <point x="-103.25" y="318.0" />
+      <point x="-180.75" y="5406.0" />
+      <point x="-121.5" y="5406.0" />
+      <point x="-44.0" y="-143.0" />
     </edge>
     <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.APIApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" relationship="GENERALIZATION">
       <point x="0.0" y="-42.5" />
-      <point x="2955.645833333333" y="2164.0" />
-      <point x="2589.0" y="2164.0" />
-      <point x="0.0" y="168.0" />
+      <point x="2589.625" y="2758.0" />
+      <point x="2923.125" y="2758.0" />
+      <point x="110.25" y="205.5" />
     </edge>
     <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession.Status" target="ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession" relationship="INNER_CLASS">
-      <point x="-44.0" y="143.0" />
-      <point x="3181.645833333333" y="2080.0" />
-      <point x="3232.395833333333" y="2080.0" />
-      <point x="-103.25" y="-318.0" />
+      <point x="44.0" y="-143.0" />
+      <point x="-33.5" y="5406.0" />
+      <point x="25.75" y="5406.0" />
+      <point x="103.25" y="318.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerTransport" target="ru.bardinpetr.itmo.lab5.network.transport.handlers.IMessageHandler" relationship="TO_ONE">
-      <point x="-113.0" y="-280.5" />
-      <point x="1363.1009615384614" y="2174.0" />
-      <point x="1456.75" y="2174.0" />
-      <point x="1456.75" y="2134.0" />
-      <point x="1350.1009615384614" y="2134.0" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.SessionFrameRouter" target="ru.bardinpetr.itmo.lab5.network.transport.handlers.IMessageHandler" relationship="TO_ONE">
+      <point x="-113.0" y="-143.0" />
+      <point x="2730.375" y="3482.0" />
+      <point x="2332.875" y="3482.0" />
       <point x="0.0" y="29.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerTransport" target="ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService" relationship="TO_ONE">
-      <point x="-113.0" y="-280.5" />
-      <point x="1363.1009615384614" y="2174.0" />
-      <point x="1456.75" y="2174.0" />
-      <point x="1456.75" y="2144.0" />
-      <point x="542.2708333333334" y="2144.0" />
-      <point x="0.0" y="55.5" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest.ReqStatus" target="ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest" relationship="INNER_CLASS">
+      <point x="-50.0" y="105.5" />
+      <point x="-213.5" y="995.0" />
+      <point x="-175.25" y="995.0" />
+      <point x="-108.75" y="-255.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService" target="ru.bardinpetr.itmo.lab5.common.serdes.SerDesService" relationship="GENERALIZATION">
-      <point x="0.0" y="-55.5" />
-      <point x="0.0" y="94.0" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.Session" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.Authentication" relationship="TO_ONE">
+      <point x="62.0" y="-218.0" />
+      <point x="142.5" y="509.0" />
+      <point x="85.5" y="509.0" />
+      <point x="85.5" y="499.0" />
+      <point x="256.25" y="499.0" />
+      <point x="0.0" y="280.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.Session.State" target="ru.bardinpetr.itmo.lab5.network.app.server.models.Session" relationship="INNER_CLASS">
-      <point x="-42.5" y="-93.0" />
-      <point x="-204.0" y="1038.0" />
-      <point x="-212.25" y="1038.0" />
-      <point x="-50.75" y="143.0" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.Sender" target="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage" relationship="TO_ONE">
+      <point x="0.0" y="-155.5" />
+      <point x="0.0" y="305.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.client.AbstractAPIClient" target="ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiableMessage" relationship="DEPENDENCY">
-      <point x="84.25" y="-130.5" />
-      <point x="416.75" y="2164.0" />
-      <point x="969.1458333333335" y="2164.0" />
-      <point x="969.1458333333335" y="2134.0" />
-      <point x="920.8958333333335" y="2134.0" />
-      <point x="-53.25" y="42.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.client.impl.SocketAPIClient" target="ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService" relationship="TO_ONE">
-      <point x="-91.0" y="-68.0" />
-      <point x="150.5" y="2867.0" />
-      <point x="153.5" y="2867.0" />
-      <point x="153.5" y="2174.0" />
-      <point x="542.2708333333334" y="2174.0" />
-      <point x="0.0" y="55.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerTransport" target="ru.bardinpetr.itmo.lab5.network.transport.interfaces.IServerTransport" relationship="REALIZATION">
-      <point x="113.0" y="-280.5" />
-      <point x="1589.1009615384614" y="2154.0" />
-      <point x="2090.0" y="2154.0" />
-      <point x="-72.0" y="54.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerTransport" target="ru.bardinpetr.itmo.lab5.network.utils.Pair" relationship="TO_MANY">
-      <point x="-113.0" y="-280.5" />
-      <point x="1363.1009615384614" y="2174.0" />
-      <point x="1456.75" y="2174.0" />
-      <point x="1456.75" y="2134.0" />
-      <point x="1592.1009615384614" y="2134.0" />
-      <point x="0.0" y="130.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest" target="ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand" relationship="TO_ONE">
-      <point x="-110.25" y="-218.0" />
-      <point x="426.5" y="1038.0" />
-      <point x="380.34285714285716" y="1038.0" />
-      <point x="380.34285714285716" y="1018.0" />
-      <point x="623.3595238095238" y="1018.0" />
-      <point x="0.0" y="118.0" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.errors.TransportTimeoutException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-42.0" />
+      <point x="1000.0" y="4313.0" />
+      <point x="1506.0" y="4313.0" />
+      <point x="-0.0" y="92.5" />
     </edge>
     <edge source="ru.bardinpetr.itmo.lab5.network.app.client.AbstractAPIClient" target="ru.bardinpetr.itmo.lab5.network.transport.interfaces.IClientTransport" relationship="TO_ONE">
-      <point x="-84.25" y="-130.5" />
-      <point x="248.25" y="2164.0" />
-      <point x="3.75" y="2164.0" />
-      <point x="51.0" y="42.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractOutputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" relationship="GENERALIZATION">
-      <point x="106.0" y="-118.0" />
-      <point x="2496.8509615384614" y="2164.0" />
-      <point x="2589.0" y="2164.0" />
-      <point x="0.0" y="168.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse" target="ru.bardinpetr.itmo.lab5.models.commands.IAPIMessage" relationship="REALIZATION">
-      <point x="169.0004761904762" y="47.0" />
-      <point x="329.61" y="313.0" />
-      <point x="329.61" y="428.0" />
-      <point x="517.11" y="428.0" />
-      <point x="517.11" y="-186.5" />
-      <point x="75.0004761904762" y="-0.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.client.UDPClientTransport" target="ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService" relationship="TO_ONE">
-      <point x="92.25" y="-130.5" />
-      <point x="13.75" y="2174.0" />
-      <point x="542.2708333333334" y="2174.0" />
-      <point x="0.0" y="55.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTransportApplication" target="ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService" relationship="TO_ONE">
-      <point x="-110.0" y="-68.0" />
-      <point x="1399.875" y="2847.0" />
-      <point x="658.0" y="2847.0" />
-      <point x="658.0" y="2174.0" />
-      <point x="542.2708333333334" y="2174.0" />
-      <point x="0.0" y="55.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPInputTransportApplication" target="ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService" relationship="TO_ONE">
-      <point x="-120.5" y="-80.5" />
-      <point x="2152.0" y="2837.0" />
-      <point x="795.9391025641025" y="2837.0" />
-      <point x="795.9391025641025" y="2174.0" />
-      <point x="542.2708333333334" y="2174.0" />
-      <point x="0.0" y="55.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IFilteredApplication" relationship="REALIZATION">
-      <point x="-131.5" y="-168.0" />
-      <point x="2457.5" y="1752.0" />
-      <point x="2452.5" y="1752.0" />
-      <point x="0.0" y="29.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest" target="ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest.ReqStatus" relationship="TO_ONE">
-      <point x="-110.25" y="-218.0" />
-      <point x="426.5" y="1038.0" />
-      <point x="380.34285714285716" y="1038.0" />
-      <point x="380.34285714285716" y="1018.0" />
-      <point x="845.859523809524" y="1018.0" />
-      <point x="-50.0" y="105.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractOutputTransportApplication" relationship="GENERALIZATION">
-      <point x="110.0" y="-68.0" />
-      <point x="1619.875" y="2867.0" />
-      <point x="2390.8509615384614" y="2867.0" />
-      <point x="0.0" y="118.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.client.ClientMain" target="ru.bardinpetr.itmo.lab5.network.transport.client.UDPClientTransport" relationship="TO_ONE">
-      <point x="0.0" y="-68.0" />
-      <point x="0.0" y="130.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession" target="ru.bardinpetr.itmo.lab5.network.transport.models.Frame" relationship="TO_MANY">
-      <point x="103.25" y="-318.0" />
-      <point x="3438.895833333333" y="2080.0" />
-      <point x="3340.645833333333" y="2080.0" />
-      <point x="3340.645833333333" y="2070.0" />
-      <point x="3489.645833333333" y="2070.0" />
-      <point x="0.0" y="255.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand" target="ru.bardinpetr.itmo.lab5.models.commands.IAPIMessage" relationship="REALIZATION">
-      <point x="-127.85952380952381" y="-118.0" />
-      <point x="495.5" y="428.0" />
-      <point x="517.11" y="428.0" />
-      <point x="517.11" y="-186.5" />
-      <point x="75.0004761904762" y="-0.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage.CommandType" target="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage" relationship="INNER_CLASS">
-      <point x="-57.75" y="-118.0" />
-      <point x="653.3509615384614" y="2857.0" />
-      <point x="955.6009615384614" y="2857.0" />
-      <point x="-91.5" y="305.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractOutputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.transport.interfaces.IServerTransport" relationship="TO_ONE">
-      <point x="-106.0" y="-118.0" />
-      <point x="2284.8509615384614" y="2174.0" />
-      <point x="2206.3958333333335" y="2174.0" />
-      <point x="2206.3958333333335" y="2154.0" />
-      <point x="2234.0" y="2154.0" />
-      <point x="72.0" y="54.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse.Status" target="ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse" relationship="INNER_CLASS">
-      <point x="44.0" y="131.5" />
-      <point x="46.5" y="-29.0" />
-      <point x="0.6095238095238074" y="-29.0" />
-      <point x="0.0" y="-269.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.client.impl.SocketAPIClient" target="ru.bardinpetr.itmo.lab5.network.app.client.AbstractAPIClient" relationship="GENERALIZATION">
-      <point x="91.0" y="-68.0" />
-      <point x="0.0" y="130.5" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest" target="ru.bardinpetr.itmo.lab5.network.app.server.models.Session" relationship="TO_ONE">
-      <point x="-110.25" y="-218.0" />
-      <point x="426.5" y="1038.0" />
-      <point x="380.34285714285716" y="1038.0" />
-      <point x="380.34285714285716" y="1028.0" />
-      <point x="-156.5" y="1028.0" />
-      <point x="-156.5" y="1018.0" />
-      <point x="-110.75" y="1018.0" />
-      <point x="50.75" y="143.0" />
-    </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.transport.client.UDPClientTransport" target="ru.bardinpetr.itmo.lab5.network.transport.interfaces.IClientTransport" relationship="REALIZATION">
-      <point x="-92.25" y="-130.5" />
-      <point x="-170.75" y="2174.0" />
-      <point x="-98.25" y="2174.0" />
+      <point x="84.25" y="-130.5" />
+      <point x="716.0484913793107" y="2758.0" />
+      <point x="885.0646551724137" y="2758.0" />
       <point x="-51.0" y="42.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.requests.AppRequest" target="ru.bardinpetr.itmo.lab5.network.app.server.requests.AppResponseController" relationship="TO_ONE">
-      <point x="-110.25" y="-218.0" />
-      <point x="426.5" y="1038.0" />
-      <point x="380.34285714285716" y="1038.0" />
-      <point x="380.34285714285716" y="1018.0" />
-      <point x="179.5" y="1018.0" />
-      <point x="0.0" y="205.5" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest" target="ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest.ReqStatus" relationship="TO_ONE">
+      <point x="108.75" y="-255.5" />
+      <point x="42.25" y="995.0" />
+      <point x="-61.49999999999997" y="995.0" />
+      <point x="-61.49999999999997" y="985.0" />
+      <point x="-113.5" y="985.0" />
+      <point x="50.0" y="105.5" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.interfaces.handlers.IApplicationCommandHandler" relationship="TO_MANY">
-      <point x="131.5" y="-168.0" />
-      <point x="0.0" y="29.5" />
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.AuthenticationApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.APICommandAuthenticator" relationship="TO_ONE">
+      <point x="106.75" y="-118.0" />
+      <point x="4891.125" y="2768.0" />
+      <point x="5262.995689655172" y="2768.0" />
+      <point x="5262.995689655172" y="2748.0" />
+      <point x="4911.854525862069" y="2748.0" />
+      <point x="80.25" y="68.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppResponseController" target="ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest" relationship="TO_ONE">
+      <point x="0.0" y="-205.5" />
+      <point x="129.75" y="1551.0" />
+      <point x="-66.5" y="1551.0" />
+      <point x="0.0" y="255.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest" target="ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppResponseController" relationship="TO_ONE">
+      <point x="0.0" y="255.5" />
+      <point x="-66.5" y="1551.0" />
+      <point x="129.75" y="1551.0" />
+      <point x="0.0" y="-205.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAuthenticationReceiverAdapter" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.storage.JWTKeyProvider" relationship="TO_ONE">
+      <point x="142.0" y="-280.5" />
+      <point x="6162.875" y="2768.0" />
+      <point x="6080.439655172414" y="2768.0" />
+      <point x="6080.439655172414" y="2758.0" />
+      <point x="6276.875" y="2758.0" />
+      <point x="-82.0" y="118.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.storage.JWTHMACKeyProvider" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.storage.JWTKeyProvider" relationship="GENERALIZATION">
+      <point x="0.0" y="-42.5" />
+      <point x="82.0" y="118.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.TransportSession" target="ru.bardinpetr.itmo.lab5.network.transport.models.Frame" relationship="TO_MANY">
+      <point x="0.0" y="-318.0" />
+      <point x="-77.5" y="4720.0" />
+      <point x="47.25" y="4720.0" />
+      <point x="-78.0" y="293.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage.CommandType" target="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage" relationship="INNER_CLASS">
+      <point x="-57.75" y="118.0" />
+      <point x="-181.0" y="2768.0" />
+      <point x="-187.5" y="2768.0" />
+      <point x="-122.0" y="-305.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractApplicationDecorator" target="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" relationship="GENERALIZATION">
+      <point x="90.25" y="-55.5" />
+      <point x="1480.0484913793105" y="2758.0" />
+      <point x="2923.125" y="2758.0" />
+      <point x="110.25" y="205.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.client.UDPClientTransport" target="ru.bardinpetr.itmo.lab5.network.transport.interfaces.IClientTransport" relationship="REALIZATION">
+      <point x="0.0" y="-168.0" />
+      <point x="1004.7984913793105" y="2758.0" />
+      <point x="987.0646551724137" y="2758.0" />
+      <point x="51.0" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.BasicApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" relationship="GENERALIZATION">
+      <point x="0.0" y="-29.5" />
+      <point x="2103.875" y="2758.0" />
+      <point x="2923.125" y="2758.0" />
+      <point x="110.25" y="205.5" />
     </edge>
     <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractInputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.transport.interfaces.IServerTransport" relationship="TO_ONE">
-      <point x="0.0" y="-118.0" />
-      <point x="1929.1009615384614" y="2174.0" />
-      <point x="2206.3958333333335" y="2174.0" />
-      <point x="2206.3958333333335" y="2154.0" />
-      <point x="2234.0" y="2154.0" />
-      <point x="72.0" y="54.5" />
+      <point x="138.0" y="-118.0" />
+      <point x="3061.125" y="2748.0" />
+      <point x="4482.870689655172" y="2748.0" />
+      <point x="4482.870689655172" y="2738.0" />
+      <point x="4203.979525862069" y="2738.0" />
+      <point x="72.0" y="42.0" />
     </edge>
-    <edge source="ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand" target="ru.bardinpetr.itmo.lab5.models.commands.requests.IIdentifiableCommand" relationship="REALIZATION">
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage" target="ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiableMessage" relationship="REALIZATION">
+      <point x="122.0" y="-305.5" />
+      <point x="56.5" y="2768.0" />
+      <point x="417.2456896551721" y="2768.0" />
+      <point x="-53.25" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.SessionFrameRouter" target="ru.bardinpetr.itmo.lab5.network.transport.interfaces.IServerTransport" relationship="REALIZATION">
+      <point x="113.0" y="-143.0" />
+      <point x="2956.375" y="3472.0" />
+      <point x="3582.669181034483" y="3472.0" />
+      <point x="3582.669181034483" y="2768.0" />
+      <point x="3983.5484913793107" y="2768.0" />
+      <point x="3983.5484913793107" y="2738.0" />
+      <point x="4059.979525862069" y="2738.0" />
+      <point x="-72.0" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractInputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" relationship="GENERALIZATION">
       <point x="0.0" y="-118.0" />
-      <point x="623.3595238095238" y="561.0" />
-      <point x="691.6095238095238" y="561.0" />
+      <point x="2977.689655172414" y="2768.0" />
+      <point x="2923.125" y="2768.0" />
+      <point x="110.25" y="205.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPInputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractInputTransportApplication" relationship="GENERALIZATION">
+      <point x="0.0" y="-80.5" />
+      <point x="3330.375" y="3422.0" />
+      <point x="2923.125" y="3422.0" />
+      <point x="0.0" y="118.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.handlers.impl.AuthenticatedFilter" target="ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IRequestFilter" relationship="REALIZATION">
+      <point x="0.0" y="-68.0" />
+      <point x="3358.4234913793107" y="2274.0" />
+      <point x="2811.854525862069" y="2274.0" />
+      <point x="2811.854525862069" y="2264.0" />
+      <point x="1556.9956896551723" y="2264.0" />
+      <point x="53.25" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserExistsException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-29.5" />
+      <point x="2010.5" y="4313.0" />
+      <point x="1506.0" y="4313.0" />
+      <point x="-0.0" y="92.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.handlers.RequestHandler" relationship="TO_MANY">
+      <point x="110.25" y="-205.5" />
+      <point x="2923.125" y="2264.0" />
+      <point x="3199.375" y="2264.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage" target="ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage.CommandType" relationship="TO_ONE">
+      <point x="0.0" y="-305.5" />
+      <point x="57.75" y="118.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.SessionFrameRouter" target="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.Session" relationship="TO_MANY">
+      <point x="-113.0" y="-143.0" />
+      <point x="2730.375" y="3482.0" />
+      <point x="2332.875" y="3482.0" />
+      <point x="2332.875" y="3442.0" />
+      <point x="1802.625" y="3442.0" />
+      <point x="0.0" y="168.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.Session" target="ru.bardinpetr.itmo.lab5.network.app.server.models.Session.State" relationship="TO_ONE">
+      <point x="62.0" y="-218.0" />
+      <point x="142.5" y="509.0" />
+      <point x="85.5" y="509.0" />
+      <point x="85.5" y="499.0" />
+      <point x="-10.25" y="499.0" />
+      <point x="42.5" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.Receiver" target="ru.bardinpetr.itmo.lab5.network.transport.server.multithreading.session.Session" relationship="TO_MANY">
+      <point x="0.0" y="-168.0" />
+      <point x="0.0" y="168.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.UserNotFoundException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-29.5" />
+      <point x="1767.5" y="4313.0" />
+      <point x="1506.0" y="4313.0" />
+      <point x="-0.0" y="92.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IRequestFilter" relationship="REALIZATION">
+      <point x="-110.25" y="-205.5" />
+      <point x="2702.625" y="2274.0" />
+      <point x="2811.854525862069" y="2274.0" />
+      <point x="2811.854525862069" y="2264.0" />
+      <point x="1556.9956896551723" y="2264.0" />
+      <point x="53.25" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.FilteredApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IRequestFilter" relationship="TO_ONE">
+      <point x="-95.75" y="-55.5" />
+      <point x="297.43965517241395" y="3442.0" />
+      <point x="198.375" y="3442.0" />
+      <point x="198.375" y="2274.0" />
+      <point x="1450.4956896551723" y="2274.0" />
+      <point x="-53.25" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAuthenticationReceiverAdapter" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.recv.AuthenticationReceiver" relationship="TO_ONE">
+      <point x="142.0" y="-280.5" />
+      <point x="6162.875" y="2768.0" />
+      <point x="6080.439655172414" y="2768.0" />
+      <point x="6080.439655172414" y="2738.0" />
+      <point x="5638.298491379311" y="2738.0" />
+      <point x="5638.298491379311" y="2728.0" />
+      <point x="5711.798491379311" y="2728.0" />
+      <point x="78.5" y="67.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.errors.SizeLimitException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-29.5" />
+      <point x="1259.0" y="4313.0" />
+      <point x="1506.0" y="4313.0" />
+      <point x="-0.0" y="92.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.Session.State" target="ru.bardinpetr.itmo.lab5.network.app.server.models.Session" relationship="INNER_CLASS">
+      <point x="-42.5" y="93.0" />
+      <point x="-95.25" y="509.0" />
+      <point x="18.5" y="509.0" />
+      <point x="-62.0" y="-218.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.client.AbstractAPIClient" target="ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiableMessage" relationship="DEPENDENCY">
+      <point x="-84.25" y="-130.5" />
+      <point x="547.5484913793107" y="2768.0" />
+      <point x="626.7984913793107" y="2768.0" />
+      <point x="626.7984913793107" y="2758.0" />
+      <point x="523.7456896551721" y="2758.0" />
+      <point x="53.25" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractApplicationDecorator" target="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" relationship="TO_ONE">
+      <point x="-90.25" y="-55.5" />
+      <point x="1299.5484913793105" y="2748.0" />
+      <point x="2702.625" y="2748.0" />
+      <point x="-110.25" y="205.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.AuthenticationApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.recv.AuthenticationReceiver" relationship="TO_ONE">
+      <point x="106.75" y="-118.0" />
+      <point x="4891.125" y="2768.0" />
+      <point x="5262.995689655172" y="2768.0" />
+      <point x="5262.995689655172" y="2758.0" />
+      <point x="5638.298491379311" y="2758.0" />
+      <point x="5638.298491379311" y="2728.0" />
+      <point x="5711.798491379311" y="2728.0" />
+      <point x="78.5" y="67.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractOutputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication" relationship="GENERALIZATION">
+      <point x="-106.0" y="-105.5" />
+      <point x="3877.5484913793107" y="2758.0" />
+      <point x="2923.125" y="2758.0" />
+      <point x="110.25" y="205.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.transport.errors.TransportException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-54.5" />
+      <point x="-0.0" y="92.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAuthenticationApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.AuthenticationApplication" relationship="GENERALIZATION">
+      <point x="0.0" y="-29.5" />
+      <point x="0.0" y="118.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAuthenticationReceiverAdapter" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.recv.AuthenticationReceiver" relationship="REALIZATION">
+      <point x="-142.0" y="-280.5" />
+      <point x="5878.875" y="2748.0" />
+      <point x="5554.798491379311" y="2748.0" />
+      <point x="-78.5" y="67.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.errors.InvalidCredentialsException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-42.0" />
+      <point x="699.0" y="4313.0" />
+      <point x="1506.0" y="4313.0" />
+      <point x="-0.0" y="92.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppResponseController" target="ru.bardinpetr.itmo.lab5.network.app.server.interfaces.types.IDestinationServerApplication" relationship="TO_ONE">
+      <point x="0.0" y="-205.5" />
+      <point x="129.75" y="1551.0" />
+      <point x="326.0" y="1551.0" />
       <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAPICommandAuthenticator" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.APICommandAuthenticator" relationship="GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="5181.875" y="2738.0" />
+      <point x="4826.604525862069" y="2738.0" />
+      <point x="4826.604525862069" y="2728.0" />
+      <point x="4751.354525862069" y="2728.0" />
+      <point x="-80.25" y="68.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractOutputTransportApplication" relationship="GENERALIZATION">
+      <point x="0.0" y="-68.0" />
+      <point x="4339.875" y="3472.0" />
+      <point x="3983.5484913793107" y="3472.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.errors.ApplicationBuildException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-29.5" />
+      <point x="2261.5" y="4313.0" />
+      <point x="1506.0" y="4313.0" />
+      <point x="-0.0" y="92.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractOutputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.transport.interfaces.IServerTransport" relationship="TO_ONE">
+      <point x="106.0" y="-105.5" />
+      <point x="4089.5484913793107" y="2748.0" />
+      <point x="4482.870689655172" y="2748.0" />
+      <point x="4482.870689655172" y="2738.0" />
+      <point x="4203.979525862069" y="2738.0" />
+      <point x="72.0" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.DefaultAPICommandAuthenticator" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.api.APICommandAuthenticator" relationship="GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="5541.375" y="2738.0" />
+      <point x="4826.604525862069" y="2738.0" />
+      <point x="4826.604525862069" y="2728.0" />
+      <point x="4751.354525862069" y="2728.0" />
+      <point x="-80.25" y="68.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.client.impl.SocketAPIClient" target="ru.bardinpetr.itmo.lab5.network.app.client.AbstractAPIClient" relationship="GENERALIZATION">
+      <point x="0.0" y="-68.0" />
+      <point x="786.689655172414" y="3432.0" />
+      <point x="631.7984913793107" y="3432.0" />
+      <point x="0.0" y="130.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.impl.FilteredApplication" target="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractApplicationDecorator" relationship="GENERALIZATION">
+      <point x="95.75" y="-55.5" />
+      <point x="488.93965517241395" y="3442.0" />
+      <point x="1389.7984913793105" y="3442.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.Authentication" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.Authentication.AuthenticationStatus" relationship="TO_ONE">
+      <point x="102.0" y="-280.5" />
+      <point x="358.25" y="-107.0" />
+      <point x="323.0" y="-107.0" />
+      <point x="66.75" y="93.0" />
     </edge>
     <edge source="ru.bardinpetr.itmo.lab5.network.app.server.special.AbstractInputTransportApplication" target="ru.bardinpetr.itmo.lab5.network.transport.models.interfaces.IIdentifiableMessage" relationship="DEPENDENCY">
       <point x="-138.0" y="-118.0" />
-      <point x="1791.1009615384614" y="2164.0" />
-      <point x="969.1458333333335" y="2164.0" />
-      <point x="969.1458333333335" y="2134.0" />
-      <point x="920.8958333333335" y="2134.0" />
-      <point x="-53.25" y="42.0" />
+      <point x="2785.125" y="2768.0" />
+      <point x="626.7984913793107" y="2768.0" />
+      <point x="626.7984913793107" y="2758.0" />
+      <point x="523.7456896551721" y="2758.0" />
+      <point x="53.25" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.Authentication.AuthenticationStatus" target="ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.models.Authentication" relationship="INNER_CLASS">
+      <point x="-66.75" y="93.0" />
+      <point x="189.5" y="-107.0" />
+      <point x="154.25" y="-107.0" />
+      <point x="-102.0" y="-280.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="0.3482798608426749" showDependencies="true" x="957.5" y="965.5" />
+  <settings layout="Hierarchic" zoom="0.5300498870481928" showDependencies="true" x="2995.8068368479467" y="3898.92" />
   <SelectedNodes />
   <Categories>
     <Category>Constructors</Category>
