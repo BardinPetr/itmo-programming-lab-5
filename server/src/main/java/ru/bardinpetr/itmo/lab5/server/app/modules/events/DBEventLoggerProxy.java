@@ -52,7 +52,7 @@ public class DBEventLoggerProxy implements EventMarker {
         return new Event(
                 eventTypeMethodsMap.get(method.getName()),
                 ((ITableDAO) target).getTableName(),
-                method.getName()
+                null
         );
     }
 }

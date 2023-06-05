@@ -20,7 +20,9 @@
         <module name="itmo-programming-lab-5.models.test" />
         <module name="itmo-programming-lab-5.events.main" />
         <module name="itmo-programming-lab-5.db.main" />
+        <module name="itmo-programming-lab-5.client.clientGUI.main" />
         <module name="itmo-programming-lab-5.network.test" />
+        <module name="itmo-programming-lab-5.client.clientGUI.test" />
         <module name="ru.bardinpetr.itmo.lab5.mainclient.itmo-programming-lab-5.client.clientMain.main" />
         <module name="itmo-programming-lab-5.server.test" />
         <module name="itmo-programming-lab-5.db.test" />
