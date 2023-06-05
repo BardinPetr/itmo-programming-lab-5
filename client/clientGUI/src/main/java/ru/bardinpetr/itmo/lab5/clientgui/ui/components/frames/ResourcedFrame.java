@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.clientgui.pages.common;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 

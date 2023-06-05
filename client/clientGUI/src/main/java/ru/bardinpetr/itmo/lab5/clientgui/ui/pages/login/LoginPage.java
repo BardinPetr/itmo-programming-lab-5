@@ -1,10 +1,11 @@
-package ru.bardinpetr.itmo.lab5.clientgui.pages.login;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.login;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
-import ru.bardinpetr.itmo.lab5.clientgui.pages.common.ResourcedFrame;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.PasswordLoginCommand;
@@ -17,11 +18,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
-import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class LoginPage extends ResourcedFrame {
     private final ICredentialsStorage<StoredJWTCredentials> credentialsStorage;
@@ -47,12 +44,6 @@ public class LoginPage extends ResourcedFrame {
         }
 
         build();
-
-        var cur = new AtomicInteger();
-        Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(
-                () -> getUIResources().setLocale(cur.getAndIncrement() % 2 == 0 ? Locale.US : Locale.forLanguageTag("ru-RU")),
-                0, 1, TimeUnit.SECONDS
-        );
     }
 
     public void build() {
@@ -79,6 +70,7 @@ public class LoginPage extends ResourcedFrame {
         mainPanel.add(showCheckBox);
         mainPanel.add(loginButton);
         mainPanel.add(registerButton);
+        mainPanel.add(new LanguageChanger());
 
         loadResources(getResources());
 

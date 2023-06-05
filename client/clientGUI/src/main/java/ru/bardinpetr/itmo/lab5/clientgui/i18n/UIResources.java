@@ -1,7 +1,10 @@
 package ru.bardinpetr.itmo.lab5.clientgui.i18n;
 
+import lombok.Getter;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -13,6 +16,8 @@ public class UIResources {
     private static UIResources instance;
 
     private final PropertyChangeSupport propertyChangeSupport;
+
+    @Getter
     private Locale currentLocale;
 
     private UIResources() {
@@ -38,10 +43,11 @@ public class UIResources {
     }
 
     public void setLocale(Locale newLocale) {
-        propertyChangeSupport.firePropertyChange(LOCALE_PROPERTY, currentLocale, newLocale);
+        var oldLocale = currentLocale;
         currentLocale = newLocale;
         Locale.setDefault(newLocale);
         ResourceBundle.clearCache();
+        propertyChangeSupport.firePropertyChange(LOCALE_PROPERTY, oldLocale, newLocale);
     }
 
     public void addLocaleChangeListener(PropertyChangeListener listener) {
@@ -50,5 +56,9 @@ public class UIResources {
 
     public void removeLocaleChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(LOCALE_PROPERTY, listener);
+    }
+
+    public List<Locale> getSupportedLocales() {
+        return List.of(Locale.forLanguageTag("ru"), Locale.forLanguageTag("en"));
     }
 }
