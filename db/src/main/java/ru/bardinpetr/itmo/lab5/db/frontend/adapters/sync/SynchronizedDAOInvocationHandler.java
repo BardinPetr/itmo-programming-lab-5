@@ -8,12 +8,12 @@ import ru.bardinpetr.itmo.lab5.models.data.collection.IOwnedEntity;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.stream.Collectors;
+
+import static ru.bardinpetr.itmo.lab5.common.utils.InterfaceUtils.getInterfaceMethodsNames;
 
 public class SynchronizedDAOInvocationHandler<K, V extends IKeyedEntity<K> & IOwnedEntity> implements InvocationHandler {
 
@@ -50,11 +50,5 @@ public class SynchronizedDAOInvocationHandler<K, V extends IKeyedEntity<K> & IOw
         var result = original.invoke(target, args);
         lock.unlock();
         return result;
-    }
-
-    private Set<String> getInterfaceMethodsNames(Class<?> cls) {
-        return Arrays.stream(cls.getDeclaredMethods())
-                .map(Method::getName)
-                .collect(Collectors.toSet());
     }
 }

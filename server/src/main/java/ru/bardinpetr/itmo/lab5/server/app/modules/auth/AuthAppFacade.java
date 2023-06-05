@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAPICom
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAuthenticationApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.storage.JWTHMACKeyProvider;
 import ru.bardinpetr.itmo.lab5.server.auth.recv.DBAuthenticationReceiver;
-import ru.bardinpetr.itmo.lab5.server.db.dao.DBTableProvider;
+import ru.bardinpetr.itmo.lab5.server.db.dao.WorkersDBTableProvider;
 
 import java.util.Base64;
 import java.util.List;
@@ -22,7 +22,7 @@ public class AuthAppFacade {
         isDebug = debug;
     }
 
-    public JWTAuthenticationApplication create(DBTableProvider tableProvider) {
+    public JWTAuthenticationApplication create(WorkersDBTableProvider tableProvider) {
         var authReceiver = new DBAuthenticationReceiver(tableProvider.getUsers());
 
         var jwtKeyProvider = new JWTHMACKeyProvider();

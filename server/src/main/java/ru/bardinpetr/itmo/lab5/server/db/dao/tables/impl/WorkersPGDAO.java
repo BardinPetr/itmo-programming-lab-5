@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.server.db.dao.tables;
+package ru.bardinpetr.itmo.lab5.server.db.dao.tables.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.BasePGDAO;
@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector;
 import ru.bardinpetr.itmo.lab5.db.errors.DBCreateException;
 import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Position;
+import ru.bardinpetr.itmo.lab5.server.db.dao.tables.WorkersDAO;
 import ru.bardinpetr.itmo.lab5.server.db.dto.WorkerDTO;
 
 import java.sql.*;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 import static ru.bardinpetr.itmo.lab5.db.utils.RowSetUtils.rowSetStream;
 
 @Slf4j
-public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> {
+public class WorkersPGDAO extends BasePGDAO<Integer, WorkerDTO> implements WorkersDAO {
 
     public WorkersPGDAO(PGDBConnector connector) throws DBCreateException {
         super(connector, "worker");

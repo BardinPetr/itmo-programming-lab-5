@@ -21,4 +21,5 @@ dependencies {
     implementation(project(":models"))
     implementation(project(":common"))
     implementation(project(":network"))
+    implementation(project(":events"))
 }

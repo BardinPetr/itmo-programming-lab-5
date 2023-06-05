@@ -21,9 +21,11 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":network"))
     implementation(project(":db"))
+    implementation(project(":events"))
 
     implementation("org.postgresql:postgresql:42.6.0")
     implementation("commons-cli:commons-cli:1.5.0")
     testImplementation("com.fasterxml.jackson.core:jackson-annotations:${Deps.jacksonVersion}")
+    implementation("org.javassist:javassist:3.29.2-GA")
 }
 

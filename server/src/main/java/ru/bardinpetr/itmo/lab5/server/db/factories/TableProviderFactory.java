@@ -3,13 +3,13 @@ package ru.bardinpetr.itmo.lab5.server.db.factories;
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.db.auth.BasicAuthProvider;
 import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector;
-import ru.bardinpetr.itmo.lab5.server.db.dao.DBTableProvider;
+import ru.bardinpetr.itmo.lab5.server.db.dao.WorkersDBTableProvider;
 
 @Slf4j
 public class TableProviderFactory {
-    public static DBTableProvider create(String url, String username, String password, boolean bootstrap) {
+    public static WorkersDBTableProvider create(String url, String username, String password, boolean bootstrap) {
         try {
-            var tableProvider = new DBTableProvider(
+            var tableProvider = new WorkersDBTableProvider(
                     new PGDBConnector(
                             url,
                             new BasicAuthProvider(username, password)

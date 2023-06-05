@@ -8,6 +8,7 @@ import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTranspor
 import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerFactory;
 import ru.bardinpetr.itmo.lab5.server.app.modules.auth.AuthAppFacade;
 import ru.bardinpetr.itmo.lab5.server.app.modules.db.DBApplicationFacade;
+import ru.bardinpetr.itmo.lab5.server.app.modules.events.EventFacade;
 import ru.bardinpetr.itmo.lab5.server.app.ui.ServerConsoleArgumentsParser;
 import ru.bardinpetr.itmo.lab5.server.db.factories.TableProviderFactory;
 
@@ -17,21 +18,21 @@ public class Main {
         SetupJUL.loadProperties(Main.class);
         var consoleArgs = new ServerConsoleArgumentsParser(args);
 
+        var eventApp = EventFacade.createApp();
+
         var tableProvider = TableProviderFactory.create(
                 consoleArgs.getDatabaseUrl(),
                 consoleArgs.getUsername(), consoleArgs.getPassword(),
                 consoleArgs.doBootstrap()
         );
 
-        var auth = new AuthAppFacade();
-        auth.setDebug(false);
-
         var udpServer = UDPServerFactory.create(consoleArgs.getPort());
         var mainApp = new UDPInputTransportApplication(udpServer);
         mainApp
                 .chain(new UDPOutputTransportApplication(udpServer))
-                .chain(auth.create(tableProvider))
+                .chain(new AuthAppFacade().create(tableProvider))
                 .chain(DBApplicationFacade.create(tableProvider))
+                .chain(eventApp)
                 .chain(new ErrorHandlingApplication());
 
         mainApp.start();
