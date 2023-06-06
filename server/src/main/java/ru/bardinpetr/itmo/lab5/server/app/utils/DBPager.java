@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  */
 public class DBPager<T> {
     public List<T> paginate(Stream<T> input, PagingAPICommand command) {
-        if (command.getOffset() < 0 || command.getCount() < 0)
+        if (command.getOffset() < 0 || command.getCount() < -1)
             throw new RuntimeException("Invalid offset/count");
 
         var base = input.skip(command.getOffset());
