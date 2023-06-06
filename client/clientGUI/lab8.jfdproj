@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <entry key="sourcefolders1" value="src/main/java" />
+  <node name="designer">
+    <entry key="_i18nJavaSettingsEnabled" value="true" />
+    <entry key="_i18nSettingsEnabled" value="true" />
+    <entry key="i18n.javagetbundleformat" value="getResources()" />
+    <entry key="i18n.propertiesencoding" value="UTF-8" />
+    <entry key="i18n.propertiestemplate" value="\n" />
+  </node>
+  <node name="javacodegenerator">
+    <entry key="_codeStyleSettingsEnabled" value="true" />
+    <entry key="_generalSettingsEnabled" value="true" />
+    <entry key="_templatesSettingsEnabled" value="true" />
+    <entry key="lineseparator" value="\n" />
+    <entry key="sourcecompatibility" value="17" />
+    <entry key="usetabchar" value="false" />
+    <entry key="variablemodifiers" value="18" />
+  </node>
+</project>
+
