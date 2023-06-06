@@ -102,15 +102,17 @@ public class LoginPage extends ResourcedFrame {
             cmd = new RegisterCommand();
 
         cmd.setCredentials(new DefaultAuthenticationCredentials(username, password));
-        var validation = cmd.validate();
-        if (!validation.isAllowed()) {
-            new JDialog(this, validation.getMsg());
-        }
 
         SwingUtilities.invokeLater(() -> sendCommand(cmd));
     }
 
     private void sendCommand(APICommand cmd) {
+        var validation = cmd.validate();
+        if (!validation.isAllowed()) {
+            JOptionPane.showMessageDialog(this, validation.getMsg(), "Invalid fields", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         APICommandResponse result;
         try {
             result = apiConnector.call(cmd);
