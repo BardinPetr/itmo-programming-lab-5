@@ -3,7 +3,7 @@ import sys
 from translate import Translator
 
 BASE_LANG = "en"
-TARGET_LANGS = ["ru"]
+TARGET_LANGS = []
 TRANSLATORS = {i: Translator(from_lang=BASE_LANG, to_lang=i) for i in TARGET_LANGS}
 
 class_template = lambda package, base_name, contents: \

@@ -1,0 +1,46 @@
+JFDML JFormDesigner: "8.1.0.0.283" Java: "17.0.6" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundlePackage": "ru.bardinpetr.itmo.lab5.clientgui.i18n.data"
+	"i18n.bundleName": "guitexts"
+	"i18n.keyPrefix": "bottomPanel"
+	contentType: "form/swing"
+	root: new FormRoot {
+		auxiliary() {
+			"JavaCodeGenerator.i18nInitMethod": true
+			"JavaCodeGenerator.i18nGetBundleFormat": "getResources()"
+		}
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "infoText"
+				"text": new FormMessage( null, "bottomPanel.infoText.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": new FormMessage( null, "bottomPanel.label1.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": new FormMessage( null, "bottomPanel.label2.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "bdDateField"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": new FormMessage( null, "bottomPanel.label4.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "workersCountField"
+			} )
+			add( new FormComponent( "ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger" ) {
+				name: "langLayout"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 30 )
+		} )
+	}
+}

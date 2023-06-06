@@ -1,0 +1,67 @@
+JFDML JFormDesigner: "8.1.0.0.283" Java: "17.0.6" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundlePackage": "ru.bardinpetr.itmo.lab5.clientgui.i18n.data"
+	"i18n.bundleName": "guitexts"
+	"i18n.keyPrefix": "MainFrame"
+	contentType: "form/swing"
+	root: new FormRoot {
+		auxiliary() {
+			"JavaCodeGenerator.i18nInitMethod": true
+			"JavaCodeGenerator.i18nGetBundleFormat": "getResources()"
+		}
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "mainPanel"
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+			add( new FormComponent( "ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.component.BottomPanel" ) {
+				name: "bottomMenu"
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "South"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "panel1"
+				add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+					name: "menuBar"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "workersMenuButton"
+						"text": new FormMessage( null, "MainFrame.workersMenuButton.text" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "workersMenuButtonMouseClicked", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "workersMenuClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "orgsMenuButton"
+						"text": new FormMessage( null, "MainFrame.orgsMenuButton.text" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "orgsMenuClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "mapMenuButton"
+						"text": new FormMessage( null, "MainFrame.mapMenuButton.text" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "mapClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "scriptMenuButton"
+						"text": new FormMessage( null, "MainFrame.scriptMenuButton.text" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "scriptClicked", true ) )
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "West"
+				} )
+				add( new FormComponent( "ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo.UsersInfo" ) {
+					name: "usersInfo"
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "East"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "North"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 245 )
+		} )
+	}
+}

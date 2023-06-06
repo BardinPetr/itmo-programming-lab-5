@@ -32,7 +32,6 @@ public class LoginPage extends ResourcedFrame {
     private JCheckBox showCheckBox;
 
     public LoginPage(Runnable onSuccess) {
-        super("LoginPage");
         this.onSuccess = onSuccess;
 
         apiConnector = APIProvider.getConnector();
@@ -72,7 +71,7 @@ public class LoginPage extends ResourcedFrame {
         mainPanel.add(registerButton);
         mainPanel.add(new LanguageChanger());
 
-        loadResources(getResources());
+        initComponentsI18n();
 
         setContentPane(mainPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -81,7 +80,8 @@ public class LoginPage extends ResourcedFrame {
     }
 
     @Override
-    protected void loadResources(ResourceBundle resources) {
+    protected void initComponentsI18n() {
+        var resources = getResources();
         loginButton.setText(resources.getString("login_btn"));
         registerButton.setText(resources.getString("register_btn"));
     }

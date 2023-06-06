@@ -6,19 +6,13 @@ import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.util.ResourceBundle;
 
-public abstract class ResourcedFrame extends JFrame {
+public abstract class ResourcedPanel extends JPanel {
 
     private final UIResources uiResources;
 
-    public ResourcedFrame() {
+    public ResourcedPanel() {
         uiResources = UIResources.getInstance();
         uiResources.addLocaleChangeListener(this::localeChange);
-    }
-
-    @Override
-    public void dispose() {
-        uiResources.removeLocaleChangeListener(this::localeChange);
-        super.dispose();
     }
 
     private void localeChange(PropertyChangeEvent propertyChangeEvent) {

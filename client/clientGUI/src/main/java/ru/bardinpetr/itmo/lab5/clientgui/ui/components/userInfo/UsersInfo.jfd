@@ -1,0 +1,39 @@
+JFDML JFormDesigner: "8.1.0.0.283" Java: "17.0.6" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundlePackage": "ru.bardinpetr.itmo.lab5.clientgui.i18n.data"
+	"i18n.bundleName": "guitexts"
+	"i18n.keyPrefix": "userInfo"
+	contentType: "form/swing"
+	root: new FormRoot {
+		auxiliary() {
+			"JavaCodeGenerator.i18nInitMethod": true
+			"JavaCodeGenerator.i18nGetBundleFormat": "getResources()"
+		}
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+			"rows": 2
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "username"
+				"text": new FormMessage( null, "userInfo.username.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "usernameField"
+				"text": new FormMessage( null, "userInfo.usernameField.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "workersCountText"
+				"text": new FormMessage( null, "userInfo.workersCountText.text" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "workersCountField"
+				"text": new FormMessage( null, "userInfo.workersCountField.text" )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 145, 30 )
+		} )
+	}
+}
