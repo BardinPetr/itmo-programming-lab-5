@@ -8,236 +8,411 @@ class APIApplication {
   + APIApplication(): 
   + filter(AppRequest): boolean
 }
-class APICommand {
-  + APICommand(): 
-  + equals(Object): boolean
-  # canEqual(Object): boolean
-  + hashCode(): int
-  + toString(): String
-  + validate(): ValidationResponse
-  + getCmdIdentifier(): Class<APICommand>
-  + createResponse(): APICommandResponse
-}
-class APICommandResponse {
-  + APICommandResponse(): 
-  + APICommandResponse(Status, String): 
-  - status: Status
-  - textualResponse: String
-  + getStatus(): Status
-  + getTextualResponse(): String
-  + setStatus(Status): void
-  + setTextualResponse(String): void
-  + equals(Object): boolean
-  # canEqual(Object): boolean
-  + hashCode(): int
-  + toString(): String
-  + clientError(String): APICommandResponse
-  + clientError(Exception): APICommandResponse
-  + serverError(Exception): APICommandResponse
-  + notFound(): APICommandResponse
-  + ok(): APICommandResponse
-  + isSuccess(): boolean
-  + serverError(String): APICommandResponse
-  + isResolved(): boolean
+class APICommandAuthenticator<C> {
+  # APICommandAuthenticator(): 
+  + AUTH_HEADER: String
+  + extractAuth(APICommand): C
+  + authenticate(APICommand, C): APICommand
 }
 class AbstractAPIClient<T> {
   + AbstractAPIClient(IClientTransport<T>): 
   - transport: IClientTransport<T>
   - currentMessageId: Long
   - timeout: Duration
-  + request(APICommand): APICommandResponse
-  # serialize(APICommand): T
   + setTimeout(Duration): void
-  # deserialize(T): APICommandResponse
+  # serialize(APICommand): T
+  + request(APICommand): APICommandResponse
   - validateReply(T): boolean
+  # deserialize(T): APICommandResponse
 }
 class AbstractApplication {
   + AbstractApplication(): 
+  - anyCommandHandler: RequestHandler
+  - commandHandlers: Map<Class<APICommand>, RequestHandler>
+  - nextApp: AbstractApplication
   - log: Logger
-  - processors: List<AbstractApplication>
-  - anyCommandHandler: IApplicationCommandHandler
-  - commandHandlers: Map<Class<APICommand>, IApplicationCommandHandler>
-  + use(AbstractApplication): void
-  # process(AppRequest): AppRequest
-  + on(Class<APICommand>, IApplicationCommandHandler): void
   + on(IApplicationCommandHandler): void
   + on(IApplicationCommandHandler, Class<APICommand>[]): void
-  + start(): void
+  + process(AppRequest): void
+  + chain(AbstractApplication): AbstractApplication
+  # beforeTermination(AppRequest): void
   - safeProcessCall(AppRequest, Consumer<AppRequest>): void
+  + start(): void
+  - forwardToNext(AppRequest): void
+  # apply(AppRequest): void
+  + on(Class<APICommand>, IApplicationCommandHandler): void
+}
+class AbstractApplicationDecorator {
+  + AbstractApplicationDecorator(AbstractApplication): 
+  # decoratee: AbstractApplication
+  # apply(AppRequest): void
 }
 class AbstractInputTransportApplication<U, L> {
   + AbstractInputTransportApplication(IServerTransport<U, L>): 
   - log: Logger
   - transport: IServerTransport<U, L>
-  + filter(AppRequest): boolean
+  - handle(U, L): void
   # supplySession(U, L): Session<U>
   # deserialize(L): APICommand
+  + filter(AppRequest): boolean
   + start(): void
-  - handle(U, L): void
 }
 class AbstractOutputTransportApplication<U, L> {
   + AbstractOutputTransportApplication(IServerTransport<U, L>): 
   - log: Logger
   - transport: IServerTransport<U, L>
-  # send(U, APICommandResponse): void
+  + apply(AppRequest): void
   # supplyResponse(AppRequest): AppResponseController<U>
-  + filter(AppRequest): boolean
-  # process(AppRequest): AppRequest
+  # send(U, APICommandResponse): void
   # serialize(APICommandResponse): L
 }
 class AppRequest {
-  + AppRequest(ReqStatus, Long, Session<?>, AppResponseController<?>, APICommand): 
+  + AppRequest(ReqStatus, Long, Session<?>, AppResponseController<?>, APICommand, boolean): 
   + AppRequest(): 
-  - id: Long
   - payload: APICommand
-  - status: ReqStatus
+  - isTerminated: boolean
   - session: Session<?>
+  - status: ReqStatus
+  - id: Long
   - response: AppResponseController<?>
-  + id(): Long
-  + response(): AppResponseController<?>
-  + setStatus(ReqStatus): void
-  + payload(): APICommand
-  + status(): ReqStatus
-  + setResponse(AppResponseController<?>): void
-  + toString(): String
-  + session(): Session<?>
   + isTerminated(): boolean
+  + id(): Long
+  + toString(): String
+  + status(): ReqStatus
+  + payload(): APICommand
+  + response(): AppResponseController<?>
+  + session(): Session<?>
+  + setResponse(AppResponseController<?>): void
+  + setStatus(ReqStatus): void
+  + terminate(): void
+  + setSession(Session<?>): void
 }
 class AppResponseController<U> {
   + AppResponseController(AppRequest, IDestinationServerApplication<U>): 
-  - log: Logger
-  - id: Long
-  - response: APICommandResponse
-  - isTerminated: boolean
-  - destination: IDestinationServerApplication<U>
   - recipient: U
-  + getStatus(): Status
-  + send(): void
-  + status(Status): AppResponseController<U>
+  - log: Logger
+  - destination: IDestinationServerApplication<U>
+  - parentRequest: AppRequest
+  - response: APICommandResponse
+  - id: Long
+  + sendOk(): void
   + from(APICommandResponse): AppResponseController<U>
-  + isTerminated(): boolean
-  + terminate(): void
-  + getId(): Long
+  + status(APIResponseStatus): AppResponseController<U>
+  + send(): void
+  + getStatus(): APIResponseStatus
   + message(String): AppResponseController<U>
+  + getId(): Long
+  + sendErr(String): void
 }
 class ApplicationBuildException {
   + ApplicationBuildException(String): 
 }
-class ClientMain {
-  + ClientMain(): 
-  - client: UDPClientTransport
-  + main(String[]): void
-  + clientRun(SocketMessage): void
+class AuthenticatedFilter {
+  + AuthenticatedFilter(): 
+  - instance: AuthenticatedFilter
+  + filter(AppRequest): boolean
+  + getInstance(): AuthenticatedFilter
+}
+class Authentication {
+  + Authentication(): 
+  + Authentication(AuthenticationStatus, Integer, String, String): 
+  + Authentication(AuthenticationStatus): 
+  - userHandle: Integer
+  - role: String
+  - userName: String
+  - status: AuthenticationStatus
+  + setStatus(AuthenticationStatus): void
+  # canEqual(Object): boolean
+  + getRole(): String
+  + getUserHandle(): Integer
+  + equals(Object): boolean
+  + setUserHandle(Integer): void
+  + hashCode(): int
+  + ok(Integer, String, String): Authentication
+  + setUserName(String): void
+  + invalid(): Authentication
+  + getUserName(): String
+  + toString(): String
+  + getStatus(): AuthenticationStatus
+  + setRole(String): void
+}
+class AuthenticationApplication<C, R> {
+  + AuthenticationApplication(APICommandAuthenticator<C>, AuthenticationReceiver<C, R>): 
+  - log: Logger
+  - commandAuthenticator: APICommandAuthenticator<C>
+  - authenticationReceiver: AuthenticationReceiver<C, R>
+  # apply(AppRequest): void
+  - updateSession(AppRequest, Authentication): void
+  # loginUser(AppRequest): void
+  # registerUser(AppRequest): void
+}
+interface AuthenticationReceiver<C, R> << interface >> {
+  + register(RegisterCommand): R
+  + authorize(C): Authentication
+  + login(LoginCommand): R
+  + requestIdentity(int): DefaultLoginResponse
+}
+enum AuthenticationStatus << enumeration >> {
+  - AuthenticationStatus(): 
+  + GUEST: 
+  + INVALID: 
+  + NORMAL: 
+  + values(): AuthenticationStatus[]
+  + valueOf(String): AuthenticationStatus
+}
+class BasicApplication {
+  + BasicApplication(): 
 }
 enum CommandType << enumeration >> {
   - CommandType(): 
-  + HALT: 
-  + NACK: 
   + DATA: 
-  + INIT: 
   + ACK: 
+  + INIT: 
+  + NACK: 
+  + HALT: 
   + values(): CommandType[]
   + valueOf(String): CommandType
 }
+class DefaultAPICommandAuthenticator {
+  - DefaultAPICommandAuthenticator(): 
+  - instance: DefaultAPICommandAuthenticator
+  + getInstance(): DefaultAPICommandAuthenticator
+}
 class ErrorHandlingApplication {
   + ErrorHandlingApplication(): 
-  # process(AppRequest): AppRequest
+  + apply(AppRequest): void
+  + filter(AppRequest): boolean
+}
+class Exception {
+  + Exception(String, Throwable): 
+  + Exception(): 
+  + Exception(Throwable): 
+  # Exception(String, Throwable, boolean, boolean): 
+  + Exception(String): 
+  ~ serialVersionUID: long
+}
+class FilteredApplication {
+  + FilteredApplication(AbstractApplication, IRequestFilter): 
+  - filter: IRequestFilter
   + filter(AppRequest): boolean
 }
 class Frame {
-  + Frame(long): 
   + Frame(long, byte[]): 
-  - payload: byte[]
-  + PAYLOAD_SIZE: int
-  + MAX_SIZE: int
-  - currentPayloadSize: int
+  + Frame(long): 
   - id: long
+  + PAYLOAD_SIZE: int
   + FIRST_ID: long
   + HEADER_SIZE: int
-  + toBytes(): byte[]
-  + toString(): String
-  + fromChannel(ReadableByteChannel): Frame
-  # canEqual(Object): boolean
-  + getCurrentPayloadSize(): int
-  + getId(): long
-  + getPayload(): byte[]
+  + INVALID_ID: long
+  - currentPayloadSize: int
+  - payload: byte[]
+  + MAX_SIZE: int
   + equals(Object): boolean
-  + hashCode(): int
+  # canEqual(Object): boolean
   + fromBytes(byte[]): Frame
+  + toBytes(): byte[]
+  + getId(): long
+  + checkACK(Frame): void
+  + argueWithOlga(long, long): void
+  + fromChannel(ReadableByteChannel): Frame
+  + getCurrentPayloadSize(): int
+  + toString(): String
+  + getPayload(): byte[]
+  + hashCode(): int
 }
-interface IAPIMessage << interface >>
 interface IApplicationCommandHandler << interface >> {
   + handle(AppRequest): void
 }
 interface IClientTransport<T> << interface >> {
-  + receive(Duration): T
   + send(T): void
+  + receive(Duration): T
 }
 interface IDestinationServerApplication<U> << interface >> {
   + send(U, APICommandResponse): void
 }
-interface IFilteredApplication << interface >> {
-  + filter(AppRequest): boolean
-}
-interface IIdentifiableCommand<K> << interface >> {
-  + getCmdIdentifier(): K
-}
 interface IIdentifiableMessage << interface >> {
-  + getId(): Long
   + setId(Long): void
+  + getId(): Long
 }
 interface IMessageHandler<U, M> << interface >> {
   + handle(U, M): void
 }
+interface IRequestFilter << interface >> {
+  + filter(AppRequest): boolean
+}
 interface IServerTransport<U, L> << interface >> {
   + send(U, L): void
   + subscribe(IMessageHandler<U, L>): void
-  + run(): void
 }
-class JSONSerDesService<T> {
-  + JSONSerDesService(Class<T>): 
-  # getPolymorphicValidator(): BasicPolymorphicTypeValidator
-  # getObjectMapper(): ObjectMapper
+class InvalidCredentialsException {
+  + InvalidCredentialsException(String): 
+  + InvalidCredentialsException(Throwable): 
+}
+class JWTAPICommandAuthenticator {
+  - JWTAPICommandAuthenticator(): 
+  - instance: JWTAPICommandAuthenticator
+  + getInstance(): JWTAPICommandAuthenticator
+}
+class JWTAuthenticationApplication {
+  + JWTAuthenticationApplication(APICommandAuthenticator<JWTAuthenticationCredentials>, AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse>, JWTKeyProvider): 
+}
+class JWTAuthenticationReceiverAdapter {
+  + JWTAuthenticationReceiverAdapter(AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse>, JWTKeyProvider): 
+  + KID_REFRESH: String
+  - ISSUER: String
+  - keyProvider: JWTKeyProvider
+  + REFRESH_TOKEN_EXP_SECONDS: Integer
+  - CLAIM_ROLE: String
+  - CLAIM_USERNAME: String
+  - decoder: JwtParser
+  + ACCESS_TOKEN_EXP_SECONDS: Integer
+  + KID_ACCESS: String
+  - usedUUID: ConcurrentMap<String, String>
+  - db: AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse>
+  # createBaseToken(String, Integer): JWTBuilderInfo
+  + login(LoginCommand): JWTLoginResponse
+  + requestIdentity(int): DefaultLoginResponse
+  + authorize(JWTAuthenticationCredentials): Authentication
+  # createRefreshToken(DefaultLoginResponse): JWTInfo
+  # loginRefresh(RefreshLoginCommand): JWTLoginResponse
+  # loginPassword(PasswordLoginCommand): JWTLoginResponse
+  + register(RegisterCommand): JWTLoginResponse
+  # createAccessToken(DefaultLoginResponse): JWTInfo
+}
+entity JWTBuilderInfo << record >> {
+  + JWTBuilderInfo(JwtBuilder, ZonedDateTime): 
+  - builder: JwtBuilder
+  - exp: ZonedDateTime
+  + builder(): JwtBuilder
+  + exp(): ZonedDateTime
+}
+class JWTHMACKeyProvider {
+  + JWTHMACKeyProvider(): 
+  + registerGenerate(String): void
+}
+class JWTKeyProvider {
+  + JWTKeyProvider(SignatureAlgorithm): 
+  # algorithm: SignatureAlgorithm
+  - keyMap: Map<String, Key>
+  + register(String, Key): void
+  + getDecodeKeyResolver(): SigningKeyResolver
+  + registerGenerate(String): void
+  + resolveSigningKey(String): Key
+  # getKeyMap(): Map<String, Key>
 }
 class Pair<T, K> {
   + Pair(T, K): 
   - first: T
   - second: K
-  + toString(): String
-  + equals(Object): boolean
   + getSecond(): K
+  + equals(Object): boolean
+  + toString(): String
   # canEqual(Object): boolean
   + hashCode(): int
   + getFirst(): T
 }
+class Receiver {
+  + Receiver(Session, DatagramChannel, IMessageHandler<SocketAddress, SocketMessage>, Map<Integer, Session>): 
+  - sessionClosed: boolean
+  - session: Session
+  - channel: DatagramChannel
+  - log: Logger
+  - pipeSource: SourceChannel
+  - handler: IMessageHandler<SocketAddress, SocketMessage>
+  - clientsMap: Map<Integer, Session>
+  ~ serDesService: JSONSerDesService<SocketMessage>
+  # compute(): void
+  - closeSession(): void
+  - respondToFrame(int): void
+}
 enum ReqStatus << enumeration >> {
   - ReqStatus(): 
-  + CREATED: 
   + UNKNOWN: 
-  + INVALID: 
   + NORMAL: 
-  + values(): ReqStatus[]
+  + CREATED: 
+  + INVALID: 
   + valueOf(String): ReqStatus
+  + values(): ReqStatus[]
 }
-class SerDesService<T> {
-  + SerDesService(Class<T>): 
-  - mapper: ObjectMapper
-  - baseClass: Class<T>
-  + serialize(T): byte[]
-  + deserialize(byte[]): T
-  # getObjectMapper(): ObjectMapper
+entity RequestHandler << record >> {
+  + RequestHandler(IApplicationCommandHandler, Set<IRequestFilter>): 
+  + RequestHandler(IApplicationCommandHandler): 
+  - handler: IApplicationCommandHandler
+  - filters: Set<IRequestFilter>
+  + handle(AppRequest): void
+  + handler(): IApplicationCommandHandler
+  + filters(): Set<IRequestFilter>
 }
-class Session<K> {
-  + Session(K): 
-  - state: State
-  - address: K
+class Sender {
+  + Sender(Session, DatagramChannel, SocketMessage, Map<Integer, Session>): 
+  ~ serDesService: JSONSerDesService<SocketMessage>
+  - channel: DatagramChannel
+  - message: SocketMessage
+  - session: Session
+  - log: Logger
+  - clientsMap: Map<Integer, Session>
+  - packBytesToFrame(int, byte[]): ByteBuffer
+  - closeSession(): void
+  + run(): void
+  - receiveAndCheck(long): void
+}
+class Session {
+  + Session(SocketAddress): 
+  - id: int
+  - address: SocketAddress
+  + nextId: AtomicInteger
+  - pipe: Pipe
+  + getId(): int
+  + getAddress(): SocketAddress
   # canEqual(Object): boolean
   + hashCode(): int
   + toString(): String
+  + getPipe(): Pipe
+  + equals(Object): boolean
+}
+class Session<K> {
+  + Session(K, State, Authentication): 
+  + Session(): 
+  + Session(K): 
+  - address: K
+  - state: State
+  - auth: Authentication
+  + equals(Object): boolean
   + getState(): State
   + setState(State): void
+  + setAddress(K): void
+  + toString(): String
+  + hashCode(): int
+  + getAuth(): Authentication
+  + setAuth(Authentication): void
   + getAddress(): K
-  + equals(Object): boolean
+  # canEqual(Object): boolean
+}
+class SessionFrame {
+  + SessionFrame(int, long, int): 
+  + SessionFrame(int, long, byte[], int): 
+  + HEADER_SIZE: int
+  - sending: int
+  + MAX_SIZE: int
+  + PAYLOAD_SIZE: int
+  - sessionId: int
+  + fromBytes(byte[]): SessionFrame
+  + fromChannel(ReadableByteChannel): SessionFrame
+  + toBytes(): byte[]
+  + getSessionId(): int
+  + getSending(): int
+}
+class SessionFrameRouter {
+  + SessionFrameRouter(DatagramChannel): 
+  - log: Logger
+  - forkJoinPool: ForkJoinPool
+  - handler: IMessageHandler<SocketAddress, SocketMessage>
+  + clientPipeMap: Map<Integer, Session>
+  - channel: DatagramChannel
+  - regClient(SocketAddress): int
+  + send(SocketAddress, SocketMessage): void
+  + run(): void
+  + subscribe(IMessageHandler<SocketAddress, SocketMessage>): void
 }
 class SizeLimitException {
   + SizeLimitException(String): 
@@ -249,190 +424,195 @@ class SocketAPIClient {
   # serialize(APICommand): SocketMessage
 }
 class SocketMessage {
+  + SocketMessage(CommandType, Long, Long, byte[]): 
   + SocketMessage(byte[]): 
+  + SocketMessage(): 
   + SocketMessage(CommandType): 
   + SocketMessage(CommandType, Long, Long): 
-  + SocketMessage(): 
-  + SocketMessage(CommandType, Long, Long, byte[]): 
-  - cmdType: CommandType
-  - replyId: Long
   - id: Long
   - payload: byte[]
-  + getId(): Long
+  - replyId: Long
+  - cmdType: CommandType
+  + equals(Object): boolean
+  + getReplyId(): Long
+  + isResponse(): boolean
   + getCmdType(): CommandType
-  # canEqual(Object): boolean
+  + getPayload(): byte[]
   + isRequest(): boolean
+  + getId(): Long
+  + hashCode(): int
   + setId(Long): void
+  + setPayload(byte[]): void
+  + toString(): String
   + setCmdType(CommandType): void
   + setReplyId(Long): void
-  + getPayload(): byte[]
-  + getReplyId(): Long
-  + hashCode(): int
-  + toString(): String
-  + equals(Object): boolean
-  + isResponse(): boolean
-  + setPayload(byte[]): void
+  # canEqual(Object): boolean
 }
 enum State << enumeration >> {
   - State(): 
-  + OPERATING: 
-  + DEAD: 
   + CREATED: 
-  + valueOf(String): State
+  + DEAD: 
+  + OPERATING: 
   + values(): State[]
+  + valueOf(String): State
 }
 enum Status << enumeration >> {
   - Status(): 
-  + NETWORK: 
-  + IDLE: 
   + READINGFINISHED: 
   + EXECUTING: 
-  + SENDING: 
-  + HALT: 
+  + NETWORK: 
   + READING: 
+  + IDLE: 
+  + HALT: 
+  + SENDING: 
   + values(): Status[]
   + valueOf(String): Status
 }
-enum Status << enumeration >> {
-  + Status(): 
-  + UNPROCESSED: 
-  + CLIENT_ERROR: 
-  + SERVER_ERROR: 
-  + NOT_FOUND: 
-  + OK: 
-  + values(): Status[]
-  + isError(): boolean
-  + valueOf(String): Status
+class TransportException {
+  + TransportException(String): 
+  + TransportException(Throwable): 
+  + TransportException(): 
 }
 class TransportSession {
-  + TransportSession(SocketAddress, Status, Pipe): 
   + TransportSession(SocketAddress, Status, Pipe, List<Frame>): 
+  + TransportSession(SocketAddress, Status, Pipe): 
+  - sendFrameList: List<Frame>
   - status: Status
+  - pipe: Pipe
   - receiveFrameList: Frame[]
   - consumerAddress: SocketAddress
-  - pipe: Pipe
-  - sendFrameList: List<Frame>
+  + setReceiveFrameList(Frame[]): void
+  + getNetworkSession(): TransportSession
+  + toString(): String
+  + getSendFrameList(): List<Frame>
+  + getConsumerAddress(): SocketAddress
+  + setStatus(Status): void
+  + setPipe(Pipe): void
   + checkFinishReading(): boolean
   + hashCode(): int
-  + toString(): String
-  + getConsumerAddress(): SocketAddress
-  + getSendFrameList(): List<Frame>
-  + getPipe(): Pipe
   # canEqual(Object): boolean
-  + getNetworkSession(): TransportSession
-  + setStatus(Status): void
-  + getStatus(): Status
-  + setConsumerAddress(SocketAddress): void
   + addToList(Frame): boolean
-  + setReceiveFrameList(Frame[]): void
-  + setPipe(Pipe): void
-  + setSendFrameList(List<Frame>): void
-  + equals(Object): boolean
   + getReceiveFrameList(): Frame[]
+  + equals(Object): boolean
+  + setSendFrameList(List<Frame>): void
+  + getPipe(): Pipe
+  + setConsumerAddress(SocketAddress): void
+  + getStatus(): Status
+}
+class TransportTimeoutException {
+  + TransportTimeoutException(String): 
+  + TransportTimeoutException(): 
 }
 class TransportUtils {
   + TransportUtils(): 
+  + separateBytes(int, byte[], int): List<SessionFrame>
+  - separate(int, byte[]): List<byte[]>
   + joinFrames(List<Frame>): byte[]
-  - separate(byte[]): List<byte[]>
-  + IntToBytes(int): ByteBuffer
+  + joinSessionFrames(List<SessionFrame>): byte[]
   + separateBytes(byte[]): List<Frame>
   - join(List<byte[]>): byte[]
+  + IntToBytes(int): ByteBuffer
 }
 class UDPClientTransport {
   + UDPClientTransport(SocketAddress): 
-  - serverAddress: SocketAddress
   - socket: DatagramSocket
   - sendDurationTimeout: Duration
+  - sessionId: int
+  - serverAddress: SocketAddress
   ~ serDesService: JSONSerDesService<SocketMessage>
-  - receiveFrame(Duration): Frame
+  - connect(): void
+  - sendFrame(SessionFrame): void
   + send(SocketMessage): void
   + receive(Duration): SocketMessage
-  - sendFrame(Frame): void
+  - receiveFrame(Duration): SessionFrame
+  - disconnect(): void
 }
 class UDPInputTransportApplication {
   + UDPInputTransportApplication(IServerTransport<SocketAddress, SocketMessage>): 
-  - log: Logger
   - serDesService: JSONSerDesService<APICommand>
-  # supplySession(SocketAddress, SocketMessage): Session<SocketAddress>
+  - log: Logger
   # deserialize(SocketMessage): APICommand
+  # supplySession(SocketAddress, SocketMessage): Session<SocketAddress>
 }
 class UDPOutputTransportApplication {
   + UDPOutputTransportApplication(IServerTransport<SocketAddress, SocketMessage>): 
-  - serDesService: JSONSerDesService<APICommandResponse>
   - log: Logger
+  - serDesService: JSONSerDesService<APICommandResponse>
   # serialize(APICommandResponse): SocketMessage
 }
 class UDPServerFactory {
   + UDPServerFactory(): 
-  + create(int): UDPServerTransport
-}
-class UDPServerTransport {
-  + UDPServerTransport(DatagramChannel): 
-  - sendFrameQueue: Queue<Pair<SocketAddress, Frame>>
-  - handler: IMessageHandler<SocketAddress, SocketMessage>
-  ~ serDesService: JSONSerDesService<SocketMessage>
-  - networkKey: SelectionKey
-  - TIMEOUT: int
-  - clientSinkMap: Map<SocketAddress, SinkChannel>
-  - selector: Selector
-  - datagramChannel: DatagramChannel
   - log: Logger
-  + run(): void
-  - regSendClient(SocketAddress, Frame, List<Frame>): void
-  - regClient(SocketAddress, Frame, Status, List<Frame>): void
-  + subscribe(IMessageHandler<SocketAddress, SocketMessage>): void
-  - readNewFrame(SelectionKey, Frame): void
-  + send(SocketAddress, SocketMessage): void
-  - scheduleSend(Pair<SocketAddress, Frame>): void
-  - closeSessionByKey(SelectionKey): void
-  - headerFrame(TransportSession, Frame): void
-  - finishReading(SelectionKey): void
-  - regRecvClient(SocketAddress, Frame): void
+  + create(int): IServerTransport<SocketAddress, SocketMessage>
+}
+class UserExistsException {
+  + UserExistsException(): 
+}
+class UserNotFoundException {
+  + UserNotFoundException(): 
 }
 
 APIApplication                      -[#000082,plain]-^  AbstractApplication                
-APICommand                          -[#008200,dashed]-^  IAPIMessage                        
-APICommand                          -[#008200,dashed]-^  IIdentifiableCommand               
-APICommandResponse                  -[#008200,dashed]-^  IAPIMessage                        
-APICommandResponse                 "1" *-[#595959,plain]-> "status\n1" Status                             
 AbstractAPIClient                  "1" *-[#595959,plain]-> "transport\n1" IClientTransport                   
 AbstractAPIClient                   -[#595959,dashed]->  IIdentifiableMessage               
-AbstractApplication                "1" *-[#595959,plain]-> "commandHandlers\n*" IApplicationCommandHandler         
-AbstractApplication                 -[#008200,dashed]-^  IFilteredApplication               
+AbstractApplication                 -[#008200,dashed]-^  IRequestFilter                     
+AbstractApplication                "1" *-[#595959,plain]-> "commandHandlers\n*" RequestHandler                     
+AbstractApplicationDecorator        -[#000082,plain]-^  AbstractApplication                
+AbstractApplicationDecorator       "1" *-[#595959,plain]-> "decoratee\n1" AbstractApplication                
 AbstractInputTransportApplication   -[#000082,plain]-^  AbstractApplication                
 AbstractInputTransportApplication   -[#595959,dashed]->  IIdentifiableMessage               
 AbstractInputTransportApplication  "1" *-[#595959,plain]-> "transport\n1" IServerTransport                   
 AbstractOutputTransportApplication  -[#000082,plain]-^  AbstractApplication                
 AbstractOutputTransportApplication "1" *-[#595959,plain]-> "transport\n1" IServerTransport                   
-AppRequest                         "1" *-[#595959,plain]-> "payload\n1" APICommand                         
 AppRequest                         "1" *-[#595959,plain]-> "response\n1" AppResponseController              
 AppRequest                         "1" *-[#595959,plain]-> "status\n1" ReqStatus                          
 AppRequest                         "1" *-[#595959,plain]-> "session\n1" Session                            
-AppResponseController              "1" *-[#595959,plain]-> "response\n1" APICommandResponse                 
+AppResponseController              "1" *-[#595959,plain]-> "parentRequest\n1" AppRequest                         
 AppResponseController              "1" *-[#595959,plain]-> "destination\n1" IDestinationServerApplication      
-ClientMain                         "1" *-[#595959,plain]-> "client\n1" UDPClientTransport                 
+ApplicationBuildException           -[#000082,plain]-^  Exception                          
+AuthenticatedFilter                 -[#008200,dashed]-^  IRequestFilter                     
+Authentication                     "1" *-[#595959,plain]-> "status\n1" AuthenticationStatus               
+AuthenticationApplication          "1" *-[#595959,plain]-> "commandAuthenticator\n1" APICommandAuthenticator            
+AuthenticationApplication           -[#000082,plain]-^  AbstractApplication                
+AuthenticationApplication          "1" *-[#595959,plain]-> "authenticationReceiver\n1" AuthenticationReceiver             
+AuthenticationStatus                +-[#820000,plain]-  Authentication                     
+BasicApplication                    -[#000082,plain]-^  AbstractApplication                
 CommandType                         +-[#820000,plain]-  SocketMessage                      
+DefaultAPICommandAuthenticator      -[#000082,plain]-^  APICommandAuthenticator            
 ErrorHandlingApplication            -[#000082,plain]-^  APIApplication                     
-JSONSerDesService                   -[#000082,plain]-^  SerDesService                      
+FilteredApplication                 -[#000082,plain]-^  AbstractApplicationDecorator       
+FilteredApplication                "1" *-[#595959,plain]-> "filter\n1" IRequestFilter                     
+InvalidCredentialsException         -[#000082,plain]-^  Exception                          
+JWTAPICommandAuthenticator          -[#000082,plain]-^  APICommandAuthenticator            
+JWTAuthenticationApplication        -[#000082,plain]-^  AuthenticationApplication          
+JWTAuthenticationReceiverAdapter    -[#008200,dashed]-^  AuthenticationReceiver             
+JWTAuthenticationReceiverAdapter   "1" *-[#595959,plain]-> "db\n1" AuthenticationReceiver             
+JWTAuthenticationReceiverAdapter   "1" *-[#595959,plain]-> "keyProvider\n1" JWTKeyProvider                     
+JWTHMACKeyProvider                  -[#000082,plain]-^  JWTKeyProvider                     
+Receiver                           "1" *-[#595959,plain]-> "handler\n1" IMessageHandler                    
+Receiver                           "1" *-[#595959,plain]-> "clientsMap\n*" Session                            
 ReqStatus                           +-[#820000,plain]-  AppRequest                         
+Sender                             "1" *-[#595959,plain]-> "clientsMap\n*" Session                            
+Sender                             "1" *-[#595959,plain]-> "message\n1" SocketMessage                      
+Session                            "1" *-[#595959,plain]-> "auth\n1" Authentication                     
 Session                            "1" *-[#595959,plain]-> "state\n1" State                              
+SessionFrame                        -[#000082,plain]-^  Frame                              
+SessionFrameRouter                 "1" *-[#595959,plain]-> "handler\n1" IMessageHandler                    
+SessionFrameRouter                  -[#008200,dashed]-^  IServerTransport                   
+SessionFrameRouter                 "1" *-[#595959,plain]-> "clientPipeMap\n*" Session                            
+SizeLimitException                  -[#000082,plain]-^  Exception                          
 SocketAPIClient                     -[#000082,plain]-^  AbstractAPIClient                  
-SocketAPIClient                    "1" *-[#595959,plain]-> "serDesService\n1" JSONSerDesService                  
 SocketMessage                      "1" *-[#595959,plain]-> "cmdType\n1" CommandType                        
 SocketMessage                       -[#008200,dashed]-^  IIdentifiableMessage               
 State                               +-[#820000,plain]-  Session                            
-Status                              +-[#820000,plain]-  APICommandResponse                 
 Status                              +-[#820000,plain]-  TransportSession                   
+TransportException                  -[#000082,plain]-^  Exception                          
 TransportSession                   "1" *-[#595959,plain]-> "receiveFrameList\n*" Frame                              
 TransportSession                   "1" *-[#595959,plain]-> "status\n1" Status                             
+TransportTimeoutException           -[#000082,plain]-^  Exception                          
 UDPClientTransport                  -[#008200,dashed]-^  IClientTransport                   
-UDPClientTransport                 "1" *-[#595959,plain]-> "serDesService\n1" JSONSerDesService                  
 UDPInputTransportApplication        -[#000082,plain]-^  AbstractInputTransportApplication  
-UDPInputTransportApplication       "1" *-[#595959,plain]-> "serDesService\n1" JSONSerDesService                  
 UDPOutputTransportApplication       -[#000082,plain]-^  AbstractOutputTransportApplication 
-UDPOutputTransportApplication      "1" *-[#595959,plain]-> "serDesService\n1" JSONSerDesService                  
-UDPServerTransport                 "1" *-[#595959,plain]-> "handler\n1" IMessageHandler                    
-UDPServerTransport                  -[#008200,dashed]-^  IServerTransport                   
-UDPServerTransport                 "1" *-[#595959,plain]-> "serDesService\n1" JSONSerDesService                  
-UDPServerTransport                 "1" *-[#595959,plain]-> "sendFrameQueue\n*" Pair                               
+UserExistsException                 -[#000082,plain]-^  Exception                          
+UserNotFoundException               -[#000082,plain]-^  Exception                          
 @enduml

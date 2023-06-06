@@ -102,7 +102,6 @@ public class Receiver extends RecursiveAction {
                 handler.handle(session.getAddress(), msg);
             });
             thread.start();
-//            thread.join();
         } catch (Exception e) {
             log.error("Error during receiving session", e);
             closeSession();

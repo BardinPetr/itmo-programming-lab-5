@@ -86,7 +86,7 @@ public abstract class AbstractApplication implements IRequestFilter {
      * @param next application to be run after any handlers declared for this app
      * @return next application
      */
-    public AbstractApplication chain(AbstractApplication next) {
+    public final AbstractApplication chain(AbstractApplication next) {
         nextApp = next;
         return next;
     }

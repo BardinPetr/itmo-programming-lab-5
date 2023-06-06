@@ -5,6 +5,7 @@ plugins {
 group = "ru.bardinpetr.itmo.lab5.client"
 
 dependencies {
+    implementation(project(":events"))
     implementation(project(":models"))
     implementation(project(":common"))
     implementation(project(":network"))

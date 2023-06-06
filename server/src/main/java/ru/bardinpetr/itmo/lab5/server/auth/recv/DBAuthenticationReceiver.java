@@ -14,7 +14,7 @@ import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.recv.Authenticati
 import ru.bardinpetr.itmo.lab5.server.auth.passwords.IPasswordController;
 import ru.bardinpetr.itmo.lab5.server.auth.passwords.SHAPasswordController;
 import ru.bardinpetr.itmo.lab5.server.db.dao.exception.OverLimitedUsername;
-import ru.bardinpetr.itmo.lab5.server.db.dao.tables.UsersPGDAO;
+import ru.bardinpetr.itmo.lab5.server.db.dao.tables.UsersDAO;
 import ru.bardinpetr.itmo.lab5.server.db.dto.UserDTO;
 
 import java.util.Arrays;
@@ -22,9 +22,9 @@ import java.util.Arrays;
 @Slf4j
 public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultAuthenticationCredentials, DefaultLoginResponse> {
     private final IPasswordController pc = new SHAPasswordController();
-    private final UsersPGDAO usersDBDAO;
+    private final UsersDAO usersDBDAO;
 
-    public DBAuthenticationReceiver(UsersPGDAO usersDBDAO) {
+    public DBAuthenticationReceiver(UsersDAO usersDBDAO) {
         this.usersDBDAO = usersDBDAO;
     }
 

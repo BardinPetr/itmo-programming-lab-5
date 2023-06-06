@@ -1,10 +1,11 @@
-package ru.bardinpetr.itmo.lab5.server.db.dao.tables;
+package ru.bardinpetr.itmo.lab5.server.db.dao.tables.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.BasePGDAO;
 import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector;
 import ru.bardinpetr.itmo.lab5.db.errors.DBCreateException;
 import ru.bardinpetr.itmo.lab5.server.db.dao.exception.OverLimitedUsername;
+import ru.bardinpetr.itmo.lab5.server.db.dao.tables.UsersDAO;
 import ru.bardinpetr.itmo.lab5.server.db.dto.UserDTO;
 
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Slf4j
-public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> {
+public class UsersPGDAO extends BasePGDAO<Integer, UserDTO> implements UsersDAO {
     public UsersPGDAO(PGDBConnector connector) throws DBCreateException {
         super(connector, "users");
     }

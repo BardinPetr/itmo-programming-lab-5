@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
-import ru.bardinpetr.itmo.lab5.server.db.dao.DBTableProvider;
+import ru.bardinpetr.itmo.lab5.server.db.dao.WorkersDBTableProvider;
 import ru.bardinpetr.itmo.lab5.server.db.dto.WorkerDTO;
 
 import java.time.ZonedDateTime;
@@ -13,9 +13,9 @@ import java.time.chrono.ChronoZonedDateTime;
 
 public class PGWorkerStorageBackend implements DBStorageBackend<WorkerCollection> {
 
-    private final DBTableProvider tableProvider;
+    private final WorkersDBTableProvider tableProvider;
 
-    public PGWorkerStorageBackend(DBTableProvider tableProvider) {
+    public PGWorkerStorageBackend(WorkersDBTableProvider tableProvider) {
         this.tableProvider = tableProvider;
     }
 
@@ -68,7 +68,7 @@ public class PGWorkerStorageBackend implements DBStorageBackend<WorkerCollection
         );
     }
 
-    public DBTableProvider getTableProvider() {
+    public WorkersDBTableProvider getTableProvider() {
         return tableProvider;
     }
 }

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/petr/Desktop/itmo-programming-lab-5/db</OriginalElement>
+  <nodes>
+    <node x="1165.0" y="-147.0">ru.bardinpetr.itmo.lab5.db.auth.BasicAuthProvider</node>
+    <node x="71.875" y="103.0">ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO</node>
+    <node x="-207.0" y="1603.5">ru.bardinpetr.itmo.lab5.db.errors.DBNotFoundException</node>
+    <node x="1415.0" y="1330.0">ru.bardinpetr.itmo.lab5.db.frontend.adapters.sync.SynchronizedDAOFactory</node>
+    <node x="1142.0" y="1330.0">ru.bardinpetr.itmo.lab5.db.backend.DBStorageBackend</node>
+    <node x="-7.620192307692321" y="724.0">ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.OwnedDAO</node>
+    <node x="855.5" y="164.0">ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.BasePGDAO</node>
+    <node x="-70.83653846153845" y="-281.0">ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionReadDAO</node>
+    <node x="784.0" y="1566.0">ru.bardinpetr.itmo.lab5.db.errors.DBBackendIOException</node>
+    <node x="282.0" y="1591.0">ru.bardinpetr.itmo.lab5.db.errors.DBError</node>
+    <node x="477.0" y="1578.5">ru.bardinpetr.itmo.lab5.db.errors.DBCreateException</node>
+    <node x="843.0" y="-134.5">ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector</node>
+    <node x="84.0" y="186.0">ru.bardinpetr.itmo.lab5.db.frontend.adapters.sync.SyncDAO</node>
+    <node x="-207.0" y="362.0">ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.IOwnedCollectionDAO</node>
+    <node x="97.0" y="1745.0">ru.bardinpetr.itmo.lab5.db.frontend.controllers.DBControllerFactory</node>
+    <node x="384.0" y="298.5">ru.bardinpetr.itmo.lab5.db.frontend.adapters.sync.SynchronizedDAOInvocationHandler</node>
+    <node x="1051.5" y="-281.0">ru.bardinpetr.itmo.lab5.db.auth.DBAuthProvider</node>
+    <node x="228.16346153846155" y="-206.0">ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionWriteDAO</node>
+    <node x="39.0" y="1603.5">ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.error.NotOwnedException</node>
+    <node x="348.4" y="1304.0">java.lang.Exception</node>
+    <node x="-207.0" y="1745.0">ru.bardinpetr.itmo.lab5.db.utils.RowSetUtils</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.BasePGDAO" target="ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector" relationship="TO_ONE">
+      <point x="0.0" y="-193.0" />
+      <point x="0.0" y="118.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.errors.DBError" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-42.0" />
+      <point x="369.5" y="1557.0" />
+      <point x="517.4" y="1557.0" />
+      <point x="-0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.error.NotOwnedException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-29.5" />
+      <point x="150.5" y="1557.0" />
+      <point x="517.4" y="1557.0" />
+      <point x="-0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.auth.BasicAuthProvider" target="ru.bardinpetr.itmo.lab5.db.auth.DBAuthProvider" relationship="REALIZATION">
+      <point x="0.0" y="-130.5" />
+      <point x="1292.0" y="-172.0" />
+      <point x="1188.75" y="-172.0" />
+      <point x="45.75" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO" target="ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionWriteDAO" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="178.375" y="78.0" />
+      <point x="356.16346153846155" y="78.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector" target="ru.bardinpetr.itmo.lab5.db.auth.DBAuthProvider" relationship="TO_ONE">
+      <point x="0.0" y="-118.0" />
+      <point x="994.0" y="-172.0" />
+      <point x="1097.25" y="-172.0" />
+      <point x="-45.75" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.OwnedDAO" target="ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO" relationship="REALIZATION">
+      <point x="-69.75" y="-280.5" />
+      <point x="62.12980769230768" y="703.0" />
+      <point x="-18.12019230769232" y="703.0" />
+      <point x="-18.12019230769232" y="693.0" />
+      <point x="73.5" y="693.0" />
+      <point x="73.5" y="165.0" />
+      <point x="159.50480769230768" y="165.0" />
+      <point x="159.50480769230768" y="155.0" />
+      <point x="178.375" y="155.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.errors.DBBackendIOException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="67.0" />
+      <point x="940.5" y="1847.5" />
+      <point x="-224.5" y="1847.5" />
+      <point x="-224.5" y="1557.0" />
+      <point x="517.4" y="1557.0" />
+      <point x="-0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO" target="ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionReadDAO" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="178.375" y="78.0" />
+      <point x="68.66346153846155" y="78.0" />
+      <point x="0.0" y="167.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.frontend.adapters.sync.SynchronizedDAOInvocationHandler" target="ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO" relationship="TO_ONE">
+      <point x="0.0" y="-130.5" />
+      <point x="591.0" y="165.0" />
+      <point x="373.5" y="165.0" />
+      <point x="373.5" y="155.0" />
+      <point x="249.375" y="155.0" />
+      <point x="71.0" y="15.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.OwnedDAO" target="ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO" relationship="TO_ONE">
+      <point x="69.75" y="-280.5" />
+      <point x="201.62980769230768" y="703.0" />
+      <point x="373.5" y="703.0" />
+      <point x="373.5" y="155.0" />
+      <point x="249.375" y="155.0" />
+      <point x="71.0" y="15.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.errors.DBCreateException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-54.5" />
+      <point x="620.5" y="1557.0" />
+      <point x="517.4" y="1557.0" />
+      <point x="-0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.frontend.adapters.sync.SyncDAO" target="ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO" relationship="REALIZATION">
+      <point x="-69.75" y="-243.0" />
+      <point x="153.75" y="165.0" />
+      <point x="159.50480769230768" y="165.0" />
+      <point x="159.50480769230768" y="155.0" />
+      <point x="178.375" y="155.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.OwnedDAO" target="ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.IOwnedCollectionDAO" relationship="REALIZATION">
+      <point x="-69.75" y="-280.5" />
+      <point x="62.12980769230768" y="703.0" />
+      <point x="-18.12019230769232" y="703.0" />
+      <point x="-18.12019230769232" y="693.0" />
+      <point x="-72.0" y="693.0" />
+      <point x="0.0" y="67.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.errors.DBNotFoundException" target="java.lang.Exception" relationship="GENERALIZATION">
+      <point x="-0.0" y="-29.5" />
+      <point x="-94.0" y="1557.0" />
+      <point x="517.4" y="1557.0" />
+      <point x="-0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.frontend.adapters.sync.SyncDAO" target="ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO" relationship="TO_ONE">
+      <point x="69.75" y="-243.0" />
+      <point x="293.25" y="165.0" />
+      <point x="373.5" y="165.0" />
+      <point x="373.5" y="155.0" />
+      <point x="249.375" y="155.0" />
+      <point x="71.0" y="15.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.IOwnedCollectionDAO" target="ru.bardinpetr.itmo.lab5.db.frontend.dao.ICollectionDAO" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-67.0" />
+      <point x="-72.0" y="155.0" />
+      <point x="107.375" y="155.0" />
+      <point x="-71.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.48207597645799893" showDependencies="true" x="517.3999999999999" y="643.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

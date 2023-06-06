@@ -21,13 +21,13 @@ top to bottom direction
 skinparam linetype ortho
 
 class APIClientException {
-  + APIClientException(String): 
   + APIClientException(Throwable): 
+  + APIClientException(String): 
 }
 class AbstractConsoleArgumentsParser {
   + AbstractConsoleArgumentsParser(String[]): 
-  - log: Logger
   - formatter: HelpFormatter
+  - log: Logger
   - parsedOptions: CommandLine
   - parser: CommandLineParser
   - parse(Options, String[]): CommandLine
@@ -36,61 +36,69 @@ class AbstractConsoleArgumentsParser {
 }
 class Executor {
   + Executor(): 
-  - operationMap: Map<Class<APICommand>, Operation<APICommand, APICommandResponse>>
   - log: Logger
   + MAX_RECURSION_DEPTH: int
+  - operationMap: Map<Class<APICommand>, Operation<APICommand, APICommandResponse>>
   - childExecutors: List<Executor>
-  + execute(APICommand): APICommandResponse
   + executeBatch(List<APICommand>): List<APICommandResponse>
   + registerVoidOperation(Class<T>, NoReturnOperation<T>): void
-  + registerOperation(Class<T>, Operation<T, APICommandResponse>): void
-  # execute(APICommand, int): APICommandResponse
+  + execute(APICommand): APICommandResponse
   + registerExecutor(Executor): void
+  # execute(APICommand, int): APICommandResponse
+  + registerOperation(Class<T>, Operation<T, APICommandResponse>): void
+}
+class ExecutorTest {
+  + ExecutorTest(): 
+  ~ executorVoidTest(): void
+  ~ executorRegistrationTest(): void
+  ~ executorErrorTest(): void
+  ~ executorRecursionTest(): void
+  ~ executorDelegationTest(): void
 }
 class FileAccessException {
-  + FileAccessException(Exception, String, OperationType): 
-  + FileAccessException(String, OperationType): 
-  + FileAccessException(Exception, File, OperationType): 
   + FileAccessException(File, OperationType): 
-  - path: String
+  + FileAccessException(Exception, String, OperationType): 
+  + FileAccessException(Exception, File, OperationType): 
+  + FileAccessException(String, OperationType): 
   - type: OperationType
-  + getPath(): String
+  - path: String
   + getType(): OperationType
+  + getPath(): String
 }
 class FileController {
   + FileController(String): 
   + FileController(String, boolean): 
   # file: File
-  + creationDate(): ZonedDateTime
-  # checkReadAccess(): void
-  + getPath(): String
   # ensureExistence(boolean): boolean
   - loadPath(String): File
-  - checkExistence(): boolean
-  # checkWriteAccess(): void
-  - checkAccess(): void
   + check(): boolean
+  # checkWriteAccess(): void
+  # checkReadAccess(): void
+  - checkAccess(): void
+  + creationDate(): ZonedDateTime
+  + getPath(): String
+  - checkExistence(): boolean
 }
 class FileIOController {
   + FileIOController(String): 
   + FileIOController(String, boolean): 
-  + write(byte[]): void
-  + clear(): void
   + openReadStream(): FileInputStream
-  + openWriteStream(): FileOutputStream
+  + write(byte[]): void
   + read(): byte[]
+  + openWriteStream(): FileOutputStream
+  + clear(): void
 }
 class FileUtils {
   + FileUtils(): 
-  + read(File): String
-  + deleteDir(Path): void
+  + getParentDir(File): File
+  + createFile(Path, String): File
+  + checkParentDirectoryPermissions(File): boolean
   + delete(File): void
+  + read(File): String
+  + exists(File): boolean
   + createDir(String): Path
   + write(File, String): void
-  + checkParentDirectoryPermissions(File): boolean
-  + exists(File): boolean
-  + createFile(Path, String): File
-  + getParentDir(File): File
+  + deleteDir(Path): void
   + parsePermissions(String): FileAttribute<Set<PosixFilePermission>>
 }
 class InvalidDataFileException {
@@ -120,12 +128,12 @@ enum OperationType << enumeration >> {
   - OperationType(): 
   - OperationType(String): 
   + PERM_WRITE: 
-  + WRITE: 
-  + CREATE: 
   + SET_PERMISSION: 
-  + OPEN: 
+  + WRITE: 
   + READ: 
   + PERM_READ: 
+  + CREATE: 
+  + OPEN: 
   - description: String
   + getDescription(): String
   + valueOf(String): OperationType
@@ -133,30 +141,40 @@ enum OperationType << enumeration >> {
 }
 class SerDesException {
   + SerDesException(Type, Exception): 
-  - internalException: Exception
   - direction: Type
+  - internalException: Exception
   + getInternalException(): Exception
-  + toString(): String
   + getDirection(): Type
+  + toString(): String
 }
 class SerDesService<T> {
   + SerDesService(Class<T>): 
   - mapper: ObjectMapper
   - baseClass: Class<T>
-  + serialize(T): byte[]
   + deserialize(byte[]): T
   # getObjectMapper(): ObjectMapper
+  + serialize(T): byte[]
 }
-class SetupJUL {
-  + SetupJUL(): 
-  + loadProperties(Class<?>): void
+class TestCmd {
+  + TestCmd(String): 
+  + value: String
+  + getType(): String
+  + createResponse(): TestCmdResponse
+}
+class TestCmd2 {
+  ~ TestCmd2(): 
+  + getType(): String
+}
+class TestCmdResponse {
+  + TestCmdResponse(): 
+  + value: String
 }
 enum Type << enumeration >> {
   - Type(): 
-  + DESERIALIZE: 
   + SERIALIZE: 
-  + values(): Type[]
+  + DESERIALIZE: 
   + valueOf(String): Type
+  + values(): Type[]
 }
 class ValueDeserializer {
   + ValueDeserializer(): 
@@ -168,9 +186,15 @@ class XMLSerDesService<T> {
   # getObjectMapper(): ObjectMapper
 }
 
+Executor                       "1" *--> "operationMap\n*" Operation                      
+FileAccessException            "1" *--> "type\n1" OperationType                  
 FileIOController                --^  FileController                 
 JSONSerDesService               --^  SerDesService                  
 OperationType                   +--  FileAccessException            
+SerDesException                "1" *--> "direction\n1" Type                           
+TestCmd                         +--  ExecutorTest                   
+TestCmd2                        +--  ExecutorTest                   
+TestCmdResponse                 +--  TestCmd                        
 Type                            +--  SerDesException                
 XMLSerDesService                --^  SerDesService                  
 @enduml

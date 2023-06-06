@@ -26,15 +26,6 @@ public class SessionFrameRouter implements IServerTransport<SocketAddress, Socke
 
     public SessionFrameRouter(DatagramChannel channel) {
         this.channel = channel;
-        new Thread(() -> {
-            while (true) {
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                }
-//                System.out.printf("\n#%d %d %d$\n", forkJoinPool.getRunningThreadCount(), forkJoinPool.getActiveThreadCount(), forkJoinPool.getPoolSize());
-            }
-        }).start();
     }
 
     @Override
@@ -80,7 +71,6 @@ public class SessionFrameRouter implements IServerTransport<SocketAddress, Socke
     public void send(SocketAddress recipient, SocketMessage data) {
         try {
             log.info("Start sending session");
-//            System.out.print("sending");
             var session = new Session(recipient);
             clientPipeMap.put(session.getId(), session);
 

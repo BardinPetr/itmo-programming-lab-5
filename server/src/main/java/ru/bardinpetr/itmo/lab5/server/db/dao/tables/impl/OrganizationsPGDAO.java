@@ -1,10 +1,11 @@
-package ru.bardinpetr.itmo.lab5.server.db.dao.tables;
+package ru.bardinpetr.itmo.lab5.server.db.dao.tables.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.BasePGDAO;
 import ru.bardinpetr.itmo.lab5.db.backend.impl.postgres.PGDBConnector;
 import ru.bardinpetr.itmo.lab5.db.errors.DBCreateException;
 import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
+import ru.bardinpetr.itmo.lab5.server.db.dao.tables.OrganizationsDAO;
 import ru.bardinpetr.itmo.lab5.server.db.dto.OrganizationDTO;
 
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 @Slf4j
-public class OrganizationsPGDAO extends BasePGDAO<Integer, OrganizationDTO> {
+public class OrganizationsPGDAO extends BasePGDAO<Integer, OrganizationDTO> implements OrganizationsDAO {
     public OrganizationsPGDAO(PGDBConnector connector) throws DBCreateException {
         super(connector, "organization");
 

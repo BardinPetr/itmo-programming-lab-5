@@ -1,0 +1,211 @@
+
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+<style>
+classDiagram {
+    class {
+        header {
+            FontStyle bold
+        }
+    }
+}
+</style>
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class BasePGDAO<V, T> {
+  + BasePGDAO(PGDBConnector, String): 
+  # connector: PGDBConnector
+  - log: Logger
+  # tableName: String
+  # datasource: PGSimpleDataSource
+  # connection: Connection
+  + parseRow(ResultSet): T
+  + truncate(): boolean
+  + delete(V): boolean
+  + insert(T): V
+  + select(): Collection<T>
+  + update(V, T): boolean
+  + drop(): boolean
+  + select(V): T
+}
+class BasicAuthProvider {
+  + BasicAuthProvider(String, String): 
+  - username: String
+  - password: String
+  + getUsername(): String
+  + hashCode(): int
+  + getPassword(): String
+  # canEqual(Object): boolean
+  + toString(): String
+  + equals(Object): boolean
+}
+interface DBAuthProvider << interface >> {
+  + getPassword(): String
+  + getUsername(): String
+}
+class DBBackendIOException {
+  + DBBackendIOException(String): 
+  + DBBackendIOException(String, Throwable): 
+  + DBBackendIOException(): 
+  + DBBackendIOException(Throwable): 
+}
+interface DBControllerFactory << interface >> {
+  + createController(): DBController
+}
+class DBCreateException {
+  + DBCreateException(Exception): 
+  + DBCreateException(String): 
+  + DBCreateException(String, Throwable): 
+}
+class DBError {
+  + DBError(String): 
+  + DBError(Throwable): 
+}
+class DBNotFoundException {
+  + DBNotFoundException(): 
+}
+interface DBStorageBackend<T> << interface >> {
+  + storeCollection(T): void
+  + clearCollection(): void
+  + loadCollection(): T
+  + getInfo(): CollectionInfo
+}
+class Exception {
+  + Exception(String, Throwable): 
+  + Exception(): 
+  + Exception(Throwable): 
+  # Exception(String, Throwable, boolean, boolean): 
+  + Exception(String): 
+  ~ serialVersionUID: long
+}
+interface ICollectionDAO<K, V> << interface >>
+interface ICollectionReadDAO<K, V> << interface >> {
+  + read(K): V
+  + asStream(): Stream<V>
+  + readAll(Comparator<V>): List<V>
+  + getMin(): V
+  + getMax(): V
+  + readAll(): List<V>
+  + filter(Predicate<V>): List<V>
+  + getCollectionInfo(): CollectionInfo
+  + nextPrimaryKey(): K
+  + getOrganizations(): List<Organization>
+  + has(K): boolean
+  + getAllMapped(Function<V, T>): List<T>
+}
+interface ICollectionWriteDAO<K, V> << interface >> {
+  + update(K, V): boolean
+  + addOrg(Organization): K
+  + remove(K): boolean
+  + save(): void
+  + add(V): K
+  + clear(): void
+}
+interface IOwnedCollectionDAO<K, V> << interface >> {
+  + update(Integer, K, V): void
+  + remove(Integer, K): boolean
+  + clear(Integer): boolean
+  + add(Integer, V): K
+}
+class NotOwnedException {
+  + NotOwnedException(String): 
+}
+class OwnedDAO<K, V> {
+  + OwnedDAO(ICollectionDAO<K, V>): 
+  - decoratee: ICollectionDAO<K, V>
+  + read(K): V
+  + update(Integer, K, V): void
+  + getCollectionInfo(): CollectionInfo
+  + addOrg(Organization): K
+  + has(K): boolean
+  + add(Integer, V): K
+  + add(V): K
+  + getMax(): V
+  + update(K, V): boolean
+  + asStream(): Stream<V>
+  + getOrganizations(): List<Organization>
+  + clear(): void
+  + clear(Integer): boolean
+  + remove(K): boolean
+  + getMin(): V
+  - checkNotOwned(Integer, K): boolean
+  + remove(Integer, K): boolean
+  + readAll(): List<V>
+  + nextPrimaryKey(): K
+}
+class PGDBConnector {
+  + PGDBConnector(String, DBAuthProvider): 
+  - log: Logger
+  - dbAuthProvider: DBAuthProvider
+  - rowSetFactory: RowSetFactory
+  - connectUrl: String
+  + bootstrap(InputStream): boolean
+  + getDataSource(): PGSimpleDataSource
+  + getRowSet(): JdbcRowSet
+}
+class RowSetUtils {
+  + RowSetUtils(): 
+  + rowSetStream(RowSet): Stream<?>
+}
+class SyncDAO<K, V> {
+  + SyncDAO(ICollectionDAO<K, V>): 
+  - decoratee: ICollectionDAO<K, V>
+  - readLock: ReadLock
+  - writeLock: WriteLock
+  + update(K, V): boolean
+  + clear(): void
+  + asStream(): Stream<V>
+  + read(K): V
+  + readAll(): List<V>
+  + nextPrimaryKey(): K
+  + add(V): K
+  + addOrg(Organization): K
+  + has(K): boolean
+  + getMin(): V
+  + getOrganizations(): List<Organization>
+  + getCollectionInfo(): CollectionInfo
+  + remove(K): boolean
+  + getMax(): V
+}
+class SynchronizedDAOFactory {
+  + SynchronizedDAOFactory(): 
+  + wrap(ICollectionDAO<K, V>): ICollectionDAO<K, V>
+}
+class SynchronizedDAOInvocationHandler<K, V> {
+  + SynchronizedDAOInvocationHandler(ICollectionDAO<K, V>): 
+  - target: ICollectionDAO<K, V>
+  - writeMethodNames: Set<String>
+  - blacklistMethodNames: Set<String>
+  - readMethodNames: Set<String>
+  - lock: ReadWriteLock
+  + invoke(Object, Method, Object[]): Object
+  - getInterfaceMethodsNames(Class<?>): Set<String>
+  - invokeLocked(Method, Object[], Lock): Object
+}
+
+BasePGDAO                        "1" *--> "connector\n1" PGDBConnector                    
+BasicAuthProvider                 ..^  DBAuthProvider                   
+DBBackendIOException              --^  Exception                        
+DBCreateException                 --^  Exception                        
+DBError                           --^  Exception                        
+DBNotFoundException               --^  Exception                        
+ICollectionDAO                    --^  ICollectionReadDAO               
+ICollectionDAO                    --^  ICollectionWriteDAO              
+IOwnedCollectionDAO               --^  ICollectionDAO                   
+NotOwnedException                 --^  Exception                        
+OwnedDAO                          ..^  ICollectionDAO                   
+OwnedDAO                         "1" *--> "decoratee\n1" ICollectionDAO                   
+OwnedDAO                          ..^  IOwnedCollectionDAO              
+PGDBConnector                    "1" *--> "dbAuthProvider\n1" DBAuthProvider                   
+SyncDAO                           ..^  ICollectionDAO                   
+SyncDAO                          "1" *--> "decoratee\n1" ICollectionDAO                   
+SynchronizedDAOInvocationHandler "1" *--> "target\n1" ICollectionDAO                   
+@enduml

@@ -1,7 +1,9 @@
 package ru.bardinpetr.itmo.lab5.db.backend.impl.postgres;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.postgresql.ds.PGSimpleDataSource;
+import ru.bardinpetr.itmo.lab5.db.backend.IDBDAO;
 import ru.bardinpetr.itmo.lab5.db.errors.DBCreateException;
 
 import java.sql.Connection;
@@ -17,8 +19,9 @@ import static ru.bardinpetr.itmo.lab5.db.utils.RowSetUtils.rowSetStream;
  * @param <T> row DTO type
  */
 @Slf4j
-public abstract class BasePGDAO<V, T> {
+public abstract class BasePGDAO<V, T> implements IDBDAO<V, T> {
 
+    @Getter
     protected final String tableName;
     protected final PGDBConnector connector;
     protected final PGSimpleDataSource datasource;
