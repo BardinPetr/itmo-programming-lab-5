@@ -12,7 +12,7 @@ new FormModel {
 			"JavaCodeGenerator.i18nGetBundleFormat": "getResources()"
 		}
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-			"$columnSpecs": "0:1.0, 300:1.0"
+			"$columnSpecs": "0, 300:1.0"
 			"$rowSpecs": "0, 0, 0, 0, 0, 0, 0, 0"
 			"$alignTop": true
 			"$alignLeft": true

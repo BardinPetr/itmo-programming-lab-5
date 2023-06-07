@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.component;
 
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,14 +31,25 @@ public class BottomPanelZ extends ResourcedPanel {
         workersCountField = new JLabel();
         langLayout = new LanguageChanger();
 
-        setLayout(new GridLayout());
-        add(infoText);
-        add(label1);
-        add(label2);
-        add(bdDateField);
-        add(label4);
-        add(workersCountField);
-        add(langLayout);
+
+        var infoFont = new Font("italic", Font.PLAIN, 12);
+        label1.setFont(infoFont);
+        bdDateField.setFont(infoFont);
+        workersCountField.setFont(infoFont);
+
+        var infoConstrains = GridConstrains.normalAdd();
+
+        var infoPanel = new JPanel(new GridBagLayout());
+        infoPanel.add(infoText, infoConstrains);
+        infoPanel.add(label1, infoConstrains);
+        infoPanel.add(label2, infoConstrains);
+        infoPanel.add(bdDateField, infoConstrains);
+        infoPanel.add(label4, infoConstrains);
+        infoPanel.add(workersCountField, infoConstrains);
+
+        setLayout(new BorderLayout());
+        add(infoPanel, BorderLayout.WEST);
+        add(langLayout, BorderLayout.EAST);
 
         initComponentsI18n();
         setVisible(true);

@@ -24,14 +24,14 @@ public class WorkerShowPanelZ extends ResourcedPanel {
         clearWorkerButton = new JButton();
         removeGreaterButton = new JButton();
 
-        setLayout(new GridLayout(2, 1));
-        add(workerTablePanel);
+        setLayout(new BorderLayout());
+        add(workerTablePanel, BorderLayout.CENTER);
 
         panel1.setLayout(new GridBagLayout());
         panel1.add(openAddWorkerPlane);
         panel1.add(clearWorkerButton);
         panel1.add(removeGreaterButton);
-        add(panel1);
+        add(panel1, BorderLayout.PAGE_END);
 
         initComponentsI18n();
 

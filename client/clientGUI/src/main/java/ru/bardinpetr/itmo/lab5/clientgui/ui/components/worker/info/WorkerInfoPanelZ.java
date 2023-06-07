@@ -1,9 +1,14 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info;
 
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class WorkerInfoPanelZ extends ResourcedPanel {
@@ -12,9 +17,9 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
     private JLabel label2;
     private JTextField workerSalaryField;
     private JLabel label3;
-    private JPanel workerStartDateField;
+    private JSpinner workerStartDateField;
     private JLabel label4;
-    private JPanel workerEndDateField;
+    private JSpinner workerEndDateField;
     private JLabel label5;
     private JTextField workerXField;
     private JLabel label6;
@@ -35,9 +40,21 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         label2 = new JLabel();
         workerSalaryField = new JTextField();
         label3 = new JLabel();
-        workerStartDateField = new JPanel();
+        workerStartDateField = new JSpinner(
+                new SpinnerDateModel(
+                        new Date(),
+                        null,
+                        null,
+                        Calendar.MONTH)
+                    );
         label4 = new JLabel();
-        workerEndDateField = new JPanel();
+        workerEndDateField = new JSpinner(
+                new SpinnerDateModel(
+                        new Date(),
+                        null,
+                        null,
+                        Calendar.MONTH)
+        );
         label5 = new JLabel();
         workerXField = new JTextField();
         label6 = new JLabel();
@@ -47,56 +64,37 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         label8 = new JLabel();
         workerPositionList = new JComboBox();
 
+        var dateFormat = "dd.MM.yyyy";
+
+        workerStartDateField.setEditor(new JSpinner.DateEditor(workerStartDateField, dateFormat));
+        workerEndDateField.setEditor(new JSpinner.DateEditor(workerStartDateField, dateFormat));
+
+//        workerEndDateField.getModel().addChangeListener(new ChangeListener() {
+//            @Override
+//            public void stateChanged(ChangeEvent e) {
+//                System.out.println(((SpinnerDateModel) e.getSource()).getDate());
+//            }
+//        });
+
         setLayout(new GridBagLayout());
         ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 300, 0};
-        ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
-        ((GridBagLayout)getLayout()).columnWeights = new double[] {1.0, 1.0, 1.0};
-        ((GridBagLayout)getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
-        add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(workerNameField, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(label2, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(workerSalaryField, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(label3, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(label4, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
-                GridBagConstraints.EAST, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(workerEndDateField, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(label5, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(workerXField, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(label6, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(workerYField, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(label7, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(organizationIdField, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(label8, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
-        add(workerPositionList, new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
+        add(label1, GridConstrains.placedAdd(0,0));
+        add(label2, GridConstrains.placedAdd(0, 1));
+        add(label3, GridConstrains.placedAdd(0, 2));
+        add(label4, GridConstrains.placedAdd(0, 3));
+        add(label5, GridConstrains.placedAdd(0, 4));
+        add(label6, GridConstrains.placedAdd(0, 5));
+        add(label7, GridConstrains.placedAdd(0, 6));
+        add(label8, GridConstrains.placedAdd(0, 7));
+
+        add(workerNameField, GridConstrains.placedAdd(1, 0));
+        add(workerSalaryField, GridConstrains.placedAdd(1, 1));
+        add(workerStartDateField, GridConstrains.placedAdd(1, 2));
+        add(workerEndDateField, GridConstrains.placedAdd(1, 3));
+        add(workerXField, GridConstrains.placedAdd(1, 4));
+        add(workerYField, GridConstrains.placedAdd(1, 5));
+        add(organizationIdField, GridConstrains.placedAdd(1, 6));
+        add(workerPositionList, GridConstrains.placedAdd(1, 7));
 
         initComponentsI18n();
 

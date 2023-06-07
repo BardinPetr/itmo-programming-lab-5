@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo;
 
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,11 +23,11 @@ public class UsersInfoZ extends ResourcedPanel {
         workersCountText = new JLabel();
         workersCountField = new JLabel();
 
-        setLayout(new GridLayout(2, 0));
-        add(username);
-        add(usernameField);
-        add(workersCountText);
-        add(workersCountField);
+        setLayout(new GridBagLayout());
+        add(username, GridConstrains.placedAdd(0,0));
+        add(usernameField, GridConstrains.placedAdd(1,0));
+        add(workersCountText, GridConstrains.placedAdd(0,1));
+        add(workersCountField, GridConstrains.placedAdd(1,1));
 
         initComponentsI18n();
         setVisible(true);
