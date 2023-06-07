@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/clientAdmin/itmo-programming-lab-5.client.clientAdmin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/client/clientAdmin/itmo-programming-lab-5.client.clientAdmin.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/clientGUI/itmo-programming-lab-5.client.clientGUI.main.iml" filepath="$PROJECT_DIR$/.idea/modules/client/clientGUI/itmo-programming-lab-5.client.clientGUI.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/clientMain/itmo-programming-lab-5.client.clientMain.main.iml" filepath="$PROJECT_DIR$/.idea/modules/client/clientMain/itmo-programming-lab-5.client.clientMain.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/itmo-programming-lab-5.client.main.iml" filepath="$PROJECT_DIR$/.idea/modules/client/itmo-programming-lab-5.client.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/itmo-programming-lab-5.client.test.iml" filepath="$PROJECT_DIR$/.idea/modules/client/itmo-programming-lab-5.client.test.iml" />

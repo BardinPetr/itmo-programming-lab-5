@@ -3,6 +3,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -28,7 +29,12 @@ public class PagingTableModel extends AbstractTableModel {
         this.paginatorControl = new PagingTableControl(this::setPage, this::setPageSize);
 
         decoratee.addTableModelListener(this::fireTableChanged);
-        addTableModelListener(e -> paginatorControl.setPageCount(getPageCount()));
+        addTableModelListener(this::onDataUpdate);
+        onDataUpdate(null);
+    }
+
+    private void onDataUpdate(TableModelEvent e) {
+        paginatorControl.setPageCount(getPageCount());
     }
 
     /**
@@ -41,6 +47,13 @@ public class PagingTableModel extends AbstractTableModel {
 
         curPage = page;
         fireTableDataChanged();
+    }
+
+    /**
+     * Convert page-relative row indet to global
+     */
+    public int convertIndexFromOffset(int pos) {
+        return pos + curPage * pageSize;
     }
 
     /**
@@ -62,7 +75,7 @@ public class PagingTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return decoratee.getValueAt(rowIndex + curPage * pageSize, columnIndex);
+        return decoratee.getValueAt(convertIndexFromOffset(rowIndex), columnIndex);
     }
 }
 

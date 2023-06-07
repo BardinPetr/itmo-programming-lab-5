@@ -1,5 +1,7 @@
 package ru.bardinpetr.itmo.lab5.clientgui.i18n;
 
+import jiconfont.icons.font_awesome.FontAwesome;
+import jiconfont.swing.IconFontSwing;
 import lombok.Getter;
 
 import java.beans.PropertyChangeListener;
@@ -21,6 +23,8 @@ public class UIResources {
     private Locale currentLocale;
 
     private UIResources() {
+        IconFontSwing.register(FontAwesome.getIconFont());
+
         currentLocale = Locale.getDefault();
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
