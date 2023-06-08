@@ -1,7 +1,7 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.interfaces;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.LocalDateField;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.LocalDateField;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;

@@ -1,10 +1,11 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.interfaces;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -25,7 +26,9 @@ public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDa
         }));
 
 
+
     }
+
 
     protected abstract void groupItems();
 
@@ -39,6 +42,7 @@ public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDa
         groupItems();
     }
 
+    protected abstract List<T> getList();
     @Override
     public void setData(T data) {
         setSelectedItem(String.valueOf(data));

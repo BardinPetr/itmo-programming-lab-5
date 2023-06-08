@@ -1,6 +1,6 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields;
 
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.interfaces.AbstractTextWorkerField;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractTextWorkerField;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerStringValidation;
 

@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.interfaces;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
 public abstract class AbstractDateField<T> extends JSpinner implements IDataStorage<T> {
-    private ResourceBundle bundle;
+    protected ResourceBundle bundle;
     public AbstractDateField(Consumer<Date> handler) {
         super(new SpinnerDateModel(
                 new Date(),
@@ -40,6 +40,9 @@ public abstract class AbstractDateField<T> extends JSpinner implements IDataStor
     protected void initComponentsI18n() {
         bundle = getResources();
         var dateFormat = bundle.getString("dateFormat");
+        setToolTipText(
+                bundle.getString("AbstractDateField.toolText.format")+
+                bundle.getString("dateFormat"));
         setEditor(new JSpinner.DateEditor(this, dateFormat));
 
     }

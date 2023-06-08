@@ -1,7 +1,7 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields;
 
 import lombok.NonNull;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.interfaces.AbstractDateField;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractDateField;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 
 import java.util.Date;

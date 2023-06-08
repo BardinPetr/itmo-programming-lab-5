@@ -1,36 +1,45 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces;
 
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.interfaces.AbstractWorkerComboBox;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
-import ru.bardinpetr.itmo.lab5.models.data.Position;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
-public class PositionComboBox extends AbstractWorkerComboBox<Position> {
-    public PositionComboBox(Consumer<Position> handler) {
+public abstract class AbstractEnumCombobox<T> extends AbstractWorkerComboBox<T> {
+    public AbstractEnumCombobox(Consumer<T> handler) {
         super(handler);
     }
+
+
     @Override
     protected void groupItems() {
-        addItem("");
-        for (var i: Position.values()){
-            var text = bundle.getString(
-                    "WorkerInfoPanel.position.%s.text".formatted(i.toString().toLowerCase())
-            );
+        for (var i: getList()){
+            String text;
+            if (i!=null)
+                text = bundle.getString(
+                        "AbstractEnumCombobox.value.%s.text".formatted(i.toString().toLowerCase())
+                );
+            else
+                text = bundle.getString(
+                        "AbstractEnumCombobox.value.null.text"
+                );
             positionMap.put(text, i);
             addItem(text);
         }
     }
 
-    private String getPosText(Position pos){
+
+
+    private String getPosText(T pos){
         for( var i:positionMap.entrySet()){
             if (i.getValue() == pos) return i.getKey();
         }
         return "";
     }
     @Override
-    public DataContainer<Position> getData() {
+    public DataContainer<T> getData() {
         return new DataContainer(true,
                 positionMap.get(((String) getSelectedItem())),
                 ""
@@ -38,7 +47,7 @@ public class PositionComboBox extends AbstractWorkerComboBox<Position> {
     }
 
     @Override
-    public void setData(Position pos){
+    public void setData(T pos){
         setSelectedItem(
                 getPosText(pos)
         );

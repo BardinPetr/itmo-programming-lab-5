@@ -1,20 +1,18 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info;
 
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.*;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.NullableDatePanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.*;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.interfaces.NullableDatePanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
-import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.ZonedDateTime;
 import java.util.ResourceBundle;
 
 public class WorkerInfoPanelZ extends ResourcedPanel {
@@ -35,18 +33,18 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
     private JLabel label8;
     private PositionComboBox workerPositionCombobox;
     private final DataContainer<Worker> workerDataContainer;
+    private Worker defaultWorker;
     ResourceBundle bundle = getResources();
 
 
-    public WorkerInfoPanelZ(Worker worker) {
+    public WorkerInfoPanelZ(Worker defaultWorker) {
+        this.defaultWorker = defaultWorker;
         initComponents();
         setVisible(true);
         this.workerDataContainer = new DataContainer<>(
-                worker,
-                (new WorkerValidator()).validateAll(worker)
+                new Worker(),
+                (new WorkerValidator()).validateAll(new Worker())
         );
-
-        worker.setCoordinates(new Coordinates());
     }
 
     protected void initComponents(){
@@ -94,6 +92,18 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         add(organizationIdField, GridConstrains.placedAdd(1, 6));
         add(workerPositionCombobox, GridConstrains.placedAdd(1, 7));
 
+        if (defaultWorker!=null){
+            workerNameField.setName(defaultWorker.getName());
+            workerSalaryField.setData(defaultWorker.getSalary());
+            workerStartField.setData(defaultWorker.getStartDate());
+            endDatePanel.setData(defaultWorker.getEndDate());
+            endDatePanel.setData(defaultWorker.getEndDate());
+            workerXField.setData(defaultWorker.getCoordinates().getX());
+            workerYField.setData(defaultWorker.getCoordinates().getY());
+            workerPositionCombobox.setData(defaultWorker.getPosition());
+            if (defaultWorker.getOrganization()!=null)
+                organizationIdField.setData(defaultWorker.getOrganization().getId());
+        }
         initComponentsI18n();
     }
 
@@ -151,6 +161,8 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         label6.setText(bundle.getString("WorkerInfoPanel.label6.text"));
         label7.setText(bundle.getString("WorkerInfoPanel.label7.text"));
         label8.setText(bundle.getString("WorkerInfoPanel.label8.text"));
+
+        organizationIdField.noSuchIdMsg = "OrganizationIdBox.validateValue.notFound.text";
     }
 
 }

@@ -1,10 +1,9 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.interfaces;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.IStringValidator;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.TextFieldValidator;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
-import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerStringValidation;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -15,7 +14,7 @@ import java.util.function.Consumer;
 import static javax.swing.SwingUtilities.invokeLater;
 
 public abstract class AbstractTextWorkerField<T> extends JTextField implements IDataStorage<T>{
-    private ResourceBundle bundle;
+    protected ResourceBundle bundle;
     public String toolTipMsg;
     IStringValidator validator;
     public AbstractTextWorkerField(String toolTipMsg, IStringValidator validator, Consumer<String> handler) {
@@ -43,7 +42,9 @@ public abstract class AbstractTextWorkerField<T> extends JTextField implements I
     }
 
     public ValidationResponse validateValue(){
-        return validator.validate(getFullText());
+        var validation = validator.validate(getFullText());
+        if (!validation.isAllowed()) setBackground(Color.PINK);
+        return validation;
     }
     protected String getFullText(){
         var doc = getDocument();

@@ -1,15 +1,17 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui;
 
 
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerShowPanelZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show.OrganizationShowPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrame;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
-import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.add.OrgAddFrameZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update.OrgUpdateFrameZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ;
+import ru.bardinpetr.itmo.lab5.models.data.*;
 
 import javax.swing.*;
-import javax.swing.text.DateFormatter;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 public class TestInterface {
     public static void main(String[] args) {
@@ -44,8 +46,24 @@ public class TestInterface {
 //        frame.setVisible(true);
 //        testPanel(new WorkerInfoPanelZ());
 //        new MainFrameZ();
-        new WorkerAddFrameZ();
-//        testPanel(new WorkerInfoPanelZ(new Worker()));
+
+//        new OrgUpdateFrameZ(new Organization(1,"Itmo", OrganizationType.OPEN_JOINT_STOCK_COMPANY));
+        var testWorker = new Worker(
+                1,
+                "dasd",
+                ZonedDateTime.now(),
+                1,
+                "Artem",
+                123f,
+                new Date(),
+                LocalDate.now(),
+                new Coordinates(1, 2),
+                new Organization(-2, "", OrganizationType.PUBLIC),
+                Position.CLEANER
+        );
+        new WorkerUpdateFrameZ(testWorker);
+
+//        testPanel(new OrganizationShowPanel());
     }
 
     private static void testPanel(JPanel panel){

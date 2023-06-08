@@ -3,9 +3,9 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
-import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
-import ru.bardinpetr.itmo.lab5.models.data.Worker;
-import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
+import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.AddIfMaxCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +15,13 @@ import java.util.ResourceBundle;
 
 public class WorkerAddFrameZ extends ResourcedFrame {
     private WorkerInfoPanelZ workerInfoPanel;
-    private JPanel panel1;
+    private ResourceBundle bundle = getResources();
     private JRadioButton nornalAdd;
     private JButton addWorkerButton;
     private JRadioButton ifMaxAdd;
     private JRadioButton ifMinAdd;
     private JButton workerAddCancelButton;
+    private AddType addType = AddType.Normal;
 
     public WorkerAddFrameZ() {
         initComponents();
@@ -28,8 +29,7 @@ public class WorkerAddFrameZ extends ResourcedFrame {
     }
 
     protected void initComponents(){
-        workerInfoPanel = new WorkerInfoPanelZ(new Worker());
-        panel1 = new JPanel();
+        workerInfoPanel = new WorkerInfoPanelZ(null);
         nornalAdd = new JRadioButton();
         addWorkerButton = new JButton();
         ifMaxAdd = new JRadioButton();
@@ -54,6 +54,9 @@ public class WorkerAddFrameZ extends ResourcedFrame {
         buttonGroup1.add(ifMaxAdd);
         buttonGroup1.add(ifMinAdd);
 
+        nornalAdd.addActionListener((e -> addType = AddType.Normal));
+        ifMaxAdd.addActionListener((e -> addType = AddType.addMax));
+        ifMinAdd.addActionListener((e -> addType = AddType.addMin));
         workerAddCancelButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -63,7 +66,22 @@ public class WorkerAddFrameZ extends ResourcedFrame {
         addWorkerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(workerInfoPanel.getWorker());
+                var worker = workerInfoPanel.getWorker();
+                if (!worker.isAllowed) {
+                    JOptionPane.showMessageDialog(workerInfoPanel, bundle.getString(worker.msg), bundle.getString("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    APICommand command;
+                    if (addType.equals(AddType.Normal)){
+                        command = new AddCommand(worker.data);
+                        //TODO normal add worker command
+                    } else if (addType.equals(AddType.addMax)){
+                        //TODO addIfMax worker command
+                    } else {
+                        //TODO addIfMin worker command
+                    }
+                    System.out.println(worker);
+                }
             }
         });
 
@@ -76,14 +94,16 @@ public class WorkerAddFrameZ extends ResourcedFrame {
     }
     @Override
     protected void initComponentsI18n() {
-        // JFormDesigner - Component i18n initialization - DO NOT MODIFY  //GEN-BEGIN:initI18n  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Artem
-        ResourceBundle bundle = getResources();
+        bundle = getResources();
         nornalAdd.setText(bundle.getString("WorkerAddFrame.nornalAdd.text"));
         addWorkerButton.setText(bundle.getString("WorkerAddFrame.addWorkerButton.text"));
         ifMaxAdd.setText(bundle.getString("WorkerAddFrame.ifMaxAdd.text"));
         ifMinAdd.setText(bundle.getString("WorkerAddFrame.ifMainAdd.text"));
         workerAddCancelButton.setText(bundle.getString("WorkerAddFrame.workerAddCancelButton.text"));
-        // JFormDesigner - End of component i18n initialization  //GEN-END:initI18n  @formatter:on
     }
+}
+
+enum AddType {
+    Normal(), addMax(), addMin();
+    AddType(){}
 }

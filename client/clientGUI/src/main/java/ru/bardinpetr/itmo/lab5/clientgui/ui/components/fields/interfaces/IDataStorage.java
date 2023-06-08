@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.fields.interfaces;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces;
 
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
