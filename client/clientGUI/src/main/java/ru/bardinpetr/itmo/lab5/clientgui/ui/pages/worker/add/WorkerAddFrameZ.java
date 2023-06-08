@@ -3,6 +3,9 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
+import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,13 +28,15 @@ public class WorkerAddFrameZ extends ResourcedFrame {
     }
 
     protected void initComponents(){
-        workerInfoPanel = new WorkerInfoPanelZ();
+        workerInfoPanel = new WorkerInfoPanelZ(new Worker());
         panel1 = new JPanel();
         nornalAdd = new JRadioButton();
         addWorkerButton = new JButton();
         ifMaxAdd = new JRadioButton();
         ifMinAdd = new JRadioButton();
         workerAddCancelButton = new JButton();
+
+        nornalAdd.setSelected(true);
 
         setLayout(new GridBagLayout());
 
@@ -53,6 +58,12 @@ public class WorkerAddFrameZ extends ResourcedFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 dispose();
+            }
+        });
+        addWorkerButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println(workerInfoPanel.getWorker());
             }
         });
 

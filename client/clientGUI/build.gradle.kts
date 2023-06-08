@@ -22,4 +22,6 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":network"))
     implementation(project(":events"))
+
+    implementation("org.jdatepicker:jdatepicker:1.3.4")
 }

@@ -29,6 +29,8 @@ public class WorkerInfoPanel extends ResourcedPanel {
         workerStartDateField = new JPanel();
         label4 = new JLabel();
         workerEndDateField = new JPanel();
+        panel1 = new JPanel();
+        endDateNull = new JCheckBox();
         label5 = new JLabel();
         workerXField = new JTextField();
         label6 = new JLabel();
@@ -39,12 +41,11 @@ public class WorkerInfoPanel extends ResourcedPanel {
         workerPositionList = new JComboBox();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder( 0
+        , 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+        , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
+         getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new GridBagLayout());
         ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 300, 0};
         ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -95,6 +96,14 @@ public class WorkerInfoPanel extends ResourcedPanel {
         //======== workerEndDateField ========
         {
             workerEndDateField.setLayout(null);
+
+            //======== panel1 ========
+            {
+                panel1.setLayout(new BoxLayout(panel1, BoxLayout.X_AXIS));
+                panel1.add(endDateNull);
+            }
+            workerEndDateField.add(panel1);
+            panel1.setBounds(new Rectangle(new Point(40, 5), panel1.getPreferredSize()));
 
             {
                 // compute preferred size
@@ -151,6 +160,7 @@ public class WorkerInfoPanel extends ResourcedPanel {
         label2.setText(bundle.getString("WorkerInfoPanel.label2.text"));
         label3.setText(bundle.getString("WorkerInfoPanel.label3.text"));
         label4.setText(bundle.getString("WorkerInfoPanel.label4.text"));
+        endDateNull.setText(bundle.getString("WorkerInfoPanel.endDateNull.text"));
         label5.setText(bundle.getString("WorkerInfoPanel.label5.text"));
         label6.setText(bundle.getString("WorkerInfoPanel.label6.text"));
         label7.setText(bundle.getString("WorkerInfoPanel.label7.text"));
@@ -168,6 +178,8 @@ public class WorkerInfoPanel extends ResourcedPanel {
     private JPanel workerStartDateField;
     private JLabel label4;
     private JPanel workerEndDateField;
+    private JPanel panel1;
+    private JCheckBox endDateNull;
     private JLabel label5;
     private JTextField workerXField;
     private JLabel label6;

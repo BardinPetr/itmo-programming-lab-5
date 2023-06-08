@@ -3,6 +3,8 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.component.BottomPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo.UsersInfoZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerShowPanelZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,19 +53,30 @@ public class MainFrameZ extends ResourcedFrame {
         contentPane.add(mainPanel, BorderLayout.CENTER);
         contentPane.add(bottomMenu, BorderLayout.SOUTH);
 
+        mainPanel.setLayout(new CardLayout());
+        mainPanel.add(new WorkerShowPanelZ(), "WORKERS");
+        mainPanel.add(new UsersInfoZ(), "USERS");
+
+
+
+
+        workersMenuButton.addActionListener((e) -> {
+            CardLayout cl = (CardLayout)(mainPanel.getLayout());
+            cl.show(mainPanel, "USERS");
+            System.out.println(e);
+        });
+
         initComponentsI18n();
         pack();
         setLocationRelativeTo(getOwner());
     }
     protected void initComponentsI18n() {
-        // JFormDesigner - Component i18n initialization - DO NOT MODIFY  //GEN-BEGIN:initI18n  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Artem
+        if (workersMenuButton==null)return;
         ResourceBundle bundle = getResources();
         workersMenuButton.setText(bundle.getString("MainFrame.workersMenuButton.text"));
         orgsMenuButton.setText(bundle.getString("MainFrame.orgsMenuButton.text"));
         mapMenuButton.setText(bundle.getString("MainFrame.mapMenuButton.text"));
         scriptMenuButton.setText(bundle.getString("MainFrame.scriptMenuButton.text"));
-        // JFormDesigner - End of component i18n initialization  //GEN-END:initI18n  @formatter:on
     }
 
 }

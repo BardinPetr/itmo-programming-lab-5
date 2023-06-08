@@ -11,11 +11,13 @@ import java.awt.*;
 import java.util.ResourceBundle;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.*;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.*;
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 /**
  * @author zam12
  */
 public class WorkerAddFrame extends ResourcedFrame {
+    private Worker worker = new Worker();
     public WorkerAddFrame() {
         initComponents();
         setVisible(true);
@@ -24,7 +26,7 @@ public class WorkerAddFrame extends ResourcedFrame {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Artem
-        workerInfoPanel = new WorkerInfoPanelZ();
+        workerInfoPanel = new WorkerInfoPanelZ(worker);
         panel1 = new JPanel();
         nornalAdd = new JRadioButton();
         addWorkerButton = new JButton();

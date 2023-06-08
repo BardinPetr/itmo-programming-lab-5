@@ -11,16 +11,16 @@ public class CoordinatesValidator implements Validator {
      * @return response with error message
      */
     public static ValidationResponse validateX(Integer x) {
-        if (x == null) return new ValidationResponse(false, "x coordinate can't be null");
+        if (x == null) return new ValidationResponse(false, "WorkerInfoPanel.xCoordinate.null.text");
         return (x >= 773) ?
-                new ValidationResponse(false, "X coordinate must be less than 773") :
+                new ValidationResponse(false, "WorkerInfoPanel.xCoordinate.notInRange.text") :
                 new ValidationResponse(true, "");
     }
 
     public static ValidationResponse validateY(Float y) {
-        if (y == null) return new ValidationResponse(false, "y coordinate can't be null");
+        if (y == null) return new ValidationResponse(false, "WorkerInfoPanel.xCoordinate.null.text");
         return (y <= -413) ?
-                new ValidationResponse(false, "Y coordinate must be greater than -413") :
+                new ValidationResponse(false, "WorkerInfoPanel.yCoordinate.notInRange.text") :
                 new ValidationResponse(true, "");
     }
 

@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show;
 
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,6 +33,8 @@ public class WorkerShowPanelZ extends ResourcedPanel {
         panel1.add(clearWorkerButton);
         panel1.add(removeGreaterButton);
         add(panel1, BorderLayout.PAGE_END);
+
+        openAddWorkerPlane.addActionListener((e -> new WorkerAddFrameZ()));
 
         initComponentsI18n();
 
