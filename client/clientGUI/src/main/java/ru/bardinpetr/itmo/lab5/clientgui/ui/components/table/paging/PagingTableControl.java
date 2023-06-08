@@ -97,6 +97,6 @@ public class PagingTableControl extends Box {
     }
 
     private Icon getIcon(IconCode code) {
-        return IconFontSwing.buildIcon(code, 24);
+        return IconFontSwing.buildIcon(code, 16);
     }
 }
