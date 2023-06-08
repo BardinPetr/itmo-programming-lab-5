@@ -6,9 +6,10 @@ import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model.TypedTableModel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableModel;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.FilterRowSorter;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.RowSorterModelAdapter;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.FilterSortHeaderRenderer;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.RowSorterEventAdapter;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.RowSorterModelAdapter;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.FilterSortTableHeader;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.ShowCommand;
@@ -20,15 +21,12 @@ import ru.bardinpetr.itmo.lab5.models.commands.requests.PagingAPICommand;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableColumnModel;
-import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class EditableTable extends JPanel {
 
-
-    private final FilterRowSorter<WorkerTableModel> sorter;
 
     public EditableTable() {
         List<Worker> data = null;
@@ -44,49 +42,46 @@ public class EditableTable extends JPanel {
 
         var table = new JTable();
 
-        table.setColumnModel(new WorkerColumnModel());
-
         var header = table.getTableHeader();
         header.setReorderingAllowed(false);
         header.setResizingAllowed(false);
 
-        sorter = new FilterRowSorter<>(model);
-        var rsma = new RowSorterModelAdapter<>(model, sorter);
-        var pmodel = new PagingTableModel(rsma);
-        table.setModel(pmodel);
+        var rowSorter = new FilterRowSorter<>(model, table::updateUI);
+        var sortedModel = new RowSorterModelAdapter<>(model, rowSorter);
+        var pagedModel = new PagingTableModel(table, sortedModel);
+
+        table.setModel(pagedModel);
+
+        var externalHeader = new FilterSortTableHeader(table, model);
+        externalHeader.addFilterSortParamsListener(new RowSorterEventAdapter<>(rowSorter));
 
         var deleteButton = new JButton("Delete");
         var deleteGreaterButton = new JButton("DG");
-        deleteButton.addActionListener(l -> sorter.toggleSortOrder(0));
-        deleteGreaterButton.addActionListener(l -> sorter.toggleSortOrder(1));
-//        var selectionModel = table.getSelectionModel();
-//        selectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-//        selectionModel.addListSelectionListener(e -> {
-//            if (e.getValueIsAdjusting()) return;
-//
-//            var indexes =
-//                    Arrays.stream(table.getSelectionModel().getSelectedIndices())
-//                            .map(pmodel::convertIndexFromOffset)
-//                            .boxed().toList();
-//            deleteButton.setEnabled(indexes.size() > 0);
-//            deleteGreaterButton.setEnabled(indexes.size() == 1);
-//        });
 
+        //        var selectionModel = table.getSelectionModel();
+        //        selectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        //        selectionModel.addListSelectionListener(e -> {
+        //            if (e.getValueIsAdjusting()) return;
+        //
+        //            var indexes =
+        //                    Arrays.stream(table.getSelectionModel().getSelectedIndices())
+        //                            .map(pagedModel::convertIndexFromOffset)
+        //                            .boxed().toList();
+        //            deleteButton.setEnabled(indexes.size() > 0);
+        //            deleteGreaterButton.setEnabled(indexes.size() == 1);
+        //        });
 
         setLayout(new BorderLayout());
-        add(table.getTableHeader(), BorderLayout.NORTH);
+        add(externalHeader, BorderLayout.NORTH);
         add(table, BorderLayout.CENTER);
 
         var buttons = new Box(BoxLayout.LINE_AXIS);
         buttons.add(deleteButton);
         buttons.add(deleteGreaterButton);
 
-        var filterMenu = new FilterSortHeaderRenderer();
-        buttons.add(filterMenu);
-
         var bottom = new JPanel(new BorderLayout());
         bottom.add(buttons, BorderLayout.EAST);
-        bottom.add(pmodel.getPaginatorControl(), BorderLayout.WEST);
+        bottom.add(pagedModel.getPaginatorControl(), BorderLayout.WEST);
 
         add(bottom, BorderLayout.SOUTH);
     }
@@ -110,18 +105,8 @@ public class EditableTable extends JPanel {
         private final Integer ownerId;
 
         public WorkerTableModel(Integer ownerId) {
-            super(new String[]{"ID", "Owner", "Name"});
             this.ownerId = ownerId;
-
-//            Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(
-//                    () -> {
-//                        data.add(new Worker(1234, "ad", ZonedDateTime.now(), null, "asdsad", 34.3f, Date.from(Instant.now()), LocalDate.now(), new Coordinates(2, 4), null, null));
-//                        this.fireTableDataChanged();
-//                    },
-//                    0,
-//                    1,
-//                    TimeUnit.SECONDS
-//            );
+            setColumnIdentifiers(new String[]{String.valueOf(ZonedDateTime.now()), "Owner", "Name"});
         }
 
         @Override
@@ -131,51 +116,6 @@ public class EditableTable extends JPanel {
                     object.getOwnerUsername(),
                     object.getName()
             );
-        }
-
-
-//        @Override
-//        public int getColumnCount() {
-//            return 3;
-//        }
-
-//        @Override
-//        public Object getValueAt(int rowIndex, int columnIndex) {
-//            var worker = get(rowIndex);
-//            return switch (columnIndex) {
-//                case 0 -> worker.getId();
-//                case 1 -> worker.getOwnerUsername();
-//                case 2 -> worker.getName();
-//                case 3 -> worker.getCreationDate();
-//                case 4 -> worker.getCoordinates().getX();
-//                case 5 -> worker.getCoordinates().getY();
-//                default -> throw new IllegalStateException("Unexpected value");
-//            };
-//        }
-
-//        @Override
-//        public Class<?> getColumnClass(int columnIndex) {
-//            return getValueAt(0, columnIndex).getClass();
-//        }
-
-//        @Override
-//        public boolean isCellEditable(int rowIndex, int columnIndex) {
-//            return true;
-////            return data.get(rowIndex).getOwner().equals(ownerId);
-//        }
-    }
-
-    static class WorkerColumnModel extends DefaultTableColumnModel {
-        private static final List<String> columnNames = List.of("ID", "Owner", "Name");
-
-        public WorkerColumnModel() {
-            for (int i = 0; i < columnNames.size(); i++) {
-                var col = new TableColumn(i, 50);
-
-                var filterMenu = new FilterSortHeaderRenderer();
-                col.setHeaderRenderer(filterMenu);
-                addColumn(col);
-            }
         }
     }
 }

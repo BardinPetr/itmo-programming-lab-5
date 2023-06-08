@@ -1,4 +1,4 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter;
 
 import lombok.Getter;
 
@@ -17,10 +17,12 @@ public class FilterRowSorter<M extends DefaultTableModel> extends RowSorter<M> {
     private List<Integer> indexModelToView = List.of();
     private List<Integer> indexViewToModel = List.of();
 
-    public FilterRowSorter(M model) {
+    public FilterRowSorter(M model, Runnable tableUpdate) {
         this.model = model;
 
         columnSortOrder = new HashMap<>();
+
+        addRowSorterListener(i -> tableUpdate.run());
         updateSort();
     }
 

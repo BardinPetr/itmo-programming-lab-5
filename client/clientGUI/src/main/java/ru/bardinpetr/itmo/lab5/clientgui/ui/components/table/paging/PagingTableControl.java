@@ -1,5 +1,9 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging;
 
+import jiconfont.IconCode;
+import jiconfont.icons.font_awesome.FontAwesome;
+import jiconfont.swing.IconFontSwing;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +16,8 @@ public class PagingTableControl extends Box {
     private final JButton firstBtn;
     private final JButton lastBtn;
     private final JButton nextBtn;
+    private final SpinnerNumberModel spinnerModel;
+
     private Integer page = 1;
     private Integer pageCount = 1;
 
@@ -19,13 +25,13 @@ public class PagingTableControl extends Box {
         super(BoxLayout.LINE_AXIS);
         this.pageChanged = pageChanged;
 
-        firstBtn = new JButton("F");
+        firstBtn = new JButton(getIcon(FontAwesome.ANGLE_DOUBLE_LEFT));
         firstBtn.setActionCommand("first");
-        lastBtn = new JButton("L");
+        lastBtn = new JButton(getIcon(FontAwesome.ANGLE_DOUBLE_RIGHT));
         lastBtn.setActionCommand("last");
-        nextBtn = new JButton(">");
+        nextBtn = new JButton(getIcon(FontAwesome.ANGLE_RIGHT));
         nextBtn.setActionCommand("next");
-        prevBtn = new JButton("<");
+        prevBtn = new JButton(getIcon(FontAwesome.ANGLE_LEFT));
         prevBtn.setActionCommand("prev");
 
         firstBtn.addActionListener(this::onPageButtonClicked);
@@ -36,7 +42,7 @@ public class PagingTableControl extends Box {
         pageLabel = new JLabel();
         pageLabel.setMinimumSize(new Dimension(200, 50));
 
-        var spinnerModel = new SpinnerNumberModel(5, 1, 50, 5);
+        spinnerModel = new SpinnerNumberModel(5, 1, 5, 5);
         spinnerModel.addChangeListener(e -> pageSizeChanged.accept((Integer) spinnerModel.getNumber()));
 
         var pageSizeSpinner = new JSpinner(spinnerModel);
@@ -51,6 +57,14 @@ public class PagingTableControl extends Box {
 
         updateStatus();
         setVisible(true);
+    }
+
+    public void setMaxPageSize(int val) {
+        if (val < 1)
+            return;
+        if (((int) spinnerModel.getValue()) > val)
+            spinnerModel.setValue(val);
+        spinnerModel.setMaximum(val);
     }
 
     public void setPageCount(int val) {
@@ -80,5 +94,9 @@ public class PagingTableControl extends Box {
 
         pageChanged.accept(page - 1);
         updateStatus();
+    }
+
+    private Icon getIcon(IconCode code) {
+        return IconFontSwing.buildIcon(code, 24);
     }
 }

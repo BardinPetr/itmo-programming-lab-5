@@ -1,5 +1,8 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui;
 
+import jiconfont.icons.font_awesome.FontAwesome;
+import jiconfont.swing.IconFontSwing;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.button.IconButton;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxList;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.panel.PopupPanel;
@@ -7,23 +10,18 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.panel.PopupPanel;
 import javax.swing.*;
 import java.awt.*;
 
-public class FilterSortControl extends PopupPanel {
+public class SelectFilterControl extends PopupPanel {
 
     private final CheckBoxListModel itemsModel;
-    private final JButton allButton;
-    private final JButton noneButton;
 
-    public FilterSortControl(JComponent trigger, CheckBoxListModel itemsModel) {
+    public SelectFilterControl(JComponent trigger, CheckBoxListModel itemsModel) {
         super(trigger);
         this.itemsModel = itemsModel;
 
-        var buttonSize = new Dimension(70, 30);
-        allButton = new JButton("All");
-//        allButton.setPreferredSize(buttonSize);
+        var allButton = new IconButton(IconFontSwing.buildIcon(FontAwesome.CHECK_SQUARE_O, 24));
         allButton.addActionListener(e -> setAll(true));
-        noneButton = new JButton("None");
+        var noneButton = new IconButton(IconFontSwing.buildIcon(FontAwesome.TRASH_O, 24));
         noneButton.addActionListener(e -> setAll(false));
-//        noneButton.setPreferredSize(buttonSize);
 
         var buttonBox = new Box(BoxLayout.LINE_AXIS);
         buttonBox.add(Box.createGlue());
@@ -31,13 +29,13 @@ public class FilterSortControl extends PopupPanel {
         buttonBox.add(noneButton);
         buttonBox.add(Box.createGlue());
 
-
         var list = new CheckBoxList(itemsModel);
         var pane = new JScrollPane(list);
         pane.setPreferredSize(new Dimension(150, 300));
         pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
+        setBorder(BorderFactory.createRaisedBevelBorder());
         setLayout(new BorderLayout());
         add(buttonBox, BorderLayout.NORTH);
         add(pane, BorderLayout.CENTER);

@@ -31,16 +31,15 @@ public class PopupPanel extends JPanel {
         // Close panel on clicked outside / focus lost
         Toolkit.getDefaultToolkit().addAWTEventListener(
                 event -> {
-                    if (List.of(FocusEvent.FOCUS_LOST, WindowEvent.WINDOW_LOST_FOCUS).contains(event.getID())) {
+                    if (List.of(FocusEvent.FOCUS_LOST, WindowEvent.WINDOW_LOST_FOCUS).contains(event.getID()))
                         close();
-                    }
                     if (event instanceof MouseEvent mEvent) {
-                        var component = SwingUtilities.getDeepestComponentAt(this, mEvent.getX(), mEvent.getY());
-                        if (event.getID() == MouseEvent.MOUSE_CLICKED && (component == null || !component.isValid()))
-                            close();
+//                        var component = SwingUtilities.getDeepestComponentAt(this, mEvent.getX(), mEvent.getY());
+//                        if (event.getID() == MouseEvent.MOUSE_CLICKED && (component == null || !component.isValid()))
+//                            close();
                     }
                 },
-                AWTEvent.FOCUS_EVENT_MASK | AWTEvent.WINDOW_FOCUS_EVENT_MASK | AWTEvent.MOUSE_EVENT_MASK
+                AWTEvent.WINDOW_FOCUS_EVENT_MASK // | AWTEvent.FOCUS_EVENT_MASK | AWTEvent.MOUSE_EVENT_MASK
         );
     }
 

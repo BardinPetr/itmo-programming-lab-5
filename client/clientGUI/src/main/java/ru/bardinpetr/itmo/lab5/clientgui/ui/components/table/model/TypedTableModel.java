@@ -8,10 +8,6 @@ import java.util.Vector;
 
 public abstract class TypedTableModel<T extends Comparable<T>> extends DefaultTableModel {
 
-    public TypedTableModel(String[] columnNames) {
-        super(columnNames, 0);
-    }
-
     public final void setData(@NonNull List<T> newData) {
         setDataVector(
                 new Vector<>(
