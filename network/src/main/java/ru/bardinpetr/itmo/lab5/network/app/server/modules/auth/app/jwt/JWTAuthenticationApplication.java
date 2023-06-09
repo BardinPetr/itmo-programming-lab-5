@@ -1,5 +1,7 @@
 package ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt;
 
+import ru.bardinpetr.itmo.lab5.models.commands.auth.PasswordLoginCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.auth.RefreshLoginCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultLoginResponse;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.JWTAuthenticationCredentials;
@@ -15,5 +17,8 @@ public class JWTAuthenticationApplication extends AuthenticationApplication<JWTA
                 commandAuthenticator,
                 new JWTAuthenticationReceiverAdapter(authenticationReceiver, keyProvider)
         );
+
+        on(PasswordLoginCommand.class, this::loginUser);
+        on(RefreshLoginCommand.class, this::loginUser);
     }
 }
