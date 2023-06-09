@@ -24,12 +24,14 @@ public class LoggerProxyHandler<K> implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        var res = method.invoke(target, args);
+
         if (methodWhitelist.contains(method.getName())) {
-            var event = marker.apply(target, method);
+            var event = marker.apply(target, method, args, res);
             if (event != null)
                 storage.insert(event);
         }
 
-        return method.invoke(target, args);
+        return res;
     }
 }

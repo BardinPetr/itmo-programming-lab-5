@@ -54,7 +54,8 @@ public abstract class AbstractApplication implements IRequestFilter {
         if (payload == null)
             throw new RuntimeException("Payload null");
 
-        var handler = commandHandlers.keySet().stream().filter(i -> i.isAssignableFrom(payload.getCmdIdentifier())).findFirst().orElse(null);
+//        var handler = commandHandlers.keySet().stream().filter(i -> i.isAssignableFrom(payload.getCmdIdentifier())).findFirst().orElse(null);
+        var handler = payload.getCmdIdentifier();
 
         for (var curHandler : new RequestHandler[]{
                 handler == null ? null : commandHandlers.get(handler),

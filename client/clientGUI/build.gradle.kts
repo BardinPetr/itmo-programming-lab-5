@@ -23,5 +23,6 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":events"))
 
-    implementation("org.jdatepicker:jdatepicker:1.3.4")
+    implementation("com.github.jiconfont:jiconfont-swing:1.0.0")
+    implementation("com.github.jiconfont:jiconfont-font_awesome:4.7.0.1")
 }
