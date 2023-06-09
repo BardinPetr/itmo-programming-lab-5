@@ -29,6 +29,7 @@ public class XTable extends JPanel {
     private final PagingTableModel pagedModel;
     private final DefaultTableModel model;
     private final JButton deleteButton;
+    private final JButton updateButton;
 
     public XTable(DefaultTableModel model) {
         super(new BorderLayout());
@@ -54,8 +55,11 @@ public class XTable extends JPanel {
 
         deleteButton = new JButton(IconFontSwing.buildIcon(FontAwesome.TRASH_O, 16));
         deleteButton.addActionListener(this::onDelete);
+        updateButton = new JButton(IconFontSwing.buildIcon(FontAwesome.PENCIL_SQUARE_O, 16));
+        updateButton.addActionListener(this::onUpdate);
 
         bottomToolbox = new Box(BoxLayout.LINE_AXIS);
+        bottomToolbox.add(updateButton);
         bottomToolbox.add(deleteButton);
 
         var bottom = new JPanel(new BorderLayout());
@@ -87,6 +91,10 @@ public class XTable extends JPanel {
 
     private void onDelete(ActionEvent actionEvent) {
 //        fireAction(new ActionEvent(this, ));
+    }
+
+    private void onUpdate(ActionEvent event) {
+
     }
 
     protected void fireAction(ActionEvent event) {
