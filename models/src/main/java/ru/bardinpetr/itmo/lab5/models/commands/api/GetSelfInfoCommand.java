@@ -19,6 +19,15 @@ public class GetSelfInfoCommand extends UserAPICommand {
 
     public static class GetSelfInfoResponse extends APICommandResponse implements UserPrintableAPICommandResponse {
         private Integer id;
+        private String username;
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getUsername() {
+            return username;
+        }
 
         public Integer getId() {
             return id;
@@ -30,7 +39,7 @@ public class GetSelfInfoCommand extends UserAPICommand {
 
         @Override
         public String getUserMessage() {
-            return String.valueOf(id);
+            return "GetSelfInfoResponse.getUserMessage.text";
         }
     }
 }

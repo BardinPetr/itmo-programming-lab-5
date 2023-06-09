@@ -8,4 +8,9 @@ public class AppUtils {
         var auth = request.session().getAuth();
         return auth != null ? auth.getUserHandle() : null;
     }
+
+    public static String extractUsername(AppRequest request) {
+        var auth = request.session().getAuth();
+        return auth != null ? auth.getUserName() : null;
+    }
 }

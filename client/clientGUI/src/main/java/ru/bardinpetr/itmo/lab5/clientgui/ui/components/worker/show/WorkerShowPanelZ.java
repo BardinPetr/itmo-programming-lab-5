@@ -3,6 +3,8 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.remove.greater.WorkerRemoveGFrame;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.models.commands.api.ClearCommand;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,7 +39,12 @@ public class WorkerShowPanelZ extends ResourcedPanel {
 
         openAddWorkerPlane.addActionListener((e -> new WorkerAddFrameZ()));
         clearWorkerButton.addActionListener((e)->{
-            //TODO send clear command
+            new APICommandMenger().sendCommand(
+                    new ClearCommand(),
+                    this,
+                    "WorkerShowPanel.canNotClear.text",
+                    (response) -> {}
+            );
         });
         removeGreaterButton.addActionListener((e -> new WorkerRemoveGFrame()));
 

@@ -43,14 +43,14 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
 
         orgUpdateCancelButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 dispose();
             }
         });
 
         updateOrgButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 var worker = orgInfoPanel.getOrganization();
                 if (!worker.isAllowed) {
                     JOptionPane.showMessageDialog(orgInfoPanel, bundle.getString(worker.msg), bundle.getString("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
@@ -61,9 +61,6 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
                 }
             }
         });
-
-
-
         initComponentsI18n();
 
         pack();

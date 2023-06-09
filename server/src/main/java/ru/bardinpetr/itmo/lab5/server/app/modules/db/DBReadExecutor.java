@@ -29,7 +29,7 @@ public class DBReadExecutor extends Executor {
                     var resp = req.createResponse();
                     var worker = dao.read(req.getId());
                     if (worker == null) {
-                        resp.setTextualResponse("No worker with id %d".formatted(req.getId()));
+                        resp.setTextualResponse("DBReadExecutor.noWorkerById.text");
                         resp.setStatus(APIResponseStatus.CLIENT_ERROR);
                     } else {
                         resp.setWorker(worker);

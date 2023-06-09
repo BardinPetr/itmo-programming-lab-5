@@ -8,6 +8,7 @@ import ru.bardinpetr.itmo.lab5.network.app.server.AbstractApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 
 import static ru.bardinpetr.itmo.lab5.server.app.utils.AppUtils.extractUser;
+import static ru.bardinpetr.itmo.lab5.server.app.utils.AppUtils.extractUsername;
 
 public class DBInsertApplication extends AbstractApplication {
     private final IOwnedCollectionDAO<Integer, Worker> dao;
@@ -27,7 +28,7 @@ public class DBInsertApplication extends AbstractApplication {
         var resp = req.createResponse();
         var pk = dao.addOrg(req.element);
         if (pk == null) {
-            appRequest.response().sendErr("Couldn't add");
+            appRequest.response().sendErr("DBInsertApplication.addError.text");
             return;
         }
         resp.setId(pk);
@@ -39,7 +40,7 @@ public class DBInsertApplication extends AbstractApplication {
         var resp = req.createResponse();
         var pk = dao.add(extractUser(appRequest), req.element);
         if (pk == null) {
-            appRequest.response().sendErr("Couldn't add");
+            appRequest.response().sendErr("DBInsertApplication.addError.text");
             return;
         }
         resp.setId(pk);
@@ -55,14 +56,14 @@ public class DBInsertApplication extends AbstractApplication {
 
         if (curMax == null) {
             resp
-                    .message("No elements")
+                    .message("DBInsertApplication.noElementError.text")
                     .status(APIResponseStatus.CLIENT_ERROR)
                     .send();
             return;
         }
         if (curMax.compareTo(cur) >= 0) {
             resp
-                    .message("Not maximum")
+                    .message("DBInsertApplication.notMaximum.text")
                     .status(APIResponseStatus.CLIENT_ERROR)
                     .send();
             return;
@@ -81,14 +82,14 @@ public class DBInsertApplication extends AbstractApplication {
 
         if (curMin == null) {
             resp
-                    .message("No elements")
+                    .message("DBInsertApplication.noElementError.text")
                     .status(APIResponseStatus.CLIENT_ERROR)
                     .send();
             return;
         }
         if (curMin.compareTo(cur) >= 0) {
             resp
-                    .message("Not minimum")
+                    .message("DBInsertApplication.notMinimum.text")
                     .status(APIResponseStatus.CLIENT_ERROR)
                     .send();
             return;
@@ -101,6 +102,7 @@ public class DBInsertApplication extends AbstractApplication {
     private void selfInfo(AppRequest request) {
         var resp = (GetSelfInfoCommand.GetSelfInfoResponse) request.payload().createResponse();
         resp.setId(extractUser(request));
+        resp.setUsername(extractUsername(request));
         request.response().from(resp).send();
     }
 }

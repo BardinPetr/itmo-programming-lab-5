@@ -32,16 +32,19 @@ public class UsersInfoZ extends ResourcedPanel {
         initComponentsI18n();
         setVisible(true);
     }
+
+    public void setUsername(String name){
+        usernameField.setText(name);
+    }
+
+    public void setWorkersCount(Integer count){
+        workersCountField.setText(String.valueOf(count));
+    }
     @Override
     protected void initComponentsI18n() {
-        // JFormDesigner - Component i18n initialization - DO NOT MODIFY  //GEN-BEGIN:initI18n  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Artem
         ResourceBundle bundle = getResources();
         username.setText(bundle.getString("userInfo.username.text"));
-        usernameField.setText(bundle.getString("userInfo.usernameField.text"));
         workersCountText.setText(bundle.getString("userInfo.workersCountText.text"));
-        workersCountField.setText(bundle.getString("userInfo.workersCountField.text"));
-        // JFormDesigner - End of component i18n initialization  //GEN-END:initI18n  @formatter:on
     }
 
 }

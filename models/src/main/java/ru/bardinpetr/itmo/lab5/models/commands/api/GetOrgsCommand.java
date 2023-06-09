@@ -29,20 +29,20 @@ public class GetOrgsCommand extends UserAPICommand {
     @Getter
     @Setter
     public static class OrganisationCommandResponse extends APICommandResponse implements UserPrintableAPICommandResponse {
-        private List<Organization> organizations;
+        public List<Organization> organizations;
 
         @Override
         public String getUserMessage() {
-            var s = new StringBuilder("organizations:\n");
-            for (Organization i : organizations)
-                s.append(
-                        "\tID%s, full name: %s, type: %s\n".formatted(
-                                i.getId(),
-                                i.getFullName(),
-                                i.getType()
-                        )
-                );
-            return s.toString();
+//            var s = new StringBuilder("organizations:\n");
+//            for (Organization i : organizations)
+//                s.append(
+//                        "\tID%s, full name: %s, type: %s\n".formatted(
+//                                i.getId(),
+//                                i.getFullName(),
+//                                i.getType()
+//                        )
+//                );
+            return "OrganisationCommandResponse.getUserMessage.text";
         }
     }
 }

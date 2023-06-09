@@ -17,5 +17,10 @@ public enum Position {
         return value;
     }
 
-
+    @Override
+    public String toString() { //TODO localization
+        return "Position{" +
+                "value=" + value +
+                '}';
+    }
 }

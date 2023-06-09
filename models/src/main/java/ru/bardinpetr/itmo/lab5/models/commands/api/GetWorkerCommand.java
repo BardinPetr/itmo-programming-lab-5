@@ -37,7 +37,7 @@ public class GetWorkerCommand extends UserAPICommand {
 
         @Override
         public String getUserMessage() {
-            return worker.toString();
+            return "GetWorkerCommandResponse.getUserMessage.text";
         }
     }
 }

@@ -4,7 +4,7 @@ new FormModel {
 	"i18n.autoExternalize": true
 	"i18n.bundlePackage": "ru.bardinpetr.itmo.lab5.clientgui.i18n.data"
 	"i18n.bundleName": "guitexts"
-	"i18n.keyPrefix": "loginpage"
+	"i18n.keyPrefix": "loginPage"
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.GridBagLayout ) {
@@ -16,7 +16,7 @@ new FormModel {
 			"$alignTop": true
 		} ) {
 			name: "this"
-			"title": new FormMessage( null, "loginpage.this.title" )
+			"title": new FormMessage( null, "loginPage.this.title" )
 			add( new FormComponent( "com.jformdesigner.designer.wrapper.VSpacer" ) {
 				name: "vSpacer1"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
@@ -29,7 +29,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
-				"text": new FormMessage( null, "loginpage.label1.text" )
+				"text": new FormMessage( null, "loginPage.label1.text" )
 				"horizontalAlignment": 0
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 				"gridy": 1
@@ -50,7 +50,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label2"
-				"text": new FormMessage( null, "loginpage.label2.text" )
+				"text": new FormMessage( null, "loginPage.label2.text" )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 				"gridx": 1
 				"gridy": 3
@@ -63,7 +63,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label3"
-				"text": new FormMessage( null, "loginpage.label3.text" )
+				"text": new FormMessage( null, "loginPage.label3.text" )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 				"gridx": 1
 				"gridy": 5
@@ -76,7 +76,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "checkBox1"
-				"text": new FormMessage( null, "loginpage.checkBox1.text" )
+				"text": new FormMessage( null, "loginPage.checkBox1.text" )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 				"gridx": 2
 				"gridy": 6
@@ -87,11 +87,11 @@ new FormModel {
 				name: "panel1"
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button2"
-					"text": new FormMessage( null, "loginpage.button2.text" )
+					"text": new FormMessage( null, "loginPage.button2.text" )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button3"
-					"text": new FormMessage( null, "loginpage.button3.text" )
+					"text": new FormMessage( null, "loginPage.button3.text" )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 				"gridx": 1

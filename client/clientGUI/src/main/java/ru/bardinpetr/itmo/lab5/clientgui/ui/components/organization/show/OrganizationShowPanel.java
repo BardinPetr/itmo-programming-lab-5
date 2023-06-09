@@ -2,7 +2,6 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show;
 
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.add.OrgAddFrameZ;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
 
 import javax.swing.*;
 import java.awt.*;

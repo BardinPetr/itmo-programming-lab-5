@@ -8,11 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ResourceBundle;
 
 public class WorkerRemoveGFrame extends ResourcedFrame {
     private WorkerInfoPanelZ workerInfoPanel;
-    private ResourceBundle bundle = getResources();
 
     private JButton removeWorkerButton;
     private JButton workerUpdateCancelButton;
@@ -23,8 +21,7 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
     }
 
     protected void initComponents(){
-        workerInfoPanel = new WorkerInfoPanelZ(null);
-        JPanel panel1 = new JPanel();
+        workerInfoPanel = new WorkerInfoPanelZ();
         removeWorkerButton = new JButton();
         workerUpdateCancelButton = new JButton();
 
@@ -40,16 +37,16 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
 
         workerUpdateCancelButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 dispose();
             }
         });
         removeWorkerButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 var worker = workerInfoPanel.getWorker();
                 if (!worker.isAllowed) {
-                    JOptionPane.showMessageDialog(workerInfoPanel, bundle.getString(worker.msg), "Aaa", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(workerInfoPanel, getResources().getString(worker.msg), getResources().getString("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
                 }
                 else {
                     //TODO send removeGreater command
@@ -60,13 +57,10 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
         initComponentsI18n();
         pack();
         setLocationRelativeTo(getOwner());
-
-
-
     }
     @Override
     protected void initComponentsI18n() {
-        bundle = getResources();
+        var bundle = getResources();
         removeWorkerButton.setText(bundle.getString("WorkerRemoveGFrame.removeGreaterWorkerButton.text"));
         workerUpdateCancelButton.setText(bundle.getString("WorkerAddFrame.workerAddCancelButton.text"));
     }

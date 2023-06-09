@@ -40,15 +40,18 @@ public class ExecuteScriptCommand extends UserAPICommand {
     public static class ExecuteScriptCommandResponse extends ListAPICommandResponse<APICommandResponse> {
         @Override
         public String getUserMessage() {
-            var respond = new StringBuilder();
-            for (var i : getResult())
-                respond
-                        .append(
-                                i instanceof UserPrintableAPICommandResponse ?
-                                        i.getUserMessage() : i.toString()
-                        )
-                        .append("\n");
-            return respond.toString();
+//            var respond = new StringBuilder();
+//            for (var i : getResult())
+//                respond
+//                        .append(
+//                                i instanceof UserPrintableAPICommandResponse ?
+//                                        i.getUserMessage() : i.toString()
+//                        )
+//                        .append("\n");
+            for(var i: getResult()){
+                if (!i.isSuccess()) return i.getUserMessage();
+            }
+            return "ExecuteScriptCommandResponse.getUserMessage.success.text";
         }
     }
 }

@@ -48,7 +48,7 @@ public class AddCommand extends UserAPICommand {
 
         @Override
         public String getUserMessage() {
-            return "Success with ID%d".formatted(id);
+            return "AddCommandResponse.getUserMessage.text";
         }
     }
 }

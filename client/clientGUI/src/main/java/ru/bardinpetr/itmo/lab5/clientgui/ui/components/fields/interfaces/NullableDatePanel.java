@@ -38,9 +38,13 @@ public class NullableDatePanel extends JPanel implements IDataStorage<LocalDate>
         UIResources.getInstance().addLocaleChangeListener((i) -> initComponentsI18n());
         initComponentsI18n();
     }
+
+    public void setEditable(boolean isEditable){
+        workerEndDateField.setEditable(isEditable);
+        endDateNullCheckbox.setEnabled(isEditable);
+    }
     private void changeEndDateNull(ItemEvent e){
         workerEndDateField.setEnabled(e.getStateChange() != ItemEvent.SELECTED);
-
     }
     @Override
     public DataContainer<LocalDate> getData() {

@@ -15,6 +15,6 @@ public class ListAPICommandResponse<T> extends APICommandResponse {
 
     @Override
     public String getUserMessage() {
-        return getResult().toString();
+        return "ListAPICommandResponse.getUserMessage.text";
     }
 }

@@ -40,14 +40,14 @@ public class OrgAddFrameZ extends ResourcedFrame {
 
         orgAddCancelButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 dispose();
             }
         });
 
         addOrgButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 var worker = orgInfoPanel.getOrganization();
                 if (!worker.isAllowed) {
                     JOptionPane.showMessageDialog(orgInfoPanel, bundle.getString(worker.msg), bundle.getString("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);

@@ -23,4 +23,5 @@ public class PositionComboBox extends AbstractEnumCombobox<Position> {
         list.addAll(Arrays.stream(Position.values()).toList());
         return list;
     }
+
 }

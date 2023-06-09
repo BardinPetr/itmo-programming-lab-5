@@ -1,16 +1,19 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.component;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom;
 
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
+import ru.bardinpetr.itmo.lab5.models.commands.api.InfoCommand;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class BottomPanelZ extends ResourcedPanel {
     private JLabel infoText;
-    private JLabel label1;
+    private JLabel dbTypeNameLabel;
     private JLabel label2;
     private JLabel bdDateField;
     private JLabel label4;
@@ -24,7 +27,7 @@ public class BottomPanelZ extends ResourcedPanel {
 
     protected void initComponents() {
         infoText = new JLabel();
-        label1 = new JLabel();
+        dbTypeNameLabel = new JLabel();
         label2 = new JLabel();
         bdDateField = new JLabel();
         label4 = new JLabel();
@@ -33,7 +36,7 @@ public class BottomPanelZ extends ResourcedPanel {
 
 
         var infoFont = new Font("italic", Font.PLAIN, 12);
-        label1.setFont(infoFont);
+        dbTypeNameLabel.setFont(infoFont);
         bdDateField.setFont(infoFont);
         workersCountField.setFont(infoFont);
 
@@ -41,7 +44,7 @@ public class BottomPanelZ extends ResourcedPanel {
 
         var infoPanel = new JPanel(new GridBagLayout());
         infoPanel.add(infoText, infoConstrains);
-        infoPanel.add(label1, infoConstrains);
+        infoPanel.add(dbTypeNameLabel, infoConstrains);
         infoPanel.add(label2, infoConstrains);
         infoPanel.add(bdDateField, infoConstrains);
         infoPanel.add(label4, infoConstrains);
@@ -55,14 +58,22 @@ public class BottomPanelZ extends ResourcedPanel {
         setVisible(true);
     }
 
+    public void setInitDate(ZonedDateTime date){
+        bdDateField.setText(
+                DateTimeFormatter.ofPattern(
+                        getResources().getString("dateFormat")
+                ).format(date));
+    }
+
+    public void setBDSize(Integer size){
+        workersCountField.setText(String.valueOf(size));
+    }
+
     protected void initComponentsI18n() {
-        // JFormDesigner - Component i18n initialization - DO NOT MODIFY  //GEN-BEGIN:initI18n  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Artem
         ResourceBundle bundle = getResources();
         infoText.setText(bundle.getString("bottomPanel.infoText.text"));
-        label1.setText(bundle.getString("bottomPanel.label1.text"));
+        dbTypeNameLabel.setText(bundle.getString("bottomPanel.label1.text"));
         label2.setText(bundle.getString("bottomPanel.label2.text"));
         label4.setText(bundle.getString("bottomPanel.label4.text"));
-        // JFormDesigner - End of component i18n initialization  //GEN-END:initI18n  @formatter:on
     }
 }

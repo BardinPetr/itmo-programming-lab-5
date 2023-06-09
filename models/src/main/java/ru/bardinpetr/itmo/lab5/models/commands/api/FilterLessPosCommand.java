@@ -40,9 +40,7 @@ public class FilterLessPosCommand extends UserAPICommand {
     public static class FilterLessPosCommandResponse extends ListAPICommandResponse<Worker> {
         @Override
         public String getUserMessage() {
-            var result = getResult();
-            return "elements whose position field value is less than the given one" +
-                    Worker.nicePrintFormat(result);
+            return "FilterLessPosCommandResponse.getUserMessage.text";
         }
     }
 }

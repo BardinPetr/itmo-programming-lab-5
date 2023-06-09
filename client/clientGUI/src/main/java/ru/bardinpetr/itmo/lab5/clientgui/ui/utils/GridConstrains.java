@@ -10,9 +10,13 @@ public class GridConstrains {
                 new Insets(0,2,0,4), 0,0);
     }
     public static GridBagConstraints placedAdd(int x, int y){
+        return placedAdd(x, y, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+    }
+    public static GridBagConstraints placedAdd(int x, int y, int anchor, int fill){
         return new GridBagConstraints(x,y,
                 1, 1, 1, 1,
-                GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
+                anchor, fill,
                 new Insets(0,2,0,4), 0,0);
     }
+
 }

@@ -29,21 +29,23 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
     private JLabel label6;
     private YCoordinateWorkerField workerYField;
     private JLabel label7;
-    private OrganizationIdBox organizationIdField;
+    private OrganizationBox organizationIdField;
     private JLabel label8;
     private PositionComboBox workerPositionCombobox;
     private final DataContainer<Worker> workerDataContainer;
     private Worker defaultWorker;
+    private boolean isChangeable;
     ResourceBundle bundle = getResources();
 
-
-    public WorkerInfoPanelZ(Worker defaultWorker) {
+    public WorkerInfoPanelZ() {this(null, true);}
+    public WorkerInfoPanelZ(Worker defaultWorker, boolean isChangeable) {
+        this.isChangeable = isChangeable;
         this.defaultWorker = defaultWorker;
         initComponents();
         setVisible(true);
         this.workerDataContainer = new DataContainer<>(
-                new Worker(),
-                (new WorkerValidator()).validateAll(new Worker())
+                defaultWorker,
+                (new WorkerValidator()).validateAll(defaultWorker)
         );
     }
 
@@ -66,7 +68,7 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         workerYField = new YCoordinateWorkerField((s -> {}));
         label7 = new JLabel();
 
-        organizationIdField = new OrganizationIdBox((e -> {}));
+        organizationIdField = new OrganizationBox((e -> {}));
 
         label8 = new JLabel();
 
@@ -92,27 +94,31 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         add(organizationIdField, GridConstrains.placedAdd(1, 6));
         add(workerPositionCombobox, GridConstrains.placedAdd(1, 7));
 
+        workerNameField.setEditable(isChangeable);
+        workerSalaryField.setEditable(isChangeable);
+        workerStartField.setEditable(isChangeable);
+        endDatePanel.setEditable(isChangeable);
+        workerXField.setEditable(isChangeable);
+        workerYField.setEditable(isChangeable);
+        workerPositionCombobox.setEnabled(isChangeable);
+        organizationIdField.setEnabled(isChangeable);
+
         if (defaultWorker!=null){
-            workerNameField.setName(defaultWorker.getName());
+            workerNameField.setData(defaultWorker.getName());
             workerSalaryField.setData(defaultWorker.getSalary());
             workerStartField.setData(defaultWorker.getStartDate());
-            endDatePanel.setData(defaultWorker.getEndDate());
             endDatePanel.setData(defaultWorker.getEndDate());
             workerXField.setData(defaultWorker.getCoordinates().getX());
             workerYField.setData(defaultWorker.getCoordinates().getY());
             workerPositionCombobox.setData(defaultWorker.getPosition());
             if (defaultWorker.getOrganization()!=null)
-                organizationIdField.setData(defaultWorker.getOrganization().getId());
+                organizationIdField.setData(defaultWorker.getOrganization());
         }
         initComponentsI18n();
     }
 
     public DataContainer<Worker> getWorker(){
-        DataContainer<Worker> dataContainer = new DataContainer(
-                true,
-                new Worker(),
-                ""
-                );
+
         var name = workerNameField.getData();
         var salary = workerSalaryField.getData();
         var startDate = workerStartField.getData();
@@ -122,30 +128,33 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         var orgId = organizationIdField.getData();
         var position = workerPositionCombobox.getData();
 
-        if (!name.isAllowed) dataContainer.copyMeta(name);
-        if (!salary.isAllowed) dataContainer.copyMeta(salary);
-        if (!startDate.isAllowed) dataContainer.copyMeta(startDate);
-        if (!endDate.isAllowed) dataContainer.copyMeta(endDate);
-        if (!x.isAllowed) dataContainer.copyMeta(x);
-        if (!y.isAllowed) dataContainer.copyMeta(y);
-        if (!orgId.isAllowed) dataContainer.copyMeta(orgId);
-        if (!position.isAllowed) dataContainer.copyMeta(position);
+        if (!name.isAllowed) workerDataContainer.copyMeta(name);
+        if (!salary.isAllowed) workerDataContainer.copyMeta(salary);
+        if (!startDate.isAllowed) workerDataContainer.copyMeta(startDate);
+        if (!endDate.isAllowed) workerDataContainer.copyMeta(endDate);
+        if (!x.isAllowed) workerDataContainer.copyMeta(x);
+        if (!y.isAllowed) workerDataContainer.copyMeta(y);
+        if (!orgId.isAllowed) workerDataContainer.copyMeta(orgId);
+        if (!position.isAllowed) workerDataContainer.copyMeta(position);
 
-        dataContainer.data.setName(name.data);
-        dataContainer.data.setSalary(salary.data);
-        dataContainer.data.setStartDate(startDate.data);
-        dataContainer.data.setEndDate(endDate.data);
-        dataContainer.data.setCoordinates(new Coordinates(
+        workerDataContainer.data.setName(name.data);
+        workerDataContainer.data.setName(name.data);
+        workerDataContainer.data.setSalary(salary.data);
+        workerDataContainer.data.setStartDate(startDate.data);
+        workerDataContainer.data.setEndDate(endDate.data);
+        workerDataContainer.data.setCoordinates(new Coordinates(
                 x.data,
                 y.data
         ));
-        dataContainer.data.setOrganization(
-                new Organization(orgId.data, "test", OrganizationType.COMMERCIAL));
-        dataContainer.data.setPosition(position.data);
-        return dataContainer;
+        if (orgId.data != null)
+            workerDataContainer.data.setOrganization(
+                    orgId.data);
+        else
+            workerDataContainer.data.setOrganization(null);
+        workerDataContainer.data.setPosition(position.data);
+        return workerDataContainer;
 
     }
-
 
 
 
@@ -161,8 +170,6 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         label6.setText(bundle.getString("WorkerInfoPanel.label6.text"));
         label7.setText(bundle.getString("WorkerInfoPanel.label7.text"));
         label8.setText(bundle.getString("WorkerInfoPanel.label8.text"));
-
-        organizationIdField.noSuchIdMsg = "OrganizationIdBox.validateValue.notFound.text";
     }
 
 }

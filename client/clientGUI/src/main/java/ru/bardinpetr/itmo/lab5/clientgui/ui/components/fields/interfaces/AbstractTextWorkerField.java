@@ -21,7 +21,6 @@ public abstract class AbstractTextWorkerField<T> extends JTextField implements I
         super();
         this.validator = validator;
         this.toolTipMsg = toolTipMsg;
-//        setBackground(Color.PINK);
         UIResources.getInstance().addLocaleChangeListener((i) -> initComponentsI18n());
 
         getDocument().addDocumentListener(
@@ -39,6 +38,7 @@ public abstract class AbstractTextWorkerField<T> extends JTextField implements I
                         }
                 )
         );
+        UIResources.getInstance().addLocaleChangeListener((i) -> initComponentsI18n());
     }
 
     public ValidationResponse validateValue(){

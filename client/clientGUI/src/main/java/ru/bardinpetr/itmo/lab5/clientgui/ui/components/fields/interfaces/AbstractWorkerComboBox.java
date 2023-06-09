@@ -1,9 +1,12 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
+import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
+import ru.bardinpetr.itmo.lab5.models.validation.IValidator;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -14,21 +17,25 @@ public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDa
     protected ResourceBundle bundle = getResources();
     Consumer<T> handler;
 
-    protected HashMap<String, T> positionMap = new HashMap<>();
+
     public AbstractWorkerComboBox(Consumer<T> handler) {
         this.handler = handler;
         groupItems();
         addItemListener((e -> {
             if (e.getStateChange()== ItemEvent.DESELECTED) return;
-            var item = e.getItem();
-            if (item=="") handler.accept(null);
-            else  handler.accept(positionMap.get(item));
+            var item = (T) e.getItem();
+            var resp = validateValue();
+            if (resp.isAllowed()) {
+                if (item == "") handler.accept(null);
+                else handler.accept(item);
+            }
+            else {
+
+            }
         }));
 
-
-
+        UIResources.getInstance().addLocaleChangeListener((i) -> initComponentsI18n());
     }
-
 
     protected abstract void groupItems();
 
@@ -38,13 +45,12 @@ public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDa
     protected void initComponentsI18n() {
         bundle = getResources();
         removeAllItems();
-        positionMap.clear();
         groupItems();
     }
 
     protected abstract List<T> getList();
     @Override
     public void setData(T data) {
-        setSelectedItem(String.valueOf(data));
+        setSelectedItem(data);
     }
 }

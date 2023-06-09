@@ -6,7 +6,6 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
-import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
 import ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidator;
 
 import javax.swing.*;
@@ -14,7 +13,6 @@ import java.awt.*;
 import java.util.ResourceBundle;
 
 public class OrganizationInfoPanelZ extends ResourcedPanel {
-    private final DataContainer<Organization> organizationDataContainer;
     private JLabel label1;
     private NameField nameField;
     private JLabel label2;
@@ -27,10 +25,6 @@ public class OrganizationInfoPanelZ extends ResourcedPanel {
         this.defaultOrganization = defaultOrganization;
         initComponents();
         setVisible(true);
-        this.organizationDataContainer = new DataContainer(
-                new Organization(),
-                OrganizationValidator.validateAll(new Organization())
-        );
     }
 
     protected void initComponents(){

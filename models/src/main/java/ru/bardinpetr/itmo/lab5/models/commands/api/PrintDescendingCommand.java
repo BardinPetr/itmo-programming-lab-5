@@ -30,9 +30,7 @@ public class PrintDescendingCommand extends PagingAPICommand {
     public static class PrintDescendingCommandResponse extends DefaultCollectionCommandResponse {
         @Override
         public String getUserMessage() {
-            var result = getResult();
-            return "collection elements in descending order" +
-                    Worker.nicePrintFormat(result);
+            return "PrintDescendingCommandResponse.getUserMessage.text";
         }
     }
 }

@@ -19,11 +19,11 @@ public class XCoordinateWorkerField extends AbstractTextWorkerField<Integer> {
     public DataContainer<Integer> getData() {
         var validation = validateValue();
         if (validation.isAllowed())
-            return new DataContainer<Integer>(
+            return new DataContainer<>(
                     Integer.parseInt(getFullText()),
                     validateValue());
         else
-            return new DataContainer<Integer>(
+            return new DataContainer<>(
                     0,
                     validateValue());
 

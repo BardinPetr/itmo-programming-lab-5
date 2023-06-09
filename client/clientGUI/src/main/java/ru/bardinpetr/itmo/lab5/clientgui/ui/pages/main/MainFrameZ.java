@@ -1,12 +1,14 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main;
 
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.component.BottomPanelZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.BottomPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show.OrganizationShowPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo.UsersInfoZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerShowPanelZ;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
-import ru.bardinpetr.itmo.lab5.models.commands.api.ExecuteScriptCommand;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.InfoCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.ShowMineCommand;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -37,10 +39,10 @@ public class MainFrameZ extends ResourcedFrame {
         bottomMenu = new BottomPanelZ();
         upperPanel = new JPanel();
         menuBar = new JMenuBar();
-        workersMenuButton = new JMenuItem();
-        orgsMenuButton = new JMenuItem();
-        mapMenuButton = new JMenuItem();
-        scriptMenuButton = new JMenuItem();
+        workersMenuButton = new JMenuItem("", SwingConstants.EAST);
+        orgsMenuButton = new JMenuItem("", SwingConstants.CENTER);
+        mapMenuButton = new JMenuItem("", SwingConstants.CENTER);
+        scriptMenuButton = new JMenuItem("", SwingConstants.CENTER);
         usersInfo = new UsersInfoZ();
 
         var contentPane = getContentPane();
@@ -94,6 +96,7 @@ public class MainFrameZ extends ResourcedFrame {
         });
 
         scriptChooser.addActionListener((e1 -> {
+            if (scriptChooser.getSelectedFile()==null) return;
             var scriptPath = scriptChooser.getSelectedFile().getPath();
             //TODO execute script
         }));
@@ -101,10 +104,41 @@ public class MainFrameZ extends ResourcedFrame {
         initComponentsI18n();
         pack();
         setLocationRelativeTo(getOwner());
+        new APICommandMenger().sendCommand(
+                new GetSelfInfoCommand(),
+                this,
+                "MainFrame.canNotGetUsernameError.text",
+                (response) -> {
+                    var resp = (GetSelfInfoCommand.GetSelfInfoResponse) response;
+                    usersInfo.setUsername(resp.getUsername());
+                }
+        );
+
+        new APICommandMenger().sendCommand(
+                new ShowMineCommand(),
+                this,
+                "MainFrame.canNotGetMineWorkers.text",
+                (response) -> {
+                    var resp = (ShowMineCommand.ShowCommandResponse) response;
+                    usersInfo.setWorkersCount(resp.getResult().size());
+                }
+        );
+
+        new APICommandMenger().sendCommand(
+                new InfoCommand(),
+                this,
+                "MainFrame.canNotFetInfo.text",
+                (response) -> {
+                    var resp = (InfoCommand.InfoCommandResponse) response;
+                    bottomMenu.setInitDate(resp.getResult().getInitializationDate());
+                    bottomMenu.setBDSize(resp.getResult().getItemsCount());
+                }
+        );
     }
     protected void initComponentsI18n() {
         if (workersMenuButton==null)return;
         ResourceBundle bundle = getResources();
+        setTitle(bundle.getString("MainFrame.title"));
         scriptChooseText = getResources().getString("MainFrame.scriptChooseText.text");
         workersMenuButton.setText(bundle.getString("MainFrame.workersMenuButton.text"));
         orgsMenuButton.setText(bundle.getString("MainFrame.orgsMenuButton.text"));

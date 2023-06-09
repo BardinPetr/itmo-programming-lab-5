@@ -29,6 +29,9 @@ public abstract class AbstractDateField<T> extends JSpinner implements IDataStor
 
 
     }
+    public void setEditable(boolean editable){
+        ((DefaultEditor) getEditor()).getTextField().setEditable(editable);
+    };
 
     @Override
     public ValidationResponse validateValue(){

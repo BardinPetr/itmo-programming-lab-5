@@ -34,11 +34,7 @@ public class InfoCommand extends UserAPICommand {
 
         @Override
         public String getUserMessage() {
-            return "collection information\n" +
-                    "   name:" + result.getName() +
-                    ",\n   element type:" + result.getType() +
-                    ",\n   initializationDate:" + result.getInitializationDate() +
-                    ",\n   itemsCount:" + result.getItemsCount();
+            return "InfoCommandResponse.getUserMessage.text";
         }
     }
 }
