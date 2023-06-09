@@ -13,9 +13,9 @@ public class Event implements Comparable<Event> {
     private EventKey eventKey;
     private EventType action;
     private String resource;
-    private String object;
+    private Object object;
 
-    public Event(EventType action, String resource, String object) {
+    public Event(EventType action, String resource, Object object) {
         this.resource = resource;
         this.action = action;
         this.object = object;

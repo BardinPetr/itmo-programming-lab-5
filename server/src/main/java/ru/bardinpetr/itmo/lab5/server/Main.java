@@ -2,7 +2,9 @@ package ru.bardinpetr.itmo.lab5.server;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.log.SetupJUL;
+import ru.bardinpetr.itmo.lab5.network.app.server.handlers.impl.AuthenticatedFilter;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.ErrorHandlingApplication;
+import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.FilteredApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPInputTransportApplication;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.UDPOutputTransportApplication;
 import ru.bardinpetr.itmo.lab5.network.transport.server.UDPServerFactory;
@@ -32,7 +34,9 @@ public class Main {
                 .chain(new UDPOutputTransportApplication(udpServer))
                 .chain(new AuthAppFacade().create(tableProvider))
                 .chain(DBApplicationFacade.create(tableProvider))
-                .chain(eventApp)
+                .chain(new FilteredApplication(
+                        eventApp, AuthenticatedFilter.getInstance()
+                ))
                 .chain(new ErrorHandlingApplication());
 
         mainApp.start();
