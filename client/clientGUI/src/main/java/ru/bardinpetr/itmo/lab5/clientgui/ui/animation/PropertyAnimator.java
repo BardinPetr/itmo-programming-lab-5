@@ -1,6 +1,5 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.animation;
 
-import lombok.Setter;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.EventUtils;
 
 import javax.swing.*;
@@ -13,8 +12,6 @@ public abstract class PropertyAnimator<T> {
     private final Timer timer;
     protected T startPoint;
     protected T endPoint;
-    @Setter
-    private PropertyUpdater<T> updateTask;
     private T currentStatus;
 
     public PropertyAnimator(int periodMillis) {
@@ -22,7 +19,8 @@ public abstract class PropertyAnimator<T> {
     }
 
     private void update(ActionEvent event) {
-        currentStatus = updateTask.update(currentStatus, startPoint, endPoint);
+        currentStatus = update(currentStatus);
+        System.out.println(currentStatus);
         fireUpdateEvent();
         if (checkEnded(currentStatus)) {
             timer.stop();
@@ -33,15 +31,31 @@ public abstract class PropertyAnimator<T> {
 
     abstract protected T update(T current);
 
-    public void animate(T start, T end) {
-        if (timer.isRunning()) {
+    public void setCurrentStatus(T status) {
+        if (timer.isRunning()) return;
+        currentStatus = status;
+    }
+
+    public final void animate(T end) {
+        if (currentStatus == null)
+            return;
+
+        if (timer.isRunning())
             timer.stop();
-            start = currentStatus;
-        }
-        currentStatus = start;
-        startPoint = start;
+
+        startPoint = currentStatus;
         endPoint = end;
+
+        preconfigure();
+        if (checkEnded(startPoint)) {
+            fireUpdateEvent();
+            return;
+        }
+
         timer.start();
+    }
+
+    protected void preconfigure() {
     }
 
     @SuppressWarnings("unchecked")
@@ -49,7 +63,7 @@ public abstract class PropertyAnimator<T> {
         EventUtils.fireAll(
                 listenerList,
                 PropertyAnimatorListener.class,
-                i -> i.update(i, timer.isRunning())
+                i -> i.update(currentStatus, timer.isRunning())
         );
     }
 
@@ -59,10 +73,5 @@ public abstract class PropertyAnimator<T> {
 
     public void removeListener(PropertyAnimatorListener<T> listener) {
         listenerList.remove(PropertyAnimatorListener.class, listener);
-    }
-
-
-    public interface PropertyUpdater<T> {
-        T update(T current, T from, T to);
     }
 }

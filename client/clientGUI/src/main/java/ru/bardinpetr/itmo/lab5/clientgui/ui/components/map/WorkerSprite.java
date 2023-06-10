@@ -3,8 +3,8 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.map;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
 import lombok.Setter;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.animation.PointAnimator;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.animation.PropertyAnimator;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.animation.impl.PointAnimator;
 import ru.bardinpetr.itmo.lab5.models.data.Position;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class WorkerSprite extends JPanel {
 
-    private static final int ANIMATION_PERIOD_MILLIS = 10;
+    private static final int ANIMATION_SPEED_PXS = 50;
     private static final int NAME_LENGTH_MAX = 15;
     private static final int ICON_SIZE = 50;
     private final PropertyAnimator<Point> positionAnimator;
@@ -23,20 +23,15 @@ public class WorkerSprite extends JPanel {
     private Point currentPosition;
     private Icon currentIcon;
     private String currentName;
+    private Runnable redrawRequest;
 
     public WorkerSprite() {
         setVisible(true);
         setLayout(null);
         setOpaque(false);
 
-        positionAnimator = new PointAnimator(ANIMATION_PERIOD_MILLIS);
+        positionAnimator = new PointAnimator(ANIMATION_SPEED_PXS);
         positionAnimator.addListener(this::setCurrentPosition);
-
-        new Thread(() -> {
-            while (true) {
-                
-            }
-        }).start();
     }
 
     public static Point getCoordinates(Worker w) {
@@ -47,18 +42,17 @@ public class WorkerSprite extends JPanel {
     public void update(Worker data) {
         if (workerData != null) {
             if (!data.getCoordinates().equals(workerData.getCoordinates()))
-                positionAnimator.animate(getCoordinates(workerData), getCoordinates(data));
+                positionAnimator.animate(getCoordinates(data));
+        } else {
+            currentPosition = getCoordinates(data);
+            positionAnimator.setCurrentStatus(currentPosition);
         }
 
         workerData = data;
 
         var name = data.getName();
-        if (name.length() > NAME_LENGTH_MAX)
-            currentName = name.substring(0, NAME_LENGTH_MAX) + "...";
-        else
-            currentName = name;
-
-        currentPosition = getCoordinates(data);
+        if (name.length() > NAME_LENGTH_MAX) currentName = name.substring(0, NAME_LENGTH_MAX) + "...";
+        else currentName = name;
 
         var size = (int) (ICON_SIZE * getWorkerSizeMultiplier());
         currentIcon = IconFontSwing.buildIcon(FontAwesome.USER, size, color);
@@ -79,7 +73,8 @@ public class WorkerSprite extends JPanel {
         var nameSize = g.getFont().getStringBounds(currentName, g2.getFontRenderContext());
 
         g.setColor(Color.RED);
-        g.fillOval(currentPosition.x, currentPosition.y, 8, 8);
+        var circleSize = 8;
+        g.fillOval(currentPosition.x - circleSize / 2, currentPosition.y - circleSize / 2, circleSize, circleSize);
 
         g.setColor(Color.BLACK);
         // Put name centered
@@ -96,13 +91,16 @@ public class WorkerSprite extends JPanel {
     }
 
     private float getWorkerSizeMultiplier() {
-        if (workerData.getPosition() == null)
-            return 1;
+        if (workerData.getPosition() == null) return 1;
         return 1 + (float) workerData.getPosition().value / Position.values().length;
     }
 
     protected void setCurrentPosition(Point state, boolean running) {
         currentPosition = state;
-        repaint();
+        redrawRequest.run();
+    }
+
+    public void setOnRedrawRequest(Runnable target) {
+        this.redrawRequest = target;
     }
 }

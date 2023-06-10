@@ -1,6 +1,7 @@
-package ru.bardinpetr.itmo.lab5.clientgui.ui.animation;
+package ru.bardinpetr.itmo.lab5.clientgui.ui.animation.impl;
 
 import lombok.Setter;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.animation.PropertyAnimator;
 
 import java.awt.*;
 
@@ -9,7 +10,7 @@ public class PointAnimator extends PropertyAnimator<Point> {
     private final double speed;
     private double yStep = 0;
     @Setter
-    private double distanceEpsilon = 5;
+    private double distanceEpsilon = 2;
     private double xStep = 0;
 
     public PointAnimator(double pxPerSec) {
@@ -18,14 +19,17 @@ public class PointAnimator extends PropertyAnimator<Point> {
     }
 
     @Override
-    public void animate(Point start, Point end) {
+    protected void preconfigure() {
         double baseDist = startPoint.distance(endPoint);
         double predictedTime = baseDist / speed;
-        double steps = predictedTime * 1000 / PERIOD;
-        xStep = (end.x - start.x) / steps;
-        yStep = (end.y - start.y) / steps;
-
-        super.animate(start, end);
+        double steps = Math.ceil(predictedTime * 1000 / PERIOD);
+        if (((int) steps) == 0) {
+            xStep = 0;
+            yStep = 0;
+            return;
+        }
+        xStep = (endPoint.x - startPoint.x) / steps;
+        yStep = (endPoint.y - startPoint.y) / steps;
     }
 
     @Override

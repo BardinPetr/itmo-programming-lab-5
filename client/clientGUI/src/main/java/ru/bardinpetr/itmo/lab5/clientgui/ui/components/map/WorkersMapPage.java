@@ -47,7 +47,6 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
         } catch (APIClientException ignored) {
         }
 
-//        var orgs = new OrganizationsModel();
         var model = new WorkerModel(ownerId);
 
         var f = new JFrame();
@@ -81,6 +80,7 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
         data.getCoordinates().setY((new Random()).nextInt(-600, 600));
 
         var ws = new WorkerSprite();
+        ws.setOnRedrawRequest(this::repaint);
         updateSprite(pk, ws, data);
         return ws;
     }
