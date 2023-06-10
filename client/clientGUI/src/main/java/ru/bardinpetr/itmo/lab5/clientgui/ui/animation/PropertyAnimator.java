@@ -20,7 +20,6 @@ public abstract class PropertyAnimator<T> {
 
     private void update(ActionEvent event) {
         currentStatus = update(currentStatus);
-        System.out.println(currentStatus);
         fireUpdateEvent();
         if (checkEnded(currentStatus)) {
             timer.stop();

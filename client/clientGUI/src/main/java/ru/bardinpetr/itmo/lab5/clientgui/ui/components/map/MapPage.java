@@ -10,6 +10,7 @@ import javax.swing.event.ListDataListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ import java.util.Map;
  * @param <M> model type
  * @param <S> object renderer
  */
-public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends ExtendedListModel<T>, S extends JPanel> extends JPanel implements MouseMotionListener, MouseWheelListener, MouseListener, ListDataListener {
+public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends ExtendedListModel<T>, S extends MapSprite> extends JPanel implements MouseMotionListener, MouseWheelListener, MouseListener, ListDataListener {
 
     private static final double SCALE_FACTOR = 0.1;
     private static final int AXES_TICK_STEP = 50;
@@ -137,6 +138,25 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Extende
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        var posPane = e.getPoint();
+        var pos = new Point();
+        try {
+            paneTransform.inverseTransform(posPane, pos);
+        } catch (NoninvertibleTransformException ex) {
+            return;
+        }
+
+        var sprite =
+                sprites
+                        .values()
+                        .stream()
+                        .filter(i -> i.calculateBorder().contains(pos))
+                        .findFirst();
+        if (sprite.isEmpty())
+            return;
+
+        var selectedId = sprite.get().getPrimaryKey();
+        onClick(model.getByPK(selectedId));
     }
 
     @Override
@@ -158,6 +178,7 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Extende
 
     @Override
     public void mouseMoved(MouseEvent e) {
+
     }
 
     protected abstract S createSprite(Integer pk, T data);
@@ -166,7 +187,6 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Extende
 
     @Override
     public void intervalAdded(ListDataEvent e) {
-        System.out.printf("A %d %d\n", e.getIndex0(), e.getIndex1());
         for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
             var real = model.getElementAt(i);
             var pk = real.getPrimaryKey();
@@ -179,7 +199,6 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Extende
 
     @Override
     public void intervalRemoved(ListDataEvent e) {
-        System.out.printf("R %d %d\n", e.getIndex0(), e.getIndex1());
         for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
             var real = model.getElementAt(i);
             sprites.remove(real.getPrimaryKey(), null);
@@ -188,7 +207,6 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Extende
 
     @Override
     public void contentsChanged(ListDataEvent e) {
-        System.out.printf("C %d %d\n", e.getIndex0(), e.getIndex1());
         for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
             var real = model.getElementAt(i);
 
@@ -202,4 +220,6 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Extende
             }
         }
     }
+
+    abstract protected void onClick(T object);
 }

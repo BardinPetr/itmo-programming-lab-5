@@ -68,8 +68,8 @@ public class DemoAddLocalCommand extends APIUILocalCommand {
                         Date.from(Instant.now()),
                         LocalDate.now(),
                         new Coordinates(
-                                rng.nextInt(0, 100),
-                                rng.nextFloat(0, 100)
+                                rng.nextInt(-400, 400),
+                                rng.nextFloat(-400, 400)
                         ),
                         new Organization(
                                 res.getId(),

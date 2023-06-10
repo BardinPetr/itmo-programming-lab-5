@@ -51,6 +51,8 @@ public class PagingTableModel implements TableModel {
         var cnt = table.getHeight() / table.getRowHeight();
         if (cnt == 0)
             return;
+
+        setPageSize(Math.min(pageSize, cnt));
         paginatorControl.setMaxPageSize(cnt);
         paginatorControl.setPageCount(getPageCount());
     }

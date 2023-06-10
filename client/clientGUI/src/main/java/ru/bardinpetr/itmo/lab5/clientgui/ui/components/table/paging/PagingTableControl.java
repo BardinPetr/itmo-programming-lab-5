@@ -65,6 +65,7 @@ public class PagingTableControl extends Box {
         if (((int) spinnerModel.getValue()) > val)
             spinnerModel.setValue(val);
         spinnerModel.setMaximum(val);
+        updateStatus();
     }
 
     public void setPageCount(int val) {

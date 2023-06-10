@@ -54,11 +54,4 @@ public class WorkerModel extends ExternalSyncedListModel<Worker> {
                 .map(Worker::getOwner)
                 .collect(Collectors.toCollection(TreeSet::new));
     }
-
-    public Worker getByPK(int id) {
-        return asStream()
-                .filter(i -> i.getId().equals(id))
-                .findAny()
-                .orElse(null);
-    }
 }

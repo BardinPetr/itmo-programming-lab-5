@@ -54,6 +54,7 @@ public class WorkersTable extends XTable {
 
 
     public static class WorkerTableModel extends TypedTableModel<Worker> {
+        // TODO add column names
         private final List<String> columnNames = List.of("ID", "Owner", "Name");
         private final Set<String> lockedColumns = Set.of("ID", "Owner");
         private final Integer ownerId;
@@ -69,6 +70,7 @@ public class WorkersTable extends XTable {
                     object.getId(),
                     object.getOwnerUsername(),
                     object.getName()
+                    // TODO add all columns
             );
         }
 
@@ -76,7 +78,7 @@ public class WorkersTable extends XTable {
         public boolean isCellEditable(int row, int column) {
             var isUnlocked = !lockedColumns.contains(columnNames.get(column));
             var isOwned = getOriginalData().get(row).getOwner().equals(ownerId);
-            return isUnlocked && isOwned;
+            return false; // isUnlocked && isOwned;
         }
 
         @Override

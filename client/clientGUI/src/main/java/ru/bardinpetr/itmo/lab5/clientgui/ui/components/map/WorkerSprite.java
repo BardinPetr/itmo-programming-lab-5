@@ -11,12 +11,13 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import javax.swing.*;
 import java.awt.*;
 
-public class WorkerSprite extends JPanel {
+public class WorkerSprite extends MapSprite {
 
     private static final int ANIMATION_SPEED_PXS = 50;
     private static final int NAME_LENGTH_MAX = 15;
     private static final int ICON_SIZE = 50;
     private final PropertyAnimator<Point> positionAnimator;
+    private final Integer workerID;
     private Worker workerData;
     @Setter
     private Color color;
@@ -25,7 +26,9 @@ public class WorkerSprite extends JPanel {
     private String currentName;
     private Runnable redrawRequest;
 
-    public WorkerSprite() {
+    public WorkerSprite(Integer workerID) {
+        this.workerID = workerID;
+
         setVisible(true);
         setLayout(null);
         setOpaque(false);
@@ -39,10 +42,20 @@ public class WorkerSprite extends JPanel {
         return new Point(c.getX(), (int) -c.getY());
     }
 
+    @Override
+    public Rectangle calculateBorder() {
+        return new Rectangle(
+                currentPosition.x - 10, currentPosition.y - 10,
+                currentIcon.getIconWidth() + 30, currentIcon.getIconHeight() + 30
+        );
+    }
+
     public void update(Worker data) {
         if (workerData != null) {
-            if (!data.getCoordinates().equals(workerData.getCoordinates()))
+            if (!data.getCoordinates().equals(workerData.getCoordinates())) {
+                System.out.println(getCoordinates(data));
                 positionAnimator.animate(getCoordinates(data));
+            }
         } else {
             currentPosition = getCoordinates(data);
             positionAnimator.setCurrentStatus(currentPosition);
@@ -67,7 +80,6 @@ public class WorkerSprite extends JPanel {
 
         if (workerData == null) return;
 
-        var size = (int) (ICON_SIZE * getWorkerSizeMultiplier());
         currentIcon.paintIcon(null, g, currentPosition.x, currentPosition.y);
 
         var nameSize = g.getFont().getStringBounds(currentName, g2.getFontRenderContext());
@@ -81,7 +93,7 @@ public class WorkerSprite extends JPanel {
         g.drawString(
                 currentName,
                 currentPosition.x + (currentIcon.getIconWidth() - (int) nameSize.getWidth()) / 2,
-                currentPosition.y + size + 5
+                currentPosition.y + currentIcon.getIconHeight() + 5
         );
     }
 
@@ -102,5 +114,10 @@ public class WorkerSprite extends JPanel {
 
     public void setOnRedrawRequest(Runnable target) {
         this.redrawRequest = target;
+    }
+
+    @Override
+    public Integer getPrimaryKey() {
+        return workerID;
     }
 }

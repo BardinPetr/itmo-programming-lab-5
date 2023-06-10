@@ -5,6 +5,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerModel;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
@@ -17,7 +18,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
 
@@ -76,10 +76,7 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
 
     @Override
     protected WorkerSprite createSprite(Integer pk, Worker data) {
-        data.getCoordinates().setX((new Random()).nextInt(-600, 600));
-        data.getCoordinates().setY((new Random()).nextInt(-600, 600));
-
-        var ws = new WorkerSprite();
+        var ws = new WorkerSprite(pk);
         ws.setOnRedrawRequest(this::repaint);
         updateSprite(pk, ws, data);
         return ws;
@@ -95,5 +92,12 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
         sprite.update(newData);
 
         recalculateAxis();
+    }
+
+    @Override
+    protected void onClick(Worker object) {
+        SwingUtilities.invokeLater(
+                () -> new WorkerUpdateFrameZ(object, model.isEditableByCurrentUser(object))
+        );
     }
 }
