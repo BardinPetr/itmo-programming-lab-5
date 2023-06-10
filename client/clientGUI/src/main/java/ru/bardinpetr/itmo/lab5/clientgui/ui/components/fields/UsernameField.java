@@ -1,19 +1,21 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields;
 
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractTextWorkerField;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
+import ru.bardinpetr.itmo.lab5.models.data.validation.CredentialsValidator;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerStringValidation;
 
 import java.util.function.Consumer;
 
-public class NameField extends AbstractTextWorkerField<String> {
+public class UsernameField extends AbstractTextWorkerField<String> {
 
-    public NameField(Consumer<String> handler) {
+    public UsernameField(Consumer<String> handler) {
         super(
-                "WorkerInfoPanel.workerName.toolTip.text",
-                (new WorkerStringValidation())::validateName,
+                "UsernameField.toolText.text",
+                (new CredentialsValidator())::validateUsername,
                 handler
-                );
+        );
     }
 
     @Override

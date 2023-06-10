@@ -32,13 +32,13 @@ public class TestInterface {
     public static void main(String[] args) throws APIClientException {
 
         APIConnectorFactory.create();
-        var loginCmd = new PasswordLoginCommand();
-        loginCmd.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
-        APIProvider.getCredentialsStorage().setCredentials(
-                new StoredJWTCredentials((JWTLoginResponse) (
-                        (AuthCommand.AuthCommandResponse) APIProvider.getConnector().call(loginCmd)).getData()
-                )
-        );
+//        var loginCmd = new PasswordLoginCommand();
+//        loginCmd.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
+//        APIProvider.getCredentialsStorage().setCredentials(
+//                new StoredJWTCredentials((JWTLoginResponse) (
+//                        (AuthCommand.AuthCommandResponse) APIProvider.getConnector().call(loginCmd)).getData()
+//                )
+//        );
 
 
 //        SpinnerDateModel model = new SpinnerDateModel();
@@ -73,10 +73,10 @@ public class TestInterface {
         );
 
 
-//        new LoginPage(() -> {
-//            new MainFrameZ();
-//        });
-        new OrgAddFrameZ();
+        new LoginPage(() -> {
+            new MainFrameZ();
+        });
+//        new OrgAddFrameZ();
 //        testPanel(new WorkerInfoPanelZ());
     }
 

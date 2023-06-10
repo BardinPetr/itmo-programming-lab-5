@@ -16,7 +16,6 @@ public class OrganizationTypeCombobox extends AbstractEnumCombobox {
     @Override
     protected List<EnumPresenter> getList() {
         var res = new ArrayList<EnumPresenter>();
-        res.add(new EnumPresenter<>(null));
         res.addAll(
                 EnumPresenter.fromList(
                         List.of(OrganizationType.values())
