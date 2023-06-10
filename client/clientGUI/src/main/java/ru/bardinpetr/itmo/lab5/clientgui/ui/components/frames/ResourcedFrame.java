@@ -10,8 +10,7 @@ public abstract class ResourcedFrame extends JFrame {
 
     private final UIResources uiResources;
 
-    public ResourcedFrame(String title) {
-        super(title);
+    public ResourcedFrame() {
         uiResources = UIResources.getInstance();
         uiResources.addLocaleChangeListener(this::localeChange);
     }
@@ -23,7 +22,7 @@ public abstract class ResourcedFrame extends JFrame {
     }
 
     private void localeChange(PropertyChangeEvent propertyChangeEvent) {
-        loadResources(getResources());
+        initComponentsI18n();
     }
 
     protected final ResourceBundle getResources() {
@@ -34,5 +33,5 @@ public abstract class ResourcedFrame extends JFrame {
         return uiResources;
     }
 
-    protected abstract void loadResources(ResourceBundle resources);
+    protected abstract void initComponentsI18n();
 }

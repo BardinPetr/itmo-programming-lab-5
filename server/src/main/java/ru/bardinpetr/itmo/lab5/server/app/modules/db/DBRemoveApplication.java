@@ -29,7 +29,7 @@ public class DBRemoveApplication extends APIApplication {
         if (ok)
             appRequest.response().sendOk();
         else
-            appRequest.response().sendErr("Not found entity to remove");
+            appRequest.response().sendErr("DBRemoveApplication.noEntity.text");
     }
 
     private void onRemoveGreater(AppRequest appRequest) {

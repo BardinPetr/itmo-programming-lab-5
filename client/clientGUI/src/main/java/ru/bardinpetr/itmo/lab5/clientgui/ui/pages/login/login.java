@@ -52,7 +52,7 @@ public class login extends JFrame {
         vSpacer3 = new JPanel(null);
 
         //======== this ========
-        setTitle(bundle.getString("loginpage.this.title"));
+        setTitle(bundle.getString("loginPage.this.title"));
         var contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
         ((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 305, 0, 0, 0};
@@ -67,7 +67,7 @@ public class login extends JFrame {
             new Insets(0, 0, 5, 5), 0, 0));
 
         //---- label1 ----
-        label1.setText(bundle.getString("loginpage.label1.text"));
+        label1.setText(bundle.getString("loginPage.label1.text"));
         label1.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(label1, new GridBagConstraints(1, 1, 2, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -80,7 +80,7 @@ public class login extends JFrame {
             new Insets(0, 0, 5, 5), 0, 0));
 
         //---- label2 ----
-        label2.setText(bundle.getString("loginpage.label2.text"));
+        label2.setText(bundle.getString("loginPage.label2.text"));
         contentPane.add(label2, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 5, 5), 0, 0));
@@ -89,7 +89,7 @@ public class login extends JFrame {
             new Insets(0, 0, 5, 5), 0, 0));
 
         //---- label3 ----
-        label3.setText(bundle.getString("loginpage.label3.text"));
+        label3.setText(bundle.getString("loginPage.label3.text"));
         contentPane.add(label3, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 5, 5), 0, 0));
@@ -98,7 +98,7 @@ public class login extends JFrame {
             new Insets(0, 0, 5, 5), 0, 0));
 
         //---- checkBox1 ----
-        checkBox1.setText(bundle.getString("loginpage.checkBox1.text"));
+        checkBox1.setText(bundle.getString("loginPage.checkBox1.text"));
         contentPane.add(checkBox1, new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 5, 5), 0, 0));
@@ -114,11 +114,11 @@ public class login extends JFrame {
             panel1.setLayout(new BoxLayout(panel1, BoxLayout.X_AXIS));
 
             //---- button2 ----
-            button2.setText(bundle.getString("loginpage.button2.text"));
+            button2.setText(bundle.getString("loginPage.button2.text"));
             panel1.add(button2);
 
             //---- button3 ----
-            button3.setText(bundle.getString("loginpage.button3.text"));
+            button3.setText(bundle.getString("loginPage.button3.text"));
             panel1.add(button3);
         }
         contentPane.add(panel1, new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0,

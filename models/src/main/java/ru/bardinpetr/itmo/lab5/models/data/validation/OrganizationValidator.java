@@ -13,7 +13,7 @@ public class OrganizationValidator implements Validator {
      */
     public static ValidationResponse validateFullName(String s) {
         if (s == null) {
-            return new ValidationResponse(false, "Can't be null");
+            return new ValidationResponse(false, "OrganizationValidator.workerName.null.text");
         } else {
             return new ValidationResponse(true, "");
         }

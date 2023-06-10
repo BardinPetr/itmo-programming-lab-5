@@ -14,8 +14,8 @@ public class WorkerValidator implements Validator {
      * @return response with error message
      */
     public ValidationResponse validateName(String name) {
-        return name.isEmpty() ?
-                new ValidationResponse(false, "Name must not be empty") :
+        return (name==null || name.isEmpty()) ?
+                new ValidationResponse(false, "WorkerInfoPanel.workerName.null.text") :
                 new ValidationResponse(true, "");
     }
 
@@ -53,9 +53,9 @@ public class WorkerValidator implements Validator {
      * @return response with error message
      */
     public ValidationResponse validateSalary(Float salary) {
-        return (salary > 0 && (salary < Float.MAX_VALUE) && (!salary.isInfinite())) ?
+        return (salary >= 0 && (salary < Float.MAX_VALUE) && (!salary.isInfinite())) ?
                 new ValidationResponse(true, "") :
-                new ValidationResponse(false, String.format("salary must be greater than 0 and less then %.1f", Float.MAX_VALUE));
+                new ValidationResponse(false, String.format("WorkerInfoPanel.workerSalary.notInRange.text", Float.MAX_VALUE));
     }
 
     /**

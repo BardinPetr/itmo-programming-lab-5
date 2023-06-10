@@ -33,15 +33,15 @@ public class UniqueOrganisationCommand extends UserAPICommand {
 
         @Override
         public String getUserMessage() {
-            var s = new StringBuilder("organization field unique values:\n");
-            for (Organization i : organizations)
-                s.append(
-                        "\tFull name: %s, type: %s\n".formatted(
-                                i.getFullName(),
-                                i.getType()
-                        )
-                );
-            return s.toString();
+//            var s = new StringBuilder("organization field unique values:\n");
+//            for (Organization i : organizations)
+//                s.append(
+//                        "\tFull name: %s, type: %s\n".formatted(
+//                                i.getFullName(),
+//                                i.getType()
+//                        )
+//                );
+            return "UniqueOrganisationCommandResponse.getUserMessage.text";
         }
     }
 }

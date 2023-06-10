@@ -6,19 +6,20 @@ import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.PasswordLoginCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.RegisterCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.JWTLoginResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
-import java.util.ResourceBundle;
 
 public class LoginPage extends ResourcedFrame {
     private final ICredentialsStorage<StoredJWTCredentials> credentialsStorage;
@@ -30,25 +31,31 @@ public class LoginPage extends ResourcedFrame {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JCheckBox showCheckBox;
+    private JLabel userLabel = new JLabel();
+    private JLabel passLabel = new JLabel();
+    private APICommandMenger commandMenger;
 
     public LoginPage(Runnable onSuccess) {
-        super("LoginPage");
+        build();
         this.onSuccess = onSuccess;
 
         apiConnector = APIProvider.getConnector();
         credentialsStorage = APIProvider.getCredentialsStorage();
+
+        commandMenger = new APICommandMenger();
 
         if (credentialsStorage.getCredentials() != null) {
             onSuccess.run();
             return;
         }
 
-        build();
     }
 
     public void build() {
+        setPreferredSize(new Dimension(300, 170));
+        setResizable(false);
         var mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+        mainPanel.setLayout(new GridBagLayout());
 
         loginButton = new JButton();
         loginButton.addActionListener(this::onButtonClick);
@@ -62,17 +69,22 @@ public class LoginPage extends ResourcedFrame {
         showCheckBox = new JCheckBox("Show pass");
         showCheckBox.addItemListener(this::togglePasswordVisibility);
 
-        mainPanel.add(new JLabel("Login"));
-        mainPanel.add(new JLabel("Username"));
-        mainPanel.add(usernameField);
-        mainPanel.add(new JLabel("Password"));
-        mainPanel.add(passwordField);
-        mainPanel.add(showCheckBox);
-        mainPanel.add(loginButton);
-        mainPanel.add(registerButton);
-        mainPanel.add(new LanguageChanger());
 
-        loadResources(getResources());
+        mainPanel.add(userLabel, GridConstrains.placedAdd(0,1, GridBagConstraints.CENTER, GridBagConstraints.NONE));
+        mainPanel.add(usernameField, GridConstrains.placedAdd(0,2, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
+        mainPanel.add(passLabel, GridConstrains.placedAdd(0,3, GridBagConstraints.CENTER, GridBagConstraints.NONE));
+        var passPanel = new JPanel();
+        passPanel.setLayout(new BoxLayout(passPanel, BoxLayout.X_AXIS));
+        passPanel.add(passwordField);
+        passPanel.add(showCheckBox);
+        mainPanel.add(passPanel, GridConstrains.placedAdd(0,4, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
+        var buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridBagLayout());
+        buttonPanel.add(loginButton, GridConstrains.placedAdd(0,0, GridBagConstraints.CENTER, GridBagConstraints.NONE));
+        buttonPanel.add(registerButton, GridConstrains.placedAdd(1,0, GridBagConstraints.CENTER, GridBagConstraints.NONE));
+        buttonPanel.add(new LanguageChanger(), GridConstrains.placedAdd(3,0, GridBagConstraints.EAST, GridBagConstraints.NONE));
+        mainPanel.add(buttonPanel, GridConstrains.placedAdd(0,5, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
+        initComponentsI18n();
 
         setContentPane(mainPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -81,9 +93,13 @@ public class LoginPage extends ResourcedFrame {
     }
 
     @Override
-    protected void loadResources(ResourceBundle resources) {
-        loginButton.setText(resources.getString("login_btn"));
-        registerButton.setText(resources.getString("register_btn"));
+    protected void initComponentsI18n() {
+        var resources = getResources();
+        setTitle(getResources().getString("loginPage.title"));
+        loginButton.setText(resources.getString("loginPage.loginButton.text"));
+        registerButton.setText(resources.getString("loginPage.registerButton.text"));
+        userLabel.setText(resources.getString("loginPage.label2.text"));
+        passLabel.setText(resources.getString("loginPage.label3.text"));
     }
 
     private void togglePasswordVisibility(ItemEvent e) {
@@ -103,34 +119,43 @@ public class LoginPage extends ResourcedFrame {
 
         cmd.setCredentials(new DefaultAuthenticationCredentials(username, password));
 
-        SwingUtilities.invokeLater(() -> sendCommand(cmd));
-    }
+        SwingUtilities.invokeLater(() -> {
+            var validation = cmd.validate();
+            if (!validation.isAllowed()) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        getResources().getString(validation.getMsg()),
+                        getResources().getString("command.error.invalidField"),
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+            APICommandResponse result;
+            try {
+                result = apiConnector.call(cmd);
+            } catch (APIClientException ex) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        getResources().getString(ex.getMessage()),
+                        getResources().getString("command.error.requestFailed"),
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
 
-    private void sendCommand(APICommand cmd) {
-        var validation = cmd.validate();
-        if (!validation.isAllowed()) {
-            JOptionPane.showMessageDialog(this, validation.getMsg(), "Invalid fields", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        APICommandResponse result;
-        try {
-            result = apiConnector.call(cmd);
-        } catch (APIClientException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Request failed", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!result.isSuccess()) {
-            JOptionPane.showMessageDialog(this, result.getUserMessage(), "Authentication failed", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        var loginResponse = ((AuthCommand.AuthCommandResponse) result).getData();
-        credentialsStorage.setCredentials(new StoredJWTCredentials((JWTLoginResponse) loginResponse));
-
-        onSuccess.run();
-        dispose();
+            if (!result.isSuccess()) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        getResources().getString(result.getUserMessage()),
+                        getResources().getString("loginPage.error.authorizationFailed"),
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            var loginResponse = ((AuthCommand.AuthCommandResponse) result).getData();
+            credentialsStorage.setCredentials(new StoredJWTCredentials((JWTLoginResponse) loginResponse));
+            onSuccess.run();
+            dispose();
+        });
     }
 
 }

@@ -39,9 +39,7 @@ public class PagingAPICommand extends UserAPICommand {
     public static class DefaultCollectionCommandResponse extends ListAPICommandResponse<Worker> {
         @Override
         public String getUserMessage() {
-            var result = getResult();
-            return "Collection" +
-                    Worker.nicePrintFormat(result);
+            return "DefaultCollectionCommandResponse.getUserMessage.text";
         }
     }
 }

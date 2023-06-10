@@ -108,7 +108,7 @@ public class DBAuthenticationReceiver implements AuthenticationReceiver<DefaultA
         return new DefaultLoginResponse(
                 data.getUsername(),
                 data.getId(),
-                "user" // TODO get role
+                "user"
         );
     }
 }
