@@ -3,6 +3,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui;
 
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
+import ru.bardinpetr.itmo.lab5.clientgui.Main;
 import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show.OrganizationShowPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ;
@@ -14,6 +15,8 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
+import ru.bardinpetr.itmo.lab5.events.client.consumers.ResourceEventConsumer;
+import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetWorkerIdsCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.UpdateCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
@@ -32,14 +35,16 @@ public class TestInterface {
     public static void main(String[] args) throws APIClientException {
 
         APIConnectorFactory.create();
-//        var loginCmd = new PasswordLoginCommand();
-//        loginCmd.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
-//        APIProvider.getCredentialsStorage().setCredentials(
-//                new StoredJWTCredentials((JWTLoginResponse) (
-//                        (AuthCommand.AuthCommandResponse) APIProvider.getConnector().call(loginCmd)).getData()
-//                )
-//        );
+        var loginCmd = new PasswordLoginCommand();
+        loginCmd.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
+        APIProvider.getCredentialsStorage().setCredentials(
+                new StoredJWTCredentials((JWTLoginResponse) (
+                        (AuthCommand.AuthCommandResponse) APIProvider.getConnector().call(loginCmd)).getData()
+                )
+        );
 
+        APIProvider.getPoolingEventSource()
+                .subscribe(new ResourceEventConsumer(System.out::println, "worker"));
 
 //        SpinnerDateModel model = new SpinnerDateModel();
 //        JSpinner spinner = new JSpinner(model);
@@ -59,11 +64,11 @@ public class TestInterface {
 //        new OrgUpdateFrameZ(new Organization(1,"Itmo", OrganizationType.OPEN_JOINT_STOCK_COMPANY));
 
         var testWorker = new Worker(
-                110,
+                194,
                 "u",
                 ZonedDateTime.now(),
                 3,
-                "",
+                "fewf",
                 123f,
                 new Date(),
                 LocalDate.now(),
@@ -73,10 +78,12 @@ public class TestInterface {
         );
 
 
-        new LoginPage(() -> {
-            new MainFrameZ();
-        });
-//        new OrgAddFrameZ();
+
+//        new LoginPage(() -> {
+//            new MainFrameZ();
+//        });
+        new WorkerUpdateFrameZ(testWorker, true);
+//        new WorkerAddFrameZ();
 //        testPanel(new WorkerInfoPanelZ());
     }
 

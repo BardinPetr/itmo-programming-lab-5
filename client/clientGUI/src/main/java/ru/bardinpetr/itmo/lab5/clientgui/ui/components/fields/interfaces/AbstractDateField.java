@@ -27,7 +27,6 @@ public abstract class AbstractDateField<T> extends JSpinner implements IDataStor
         UIResources.getInstance().addLocaleChangeListener((i) -> initComponentsI18n());
         initComponentsI18n();
 
-
     }
     public void setEditable(boolean editable){
         ((DefaultEditor) getEditor()).getTextField().setEditable(editable);
@@ -49,4 +48,8 @@ public abstract class AbstractDateField<T> extends JSpinner implements IDataStor
         setEditor(new JSpinner.DateEditor(this, dateFormat));
 
     }
+
+//    public String getText() {
+//        return getValue();
+//    }
 }

@@ -1,11 +1,13 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main;
 
+import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.BottomPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show.OrganizationShowPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo.UsersInfoZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerShowPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.events.client.consumers.ResourceEventConsumer;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.InfoCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.ShowMineCommand;
@@ -117,8 +119,15 @@ public class MainFrameZ extends ResourcedFrame {
                     }
             );
         });
+        invokeLater(this::updateInformation);
+        APIProvider.getPoolingEventSource().subscribe(new ResourceEventConsumer(
+                (e -> updateInformation()),
+                "worker"
+        ));
+    }
 
-        invokeLater(()-> {new APICommandMenger().sendCommand(
+    public void updateInformation(){
+        new APICommandMenger().sendCommand(
                 new ShowMineCommand(),
                 this,
                 "MainFrame.canNotGetMineWorkers.text",
@@ -126,10 +135,9 @@ public class MainFrameZ extends ResourcedFrame {
                     var resp = (ShowMineCommand.ShowCommandResponse) response;
                     usersInfo.setWorkersCount(resp.getResult().size());
                 }
-        );});
+        );
 
-        invokeLater(()-> {
-            new APICommandMenger().sendCommand(
+        new APICommandMenger().sendCommand(
                     new InfoCommand(),
                     this,
                     "MainFrame.canNotFetInfo.text",
@@ -139,7 +147,6 @@ public class MainFrameZ extends ResourcedFrame {
                         bottomMenu.setBDSize(resp.getResult().getItemsCount());
                     }
             );
-        });
     }
     protected void initComponentsI18n() {
         if (workersMenuButton==null)return;
@@ -161,5 +168,4 @@ public class MainFrameZ extends ResourcedFrame {
             }
         });
     }
-
 }

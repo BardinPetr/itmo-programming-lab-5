@@ -54,7 +54,7 @@ public class OrganizationCombobox extends AbstractWorkerComboBox<OrganizationPre
 
     @Override
     public ValidationResponse validateValue(){
-        var item = (Organization) getSelectedItem();
+        var item = (OrganizationPresenter) getSelectedItem();
         if (item==null||getList().contains(item)) {
             setBackground(Color.WHITE);
             return new ValidationResponse(
@@ -72,7 +72,10 @@ public class OrganizationCombobox extends AbstractWorkerComboBox<OrganizationPre
     }
     @Override
     public DataContainer<OrganizationPresenter> getData() {
-        return new DataContainer<>(OrganizationPresenter.fromOrganization((Organization) getSelectedItem()), validateValue());
+        var res = (OrganizationPresenter) getSelectedItem();
+        if (res==null)
+            return new DataContainer<>(null, validateValue());
+        return new DataContainer<>(OrganizationPresenter.fromOrganization(res.getOrganization()), validateValue());
 
     }
 

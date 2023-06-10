@@ -162,7 +162,7 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         ));
         if (orgId.data != null)
             workerDataContainer.data.setOrganization(
-                    orgId.data);
+                    orgId.data.getOrganization());
         else
             workerDataContainer.data.setOrganization(null);
         workerDataContainer.data.setPosition((Position) position.data.getEnumData());

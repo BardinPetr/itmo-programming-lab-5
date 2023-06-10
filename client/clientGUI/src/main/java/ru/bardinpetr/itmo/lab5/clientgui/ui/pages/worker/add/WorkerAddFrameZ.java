@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.util.ResourceBundle;
 
 import static javax.swing.SwingUtilities.invokeLater;
+import static ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand.*;
 
 public class WorkerAddFrameZ extends ResourcedFrame {
     private WorkerInfoPanelZ workerInfoPanel;
@@ -88,12 +89,12 @@ public class WorkerAddFrameZ extends ResourcedFrame {
                         command = new AddIfMinCommand();
                     }
                     command.setElement(worker.data);
-                    invokeLater(()-> {new APICommandMenger().sendCommand(
+                    new APICommandMenger().sendCommand(
                             command,
                             workerInfoPanel,
                             "MainFrame.canNotAddMsg.text",
                             (response) -> {
-                                var resp = (AddCommand.AddCommandResponse) response;
+                                var resp = (AddCommandResponse) response;
                                 JOptionPane.showConfirmDialog(
                                         workerInfoPanel,
                                         getResources().getString("WorkerAddFrame.newIdMsg")+
@@ -102,7 +103,7 @@ public class WorkerAddFrameZ extends ResourcedFrame {
                                         , JOptionPane.PLAIN_MESSAGE
                                 );
                             }
-                    );});
+                    );
                     System.out.println(worker);
                 }
             }

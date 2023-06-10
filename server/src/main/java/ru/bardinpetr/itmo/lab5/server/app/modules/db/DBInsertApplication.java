@@ -69,8 +69,10 @@ public class DBInsertApplication extends AbstractApplication {
             return;
         }
 
-        dao.add(extractUser(appRequest), cur);
-        resp.sendOk();
+        var x = dao.add(extractUser(appRequest), cur);
+        var cmdResp = req.createResponse();
+        cmdResp.setId(x);
+        appRequest.response().from(cmdResp).send();
     }
 
     private void addIfMin(AppRequest appRequest) {
@@ -95,8 +97,10 @@ public class DBInsertApplication extends AbstractApplication {
             return;
         }
 
-        dao.add(extractUser(appRequest), cur);
-        resp.sendOk();
+        var x = dao.add(extractUser(appRequest), cur);
+        var cmdResp = req.createResponse();
+        cmdResp.setId(x);
+        appRequest.response().from(cmdResp).send();
     }
 
     private void selfInfo(AppRequest request) {

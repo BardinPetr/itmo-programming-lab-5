@@ -89,8 +89,8 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer>, IOwned
 
     public static Comparator<Worker> getComparator() {
         return Comparator
-                .comparing(Worker::getOrganization, nullsLast(naturalOrder()))
-                .thenComparing(Worker::getPosition, nullsLast(naturalOrder()))
+                .comparing(Worker::getPosition, nullsLast(naturalOrder()))
+                .thenComparing(Worker::getOrganization, nullsLast(naturalOrder()))
                 .thenComparing(Worker::getSalary)
                 .thenComparing(Worker::getName)
                 .thenComparing((x, y) -> -1 * x.startDate.compareTo(y.startDate))

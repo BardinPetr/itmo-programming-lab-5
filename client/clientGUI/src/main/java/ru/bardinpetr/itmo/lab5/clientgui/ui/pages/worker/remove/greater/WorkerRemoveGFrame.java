@@ -2,7 +2,9 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.remove.greater;
 
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
+import ru.bardinpetr.itmo.lab5.models.commands.api.RemoveGreaterCommand;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,7 +51,12 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
                     JOptionPane.showMessageDialog(workerInfoPanel, getResources().getString(worker.msg), getResources().getString("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
                 }
                 else {
-                    //TODO send removeGreater command
+                    new APICommandMenger().sendCommand(
+                            new RemoveGreaterCommand(worker.data),
+                            workerInfoPanel,
+                            "WorkerRemoveGFrame.removeGreaterWorkerButton.error.text",
+                            (response) -> {}
+                    );
                 }
             }
         });
