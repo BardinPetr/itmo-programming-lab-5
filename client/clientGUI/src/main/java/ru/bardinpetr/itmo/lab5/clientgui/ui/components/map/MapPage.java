@@ -1,7 +1,8 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.map;
 
-import ru.bardinpetr.itmo.lab5.clientgui.models.ExtendedListModel;
+import ru.bardinpetr.itmo.lab5.clientgui.models.sync.ExternalSyncedListModel;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.GraphicsUtils;
+import ru.bardinpetr.itmo.lab5.events.models.Event;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ import java.util.Map;
  * @param <M> model type
  * @param <S> object renderer
  */
-public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends ExtendedListModel<T>, S extends MapSprite> extends JPanel implements MouseMotionListener, MouseWheelListener, MouseListener, ListDataListener {
+public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends ExternalSyncedListModel<T>, S extends MapSprite> extends JPanel implements MouseMotionListener, MouseWheelListener, MouseListener, ListDataListener {
 
     private static final double SCALE_FACTOR = 0.1;
     private static final int AXES_TICK_STEP = 50;
@@ -40,10 +41,20 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Extende
         addMouseListener(this);
         addMouseMotionListener(this);
         addMouseWheelListener(this);
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                System.out.println(model.asList());
+//                repaint();
+            }
+        });
     }
 
     public void start() {
         model.addListDataListener(this);
+        model.addServerEventListener(this::onServerEvent);
+
         if (model.size() > 0)
             intervalAdded(new ListDataEvent(model, ListDataEvent.CONTENTS_CHANGED, 0, model.size() - 1));
     }
@@ -199,10 +210,10 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Extende
 
     @Override
     public void intervalRemoved(ListDataEvent e) {
-        for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
-            var real = model.getElementAt(i);
-            sprites.remove(real.getPrimaryKey(), null);
-        }
+//        for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
+//            var real = model.getElementAt(i);
+//            sprites.remove(real.getPrimaryKey(), null);
+//        }
     }
 
     @Override
@@ -218,6 +229,12 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Extende
             } else {
                 updateSprite(pk, sprite, real);
             }
+        }
+    }
+
+    private void onServerEvent(Event event) {
+        if (event.getAction() == Event.EventType.DELETE) {
+            sprites.remove((Integer) event.getObject());
         }
     }
 

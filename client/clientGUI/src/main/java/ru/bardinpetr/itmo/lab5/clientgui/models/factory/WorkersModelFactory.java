@@ -8,7 +8,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
 public class WorkersModelFactory {
 
     public static WorkerModel create() {
-        Integer ownerId = null;
+        Integer ownerId;
         try {
             ownerId = ((GetSelfInfoCommand.GetSelfInfoResponse) APIProvider.getConnector().call(new GetSelfInfoCommand())).getId();
         } catch (APIClientException ignored) {

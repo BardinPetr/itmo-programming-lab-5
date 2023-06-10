@@ -1,8 +1,11 @@
-package ru.bardinpetr.itmo.lab5.clientgui.models;
+package ru.bardinpetr.itmo.lab5.clientgui.models.sync;
 
 import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
+import ru.bardinpetr.itmo.lab5.clientgui.models.ExtendedListModel;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.EventUtils;
 import ru.bardinpetr.itmo.lab5.events.client.consumers.ResourceEventConsumer;
+import ru.bardinpetr.itmo.lab5.events.models.Event;
 import ru.bardinpetr.itmo.lab5.events.models.EventSet;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
@@ -89,6 +92,7 @@ public class ExternalSyncedListModel<T extends IKeyedEntity<Integer>> extends Ex
     private void onUpdate(EventSet eventSet) {
         for (var i : eventSet.getEvents()) {
             var id = (Integer) i.getObject();
+            fireBaseEvent(i);
             switch (i.getAction()) {
                 case DELETE -> onDeleteEvent(id);
                 case CREATE -> onCreateEvent(id);
@@ -97,11 +101,28 @@ public class ExternalSyncedListModel<T extends IKeyedEntity<Integer>> extends Ex
         }
     }
 
+    public void addServerEventListener(ServerEventListener l) {
+        listenerList.add(ServerEventListener.class, l);
+    }
+
+    public void removeServerEventListener(ServerEventListener l) {
+        listenerList.remove(ServerEventListener.class, l);
+    }
+
+    protected void fireBaseEvent(Event evt) {
+        EventUtils.fireAll(
+                listenerList,
+                ServerEventListener.class,
+                i -> i.onEvent(evt)
+        );
+    }
+
     public int getVectorPos(Integer id) {
         for (int pos = 0; pos < size(); pos++)
             if (getElementAt(pos).getPrimaryKey().equals(id))
                 return pos;
         return -1;
     }
+
 }
 

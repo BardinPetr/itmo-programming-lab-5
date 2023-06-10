@@ -20,10 +20,10 @@ public class DBPager<T> {
         if (!cnt.equals(PagingAPICommand.FULL_COUNT))
             base = base.limit(cnt);
 
-        var list = base.toList();
-        if (list.isEmpty())
-            throw new RuntimeException("No elements for such request");
+//        var list = base.toList();
+//        if (list.isEmpty())
+//            throw new RuntimeException("No elements for such request");
 
-        return list;
+        return base.toList();
     }
 }

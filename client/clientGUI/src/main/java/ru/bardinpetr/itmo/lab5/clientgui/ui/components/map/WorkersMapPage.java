@@ -96,6 +96,8 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
 
     @Override
     protected void onClick(Worker object) {
+        if (object == null)
+            return;
         SwingUtilities.invokeLater(
                 () -> new WorkerUpdateFrameZ(object, model.isEditableByCurrentUser(object))
         );

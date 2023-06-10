@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.clientgui.models.impl;
 
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
-import ru.bardinpetr.itmo.lab5.clientgui.models.ExternalSyncedListModel;
+import ru.bardinpetr.itmo.lab5.clientgui.models.sync.ExternalSyncedListModel;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetOrgsCommand;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
