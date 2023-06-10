@@ -2,7 +2,6 @@ package ru.bardinpetr.itmo.lab5.network.transport.server.multithreading;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.common.serdes.JSONSerDesService;
-import ru.bardinpetr.itmo.lab5.common.serdes.exceptions.SerDesException;
 import ru.bardinpetr.itmo.lab5.network.transport.errors.TransportException;
 import ru.bardinpetr.itmo.lab5.network.transport.models.Frame;
 import ru.bardinpetr.itmo.lab5.network.transport.models.SocketMessage;
@@ -60,10 +59,10 @@ public class Sender extends Thread {
 
             log.info("Send message to " + session.getAddress());
 
-        } catch (SerDesException ignored) {
         } catch (IOException e) {
             log.info("Sending frame exception");
             throw new TransportException(e);
+        } catch (Exception ignored) {
         } finally {
             closeSession();
             log.info("finish sending");

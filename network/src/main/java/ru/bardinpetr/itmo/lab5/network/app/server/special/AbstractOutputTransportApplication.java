@@ -49,7 +49,11 @@ public abstract class AbstractOutputTransportApplication<U, L> extends AbstractA
         }
 
         log.info("Sending {} to {}", response, recipient);
-        transport.send(recipient, serialized);
+        try {
+            transport.send(recipient, serialized);
+        } catch (Exception e) {
+            log.error("Transport send failed: {}", e.getMessage());
+        }
     }
 
     /**

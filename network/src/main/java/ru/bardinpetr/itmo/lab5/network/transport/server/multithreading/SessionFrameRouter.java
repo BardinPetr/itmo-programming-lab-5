@@ -46,8 +46,7 @@ public class SessionFrameRouter implements IServerTransport<SocketAddress, Socke
                 var clientPipe = clientPipeMap.get(currentSessionId).getPipe();
 
                 clientPipe.sink().write(ByteBuffer.wrap(frame.toBytes()));
-
-            } catch (IOException ignored) {
+            } catch (Exception ignored) {
             }
         }
 

@@ -2,8 +2,11 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.map;
 
 import ru.bardinpetr.itmo.lab5.clientgui.models.ExtendedListModel;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.GraphicsUtils;
+import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
 import javax.swing.*;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
@@ -16,7 +19,7 @@ import java.util.Map;
  * @param <M> model type
  * @param <S> object renderer
  */
-public class MapPage<T, M extends ExtendedListModel<T>, S extends JPanel> extends JPanel implements MouseMotionListener, MouseWheelListener, MouseListener {
+public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends ExtendedListModel<T>, S extends JPanel> extends JPanel implements MouseMotionListener, MouseWheelListener, MouseListener, ListDataListener {
 
     private static final double SCALE_FACTOR = 0.1;
     private static final int AXES_TICK_STEP = 50;
@@ -31,14 +34,17 @@ public class MapPage<T, M extends ExtendedListModel<T>, S extends JPanel> extend
     public MapPage(M model) {
         this.model = model;
 
-        paneMaxCoords = new Point(700, 700);
-        paneMinCoords = new Point(-700, -700);
+        recalculateAxis();
 
         addMouseListener(this);
         addMouseMotionListener(this);
         addMouseWheelListener(this);
+    }
 
-//        model.addListDataListener(this);
+    public void start() {
+        model.addListDataListener(this);
+        if (model.size() > 0)
+            intervalAdded(new ListDataEvent(model, ListDataEvent.CONTENTS_CHANGED, 0, model.size() - 1));
     }
 
     @Override
@@ -49,12 +55,15 @@ public class MapPage<T, M extends ExtendedListModel<T>, S extends JPanel> extend
 
         g2.setTransform(paneTransform);
 
-        drawAxes(g2);
         drawItems(g2);
+        drawAxes(g2);
     }
 
     private void drawAxes(Graphics2D g) {
+        var defaultStroke = g.getStroke();
+
         g.setColor(Color.BLACK);
+        g.setStroke(new BasicStroke(2));
         GraphicsUtils.drawArrow(g, paneMinCoords.x, 0, paneMaxCoords.x, 0, 20);
         GraphicsUtils.drawArrow(g, 0, paneMaxCoords.y, 0, paneMinCoords.y, 20);
 
@@ -79,6 +88,8 @@ public class MapPage<T, M extends ExtendedListModel<T>, S extends JPanel> extend
             var bounds = font.getStringBounds(str, frc);
             g.drawString(str, labelShift, y + (int) bounds.getHeight() / 2);
         }
+
+        g.setStroke(defaultStroke);
     }
 
     public void centerMap() {
@@ -94,6 +105,10 @@ public class MapPage<T, M extends ExtendedListModel<T>, S extends JPanel> extend
         paneMinCoords = minCoords;
         paneMaxCoords = maxCoords;
         repaint();
+    }
+
+    protected void recalculateAxis() {
+        setAxis(new Point(700, 700), new Point(-700, -700));
     }
 
     private void movePane(int dx, int dy) {
@@ -143,5 +158,48 @@ public class MapPage<T, M extends ExtendedListModel<T>, S extends JPanel> extend
 
     @Override
     public void mouseMoved(MouseEvent e) {
+    }
+
+    protected abstract S createSprite(Integer pk, T data);
+
+    protected abstract void updateSprite(Integer pk, S sprite, T newData);
+
+    @Override
+    public void intervalAdded(ListDataEvent e) {
+        System.out.printf("A %d %d\n", e.getIndex0(), e.getIndex1());
+        for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
+            var real = model.getElementAt(i);
+            var pk = real.getPrimaryKey();
+            sprites.put(
+                    pk,
+                    createSprite(pk, real)
+            );
+        }
+    }
+
+    @Override
+    public void intervalRemoved(ListDataEvent e) {
+        System.out.printf("R %d %d\n", e.getIndex0(), e.getIndex1());
+        for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
+            var real = model.getElementAt(i);
+            sprites.remove(real.getPrimaryKey(), null);
+        }
+    }
+
+    @Override
+    public void contentsChanged(ListDataEvent e) {
+        System.out.printf("C %d %d\n", e.getIndex0(), e.getIndex1());
+        for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
+            var real = model.getElementAt(i);
+
+            var pk = real.getPrimaryKey();
+
+            var sprite = sprites.getOrDefault(pk, null);
+            if (sprite == null) {
+                intervalAdded(new ListDataEvent(e.getSource(), e.getType(), i, i));
+            } else {
+                updateSprite(pk, sprite, real);
+            }
+        }
     }
 }
