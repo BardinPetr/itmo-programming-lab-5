@@ -37,7 +37,7 @@ public class MainFrameZ extends ResourcedFrame {
 
     public MainFrameZ() {
         initComponents();
-        setSize(new Dimension(800, 700));
+        setSize(new Dimension(800, 500));
         setVisible(true);
     }
 

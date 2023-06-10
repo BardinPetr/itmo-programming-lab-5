@@ -22,7 +22,7 @@ import static java.util.Comparator.nullsLast;
 
 @Data
 @AllArgsConstructor
-public class Worker implements Comparable<Worker>, IKeyedEntity<Integer>, IOwnedEntity {
+public class Worker implements Comparable<Worker>, IKeyedEntity<Integer>, IOwnedEntity, Cloneable {
     @With
     @NonNull
     @NotPromptRequired
@@ -170,6 +170,15 @@ public class Worker implements Comparable<Worker>, IKeyedEntity<Integer>, IOwned
         } else {
             this.owner = owner;
             return true;
+        }
+    }
+
+    @Override
+    public Worker clone() {
+        try {
+            return (Worker) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

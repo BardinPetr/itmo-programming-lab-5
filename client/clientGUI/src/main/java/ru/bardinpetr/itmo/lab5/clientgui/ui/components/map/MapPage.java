@@ -45,7 +45,7 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
-                System.out.println(model.asList());
+//                System.out.println(model.asList());
 //                repaint();
             }
         });
@@ -76,8 +76,8 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
 
         g.setColor(Color.BLACK);
         g.setStroke(new BasicStroke(2));
-        GraphicsUtils.drawArrow(g, paneMinCoords.x, 0, paneMaxCoords.x, 0, 20);
-        GraphicsUtils.drawArrow(g, 0, paneMaxCoords.y, 0, paneMinCoords.y, 20);
+        GraphicsUtils.drawArrow(g, paneMinCoords.x, 0, paneMaxCoords.x + 50, 0, 20);
+        GraphicsUtils.drawArrow(g, 0, paneMaxCoords.y, 0, paneMinCoords.y - 50, 20);
 
         var frc = g.getFontRenderContext();
         var font = g.getFont();
@@ -232,7 +232,7 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
         }
     }
 
-    private void onServerEvent(Event event) {
+    protected void onServerEvent(Event event) {
         if (event.getAction() == Event.EventType.DELETE) {
             sprites.remove((Integer) event.getObject());
         }

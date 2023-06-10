@@ -5,8 +5,9 @@ import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerModel;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerUpdateFrameFactory;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
+import ru.bardinpetr.itmo.lab5.events.models.Event;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.PasswordLoginCommand;
@@ -79,6 +80,7 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
         var ws = new WorkerSprite(pk);
         ws.setOnRedrawRequest(this::repaint);
         updateSprite(pk, ws, data);
+        ws.showObject();
         return ws;
     }
 
@@ -99,7 +101,19 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
         if (object == null)
             return;
         SwingUtilities.invokeLater(
-                () -> new WorkerUpdateFrameZ(object, model.isEditableByCurrentUser(object))
+                () -> WorkerUpdateFrameFactory
+                        .getInstance()
+                        .open(object, model.isEditableByCurrentUser(object))
         );
+    }
+
+    protected void onServerEvent(ru.bardinpetr.itmo.lab5.events.models.Event event) {
+        if (event.getAction() == Event.EventType.DELETE) {
+            sprites
+                    .get((Integer) event.getObject())
+                    .hideObject(() -> super.onServerEvent(event));
+        } else {
+            super.onServerEvent(event);
+        }
     }
 }

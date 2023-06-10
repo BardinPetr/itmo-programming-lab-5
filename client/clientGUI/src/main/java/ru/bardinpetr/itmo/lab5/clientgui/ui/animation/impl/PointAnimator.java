@@ -6,12 +6,15 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.animation.PropertyAnimator;
 import java.awt.*;
 
 public class PointAnimator extends PropertyAnimator<Point> {
-    private static final int PERIOD = 50;
+    private static final int PERIOD = 25;
     private final double speed;
+    private double yVal = 0;
+    private double xVal = 0;
     private double yStep = 0;
-    @Setter
-    private double distanceEpsilon = 2;
     private double xStep = 0;
+    @Setter
+    private double distanceEpsilon = 3;
+
 
     public PointAnimator(double pxPerSec) {
         super(PERIOD);
@@ -30,6 +33,8 @@ public class PointAnimator extends PropertyAnimator<Point> {
         }
         xStep = (endPoint.x - startPoint.x) / steps;
         yStep = (endPoint.y - startPoint.y) / steps;
+        xVal = startPoint.x;
+        yVal = startPoint.y;
     }
 
     @Override
@@ -39,6 +44,8 @@ public class PointAnimator extends PropertyAnimator<Point> {
 
     @Override
     protected Point update(Point cur) {
-        return new Point((int) (cur.x + xStep), (int) (cur.y + yStep));
+        xVal += xStep;
+        yVal += yStep;
+        return new Point((int) xVal, (int) yVal);
     }
 }
