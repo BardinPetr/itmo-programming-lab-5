@@ -76,8 +76,11 @@ public class XTable extends JPanel {
         selectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         selectionModel.addListSelectionListener(e -> {
             if (e.getValueIsAdjusting()) return;
+            var isSingle = getSelectedIndexes().size() == 1;
             if (deleteButton != null)
-                deleteButton.setEnabled(getSelectedIndexes().size() == 1);
+                deleteButton.setEnabled(isSingle);
+            if (updateButton != null)
+                updateButton.setEnabled(isSingle);
         });
     }
 

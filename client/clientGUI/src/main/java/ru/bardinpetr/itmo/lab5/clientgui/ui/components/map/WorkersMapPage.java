@@ -4,8 +4,7 @@ import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
-import ru.bardinpetr.itmo.lab5.clientgui.models.WorkerModel;
-import ru.bardinpetr.itmo.lab5.clientgui.utils.ListUtil;
+import ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerModel;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
@@ -22,24 +21,13 @@ import java.util.Random;
 
 public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
 
-    private final Map<Integer, Color> ownerColors = new HashMap<>();
+    private final Map<Integer, Color> ownerColors;
 
     public WorkersMapPage(WorkerModel model) {
         super(model);
+        ownerColors = new HashMap<>();
 
-        ListUtil.stream(model.elements()).forEach(
-                i -> {
-                    if (!ownerColors.containsKey(i.getOwner()))
-                        ownerColors.put(i.getOwner(), Color.getHSBColor((float) (Math.random() * 360), 1, 1));
-
-                    i.getCoordinates().setX((new Random()).nextInt(-600, 600));
-                    i.getCoordinates().setY((new Random()).nextInt(-600, 600));
-                    var ws = new WorkerSprite();
-                    ws.setColor(ownerColors.get(i.getOwner()));
-                    ws.update(i);
-                    sprites.put(i.getPrimaryKey(), ws);
-                }
-        );
+        start();
 
         recalculateAxis();
         centerMap();
@@ -59,6 +47,7 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
         } catch (APIClientException ignored) {
         }
 
+//        var orgs = new OrganizationsModel();
         var model = new WorkerModel(ownerId);
 
         var f = new JFrame();
@@ -68,7 +57,8 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
         f.setVisible(true);
     }
 
-    void recalculateAxis() {
+    @Override
+    protected void recalculateAxis() {
         var minPoint = new Point(-500, -500);
         var maxPoint = new Point(500, 500);
 
@@ -85,4 +75,25 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
         setAxis(minPoint, maxPoint);
     }
 
+    @Override
+    protected WorkerSprite createSprite(Integer pk, Worker data) {
+        data.getCoordinates().setX((new Random()).nextInt(-600, 600));
+        data.getCoordinates().setY((new Random()).nextInt(-600, 600));
+
+        var ws = new WorkerSprite();
+        updateSprite(pk, ws, data);
+        return ws;
+    }
+
+    @Override
+    protected void updateSprite(Integer pk, WorkerSprite sprite, Worker newData) {
+        var owner = newData.getOwner();
+        if (!ownerColors.containsKey(owner))
+            ownerColors.put(owner, Color.getHSBColor((float) (Math.random() * 360), 1, 1));
+
+        sprite.setColor(ownerColors.get(owner));
+        sprite.update(newData);
+
+        recalculateAxis();
+    }
 }

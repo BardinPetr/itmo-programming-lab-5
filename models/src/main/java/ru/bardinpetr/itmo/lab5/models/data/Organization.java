@@ -1,17 +1,18 @@
 package ru.bardinpetr.itmo.lab5.models.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.FieldValidator;
 import ru.bardinpetr.itmo.lab5.models.data.annotation.InteractText;
+import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 import ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidator;
 
 import java.util.Comparator;
 
 @Data
 @AllArgsConstructor
-public class Organization implements Comparable<Organization> {
+public class Organization implements Comparable<Organization>, IKeyedEntity<Integer> {
     @InteractText("Enter an organization's id")
     @FieldValidator(OrganizationValidator.class)
     Integer id;
@@ -41,5 +42,11 @@ public class Organization implements Comparable<Organization> {
     @Override
     public int compareTo(Organization org) {
         return getComparator().compare(this, org);
+    }
+
+    @JsonIgnore
+    @Override
+    public Integer getPrimaryKey() {
+        return id;
     }
 }

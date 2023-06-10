@@ -42,13 +42,14 @@ public class ExternalSyncedListModel<T extends IKeyedEntity<Integer>> extends Ex
     private void firstPool() {
         try {
             var data = getAll.get();
-            if (data != null)
+            if (data != null) {
                 addAll(data);
 
-            APIProvider
-                    .getPoolingEventSource()
-                    .subscribe(eventSubscriber);
-            return;
+                APIProvider
+                        .getPoolingEventSource()
+                        .subscribe(eventSubscriber);
+                return;
+            }
         } catch (Exception ignored) {
         }
 

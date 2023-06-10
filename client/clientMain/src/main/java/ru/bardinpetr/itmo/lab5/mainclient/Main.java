@@ -3,7 +3,6 @@ package ru.bardinpetr.itmo.lab5.mainclient;
 import ru.bardinpetr.itmo.lab5.client.api.auth.impl.RAMCredentialsStorage;
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.api.connectors.net.UDPAPIClientFactory;
-import ru.bardinpetr.itmo.lab5.client.api.events.APIPoolingEventSource;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.JWTAuthConnector;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.ui.LoginPage;
@@ -15,8 +14,6 @@ import ru.bardinpetr.itmo.lab5.mainclient.api.commands.UserAPICommandsDescriptio
 import ru.bardinpetr.itmo.lab5.mainclient.local.controller.registry.MainClientCommandRegistry;
 import ru.bardinpetr.itmo.lab5.mainclient.local.ui.texts.MainTexts;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAPICommandAuthenticator;
-
-import java.time.Duration;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,8 +28,8 @@ public class Main {
         );
         APIProvider.setConnector(authedAPI);
 
-        var eventConsumer = new APIPoolingEventSource(authedAPI, Duration.ofSeconds(1));
-        eventConsumer.subscribe(System.out::println);
+//        var eventConsumer = new APIPoolingEventSource(authedAPI, Duration.ofSeconds(1));
+//        eventConsumer.subscribe(System.out::println);
 
         var descriptionHolder = new UserAPICommandsDescriptionHolder();
 
