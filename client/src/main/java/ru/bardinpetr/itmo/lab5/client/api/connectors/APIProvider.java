@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
+import ru.bardinpetr.itmo.lab5.client.api.events.APIPoolingEventSource;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 
 public class APIProvider {
@@ -14,4 +15,8 @@ public class APIProvider {
     @Getter
     @Setter
     private static ICredentialsStorage<StoredJWTCredentials> credentialsStorage;
+
+    @Getter
+    @Setter
+    private static APIPoolingEventSource poolingEventSource;
 }

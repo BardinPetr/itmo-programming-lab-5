@@ -4,6 +4,8 @@ import ru.bardinpetr.itmo.lab5.clientgui.models.ExtendedListModel;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.GraphicsUtils;
 
 import javax.swing.*;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
@@ -16,7 +18,7 @@ import java.util.Map;
  * @param <M> model type
  * @param <S> object renderer
  */
-public class MapPage<T, M extends ExtendedListModel<T>, S extends JPanel> extends JPanel implements MouseMotionListener, MouseWheelListener, MouseListener {
+public class MapPage<T, M extends ExtendedListModel<T>, S extends JPanel> extends JPanel implements MouseMotionListener, MouseWheelListener, MouseListener, ListDataListener {
 
     private static final double SCALE_FACTOR = 0.1;
     private static final int AXES_TICK_STEP = 50;
@@ -38,7 +40,7 @@ public class MapPage<T, M extends ExtendedListModel<T>, S extends JPanel> extend
         addMouseMotionListener(this);
         addMouseWheelListener(this);
 
-//        model.addListDataListener(this);
+        model.addListDataListener(this);
     }
 
     @Override
@@ -143,5 +145,20 @@ public class MapPage<T, M extends ExtendedListModel<T>, S extends JPanel> extend
 
     @Override
     public void mouseMoved(MouseEvent e) {
+    }
+
+    @Override
+    public void intervalAdded(ListDataEvent e) {
+
+    }
+
+    @Override
+    public void intervalRemoved(ListDataEvent e) {
+
+    }
+
+    @Override
+    public void contentsChanged(ListDataEvent e) {
+
     }
 }

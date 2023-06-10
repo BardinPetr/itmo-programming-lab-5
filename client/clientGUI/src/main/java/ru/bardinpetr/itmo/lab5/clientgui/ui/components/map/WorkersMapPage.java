@@ -8,18 +8,15 @@ import ru.bardinpetr.itmo.lab5.clientgui.models.WorkerModel;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.ListUtil;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.api.ShowCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.PasswordLoginCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.JWTLoginResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.requests.PagingAPICommand;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -56,15 +53,13 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
         loginCmd.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
         APIProvider.getCredentialsStorage().setCredentials(new StoredJWTCredentials((JWTLoginResponse) ((AuthCommand.AuthCommandResponse) APIProvider.getConnector().call(loginCmd)).getData()));
 
-        List<Worker> data = null;
         Integer ownerId = null;
         try {
-            data = ((ShowCommand.ShowCommandResponse) APIProvider.getConnector().call(new ShowCommand(0, PagingAPICommand.FULL_COUNT))).getResult();
             ownerId = ((GetSelfInfoCommand.GetSelfInfoResponse) APIProvider.getConnector().call(new GetSelfInfoCommand())).getId();
         } catch (APIClientException ignored) {
         }
+
         var model = new WorkerModel(ownerId);
-        model.addAll(data);
 
         var f = new JFrame();
         f.getContentPane().add(new WorkersMapPage(model));

@@ -148,6 +148,7 @@ public class UDPClientTransport implements IClientTransport<SocketMessage> {
         try {
             msg = serDesService.deserialize(TransportUtils.joinSessionFrames(frameList));
         } catch (SerDesException e) {
+            System.err.println(e);
             throw new TransportException("Could not serialize message");
         }
 
