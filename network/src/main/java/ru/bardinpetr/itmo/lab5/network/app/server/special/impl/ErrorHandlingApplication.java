@@ -11,7 +11,7 @@ public class ErrorHandlingApplication extends APIApplication {
     public void apply(AppRequest request) {
         var resp = request.response();
         resp
-                .message("Method not available")
+                .message("ErrorHandlingApplication.methodNotAvailable")
                 .status(APIResponseStatus.NOT_FOUND)
                 .send();
     }

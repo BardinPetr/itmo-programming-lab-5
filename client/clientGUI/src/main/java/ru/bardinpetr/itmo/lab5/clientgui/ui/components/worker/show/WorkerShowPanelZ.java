@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ResourceBundle;
 
+import static javax.swing.SwingUtilities.invokeLater;
+
 public class WorkerShowPanelZ extends ResourcedPanel {
     private JPanel workerTablePanel;
     private JPanel panel1;
@@ -38,14 +40,14 @@ public class WorkerShowPanelZ extends ResourcedPanel {
         add(panel1, BorderLayout.PAGE_END);
 
         openAddWorkerPlane.addActionListener((e -> new WorkerAddFrameZ()));
-        clearWorkerButton.addActionListener((e)->{
+        clearWorkerButton.addActionListener((e)->invokeLater(()-> {
             new APICommandMenger().sendCommand(
                     new ClearCommand(),
                     this,
                     "WorkerShowPanel.canNotClear.text",
                     (response) -> {}
             );
-        });
+        }));
         removeGreaterButton.addActionListener((e -> new WorkerRemoveGFrame()));
 
 

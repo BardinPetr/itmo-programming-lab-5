@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import static javax.swing.SwingUtilities.invokeLater;
+
 public class WorkerUpdateFrameZ extends ResourcedFrame {
     private WorkerInfoPanelZ workerInfoPanel;
 

@@ -40,7 +40,7 @@ public abstract class AbstractAPIClient<T extends IIdentifiableMessage> {
     public APICommandResponse request(APICommand request) throws TransportTimeoutException, APIClientException {
         var message = serialize(request);
         if (message == null)
-            throw new APIClientException("Failed to serialize");
+            throw new APIClientException("APICommandResponse.serializationError.text");
 
         message.setId(currentMessageId++);
 

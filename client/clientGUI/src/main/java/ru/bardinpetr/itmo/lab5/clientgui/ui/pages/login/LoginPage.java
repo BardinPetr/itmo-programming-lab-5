@@ -21,6 +21,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 
+import static javax.swing.SwingUtilities.invokeLater;
+
 public class LoginPage extends ResourcedFrame {
     private final ICredentialsStorage<StoredJWTCredentials> credentialsStorage;
     private final APIClientConnector apiConnector;
@@ -119,43 +121,55 @@ public class LoginPage extends ResourcedFrame {
 
         cmd.setCredentials(new DefaultAuthenticationCredentials(username, password));
 
-        SwingUtilities.invokeLater(() -> {
-            var validation = cmd.validate();
-            if (!validation.isAllowed()) {
-                JOptionPane.showMessageDialog(
-                        this,
-                        getResources().getString(validation.getMsg()),
-                        getResources().getString("command.error.invalidField"),
-                        JOptionPane.ERROR_MESSAGE
-                );
-                return;
-            }
-            APICommandResponse result;
-            try {
-                result = apiConnector.call(cmd);
-            } catch (APIClientException ex) {
-                JOptionPane.showMessageDialog(
-                        this,
-                        getResources().getString(ex.getMessage()),
-                        getResources().getString("command.error.requestFailed"),
-                        JOptionPane.ERROR_MESSAGE
-                );
-                return;
-            }
+        invokeLater(()-> new APICommandMenger().sendCommand(
+                cmd,
+                this,
+                "loginPage.error.authorizationFailed",
+                (result) -> {
+                    var loginResponse = ((AuthCommand.AuthCommandResponse) result).getData();
+                    credentialsStorage.setCredentials(new StoredJWTCredentials((JWTLoginResponse) loginResponse));
+                    onSuccess.run();
+                    dispose();
+                }
+        ));
 
-            if (!result.isSuccess()) {
-                JOptionPane.showMessageDialog(
-                        this,
-                        getResources().getString(result.getUserMessage()),
-                        getResources().getString("loginPage.error.authorizationFailed"),
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            var loginResponse = ((AuthCommand.AuthCommandResponse) result).getData();
-            credentialsStorage.setCredentials(new StoredJWTCredentials((JWTLoginResponse) loginResponse));
-            onSuccess.run();
-            dispose();
-        });
+//        SwingUtilities.invokeLater(() -> {
+//            var validation = cmd.validate();
+//            if (!validation.isAllowed()) {
+//                JOptionPane.showMessageDialog(
+//                        this,
+//                        getResources().getString(validation.getMsg()),
+//                        getResources().getString("command.error.invalidField"),
+//                        JOptionPane.ERROR_MESSAGE
+//                );
+//                return;
+//            }
+//            APICommandResponse result;
+//            try {
+//                result = apiConnector.call(cmd);
+//            } catch (APIClientException ex) {
+//                JOptionPane.showMessageDialog(
+//                        this,
+//                        getResources().getString(ex.getMessage()),
+//                        getResources().getString("command.error.requestFailed"),
+//                        JOptionPane.ERROR_MESSAGE
+//                );
+//                return;
+//            }
+//
+//            if (!result.isSuccess()) {
+//                JOptionPane.showMessageDialog(
+//                        this,
+//                        getResources().getString(result.getUserMessage()),
+//                        getResources().getString("loginPage.error.authorizationFailed"),
+//                        JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//            var loginResponse = ((AuthCommand.AuthCommandResponse) result).getData();
+//            credentialsStorage.setCredentials(new StoredJWTCredentials((JWTLoginResponse) loginResponse));
+//            onSuccess.run();
+//            dispose();
+
     }
 
 }

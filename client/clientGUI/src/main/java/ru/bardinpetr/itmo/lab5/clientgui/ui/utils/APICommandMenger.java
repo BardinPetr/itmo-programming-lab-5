@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ResourceBundle;
 
+import static javax.swing.SwingUtilities.invokeLater;
+
 public class APICommandMenger {
     private final APIClientConnector apiConnector;
 
@@ -42,39 +44,40 @@ public class APICommandMenger {
             String connectionErrorKey,
             String executionErrorKey,
             ISuccessCommandHandler handler) {
-        var validation = cmd.validate();
-        if (!validation.isAllowed()) {
-            JOptionPane.showMessageDialog(
-                    dialogParentComponent,
-                    getResources().getString(validation.getMsg()),
-                    getResources().getString(validationErrorKey),
-                    JOptionPane.ERROR_MESSAGE
-            );
-            return;
-        }
+            var validation = cmd.validate();
+            if (!validation.isAllowed()) {
+                JOptionPane.showMessageDialog(
+                        dialogParentComponent,
+                        getResources().getString(validation.getMsg()),
+                        getResources().getString(validationErrorKey),
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
 
-        APICommandResponse result;
-        try {
-            result = apiConnector.call(cmd);
-        } catch (APIClientException ex) {
-            JOptionPane.showMessageDialog(
-                    dialogParentComponent,
-                    getResources().getString(ex.getMessage()),
-                    getResources().getString(connectionErrorKey),
-                    JOptionPane.ERROR_MESSAGE
-            );
-            return;
-        }
+            APICommandResponse result;
+            try {
+                result = apiConnector.call(cmd);
+            } catch (APIClientException ex) {
+                JOptionPane.showMessageDialog(
+                        dialogParentComponent,
+                        getResources().getString(ex.getMessage()),
+                        getResources().getString(connectionErrorKey),
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
 
-        if (!result.isSuccess()) {
-            JOptionPane.showMessageDialog(
-                    dialogParentComponent,
-                    getResources().getString(result.getUserMessage()),
-                    getResources().getString(executionErrorKey),
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        handler.handle(result);
+            if (!result.isSuccess()) {
+                JOptionPane.showMessageDialog(
+                        dialogParentComponent,
+                        getResources().getString(result.getUserMessage()),
+                        getResources().getString(executionErrorKey),
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            handler.handle(result);
+
     }
 
 }

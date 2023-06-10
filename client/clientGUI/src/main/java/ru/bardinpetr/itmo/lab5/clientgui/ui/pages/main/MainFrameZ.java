@@ -16,6 +16,8 @@ import java.awt.*;
 import java.io.File;
 import java.util.ResourceBundle;
 
+import static javax.swing.SwingUtilities.invokeLater;
+
 public class MainFrameZ extends ResourcedFrame {
     private JPanel mainPanel;
     private BottomPanelZ bottomMenu;
@@ -104,17 +106,19 @@ public class MainFrameZ extends ResourcedFrame {
         initComponentsI18n();
         pack();
         setLocationRelativeTo(getOwner());
-        new APICommandMenger().sendCommand(
-                new GetSelfInfoCommand(),
-                this,
-                "MainFrame.canNotGetUsernameError.text",
-                (response) -> {
-                    var resp = (GetSelfInfoCommand.GetSelfInfoResponse) response;
-                    usersInfo.setUsername(resp.getUsername());
-                }
-        );
+        invokeLater(()-> {
+            new APICommandMenger().sendCommand(
+                    new GetSelfInfoCommand(),
+                    this,
+                    "MainFrame.canNotGetUsernameError.text",
+                    (response) -> {
+                        var resp = (GetSelfInfoCommand.GetSelfInfoResponse) response;
+                        usersInfo.setUsername(resp.getUsername());
+                    }
+            );
+        });
 
-        new APICommandMenger().sendCommand(
+        invokeLater(()-> {new APICommandMenger().sendCommand(
                 new ShowMineCommand(),
                 this,
                 "MainFrame.canNotGetMineWorkers.text",
@@ -122,18 +126,20 @@ public class MainFrameZ extends ResourcedFrame {
                     var resp = (ShowMineCommand.ShowCommandResponse) response;
                     usersInfo.setWorkersCount(resp.getResult().size());
                 }
-        );
+        );});
 
-        new APICommandMenger().sendCommand(
-                new InfoCommand(),
-                this,
-                "MainFrame.canNotFetInfo.text",
-                (response) -> {
-                    var resp = (InfoCommand.InfoCommandResponse) response;
-                    bottomMenu.setInitDate(resp.getResult().getInitializationDate());
-                    bottomMenu.setBDSize(resp.getResult().getItemsCount());
-                }
-        );
+        invokeLater(()-> {
+            new APICommandMenger().sendCommand(
+                    new InfoCommand(),
+                    this,
+                    "MainFrame.canNotFetInfo.text",
+                    (response) -> {
+                        var resp = (InfoCommand.InfoCommandResponse) response;
+                        bottomMenu.setInitDate(resp.getResult().getInitializationDate());
+                        bottomMenu.setBDSize(resp.getResult().getItemsCount());
+                    }
+            );
+        });
     }
     protected void initComponentsI18n() {
         if (workersMenuButton==null)return;
