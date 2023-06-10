@@ -11,27 +11,28 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.FilterSortT
 import ru.bardinpetr.itmo.lab5.clientgui.utils.EventUtils;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class XTable extends JPanel {
 
     @Getter
     private final JTable table;
-    @Getter
-    private final Box bottomToolbox;
-    private final FilterRowSorter<DefaultTableModel> rowSorter;
-    private final RowSorterModelAdapter<DefaultTableModel> sortedModel;
+    private final FilterRowSorter<TableModel> rowSorter;
     private final PagingTableModel pagedModel;
-    private final DefaultTableModel model;
-    private final JButton deleteButton;
-    private final JButton updateButton;
+    private final TableModel model;
+    @Getter
+    private Box bottomToolbox;
+    private JButton deleteButton;
+    private JButton updateButton;
 
-    public XTable(DefaultTableModel model) {
+    public XTable(TableModel model) {
         super(new BorderLayout());
         this.model = model;
 
@@ -42,8 +43,10 @@ public class XTable extends JPanel {
         header.setResizingAllowed(false);
 
         rowSorter = new FilterRowSorter<>(model, table::updateUI);
-        sortedModel = new RowSorterModelAdapter<>(model, rowSorter);
-        pagedModel = new PagingTableModel(table, sortedModel);
+        pagedModel = new PagingTableModel(
+                table,
+                new RowSorterModelAdapter<>(model, rowSorter)
+        );
 
         table.setModel(pagedModel);
 
@@ -53,14 +56,7 @@ public class XTable extends JPanel {
         add(externalHeader, BorderLayout.NORTH);
         add(table, BorderLayout.CENTER);
 
-        deleteButton = new JButton(IconFontSwing.buildIcon(FontAwesome.TRASH_O, 16));
-        deleteButton.addActionListener(this::onDelete);
-        updateButton = new JButton(IconFontSwing.buildIcon(FontAwesome.PENCIL_SQUARE_O, 16));
-        updateButton.addActionListener(this::onUpdate);
-
-        bottomToolbox = new Box(BoxLayout.LINE_AXIS);
-        bottomToolbox.add(updateButton);
-        bottomToolbox.add(deleteButton);
+        initButtonBlock();
 
         var bottom = new JPanel(new BorderLayout());
         bottom.add(bottomToolbox, BorderLayout.EAST);
@@ -69,6 +65,29 @@ public class XTable extends JPanel {
         add(bottom, BorderLayout.SOUTH);
 
         initSelection();
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                rowSorter.allRowsChanged();
+            }
+        }, 500);
+    }
+
+    private void initButtonBlock() {
+        deleteButton = new JButton(IconFontSwing.buildIcon(FontAwesome.TRASH_O, 16));
+        deleteButton.addActionListener(this::onDelete);
+        deleteButton.setEnabled(false);
+        updateButton = new JButton(IconFontSwing.buildIcon(FontAwesome.PENCIL_SQUARE_O, 16));
+        updateButton.addActionListener(this::onUpdate);
+        updateButton.setEnabled(false);
+        var insertButton = new JButton(IconFontSwing.buildIcon(FontAwesome.PLUS_SQUARE_O, 16));
+        insertButton.addActionListener(this::onInsert);
+
+        bottomToolbox = new Box(BoxLayout.LINE_AXIS);
+        bottomToolbox.add(insertButton);
+        bottomToolbox.add(updateButton);
+        bottomToolbox.add(deleteButton);
     }
 
     private void initSelection() {
@@ -85,19 +104,21 @@ public class XTable extends JPanel {
     }
 
     public List<Integer> getSelectedIndexes() {
-        return Arrays.stream(table.getSelectionModel().getSelectedIndices())
+        return Arrays
+                .stream(table.getSelectionModel().getSelectedIndices())
                 .map(rowSorter::convertRowIndexToModel)
                 .map(pagedModel::convertIndexFromOffset)
                 .boxed()
                 .toList();
     }
 
-    private void onDelete(ActionEvent actionEvent) {
-//        fireAction(new ActionEvent(this, ));
+    protected void onDelete(ActionEvent actionEvent) {
     }
 
-    private void onUpdate(ActionEvent event) {
+    protected void onUpdate(ActionEvent event) {
+    }
 
+    protected void onInsert(ActionEvent event) {
     }
 
     protected void fireAction(ActionEvent event) {

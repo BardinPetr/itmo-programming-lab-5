@@ -1,6 +1,8 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show;
 
+import ru.bardinpetr.itmo.lab5.clientgui.models.factory.WorkersModelFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.WorkersTable;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.remove.greater.WorkerRemoveGFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
@@ -13,19 +15,19 @@ import java.util.ResourceBundle;
 import static javax.swing.SwingUtilities.invokeLater;
 
 public class WorkerShowPanelZ extends ResourcedPanel {
-    private JPanel workerTablePanel;
-    private JPanel panel1;
+    private final JPanel workerTablePanel;
     private JButton openAddWorkerPlane;
     private JButton clearWorkerButton;
     private JButton removeGreaterButton;
+
     public WorkerShowPanelZ() {
+        workerTablePanel = new WorkersTable(WorkersModelFactory.create());
+
         initComponents();
         setVisible(true);
     }
 
-    protected void initComponents(){
-        workerTablePanel = new JPanel();
-        panel1 = new JPanel();
+    protected void initComponents() {
         openAddWorkerPlane = new JButton();
         clearWorkerButton = new JButton();
         removeGreaterButton = new JButton();
@@ -33,28 +35,28 @@ public class WorkerShowPanelZ extends ResourcedPanel {
         setLayout(new BorderLayout());
         add(workerTablePanel, BorderLayout.CENTER);
 
-        panel1.setLayout(new GridBagLayout());
-        panel1.add(openAddWorkerPlane);
+        var panel1 = new Box(BoxLayout.LINE_AXIS);
+        panel1.add(Box.createGlue());
         panel1.add(clearWorkerButton);
         panel1.add(removeGreaterButton);
-        add(panel1, BorderLayout.PAGE_END);
+        add(panel1, BorderLayout.SOUTH);
 
         openAddWorkerPlane.addActionListener((e -> new WorkerAddFrameZ()));
-        clearWorkerButton.addActionListener((e)->invokeLater(()-> {
+        clearWorkerButton.addActionListener((e) -> invokeLater(() -> {
             new APICommandMenger().sendCommand(
                     new ClearCommand(),
                     this,
                     "WorkerShowPanel.canNotClear.text",
-                    (response) -> {}
+                    (response) -> {
+                    }
             );
         }));
         removeGreaterButton.addActionListener((e -> new WorkerRemoveGFrame()));
 
-
-
         initComponentsI18n();
 
     }
+
     @Override
     protected void initComponentsI18n() {
         ResourceBundle bundle = getResources();

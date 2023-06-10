@@ -72,7 +72,7 @@ public class FilterSortTableHeader extends Box implements ColumnInfoEventListene
             m.getRowItems().addAll(
                     getColumnValues(m.getColumnId())
                             .stream()
-                            .map(i -> new CheckBoxList.CheckedItem(i, false))
+                            .map(i -> new CheckBoxList.CheckedItem(i, true))
                             .toList()
             );
         }

@@ -1,15 +1,16 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter;
 
 import lombok.Getter;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.TableUtils;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class FilterRowSorter<M extends DefaultTableModel> extends RowSorter<M> {
+public class FilterRowSorter<M extends TableModel> extends RowSorter<M> {
 
     private final M model;
     private Map<Integer, ColumnSort> columnSortOrder;
@@ -32,12 +33,10 @@ public class FilterRowSorter<M extends DefaultTableModel> extends RowSorter<M> {
     protected void updateSort() {
         var last = indexViewToModel.stream().mapToInt(i -> i).toArray();
 
-        var sourceData = model.getDataVector();
-
         indexViewToModel =
                 IntStream
                         .range(0, model.getRowCount())
-                        .mapToObj(i -> new Row(i, sourceData.get(i)))
+                        .mapToObj(i -> new Row(i, TableUtils.buildRow(model, i)))
                         .filter(i -> rowFilter == null || rowFilter.include(new RowFilterEntry(model, i.realIndex())))
                         .sorted(buildComparator())
                         .map(i -> i.realIndex)

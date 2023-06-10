@@ -2,10 +2,9 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter;
 
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class RowSorterModelAdapter<M extends DefaultTableModel> implements TableModel {
+public class RowSorterModelAdapter<M extends TableModel> implements TableModel {
 
     private final RowSorter<M> sorter;
     private final M model;

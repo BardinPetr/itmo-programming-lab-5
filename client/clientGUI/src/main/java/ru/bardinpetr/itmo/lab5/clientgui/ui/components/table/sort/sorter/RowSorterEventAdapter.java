@@ -3,12 +3,12 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.listeners.FilterSortParamsEventListener;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class RowSorterEventAdapter<M extends DefaultTableModel> implements FilterSortParamsEventListener {
+public class RowSorterEventAdapter<M extends TableModel> implements FilterSortParamsEventListener {
 
     private final Map<Integer, RowFilter<M, Integer>> filters = new HashMap<>();
     private final FilterRowSorter<M> sorter;
