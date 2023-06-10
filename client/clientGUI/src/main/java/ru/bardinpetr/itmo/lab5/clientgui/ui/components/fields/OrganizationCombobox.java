@@ -3,6 +3,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractWorkerComboBox;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.OrganizationPresenter;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetOrgsCommand;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
@@ -11,14 +12,13 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.stream.IntStream;
 
-public class OrganizationBox extends AbstractWorkerComboBox<Organization> {
-    private List<Organization> cachedList = getList();
-    public OrganizationBox(Consumer<Organization> handler) {
+public class OrganizationCombobox extends AbstractWorkerComboBox<OrganizationPresenter> {
+    private List<OrganizationPresenter> cachedList = getList();
+    public OrganizationCombobox(Consumer<OrganizationPresenter> handler) {
         super(handler);
     }
-    protected List<Organization> getList(){
+    protected List<OrganizationPresenter> getList(){
         cachedList = new ArrayList<>(){{
             new APICommandMenger().sendCommand(
                     new GetOrgsCommand(),
@@ -26,7 +26,9 @@ public class OrganizationBox extends AbstractWorkerComboBox<Organization> {
                     "OrganizationIdBox.getIds.error",
                     (e) -> {
                         var orgs = ((GetOrgsCommand.OrganisationCommandResponse) e).organizations;
-                        addAll(orgs);
+                        for (var i: orgs){
+                            add(OrganizationPresenter.fromOrganization(i));
+                        }
                     }
             );
         }};
@@ -43,14 +45,10 @@ public class OrganizationBox extends AbstractWorkerComboBox<Organization> {
         }
     }
     @Override
-    public void setData(Organization data) {
-        if (data==null)
-            setSelectedItem("");
-        else{
-            if (!cachedList.contains(data))
-                addItem(data);
-            setSelectedItem(data);
-        }
+    public void setData(OrganizationPresenter data) {
+        if (!cachedList.contains(data))
+            addItem(data);
+        setSelectedItem(data);
     }
 
 
@@ -73,8 +71,8 @@ public class OrganizationBox extends AbstractWorkerComboBox<Organization> {
         }
     }
     @Override
-    public DataContainer<Organization> getData() {
-        return new DataContainer<>((Organization) getSelectedItem(), validateValue());
+    public DataContainer<OrganizationPresenter> getData() {
+        return new DataContainer<>(OrganizationPresenter.fromOrganization((Organization) getSelectedItem()), validateValue());
 
     }
 

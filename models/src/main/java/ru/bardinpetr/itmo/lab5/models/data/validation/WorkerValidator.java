@@ -63,6 +63,7 @@ public class WorkerValidator implements Validator {
      * @return response with error message
      */
     public ValidationResponse validateAll(Worker worker) {
+        if (worker==null) return new ValidationResponse(true, "");
         if (!validateId(worker.getId()).isAllowed()) return validateId(worker.getId());
         if (!validateName(worker.getName()).isAllowed()) return validateName(worker.getName());
         if (!validateCoordinates(worker.getCoordinates()).isAllowed())

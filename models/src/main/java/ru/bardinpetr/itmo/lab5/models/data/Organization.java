@@ -30,11 +30,6 @@ public class Organization implements Comparable<Organization>, IKeyedEntity<Inte
     @FieldValidator(OrganizationValidator.class)
     OrganizationType type;
 
-    @Override
-    public String toString() {
-        return "(%d) %s [%s]".formatted(id, fullName, type);
-    }
-
     public Organization() {
     }
 

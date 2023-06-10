@@ -8,5 +8,5 @@ import java.util.Date;
 public interface IDataStorage<T> {
     DataContainer<T> getData();
     void setData(T data);
-    public ValidationResponse validateValue();
+    ValidationResponse validateValue();
 }

@@ -2,12 +2,18 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.add;
 
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.AddOrgCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ResourceBundle;
+
+import static javax.swing.SwingUtilities.invokeLater;
 
 public class OrgAddFrameZ extends ResourcedFrame {
     private OrganizationInfoPanelZ orgInfoPanel;
@@ -48,13 +54,29 @@ public class OrgAddFrameZ extends ResourcedFrame {
         addOrgButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                var worker = orgInfoPanel.getOrganization();
-                if (!worker.isAllowed) {
-                    JOptionPane.showMessageDialog(orgInfoPanel, bundle.getString(worker.msg), bundle.getString("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
+                var organization = orgInfoPanel.getOrganization();
+                if (!organization.isAllowed) {
+                    JOptionPane.showMessageDialog(orgInfoPanel, bundle.getString(organization.msg), bundle.getString("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
                 }
                 else {
-                    //TODO add organization command
-                    System.out.println(worker);
+                    var command = new AddOrgCommand();
+                    command.element = organization.data;
+                    invokeLater(() -> new APICommandMenger().sendCommand(
+                            command,
+                            orgInfoPanel,
+                            "OrgAddFrameZ.addOrgError.text",
+                            (response) ->{
+                                var resp = (AddOrgCommand.AddOrgCommandResponse) response;
+                                JOptionPane.showConfirmDialog(
+                                        orgInfoPanel,
+                                        getResources().getString("OrgAddFrameZ.newIdMsg")+
+                                                ": " + resp.getId(),
+                                        getResources().getString("OrgAddFrameZ.newIdMsg")
+                                        , JOptionPane.PLAIN_MESSAGE
+                                );
+                            }
+
+                    ));
                 }
             }
         });

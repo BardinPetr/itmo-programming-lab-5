@@ -5,10 +5,9 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.Nullabl
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
-import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
-import ru.bardinpetr.itmo.lab5.models.data.Organization;
-import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
-import ru.bardinpetr.itmo.lab5.models.data.Worker;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.EnumPresenter;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.OrganizationPresenter;
+import ru.bardinpetr.itmo.lab5.models.data.*;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
 
 import javax.swing.*;
@@ -29,10 +28,10 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
     private JLabel label6;
     private YCoordinateWorkerField workerYField;
     private JLabel label7;
-    private OrganizationBox organizationIdField;
+    private OrganizationCombobox organizationIdField;
     private JLabel label8;
     private PositionComboBox workerPositionCombobox;
-    private final DataContainer<Worker> workerDataContainer;
+    private DataContainer<Worker> workerDataContainer;
     private Worker defaultWorker;
     private boolean isChangeable;
     ResourceBundle bundle = getResources();
@@ -68,7 +67,7 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         workerYField = new YCoordinateWorkerField((s -> {}));
         label7 = new JLabel();
 
-        organizationIdField = new OrganizationBox((e -> {}));
+        organizationIdField = new OrganizationCombobox((e -> {}));
 
         label8 = new JLabel();
 
@@ -110,15 +109,26 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
             endDatePanel.setData(defaultWorker.getEndDate());
             workerXField.setData(defaultWorker.getCoordinates().getX());
             workerYField.setData(defaultWorker.getCoordinates().getY());
-            workerPositionCombobox.setData(defaultWorker.getPosition());
+            workerPositionCombobox.setData(new EnumPresenter<>(defaultWorker.getPosition()));
             if (defaultWorker.getOrganization()!=null)
-                organizationIdField.setData(defaultWorker.getOrganization());
+                organizationIdField.setData(OrganizationPresenter.fromOrganization(defaultWorker.getOrganization()));
         }
         initComponentsI18n();
     }
 
     public DataContainer<Worker> getWorker(){
-
+        if (defaultWorker==null)
+            workerDataContainer = new DataContainer<>(
+                    true,
+                    new Worker(),
+                    ""
+            );
+        else
+            workerDataContainer = new DataContainer<>(
+                    true,
+                    defaultWorker,
+                    ""
+            );
         var name = workerNameField.getData();
         var salary = workerSalaryField.getData();
         var startDate = workerStartField.getData();
@@ -137,6 +147,10 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         if (!orgId.isAllowed) workerDataContainer.copyMeta(orgId);
         if (!position.isAllowed) workerDataContainer.copyMeta(position);
 
+        if (!workerDataContainer.isAllowed) {
+            workerDataContainer.data = null;
+            return workerDataContainer;
+        }
         workerDataContainer.data.setName(name.data);
         workerDataContainer.data.setName(name.data);
         workerDataContainer.data.setSalary(salary.data);
@@ -151,7 +165,7 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
                     orgId.data);
         else
             workerDataContainer.data.setOrganization(null);
-        workerDataContainer.data.setPosition(position.data);
+        workerDataContainer.data.setPosition((Position) position.data.getEnumData());
         return workerDataContainer;
 
     }

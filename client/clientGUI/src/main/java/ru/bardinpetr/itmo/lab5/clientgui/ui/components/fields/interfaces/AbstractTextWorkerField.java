@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 import static javax.swing.SwingUtilities.invokeLater;
 
-public abstract class AbstractTextWorkerField<T> extends JTextField implements IDataStorage<T>{
+public abstract class AbstractTextWorkerField<T> extends JPasswordField implements IDataStorage<T>{
     protected ResourceBundle bundle;
     public String toolTipMsg;
     IStringValidator validator;
@@ -21,6 +21,7 @@ public abstract class AbstractTextWorkerField<T> extends JTextField implements I
         super();
         this.validator = validator;
         this.toolTipMsg = toolTipMsg;
+        setEchoChar('\u0000');
         UIResources.getInstance().addLocaleChangeListener((i) -> initComponentsI18n());
 
         getDocument().addDocumentListener(

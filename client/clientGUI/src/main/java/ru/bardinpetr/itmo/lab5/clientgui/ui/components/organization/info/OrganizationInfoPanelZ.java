@@ -5,8 +5,9 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.OrganizationTypeCo
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.EnumPresenter;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
-import ru.bardinpetr.itmo.lab5.models.data.validation.OrganizationValidator;
+import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,7 +45,7 @@ public class OrganizationInfoPanelZ extends ResourcedPanel {
 
         if (defaultOrganization!=null){
             nameField.setName(defaultOrganization.getFullName());
-            organizationTypeCombobox.setData(defaultOrganization.getType());
+            organizationTypeCombobox.setData(new EnumPresenter<>(defaultOrganization.getType()));
         }
 
         initComponentsI18n();
@@ -63,7 +64,7 @@ public class OrganizationInfoPanelZ extends ResourcedPanel {
         if (!type.isAllowed) dataContainer.copyMeta(type);
 
         dataContainer.data.setFullName(name.data);
-        dataContainer.data.setType(type.data);
+        dataContainer.data.setType((OrganizationType) type.data.getEnumData());
         return dataContainer;
 
     }

@@ -1,13 +1,13 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces;
 
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.EnumPresenter;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 
 import java.util.function.Consumer;
 
-public abstract class AbstractEnumCombobox<T> extends AbstractWorkerComboBox<T> {
-    public AbstractEnumCombobox(Consumer<T> handler) {
-
+public abstract class AbstractEnumCombobox extends AbstractWorkerComboBox<EnumPresenter> {
+    public AbstractEnumCombobox(Consumer<EnumPresenter> handler) {
         super(handler);
     }
 
@@ -20,7 +20,7 @@ public abstract class AbstractEnumCombobox<T> extends AbstractWorkerComboBox<T> 
     }
 
     @Override
-    public DataContainer<T> getData() {
+    public DataContainer<EnumPresenter> getData() {
         return new DataContainer(true,
                 getSelectedItem(),
                 ""
@@ -28,7 +28,7 @@ public abstract class AbstractEnumCombobox<T> extends AbstractWorkerComboBox<T> 
     }
 
     @Override
-    public void setData(T pos){
+    public void setData(EnumPresenter pos){
         setSelectedItem(
                 pos
         );

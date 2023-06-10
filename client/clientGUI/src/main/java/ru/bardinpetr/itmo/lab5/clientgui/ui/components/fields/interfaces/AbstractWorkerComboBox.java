@@ -24,14 +24,7 @@ public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDa
         addItemListener((e -> {
             if (e.getStateChange()== ItemEvent.DESELECTED) return;
             var item = (T) e.getItem();
-            var resp = validateValue();
-            if (resp.isAllowed()) {
-                if (item == "") handler.accept(null);
-                else handler.accept(item);
-            }
-            else {
-
-            }
+            handler.accept(item);
         }));
 
         UIResources.getInstance().addLocaleChangeListener((i) -> initComponentsI18n());

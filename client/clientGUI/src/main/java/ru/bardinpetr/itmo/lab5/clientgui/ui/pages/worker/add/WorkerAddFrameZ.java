@@ -16,6 +16,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ResourceBundle;
 
+import static javax.swing.SwingUtilities.invokeLater;
+
 public class WorkerAddFrameZ extends ResourcedFrame {
     private WorkerInfoPanelZ workerInfoPanel;
     private JRadioButton normalAdd;
@@ -86,7 +88,7 @@ public class WorkerAddFrameZ extends ResourcedFrame {
                         command = new AddIfMinCommand();
                     }
                     command.setElement(worker.data);
-                    new APICommandMenger().sendCommand(
+                    invokeLater(()-> {new APICommandMenger().sendCommand(
                             command,
                             workerInfoPanel,
                             "MainFrame.canNotAddMsg.text",
@@ -100,7 +102,7 @@ public class WorkerAddFrameZ extends ResourcedFrame {
                                         , JOptionPane.PLAIN_MESSAGE
                                 );
                             }
-                    );
+                    );});
                     System.out.println(worker);
                 }
             }
