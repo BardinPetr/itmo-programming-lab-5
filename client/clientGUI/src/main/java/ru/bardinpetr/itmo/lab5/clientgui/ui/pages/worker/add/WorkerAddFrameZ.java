@@ -31,6 +31,7 @@ public class WorkerAddFrameZ extends ResourcedFrame {
         UIResources.getInstance().addLocaleChangeListener((e -> initComponentsI18n()));
 
         initComponents();
+        setResizable(false);
         setVisible(true);
     }
 

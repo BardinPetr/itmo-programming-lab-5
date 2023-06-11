@@ -69,6 +69,7 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
     @Override
     protected void initComponentsI18n() {
         bundle = getResources();
+        setTitle(bundle.getString("OrgAddFrameZ.title"));
         updateOrgButton.setText(bundle.getString("OrgAddFrame.addOrgButton.text"));
         orgUpdateCancelButton.setText(bundle.getString("OrgAddFrame.orgrAddCancelButton.text"));
     }

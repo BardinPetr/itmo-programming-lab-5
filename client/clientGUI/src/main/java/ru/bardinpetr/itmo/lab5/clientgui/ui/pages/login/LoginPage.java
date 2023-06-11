@@ -142,7 +142,7 @@ public class LoginPage extends ResourcedFrame {
 
         cmd.setCredentials(new DefaultAuthenticationCredentials(username.data, password.data));
 
-        invokeLater(()-> new APICommandMenger().sendCommand(
+        new APICommandMenger().sendCommand(
                 cmd,
                 this,
                 "loginPage.error.authorizationFailed",
@@ -152,7 +152,7 @@ public class LoginPage extends ResourcedFrame {
                     onSuccess.run();
                     dispose();
                 }
-        ));
+        );
 
 //        SwingUtilities.invokeLater(() -> {
 //            var validation = cmd.validate();

@@ -29,7 +29,8 @@ public class OrganizationCombobox extends AbstractWorkerComboBox<OrganizationPre
                         for (var i: orgs){
                             add(OrganizationPresenter.fromOrganization(i));
                         }
-                    }
+                    },
+                    true
             );
         }};
         return cachedList;

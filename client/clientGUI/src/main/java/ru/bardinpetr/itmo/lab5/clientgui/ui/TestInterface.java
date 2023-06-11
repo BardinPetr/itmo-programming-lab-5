@@ -3,9 +3,13 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui;
 
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
+import ru.bardinpetr.itmo.lab5.clientgui.Main;
 import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerHeaderPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
+import ru.bardinpetr.itmo.lab5.models.commands.api.UpdateCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.PasswordLoginCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
@@ -65,11 +69,12 @@ public class TestInterface {
 
 
 //        new LoginPage(() -> {
-        new MainFrameZ();
+//        new MainFrameZ();
+//        new WorkerUpdateFrameZ(testWorker, true);
 //        });
 //        new WorkerUpdateFrameZ(testWorker, true);
-//        new WorkerAddFrameZ();
-//        testPanel(new WorkerInfoPanelZ());
+        new MainFrameZ();
+//        testPanel(new WorkerHeaderPanel());
     }
 
     private static void testPanel(JPanel panel) {

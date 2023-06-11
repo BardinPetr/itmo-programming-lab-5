@@ -9,8 +9,10 @@ import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ResourceBundle;
 
+import static javax.swing.SwingUtilities.invokeAndWait;
 import static javax.swing.SwingUtilities.invokeLater;
 
 public class APICommandMenger {
@@ -27,6 +29,22 @@ public class APICommandMenger {
             APICommand cmd,
             Component dialogParentComponent,
             String executionErrorKey,
+            ISuccessCommandHandler handler, boolean needWait) {
+        sendCommand(
+                cmd,
+                dialogParentComponent,
+                "command.error.invalidField",
+                "command.error.requestFailed",
+                executionErrorKey,
+                handler,
+                needWait
+        );
+    }
+
+    public void sendCommand(
+            APICommand cmd,
+            Component dialogParentComponent,
+            String executionErrorKey,
             ISuccessCommandHandler handler) {
         sendCommand(
                 cmd,
@@ -34,16 +52,20 @@ public class APICommandMenger {
                 "command.error.invalidField",
                 "command.error.requestFailed",
                 executionErrorKey,
-                handler
+                handler,
+                false
         );
     }
+
     public void sendCommand(
             APICommand cmd,
             Component dialogParentComponent,
             String validationErrorKey,
             String connectionErrorKey,
             String executionErrorKey,
-            ISuccessCommandHandler handler) {
+            ISuccessCommandHandler handler, boolean needWait) {
+
+        Runnable task = ()-> {
             var validation = cmd.validate();
             if (!validation.isAllowed()) {
                 JOptionPane.showMessageDialog(
@@ -77,7 +99,13 @@ public class APICommandMenger {
                 return;
             }
             handler.handle(result);
+        };
 
+        if (!needWait)
+            invokeLater(task);
+        else {
+            task.run();
+        }
     }
 
 }

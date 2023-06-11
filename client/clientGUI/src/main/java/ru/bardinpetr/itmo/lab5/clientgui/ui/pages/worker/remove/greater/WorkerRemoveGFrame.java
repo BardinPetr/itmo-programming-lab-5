@@ -19,6 +19,7 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
 
     public WorkerRemoveGFrame() {
         initComponents();
+        setResizable(false);
         setVisible(true);
     }
 
@@ -68,6 +69,7 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
     @Override
     protected void initComponentsI18n() {
         var bundle = getResources();
+        setTitle(bundle.getString("WorkerRemoveGFrame.title"));
         removeWorkerButton.setText(bundle.getString("WorkerRemoveGFrame.removeGreaterWorkerButton.text"));
         workerUpdateCancelButton.setText(bundle.getString("WorkerAddFrame.workerAddCancelButton.text"));
     }

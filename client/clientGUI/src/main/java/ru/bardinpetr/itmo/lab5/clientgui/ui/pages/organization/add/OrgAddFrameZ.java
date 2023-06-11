@@ -24,6 +24,7 @@ public class OrgAddFrameZ extends ResourcedFrame {
 
     public OrgAddFrameZ() {
         initComponents();
+        setResizable(false);
         setVisible(true);
     }
 
@@ -61,7 +62,7 @@ public class OrgAddFrameZ extends ResourcedFrame {
                 else {
                     var command = new AddOrgCommand();
                     command.element = organization.data;
-                    invokeLater(() -> new APICommandMenger().sendCommand(
+                    new APICommandMenger().sendCommand(
                             command,
                             orgInfoPanel,
                             "OrgAddFrameZ.addOrgError.text",
@@ -76,7 +77,7 @@ public class OrgAddFrameZ extends ResourcedFrame {
                                 );
                             }
 
-                    ));
+                    );
                 }
             }
         });
@@ -89,6 +90,7 @@ public class OrgAddFrameZ extends ResourcedFrame {
     @Override
     protected void initComponentsI18n() {
         bundle = getResources();
+        setTitle(bundle.getString("OrgAddFrameZ.title"));
         addOrgButton.setText(bundle.getString("OrgAddFrame.addOrgButton.text"));
         orgAddCancelButton.setText(bundle.getString("OrgAddFrame.orgrAddCancelButton.text"));
     }
