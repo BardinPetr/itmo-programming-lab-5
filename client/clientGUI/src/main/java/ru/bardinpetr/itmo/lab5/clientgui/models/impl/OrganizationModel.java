@@ -2,7 +2,6 @@ package ru.bardinpetr.itmo.lab5.clientgui.models.impl;
 
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.clientgui.models.sync.ExternalSyncedListModel;
-import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetOrganizationCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetOrgsCommand;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
@@ -22,7 +21,7 @@ public class OrganizationModel extends ExternalSyncedListModel<Organization> {
                     .getConnector()
                     .call(new GetOrganizationCommand(integer));
             return ((GetOrganizationCommand.GetOrganizationCommandResponse) res).getOrganization();
-        } catch (Exception | APIClientException ignored) {
+        } catch (Throwable ignored) {
             return null;
         }
     }
@@ -33,7 +32,7 @@ public class OrganizationModel extends ExternalSyncedListModel<Organization> {
                     .getConnector()
                     .call(new GetOrgsCommand());
             return ((GetOrgsCommand.OrganisationCommandResponse) res).getOrganizations();
-        } catch (Exception | APIClientException ignored) {
+        } catch (Throwable ignored) {
             return null;
         }
     }

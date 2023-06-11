@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show;
 
-import ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelFactory;
+import ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelProvider;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.OrganizationTable;
 
@@ -13,7 +13,7 @@ public class OrganizationShowPanel extends ResourcedPanel {
     private JButton clearOrgButton;
 
     public OrganizationShowPanel() {
-        orgTablePanel = new OrganizationTable(ModelFactory.createOrganizations());
+        orgTablePanel = new OrganizationTable(ModelProvider.organizations());
 
         initComponents();
         setVisible(true);
