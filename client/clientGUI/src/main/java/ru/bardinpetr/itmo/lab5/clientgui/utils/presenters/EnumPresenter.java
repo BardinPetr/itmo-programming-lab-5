@@ -33,6 +33,11 @@ public class EnumPresenter<T extends Enum<T>> implements Comparable<EnumPresente
 
     @Override
     public int compareTo(EnumPresenter o) {
+        if (o.enumData==null) {
+            if (enumData==null) return 0;
+            return 1;
+        }
+        if (enumData==null) return -1;
         return enumData.compareTo((T) o.enumData);
     }
 }
