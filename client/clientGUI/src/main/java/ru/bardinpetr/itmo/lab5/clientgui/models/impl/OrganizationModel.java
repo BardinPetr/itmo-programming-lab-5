@@ -3,23 +3,28 @@ package ru.bardinpetr.itmo.lab5.clientgui.models.impl;
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.clientgui.models.sync.ExternalSyncedListModel;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
+import ru.bardinpetr.itmo.lab5.models.commands.api.GetOrganizationCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetOrgsCommand;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 
 import java.util.List;
 
-public class OrganizationsModel extends ExternalSyncedListModel<Organization> {
+public class OrganizationModel extends ExternalSyncedListModel<Organization> {
 
-    public OrganizationsModel() {
+    public OrganizationModel() {
         super("organization");
         setLoaders(this::loadAll, this::loadOne);
     }
 
-    private Organization loadOne(Integer id) {
-        var all = loadAll();
-        if (all == null)
+    private Organization loadOne(Integer integer) {
+        try {
+            var res = APIProvider
+                    .getConnector()
+                    .call(new GetOrganizationCommand(integer));
+            return ((GetOrganizationCommand.GetOrganizationCommandResponse) res).getOrganization();
+        } catch (Exception | APIClientException ignored) {
             return null;
-        return all.stream().filter(i -> i.getId().equals(id)).findFirst().orElse(null);
+        }
     }
 
     private List<Organization> loadAll() {

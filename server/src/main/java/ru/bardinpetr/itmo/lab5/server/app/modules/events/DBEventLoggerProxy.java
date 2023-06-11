@@ -50,6 +50,10 @@ public class DBEventLoggerProxy implements EventMarker {
     @Override
     public Event apply(Object target, Method method, Object[] args, Object result) {
         var type = eventTypeMethodsMap.get(method.getName());
+        if (type == Event.EventType.CREATE && result == null ||
+                (type == Event.EventType.DELETE || type == Event.EventType.UPDATE) && !((boolean) result))
+            return null;
+
         return new Event(
                 type,
                 ((ITableDAO) target).getTableName(),

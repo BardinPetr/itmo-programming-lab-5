@@ -29,8 +29,8 @@ public class XTable extends JPanel {
     private final TableModel model;
     @Getter
     private Box bottomToolbox;
-    private JButton deleteButton;
-    private JButton updateButton;
+    protected JButton deleteButton;
+    protected JButton updateButton;
 
     public XTable(TableModel model) {
         super(new BorderLayout());
@@ -74,7 +74,7 @@ public class XTable extends JPanel {
         }, 500);
     }
 
-    private void initButtonBlock() {
+    protected void initButtonBlock() {
         deleteButton = new JButton(IconFontSwing.buildIcon(FontAwesome.TRASH_O, 16));
         deleteButton.addActionListener(this::onDelete);
         deleteButton.setEnabled(false);

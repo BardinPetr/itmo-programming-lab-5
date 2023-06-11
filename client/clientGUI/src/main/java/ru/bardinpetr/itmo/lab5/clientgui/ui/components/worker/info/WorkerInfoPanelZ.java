@@ -7,14 +7,20 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContaine
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.EnumPresenter;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.OrganizationPresenter;
-import ru.bardinpetr.itmo.lab5.models.data.*;
+import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
+import ru.bardinpetr.itmo.lab5.models.data.Position;
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class WorkerInfoPanelZ extends ResourcedPanel {
+    private final Worker defaultWorker;
+    private final boolean isChangeable;
+    ResourceBundle bundle = getResources();
     private JLabel label1;
     private NameField workerNameField;
     private JLabel label2;
@@ -32,11 +38,11 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
     private JLabel label8;
     private PositionComboBox workerPositionCombobox;
     private DataContainer<Worker> workerDataContainer;
-    private Worker defaultWorker;
-    private boolean isChangeable;
-    ResourceBundle bundle = getResources();
 
-    public WorkerInfoPanelZ() {this(null, true);}
+    public WorkerInfoPanelZ() {
+        this(null, true);
+    }
+
     public WorkerInfoPanelZ(Worker defaultWorker, boolean isChangeable) {
         this.isChangeable = isChangeable;
         this.defaultWorker = defaultWorker;
@@ -48,34 +54,42 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         );
     }
 
-    protected void initComponents(){
+    protected void initComponents() {
         label1 = new JLabel();
         label2 = new JLabel();
 
-        workerNameField = new NameField((s)-> {});
+        workerNameField = new NameField((s) -> {
+        });
 
-        workerSalaryField = new SalaryWorkerField((s -> {}));
+        workerSalaryField = new SalaryWorkerField((s -> {
+        }));
 
         label3 = new JLabel();
-        workerStartField = new DateField((s -> {}));
+        workerStartField = new DateField((s -> {
+        }));
 
         label4 = new JLabel();
-        endDatePanel = new NullableDatePanel((s) -> {});
+        endDatePanel = new NullableDatePanel((s) -> {
+        });
         label5 = new JLabel();
-        workerXField = new XCoordinateWorkerField((s -> {}));
+        workerXField = new XCoordinateWorkerField((s -> {
+        }));
         label6 = new JLabel();
-        workerYField = new YCoordinateWorkerField((s -> {}));
+        workerYField = new YCoordinateWorkerField((s -> {
+        }));
         label7 = new JLabel();
 
-        organizationIdField = new OrganizationCombobox((e -> {}));
+        organizationIdField = new OrganizationCombobox((e -> {
+        }));
 
         label8 = new JLabel();
 
-        workerPositionCombobox = new PositionComboBox((e -> {}));
+        workerPositionCombobox = new PositionComboBox((e -> {
+        }));
 
         setLayout(new GridBagLayout());
-        ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 300, 0};
-        add(label1, GridConstrains.placedAdd(0,0));
+        ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 300, 0};
+        add(label1, GridConstrains.placedAdd(0, 0));
         add(label2, GridConstrains.placedAdd(0, 1));
         add(label3, GridConstrains.placedAdd(0, 2));
         add(label4, GridConstrains.placedAdd(0, 3));
@@ -102,7 +116,7 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         workerPositionCombobox.setEnabled(isChangeable);
         organizationIdField.setEnabled(isChangeable);
 
-        if (defaultWorker!=null){
+        if (defaultWorker != null) {
             workerNameField.setData(defaultWorker.getName());
             workerSalaryField.setData(defaultWorker.getSalary());
             workerStartField.setData(defaultWorker.getStartDate());
@@ -110,36 +124,28 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
             workerXField.setData(defaultWorker.getCoordinates().getX());
             workerYField.setData(defaultWorker.getCoordinates().getY());
             workerPositionCombobox.setData(new EnumPresenter<>(defaultWorker.getPosition()));
-            if (defaultWorker.getOrganization()!=null)
+            if (defaultWorker.getOrganization() != null)
                 organizationIdField.setData(OrganizationPresenter.fromOrganization(defaultWorker.getOrganization()));
         }
 
-        System.out.println(workerNameField.getText());
-        System.out.println(workerSalaryField.getText());
-        System.out.println(workerStartField.getText());
-        System.out.println(endDatePanel.getText());
-        System.out.println(workerXField.getText());
-        System.out.println(workerYField.getText());
-        System.out.println(workerPositionCombobox.getText());
-        System.out.println(organizationIdField.getText());
-
+//        System.out.println(workerNameField.getText());
+//        System.out.println(workerSalaryField.getText());
+//        System.out.println(workerStartField.getText());
+//        System.out.println(endDatePanel.getText());
+//        System.out.println(workerXField.getText());
+//        System.out.println(workerYField.getText());
+//        System.out.println(workerPositionCombobox.getText());
+//        System.out.println(organizationIdField.getText());
 
         initComponentsI18n();
     }
 
-    public DataContainer<Worker> getWorker(){
-        if (defaultWorker==null)
-            workerDataContainer = new DataContainer<>(
-                    true,
-                    new Worker(),
-                    ""
-            );
-        else
-            workerDataContainer = new DataContainer<>(
-                    true,
-                    defaultWorker,
-                    ""
-            );
+    public DataContainer<Worker> getWorker() {
+        workerDataContainer = new DataContainer<>(
+                true,
+                Objects.requireNonNullElseGet(defaultWorker, Worker::new),
+                ""
+        );
         var name = workerNameField.getData();
         var salary = workerSalaryField.getData();
         var startDate = workerStartField.getData();
@@ -180,7 +186,6 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         return workerDataContainer;
 
     }
-
 
 
     @Override

@@ -1,6 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show;
 
-import ru.bardinpetr.itmo.lab5.clientgui.models.factory.WorkersModelFactory;
+import ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.WorkersTable;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
@@ -21,7 +21,7 @@ public class WorkerShowPanelZ extends ResourcedPanel {
     private JButton removeGreaterButton;
 
     public WorkerShowPanelZ() {
-        workerTablePanel = new WorkersTable(WorkersModelFactory.create());
+        workerTablePanel = new WorkersTable(ModelFactory.createWorkers());
 
         initComponents();
         setVisible(true);
