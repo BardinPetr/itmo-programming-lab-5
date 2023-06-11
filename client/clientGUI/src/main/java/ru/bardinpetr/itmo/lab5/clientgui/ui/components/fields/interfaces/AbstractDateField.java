@@ -49,7 +49,7 @@ public abstract class AbstractDateField<T> extends JSpinner implements IDataStor
 
     }
 
-//    public String getText() {
-//        return getValue();
-//    }
+    public String getText() {
+        return ((DateEditor) getEditor()).getFormat().format(getValue());
+    }
 }

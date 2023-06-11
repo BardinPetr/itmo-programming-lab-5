@@ -68,6 +68,11 @@ public class NullableDatePanel extends JPanel implements IDataStorage<LocalDate>
     }
 
     @Override
+    public String getText() {
+        return workerEndDateField.getText();
+    }
+
+    @Override
     public ValidationResponse validateValue() {
         return workerEndDateField.validateValue();
     }

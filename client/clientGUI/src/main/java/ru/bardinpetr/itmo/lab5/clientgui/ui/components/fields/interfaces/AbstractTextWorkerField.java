@@ -42,6 +42,11 @@ public abstract class AbstractTextWorkerField<T> extends JPasswordField implemen
         UIResources.getInstance().addLocaleChangeListener((i) -> initComponentsI18n());
     }
 
+    @Override
+    public String getText(){
+        return getFullText();
+    }
+
     public ValidationResponse validateValue(){
         var validation = validator.validate(getFullText());
         if (!validation.isAllowed()) setBackground(Color.PINK);

@@ -113,6 +113,17 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
             if (defaultWorker.getOrganization()!=null)
                 organizationIdField.setData(OrganizationPresenter.fromOrganization(defaultWorker.getOrganization()));
         }
+
+        System.out.println(workerNameField.getText());
+        System.out.println(workerSalaryField.getText());
+        System.out.println(workerStartField.getText());
+        System.out.println(endDatePanel.getText());
+        System.out.println(workerXField.getText());
+        System.out.println(workerYField.getText());
+        System.out.println(workerPositionCombobox.getText());
+        System.out.println(organizationIdField.getText());
+
+
         initComponentsI18n();
     }
 
