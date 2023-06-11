@@ -124,12 +124,8 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
     }
 
     private void movePane(int dx, int dy) {
-        SwingUtilities.invokeLater(() -> {
-            if (dx > 100 || dy > 100)
-                return;
-            paneTransform.translate(dx, dy);
-            repaint();
-        });
+        paneTransform.translate(dx, dy);
+        repaint();
     }
 
     @Override
