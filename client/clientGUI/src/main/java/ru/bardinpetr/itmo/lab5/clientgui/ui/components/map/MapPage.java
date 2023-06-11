@@ -28,10 +28,12 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
     private static final int AXES_TICK_SIZE = 10;
     protected final M model;
     protected final Map<Integer, S> sprites = new HashMap<>();
-    private final AffineTransform paneTransform = new AffineTransform();
+    private final AffineTransform scaleTransform = new AffineTransform();
+    private final AffineTransform shiftTransform = new AffineTransform();
+    private AffineTransform temporalPaneTransform = null;
     private Point paneMaxCoords;
     private Point paneMinCoords;
-    private Point dragLastPosition = new Point(0, 0);
+    private Point dragLastPosition = null;
 
     public MapPage(M model) {
         this.model = model;
@@ -65,7 +67,7 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
 
         var g2 = (Graphics2D) g;
 
-        g2.setTransform(paneTransform);
+        g2.setTransform(getCurrentTransform());
 
         drawItems(g2);
         drawAxes(g2);
@@ -105,7 +107,7 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
     }
 
     public void centerMap() {
-        paneTransform.setToTranslation(getVisibleRect().x / 2f, getVisibleRect().y / 2f);
+//        paneTransform.setToTranslation(getVisibleRect().x / 2f, getVisibleRect().y / 2f);
     }
 
     private void drawItems(Graphics2D g) {
@@ -123,22 +125,33 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
         setAxis(new Point(700, 700), new Point(-700, -700));
     }
 
-    private void movePane(int dx, int dy) {
-        paneTransform.translate(dx, dy);
-        repaint();
+    private AffineTransform getCurrentTransform() {
+        var res = new AffineTransform();
+        res.concatenate(temporalPaneTransform == null ? shiftTransform : temporalPaneTransform);
+        res.concatenate(scaleTransform);
+        return res;
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        movePane(e.getX() - dragLastPosition.x, e.getY() - dragLastPosition.y);
-        dragLastPosition = e.getPoint();
+        if (temporalPaneTransform == null) {
+            temporalPaneTransform = new AffineTransform();
+            dragLastPosition = e.getPoint();
+        }
+
+        temporalPaneTransform.setTransform(shiftTransform);
+        temporalPaneTransform.translate(e.getX() - dragLastPosition.x, e.getY() - dragLastPosition.y);
+        repaint();
     }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
+        if (temporalPaneTransform != null)
+            return;
+
         SwingUtilities.invokeLater(() -> {
             var delta = 1 + -SCALE_FACTOR * e.getPreciseWheelRotation();
-            paneTransform.scale(delta, delta);
+            scaleTransform.scale(delta, delta);
             repaint();
         });
     }
@@ -148,7 +161,7 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
         var posPane = e.getPoint();
         var pos = new Point();
         try {
-            paneTransform.inverseTransform(posPane, pos);
+            getCurrentTransform().inverseTransform(posPane, pos);
         } catch (NoninvertibleTransformException ex) {
             return;
         }
@@ -168,11 +181,17 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
 
     @Override
     public void mousePressed(MouseEvent e) {
-        dragLastPosition = e.getPoint();
+//        dragLastPosition = e.getPoint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        dragLastPosition = null;
+
+        if (temporalPaneTransform != null) {
+            shiftTransform.setTransform(temporalPaneTransform);
+            temporalPaneTransform = null;
+        }
     }
 
     @Override
@@ -206,10 +225,6 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
 
     @Override
     public void intervalRemoved(ListDataEvent e) {
-//        for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
-//            var real = model.getElementAt(i);
-//            sprites.remove(real.getPrimaryKey(), null);
-//        }
     }
 
     @Override

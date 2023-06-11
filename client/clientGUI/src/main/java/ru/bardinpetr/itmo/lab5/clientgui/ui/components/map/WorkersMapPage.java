@@ -1,18 +1,8 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.map;
 
-import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
-import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
-import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
-import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerModel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerUpdateFrameFactory;
-import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.events.models.Event;
-import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.PasswordLoginCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
-import ru.bardinpetr.itmo.lab5.models.commands.auth.models.JWTLoginResponse;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import javax.swing.*;
@@ -32,29 +22,6 @@ public class WorkersMapPage extends MapPage<Worker, WorkerModel, WorkerSprite> {
 
         recalculateAxis();
         centerMap();
-    }
-
-    public static void main(String[] args) throws APIClientException {
-        UIResources.getInstance();
-        APIConnectorFactory.create();
-
-        var loginCmd = new PasswordLoginCommand();
-        loginCmd.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
-        APIProvider.getCredentialsStorage().setCredentials(new StoredJWTCredentials((JWTLoginResponse) ((AuthCommand.AuthCommandResponse) APIProvider.getConnector().call(loginCmd)).getData()));
-
-        Integer ownerId = null;
-        try {
-            ownerId = ((GetSelfInfoCommand.GetSelfInfoResponse) APIProvider.getConnector().call(new GetSelfInfoCommand())).getId();
-        } catch (APIClientException ignored) {
-        }
-
-        var model = new WorkerModel(ownerId);
-
-        var f = new JFrame();
-        f.getContentPane().add(new WorkersMapPage(model));
-        f.setSize(600, 400);
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f.setVisible(true);
     }
 
     @Override
