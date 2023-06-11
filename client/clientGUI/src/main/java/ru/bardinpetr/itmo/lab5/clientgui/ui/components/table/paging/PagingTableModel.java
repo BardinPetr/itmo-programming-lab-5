@@ -34,50 +34,38 @@ public class PagingTableModel implements TableModel {
     public PagingTableModel(JTable table, TableModel decoratee) {
         this.table = table;
         this.decoratee = decoratee;
-        this.paginatorControl = new PagingTableControl(this::setPage, this::setPageSize);
+        this.paginatorControl = new PagingTableControl(this::onPagingControlEvent);
 
         table.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                SwingUtilities.invokeLater(() -> onDataUpdate(null));
+                SwingUtilities.invokeLater(() -> onModelDataUpdate(null));
             }
         });
 
-        decoratee.addTableModelListener(this::onDataUpdate);
-        onDataUpdate(null);
+        decoratee.addTableModelListener(this::onModelDataUpdate);
+        onModelDataUpdate(null);
     }
 
-    private void onDataUpdate(TableModelEvent e) {
+    private void onModelDataUpdate(TableModelEvent e) {
         var cnt = table.getHeight() / table.getRowHeight();
         if (cnt == 0)
             return;
 
-        setPageSize(Math.min(pageSize, cnt));
+        paginatorControl.setRowCount(decoratee.getRowCount());
         paginatorControl.setMaxPageSize(cnt);
-        paginatorControl.setPageCount(getPageCount());
     }
 
-    /**
-     * Set current page and refresh table
-     *
-     * @param page page number starting from 0
-     */
-    private void setPage(int page) {
-        if (page < 0 || page > getPageCount()) return;
+    private void onPagingControlEvent(int page, int size) {
+        if (page < 0 || page > getPageCount() || size <= 0) return;
 
+        pageSize = size;
         curPage = page;
         fireTableDataChanged();
     }
 
-    private void setPageSize(int size) {
-        if (size <= 0) return;
-
-        pageSize = size;
-        fireTableDataChanged();
-    }
-
     /**
-     * Convert page-relative row indet to global
+     * Convert page-relative row index to global
      */
     public int convertIndexFromOffset(int pos) {
         return pos + curPage * pageSize;
@@ -87,7 +75,7 @@ public class PagingTableModel implements TableModel {
      * Get current page count
      */
     public int getPageCount() {
-        return (int) Math.ceil((double) decoratee.getRowCount() / pageSize);
+        return paginatorControl.getPageCount();
     }
 
     @Override

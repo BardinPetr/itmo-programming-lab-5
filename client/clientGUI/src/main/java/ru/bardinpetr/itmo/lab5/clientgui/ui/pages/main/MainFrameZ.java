@@ -1,7 +1,7 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main;
 
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
-import ru.bardinpetr.itmo.lab5.clientgui.models.factory.WorkersModelFactory;
+import ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.BottomPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.WorkersMapPage;
@@ -16,9 +16,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.api.InfoCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.ShowMineCommand;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import java.awt.*;
-import java.io.File;
 import java.util.ResourceBundle;
 
 import static javax.swing.SwingUtilities.invokeLater;
@@ -72,7 +70,7 @@ public class MainFrameZ extends ResourcedFrame {
         mainPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         mainPanel.add(new WorkerShowPanelZ(), "WORKERS");
         mainPanel.add(new OrganizationShowPanel(), "ORGANIZATIONS");
-        mainPanel.add(new WorkersMapPage(WorkersModelFactory.create()), "MAP");
+        mainPanel.add(new WorkersMapPage(ModelFactory.createWorkers()), "MAP");
         mainPanel.add(new ScriptPanel(), "SCRIPT");
 
 

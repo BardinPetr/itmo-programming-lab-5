@@ -25,6 +25,8 @@ public class FilterRowSorter<M extends TableModel> extends RowSorter<M> {
 
         addRowSorterListener(i -> tableUpdate.run());
         updateSort();
+
+        model.addTableModelListener(e -> allRowsChanged());
     }
 
     /**
