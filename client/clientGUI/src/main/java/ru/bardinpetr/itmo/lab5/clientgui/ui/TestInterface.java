@@ -72,8 +72,8 @@ public class TestInterface {
 //        new MainFrameZ();
 //        new WorkerUpdateFrameZ(testWorker, true);
 //        });
-//        new WorkerUpdateFrameZ(testWorker, true);
-        new MainFrameZ();
+        new WorkerUpdateFrameZ(testWorker, true);
+//        new MainFrameZ();
 //        testPanel(new WorkerHeaderPanel());
     }
 

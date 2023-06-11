@@ -27,6 +27,7 @@ public abstract class AbstractEnumCombobox extends AbstractWorkerComboBox<EnumPr
         );
     }
 
+
     @Override
     public void setData(EnumPresenter pos){
         setSelectedItem(

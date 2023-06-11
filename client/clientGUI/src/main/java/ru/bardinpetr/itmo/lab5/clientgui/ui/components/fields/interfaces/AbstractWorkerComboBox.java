@@ -29,6 +29,10 @@ public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDa
 
         UIResources.getInstance().addLocaleChangeListener((i) -> initComponentsI18n());
     }
+    @Override
+    public String getText(){
+        return getSelectedItem().toString();
+    }
 
     protected abstract void groupItems();
 
