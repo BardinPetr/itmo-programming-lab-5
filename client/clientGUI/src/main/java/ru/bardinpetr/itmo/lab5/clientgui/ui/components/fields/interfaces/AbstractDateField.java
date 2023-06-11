@@ -11,6 +11,7 @@ import java.util.function.Consumer;
 
 public abstract class AbstractDateField<T> extends JSpinner implements IDataStorage<T> {
     protected ResourceBundle bundle;
+
     public AbstractDateField(Consumer<Date> handler) {
         super(new SpinnerDateModel(
                 new Date(),

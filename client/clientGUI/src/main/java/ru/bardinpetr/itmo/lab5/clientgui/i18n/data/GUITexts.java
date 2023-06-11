@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.i18n.data;
 
+
 import java.util.ListResourceBundle;
 
 public class GUITexts extends ListResourceBundle {
@@ -8,6 +9,18 @@ public class GUITexts extends ListResourceBundle {
         return new Object[][] {
             {"dateFormat", "dd.MM.yyyy"},
             {"generalError", "Something went wrong via sending command"},
+            {"WorkerTableModel.Column.ID.text", "ID"},
+            {"WorkerTableModel.Column.Owner.text", "Owner"},
+            {"WorkerTableModel.Column.Creation date.text", "Creation date"},
+            {"WorkerTableModel.Column.Name.text", "Name"},
+            {"WorkerTableModel.Column.Salary.text", "Salary"},
+            {"WorkerTableModel.Column.StartDate.text", "Start date"},
+            {"WorkerTableModel.Column.EndDate.text", "End date"},
+            {"WorkerTableModel.Column.XCoordinate.text", "X coordinate"},
+            {"WorkerTableModel.Column.YCoordinate.text", "Y coordinate"},
+            {"WorkerTableModel.Column.Organization.text", "Organization"},
+            {"WorkerTableModel.Column.Position.text", "Position"},
+            {"ScriptPanel.executeScriptButton.text", "Execute script"},
             {"AddFrame.input.error.text", "Input Error"},
             {"OrgAddFrameZ.title", "Organization add"},
             {"OrgAddFrameZ.addOrgError.text", "Add organization error"},
@@ -143,6 +156,7 @@ public class GUITexts extends ListResourceBundle {
             {"OperationType.invalidPath.text", "may be not a regular file or have invalid path"},
             {"OperationType.updatePermissionError.text", "failed to update permissions"},
             {"FileAccessException.fileAccessError.text", "Failed to access file"},
+            {"FileAccessException.title.text", "file access"},
             {"Executor.skip.text", "Failed to access file"},
             {"Executor.validationError.text", "Validation failed"},
             {"ErrorHandlingApplication.methodNotAvailable", "Method not available"},

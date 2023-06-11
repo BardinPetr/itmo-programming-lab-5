@@ -41,7 +41,7 @@ public class WorkerShowPanelZ extends ResourcedPanel {
         panel1.add(removeGreaterButton);
         add(panel1, BorderLayout.SOUTH);
 
-        openAddWorkerPlane.addActionListener((e -> new WorkerAddFrameZ()));
+        openAddWorkerPlane.addActionListener((e -> invokeLater(()->new WorkerAddFrameZ())));
         clearWorkerButton.addActionListener((e) -> invokeLater(() -> {
             new APICommandMenger().sendCommand(
                     new ClearCommand(),

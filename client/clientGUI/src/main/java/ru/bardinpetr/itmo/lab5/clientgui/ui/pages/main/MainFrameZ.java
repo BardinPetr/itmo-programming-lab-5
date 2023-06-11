@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.BottomPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.WorkersMapPage;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show.OrganizationShowPanel;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.script.ScriptPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo.UsersInfoZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerShowPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
@@ -23,7 +24,6 @@ import java.util.ResourceBundle;
 import static javax.swing.SwingUtilities.invokeLater;
 
 public class MainFrameZ extends ResourcedFrame {
-    final JFileChooser scriptChooser = new JFileChooser();
     private JPanel mainPanel;
     private BottomPanelZ bottomMenu;
     private JPanel upperPanel;
@@ -33,12 +33,12 @@ public class MainFrameZ extends ResourcedFrame {
     private JMenuItem mapMenuButton;
     private JMenuItem scriptMenuButton;
     private UsersInfoZ usersInfo;
-    private String scriptChooseText = getResources().getString("MainFrame.scriptChooseText.text");
 
     public MainFrameZ() {
         initComponents();
         setSize(new Dimension(800, 500));
         setVisible(true);
+
     }
 
     protected void initComponents() {
@@ -73,18 +73,8 @@ public class MainFrameZ extends ResourcedFrame {
         mainPanel.add(new WorkerShowPanelZ(), "WORKERS");
         mainPanel.add(new OrganizationShowPanel(), "ORGANIZATIONS");
         mainPanel.add(new WorkersMapPage(WorkersModelFactory.create()), "MAP");
+        mainPanel.add(new ScriptPanel(), "SCRIPT");
 
-        scriptChooser.setFileFilter(new FileFilter() {
-            @Override
-            public boolean accept(File f) {
-                return f.isDirectory() || f.getName().toLowerCase().endsWith(".zb");
-            }
-
-            @Override
-            public String getDescription() {
-                return getResources().getString("MainFrame.scriptChooseText.description");
-            }
-        });
 
         workersMenuButton.addActionListener((e) -> {
             CardLayout cl = (CardLayout) (mainPanel.getLayout());
@@ -100,17 +90,11 @@ public class MainFrameZ extends ResourcedFrame {
             CardLayout cl = (CardLayout) (mainPanel.getLayout());
             cl.show(mainPanel, "MAP");
         });
-
         scriptMenuButton.addActionListener((e) -> {
-            scriptChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
-            scriptChooser.showDialog(mainPanel, scriptChooseText);
+            CardLayout cl = (CardLayout) (mainPanel.getLayout());
+            cl.show(mainPanel, "SCRIPT");
         });
 
-        scriptChooser.addActionListener((e1 -> {
-            if (scriptChooser.getSelectedFile() == null) return;
-            var scriptPath = scriptChooser.getSelectedFile().getPath();
-            //TODO execute script
-        }));
 
         initComponentsI18n();
         pack();
@@ -160,21 +144,9 @@ public class MainFrameZ extends ResourcedFrame {
         if (workersMenuButton == null) return;
         ResourceBundle bundle = getResources();
         setTitle(bundle.getString("MainFrame.title"));
-        scriptChooseText = getResources().getString("MainFrame.scriptChooseText.text");
         workersMenuButton.setText(bundle.getString("MainFrame.workersMenuButton.text"));
         orgsMenuButton.setText(bundle.getString("MainFrame.orgsMenuButton.text"));
         mapMenuButton.setText(bundle.getString("MainFrame.mapMenuButton.text"));
         scriptMenuButton.setText(bundle.getString("MainFrame.scriptMenuButton.text"));
-        scriptChooser.setFileFilter(new FileFilter() {
-            @Override
-            public boolean accept(File f) {
-                return f.isDirectory() || f.getName().toLowerCase().endsWith(".zb");
-            }
-
-            @Override
-            public String getDescription() {
-                return getResources().getString("MainFrame.scriptChooseText.description");
-            }
-        });
     }
 }

@@ -14,6 +14,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ResourceBundle;
 
+import static javax.swing.SwingUtilities.invokeLater;
+
 public class WorkerInfoPanelZ extends ResourcedPanel {
     private JLabel label1;
     private NameField workerNameField;
@@ -40,8 +42,10 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
     public WorkerInfoPanelZ(Worker defaultWorker, boolean isChangeable) {
         this.isChangeable = isChangeable;
         this.defaultWorker = defaultWorker;
-        initComponents();
+        invokeLater(() -> initComponents());
         setVisible(true);
+        setPreferredSize(new Dimension(391, 174));
+
         this.workerDataContainer = new DataContainer<>(
                 defaultWorker,
                 (new WorkerValidator()).validateAll(defaultWorker)
@@ -57,7 +61,7 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         workerSalaryField = new SalaryWorkerField((s -> {}));
 
         label3 = new JLabel();
-        workerStartField = new DateField((s -> {}));
+        workerStartField = new DateField((e) -> {});
 
         label4 = new JLabel();
         endDatePanel = new NullableDatePanel((s) -> {});
@@ -102,29 +106,23 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         workerPositionCombobox.setEnabled(isChangeable);
         organizationIdField.setEnabled(isChangeable);
 
-        if (defaultWorker!=null){
-            workerNameField.setData(defaultWorker.getName());
-            workerSalaryField.setData(defaultWorker.getSalary());
-            workerStartField.setData(defaultWorker.getStartDate());
-            endDatePanel.setData(defaultWorker.getEndDate());
-            workerXField.setData(defaultWorker.getCoordinates().getX());
-            workerYField.setData(defaultWorker.getCoordinates().getY());
-            workerPositionCombobox.setData(new EnumPresenter<>(defaultWorker.getPosition()));
-            if (defaultWorker.getOrganization()!=null)
-                organizationIdField.setData(OrganizationPresenter.fromOrganization(defaultWorker.getOrganization()));
-        }
-
-        System.out.println(workerNameField.getText());
-        System.out.println(workerSalaryField.getText());
-        System.out.println(workerStartField.getText());
-        System.out.println(endDatePanel.getText());
-        System.out.println(workerXField.getText());
-        System.out.println(workerYField.getText());
-        System.out.println(workerPositionCombobox.getText());
-        System.out.println(organizationIdField.getText());
-
+        invokeLater(()->setData(defaultWorker));
 
         initComponentsI18n();
+    }
+    
+    public void setData(Worker worker){
+        if (worker!=null){
+            workerNameField.setData(worker.getName());
+            workerSalaryField.setData(worker.getSalary());
+            workerStartField.setData(worker.getStartDate());
+            endDatePanel.setData(worker.getEndDate());
+            workerXField.setData(worker.getCoordinates().getX());
+            workerYField.setData(worker.getCoordinates().getY());
+            workerPositionCombobox.setData(new EnumPresenter<>(worker.getPosition()));
+            if (worker.getOrganization()!=null)
+                organizationIdField.setData(new OrganizationPresenter(worker.getOrganization()));
+        }
     }
 
     public DataContainer<Worker> getWorker(){

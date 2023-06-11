@@ -71,47 +71,49 @@ public class WorkerAddFrameZ extends ResourcedFrame {
         addWorkerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                var worker = workerInfoPanel.getWorker();
-                if (!worker.isAllowed) {
-                    JOptionPane.showMessageDialog(
-                            workerInfoPanel,
-                            getResources().getString(worker.msg),
-                            getResources().getString("AddFrame.input.error.text"),
-                            JOptionPane.ERROR_MESSAGE
-                    );
-                }
-                else {
-                    AddCommand command;
-                    if (normalAdd.isSelected()){
-                        command = new AddCommand();
-                    } else if (ifMaxAdd.isSelected()){
-                        command = new AddIfMaxCommand();
+                invokeLater(() -> {
+                    var worker = workerInfoPanel.getWorker();
+                    if (!worker.isAllowed) {
+                        JOptionPane.showMessageDialog(
+                                workerInfoPanel,
+                                getResources().getString(worker.msg),
+                                getResources().getString("AddFrame.input.error.text"),
+                                JOptionPane.ERROR_MESSAGE
+                        );
                     } else {
-                        command = new AddIfMinCommand();
+                        AddCommand command;
+                        if (normalAdd.isSelected()) {
+                            command = new AddCommand();
+                        } else if (ifMaxAdd.isSelected()) {
+                            command = new AddIfMaxCommand();
+                        } else {
+                            command = new AddIfMinCommand();
+                        }
+                        command.setElement(worker.data);
+                        new APICommandMenger().sendCommand(
+                                command,
+                                workerInfoPanel,
+                                "MainFrame.canNotAddMsg.text",
+                                (response) -> {
+                                    var resp = (AddCommandResponse) response;
+                                    JOptionPane.showConfirmDialog(
+                                            workerInfoPanel,
+                                            getResources().getString("WorkerAddFrame.newIdMsg") +
+                                                    ": " + resp.getId(),
+                                            getResources().getString("WorkerAddFrame.newIdMsg")
+                                            , JOptionPane.PLAIN_MESSAGE
+                                    );
+                                }
+                        );
+                        System.out.println(worker);
                     }
-                    command.setElement(worker.data);
-                    new APICommandMenger().sendCommand(
-                            command,
-                            workerInfoPanel,
-                            "MainFrame.canNotAddMsg.text",
-                            (response) -> {
-                                var resp = (AddCommandResponse) response;
-                                JOptionPane.showConfirmDialog(
-                                        workerInfoPanel,
-                                        getResources().getString("WorkerAddFrame.newIdMsg")+
-                                                ": " + resp.getId(),
-                                        getResources().getString("WorkerAddFrame.newIdMsg")
-                                        , JOptionPane.PLAIN_MESSAGE
-                                );
-                            }
-                    );
-                    System.out.println(worker);
-                }
+                });
             }
         });
 
         initComponentsI18n();
         pack();
+        System.out.println(workerInfoPanel.getSize());
         setLocationRelativeTo(getOwner());
 
 

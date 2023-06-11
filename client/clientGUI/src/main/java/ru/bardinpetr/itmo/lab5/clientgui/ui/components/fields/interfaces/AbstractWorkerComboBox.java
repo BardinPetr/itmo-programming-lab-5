@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
+import static javax.swing.SwingUtilities.invokeLater;
+
 public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDataStorage<T>{
 
     protected ResourceBundle bundle = getResources();
@@ -20,7 +22,7 @@ public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDa
 
     public AbstractWorkerComboBox(Consumer<T> handler) {
         this.handler = handler;
-        groupItems();
+        invokeLater(()->groupItems());
         addItemListener((e -> {
             if (e.getStateChange()== ItemEvent.DESELECTED) return;
             var item = (T) e.getItem();

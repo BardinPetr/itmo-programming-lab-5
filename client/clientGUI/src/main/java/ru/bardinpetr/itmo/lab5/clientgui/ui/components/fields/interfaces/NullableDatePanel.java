@@ -69,7 +69,10 @@ public class NullableDatePanel extends JPanel implements IDataStorage<LocalDate>
 
     @Override
     public String getText() {
-        return workerEndDateField.getText();
+
+        return !endDateNullCheckbox.isSelected() ?
+            workerEndDateField.getText():
+                UIResources.getInstance().get("WorkerInfoPanel.endDateNull.text");
     }
 
     @Override

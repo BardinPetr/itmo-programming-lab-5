@@ -13,7 +13,7 @@ import ru.bardinpetr.itmo.lab5.server.app.modules.db.DBApplicationFacade;
 import ru.bardinpetr.itmo.lab5.server.app.modules.events.EventFacade;
 import ru.bardinpetr.itmo.lab5.server.app.ui.ServerConsoleArgumentsParser;
 import ru.bardinpetr.itmo.lab5.server.db.factories.TableProviderFactory;
-
+//--port 5000 -d jdbc:postgresql://localhost:5432/studs -u s367079 -p aKNKcUmScdpvwhYu
 @Slf4j
 public class Main {
     public static void main(String[] args) {

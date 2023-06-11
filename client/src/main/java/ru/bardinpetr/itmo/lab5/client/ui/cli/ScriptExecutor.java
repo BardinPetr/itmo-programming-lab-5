@@ -72,7 +72,6 @@ public class ScriptExecutor {
             var command = (UICallableCommand) currentRegistry.getCommand(userArgs.get(0));
             if (command == null)
                 throw new RuntimeException("Command not found");
-
             try {
                 var successful = invoker.invoke(command, userArgs);
                 if (!successful)

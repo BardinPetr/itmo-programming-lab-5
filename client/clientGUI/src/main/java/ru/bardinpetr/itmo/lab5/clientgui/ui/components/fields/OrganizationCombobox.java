@@ -27,7 +27,7 @@ public class OrganizationCombobox extends AbstractWorkerComboBox<OrganizationPre
                     (e) -> {
                         var orgs = ((GetOrgsCommand.OrganisationCommandResponse) e).organizations;
                         for (var i: orgs){
-                            add(OrganizationPresenter.fromOrganization(i));
+                            add(new OrganizationPresenter(i));
                         }
                     },
                     true
@@ -76,7 +76,7 @@ public class OrganizationCombobox extends AbstractWorkerComboBox<OrganizationPre
         var res = (OrganizationPresenter) getSelectedItem();
         if (res==null)
             return new DataContainer<>(null, validateValue());
-        return new DataContainer<>(OrganizationPresenter.fromOrganization(res.getOrganization()), validateValue());
+        return new DataContainer<>(new OrganizationPresenter(res.getOrganization()), validateValue());
 
     }
 

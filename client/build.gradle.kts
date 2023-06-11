@@ -6,8 +6,8 @@ group = "ru.bardinpetr.itmo.lab5.client"
 
 dependencies {
     implementation(project(":events"))
-    implementation(project(":models"))
     implementation(project(":common"))
+    implementation(project(":models"))
     implementation(project(":network"))
 
     implementation("commons-cli:commons-cli:1.5.0")

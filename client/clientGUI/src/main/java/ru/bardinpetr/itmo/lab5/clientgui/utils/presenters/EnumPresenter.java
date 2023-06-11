@@ -7,7 +7,7 @@ import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
 import java.util.ArrayList;
 import java.util.List;
 @Data
-public class EnumPresenter<T extends Enum<T>> {
+public class EnumPresenter<T extends Enum<T>> implements Comparable<EnumPresenter>{
     private final Enum<T> enumData;
 
     public EnumPresenter(Enum<T> enumData){
@@ -29,5 +29,10 @@ public class EnumPresenter<T extends Enum<T>> {
                 .get("EnumPresenter.value.null.text");
         return UIResources.getInstance()
                 .get("EnumPresenter.value.%s.text".formatted(enumData.name().toLowerCase()));
+    }
+
+    @Override
+    public int compareTo(EnumPresenter o) {
+        return enumData.compareTo((T) o.enumData);
     }
 }
