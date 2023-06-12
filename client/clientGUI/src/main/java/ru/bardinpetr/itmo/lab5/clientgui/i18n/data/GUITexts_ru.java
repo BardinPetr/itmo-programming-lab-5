@@ -7,8 +7,13 @@ public class GUITexts_ru extends ListResourceBundle {
     protected Object[][] getContents() {
         return new Object[][]{
                 {"dateFormat", "dd.MM.yyyy"},
+                {"optionalAnswers.Yes", "Да"},
+                {"optionalAnswers.No", "Нет"},
+                {"optionalAnswers.Ok", "ХОРОШО"},
                 {"generalError", "Что-то пошло не так с помощью команды отправки"},
+                {"APIConnectorFactory.connectionError.text", "Сервер недоступен. Повторить попытку сейчас?"},
                 {"TransportTimeoutException.error", "Истекло время ожидания связи с сервером. Повторите попытку позже"},
+                {"APICommandMenger.connectionError.error", "Сервер недоступен. Повторите попытку позже"},
                 {"WorkerTableModel.Column.ID.text", "ИДЕНТИФИКАТОР"},
                 {"AuthenticationApplication.userAlreadyExists.error", "Пользователь с таким именем уже существует"},
                 {"WorkerTableModel.Column.Owner.text", "Владелец"},
@@ -90,7 +95,7 @@ public class GUITexts_ru extends ListResourceBundle {
                 {"WorkerInfoPanel.label2.text", "зарплата"},
                 {"WorkerInfoPanel.label3.text", "Дата начала"},
                 {"WorkerInfoPanel.label4.text", "Дата окончания"},
-                {"WorkerInfoPanel.endDateNull.text", "отсутсвует"},
+                {"WorkerInfoPanel.endDateNull.text", "отсутствующий"},
                 {"WorkerInfoPanel.label5.text", "Координаты x"},
                 {"WorkerInfoPanel.label6.text", "Координаты Y"},
                 {"WorkerInfoPanel.label7.text", "Идентификатор организации"},
@@ -160,7 +165,10 @@ public class GUITexts_ru extends ListResourceBundle {
                 {"FileAccessException.title.text", "Доступ к файлам"},
                 {"Executor.skip.text", "Не удалось получить доступ к файлу"},
                 {"Executor.validationError.text", "Ошибка проверки"},
-                {"ErrorHandlingApplication.methodNotAvailable", "Метод недоступен"}
+                {"ErrorHandlingApplication.methodNotAvailable", "Метод недоступен"},
+                {"OrganizationTableModel.Column.ID.text", "ИДЕНТИФИКАТОР"},
+                {"OrganizationTableModel.Column.Name.text", "Имя"},
+                {"OrganizationTableModel.Column.Type.text", "Тип"}
         };
     }
 }

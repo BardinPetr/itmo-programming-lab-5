@@ -9,8 +9,14 @@ import java.util.List;
 
 public class OrganizationTableModel extends TableListModelAdapter<Organization, OrganizationModel> {
 
+    private static final List<String> columnNameKeys = List.of(
+            "OrganizationTableModel.Column.ID.text",
+            "OrganizationTableModel.Column.Name.text",
+            "OrganizationTableModel.Column.Type.text"
+    );
+
     public OrganizationTableModel(OrganizationModel model) {
-        super(model, 3);
+        super(model, columnNameKeys.size());
         UIResources
                 .getInstance()
                 .addLocaleChangeListener(e -> updateColumnNames());
@@ -27,7 +33,10 @@ public class OrganizationTableModel extends TableListModelAdapter<Organization, 
 
     @Override
     protected List<String> getColumnNames() {
-        return List.of("ID", "Name", "Type");
+        return columnNameKeys
+                .stream()
+                .map(UIResources.getInstance()::get)
+                .toList();
     }
 }
 
