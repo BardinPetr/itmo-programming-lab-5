@@ -8,8 +8,13 @@ public class GUITexts extends ListResourceBundle {
     protected Object[][] getContents() {
         return new Object[][] {
             {"dateFormat", "dd.MM.yyyy"},
+            {"optionalAnswers.Yes", "Yes"},
+            {"optionalAnswers.No", "No"},
+            {"optionalAnswers.Ok", "OK"},
             {"generalError", "Something went wrong via sending command"},
+            {"APIConnectorFactory.connectionError.text", "Server is not available. Retry now?"},
             {"TransportTimeoutException.error", "Server communication timeout. Retry later"},
+            {"APICommandMenger.connectionError.error", "Server is not available. Retry later"},
             {"WorkerTableModel.Column.ID.text", "ID"},
             {"AuthenticationApplication.userAlreadyExists.error", "User with such name already exist"},
             {"AuthenticationApplication.userAlreadyExists.error", "User with such name already exist"},

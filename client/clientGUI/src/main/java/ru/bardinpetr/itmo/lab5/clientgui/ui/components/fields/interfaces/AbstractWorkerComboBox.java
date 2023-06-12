@@ -1,13 +1,9 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
-import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
-import ru.bardinpetr.itmo.lab5.models.validation.IValidator;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;

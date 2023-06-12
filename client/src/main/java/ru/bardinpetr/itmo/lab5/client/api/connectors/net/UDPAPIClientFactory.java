@@ -23,15 +23,14 @@ public class UDPAPIClientFactory extends AbstractAPIClientReceiverFactory {
             var connector = new NetworkServerConnector(
                     new SocketAPIClient(new UDPClientTransport(serverAddress))
             );
-
+            //TODO server connection error
             if (!connector.call(new PingCommand()).isSuccess())
-                throw new RuntimeException("Server not responding");
+                    throw new RuntimeException("Server not responding");
 
             return connector;
         } catch (Throwable e) {
             System.err.printf("Could not connect to server: %s\n", e.getMessage());
-            System.exit(1);
+            throw new RuntimeException("Server not responding");
         }
-        return null;
     }
 }

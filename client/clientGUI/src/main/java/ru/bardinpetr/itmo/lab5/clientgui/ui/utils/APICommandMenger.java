@@ -22,9 +22,7 @@ public class APICommandMenger {
         apiConnector = APIProvider.getConnector();
     }
 
-    private ResourceBundle getResources(){
-        return UIResources.getInstance().getBundle();
-    }
+
     public void sendCommand(
             APICommand cmd,
             Component dialogParentComponent,
@@ -66,13 +64,21 @@ public class APICommandMenger {
             ISuccessCommandHandler handler, boolean needWait) {
 
         Runnable task = ()-> {
+            var resources = UIResources.getInstance();
             var validation = cmd.validate();
             if (!validation.isAllowed()) {
-                JOptionPane.showMessageDialog(
+                Object[] options = {
+                        resources.get("optionalAnswers.Ok")
+                };
+                JOptionPane.showOptionDialog(
                         dialogParentComponent,
-                        getResources().getString(validation.getMsg()),
-                        getResources().getString(validationErrorKey),
-                        JOptionPane.ERROR_MESSAGE
+                        resources.get(validation.getMsg()),
+                        resources.get(validationErrorKey),
+                        JOptionPane.OK_OPTION,
+                        JOptionPane.ERROR_MESSAGE,
+                        null,     //do not use a custom Icon
+                        options,
+                        options[0]
                 );
                 return;
             }
@@ -81,21 +87,36 @@ public class APICommandMenger {
             try {
                 result = apiConnector.call(cmd);
             } catch (APIClientException ex) {
-                JOptionPane.showMessageDialog(
+                Object[] options = {
+                        resources.get("optionalAnswers.Ok")
+                };
+                JOptionPane.showOptionDialog(
                         dialogParentComponent,
-                        getResources().getString(ex.getMessage()),
-                        getResources().getString(connectionErrorKey),
-                        JOptionPane.ERROR_MESSAGE
+                        resources.get("APICommandMenger.connectionError.error"),
+                        resources.get(connectionErrorKey),
+                        JOptionPane.OK_OPTION,
+                        JOptionPane.ERROR_MESSAGE,
+                        null,     //do not use a custom Icon
+                        options,
+                        options[0]
                 );
                 return;
             }
 
             if (!result.isSuccess()) {
-                JOptionPane.showMessageDialog(
+                Object[] options = {
+                        resources.get("optionalAnswers.Ok")
+                };
+                JOptionPane.showOptionDialog(
                         dialogParentComponent,
-                        getResources().getString(result.getUserMessage()),
-                        getResources().getString(executionErrorKey),
-                        JOptionPane.ERROR_MESSAGE);
+                        resources.get(result.getUserMessage()),
+                        resources.get(executionErrorKey),
+                        JOptionPane.OK_OPTION,
+                        JOptionPane.ERROR_MESSAGE,
+                        null,     //do not use a custom Icon
+                        options,
+                        options[0]
+                        );
                 return;
             }
             handler.handle(result);

@@ -46,7 +46,6 @@ public class GUITexts_ru extends ListResourceBundle {
                 {"OrgUpdateFrame.updateOrgButton.text", "обновлять"},
                 {"OrgUpdateFrame.orgUpdateCancelButton.text", "Отмена"},
                 {"userInfo.workersCountText.text", "Количество работников, принадлежащих собственникам:"},
-                {"dateFormat", "дд.мм.гггг"},
                 {"generalError", "Что-то пошло не так с помощью команды отправки"},
                 {"WorkerTableModel.Column.ID.text", "ИДЕНТИФИКАТОР"},
                 {"WorkerTableModel.Column.Owner.text", "Владелец"},
