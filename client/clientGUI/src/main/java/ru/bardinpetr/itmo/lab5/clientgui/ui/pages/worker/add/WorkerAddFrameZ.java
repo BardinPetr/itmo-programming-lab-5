@@ -76,8 +76,8 @@ public class WorkerAddFrameZ extends ResourcedFrame {
                     if (!worker.isAllowed) {
                         JOptionPane.showMessageDialog(
                                 workerInfoPanel,
-                                getResources().getString(worker.msg),
-                                getResources().getString("AddFrame.input.error.text"),
+                                getResources().get(worker.msg),
+                                getResources().get("AddFrame.input.error.text"),
                                 JOptionPane.ERROR_MESSAGE
                         );
                     } else {
@@ -98,9 +98,9 @@ public class WorkerAddFrameZ extends ResourcedFrame {
                                     var resp = (AddCommandResponse) response;
                                     JOptionPane.showConfirmDialog(
                                             workerInfoPanel,
-                                            getResources().getString("WorkerAddFrame.newIdMsg") +
+                                            getResources().get("WorkerAddFrame.newIdMsg") +
                                                     ": " + resp.getId(),
-                                            getResources().getString("WorkerAddFrame.newIdMsg")
+                                            getResources().get("WorkerAddFrame.newIdMsg")
                                             , JOptionPane.PLAIN_MESSAGE
                                     );
                                 }
@@ -121,13 +121,13 @@ public class WorkerAddFrameZ extends ResourcedFrame {
     }
     @Override
     protected void initComponentsI18n() {
-        var bundle = getResources();
-        setTitle(bundle.getString("WorkerAddFrame.title"));
-        normalAdd.setText(bundle.getString("WorkerAddFrame.nornalAdd.text"));
-        addWorkerButton.setText(bundle.getString("WorkerAddFrame.addWorkerButton.text"));
-        ifMaxAdd.setText(bundle.getString("WorkerAddFrame.ifMaxAdd.text"));
-        ifMinAdd.setText(bundle.getString("WorkerAddFrame.ifMainAdd.text"));
-        workerAddCancelButton.setText(bundle.getString("WorkerAddFrame.workerAddCancelButton.text"));
+        var resources = getResources();
+        setTitle(resources.get("WorkerAddFrame.title"));
+        normalAdd.setText(resources.get("WorkerAddFrame.nornalAdd.text"));
+        addWorkerButton.setText(resources.get("WorkerAddFrame.addWorkerButton.text"));
+        ifMaxAdd.setText(resources.get("WorkerAddFrame.ifMaxAdd.text"));
+        ifMinAdd.setText(resources.get("WorkerAddFrame.ifMainAdd.text"));
+        workerAddCancelButton.setText(resources.get("WorkerAddFrame.workerAddCancelButton.text"));
 
     }
 }

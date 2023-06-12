@@ -4,7 +4,6 @@ import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
-import java.util.ResourceBundle;
 
 public abstract class ResourcedPanel extends JPanel {
 
@@ -19,8 +18,8 @@ public abstract class ResourcedPanel extends JPanel {
         initComponentsI18n();
     }
 
-    protected final ResourceBundle getResources() {
-        return uiResources.getBundle();
+    protected final UIResources getResources() {
+        return uiResources;
     }
 
     protected final UIResources getUIResources() {

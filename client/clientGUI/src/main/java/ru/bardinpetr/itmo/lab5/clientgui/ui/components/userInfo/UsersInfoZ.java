@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo;
 
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 
@@ -45,9 +46,9 @@ public class UsersInfoZ extends ResourcedPanel {
 
     @Override
     protected void initComponentsI18n() {
-        ResourceBundle bundle = getResources();
-        username.setText(bundle.getString("userInfo.username.text"));
-        workersCountText.setText(bundle.getString("userInfo.workersCountText.text"));
+        UIResources resources = getResources();
+        username.setText(resources.get("userInfo.username.text"));
+        workersCountText.setText(resources.get("userInfo.workersCountText.text"));
     }
 
 }

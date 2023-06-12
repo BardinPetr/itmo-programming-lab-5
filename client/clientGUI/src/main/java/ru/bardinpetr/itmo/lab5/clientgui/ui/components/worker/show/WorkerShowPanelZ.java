@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show;
 
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelProvider;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.WorkersTable;
@@ -58,10 +59,10 @@ public class WorkerShowPanelZ extends ResourcedPanel {
 
     @Override
     protected void initComponentsI18n() {
-        ResourceBundle bundle = getResources();
-        openAddWorkerPlane.setText(bundle.getString("WorkerShowPanel.openAddWorkerPlane.text"));
-        clearWorkerButton.setText(bundle.getString("WorkerShowPanel.clearWorkerButton.text"));
-        removeGreaterButton.setText(bundle.getString("WorkerShowPanel.removeGreaterButton.text"));
+        UIResources resources = getResources();
+        openAddWorkerPlane.setText(resources.get("WorkerShowPanel.openAddWorkerPlane.text"));
+        clearWorkerButton.setText(resources.get("WorkerShowPanel.clearWorkerButton.text"));
+        removeGreaterButton.setText(resources.get("WorkerShowPanel.removeGreaterButton.text"));
 
     }
 }

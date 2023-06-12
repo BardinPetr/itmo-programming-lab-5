@@ -14,7 +14,7 @@ import java.util.function.Consumer;
 import static javax.swing.SwingUtilities.invokeLater;
 
 public abstract class AbstractTextWorkerField<T> extends JPasswordField implements IDataStorage<T>{
-    protected ResourceBundle bundle;
+    protected UIResources resources;
     public String toolTipMsg;
     IStringValidator validator;
     public AbstractTextWorkerField(String toolTipMsg, IStringValidator validator, Consumer<String> handler) {
@@ -33,9 +33,9 @@ public abstract class AbstractTextWorkerField<T> extends JPasswordField implemen
                             handler.accept(str);
                         },
                         (s) -> {
-                            bundle = getResources();
+                            resources = getResources();
                             setBackground(Color.PINK);
-                            setToolTipText(bundle.getString(s));
+                            setToolTipText(resources.get(s));
                         }
                 )
         );
@@ -62,12 +62,12 @@ public abstract class AbstractTextWorkerField<T> extends JPasswordField implemen
 
     }
 
-    private ResourceBundle getResources(){
-        return UIResources.getInstance().getBundle();
+    private UIResources getResources(){
+        return UIResources.getInstance();
     }
     protected void initComponentsI18n() {
-        bundle = getResources();
-        setToolTipText(bundle.getString(toolTipMsg));
+        resources = getResources();
+        setToolTipText(resources.get(toolTipMsg));
     }
 
     protected void setTextLater(String text){

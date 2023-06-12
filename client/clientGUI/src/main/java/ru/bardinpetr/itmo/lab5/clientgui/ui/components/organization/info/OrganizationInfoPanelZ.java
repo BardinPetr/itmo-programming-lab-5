@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info;
 
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.NameField;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.OrganizationTypeCombobox;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
@@ -19,7 +20,7 @@ public class OrganizationInfoPanelZ extends ResourcedPanel {
     private JLabel label2;
     private OrganizationTypeCombobox organizationTypeCombobox;
     private Organization defaultOrganization;
-    ResourceBundle bundle = getResources();
+    UIResources resources = getResources();
 
 
     public OrganizationInfoPanelZ(Organization defaultOrganization) {
@@ -74,10 +75,10 @@ public class OrganizationInfoPanelZ extends ResourcedPanel {
 
     @Override
     protected void initComponentsI18n() {
-        bundle = getResources();
+        resources = getResources();
 
-        label1.setText(bundle.getString("OrganizationValidator.label1.text"));
-        label2.setText(bundle.getString("OrganizationValidator.label2.text"));
+        label1.setText(resources.get("OrganizationValidator.label1.text"));
+        label2.setText(resources.get("OrganizationValidator.label2.text"));
     }
 
 }

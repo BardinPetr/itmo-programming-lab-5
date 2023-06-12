@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom;
 
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
@@ -61,7 +62,7 @@ public class BottomPanelZ extends ResourcedPanel {
     public void setInitDate(ZonedDateTime date){
         bdDateField.setText(
                 DateTimeFormatter.ofPattern(
-                        getResources().getString("dateFormat")
+                        getResources().get("dateFormat")
                 ).format(date));
     }
 
@@ -70,10 +71,10 @@ public class BottomPanelZ extends ResourcedPanel {
     }
 
     protected void initComponentsI18n() {
-        ResourceBundle bundle = getResources();
-        infoText.setText(bundle.getString("bottomPanel.infoText.text"));
-        dbTypeNameLabel.setText(bundle.getString("bottomPanel.label1.text"));
-        label2.setText(bundle.getString("bottomPanel.label2.text"));
-        label4.setText(bundle.getString("bottomPanel.label4.text"));
+        UIResources resources = getResources();
+        infoText.setText(resources.get("bottomPanel.infoText.text"));
+        dbTypeNameLabel.setText(resources.get("bottomPanel.label1.text"));
+        label2.setText(resources.get("bottomPanel.label2.text"));
+        label4.setText(resources.get("bottomPanel.label4.text"));
     }
 }

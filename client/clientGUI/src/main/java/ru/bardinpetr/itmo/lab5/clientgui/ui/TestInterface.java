@@ -28,13 +28,13 @@ public class TestInterface {
     public static void main(String[] args) throws APIClientException {
 
         APIConnectorFactory.create();
-//        var loginCmd = new PasswordLoginCommand();
-//        loginCmd.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
-//        APIProvider.getCredentialsStorage().setCredentials(
-//                new StoredJWTCredentials((JWTLoginResponse) (
-//                        (AuthCommand.AuthCommandResponse) APIProvider.getConnector().call(loginCmd)).getData()
-//                )
-//        );
+        var loginCmd = new PasswordLoginCommand();
+        loginCmd.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
+        APIProvider.getCredentialsStorage().setCredentials(
+                new StoredJWTCredentials((JWTLoginResponse) (
+                        (AuthCommand.AuthCommandResponse) APIProvider.getConnector().call(loginCmd)).getData()
+                )
+        );
 
 //        APIProvider.getPoolingEventSource()
 //                .subscribe(new ResourceEventConsumer(System.out::println, "worker"));
@@ -71,11 +71,11 @@ public class TestInterface {
         );
 
 
-        new LoginPage(MainFrameZ::new);
+//        new LoginPage(MainFrameZ::new);
 //        new WorkerUpdateFrameZ(testWorker, true);
 //        });
 //        new WorkerUpdateFrameZ(testWorker, true);
-//        new MainFrameZ();
+        new MainFrameZ();
 //        testPanel(new ScriptPanel());
     }
 

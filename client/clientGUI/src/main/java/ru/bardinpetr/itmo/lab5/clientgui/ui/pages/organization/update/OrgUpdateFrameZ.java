@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update;
 
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
@@ -15,7 +16,7 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
     private JPanel panel1;
     private JButton updateOrgButton;
     private JButton orgUpdateCancelButton;
-    private ResourceBundle bundle = getResources();
+    private UIResources resources = getResources();
     private Organization defaultOrganization;
 
     public OrgUpdateFrameZ(Organization defaultOrganization) {
@@ -53,7 +54,7 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
             public void mousePressed(MouseEvent e) {
                 var worker = orgInfoPanel.getOrganization();
                 if (!worker.isAllowed) {
-                    JOptionPane.showMessageDialog(orgInfoPanel, bundle.getString(worker.msg), bundle.getString("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(orgInfoPanel, UIResources.getInstance().get(worker.msg), UIResources.getInstance().get("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
                 }
                 else {
                     //TODO add organization command
@@ -68,9 +69,9 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
     }
     @Override
     protected void initComponentsI18n() {
-        bundle = getResources();
-        setTitle(bundle.getString("OrgAddFrameZ.title"));
-        updateOrgButton.setText(bundle.getString("OrgAddFrame.addOrgButton.text"));
-        orgUpdateCancelButton.setText(bundle.getString("OrgAddFrame.orgrAddCancelButton.text"));
+        resources = getResources();
+        setTitle(resources.get("OrgAddFrameZ.title"));
+        updateOrgButton.setText(resources.get("OrgAddFrame.addOrgButton.text"));
+        orgUpdateCancelButton.setText(resources.get("OrgAddFrame.orgrAddCancelButton.text"));
     }
 }

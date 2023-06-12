@@ -68,7 +68,7 @@ public class OrganizationCombobox extends AbstractWorkerComboBox<OrganizationPre
         else {
             initComponentsI18n();
             setBackground(Color.ORANGE);//TODO check null??
-            setToolTipText(bundle.getString("OrganizationIdBox.previousValue.notFound.text"));
+            setToolTipText(resources.get("OrganizationIdBox.previousValue.notFound.text"));
             return new ValidationResponse(
                     false,
                     "OrganizationIdBox.previousValue.notFound.text");

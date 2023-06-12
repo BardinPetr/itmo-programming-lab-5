@@ -81,10 +81,10 @@ public class NullableDatePanel extends JPanel implements IDataStorage<LocalDate>
     }
 
     private void initComponentsI18n() {
-        ResourceBundle bundle = getResources();
-        endDateNullCheckbox.setText(bundle.getString("WorkerInfoPanel.endDateNull.text"));
+        UIResources resources = getResources();
+        endDateNullCheckbox.setText(resources.get("WorkerInfoPanel.endDateNull.text"));
     }
-    private ResourceBundle getResources(){
-        return UIResources.getInstance().getBundle();
+    private UIResources getResources(){
+        return UIResources.getInstance();
     }
 }

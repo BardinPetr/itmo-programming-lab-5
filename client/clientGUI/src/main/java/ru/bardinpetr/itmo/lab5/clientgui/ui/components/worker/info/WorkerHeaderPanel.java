@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info;
 
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.*;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.NullableDatePanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
@@ -21,7 +22,7 @@ public class WorkerHeaderPanel extends ResourcedPanel {
     private JTextField usernameField;
     private Worker defaultWorker;
 
-    ResourceBundle bundle = getResources();
+    UIResources resources = getResources();
 
     public WorkerHeaderPanel(Worker defaultWorker) {
 
@@ -62,10 +63,10 @@ public class WorkerHeaderPanel extends ResourcedPanel {
 
     @Override
     protected void initComponentsI18n() {
-        bundle = getResources();
+        resources = getResources();
 
-        idLabel.setText(bundle.getString("WorkerHeaderPanel.idLabel.text"));
-        usernameLabel.setText(bundle.getString("WorkerHeaderPanel.usernameLabel.text"));
+        idLabel.setText(resources.get("WorkerHeaderPanel.idLabel.text"));
+        usernameLabel.setText(resources.get("WorkerHeaderPanel.usernameLabel.text"));
     }
 
 }

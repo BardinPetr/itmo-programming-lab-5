@@ -86,8 +86,8 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
                         if (!worker.isAllowed) {
                             JOptionPane.showMessageDialog(
                                     workerInfoPanel,
-                                    getResources().getString(worker.msg),
-                                    getResources().getString("AddFrame.input.error.text"),
+                                    getResources().get(worker.msg),
+                                    getResources().get("AddFrame.input.error.text"),
                                     JOptionPane.ERROR_MESSAGE);
                             return;
                         }
@@ -115,10 +115,10 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
     }
     @Override
     protected void initComponentsI18n() {
-        var bundle = getResources();
-        setTitle(bundle.getString("WorkerUpdateFrameZ.title"));
-        updateWorkerButton.setText(bundle.getString("WorkerUpdateFrameZ.updateWorkerButton.text"));
-        deleteWorkerButton.setText(bundle.getString("WorkerUpdateFrame.deleteWorkerButton.text"));
-        workerUpdateCancelButton.setText(bundle.getString("WorkerAddFrame.workerAddCancelButton.text"));
+        var resources = getResources();
+        setTitle(resources.get("WorkerUpdateFrameZ.title"));
+        updateWorkerButton.setText(resources.get("WorkerUpdateFrameZ.updateWorkerButton.text"));
+        deleteWorkerButton.setText(resources.get("WorkerUpdateFrame.deleteWorkerButton.text"));
+        workerUpdateCancelButton.setText(resources.get("WorkerAddFrame.workerAddCancelButton.text"));
     }
 }

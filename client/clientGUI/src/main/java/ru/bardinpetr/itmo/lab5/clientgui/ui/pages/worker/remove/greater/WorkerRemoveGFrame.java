@@ -49,7 +49,7 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
             public void mousePressed(MouseEvent e) {
                 var worker = workerInfoPanel.getWorker();
                 if (!worker.isAllowed) {
-                    JOptionPane.showMessageDialog(workerInfoPanel, getResources().getString(worker.msg), getResources().getString("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(workerInfoPanel, getResources().get(worker.msg), getResources().get("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
                 }
                 else {
                     new APICommandMenger().sendCommand(
@@ -68,9 +68,9 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
     }
     @Override
     protected void initComponentsI18n() {
-        var bundle = getResources();
-        setTitle(bundle.getString("WorkerRemoveGFrame.title"));
-        removeWorkerButton.setText(bundle.getString("WorkerRemoveGFrame.removeGreaterWorkerButton.text"));
-        workerUpdateCancelButton.setText(bundle.getString("WorkerAddFrame.workerAddCancelButton.text"));
+        var resources = getResources();
+        setTitle(resources.get("WorkerRemoveGFrame.title"));
+        removeWorkerButton.setText(resources.get("WorkerRemoveGFrame.removeGreaterWorkerButton.text"));
+        workerUpdateCancelButton.setText(resources.get("WorkerAddFrame.workerAddCancelButton.text"));
     }
 }

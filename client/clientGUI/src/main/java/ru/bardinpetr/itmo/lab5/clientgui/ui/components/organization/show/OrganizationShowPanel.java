@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show;
 
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelProvider;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.OrganizationTable;
@@ -38,7 +39,7 @@ public class OrganizationShowPanel extends ResourcedPanel {
 
     @Override
     protected void initComponentsI18n() {
-        ResourceBundle bundle = getResources();
-        clearOrgButton.setText(bundle.getString("WorkerShowPanel.clearWorkerButton.text"));
+        UIResources resources = getResources();
+        clearOrgButton.setText(resources.get("WorkerShowPanel.clearWorkerButton.text"));
     }
 }

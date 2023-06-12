@@ -98,11 +98,11 @@ public class LoginPage extends ResourcedFrame {
     @Override
     protected void initComponentsI18n() {
         var resources = getResources();
-        setTitle(getResources().getString("loginPage.title"));
-        loginButton.setText(resources.getString("loginPage.loginButton.text"));
-        registerButton.setText(resources.getString("loginPage.registerButton.text"));
-        userLabel.setText(resources.getString("loginPage.label2.text"));
-        passLabel.setText(resources.getString("loginPage.label3.text"));
+        setTitle(getResources().get("loginPage.title"));
+        loginButton.setText(resources.get("loginPage.loginButton.text"));
+        registerButton.setText(resources.get("loginPage.registerButton.text"));
+        userLabel.setText(resources.get("loginPage.label2.text"));
+        passLabel.setText(resources.get("loginPage.label3.text"));
     }
 
     private void togglePasswordVisibility(ItemEvent e) {
@@ -116,8 +116,8 @@ public class LoginPage extends ResourcedFrame {
         if (!username.isAllowed) {
             JOptionPane.showMessageDialog(
                     this,
-                    getResources().getString(username.msg),
-                    getResources().getString("CredentialsValidator.invalid.text"),
+                    getResources().get(username.msg),
+                    getResources().get("CredentialsValidator.invalid.text"),
                     JOptionPane.ERROR_MESSAGE
             );
 
@@ -126,8 +126,8 @@ public class LoginPage extends ResourcedFrame {
         if (!password.isAllowed) {
             JOptionPane.showMessageDialog(
                     this,
-                    getResources().getString(password.msg),
-                    getResources().getString("CredentialsValidator.invalid.text"),
+                    getResources().get(password.msg),
+                    getResources().get("CredentialsValidator.invalid.text"),
                     JOptionPane.ERROR_MESSAGE
             );
 
@@ -153,43 +153,6 @@ public class LoginPage extends ResourcedFrame {
                     dispose();
                 }
         );
-
-//        SwingUtilities.invokeLater(() -> {
-//            var validation = cmd.validate();
-//            if (!validation.isAllowed()) {
-//                JOptionPane.showMessageDialog(
-//                        this,
-//                        getResources().getString(validation.getMsg()),
-//                        getResources().getString("command.error.invalidField"),
-//                        JOptionPane.ERROR_MESSAGE
-//                );
-//                return;
-//            }
-//            APICommandResponse result;
-//            try {
-//                result = apiConnector.call(cmd);
-//            } catch (APIClientException ex) {
-//                JOptionPane.showMessageDialog(
-//                        this,
-//                        getResources().getString(ex.getMessage()),
-//                        getResources().getString("command.error.requestFailed"),
-//                        JOptionPane.ERROR_MESSAGE
-//                );
-//                return;
-//            }
-//
-//            if (!result.isSuccess()) {
-//                JOptionPane.showMessageDialog(
-//                        this,
-//                        getResources().getString(result.getUserMessage()),
-//                        getResources().getString("loginPage.error.authorizationFailed"),
-//                        JOptionPane.ERROR_MESSAGE);
-//                return;
-//            }
-//            var loginResponse = ((AuthCommand.AuthCommandResponse) result).getData();
-//            credentialsStorage.setCredentials(new StoredJWTCredentials((JWTLoginResponse) loginResponse));
-//            onSuccess.run();
-//            dispose();
 
     }
 

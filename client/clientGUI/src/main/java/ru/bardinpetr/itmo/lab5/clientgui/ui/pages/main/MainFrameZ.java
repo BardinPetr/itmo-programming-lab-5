@@ -1,6 +1,7 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main;
 
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelProvider;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.BottomPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
@@ -35,6 +36,8 @@ public class MainFrameZ extends ResourcedFrame {
     public MainFrameZ() {
         initComponents();
         setSize(new Dimension(800, 500));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
@@ -141,11 +144,11 @@ public class MainFrameZ extends ResourcedFrame {
 
     protected void initComponentsI18n() {
         if (workersMenuButton == null) return;
-        ResourceBundle bundle = getResources();
-        setTitle(bundle.getString("MainFrame.title"));
-        workersMenuButton.setText(bundle.getString("MainFrame.workersMenuButton.text"));
-        orgsMenuButton.setText(bundle.getString("MainFrame.orgsMenuButton.text"));
-        mapMenuButton.setText(bundle.getString("MainFrame.mapMenuButton.text"));
-        scriptMenuButton.setText(bundle.getString("MainFrame.scriptMenuButton.text"));
+        UIResources resources = getResources();
+        setTitle(resources.get("MainFrame.title"));
+        workersMenuButton.setText(resources.get("MainFrame.workersMenuButton.text"));
+        orgsMenuButton.setText(resources.get("MainFrame.orgsMenuButton.text"));
+        mapMenuButton.setText(resources.get("MainFrame.mapMenuButton.text"));
+        scriptMenuButton.setText(resources.get("MainFrame.scriptMenuButton.text"));
     }
 }

@@ -68,13 +68,13 @@ public class ScriptPanel extends ResourcedPanel {
 
             @Override
             public String getDescription() {
-                return getResources().getString("MainFrame.scriptChooseText.description");
+                return getResources().get("MainFrame.scriptChooseText.description");
             }
         });
 
         executeScriptButton.addActionListener((e) ->{
             scriptChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
-            scriptChooser.showDialog(this, getResources().getString("MainFrame.scriptChooseText.text"));
+            scriptChooser.showDialog(this, getResources().get("MainFrame.scriptChooseText.text"));
         });
 
         scriptChooser.addActionListener((e)->{

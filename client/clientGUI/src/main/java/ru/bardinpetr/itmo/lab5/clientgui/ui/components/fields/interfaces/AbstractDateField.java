@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
 public abstract class AbstractDateField<T> extends JSpinner implements IDataStorage<T> {
-    protected ResourceBundle bundle;
+    protected UIResources resources;
 
     public AbstractDateField(Consumer<Date> handler) {
         super(new SpinnerDateModel(
@@ -37,15 +37,15 @@ public abstract class AbstractDateField<T> extends JSpinner implements IDataStor
     public ValidationResponse validateValue(){
         return new ValidationResponse(true, "");
     }
-    private ResourceBundle getResources(){
-        return UIResources.getInstance().getBundle();
+    private UIResources getResources(){
+        return UIResources.getInstance();
     }
     protected void initComponentsI18n() {
-        bundle = getResources();
-        var dateFormat = bundle.getString("dateFormat");
+        resources = getResources();
+        var dateFormat = resources.get("dateFormat");
         setToolTipText(
-                bundle.getString("AbstractDateField.toolText.format")+
-                bundle.getString("dateFormat"));
+                resources.get("AbstractDateField.toolText.format")+
+                resources.get("dateFormat"));
         setEditor(new JSpinner.DateEditor(this, dateFormat));
 
     }

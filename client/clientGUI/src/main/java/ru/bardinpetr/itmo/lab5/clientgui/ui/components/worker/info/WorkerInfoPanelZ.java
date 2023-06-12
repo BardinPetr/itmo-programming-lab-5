@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info;
 
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.*;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.NullableDatePanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
@@ -37,7 +38,7 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
     private DataContainer<Worker> workerDataContainer;
     private Worker defaultWorker;
     private boolean isChangeable;
-    ResourceBundle bundle = getResources();
+    UIResources resources = getResources();
 
     public WorkerInfoPanelZ() {
         this(null, true);
@@ -188,16 +189,16 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
 
     @Override
     protected void initComponentsI18n() {
-        bundle = getResources();
+        resources = getResources();
 
-        label1.setText(bundle.getString("WorkerInfoPanel.label1.text"));
-        label2.setText(bundle.getString("WorkerInfoPanel.label2.text"));
-        label3.setText(bundle.getString("WorkerInfoPanel.label3.text"));
-        label4.setText(bundle.getString("WorkerInfoPanel.label4.text"));
-        label5.setText(bundle.getString("WorkerInfoPanel.label5.text"));
-        label6.setText(bundle.getString("WorkerInfoPanel.label6.text"));
-        label7.setText(bundle.getString("WorkerInfoPanel.label7.text"));
-        label8.setText(bundle.getString("WorkerInfoPanel.label8.text"));
+        label1.setText(resources.get("WorkerInfoPanel.label1.text"));
+        label2.setText(resources.get("WorkerInfoPanel.label2.text"));
+        label3.setText(resources.get("WorkerInfoPanel.label3.text"));
+        label4.setText(resources.get("WorkerInfoPanel.label4.text"));
+        label5.setText(resources.get("WorkerInfoPanel.label5.text"));
+        label6.setText(resources.get("WorkerInfoPanel.label6.text"));
+        label7.setText(resources.get("WorkerInfoPanel.label7.text"));
+        label8.setText(resources.get("WorkerInfoPanel.label8.text"));
     }
 
 }

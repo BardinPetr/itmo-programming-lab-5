@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.add;
 
+import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
@@ -20,7 +21,7 @@ public class OrgAddFrameZ extends ResourcedFrame {
     private JPanel panel1;
     private JButton addOrgButton;
     private JButton orgAddCancelButton;
-    private ResourceBundle bundle = getResources();
+    private UIResources resources = getResources();
 
     public OrgAddFrameZ() {
         initComponents();
@@ -57,7 +58,12 @@ public class OrgAddFrameZ extends ResourcedFrame {
             public void mousePressed(MouseEvent e) {
                 var organization = orgInfoPanel.getOrganization();
                 if (!organization.isAllowed) {
-                    JOptionPane.showMessageDialog(orgInfoPanel, bundle.getString(organization.msg), bundle.getString("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                            orgInfoPanel,
+                            resources.get(organization.msg),
+                            resources.get("AddFrame.input.error.text"),
+                            JOptionPane.ERROR_MESSAGE
+                    );
                 }
                 else {
                     var command = new AddOrgCommand();
@@ -70,9 +76,9 @@ public class OrgAddFrameZ extends ResourcedFrame {
                                 var resp = (AddOrgCommand.AddOrgCommandResponse) response;
                                 JOptionPane.showConfirmDialog(
                                         orgInfoPanel,
-                                        getResources().getString("OrgAddFrameZ.newIdMsg")+
+                                        getResources().get("OrgAddFrameZ.newIdMsg")+
                                                 ": " + resp.getId(),
-                                        getResources().getString("OrgAddFrameZ.newIdMsg")
+                                        getResources().get("OrgAddFrameZ.newIdMsg")
                                         , JOptionPane.PLAIN_MESSAGE
                                 );
                             }
@@ -89,9 +95,9 @@ public class OrgAddFrameZ extends ResourcedFrame {
     }
     @Override
     protected void initComponentsI18n() {
-        bundle = getResources();
-        setTitle(bundle.getString("OrgAddFrameZ.title"));
-        addOrgButton.setText(bundle.getString("OrgAddFrame.addOrgButton.text"));
-        orgAddCancelButton.setText(bundle.getString("OrgAddFrame.orgrAddCancelButton.text"));
+        resources = getResources();
+        setTitle(resources.get("OrgAddFrameZ.title"));
+        addOrgButton.setText(resources.get("OrgAddFrame.addOrgButton.text"));
+        orgAddCancelButton.setText(resources.get("OrgAddFrame.orgrAddCancelButton.text"));
     }
 }

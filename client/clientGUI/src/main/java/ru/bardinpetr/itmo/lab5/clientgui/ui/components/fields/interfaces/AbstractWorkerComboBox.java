@@ -12,7 +12,7 @@ import static javax.swing.SwingUtilities.invokeLater;
 
 public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDataStorage<T>{
 
-    protected ResourceBundle bundle = getResources();
+    protected UIResources resources = getResources();
     Consumer<T> handler;
 
 
@@ -34,11 +34,11 @@ public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDa
 
     protected abstract void groupItems();
 
-    private ResourceBundle getResources(){
-        return UIResources.getInstance().getBundle();
+    private UIResources getResources(){
+        return UIResources.getInstance();
     }
     protected void initComponentsI18n() {
-        bundle = getResources();
+        resources = getResources();
         removeAllItems();
         groupItems();
     }
