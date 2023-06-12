@@ -6,6 +6,6 @@ public class TransportTimeoutException extends Exception {
     }
 
     public TransportTimeoutException() {
-        super("Server communication timeout. Retry later");
+        super("TransportTimeoutException.error");
     }
 }

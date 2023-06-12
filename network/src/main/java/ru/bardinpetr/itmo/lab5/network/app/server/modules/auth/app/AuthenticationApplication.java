@@ -71,13 +71,13 @@ public class AuthenticationApplication<C extends AuthenticationCredentials, R ex
 
             resp.from(cmd.createResponse().setData(registerResponse));
         } catch (UserExistsException e) {
-            resp.status(APIResponseStatus.AUTH_ERROR).message("User with such name already exist");
+            resp.status(APIResponseStatus.AUTH_ERROR).message("AuthenticationApplication.userAlreadyExists.error");
         } catch (InvalidCredentialsException e) {
             log.error("Register failed for {}: {}", logID, e.getMessage());
-            resp.status(APIResponseStatus.AUTH_ERROR).message("Credentials don't met requirements");
+            resp.status(APIResponseStatus.AUTH_ERROR).message("CredentialsValidator.invalid.tex");
         } catch (Throwable e) {
             log.error("Register failed for {}: {}", logID, e.getMessage());
-            resp.status(APIResponseStatus.AUTH_ERROR).message("Invalid authentication");
+            resp.status(APIResponseStatus.AUTH_ERROR).message("loginPage.error.authorizationFailed");
         }
 
         resp.send();

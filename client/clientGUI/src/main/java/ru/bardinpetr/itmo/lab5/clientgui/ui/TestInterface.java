@@ -7,6 +7,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.Main;
 import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.script.ScriptPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerHeaderPanel;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.login.LoginPage;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ;
@@ -27,13 +28,13 @@ public class TestInterface {
     public static void main(String[] args) throws APIClientException {
 
         APIConnectorFactory.create();
-        var loginCmd = new PasswordLoginCommand();
-        loginCmd.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
-        APIProvider.getCredentialsStorage().setCredentials(
-                new StoredJWTCredentials((JWTLoginResponse) (
-                        (AuthCommand.AuthCommandResponse) APIProvider.getConnector().call(loginCmd)).getData()
-                )
-        );
+//        var loginCmd = new PasswordLoginCommand();
+//        loginCmd.setCredentials(new DefaultAuthenticationCredentials("u", "p"));
+//        APIProvider.getCredentialsStorage().setCredentials(
+//                new StoredJWTCredentials((JWTLoginResponse) (
+//                        (AuthCommand.AuthCommandResponse) APIProvider.getConnector().call(loginCmd)).getData()
+//                )
+//        );
 
 //        APIProvider.getPoolingEventSource()
 //                .subscribe(new ResourceEventConsumer(System.out::println, "worker"));
@@ -70,12 +71,11 @@ public class TestInterface {
         );
 
 
-//        new LoginPage(() -> {
-//        new MainFrameZ();
+        new LoginPage(MainFrameZ::new);
 //        new WorkerUpdateFrameZ(testWorker, true);
 //        });
 //        new WorkerUpdateFrameZ(testWorker, true);
-        new MainFrameZ();
+//        new MainFrameZ();
 //        testPanel(new ScriptPanel());
     }
 

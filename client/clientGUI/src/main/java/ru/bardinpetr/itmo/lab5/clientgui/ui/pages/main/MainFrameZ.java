@@ -35,6 +35,7 @@ public class MainFrameZ extends ResourcedFrame {
     public MainFrameZ() {
         initComponents();
         setSize(new Dimension(800, 500));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
     }
