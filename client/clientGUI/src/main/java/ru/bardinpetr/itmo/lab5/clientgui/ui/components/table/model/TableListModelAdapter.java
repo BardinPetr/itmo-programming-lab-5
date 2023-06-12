@@ -1,31 +1,52 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model;
 
 import lombok.Getter;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.EventUtils;
 
 import javax.swing.*;
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
+import javax.swing.event.*;
 import javax.swing.table.TableModel;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public abstract class TableListModelAdapter<T, M extends DefaultListModel<T>> implements TableModel {
-    @Getter
-    private final List<String> columnNames;
+    private final EventListenerList listenerList = new EventListenerList();
+
     @Getter
     private final M baseModel;
+    @Getter
+    private List<String> columnNames;
 
-    public TableListModelAdapter(M model, List<String> columnNames) {
-        this.columnNames = columnNames;
-        this.baseModel = model;
+    public TableListModelAdapter(M model, int columnCount) {
+        baseModel = model;
+        columnNames = new ArrayList<>();
+        for (int i = 0; i < columnCount; i++)
+            columnNames.add("...");
+        updateColumnNames();
     }
 
     protected abstract Object getValueAt(T object, int column);
 
+    protected abstract List<String> getColumnNames();
+
     protected void setValueAt(T fullObject, Object newValue, int column) {
+    }
+
+    protected void updateColumnNames() {
+        SwingUtilities.invokeLater(() -> {
+            var newColumns = getColumnNames();
+            if (newColumns.size() != columnNames.size())
+                return;
+
+            columnNames = newColumns;
+            EventUtils.fireAll(
+                    listenerList,
+                    TableModelListener.class,
+                    i -> i.tableChanged(new TableModelEvent(this))
+            );
+        });
     }
 
     @Override
@@ -61,11 +82,13 @@ public abstract class TableListModelAdapter<T, M extends DefaultListModel<T>> im
     @Override
     public void addTableModelListener(TableModelListener l) {
         baseModel.addListDataListener(TableListModelListenerAdapter.wrap(this, l));
+        listenerList.add(TableModelListener.class, l);
     }
 
     @Override
     public void removeTableModelListener(TableModelListener l) {
         baseModel.removeListDataListener(TableListModelListenerAdapter.wrap(this, l));
+        listenerList.remove(TableModelListener.class, l);
     }
 
     @Override
@@ -85,7 +108,9 @@ public abstract class TableListModelAdapter<T, M extends DefaultListModel<T>> im
         }
 
         public static TableListModelListenerAdapter wrap(TableModel model, TableModelListener l) {
-            return cache.getOrDefault(l, new TableListModelListenerAdapter(model, l));
+            if (!cache.containsKey(l))
+                cache.put(l, new TableListModelListenerAdapter(model, l));
+            return cache.get(l);
         }
 
         private TableModelEvent getEvent(ListDataEvent e, int type) {
