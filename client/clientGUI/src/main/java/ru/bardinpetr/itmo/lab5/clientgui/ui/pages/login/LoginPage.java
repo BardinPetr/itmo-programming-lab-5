@@ -4,40 +4,34 @@ import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
-import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.PasswordField;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.UsernameField;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
-import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.PasswordLoginCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.RegisterCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.DefaultAuthenticationCredentials;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.models.JWTLoginResponse;
-import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 
-import static javax.swing.SwingUtilities.invokeLater;
-
 public class LoginPage extends ResourcedFrame {
     private final ICredentialsStorage<StoredJWTCredentials> credentialsStorage;
     private final APIClientConnector apiConnector;
     private final Runnable onSuccess;
-
+    private final JLabel userLabel = new JLabel();
+    private final JLabel passLabel = new JLabel();
     private JButton loginButton;
     private JButton registerButton;
     private UsernameField usernameField;
     private PasswordField passwordField;
     private JCheckBox showCheckBox;
-    private JLabel userLabel = new JLabel();
-    private JLabel passLabel = new JLabel();
 
 
     public LoginPage(Runnable onSuccess) {
@@ -49,7 +43,6 @@ public class LoginPage extends ResourcedFrame {
 
         if (credentialsStorage.getCredentials() != null) {
             onSuccess.run();
-            return;
         }
 
     }
@@ -65,28 +58,30 @@ public class LoginPage extends ResourcedFrame {
         registerButton = new JButton();
         registerButton.addActionListener(this::onButtonClick);
 
-        usernameField = new UsernameField((e)->{});
-        passwordField = new PasswordField((e) -> {});
+        usernameField = new UsernameField((e) -> {
+        });
+        passwordField = new PasswordField((e) -> {
+        });
         passwordField.setEchoChar('*');
 
         showCheckBox = new JCheckBox("Show pass");
         showCheckBox.addItemListener(this::togglePasswordVisibility);
 
 
-        mainPanel.add(userLabel, GridConstrains.placedAdd(0,1, GridBagConstraints.CENTER, GridBagConstraints.NONE));
-        mainPanel.add(usernameField, GridConstrains.placedAdd(0,2, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
-        mainPanel.add(passLabel, GridConstrains.placedAdd(0,3, GridBagConstraints.CENTER, GridBagConstraints.NONE));
+        mainPanel.add(userLabel, GridConstrains.placedAdd(0, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE));
+        mainPanel.add(usernameField, GridConstrains.placedAdd(0, 2, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
+        mainPanel.add(passLabel, GridConstrains.placedAdd(0, 3, GridBagConstraints.CENTER, GridBagConstraints.NONE));
         var passPanel = new JPanel();
         passPanel.setLayout(new BoxLayout(passPanel, BoxLayout.X_AXIS));
         passPanel.add(passwordField);
         passPanel.add(showCheckBox);
-        mainPanel.add(passPanel, GridConstrains.placedAdd(0,4, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
+        mainPanel.add(passPanel, GridConstrains.placedAdd(0, 4, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
         var buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridBagLayout());
-        buttonPanel.add(loginButton, GridConstrains.placedAdd(0,0, GridBagConstraints.CENTER, GridBagConstraints.NONE));
-        buttonPanel.add(registerButton, GridConstrains.placedAdd(1,0, GridBagConstraints.CENTER, GridBagConstraints.NONE));
-        buttonPanel.add(new LanguageChanger(), GridConstrains.placedAdd(3,0, GridBagConstraints.EAST, GridBagConstraints.NONE));
-        mainPanel.add(buttonPanel, GridConstrains.placedAdd(0,5, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
+        buttonPanel.add(loginButton, GridConstrains.placedAdd(0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
+        buttonPanel.add(registerButton, GridConstrains.placedAdd(1, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
+        buttonPanel.add(new LanguageChanger(), GridConstrains.placedAdd(1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE));
+        mainPanel.add(buttonPanel, GridConstrains.placedAdd(0, 5, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL));
         initComponentsI18n();
 
         setContentPane(mainPanel);
