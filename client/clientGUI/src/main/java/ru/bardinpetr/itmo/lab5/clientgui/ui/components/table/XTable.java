@@ -27,10 +27,11 @@ public class XTable extends JPanel {
     private final FilterRowSorter<TableModel> rowSorter;
     private final PagingTableModel pagedModel;
     private final TableModel model;
-    @Getter
-    private Box bottomToolbox;
+    private final FilterSortTableHeader externalHeader;
     protected JButton deleteButton;
     protected JButton updateButton;
+    @Getter
+    private Box bottomToolbox;
 
     public XTable(TableModel model) {
         super(new BorderLayout());
@@ -50,11 +51,20 @@ public class XTable extends JPanel {
 
         table.setModel(pagedModel);
 
-        var externalHeader = new FilterSortTableHeader(table, model);
+        externalHeader = new FilterSortTableHeader(table, model);
         externalHeader.addFilterSortParamsListener(new RowSorterEventAdapter<>(rowSorter));
 
-        add(externalHeader, BorderLayout.NORTH);
-        add(table, BorderLayout.CENTER);
+        var tableBody = new JPanel();
+        tableBody.setLayout(new BorderLayout());
+        tableBody.add(externalHeader, BorderLayout.NORTH);
+        tableBody.add(table, BorderLayout.CENTER);
+
+        var scroll = new JScrollPane(
+                tableBody,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED
+        );
+        add(scroll, BorderLayout.CENTER);
 
         initButtonBlock();
 

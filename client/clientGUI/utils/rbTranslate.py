@@ -3,6 +3,7 @@ import re
 import sys
 import translators as ts
 
+BLACKLIST = {"dateFormat"}
 BASE_LANG = "en"
 TARGET_LANGS = ["ru"]
 
@@ -23,7 +24,11 @@ public class {base_name} extends ListResourceBundle {{
 
 
 def translate(data):
-    text, to = data
+    key, text, to = data
+
+    if key in BLACKLIST:
+        return text
+
     try:
         res = ts.translate_text(text, from_language=BASE_LANG, to_language=to)
         return res if len(res) else text
@@ -55,7 +60,7 @@ def main():
 
     for target in TARGET_LANGS:
         with mp.Pool(processes=8) as pool:
-            res = pool.map(translate, zip(texts.values(), [target] * len(texts)))
+            res = pool.map(translate, zip(texts.keys(), texts.values(), [target] * len(texts)))
             save_file(dst_dir, class_name, package, target, zip(texts.keys(), res))
 
 

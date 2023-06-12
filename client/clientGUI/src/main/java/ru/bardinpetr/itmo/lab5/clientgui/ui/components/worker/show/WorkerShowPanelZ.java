@@ -33,6 +33,7 @@ public class WorkerShowPanelZ extends ResourcedPanel {
         removeGreaterButton = new JButton();
 
         setLayout(new BorderLayout());
+
         add(workerTablePanel, BorderLayout.CENTER);
 
         var panel1 = new Box(BoxLayout.LINE_AXIS);
@@ -41,16 +42,14 @@ public class WorkerShowPanelZ extends ResourcedPanel {
         panel1.add(removeGreaterButton);
         add(panel1, BorderLayout.SOUTH);
 
-        openAddWorkerPlane.addActionListener((e -> invokeLater(() -> new WorkerAddFrameZ())));
-        clearWorkerButton.addActionListener((e) -> invokeLater(() -> {
-            new APICommandMenger().sendCommand(
-                    new ClearCommand(),
-                    this,
-                    "WorkerShowPanel.canNotClear.text",
-                    (response) -> {
-                    }
-            );
-        }));
+        openAddWorkerPlane.addActionListener((e -> invokeLater(WorkerAddFrameZ::new)));
+        clearWorkerButton.addActionListener((e) -> invokeLater(() -> new APICommandMenger().sendCommand(
+                new ClearCommand(),
+                this,
+                "WorkerShowPanel.canNotClear.text",
+                (response) -> {
+                }
+        )));
         removeGreaterButton.addActionListener((e -> new WorkerRemoveGFrame()));
 
         initComponentsI18n();
