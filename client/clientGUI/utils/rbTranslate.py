@@ -3,6 +3,7 @@ import re
 import sys
 import translators as ts
 
+BLACKLIST = {"dateFormat"}
 BASE_LANG = "en"
 TARGET_LANGS = ["ru"]
 
@@ -24,6 +25,10 @@ public class {base_name} extends ListResourceBundle {{
 
 def translate(data):
     text, to = data
+
+    if text in BLACKLIST:
+        return text
+
     try:
         res = ts.translate_text(text, from_language=BASE_LANG, to_language=to)
         return res if len(res) else text
