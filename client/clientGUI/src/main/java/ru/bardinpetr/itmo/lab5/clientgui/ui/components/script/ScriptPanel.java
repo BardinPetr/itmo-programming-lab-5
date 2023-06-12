@@ -87,8 +87,8 @@ public class ScriptPanel extends ResourcedPanel {
         });
 
         scriptChooser.addActionListener((e) -> {
-            if (scriptChooser.getSelectedFile() == null) {
-            } else {
+            if (scriptChooser.getSelectedFile() != null) {
+                executeScriptButton.setEnabled(false);
                 var scriptPath = scriptChooser.getSelectedFile().getPath();
                 invokeLater(() -> executeScript(scriptPath));
             }
@@ -99,23 +99,27 @@ public class ScriptPanel extends ResourcedPanel {
 
     private void executeScript(String path) {
         resultPanel.removeAll();
-        try {
-            scriptExecutor.process(path);
-        } catch (FileAccessException | ScriptException | ScriptRecursionRootException e) {
-            Object[] options = {
-                    UIResources.getInstance().get("optionalAnswers.Ok")
-            };
-            JOptionPane.showOptionDialog(
-                    this,
-                    getResources().get("ScriptLocalCommand.invalidScript.text"),
-                    getResources().get(e.getMessage()),
-                    JOptionPane.OK_OPTION,
-                    JOptionPane.ERROR_MESSAGE,
-                    null,     //do not use a custom Icon
-                    options,
-                    options[0]
-            );
-        }
+        new Thread(() -> {
+            try {
+                scriptExecutor.process(path);
+            } catch (FileAccessException | ScriptException | ScriptRecursionRootException e) {
+                Object[] options = {
+                        UIResources.getInstance().get("optionalAnswers.Ok")
+                };
+                JOptionPane.showOptionDialog(
+                        this,
+                        getResources().get("ScriptLocalCommand.invalidScript.text"),
+                        getResources().get(e.getMessage()),
+                        JOptionPane.OK_OPTION,
+                        JOptionPane.ERROR_MESSAGE,
+                        null,     //do not use a custom Icon
+                        options,
+                        options[0]
+                );
+            } finally {
+                executeScriptButton.setEnabled(true);
+            }
+        }).start();
     }
 
 

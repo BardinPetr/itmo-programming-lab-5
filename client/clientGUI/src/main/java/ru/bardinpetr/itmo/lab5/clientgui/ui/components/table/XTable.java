@@ -149,5 +149,6 @@ public class XTable extends JPanel {
 
     public void setTableStatic(boolean isStatic) {
         bottomToolbox.setVisible(!isStatic);
+        pagedModel.getPaginatorControl().setPageMaxSizeUpdatesEnabled(!isStatic);
     }
 }
