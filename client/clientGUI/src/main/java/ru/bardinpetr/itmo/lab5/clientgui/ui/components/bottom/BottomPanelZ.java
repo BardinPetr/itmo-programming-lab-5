@@ -13,12 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class BottomPanelZ extends ResourcedPanel {
-    private JLabel infoText;
-    private JLabel dbTypeNameLabel;
-    private JLabel label2;
-    private JLabel bdDateField;
-    private JLabel label4;
-    private JLabel workersCountField;
+    private CollectionInfoPanel infoPanel;
     private LanguageChanger langLayout;
 
     public BottomPanelZ() {
@@ -26,30 +21,16 @@ public class BottomPanelZ extends ResourcedPanel {
         setVisible(true);
     }
 
+    @Override
+    protected void initComponentsI18n() {
+
+    }
+
     protected void initComponents() {
-        infoText = new JLabel();
-        dbTypeNameLabel = new JLabel();
-        label2 = new JLabel();
-        bdDateField = new JLabel();
-        label4 = new JLabel();
-        workersCountField = new JLabel();
+        infoPanel = new CollectionInfoPanel();
         langLayout = new LanguageChanger();
 
 
-        var infoFont = new Font("italic", Font.PLAIN, 12);
-        dbTypeNameLabel.setFont(infoFont);
-        bdDateField.setFont(infoFont);
-        workersCountField.setFont(infoFont);
-
-        var infoConstrains = GridConstrains.normalAdd();
-
-        var infoPanel = new JPanel(new GridBagLayout());
-        infoPanel.add(infoText, infoConstrains);
-        infoPanel.add(dbTypeNameLabel, infoConstrains);
-        infoPanel.add(label2, infoConstrains);
-        infoPanel.add(bdDateField, infoConstrains);
-        infoPanel.add(label4, infoConstrains);
-        infoPanel.add(workersCountField, infoConstrains);
 
         setLayout(new BorderLayout());
         add(infoPanel, BorderLayout.WEST);
@@ -60,21 +41,10 @@ public class BottomPanelZ extends ResourcedPanel {
     }
 
     public void setInitDate(ZonedDateTime date){
-        bdDateField.setText(
-                DateTimeFormatter.ofPattern(
-                        getResources().get("dateFormat")
-                ).format(date));
+        infoPanel.setInitDate(date);
     }
 
     public void setBDSize(Integer size){
-        workersCountField.setText(String.valueOf(size));
-    }
-
-    protected void initComponentsI18n() {
-        UIResources resources = getResources();
-        infoText.setText(resources.get("bottomPanel.infoText.text"));
-        dbTypeNameLabel.setText(resources.get("bottomPanel.label1.text"));
-        label2.setText(resources.get("bottomPanel.label2.text"));
-        label4.setText(resources.get("bottomPanel.label4.text"));
+        infoPanel.setBDSize(size);
     }
 }

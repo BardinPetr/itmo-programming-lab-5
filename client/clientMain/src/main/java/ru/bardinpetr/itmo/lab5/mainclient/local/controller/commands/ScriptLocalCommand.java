@@ -53,13 +53,13 @@ public class ScriptLocalCommand extends APIUILocalCommand {
     public ClientCommandResponse execute(String cmdName, Map<String, Object> args) {
         String path = (String) args.get("fileName");
         if (path == null)
-            throw new RuntimeException("No script file passed");
+            throw new RuntimeException("ScriptLocalCommand.noScriptFile.text");
         try {
             scriptExecutor.process(path);
         } catch (FileAccessException e) {
-            throw new RuntimeException("Can't get access to script");
+            throw new RuntimeException("FileAccessException.fileAccessError.text");
         } catch (NotRepeatableException | ScriptException e) {
-            throw new RuntimeException("Invalid Script");
+            throw new RuntimeException("ScriptLocalCommand.invalidScript.text");
         }
 
         return ClientCommandResponse.ok();

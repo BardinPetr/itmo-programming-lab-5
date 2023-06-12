@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Class for running local commands in UI and parsing their return values and handle errors
  */
-public class UICommandInvoker {
+public class UICommandInvoker implements IInvoker{
 
     private final UIReceiver screenUIReceiver;
     private final List<InvocationHistoryItem> commandHistory = new ArrayList<>();
@@ -59,7 +59,7 @@ public class UICommandInvoker {
      * @param caller name of called function or null to ignore
      * @param result response of command
      */
-    public void print(String caller, ClientCommandResponse<? extends UserPrintableAPICommandResponse> result) {
+    private void print(String caller, ClientCommandResponse<? extends UserPrintableAPICommandResponse> result) {
         var payload = result.payload();
         var textualResponse = result.message();
 

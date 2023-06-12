@@ -4,6 +4,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui;
 import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.script.ScriptPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.login.LoginPage;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
@@ -65,7 +66,7 @@ public class TestInterface {
         );
 
 
-        new LoginPage(MainFrameZ::new);
+//        new LoginPage(MainFrameZ::new);
 //        new WorkerUpdateFrameZ(testWorker, true);
 //        });
 //        new WorkerUpdateFrameZ(testWorker, true);

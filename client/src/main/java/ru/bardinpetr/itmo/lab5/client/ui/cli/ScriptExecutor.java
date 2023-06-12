@@ -11,6 +11,7 @@ import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.io.FileIOController;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -18,11 +19,11 @@ import java.util.List;
  */
 public class ScriptExecutor {
     private final ScriptRecursionController recursionController;
-    private final UICommandInvoker invoker;
+    private final IInvoker invoker;
     private final APICommandsDescriptionHolder descriptionHolder;
     private CommandRegistry commandRegistry = null;
 
-    public ScriptExecutor(APICommandsDescriptionHolder descriptionHolder, UICommandInvoker invoker) {
+    public ScriptExecutor(APICommandsDescriptionHolder descriptionHolder, IInvoker invoker) {
         this.descriptionHolder = descriptionHolder;
         this.invoker = invoker;
         this.recursionController = new ScriptRecursionController();
@@ -48,11 +49,10 @@ public class ScriptExecutor {
      * @throws ScriptRecursionRootException if recursion occurs and the root of execution tree has been reached when going backwards - only this should be handled as the error
      */
     public void process(String path) throws FileAccessException, ScriptException {
-        if (commandRegistry == null) throw new RuntimeException("No command registry");
-
+        if (commandRegistry == null) throw new RuntimeException("ScriptExecutor.noCommand.text");
         var isNormal = recursionController.enter(path);
         if (!isNormal)
-            throw new ScriptException("Recursion detected at %s".formatted(path));
+            throw new ScriptException("ScriptExecutor.recursionError.text");
 
         FileIOController fileIOController = new FileIOController(path, false);
 
@@ -71,11 +71,11 @@ public class ScriptExecutor {
             var userArgs = List.of(line.split("\\s+"));
             var command = (UICallableCommand) currentRegistry.getCommand(userArgs.get(0));
             if (command == null)
-                throw new RuntimeException("Command not found");
+                throw new RuntimeException("ScriptExecutor.commandNotFound.text");
             try {
                 var successful = invoker.invoke(command, userArgs);
                 if (!successful)
-                    throw new ScriptException("failed");
+                    throw new ScriptException("ScriptExecutor.failed.text");
             } catch (ScriptException ex) {
                 recursionController.leave(path);
                 if (recursionController.getDepth() == 0)

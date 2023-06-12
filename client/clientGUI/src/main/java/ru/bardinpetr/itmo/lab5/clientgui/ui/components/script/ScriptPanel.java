@@ -1,22 +1,15 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.script;
 
-import ru.bardinpetr.itmo.lab5.client.api.auth.impl.RAMCredentialsStorage;
-import ru.bardinpetr.itmo.lab5.client.api.connectors.net.UDPAPIClientFactory;
-import ru.bardinpetr.itmo.lab5.client.controller.auth.api.JWTAuthConnector;
-import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.CLIController;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.UICommandInvoker;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.UIProvider;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
+import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptRecursionRootException;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.script.ScriptCommandRegistry;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.script.ScriptInvoker;
 import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.mainclient.api.commands.UserAPICommandRegistry;
 import ru.bardinpetr.itmo.lab5.mainclient.api.commands.UserAPICommandsDescriptionHolder;
-import ru.bardinpetr.itmo.lab5.mainclient.local.controller.registry.MainClientCommandRegistry;
-import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAPICommandAuthenticator;
-
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -26,28 +19,44 @@ import java.io.File;
 import static javax.swing.SwingUtilities.invokeLater;
 
 public class ScriptPanel extends ResourcedPanel {
+    private final ScriptExecutor scriptExecutor;
     private JFileChooser scriptChooser;
 
-    private JTextArea resultTextArea;
+    private JPanel resultPanel;
     private JButton executeScriptButton;
 
     public ScriptPanel() {
         initComponents();
         setVisible(true);
+
+        var descriptionHolder = new UserAPICommandsDescriptionHolder();
+        scriptExecutor = new ScriptExecutor(
+                descriptionHolder,
+                new ScriptInvoker(resultPanel)
+        );
+
+        var apiRegistry = new UserAPICommandRegistry();
+        new ScriptCommandRegistry(
+                scriptExecutor,
+                apiRegistry,
+                null //will be replaced in script executor
+        );
+
     }
 
     private JScrollPane getResultArea(){
+        resultPanel = new JPanel();
+        resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
         var t = new JScrollPane(
-                resultTextArea,
+                resultPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
         );
-        t.setPreferredSize(new Dimension(100, 100));
+        t.getVerticalScrollBar().setUnitIncrement(16);
         return t;
     }
 
     private void initComponents(){
-        resultTextArea = new JTextArea();
         executeScriptButton = new JButton();
         scriptChooser = new JFileChooser();
 
@@ -81,7 +90,6 @@ public class ScriptPanel extends ResourcedPanel {
             if (scriptChooser.getSelectedFile() == null) return;
             else {
                 var scriptPath = scriptChooser.getSelectedFile().getPath();
-                resultTextArea.setText(scriptPath);
                 invokeLater(() -> executeScript(scriptPath));
             }
         });
@@ -90,34 +98,28 @@ public class ScriptPanel extends ResourcedPanel {
     }
 
     private void executeScript(String path){
-
-        var descriptionHolder = new UserAPICommandsDescriptionHolder();
-
-        var uiController = new CLIController(
-                descriptionHolder,
-                new ConsolePrinter(),
-                System.in,
-                true);
-        UIProvider.setInstance(uiController);
-        uiController.display("Hay");
-
-        var invoker = new UICommandInvoker(uiController);
-        var scriptExecutor = new ScriptExecutor(
-                descriptionHolder,
-                invoker
-        );
-
+        resultPanel.removeAll();
         try {
             scriptExecutor.process(path);
-        } catch (FileAccessException e) {
-            JOptionPane.showConfirmDialog(
+        } catch (FileAccessException | ScriptException | ScriptRecursionRootException e) {
+            Object[] options = {
+                    UIResources.getInstance().get("optionalAnswers.Ok")
+            };
+            JOptionPane.showOptionDialog(
                     this,
-                    e.getMessage(),
-                    UIResources.getInstance().get("FileAccessException.title.text"),
-                    JOptionPane.ERROR_MESSAGE
+                    getResources().get("ScriptLocalCommand.invalidScript.text"),
+                    getResources().get(e.getMessage()),
+                    JOptionPane.OK_OPTION,
+                    JOptionPane.ERROR_MESSAGE,
+                    null,     //do not use a custom Icon
+                    options,
+                    options[0]
             );
+            return;
         }
     }
+
+
     @Override
     protected void initComponentsI18n() {
         executeScriptButton.setText(UIResources.getInstance().get("ScriptPanel.executeScriptButton.text"));

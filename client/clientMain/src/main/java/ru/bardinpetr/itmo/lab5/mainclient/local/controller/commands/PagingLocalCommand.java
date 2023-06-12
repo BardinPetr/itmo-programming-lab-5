@@ -7,6 +7,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandRe
 import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.ConsolePrinter;
 import ru.bardinpetr.itmo.lab5.client.ui.interfaces.UIReceiver;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
+import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.PagingAPICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.requests.UserAPICommand;
 import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
@@ -41,6 +42,26 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
 
     @Override
     public ClientCommandResponse<? extends UserPrintableAPICommandResponse> executeWithArgs(List<String> args) {
+        return executeGUI();
+//        return executeCLI();
+    }
+
+    private ClientCommandResponse<? extends UserPrintableAPICommandResponse> executeGUI(){
+        APICommandResponse resp;
+        try {
+            resp = apiClientReceiver.call(
+                    createPagedCommand(0, -1)
+            );
+        } catch (APIClientException e) {
+            return new ClientCommandResponse<>(
+                    false,
+                    e.getMessage(),
+                    null
+            );
+        }
+        return new ClientCommandResponse<>(true,"", resp);
+    }
+    private ClientCommandResponse<? extends UserPrintableAPICommandResponse> executeCLI(){
         var printer = new ConsolePrinter();
         Scanner scanner = new Scanner(System.in);
 
@@ -95,7 +116,7 @@ public abstract class PagingLocalCommand extends APIUILocalCommand {
             input = scanner.nextLine();
         }
         return ClientCommandResponse.ok();
-    }
 
+    }
 
 }

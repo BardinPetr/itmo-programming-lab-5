@@ -18,7 +18,6 @@ import ru.bardinpetr.itmo.lab5.models.commands.api.ShowMineCommand;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ResourceBundle;
 
 import static javax.swing.SwingUtilities.invokeLater;
 

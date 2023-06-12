@@ -12,6 +12,10 @@ public class GUITexts extends ListResourceBundle {
                 {"optionalAnswers.No", "No"},
                 {"optionalAnswers.Ok", "OK"},
                 {"generalError", "Something went wrong via sending command"},
+                {"ScriptExecutor.failed.text", "Failed script execution"},
+                {"ScriptExecutor.noCommand.text", "No command registry"},
+                {"ScriptExecutor.commandNotFound.text", "Command not found"},
+                {"ScriptExecutor.recursionError.text", "Recursion detected"},
                 {"APIConnectorFactory.connectionError.text", "Server is not available. Retry now?"},
                 {"TransportTimeoutException.error", "Server communication timeout. Retry later"},
                 {"APICommandMenger.connectionError.error", "Server is not available. Retry later"},
@@ -171,7 +175,29 @@ public class GUITexts extends ListResourceBundle {
                 {"ErrorHandlingApplication.methodNotAvailable", "Method not available"},
                 {"OrganizationTableModel.Column.ID.text", "ID"},
                 {"OrganizationTableModel.Column.Name.text", "Name"},
-                {"OrganizationTableModel.Column.Type.text", "Type"}
+                {"OrganizationTableModel.Column.Type.text", "Type"},
+                {"ScriptLocalCommand.invalidScript.text", "Invalid Script"},
+                {"ScriptLocalCommand.noScriptFile.text", "No script file passed"},
+                {"ScriptInvoker.default.success", "Success!"},
+                {"ScriptInvoker.scriptFailed.text", "Script failed: "},
+                {"ScriptInvoker.scriptFailed.unknownError.text", "Unknown error"},
+                {"ScriptInvoker.help.text", """
+                help : show help for available commands
+                info : print information about the collection to standard output (type, initialization date, number of elements, etc.)
+                show : print to standard output all elements of the collection in string representation
+                add {element} : add a new element to the collection
+                update id {element} : update the value of the collection element whose id is equal to the given one
+                remove_by_id id : remove an element from the collection by its id
+                clear : clear the collection
+                save : save the collection to a file
+                execute_script file_name : read and execute script from specified file. The script contains commands in the same form in which they are entered by the user in interactive mode.
+                exit : exit the program (without saving to a file)
+                add_if_max {element} : add a new element to the collection if its value is greater than the value of the largest element in this collection
+                add_if_min {element} : add a new element to the collection if its value is less than the smallest element in this collection
+                remove_greater {element} : remove from the collection all elements greater than the given one
+                filter_less_than_position position : display elements whose position field value is less than the given one
+                print_descending : Print the elements of a collection in descending order
+                print_unique_organization : print the unique values of the organization field of all elements in the collection"""}
         };
     }
 }
