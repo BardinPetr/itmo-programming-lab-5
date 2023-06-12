@@ -6,7 +6,7 @@ group = "ru.bardinpetr.itmo.lab5"
 
 tasks.register<Copy>("fatJarMerge") {
     print("merging")
-    from(listOf("server", "client:clientAdmin", "client:clientMain").map {
+    from(listOf("server", "client:clientGUI", "client:clientMain").map {
         project(it).buildDir.resolve("libs")
     })
     include("*fat.jar")

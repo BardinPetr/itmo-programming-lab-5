@@ -4,6 +4,8 @@ import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
 import lombok.Getter;
 
+import javax.swing.*;
+import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
@@ -25,6 +27,14 @@ public class UIResources {
     private UIResources() {
         IconFontSwing.register(FontAwesome.getIconFont());
 
+        var font = buildFont();
+        UIManager
+                .getDefaults()
+                .forEach((key, value) -> {
+                    if (value instanceof javax.swing.plaf.FontUIResource)
+                        UIManager.put(key, font);
+                });
+
         currentLocale = Locale.getDefault();
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
@@ -32,6 +42,24 @@ public class UIResources {
     public static UIResources getInstance() {
         if (instance == null) instance = new UIResources();
         return instance;
+    }
+
+    private Font buildFont() {
+        System.setProperty("awt.useSystemAAFontSettings", "on");
+
+        try {
+            var externalFont =
+                    UIResources.class
+                            .getClassLoader()
+                            .getResourceAsStream("Roboto-Regular.ttf");
+            if (externalFont != null) {
+                return Font
+                        .createFont(Font.TRUETYPE_FONT, externalFont)
+                        .deriveFont(Font.PLAIN, 14);
+            }
+        } catch (Throwable ignored) {
+        }
+        return new Font(Font.DIALOG, Font.PLAIN, 12);
     }
 
     public String get(String key) {
