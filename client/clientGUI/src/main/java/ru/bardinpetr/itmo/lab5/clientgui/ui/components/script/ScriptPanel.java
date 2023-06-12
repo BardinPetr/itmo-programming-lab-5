@@ -44,7 +44,7 @@ public class ScriptPanel extends ResourcedPanel {
 
     }
 
-    private JScrollPane getResultArea(){
+    private JScrollPane getResultArea() {
         resultPanel = new JPanel();
         resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
         var t = new JScrollPane(
@@ -56,11 +56,11 @@ public class ScriptPanel extends ResourcedPanel {
         return t;
     }
 
-    private void initComponents(){
+    private void initComponents() {
         executeScriptButton = new JButton();
         scriptChooser = new JFileChooser();
 
-        setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         add(getResultArea());
 
@@ -81,14 +81,14 @@ public class ScriptPanel extends ResourcedPanel {
             }
         });
 
-        executeScriptButton.addActionListener((e) ->{
+        executeScriptButton.addActionListener((e) -> {
             scriptChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
             scriptChooser.showDialog(this, getResources().get("MainFrame.scriptChooseText.text"));
         });
 
-        scriptChooser.addActionListener((e)->{
-            if (scriptChooser.getSelectedFile() == null) return;
-            else {
+        scriptChooser.addActionListener((e) -> {
+            if (scriptChooser.getSelectedFile() == null) {
+            } else {
                 var scriptPath = scriptChooser.getSelectedFile().getPath();
                 invokeLater(() -> executeScript(scriptPath));
             }
@@ -97,7 +97,7 @@ public class ScriptPanel extends ResourcedPanel {
         initComponentsI18n();
     }
 
-    private void executeScript(String path){
+    private void executeScript(String path) {
         resultPanel.removeAll();
         try {
             scriptExecutor.process(path);
@@ -115,7 +115,6 @@ public class ScriptPanel extends ResourcedPanel {
                     options,
                     options[0]
             );
-            return;
         }
     }
 

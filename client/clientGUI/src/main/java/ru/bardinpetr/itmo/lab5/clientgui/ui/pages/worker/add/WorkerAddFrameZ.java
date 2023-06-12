@@ -8,16 +8,14 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddIfMaxCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddIfMinCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ResourceBundle;
 
 import static javax.swing.SwingUtilities.invokeLater;
-import static ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand.*;
+import static ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand.AddCommandResponse;
 
 public class WorkerAddFrameZ extends ResourcedFrame {
     private WorkerInfoPanelZ workerInfoPanel;
@@ -35,7 +33,7 @@ public class WorkerAddFrameZ extends ResourcedFrame {
         setVisible(true);
     }
 
-    protected void initComponents(){
+    protected void initComponents() {
         workerInfoPanel = new WorkerInfoPanelZ();
         normalAdd = new JRadioButton();
         addWorkerButton = new JButton();
@@ -47,7 +45,7 @@ public class WorkerAddFrameZ extends ResourcedFrame {
 
         setLayout(new GridBagLayout());
 
-        var infoConstrains = GridConstrains.placedAdd(0,0);
+        var infoConstrains = GridConstrains.placedAdd(0, 0);
         infoConstrains.gridwidth = GridBagConstraints.REMAINDER;
         add(workerInfoPanel, infoConstrains);
         add(addWorkerButton, GridConstrains.placedAdd(0, 2));
@@ -117,8 +115,8 @@ public class WorkerAddFrameZ extends ResourcedFrame {
         setLocationRelativeTo(getOwner());
 
 
-
     }
+
     @Override
     protected void initComponentsI18n() {
         var resources = getResources();

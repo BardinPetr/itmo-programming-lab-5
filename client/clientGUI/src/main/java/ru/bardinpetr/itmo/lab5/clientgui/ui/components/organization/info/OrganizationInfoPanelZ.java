@@ -12,15 +12,14 @@ import ru.bardinpetr.itmo.lab5.models.data.OrganizationType;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ResourceBundle;
 
 public class OrganizationInfoPanelZ extends ResourcedPanel {
+    private final Organization defaultOrganization;
+    UIResources resources = getResources();
     private JLabel label1;
     private NameField nameField;
     private JLabel label2;
     private OrganizationTypeCombobox organizationTypeCombobox;
-    private Organization defaultOrganization;
-    UIResources resources = getResources();
 
 
     public OrganizationInfoPanelZ(Organization defaultOrganization) {
@@ -29,22 +28,24 @@ public class OrganizationInfoPanelZ extends ResourcedPanel {
         setVisible(true);
     }
 
-    protected void initComponents(){
+    protected void initComponents() {
         label1 = new JLabel();
         label2 = new JLabel();
 
-        nameField = new NameField((s)-> {});
+        nameField = new NameField((s) -> {
+        });
 
-        organizationTypeCombobox = new OrganizationTypeCombobox((e -> {}));
+        organizationTypeCombobox = new OrganizationTypeCombobox((e -> {
+        }));
 
         setLayout(new GridBagLayout());
-        ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 300, 0};
-        add(label1, GridConstrains.placedAdd(0,0));
+        ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 300, 0};
+        add(label1, GridConstrains.placedAdd(0, 0));
         add(label2, GridConstrains.placedAdd(0, 1));
         add(nameField, GridConstrains.placedAdd(1, 0));
         add(organizationTypeCombobox, GridConstrains.placedAdd(1, 1));
 
-        if (defaultOrganization!=null){
+        if (defaultOrganization != null) {
             nameField.setName(defaultOrganization.getFullName());
             organizationTypeCombobox.setData(new EnumPresenter<>(defaultOrganization.getType()));
         }
@@ -52,7 +53,7 @@ public class OrganizationInfoPanelZ extends ResourcedPanel {
         initComponentsI18n();
     }
 
-    public DataContainer<Organization> getOrganization(){
+    public DataContainer<Organization> getOrganization() {
         var dataContainer = new DataContainer<Organization>(
                 true,
                 new Organization(),
@@ -69,8 +70,6 @@ public class OrganizationInfoPanelZ extends ResourcedPanel {
         return dataContainer;
 
     }
-
-
 
 
     @Override

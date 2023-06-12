@@ -31,7 +31,8 @@ public class WorkersTable extends XTable {
                 ),
                 this,
                 "WorkerUpdateFrameZ.deleteFailed.text",
-                (e2) -> {}
+                (e2) -> {
+                }
         );
     }
 

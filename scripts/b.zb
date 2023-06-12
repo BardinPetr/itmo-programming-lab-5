@@ -1,0 +1,19 @@
+help
+info
+add
+Artem
+12.3
+02-03-2023
+C
+02-03-2023
+11
+12
+C
+1
+C
+MANAGER_OF_CLEANING
+info
+show
+filter_less_than_position MANAGER_OF_CLEANING
+print_descending
+print_unique_organization

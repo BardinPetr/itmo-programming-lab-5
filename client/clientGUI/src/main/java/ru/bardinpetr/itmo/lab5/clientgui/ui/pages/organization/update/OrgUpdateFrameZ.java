@@ -9,15 +9,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ResourceBundle;
 
 public class OrgUpdateFrameZ extends ResourcedFrame {
+    private final Organization defaultOrganization;
     private OrganizationInfoPanelZ orgInfoPanel;
     private JPanel panel1;
     private JButton updateOrgButton;
     private JButton orgUpdateCancelButton;
     private UIResources resources = getResources();
-    private Organization defaultOrganization;
 
     public OrgUpdateFrameZ(Organization defaultOrganization) {
         this.defaultOrganization = defaultOrganization;
@@ -25,7 +24,7 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
         setVisible(true);
     }
 
-    protected void initComponents(){
+    protected void initComponents() {
         orgInfoPanel = new OrganizationInfoPanelZ(defaultOrganization);
         panel1 = new JPanel();
         updateOrgButton = new JButton();
@@ -55,8 +54,7 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
                 var worker = orgInfoPanel.getOrganization();
                 if (!worker.isAllowed) {
                     JOptionPane.showMessageDialog(orgInfoPanel, UIResources.getInstance().get(worker.msg), UIResources.getInstance().get("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
-                }
-                else {
+                } else {
                     //TODO add organization command
                     System.out.println(worker);
                 }
@@ -67,6 +65,7 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
         pack();
         setLocationRelativeTo(getOwner());
     }
+
     @Override
     protected void initComponentsI18n() {
         resources = getResources();

@@ -4,17 +4,12 @@ import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
-import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddOrgCommand;
-import ru.bardinpetr.itmo.lab5.models.commands.requests.APICommand;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ResourceBundle;
-
-import static javax.swing.SwingUtilities.invokeLater;
 
 public class OrgAddFrameZ extends ResourcedFrame {
     private OrganizationInfoPanelZ orgInfoPanel;
@@ -29,7 +24,7 @@ public class OrgAddFrameZ extends ResourcedFrame {
         setVisible(true);
     }
 
-    protected void initComponents(){
+    protected void initComponents() {
         orgInfoPanel = new OrganizationInfoPanelZ(null);
         panel1 = new JPanel();
         addOrgButton = new JButton();
@@ -64,19 +59,18 @@ public class OrgAddFrameZ extends ResourcedFrame {
                             resources.get("AddFrame.input.error.text"),
                             JOptionPane.ERROR_MESSAGE
                     );
-                }
-                else {
+                } else {
                     var command = new AddOrgCommand();
                     command.element = organization.data;
                     new APICommandMenger().sendCommand(
                             command,
                             orgInfoPanel,
                             "OrgAddFrameZ.addOrgError.text",
-                            (response) ->{
+                            (response) -> {
                                 var resp = (AddOrgCommand.AddOrgCommandResponse) response;
                                 JOptionPane.showConfirmDialog(
                                         orgInfoPanel,
-                                        getResources().get("OrgAddFrameZ.newIdMsg")+
+                                        getResources().get("OrgAddFrameZ.newIdMsg") +
                                                 ": " + resp.getId(),
                                         getResources().get("OrgAddFrameZ.newIdMsg")
                                         , JOptionPane.PLAIN_MESSAGE
@@ -93,6 +87,7 @@ public class OrgAddFrameZ extends ResourcedFrame {
         pack();
         setLocationRelativeTo(getOwner());
     }
+
     @Override
     protected void initComponentsI18n() {
         resources = getResources();

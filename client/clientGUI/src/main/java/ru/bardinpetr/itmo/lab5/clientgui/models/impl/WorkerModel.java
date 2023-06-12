@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 public class WorkerModel extends ExternalSyncedListModel<Worker> {
     private Integer currentUserId = -1;
 
-    public WorkerModel() {
-        super("worker");
-        setLoaders(this::loadAll, this::loadOne);
+    public WorkerModel(boolean autoSync) {
+        super(autoSync, "worker");
 
+        setLoaders(this::loadAll, this::loadOne);
         new Thread(this::loadOwner).start();
     }
 

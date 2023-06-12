@@ -8,17 +8,21 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContaine
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.EnumPresenter;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.OrganizationPresenter;
-import ru.bardinpetr.itmo.lab5.models.data.*;
+import ru.bardinpetr.itmo.lab5.models.data.Coordinates;
+import ru.bardinpetr.itmo.lab5.models.data.Position;
+import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.validation.WorkerValidator;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import static javax.swing.SwingUtilities.invokeLater;
 
 public class WorkerInfoPanelZ extends ResourcedPanel {
+    private final Worker defaultWorker;
+    private final boolean isChangeable;
+    UIResources resources = getResources();
     private JLabel label1;
     private NameField workerNameField;
     private JLabel label2;
@@ -36,9 +40,6 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
     private JLabel label8;
     private PositionComboBox workerPositionCombobox;
     private DataContainer<Worker> workerDataContainer;
-    private Worker defaultWorker;
-    private boolean isChangeable;
-    UIResources resources = getResources();
 
     public WorkerInfoPanelZ() {
         this(null, true);
@@ -119,13 +120,13 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         workerPositionCombobox.setEnabled(isChangeable);
         organizationIdField.setEnabled(isChangeable);
 
-        invokeLater(()->setData(defaultWorker));
+        invokeLater(() -> setData(defaultWorker));
 
         initComponentsI18n();
     }
 
-    public void setData(Worker worker){
-        if (worker!=null){
+    public void setData(Worker worker) {
+        if (worker != null) {
             workerNameField.setData(worker.getName());
             workerSalaryField.setData(worker.getSalary());
             workerStartField.setData(worker.getStartDate());
@@ -133,7 +134,7 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
             workerXField.setData(worker.getCoordinates().getX());
             workerYField.setData(worker.getCoordinates().getY());
             workerPositionCombobox.setData(new EnumPresenter<>(worker.getPosition()));
-            if (worker.getOrganization()!=null)
+            if (worker.getOrganization() != null)
                 organizationIdField.setData(new OrganizationPresenter(worker.getOrganization()));
         }
     }
@@ -184,7 +185,6 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
         return workerDataContainer;
 
     }
-
 
 
     @Override

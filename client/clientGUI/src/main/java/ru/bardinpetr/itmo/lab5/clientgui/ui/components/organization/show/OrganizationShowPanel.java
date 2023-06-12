@@ -7,7 +7,6 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.OrganizationTa
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ResourceBundle;
 
 public class OrganizationShowPanel extends ResourcedPanel {
     private final JPanel orgTablePanel;

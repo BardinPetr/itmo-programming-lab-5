@@ -6,7 +6,6 @@ import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 import javax.swing.*;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
 public abstract class AbstractDateField<T> extends JSpinner implements IDataStorage<T> {
@@ -29,23 +28,26 @@ public abstract class AbstractDateField<T> extends JSpinner implements IDataStor
         initComponentsI18n();
 
     }
-    public void setEditable(boolean editable){
+
+    public void setEditable(boolean editable) {
         ((DefaultEditor) getEditor()).getTextField().setEditable(editable);
-    };
+    }
 
     @Override
-    public ValidationResponse validateValue(){
+    public ValidationResponse validateValue() {
         return new ValidationResponse(true, "");
     }
-    private UIResources getResources(){
+
+    private UIResources getResources() {
         return UIResources.getInstance();
     }
+
     protected void initComponentsI18n() {
         resources = getResources();
         var dateFormat = resources.get("dateFormat");
         setToolTipText(
-                resources.get("AbstractDateField.toolText.format")+
-                resources.get("dateFormat"));
+                resources.get("AbstractDateField.toolText.format") +
+                        resources.get("dateFormat"));
         setEditor(new JSpinner.DateEditor(this, dateFormat));
 
     }

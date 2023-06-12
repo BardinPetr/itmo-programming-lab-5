@@ -20,12 +20,11 @@ public class APIConnectorFactory {
         var apiCredStorage = new RAMCredentialsStorage<StoredJWTCredentials>();
         var defaultAddress = new InetSocketAddress("localhost", 5000);
         APIClientConnector baseAPI;
-        while (true){
+        while (true) {
             try {
                 baseAPI = new UDPAPIClientFactory(defaultAddress).create();
                 break;
-            }
-            catch (RuntimeException canNotConnect){
+            } catch (RuntimeException canNotConnect) {
                 var resources = UIResources.getInstance();
                 Object[] options = {
                         resources.get("optionalAnswers.Yes"),
@@ -41,7 +40,7 @@ public class APIConnectorFactory {
                         options,
                         options[0]
                 );
-                if (ans==1) System.exit(0);
+                if (ans == 1) System.exit(0);
 
             }
 

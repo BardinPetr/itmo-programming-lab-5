@@ -6,7 +6,6 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ResourceBundle;
 
 public class UsersInfoZ extends ResourcedPanel {
     private JLabel username;

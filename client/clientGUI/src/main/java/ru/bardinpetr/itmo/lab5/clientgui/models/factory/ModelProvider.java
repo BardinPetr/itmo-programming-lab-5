@@ -13,7 +13,7 @@ public class ModelProvider {
         if (currentWorkers != null)
             return currentWorkers;
 
-        currentWorkers = new WorkerModel();
+        currentWorkers = new WorkerModel(true);
         return currentWorkers;
     }
 
@@ -21,7 +21,7 @@ public class ModelProvider {
         if (currentOrganizations != null)
             return currentOrganizations;
 
-        currentOrganizations = new OrganizationModel();
+        currentOrganizations = new OrganizationModel(true);
         return currentOrganizations;
     }
 }

@@ -146,4 +146,8 @@ public class XTable extends JPanel {
     public void removeActionListener(ActionListener listener) {
         listenerList.remove(ActionListener.class, listener);
     }
+
+    public void setTableStatic(boolean isStatic) {
+        bottomToolbox.setVisible(!isStatic);
+    }
 }

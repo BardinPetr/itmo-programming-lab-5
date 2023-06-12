@@ -10,8 +10,8 @@ import java.util.List;
 
 public class OrganizationModel extends ExternalSyncedListModel<Organization> {
 
-    public OrganizationModel() {
-        super("organization");
+    public OrganizationModel(boolean autoSync) {
+        super(autoSync, "organization");
         setLoaders(this::loadAll, this::loadOne);
     }
 

@@ -9,10 +9,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.responses.APICommandResponse;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ResourceBundle;
 
-import static javax.swing.SwingUtilities.invokeAndWait;
 import static javax.swing.SwingUtilities.invokeLater;
 
 public class APICommandMenger {
@@ -63,7 +60,7 @@ public class APICommandMenger {
             String executionErrorKey,
             ISuccessCommandHandler handler, boolean needWait) {
 
-        Runnable task = ()-> {
+        Runnable task = () -> {
             var resources = UIResources.getInstance();
             var validation = cmd.validate();
             if (!validation.isAllowed()) {
@@ -116,7 +113,7 @@ public class APICommandMenger {
                         null,     //do not use a custom Icon
                         options,
                         options[0]
-                        );
+                );
                 return;
             }
             handler.handle(result);

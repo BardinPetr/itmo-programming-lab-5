@@ -18,7 +18,9 @@ import ru.bardinpetr.itmo.lab5.models.commands.api.ShowMineCommand;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
+import static javax.swing.SwingConstants.CENTER;
 import static javax.swing.SwingUtilities.invokeLater;
 
 public class MainFrameZ extends ResourcedFrame {
@@ -47,19 +49,41 @@ public class MainFrameZ extends ResourcedFrame {
         bottomMenu = new BottomPanelZ();
         upperPanel = new JPanel();
         menuBar = new JMenuBar();
-        workersMenuButton = new JMenuItem("", SwingConstants.EAST);
+
+        workersMenuButton = new JMenuItem("", SwingConstants.CENTER);
         orgsMenuButton = new JMenuItem("", SwingConstants.CENTER);
         mapMenuButton = new JMenuItem("", SwingConstants.CENTER);
         scriptMenuButton = new JMenuItem("", SwingConstants.CENTER);
+
+        var menuButtons = List.of(workersMenuButton, orgsMenuButton, mapMenuButton, scriptMenuButton);
+        var menuButtonKeys = List.of("WORKERS", "ORGANIZATIONS", "MAP", "SCRIPT");
+
+        var buttonBorder = BorderFactory.createRaisedBevelBorder();
+        var buttonPressedBorder = BorderFactory.createLoweredBevelBorder();
+
+        for (int i = 0; i < menuButtons.size(); i++) {
+            var buttonKey = menuButtonKeys.get(i);
+            var b = menuButtons.get(i);
+            b.setHorizontalAlignment(CENTER);
+            b.setBorder(buttonBorder);
+            b.addActionListener(
+                    e -> {
+                        ((CardLayout) mainPanel.getLayout())
+                                .show(mainPanel, buttonKey);
+
+                        menuButtons.forEach(
+                                cur -> cur.setBorder(cur == b ? buttonPressedBorder : buttonBorder)
+                        );
+                    }
+            );
+            menuBar.add(b);
+        }
+        workersMenuButton.setBorder(buttonPressedBorder);
+
         usersInfo = new UsersInfoZ();
 
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
-
-        menuBar.add(workersMenuButton);
-        menuBar.add(orgsMenuButton);
-        menuBar.add(mapMenuButton);
-        menuBar.add(scriptMenuButton);
 
         upperPanel.setLayout(new BorderLayout());
         upperPanel.add(menuBar, BorderLayout.WEST);
@@ -75,27 +99,6 @@ public class MainFrameZ extends ResourcedFrame {
         mainPanel.add(new OrganizationShowPanel(), "ORGANIZATIONS");
         mainPanel.add(new WorkersMapPage(ModelProvider.workers()), "MAP");
         mainPanel.add(new ScriptPanel(), "SCRIPT");
-
-
-        workersMenuButton.addActionListener((e) -> {
-            CardLayout cl = (CardLayout) (mainPanel.getLayout());
-            cl.show(mainPanel, "WORKERS");
-        });
-
-        orgsMenuButton.addActionListener((e) -> {
-            CardLayout cl = (CardLayout) (mainPanel.getLayout());
-            cl.show(mainPanel, "ORGANIZATIONS");
-        });
-
-        mapMenuButton.addActionListener((e) -> {
-            CardLayout cl = (CardLayout) (mainPanel.getLayout());
-            cl.show(mainPanel, "MAP");
-        });
-        scriptMenuButton.addActionListener((e) -> {
-            CardLayout cl = (CardLayout) (mainPanel.getLayout());
-            cl.show(mainPanel, "SCRIPT");
-        });
-
 
         initComponentsI18n();
         pack();

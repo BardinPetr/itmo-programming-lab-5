@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
 public class NullableDatePanel extends JPanel implements IDataStorage<LocalDate> {
@@ -39,28 +38,29 @@ public class NullableDatePanel extends JPanel implements IDataStorage<LocalDate>
         initComponentsI18n();
     }
 
-    public void setEditable(boolean isEditable){
+    public void setEditable(boolean isEditable) {
         workerEndDateField.setEditable(isEditable);
         endDateNullCheckbox.setEnabled(isEditable);
     }
-    private void changeEndDateNull(ItemEvent e){
+
+    private void changeEndDateNull(ItemEvent e) {
         workerEndDateField.setEnabled(e.getStateChange() != ItemEvent.SELECTED);
     }
+
     @Override
     public DataContainer<LocalDate> getData() {
         if (!endDateNullCheckbox.isSelected())
             return workerEndDateField.getData();
         else
-            return new DataContainer<>(true,null,"");
+            return new DataContainer<>(true, null, "");
     }
 
     @Override
     public void setData(LocalDate data) {
-        if (data==null){
+        if (data == null) {
             endDateNullCheckbox.setSelected(true);
             workerEndDateField.setEnabled(false);
-        }
-        else{
+        } else {
             endDateNullCheckbox.setSelected(false);
             workerEndDateField.setEnabled(true);
             workerEndDateField.setData(data);
@@ -71,7 +71,7 @@ public class NullableDatePanel extends JPanel implements IDataStorage<LocalDate>
     public String getText() {
 
         return !endDateNullCheckbox.isSelected() ?
-            workerEndDateField.getText():
+                workerEndDateField.getText() :
                 UIResources.getInstance().get("WorkerInfoPanel.endDateNull.text");
     }
 
@@ -84,7 +84,8 @@ public class NullableDatePanel extends JPanel implements IDataStorage<LocalDate>
         UIResources resources = getResources();
         endDateNullCheckbox.setText(resources.get("WorkerInfoPanel.endDateNull.text"));
     }
-    private UIResources getResources(){
+
+    private UIResources getResources() {
         return UIResources.getInstance();
     }
 }

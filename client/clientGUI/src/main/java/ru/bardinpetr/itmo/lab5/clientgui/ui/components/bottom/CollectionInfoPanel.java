@@ -2,15 +2,12 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
-import ru.bardinpetr.itmo.lab5.models.commands.api.InfoCommand;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
 
 public class CollectionInfoPanel extends ResourcedPanel {
     private JLabel infoText;
@@ -56,14 +53,14 @@ public class CollectionInfoPanel extends ResourcedPanel {
         setVisible(true);
     }
 
-    public void setInitDate(ZonedDateTime date){
+    public void setInitDate(ZonedDateTime date) {
         bdDateField.setText(
                 DateTimeFormatter.ofPattern(
                         getResources().get("dateFormat")
                 ).format(date));
     }
 
-    public void setBDSize(Integer size){
+    public void setBDSize(Integer size) {
         workersCountField.setText(String.valueOf(size));
     }
 
