@@ -4,6 +4,7 @@ import ru.bardinpetr.itmo.lab5.db.frontend.adapters.owned.IOwnedCollectionDAO;
 import ru.bardinpetr.itmo.lab5.models.commands.api.ClearCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.RemoveByIdCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.RemoveGreaterCommand;
+import ru.bardinpetr.itmo.lab5.models.commands.api.RemoveOrganizationCommand;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.network.app.server.models.requests.AppRequest;
 import ru.bardinpetr.itmo.lab5.network.app.server.special.impl.APIApplication;
@@ -18,6 +19,7 @@ public class DBRemoveApplication extends APIApplication {
         this.dao = dao;
 
         on(RemoveGreaterCommand.class, this::onRemoveGreater);
+        on(RemoveOrganizationCommand.class, this::onRemoveOrg);
         on(RemoveByIdCommand.class, this::onRemove);
         on(ClearCommand.class, this::onClear);
     }
@@ -25,6 +27,16 @@ public class DBRemoveApplication extends APIApplication {
     private void onRemove(AppRequest appRequest) {
         RemoveByIdCommand req = (RemoveByIdCommand) appRequest.payload();
         boolean ok = dao.remove(extractUser(appRequest), req.id);
+
+        if (ok)
+            appRequest.response().sendOk();
+        else
+            appRequest.response().sendErr("DBRemoveApplication.noEntity.text");
+    }
+
+    private void onRemoveOrg(AppRequest appRequest) {
+        RemoveOrganizationCommand req = (RemoveOrganizationCommand) appRequest.payload();
+        boolean ok = dao.delOrg(req.id);
 
         if (ok)
             appRequest.response().sendOk();

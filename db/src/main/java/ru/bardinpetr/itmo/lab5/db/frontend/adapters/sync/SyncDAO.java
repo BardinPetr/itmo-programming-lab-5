@@ -232,4 +232,24 @@ public class SyncDAO<K, V extends IKeyedEntity<K>> implements ICollectionDAO<K, 
             writeLock.unlock();
         }
     }
+
+    @Override
+    public boolean delOrg(K id) {
+        try {
+            writeLock.lock();
+            return decoratee.delOrg(id);
+        } finally {
+            writeLock.unlock();
+        }
+    }
+
+    @Override
+    public boolean updateOrg(K id, Organization element) {
+        try {
+            writeLock.lock();
+            return decoratee.updateOrg(id, element);
+        } finally {
+            writeLock.unlock();
+        }
+    }
 }

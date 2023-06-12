@@ -87,6 +87,36 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
     }
 
     @Override
+    public boolean delOrg(Integer id) {
+        if (!backend
+                .getTableProvider()
+                .getOrganizations()
+                .delete(id))
+            return false;
+
+        collection.forEach(w -> {
+            var org = w.getOrganization();
+            if (org != null && org.getId().equals(id))
+                w.setOrganization(null);
+        });
+        return true;
+    }
+
+    @Override
+    public boolean updateOrg(Integer id, Organization element) {
+        var orgs = backend.getTableProvider().getOrganizations();
+        if (!orgs.update(id, new OrganizationDTO(element)))
+            return false;
+        collection.forEach(w -> {
+            var org = w.getOrganization();
+            if (org == null) return;
+            if (org.getId().equals(id))
+                w.setOrganization(element);
+        });
+        return true;
+    }
+
+    @Override
     public void clear() {
         collection.clear();
         backend.clearCollection();

@@ -20,9 +20,10 @@ public interface IOwnedCollectionDAO<K, V extends IKeyedEntity<K> & IOwnedEntity
     /**
      * Updates object only if it was created by the same user
      *
+     * @return
      * @throws NotOwnedException if user doesn't own object
      */
-    void update(Integer user, K id, V obj);
+    boolean update(Integer user, K id, V obj);
 
     /**
      * Removes object only if it was created by the same user

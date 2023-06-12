@@ -48,4 +48,8 @@ public interface ICollectionWriteDAO<K, V extends IKeyedEntity<K>> {
     }
 
     K addOrg(Organization element);
+
+    boolean delOrg(K id);
+
+    boolean updateOrg(K id, Organization element);
 }

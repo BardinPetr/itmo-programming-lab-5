@@ -43,14 +43,15 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
     /**
      * Updates object only if it was created by the same user
      *
+     * @return
      * @throws NotOwnedException if user doesn't own object
      */
-    public void update(Integer user, K id, V obj) {
+    public boolean update(Integer user, K id, V obj) {
         if (checkNotOwned(user, id))
             throw new NotOwnedException(String.valueOf(user));
 
         obj.setOwner(user);
-        decoratee.update(id, obj);
+        return decoratee.update(id, obj);
     }
 
     /**
@@ -213,5 +214,15 @@ public class OwnedDAO<K, V extends IKeyedEntity<K> & IOwnedEntity> implements IC
     @Override
     public K addOrg(Organization element) {
         return decoratee.addOrg(element);
+    }
+
+    @Override
+    public boolean delOrg(K id) {
+        return decoratee.delOrg(id);
+    }
+
+    @Override
+    public boolean updateOrg(K id, Organization element) {
+        return decoratee.updateOrg(id, element);
     }
 }

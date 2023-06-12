@@ -161,6 +161,7 @@ public class GUITexts extends ListResourceBundle {
                 {"DBInsertApplication.notMinimum.text", "Not minimum"},
                 {"DBReadExecutor.noWorkerById.text", "No worker with given id"},
                 {"DBRemoveApplication.noEntity.text", "Not found entity to remove"},
+                {"DBUpdateApplication.error.text", "Could not update entity"},
                 {"OperationType.readError.text", "read failed"},
                 {"OperationType.writeError.text", "write failed"},
                 {"OperationType.readPermissionError.text", "no read permission for current user"},
