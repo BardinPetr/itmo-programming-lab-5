@@ -2,6 +2,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.models.impl;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model.TableListModelAdapter;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.EnumPresenter;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class OrganizationTableModel extends TableListModelAdapter<Organization, 
         return List.of(
                 object.getId(),
                 object.getFullName(),
-                object.getType()
+                new EnumPresenter<>(object.getType())
         ).get(column);
     }
 

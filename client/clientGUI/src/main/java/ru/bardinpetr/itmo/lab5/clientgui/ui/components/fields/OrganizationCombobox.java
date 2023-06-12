@@ -1,5 +1,7 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields;
 
+import ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelProvider;
+import ru.bardinpetr.itmo.lab5.clientgui.models.impl.OrganizationModel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractWorkerComboBox;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
@@ -19,20 +21,21 @@ public class OrganizationCombobox extends AbstractWorkerComboBox<OrganizationPre
         super(handler);
     }
     protected List<OrganizationPresenter> getList(){
-        cachedList = new ArrayList<>(){{
-            new APICommandMenger().sendCommand(
-                    new GetOrgsCommand(),
-                    getParent(),
-                    "OrganizationIdBox.getIds.error",
-                    (e) -> {
-                        var orgs = ((GetOrgsCommand.OrganisationCommandResponse) e).organizations;
-                        for (var i: orgs){
-                            add(new OrganizationPresenter(i));
-                        }
-                    },
-                    true
-            );
-        }};
+//        cachedList = new ArrayList<>(){{
+//            new APICommandMenger().sendCommand(
+//                    new GetOrgsCommand(),
+//                    getParent(),
+//                    "OrganizationIdBox.getIds.error",
+//                    (e) -> {
+//                        var orgs = ((GetOrgsCommand.OrganisationCommandResponse) e).organizations;
+//                        for (var i: orgs){
+//                            add(new OrganizationPresenter(i));
+//                        }
+//                    },
+//                    true
+//            );
+//        }};
+        cachedList = ModelProvider.organizations().asList().stream().map(OrganizationPresenter::new).toList();
         return cachedList;
 
     }

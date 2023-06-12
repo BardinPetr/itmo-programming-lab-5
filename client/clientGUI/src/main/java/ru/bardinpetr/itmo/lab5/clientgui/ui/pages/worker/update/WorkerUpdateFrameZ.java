@@ -53,54 +53,58 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
         add(updateWorkerButton, GridConstrains.placedAdd(0, 2));
         add(deleteWorkerButton, GridConstrains.placedAdd(1, 2));
         add(workerUpdateCancelButton, GridConstrains.placedAdd(2, 2));
-
         updateWorkerButton.setEnabled(isEditable);
-
+        deleteWorkerButton.setEnabled(isEditable);
         workerUpdateCancelButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 dispose();
             }
         });
-        deleteWorkerButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                new APICommandMenger().sendCommand(
-                        new RemoveByIdCommand(
-                                defaultWorker.getId()
-                        ),
-                        workerInfoPanel,
-                        "WorkerUpdateFrameZ.deleteFailed.text",
-                        (e2) -> {}
-                );
-                dispose();
-            }
-        });
-        updateWorkerButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                invokeLater(() ->{
-                    var worker = workerInfoPanel.getWorker();
-                    if (!worker.isAllowed) {
-                        JOptionPane.showMessageDialog(
-                                workerInfoPanel,
-                                getResources().getString(worker.msg),
-                                getResources().getString("AddFrame.input.error.text"),
-                                JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                    else {
-                        new APICommandMenger().sendCommand(
-                                new UpdateCommand(worker.data.getId(), worker.data),
-                                workerInfoPanel,
-                                "WorkerUpdateFrameZ.updateFailed.text",
-                                (e1) -> {}
-                        );
-                    }
-                });
+        if (isEditable) {
 
-            }
-        });
+            deleteWorkerButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    new APICommandMenger().sendCommand(
+                            new RemoveByIdCommand(
+                                    defaultWorker.getId()
+                            ),
+                            workerInfoPanel,
+                            "WorkerUpdateFrameZ.deleteFailed.text",
+                            (e2) -> {
+                            }
+                    );
+                    dispose();
+                }
+            });
+            updateWorkerButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    invokeLater(() ->{
+                        var worker = workerInfoPanel.getWorker();
+                        if (!worker.isAllowed) {
+                            JOptionPane.showMessageDialog(
+                                    workerInfoPanel,
+                                    getResources().getString(worker.msg),
+                                    getResources().getString("AddFrame.input.error.text"),
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                        else {
+                            new APICommandMenger().sendCommand(
+                                    new UpdateCommand(worker.data.getId(), worker.data),
+                                    workerInfoPanel,
+                                    "WorkerUpdateFrameZ.updateFailed.text",
+                                    (e1) -> {}
+                            );
+                        }
+                    });
+
+                }
+            });
+
+        }
 
         initComponentsI18n();
         pack();
