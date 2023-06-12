@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class FilterSortTableHeader extends Box implements ColumnInfoEventListener {
+public class FilterSortTableHeader extends JPanel implements ColumnInfoEventListener {
 
     private static final long FILTER_AGGREGATE_DURATION_MILLIS = 100;
     private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
@@ -34,9 +34,9 @@ public class FilterSortTableHeader extends Box implements ColumnInfoEventListene
      * @param sourceModel the source model (not filtered)
      */
     public FilterSortTableHeader(JTable table, TableModel sourceModel) {
-        super(BoxLayout.LINE_AXIS);
         this.sourceModel = sourceModel;
         this.table = table;
+
 
         colInfoModels =
                 IntStream
@@ -47,6 +47,9 @@ public class FilterSortTableHeader extends Box implements ColumnInfoEventListene
 
         // Create columns from table's preferred size
         var columnModel = table.getColumnModel();
+
+        setLayout(new GridLayout(1, columnModel.getColumnCount(), 2, 0));
+
         colInfoModels.stream()
                 .map(FilterSortHeaderCell::new)
                 .peek(i -> i.setPreferredSize(

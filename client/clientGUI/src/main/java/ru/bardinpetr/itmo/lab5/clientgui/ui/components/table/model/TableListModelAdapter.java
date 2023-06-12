@@ -71,7 +71,11 @@ public abstract class TableListModelAdapter<T, M extends DefaultListModel<T>> im
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return getValueAt(baseModel.get(rowIndex), columnIndex);
+        try {
+            return getValueAt(baseModel.get(rowIndex), columnIndex);
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+            return null;
+        }
     }
 
     @Override

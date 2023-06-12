@@ -3,6 +3,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging;
 import jiconfont.IconCode;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
+import lombok.Setter;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -22,6 +23,9 @@ public class PagingTableControl extends Box {
     private int rowCount = 0;
     private int pageSize = 5;
     private int page = 1;
+
+    @Setter
+    private boolean pageMaxSizeUpdatesEnabled = true;
 
 
     public PagingTableControl(PagingConfigChangedListener listener) {
@@ -74,7 +78,7 @@ public class PagingTableControl extends Box {
     }
 
     public void setMaxPageSize(int val) {
-        if (val < 1)
+        if (val < 1 || !pageMaxSizeUpdatesEnabled)
             return;
 
         if (pageSize > val)
