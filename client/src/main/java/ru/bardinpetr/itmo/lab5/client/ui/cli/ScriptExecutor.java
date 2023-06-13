@@ -49,7 +49,7 @@ public class ScriptExecutor {
      * @throws ScriptRecursionRootException if recursion occurs and the root of execution tree has been reached when going backwards - only this should be handled as the error
      */
     public void process(String path) throws FileAccessException, ScriptException {
-        if (commandRegistry == null) throw new RuntimeException("ScriptExecutor.noCommand.text");
+        if (commandRegistry == null) throw new ScriptException("ScriptExecutor.noCommand.text");
         var isNormal = recursionController.enter(path);
         if (!isNormal)
             throw new ScriptException("ScriptExecutor.recursionError.text");
@@ -71,7 +71,7 @@ public class ScriptExecutor {
             var userArgs = List.of(line.split("\\s+"));
             var command = (UICallableCommand) currentRegistry.getCommand(userArgs.get(0));
             if (command == null)
-                throw new RuntimeException("ScriptExecutor.commandNotFound.text");
+                throw new ScriptException("ScriptExecutor.commandNotFound.text");
             try {
                 var successful = invoker.invoke(command, userArgs);
                 if (!successful)

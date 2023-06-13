@@ -24,10 +24,10 @@ public class LocalDateField extends AbstractDateField<LocalDate> {
 
     @Override
     public DataContainer getData() {
-        var date = (LocalDate) getModel().getValue();
+        var date = (Date) getModel().getValue();
         return new DataContainer(
                 true,
-                date,
+                date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                 "");
     }
     @Override

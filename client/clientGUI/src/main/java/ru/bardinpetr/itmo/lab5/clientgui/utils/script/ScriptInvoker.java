@@ -72,7 +72,7 @@ public class ScriptInvoker implements IInvoker {
         }
 
         switch (s) {
-            case "help" -> handleHelpResponse(resultPanel);
+//            case "help" -> handleHelpResponse(resultPanel);
             case "info" -> handleInfoResponse(resp.payload(), resultPanel);
             case "show" -> handleShowResponse(resp.payload(), resultPanel);
             case "add", "add_if_max", "add_if_min" -> handleAddResponse(resp.payload(), resultPanel);

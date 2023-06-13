@@ -18,8 +18,8 @@ public class ScriptCommandRegistry extends CommandRegistry {
                 scriptExecutor
         );
         this.registry = registry;
-        register(new ExitLocalCommand(ui));
-        register(new HelpLocalCommand(ui));
+//        register(new ExitLocalCommand(ui));
+//        register(new HelpLocalCommand(ui));
         register(new AddLocalCommand(api, ui, registry));
         register(new AddOrgLocalCommand(api, ui, registry));
         register(new DemoAddLocalCommand(api, ui, registry));
