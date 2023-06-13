@@ -1,13 +1,10 @@
 package ru.bardinpetr.itmo.lab5.clientgui.ui.components.script;
 
 import ru.bardinpetr.itmo.lab5.client.ui.cli.ScriptExecutor;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptException;
-import ru.bardinpetr.itmo.lab5.client.ui.cli.utils.errors.ScriptRecursionRootException;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.script.ScriptCommandRegistry;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.script.ScriptInvoker;
-import ru.bardinpetr.itmo.lab5.common.io.exceptions.FileAccessException;
 import ru.bardinpetr.itmo.lab5.mainclient.api.commands.UserAPICommandRegistry;
 import ru.bardinpetr.itmo.lab5.mainclient.api.commands.UserAPICommandsDescriptionHolder;
 
@@ -15,27 +12,18 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.io.File;
-
-import static javax.swing.SwingUtilities.invokeLater;
+import java.util.function.Consumer;
 
 public class ScriptPanel extends ResourcedPanel {
     private final ScriptExecutor scriptExecutor;
-    private final Runnable handle;
+    private final Consumer<Boolean> handle;
     private JFileChooser scriptChooser;
 
     private JPanel resultPanel;
     private JButton executeScriptButton;
     private String buttonTextKey="ScriptPanel.executeScriptButton.text";
 
-    public ScriptPanel(Runnable handle) {
-
-        new GUIExecutorAdapter(
-                "C:\\Users\\zam12\\Videos\\lab\\fromGit\\scripts\\scriptUsualAdd.zb",
-                resultPanel,
-                () -> {}
-        ).execute();
-
-
+    public ScriptPanel(Consumer<Boolean> handle) {
         this.handle = handle;
         initComponents();
         setVisible(true);
@@ -103,12 +91,13 @@ public class ScriptPanel extends ResourcedPanel {
                 executeScriptButton.setEnabled(false);
                 buttonTextKey = "ScriptPanel.executeScriptButton.process.text";
                 initComponentsI18n();
+
                 var scriptPath = scriptChooser.getSelectedFile().getPath();
                 new GUIExecutorAdapter(
                         scriptPath,
                         resultPanel,
-                        () -> {
-                            handle.run();
+                        (e1) -> {
+                            handle.accept(e1);
                             executeScriptButton.setEnabled(true);
                             buttonTextKey = "ScriptPanel.executeScriptButton.text";
                             initComponentsI18n();

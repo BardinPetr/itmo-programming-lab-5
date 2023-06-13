@@ -34,6 +34,7 @@ public class MainFrameZ extends ResourcedFrame {
     private JMenuItem scriptMenuButton;
     private UsersInfoZ usersInfo;
     private APICommandMenger apiManager;
+    private String scriptCard;
 
     public MainFrameZ() {
         initComponents();
@@ -66,12 +67,18 @@ public class MainFrameZ extends ResourcedFrame {
             var b = menuButtons.get(i);
             b.setHorizontalAlignment(CENTER);
             b.setBorder(buttonBorder);
-            b.addActionListener(e -> {
-                ((CardLayout) mainPanel.getLayout()).show(mainPanel, buttonKey);
+            b.addActionListener(
+                    e -> {
+                        scriptCard = buttonKey;
+                        ((CardLayout) mainPanel.getLayout())
+                                .show(mainPanel, buttonKey);
 
-                menuButtons.forEach(cur -> cur.setBorder(cur == b ? buttonPressedBorder : buttonBorder));
-                b.setBackground(null);
-            });
+                        menuButtons.forEach(
+                                cur -> cur.setBorder(cur == b ? buttonPressedBorder : buttonBorder)
+                        );
+                        b.setBackground(null);
+                    }
+            );
             menuBar.add(b);
         }
         workersMenuButton.setBorder(buttonPressedBorder);
@@ -96,7 +103,11 @@ public class MainFrameZ extends ResourcedFrame {
             mainPanel.add(new WorkerShowPanelZ(), "WORKERS");
             mainPanel.add(new OrganizationShowPanel(), "ORGANIZATIONS");
             mainPanel.add(new WorkersMapPage(ModelProvider.getInstance().workers()), "MAP");
-            mainPanel.add(new ScriptPanel(() -> scriptMenuButton.setBackground(new Color(135, 206, 235))), "SCRIPT");
+            mainPanel.add(new ScriptPanel((e) -> {
+                if (e && !scriptCard.equals("SCRIPT")) {
+                    scriptMenuButton.setBackground(new Color(135, 206, 235));
+                }
+            }), "SCRIPT");
         });
 
         initComponentsI18n();
