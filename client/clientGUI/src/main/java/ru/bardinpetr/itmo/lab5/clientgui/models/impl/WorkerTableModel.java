@@ -53,7 +53,9 @@ public class WorkerTableModel extends TableListModelAdapter<Worker, WorkerModel>
                         DateFormat.MEDIUM,
                         Locale.getDefault()
                 );
-        var endDate = object.getEndDate().atStartOfDay(ZoneId.systemDefault()).toInstant();
+        var endDate = object.getEndDate()!=null?dateFormat.format(
+                Date.from(object.getEndDate().atStartOfDay(ZoneId.systemDefault()).toInstant()
+                )):UIResources.getInstance().get("WorkerInfoPanel.endDateNull.text");
 
         return List.of(
                 object.getId(),
@@ -62,7 +64,7 @@ public class WorkerTableModel extends TableListModelAdapter<Worker, WorkerModel>
                 object.getName(),
                 object.getSalary(),
                 dateFormat.format(object.getStartDate()),
-                dateFormat.format(Date.from(endDate)),
+                endDate,
                 object.getCoordinates().getX(),
                 object.getCoordinates().getY(),
                 new OrganizationPresenter(
