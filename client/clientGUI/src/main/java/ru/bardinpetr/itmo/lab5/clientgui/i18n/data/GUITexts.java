@@ -8,6 +8,7 @@ public class GUITexts extends ListResourceBundle {
     protected Object[][] getContents() {
         return new Object[][]{
                 {"dateFormat", "dd.MM.yyyy"},
+                {"dateTimeFormat", "dd.MM.yyyy hh:mm:ss"},
                 {"optionalAnswers.Yes", "Yes"},
                 {"optionalAnswers.No", "No"},
                 {"optionalAnswers.Ok", "OK"},

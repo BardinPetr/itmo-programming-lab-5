@@ -9,10 +9,16 @@ import java.util.Date;
 import java.util.function.Consumer;
 
 public class LocalDateField extends AbstractDateField<LocalDate> {
+
+
     public LocalDateField(Consumer<Date> handler) {
         super(handler);
     }
 
+    @Override
+    protected String getStringFormatKey() {
+        return "dateTimeFormat";
+    }
 
 
     @Override
