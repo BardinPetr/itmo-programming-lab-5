@@ -69,6 +69,7 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
                             "OrgUpdateFrameZ.updateError.text",
                             (e2) -> {}
                     );
+                    dispose();
                 }
             }
         });
