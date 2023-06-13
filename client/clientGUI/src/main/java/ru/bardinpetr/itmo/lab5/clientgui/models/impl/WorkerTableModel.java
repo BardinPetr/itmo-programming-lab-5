@@ -9,9 +9,11 @@ import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.EnumPresenter;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.OrganizationPresenter;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.text.DateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class WorkerTableModel extends TableListModelAdapter<Worker, WorkerModel> {
     private static final List<String> columnNameKeys = List.of(
@@ -40,23 +42,27 @@ public class WorkerTableModel extends TableListModelAdapter<Worker, WorkerModel>
 
     @Override
     protected Object getValueAt(Worker object, int column) {
-        var startDate = new DateField((e) -> {
-        });
-        startDate.setData(object.getStartDate());
-        var endDate = new NullableDatePanel((e) -> {
-        });
-        endDate.setData(object.getEndDate());
-        var creationDate = new LocalDateField((e) -> {
-        });
-        creationDate.setData(object.getCreationDate().toLocalDate());
+        var timeFormat = DateFormat
+                .getDateTimeInstance(
+                        DateFormat.MEDIUM,
+                        DateFormat.MEDIUM,
+                        Locale.getDefault()
+                );
+        var dateFormat = DateFormat
+                .getDateInstance(
+                        DateFormat.MEDIUM,
+                        Locale.getDefault()
+                );
+        var endDate = object.getEndDate().atStartOfDay(ZoneId.systemDefault()).toInstant();
+
         return List.of(
                 object.getId(),
                 object.getOwnerUsername(),
-                creationDate.getText(),
+                timeFormat.format(Date.from(object.getCreationDate().toInstant())),
                 object.getName(),
                 object.getSalary(),
-                startDate.getText(),
-                endDate.getText(),
+                dateFormat.format(object.getStartDate()),
+                dateFormat.format(Date.from(endDate)),
                 object.getCoordinates().getX(),
                 object.getCoordinates().getY(),
                 new OrganizationPresenter(

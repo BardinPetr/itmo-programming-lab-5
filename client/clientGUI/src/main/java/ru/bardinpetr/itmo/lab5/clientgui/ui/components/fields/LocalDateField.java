@@ -4,6 +4,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.Abstrac
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.function.Consumer;
@@ -17,16 +18,16 @@ public class LocalDateField extends AbstractDateField<LocalDate> {
 
     @Override
     protected String getStringFormatKey() {
-        return "dateTimeFormat";
+        return "dateFormat";
     }
 
 
     @Override
     public DataContainer getData() {
-        var date = (Date) getModel().getValue();
+        var date = (LocalDate) getModel().getValue();
         return new DataContainer(
                 true,
-                date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                date,
                 "");
     }
     @Override
