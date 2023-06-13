@@ -3,7 +3,7 @@ import re
 import sys
 import translators as ts
 
-BLACKLIST = {"dateFormat"}
+BLACKLIST = {"dateFormat", "dateTimeFormat"}
 BASE_LANG = "en"
 TARGET_LANGS = ["ru", "fi", "hu", "es-CO"]
 

@@ -8,8 +8,14 @@ import java.util.Date;
 import java.util.function.Consumer;
 
 public class DateField extends AbstractDateField<Date> {
+
     public DateField(Consumer<Date> handler) {
         super(handler);
+    }
+
+    @Override
+    protected String getStringFormatKey() {
+        return "dateFormat";
     }
 
 
