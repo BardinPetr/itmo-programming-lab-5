@@ -78,7 +78,6 @@ public class DBReadExecutor extends Executor {
     private UniqueOrganisationCommand.UniqueOrganisationCommandResponse uniqueOrgs(UniqueOrganisationCommand req) {
         var resp = req.createResponse();
         var data = dao.getOrganizations();
-        for (var i : data) i.setId(0);
         resp.setOrganizations(data.stream().distinct().sorted(Organization.getComparator()).toList());
         return resp;
     }
