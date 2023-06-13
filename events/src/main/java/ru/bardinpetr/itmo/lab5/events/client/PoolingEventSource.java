@@ -4,6 +4,8 @@ import ru.bardinpetr.itmo.lab5.events.models.EventSet;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -14,6 +16,7 @@ import java.util.function.Function;
  */
 public class PoolingEventSource extends AbstractEventSource {
 
+    private final Set<Integer> receivedIds = new HashSet<>();
     private final Function<Instant, EventSet> poolFunction;
     private final ScheduledExecutorService executor;
     private Instant lastUpdateTime;
@@ -43,6 +46,13 @@ public class PoolingEventSource extends AbstractEventSource {
         if (res == null || res.getEvents().isEmpty())
             return;
 
+        res.setEvents(
+                res.getEvents()
+                        .stream()
+                        .filter(i -> !receivedIds.contains(i.getEventKey().getId()))
+                        .peek(i -> receivedIds.add(i.getEventKey().getId()))
+                        .toList()
+        );
         notifyListeners(res);
 
         lastUpdateTime = beginTime;
