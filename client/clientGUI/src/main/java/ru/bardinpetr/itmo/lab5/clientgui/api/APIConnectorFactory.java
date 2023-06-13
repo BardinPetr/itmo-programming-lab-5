@@ -50,7 +50,10 @@ public class APIConnectorFactory {
                 apiCredStorage,
                 baseAPI
         );
-        var connector = new QueuedAPIConnector(authedAPI);
+        var queuedAPI = new QueuedAPIConnector(authedAPI);
+        var connector = new UIReloginAPIConnector(queuedAPI);
+
+        authedAPI.setLoginPageStarter(connector::logout);
 
         var eventConsumer = new APIPoolingEventSource(connector, Duration.ofSeconds(1));
 

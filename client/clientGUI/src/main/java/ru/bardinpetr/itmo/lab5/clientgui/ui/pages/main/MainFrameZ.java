@@ -10,6 +10,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show.Organiz
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.script.ScriptPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo.UsersInfoZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerShowPanelZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.login.LoginPage;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
 import ru.bardinpetr.itmo.lab5.events.client.consumers.ResourceEventConsumer;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
@@ -43,6 +44,8 @@ public class MainFrameZ extends ResourcedFrame {
         setMinimumSize(new Dimension(800, 500));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
+
+        APIProvider.getConnector().registerOnLogoutListener(this::logout);
     }
 
     protected void initComponents() {
@@ -164,5 +167,11 @@ public class MainFrameZ extends ResourcedFrame {
         orgsMenuButton.setText(resources.get("MainFrame.orgsMenuButton.text"));
         mapMenuButton.setText(resources.get("MainFrame.mapMenuButton.text"));
         scriptMenuButton.setText(resources.get("MainFrame.scriptMenuButton.text"));
+    }
+
+    private void logout() {
+        SwingUtilities.invokeLater(() -> new LoginPage(MainFrameZ::new));
+        setVisible(false);
+        dispose();
     }
 }

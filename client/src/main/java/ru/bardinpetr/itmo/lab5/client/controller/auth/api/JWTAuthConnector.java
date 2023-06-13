@@ -1,9 +1,9 @@
 package ru.bardinpetr.itmo.lab5.client.controller.auth.api;
 
+import lombok.Setter;
 import ru.bardinpetr.itmo.lab5.client.api.APIClientConnector;
 import ru.bardinpetr.itmo.lab5.client.api.auth.AuthenticatedConnectorDecorator;
 import ru.bardinpetr.itmo.lab5.client.api.auth.ICredentialsStorage;
-import ru.bardinpetr.itmo.lab5.client.controller.auth.ui.LoginPage;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.UIProvider;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
@@ -20,6 +20,9 @@ import java.time.Duration;
 import java.time.ZonedDateTime;
 
 public class JWTAuthConnector extends AuthenticatedConnectorDecorator<JWTAuthenticationCredentials, StoredJWTCredentials> {
+    @Setter
+    private Runnable loginPageStarter;
+
     public JWTAuthConnector(APICommandAuthenticator<JWTAuthenticationCredentials> commandAuthenticator, ICredentialsStorage<StoredJWTCredentials> storage, APIClientConnector decoratee) {
         super(commandAuthenticator, storage, decoratee);
     }
@@ -85,15 +88,9 @@ public class JWTAuthConnector extends AuthenticatedConnectorDecorator<JWTAuthent
         storage.setCredentials(creds);
     }
 
-    private void doPasswordLogin() {
+    protected void doPasswordLogin() {
         storage.setCredentials(null);
-
-        new LoginPage<>(
-                decoratee,
-                UIProvider.get(),
-                storage,
-                () -> {
-                }
-        ).run();
+        if (loginPageStarter != null)
+            loginPageStarter.run();
     }
 }

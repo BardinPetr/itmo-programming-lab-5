@@ -17,4 +17,12 @@ public interface APIClientConnector {
      * @return Response with ICommandResponse from execution
      */
     APICommandResponse call(APICommand cmd) throws APIClientException;
+
+    default void registerOnLogoutListener(Runnable x) {
+
+    }
+
+    default void logout() {
+
+    }
 }
