@@ -3,7 +3,9 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 
 import javax.swing.*;
-import java.beans.PropertyChangeEvent;
+import java.util.Locale;
+
+import static javax.swing.SwingUtilities.invokeLater;
 
 public abstract class ResourcedPanel extends JPanel {
 
@@ -14,8 +16,8 @@ public abstract class ResourcedPanel extends JPanel {
         uiResources.addLocaleChangeListener(this::localeChange);
     }
 
-    private void localeChange(PropertyChangeEvent propertyChangeEvent) {
-        initComponentsI18n();
+    private void localeChange(Locale newLocale) {
+        invokeLater(this::initComponentsI18n);
     }
 
     protected final UIResources getResources() {

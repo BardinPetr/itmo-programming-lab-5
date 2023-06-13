@@ -2,7 +2,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames;
 
 import javax.swing.*;
 
-public class ResourcedAreaText extends ResourcedPanel{
+public class ResourcedAreaText extends ResourcedPanel {
     private JTextArea label;
     private final String labelTextKey;
     private final String extraString;
@@ -27,7 +27,5 @@ public class ResourcedAreaText extends ResourcedPanel{
     protected void initComponentsI18n() {
         var resources = getResources();
         label.setText(resources.get(labelTextKey)+extraString);
-
-
     }
 }

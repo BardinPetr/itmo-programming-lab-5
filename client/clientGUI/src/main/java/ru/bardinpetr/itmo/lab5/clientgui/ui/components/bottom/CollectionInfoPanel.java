@@ -6,8 +6,10 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class CollectionInfoPanel extends ResourcedPanel {
     private JLabel infoText;
@@ -16,6 +18,7 @@ public class CollectionInfoPanel extends ResourcedPanel {
     private JLabel bdDateField;
     private JLabel label4;
     private JLabel workersCountField;
+    private ZonedDateTime initDate;
 
 
     public CollectionInfoPanel() {
@@ -54,10 +57,8 @@ public class CollectionInfoPanel extends ResourcedPanel {
     }
 
     public void setInitDate(ZonedDateTime date) {
-        bdDateField.setText(
-                DateTimeFormatter.ofPattern(
-                        getResources().get("dateFormat")
-                ).format(date));
+        this.initDate = date;
+        initComponentsI18n();
     }
 
     public void setBDSize(Integer size) {
@@ -70,5 +71,12 @@ public class CollectionInfoPanel extends ResourcedPanel {
         dbTypeNameLabel.setText(resources.get("bottomPanel.label1.text"));
         label2.setText(resources.get("bottomPanel.label2.text"));
         label4.setText(resources.get("bottomPanel.label4.text"));
+
+        if (initDate != null)
+            bdDateField.setText(
+                    DateFormat
+                            .getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.getDefault())
+                            .format(Date.from(initDate.toInstant()))
+            );
     }
 }

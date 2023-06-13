@@ -3,15 +3,13 @@ package ru.bardinpetr.itmo.lab5.clientgui.i18n;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
 import lombok.Getter;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.EventUtils;
 
 import javax.swing.*;
+import javax.swing.event.EventListenerList;
 import java.awt.*;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.List;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class UIResources {
     public static final String BASE_BUNDLE_NAME = "ru.bardinpetr.itmo.lab5.clientgui.i18n.data.GUITexts";
@@ -19,7 +17,7 @@ public class UIResources {
 
     private static UIResources instance;
 
-    private final PropertyChangeSupport propertyChangeSupport;
+    private final EventListenerList listenerList = new EventListenerList();
 
     @Getter
     private Locale currentLocale;
@@ -36,7 +34,6 @@ public class UIResources {
                 });
 
         currentLocale = Locale.getDefault();
-        propertyChangeSupport = new PropertyChangeSupport(this);
 
         setLocale(getSupportedLocales().get(0));
     }
@@ -81,15 +78,20 @@ public class UIResources {
         currentLocale = newLocale;
         Locale.setDefault(newLocale);
         ResourceBundle.clearCache();
-        propertyChangeSupport.firePropertyChange(LOCALE_PROPERTY, oldLocale, newLocale);
+
+        EventUtils.fireAll(
+                listenerList,
+                LocaleChangedEventListener.class,
+                i -> i.onChange(newLocale)
+        );
     }
 
-    public void addLocaleChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(LOCALE_PROPERTY, listener);
+    public void addLocaleChangeListener(LocaleChangedEventListener listener) {
+        listenerList.add(LocaleChangedEventListener.class, listener);
     }
 
-    public void removeLocaleChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(LOCALE_PROPERTY, listener);
+    public void removeLocaleChangeListener(LocaleChangedEventListener listener) {
+        listenerList.remove(LocaleChangedEventListener.class, listener);
     }
 
     public List<Locale> getSupportedLocales() {
@@ -100,5 +102,9 @@ public class UIResources {
                 Locale.forLanguageTag("hu"),
                 Locale.forLanguageTag("es-CO")
         );
+    }
+
+    public interface LocaleChangedEventListener extends EventListener {
+        void onChange(Locale newLocale);
     }
 }
