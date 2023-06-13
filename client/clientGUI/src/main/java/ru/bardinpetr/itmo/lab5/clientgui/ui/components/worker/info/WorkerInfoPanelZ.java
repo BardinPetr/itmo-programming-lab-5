@@ -48,9 +48,9 @@ public class WorkerInfoPanelZ extends ResourcedPanel {
     public WorkerInfoPanelZ(Worker defaultWorker, boolean isChangeable) {
         this.isChangeable = isChangeable;
         this.defaultWorker = defaultWorker;
-        invokeLater(() -> initComponents());
+        initComponents();
         setVisible(true);
-        setPreferredSize(new Dimension(391, 174));
+//        setPreferredSize(new Dimension(391, 174));
 
         this.workerDataContainer = new DataContainer<>(
                 defaultWorker,

@@ -17,3 +17,4 @@ show
 filter_less_than_position MANAGER_OF_CLEANING
 print_descending
 print_unique_organization
+clear

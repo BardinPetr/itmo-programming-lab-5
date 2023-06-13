@@ -20,12 +20,15 @@ import static javax.swing.SwingUtilities.invokeLater;
 
 public class ScriptPanel extends ResourcedPanel {
     private final ScriptExecutor scriptExecutor;
+    private final Runnable handle;
     private JFileChooser scriptChooser;
 
     private JPanel resultPanel;
     private JButton executeScriptButton;
+    private String buttonTextKey="ScriptPanel.executeScriptButton.text";
 
-    public ScriptPanel() {
+    public ScriptPanel(Runnable handle) {
+        this.handle = handle;
         initComponents();
         setVisible(true);
 
@@ -89,42 +92,29 @@ public class ScriptPanel extends ResourcedPanel {
         scriptChooser.addActionListener((e) -> {
             if (scriptChooser.getSelectedFile() != null) {
                 executeScriptButton.setEnabled(false);
+                buttonTextKey = "ScriptPanel.executeScriptButton.process.text";
+                initComponentsI18n();
                 var scriptPath = scriptChooser.getSelectedFile().getPath();
-                invokeLater(() -> executeScript(scriptPath));
+                new GUIExecutorAdapter(
+                        scriptPath,
+                        resultPanel,
+                        () -> {
+                            handle.run();
+                            executeScriptButton.setEnabled(true);
+                            buttonTextKey = "ScriptPanel.executeScriptButton.text";
+                            initComponentsI18n();
+                        }
+                ).execute();
+
             }
         });
 
         initComponentsI18n();
     }
 
-    private void executeScript(String path) {
-        resultPanel.removeAll();
-        new Thread(() -> {
-            try {
-                scriptExecutor.process(path);
-            } catch (FileAccessException | ScriptException | ScriptRecursionRootException e) {
-                Object[] options = {
-                        UIResources.getInstance().get("optionalAnswers.Ok")
-                };
-                JOptionPane.showOptionDialog(
-                        this,
-                        getResources().get("ScriptLocalCommand.invalidScript.text"),
-                        getResources().get(e.getMessage()),
-                        JOptionPane.OK_OPTION,
-                        JOptionPane.ERROR_MESSAGE,
-                        null,     //do not use a custom Icon
-                        options,
-                        options[0]
-                );
-            } finally {
-                executeScriptButton.setEnabled(true);
-            }
-        }).start();
-    }
-
 
     @Override
     protected void initComponentsI18n() {
-        executeScriptButton.setText(UIResources.getInstance().get("ScriptPanel.executeScriptButton.text"));
+        executeScriptButton.setText(UIResources.getInstance().get(buttonTextKey));
     }
 }

@@ -74,6 +74,7 @@ public class MainFrameZ extends ResourcedFrame {
                         menuButtons.forEach(
                                 cur -> cur.setBorder(cur == b ? buttonPressedBorder : buttonBorder)
                         );
+                        b.setBackground(null);
                     }
             );
             menuBar.add(b);
@@ -98,7 +99,7 @@ public class MainFrameZ extends ResourcedFrame {
         mainPanel.add(new WorkerShowPanelZ(), "WORKERS");
         mainPanel.add(new OrganizationShowPanel(), "ORGANIZATIONS");
         mainPanel.add(new WorkersMapPage(ModelProvider.workers()), "MAP");
-        mainPanel.add(new ScriptPanel(), "SCRIPT");
+        mainPanel.add(new ScriptPanel(() -> scriptMenuButton.setBackground(new Color(135,206,235))), "SCRIPT");
 
         initComponentsI18n();
         pack();

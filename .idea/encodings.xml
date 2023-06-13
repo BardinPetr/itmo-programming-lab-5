@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/client/clientGUI/src/main/java/ru/bardinpetr/itmo/lab5/clientgui/i18n/data/GUITexts_ru.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/client/clientGUI/src/main/java/ru/bardinpetr/itmo/lab5/clientgui/ui/TestInterface.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/client/clientGUI/src/main/java/ru/bardinpetr/itmo/lab5/clientgui/i18n/data/GUITexts_ru.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/client/clientGUI/src/main/java/ru/bardinpetr/itmo/lab5/clientgui/ui/TestInterface.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/clientGUI/src/main/java/ru/bardinpetr/itmo/lab5/clientgui/ui/components/script/ScriptPanel.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/client/src/main/java/ru/bardinpetr/itmo/lab5/client/Main.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/db/src/main/java/ru/bardinpetr/itmo/lab5/db/backend/impl/postgres/BasePGDAO.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

@@ -34,6 +34,7 @@ public class GUITexts extends ListResourceBundle {
                 {"WorkerTableModel.Column.Organization.text", "Organization"},
                 {"WorkerTableModel.Column.Position.text", "Position"},
                 {"ScriptPanel.executeScriptButton.text", "Execute script"},
+                {"ScriptPanel.executeScriptButton.process.text", "Execute script process..."},
                 {"AddFrame.input.error.text", "Input Error"},
                 {"OrgAddFrameZ.title", "Organization add"},
                 {"OrgAddFrameZ.addOrgError.text", "Add organization error"},

@@ -46,7 +46,6 @@ public class ScriptInvoker implements IInvoker {
 
         return resp.isSuccess();
     }
-
     private void show(String s, ClientCommandResponse<? extends UserPrintableAPICommandResponse> resp) {
         var resultPanel = new JPanel();
         resultPanel.setBorder(BorderFactory.createTitledBorder(s));
@@ -71,7 +70,7 @@ public class ScriptInvoker implements IInvoker {
         }
 
         switch (s) {
-            case "help" -> handleHelpResponse(resp.payload(), resultPanel);
+            case "help" -> handleHelpResponse(resultPanel);
             case "info" -> handleInfoResponse(resp.payload(), resultPanel);
             case "show" -> handleShowResponse(resp.payload(), resultPanel);
             case "add", "add_if_max", "add_if_min" -> handleAddResponse(resp.payload(), resultPanel);
@@ -85,17 +84,17 @@ public class ScriptInvoker implements IInvoker {
             case "filter_less_than_position" -> handleFilter_less_than_positionResponse(resp.payload(), resultPanel);
             case "print_descending" -> handlePrint_descendingResponse(resp.payload(), resultPanel);
             case "print_unique_organization" -> handlePrint_unique_organizationResponse(resp.payload(), resultPanel);
-            default -> defaultHandel(resp.payload(), resultPanel);
+            default -> defaultHandel(resultPanel);
         }
 
         mainResultPanel.add(resultPanel);
     }
 
-    private void defaultHandel(UserPrintableAPICommandResponse response, JPanel resultPanel) {
+    private void defaultHandel(JPanel resultPanel) {
         resultPanel.add(new ResourcedLabel("ScriptInvoker.default.success"));
     }
 
-    private void handleHelpResponse(UserPrintableAPICommandResponse response, JPanel resultPanel) {
+    private void handleHelpResponse(JPanel resultPanel) {
         resultPanel.add(new ResourcedAreaText(
                         "ScriptInvoker.help.text"
                 )
@@ -126,7 +125,8 @@ public class ScriptInvoker implements IInvoker {
         );
     }
 
-    private void handleExecute_scriptResponse(UserPrintableAPICommandResponse response, JPanel resultPanel) {
+    private void
+    handleExecute_scriptResponse(UserPrintableAPICommandResponse response, JPanel resultPanel) {
         var resp = ((ExecuteScriptCommand.ExecuteScriptCommandResponse) response);
         resultPanel.add(
                 new JLabel(
