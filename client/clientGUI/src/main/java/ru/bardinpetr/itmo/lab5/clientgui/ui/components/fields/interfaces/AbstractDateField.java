@@ -4,20 +4,21 @@ import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.models.data.validation.ValidationResponse;
 
 import javax.swing.*;
+import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.function.Consumer;
 
 public abstract class AbstractDateField<T> extends JSpinner implements IDataStorage<T> {
     protected UIResources resources;
-    protected String timeFormatKey;
+    private DateFormat dateFormatter;
+
 
     public AbstractDateField(Consumer<Date> handler) {
         super(new SpinnerDateModel(
-                new Date(),
-                null,
-                null,
-                Calendar.MONTH)
+                )
         );
 
         getModel().addChangeListener((e) -> {
@@ -33,7 +34,6 @@ public abstract class AbstractDateField<T> extends JSpinner implements IDataStor
     public void setEditable(boolean editable) {
         ((DefaultEditor) getEditor()).getTextField().setEditable(editable);
     }
-
     @Override
     public ValidationResponse validateValue() {
         return new ValidationResponse(true, "");
@@ -46,10 +46,13 @@ public abstract class AbstractDateField<T> extends JSpinner implements IDataStor
     protected abstract String getStringFormatKey();
     protected void initComponentsI18n() {
         resources = getResources();
+
+        dateFormatter = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.getDefault());
         var dateFormat = resources.get(getStringFormatKey());
         setToolTipText(
                 resources.get("AbstractDateField.toolText.format") +
-                        resources.get("dateFormat"));
+                        resources.get("dateFormat")
+        );
         setEditor(new JSpinner.DateEditor(this, dateFormat));
     }
 

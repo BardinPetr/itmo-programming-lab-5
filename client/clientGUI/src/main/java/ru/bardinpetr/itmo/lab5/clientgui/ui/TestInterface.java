@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelProvider;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;

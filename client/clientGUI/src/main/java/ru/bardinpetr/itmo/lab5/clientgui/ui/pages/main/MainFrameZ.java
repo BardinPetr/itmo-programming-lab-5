@@ -40,7 +40,7 @@ public class MainFrameZ extends ResourcedFrame {
         setBackground(Color.WHITE);
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(new Dimension(800, 500));
+        setMinimumSize(new Dimension(800, 500));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
     }
