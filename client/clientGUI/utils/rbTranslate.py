@@ -5,7 +5,7 @@ import translators as ts
 
 BLACKLIST = {"dateFormat"}
 BASE_LANG = "en"
-TARGET_LANGS = ["ru"]
+TARGET_LANGS = ["ru", "fi", "hu", "es-CO"]
 
 
 def build_source(package, base_name, contents):
@@ -37,6 +37,7 @@ def translate(data):
 
 
 def save_file(base_path, class_name, package, locale, data):
+    locale = locale.replace('-', '_')
     name = f"{class_name}_{locale}"
     target_file = f"{base_path}{name}.java"
     with open(target_file, 'w') as target_file:
@@ -60,7 +61,8 @@ def main():
 
     for target in TARGET_LANGS:
         with mp.Pool(processes=8) as pool:
-            res = pool.map(translate, zip(texts.keys(), texts.values(), [target] * len(texts)))
+            lang = target.split('-')[0]
+            res = pool.map(translate, zip(texts.keys(), texts.values(), [lang] * len(texts)))
             save_file(dst_dir, class_name, package, target, zip(texts.keys(), res))
 
 

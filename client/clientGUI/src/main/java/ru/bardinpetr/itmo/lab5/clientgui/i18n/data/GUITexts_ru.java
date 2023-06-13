@@ -11,6 +11,9 @@ public class GUITexts_ru extends ListResourceBundle {
                 {"optionalAnswers.No", "Нет"},
                 {"optionalAnswers.Ok", "ХОРОШО"},
                 {"generalError", "Что-то пошло не так с помощью команды отправки"},
+                {"ScriptExecutor.failed.text", "Неудачное выполнение скрипта"},
+                {"ScriptExecutor.noCommand.text", "Нет реестра команд"},
+                {"ScriptExecutor.commandNotFound.text", "Команда не найдена"},
                 {"ScriptExecutor.recursionError.text", "Обнаружена рекурсия"},
                 {"APIConnectorFactory.connectionError.text", "Сервер недоступен. Повторить попытку сейчас?"},
                 {"TransportTimeoutException.error", "Истекло время ожидания связи с сервером. Повторите попытку позже"},
@@ -155,6 +158,7 @@ public class GUITexts_ru extends ListResourceBundle {
                 {"DBInsertApplication.notMinimum.text", "Не минимальный"},
                 {"DBReadExecutor.noWorkerById.text", "Нет работника с данным идентификатором"},
                 {"DBRemoveApplication.noEntity.text", "Не найденная сущность для удаления"},
+                {"DBUpdateApplication.error.text", "Не удалось обновить сущность"},
                 {"OperationType.readError.text", "Ошибка чтения"},
                 {"OperationType.writeError.text", "Сбой записи"},
                 {"OperationType.readPermissionError.text", "Нет разрешения на чтение для текущего пользователя"},
@@ -169,7 +173,12 @@ public class GUITexts_ru extends ListResourceBundle {
                 {"ErrorHandlingApplication.methodNotAvailable", "Метод недоступен"},
                 {"OrganizationTableModel.Column.ID.text", "ИДЕНТИФИКАТОР"},
                 {"OrganizationTableModel.Column.Name.text", "Имя"},
-                {"OrganizationTableModel.Column.Type.text", "Тип"}
+                {"OrganizationTableModel.Column.Type.text", "Тип"},
+                {"ScriptLocalCommand.invalidScript.text", "Недопустимый сценарий"},
+                {"ScriptLocalCommand.noScriptFile.text", "Файл сценария не передан"},
+                {"ScriptInvoker.default.success", "Успех!"},
+                {"ScriptInvoker.scriptFailed.text", "Сбой скрипта:"},
+                {"ScriptInvoker.scriptFailed.unknownError.text", "Неизвестная ошибка"}
         };
     }
 }

@@ -37,6 +37,8 @@ public class UIResources {
 
         currentLocale = Locale.getDefault();
         propertyChangeSupport = new PropertyChangeSupport(this);
+
+        setLocale(getSupportedLocales().get(0));
     }
 
     public static UIResources getInstance() {
@@ -91,6 +93,12 @@ public class UIResources {
     }
 
     public List<Locale> getSupportedLocales() {
-        return List.of(Locale.forLanguageTag("ru"), Locale.forLanguageTag("en"));
+        return List.of(
+                Locale.forLanguageTag("ru"),
+                Locale.forLanguageTag("en"),
+                Locale.forLanguageTag("fi"),
+                Locale.forLanguageTag("hu"),
+                Locale.forLanguageTag("es-CO")
+        );
     }
 }
