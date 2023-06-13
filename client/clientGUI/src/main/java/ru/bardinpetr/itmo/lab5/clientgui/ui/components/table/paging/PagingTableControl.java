@@ -49,7 +49,7 @@ public class PagingTableControl extends Box {
         pageLabel = new JLabel();
         pageLabel.setMinimumSize(new Dimension(200, 50));
 
-        spinnerModel = new SpinnerNumberModel(pageSize, 1, 5, 5);
+        spinnerModel = new SpinnerNumberModel(pageSize, 1, pageSize, 5);
         spinnerModel.addChangeListener(this::onPageSizeSpinnerEvent);
 
         var pageSizeSpinner = new JSpinner(spinnerModel);
