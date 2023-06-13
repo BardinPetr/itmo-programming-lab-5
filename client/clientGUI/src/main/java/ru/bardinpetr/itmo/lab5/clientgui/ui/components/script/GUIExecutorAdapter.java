@@ -79,7 +79,9 @@ public class GUIExecutorAdapter extends SwingWorker<DataContainer<JPanel>, Integ
         try {
             var res = get();
             mainResultPanel.removeAll();
-            mainResultPanel.add(res.data);
+            if (res.isAllowed) {
+                mainResultPanel.add(res.data);
+            }
             handle.accept(res.isAllowed);
         } catch (Exception ignore) {}
     }

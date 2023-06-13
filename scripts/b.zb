@@ -1,4 +1,3 @@
-help
 info
 add
 Artem
@@ -7,9 +6,9 @@ Artem
 C
 02-03-2023
 110
-12
+12s
 C
-6
+17
 C
 MANAGER_OF_CLEANING
 execute_script .\scripts\scriptUsualAdd.zb
