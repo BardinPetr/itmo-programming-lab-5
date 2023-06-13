@@ -8,20 +8,21 @@ import lombok.NonNull;
 
 import java.time.Instant;
 import java.util.Comparator;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventKey implements Comparable<EventKey> {
-    private Integer id;
+    private String id;
     private Instant timestamp;
 
     public static EventKey at(Instant time) {
-        return new EventKey(0, time);
+        return new EventKey(UUID.randomUUID().toString(), time);
     }
 
-    public static EventKey now(int id) {
-        return new EventKey(id, Instant.now());
+    public static EventKey now() {
+        return at(Instant.now());
     }
 
     @Override

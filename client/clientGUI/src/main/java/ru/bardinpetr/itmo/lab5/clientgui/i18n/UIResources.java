@@ -94,8 +94,8 @@ public class UIResources {
 
     public List<Locale> getSupportedLocales() {
         return List.of(
-                Locale.forLanguageTag("ru"),
                 Locale.forLanguageTag("en"),
+                Locale.forLanguageTag("ru"),
                 Locale.forLanguageTag("fi"),
                 Locale.forLanguageTag("hu"),
                 Locale.forLanguageTag("es-CO")

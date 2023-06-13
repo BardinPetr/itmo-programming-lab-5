@@ -28,7 +28,7 @@ public class DBUpdateApplication extends APIApplication {
 
     private void onUpdateOrg(AppRequest request) {
         UpdateOrgCommand req = (UpdateOrgCommand) request.payload();
-        if (dao.delOrg(req.id))
+        if (dao.updateOrg(req.getId(), req.getElement()))
             request.response().sendOk();
         else
             request.response().sendErr("DBUpdateApplication.error.text");

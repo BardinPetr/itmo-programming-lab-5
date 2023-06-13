@@ -16,7 +16,7 @@ import java.util.function.Function;
  */
 public class PoolingEventSource extends AbstractEventSource {
 
-    private final Set<Integer> receivedIds = new HashSet<>();
+    private final Set<String> receivedIds = new HashSet<>();
     private final Function<Instant, EventSet> poolFunction;
     private final ScheduledExecutorService executor;
     private Instant lastUpdateTime;

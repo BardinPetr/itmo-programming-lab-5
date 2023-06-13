@@ -8,7 +8,6 @@ import ru.bardinpetr.itmo.lab5.events.models.EventSet;
 import java.time.Instant;
 import java.util.NavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * EventStorage implementation based on tree structure in RAM
@@ -16,11 +15,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class LocalEventStorage implements IEventStorage {
     private final NavigableMap<EventKey, Event> storage = new ConcurrentSkipListMap<>();
-    private final AtomicInteger curId = new AtomicInteger(0);
 
     @Override
     public void insert(Event event) {
-        event.setEventKey(EventKey.now(curId.incrementAndGet()));
+        event.setEventKey(EventKey.now());
         storage.put(event.getEventKey(), event);
         log.debug("New event registered: {}", event);
     }

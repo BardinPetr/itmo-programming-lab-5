@@ -106,7 +106,6 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
                 eventStorage.insert(new Event(Event.EventType.UPDATE, "worker", w.getId()));
             }
         });
-        eventStorage.insert(new Event(Event.EventType.DELETE, "organization", id));
         return true;
     }
 
@@ -123,7 +122,6 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
                 eventStorage.insert(new Event(Event.EventType.UPDATE, "worker", w.getId()));
             }
         });
-        eventStorage.insert(new Event(Event.EventType.UPDATE, "organization", id));
         return true;
     }
 
@@ -135,12 +133,9 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
 
     @Override
     public Integer addOrg(Organization element) {
-        var id = backend.getTableProvider().getOrganizations().insert(
+        return backend.getTableProvider().getOrganizations().insert(
                 new OrganizationDTO(element.getId(), element.getFullName(), element.getType())
         );
-        if (id != null)
-            eventStorage.insert(new Event(Event.EventType.CREATE, "organization", id));
-        return id;
     }
 
     @Override
