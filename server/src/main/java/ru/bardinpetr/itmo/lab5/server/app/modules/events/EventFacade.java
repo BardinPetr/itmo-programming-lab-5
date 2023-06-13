@@ -9,7 +9,9 @@ public class EventFacade {
         var eventStorage = new LocalEventStorage();
         var proxy = new DBEventLoggerProxy(eventStorage);
 
-        ServiceProvider.getInstance().put("loggerProxyFactory", proxy);
+        var service = ServiceProvider.getInstance();
+        service.put("loggerProxyFactory", proxy);
+        service.put("eventStorage", eventStorage);
 
         return new EventApplication(eventStorage);
     }

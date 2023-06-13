@@ -1,9 +1,12 @@
 package ru.bardinpetr.itmo.lab5.server.db.dao.ctrl;
 
+import ru.bardinpetr.itmo.lab5.events.models.Event;
+import ru.bardinpetr.itmo.lab5.events.server.storage.IEventStorage;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import ru.bardinpetr.itmo.lab5.models.data.collection.CollectionInfo;
 import ru.bardinpetr.itmo.lab5.models.data.collection.WorkerCollection;
+import ru.bardinpetr.itmo.lab5.server.app.utils.ServiceProvider;
 import ru.bardinpetr.itmo.lab5.server.db.dto.OrganizationDTO;
 import ru.bardinpetr.itmo.lab5.server.db.dto.WorkerDTO;
 
@@ -15,10 +18,12 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
 
     private final PGWorkerStorageBackend backend;
     private final WorkerCollection collection;
+    private final IEventStorage eventStorage;
 
     public WorkersCachedCollection(PGWorkerStorageBackend backend) {
         this.backend = backend;
-        collection = this.backend.loadCollection();
+        collection = backend.loadCollection();
+        eventStorage = ServiceProvider.getInstance().get(IEventStorage.class, "eventStorage");
     }
 
     @Override
@@ -96,9 +101,12 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
 
         collection.forEach(w -> {
             var org = w.getOrganization();
-            if (org != null && org.getId().equals(id))
+            if (org != null && org.getId().equals(id)) {
                 w.setOrganization(null);
+                eventStorage.insert(new Event(Event.EventType.UPDATE, "worker", w.getId()));
+            }
         });
+        eventStorage.insert(new Event(Event.EventType.DELETE, "organization", id));
         return true;
     }
 
@@ -110,9 +118,12 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
         collection.forEach(w -> {
             var org = w.getOrganization();
             if (org == null) return;
-            if (org.getId().equals(id))
+            if (org.getId().equals(id)) {
                 w.setOrganization(element);
+                eventStorage.insert(new Event(Event.EventType.UPDATE, "worker", w.getId()));
+            }
         });
+        eventStorage.insert(new Event(Event.EventType.UPDATE, "organization", id));
         return true;
     }
 
@@ -124,9 +135,12 @@ public class WorkersCachedCollection implements IWorkerCollectionDAO {
 
     @Override
     public Integer addOrg(Organization element) {
-        return backend.getTableProvider().getOrganizations().insert(
+        var id = backend.getTableProvider().getOrganizations().insert(
                 new OrganizationDTO(element.getId(), element.getFullName(), element.getType())
         );
+        if (id != null)
+            eventStorage.insert(new Event(Event.EventType.CREATE, "organization", id));
+        return id;
     }
 
     @Override

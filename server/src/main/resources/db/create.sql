@@ -49,15 +49,15 @@ CREATE TABLE worker
     creationDate   timestamptz default current_timestamp,
     ownerId        int references users (id) not null,
 
-    organizationID int references organization (id),
+    organizationID int                       references organization (id) on delete set null,
 
-    name           text               not null,
+    name           text                      not null,
     salary         float,
 
-    startDate      timestamp          not null,
+    startDate      timestamp                 not null,
     endDate        timestamp,
 
-    coordinates    worker_coordinates not null,
+    coordinates    worker_coordinates        not null,
     position       worker_position
 );
 

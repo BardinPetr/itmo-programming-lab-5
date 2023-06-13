@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -25,6 +26,8 @@ public class UIResources {
     private Locale currentLocale;
 
     private UIResources() {
+        System.out.println(Charset.defaultCharset());
+
         IconFontSwing.register(FontAwesome.getIconFont());
 
         var font = buildFont();
