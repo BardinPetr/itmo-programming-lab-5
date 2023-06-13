@@ -182,7 +182,7 @@ public class GUITexts extends ListResourceBundle {
                 {"ErrorHandlingApplication.methodNotAvailable", "Method not available"},
                 {"OrganizationTableModel.Column.ID.text", "ID"},
                 {"OrganizationTableModel.Column.Name.text", "Name"},
-                {"OrganizationTableModel.Column.Type.text", "Type"},
+                {"OrganizationTable.deleteError.text", "Delete failed"},
                 {"ScriptLocalCommand.invalidScript.text", "Invalid Script"},
                 {"ScriptLocalCommand.noScriptFile.text", "No script file passed"},
                 {"ScriptInvoker.default.success", "Success!"},
