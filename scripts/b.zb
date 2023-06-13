@@ -9,12 +9,12 @@ C
 11
 12
 C
-1
+6
 C
 MANAGER_OF_CLEANING
+execute_script .\scripts\scriptUsualAdd.zb
 info
 show
 filter_less_than_position MANAGER_OF_CLEANING
 print_descending
 print_unique_organization
-clear

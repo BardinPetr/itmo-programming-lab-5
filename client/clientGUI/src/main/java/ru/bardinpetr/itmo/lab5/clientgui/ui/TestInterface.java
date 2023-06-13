@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.script.ScriptPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update.OrgUpdateFrameZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ;
@@ -81,7 +82,7 @@ public class TestInterface {
 //        new OrgUpdateFrameZ(testOrg);
 //        new WorkerUpdateFrameZ(testWorker, false);
         new MainFrameZ();
-//        testPanel(new OrganizationInfoPanelZ(testOrg));
+//        testPanel(new ScriptPanel(() -> {}));
     }
     private static void testPanel(JPanel panel) {
         var mainFrame = new JFrame();

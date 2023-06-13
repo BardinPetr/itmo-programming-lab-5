@@ -28,6 +28,14 @@ public class ScriptPanel extends ResourcedPanel {
     private String buttonTextKey="ScriptPanel.executeScriptButton.text";
 
     public ScriptPanel(Runnable handle) {
+
+        new GUIExecutorAdapter(
+                "C:\\Users\\zam12\\Videos\\lab\\fromGit\\scripts\\scriptUsualAdd.zb",
+                resultPanel,
+                () -> {}
+        ).execute();
+
+
         this.handle = handle;
         initComponents();
         setVisible(true);
@@ -85,6 +93,7 @@ public class ScriptPanel extends ResourcedPanel {
         });
 
         executeScriptButton.addActionListener((e) -> {
+            scriptChooser.setSelectedFile(null);
             scriptChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
             scriptChooser.showDialog(this, getResources().get("MainFrame.scriptChooseText.text"));
         });

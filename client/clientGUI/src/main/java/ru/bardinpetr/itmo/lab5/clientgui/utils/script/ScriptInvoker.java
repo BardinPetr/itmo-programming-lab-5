@@ -1,5 +1,6 @@
 package ru.bardinpetr.itmo.lab5.clientgui.utils.script;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.ClientCommandResponse;
 import ru.bardinpetr.itmo.lab5.client.controller.common.handlers.UICallableCommand;
 import ru.bardinpetr.itmo.lab5.client.ui.cli.IInvoker;
@@ -20,7 +21,7 @@ import ru.bardinpetr.itmo.lab5.models.data.Worker;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-
+@Slf4j
 public class ScriptInvoker implements IInvoker {
     private final JPanel mainResultPanel;
     private final UIResources resources;
@@ -38,6 +39,7 @@ public class ScriptInvoker implements IInvoker {
         } catch (ScriptException ex) {
             throw ex;
         } catch (Exception ex) {
+            log.error(ex.getMessage());
             resp = ClientCommandResponse.error(ex.getMessage());
         }
         if (resp == null) resp = ClientCommandResponse.ok();
