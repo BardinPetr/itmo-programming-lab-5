@@ -1,4 +1,3 @@
-
 package ru.bardinpetr.itmo.lab5.server.app.modules.db;
 
 import ru.bardinpetr.itmo.lab5.common.executor.Executor;
@@ -34,6 +33,24 @@ public class DBReadExecutor extends Executor {
                         resp.setStatus(APIResponseStatus.CLIENT_ERROR);
                     } else {
                         resp.setWorker(worker);
+                    }
+                    return resp;
+                });
+
+        registerOperation(
+                GetOrganizationCommand.class,
+                req -> {
+                    var resp = req.createResponse();
+                    var data =
+                            dao.getOrganizations()
+                                    .stream()
+                                    .filter(i -> i.getId().equals(req.getId()))
+                                    .findFirst();
+                    if (data.isEmpty()) {
+                        resp.setTextualResponse("DBReadExecutor.noWorkerById.text");
+                        resp.setStatus(APIResponseStatus.CLIENT_ERROR);
+                    } else {
+                        resp.setOrganization(data.get());
                     }
                     return resp;
                 });

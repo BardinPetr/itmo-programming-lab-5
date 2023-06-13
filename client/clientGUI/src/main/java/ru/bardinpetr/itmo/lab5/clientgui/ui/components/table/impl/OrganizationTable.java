@@ -20,13 +20,6 @@ public class OrganizationTable extends XTable {
     }
 
     @Override
-    protected void initButtonBlock() {
-        super.initButtonBlock();
-//        updateButton.setVisible(false);
-//        deleteButton.setVisible(false);
-    }
-
-    @Override
     protected void onDelete(ActionEvent actionEvent) {
         var selected = getSelectedIndexes();
         if (selected.size() != 1)

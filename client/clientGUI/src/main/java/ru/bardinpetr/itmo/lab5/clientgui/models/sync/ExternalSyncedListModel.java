@@ -41,15 +41,6 @@ public class ExternalSyncedListModel<T extends IKeyedEntity<Integer>> extends Ex
         eventSubscriber = new ResourceEventConsumer(this::onUpdate, resourceId);
     }
 
-    public void setAutoSync(boolean enabled) {
-        this.autoSyncEnabled = enabled;
-        if (enabled) {
-            SwingUtilities.invokeLater(this::firstPool);
-        } else {
-            eventSource.unsubscribe(eventSubscriber);
-        }
-    }
-
     public void setLoaders(Supplier<List<T>> getAll, Function<Integer, T> getSingle) {
         this.getAll = getAll;
         this.getSingle = getSingle;

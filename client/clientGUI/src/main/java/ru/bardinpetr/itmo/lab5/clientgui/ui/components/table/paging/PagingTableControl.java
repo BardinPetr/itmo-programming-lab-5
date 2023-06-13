@@ -21,7 +21,7 @@ public class PagingTableControl extends Box {
     private final JButton nextBtn;
 
     private int rowCount = 0;
-    private int pageSize = 5;
+    private int pageSize = 10;
     private int page = 1;
 
     @Setter
