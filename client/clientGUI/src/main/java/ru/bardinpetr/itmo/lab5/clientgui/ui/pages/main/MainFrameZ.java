@@ -38,9 +38,9 @@ public class MainFrameZ extends ResourcedFrame {
 
     public MainFrameZ() {
         initComponents();
-        setSize(new Dimension(800, 500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        setSize(new Dimension(800, 500));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -99,19 +99,18 @@ public class MainFrameZ extends ResourcedFrame {
         mainPanel.setLayout(new CardLayout());
         mainPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        invokeLater(() -> {
-            mainPanel.add(new WorkerShowPanelZ(), "WORKERS");
-            mainPanel.add(new OrganizationShowPanel(), "ORGANIZATIONS");
-            mainPanel.add(new WorkersMapPage(ModelProvider.getInstance().workers()), "MAP");
-            mainPanel.add(new ScriptPanel((e) -> {
-                if (e && !scriptCard.equals("SCRIPT")) {
-                    scriptMenuButton.setBackground(new Color(135, 206, 235));
-                }
-            }), "SCRIPT");
-        });
+//        invokeLater(() -> {
+        mainPanel.add(new WorkerShowPanelZ(), "WORKERS");
+        mainPanel.add(new OrganizationShowPanel(), "ORGANIZATIONS");
+        mainPanel.add(new WorkersMapPage(ModelProvider.getInstance().workers()), "MAP");
+        mainPanel.add(new ScriptPanel((e) -> {
+            if (e && !scriptCard.equals("SCRIPT")) {
+                scriptMenuButton.setBackground(new Color(135, 206, 235));
+            }
+        }), "SCRIPT");
+//        });
 
         initComponentsI18n();
-        pack();
         setLocationRelativeTo(getOwner());
 
         new Thread(this::loadData).start();
