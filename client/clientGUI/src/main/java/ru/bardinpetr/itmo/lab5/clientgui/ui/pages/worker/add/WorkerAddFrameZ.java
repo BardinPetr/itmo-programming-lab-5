@@ -111,7 +111,7 @@ public class WorkerAddFrameZ extends ResourcedFrame {
 
         initComponentsI18n();
         pack();
-        System.out.println(workerInfoPanel.getSize());
+//        System.out.println(workerInfoPanel.getSize());
         setLocationRelativeTo(getOwner());
 
 

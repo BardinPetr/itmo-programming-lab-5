@@ -37,10 +37,11 @@ public class MainFrameZ extends ResourcedFrame {
     private String scriptCard;
 
     public MainFrameZ() {
+        setBackground(Color.WHITE);
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        setSize(new Dimension(800, 500));
+        setMinimumSize(new Dimension(800, 500));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 

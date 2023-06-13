@@ -17,12 +17,11 @@ import java.awt.event.MouseEvent;
 import static javax.swing.SwingUtilities.invokeLater;
 
 public class WorkerUpdateFrameZ extends ResourcedFrame {
-    private WorkerInfoPanelZ workerInfoPanel;
-
-    private JButton updateWorkerButton;
-    private JButton workerUpdateCancelButton;
     private final Worker defaultWorker;
     private final boolean isEditable;
+    private WorkerInfoPanelZ workerInfoPanel;
+    private JButton updateWorkerButton;
+    private JButton workerUpdateCancelButton;
     private JButton deleteWorkerButton;
     private WorkerHeaderPanel workerHeaderPanel;
 
