@@ -8,17 +8,18 @@ import ru.bardinpetr.itmo.lab5.client.api.events.APIPoolingEventSource;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.JWTAuthConnector;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
+import ru.bardinpetr.itmo.lab5.clientgui.utils.Config;
 import ru.bardinpetr.itmo.lab5.network.app.server.modules.auth.app.jwt.JWTAPICommandAuthenticator;
 
 import javax.swing.*;
-import java.net.InetSocketAddress;
 import java.time.Duration;
 
 public class APIConnectorFactory {
 
     public static void create() {
         var apiCredStorage = new RAMCredentialsStorage<StoredJWTCredentials>();
-        var defaultAddress = new InetSocketAddress("localhost", 5000);
+        var defaultAddress = Config.getInstance().getServerAddress();
+
         APIClientConnector baseAPI;
         while (true) {
             try {
@@ -43,7 +44,6 @@ public class APIConnectorFactory {
                 if (ans == 1) System.exit(0);
 
             }
-
         }
         var authedAPI = new JWTAuthConnector(
                 JWTAPICommandAuthenticator.getInstance(),

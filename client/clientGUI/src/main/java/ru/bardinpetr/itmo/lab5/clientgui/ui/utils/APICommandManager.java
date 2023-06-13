@@ -12,17 +12,17 @@ import java.awt.*;
 
 import static javax.swing.SwingUtilities.invokeLater;
 
-public class APICommandMenger {
-    private static APICommandMenger instance;
+public class APICommandManager {
+    private static APICommandManager instance;
     private final APIClientConnector apiConnector;
 
-    private APICommandMenger() {
+    private APICommandManager() {
         apiConnector = APIProvider.getConnector();
     }
 
-    public static APICommandMenger getInstance() {
+    public static APICommandManager getInstance() {
         if (instance == null)
-            instance = new APICommandMenger();
+            instance = new APICommandManager();
         return instance;
     }
 
@@ -122,7 +122,9 @@ public class APICommandMenger {
                 );
                 return;
             }
-            handler.handle(result);
+
+            new Thread(() -> handler.handle(result)).start();
+//            handler.handle(result);
         };
 
 //        if (!needWait) {

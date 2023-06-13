@@ -28,7 +28,7 @@ public class CheckBoxList extends JList<CheckBoxList.CheckedItem> {
         model.addListDataListener(new ListDataListener() {
             @Override
             public void intervalAdded(ListDataEvent e) {
-                contentsChanged(e);
+                SwingUtilities.invokeLater(() -> contentsChanged(e));
             }
 
             @Override

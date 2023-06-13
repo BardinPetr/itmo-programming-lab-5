@@ -11,7 +11,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.script.ScriptPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo.UsersInfoZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerShowPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.login.LoginPage;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandManager;
 import ru.bardinpetr.itmo.lab5.events.client.consumers.ResourceEventConsumer;
 import ru.bardinpetr.itmo.lab5.models.commands.api.GetSelfInfoCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.InfoCommand;
@@ -34,7 +34,7 @@ public class MainFrameZ extends ResourcedFrame {
     private JMenuItem mapMenuButton;
     private JMenuItem scriptMenuButton;
     private UsersInfoZ usersInfo;
-    private APICommandMenger apiManager;
+    private APICommandManager apiManager;
     private String scriptCard;
 
     public MainFrameZ() {
@@ -49,7 +49,7 @@ public class MainFrameZ extends ResourcedFrame {
     }
 
     protected void initComponents() {
-        apiManager = APICommandMenger.getInstance();
+        apiManager = APICommandManager.getInstance();
         mainPanel = new JPanel();
         bottomMenu = new BottomPanelZ();
         upperPanel = new JPanel();

@@ -26,8 +26,9 @@ public class EnumPresenter<T extends Enum<T>> implements Comparable<EnumPresente
 
     @Override
     public String toString() {
-        if (enumData == null) return UIResources.getInstance()
-                .get("WorkerInfoPanel.endDateNull.text");
+        if (enumData == null)
+            return UIResources.getInstance()
+                    .get("WorkerInfoPanel.endDateNull.text");
         return UIResources.getInstance()
                 .get("EnumPresenter.value.%s.text".formatted(enumData.name().toLowerCase()));
     }

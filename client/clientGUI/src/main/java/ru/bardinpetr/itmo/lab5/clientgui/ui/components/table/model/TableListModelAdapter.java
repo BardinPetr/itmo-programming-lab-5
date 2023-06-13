@@ -78,7 +78,7 @@ public abstract class TableListModelAdapter<T, M extends DefaultListModel<T>> im
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         setValueAt(baseModel.get(rowIndex), aValue, columnIndex);
     }
-    
+
     @Override
     public void addTableModelListener(TableModelListener l) {
         baseModel.addListDataListener(TableListModelListenerAdapter.wrap(this, l));
@@ -119,17 +119,23 @@ public abstract class TableListModelAdapter<T, M extends DefaultListModel<T>> im
 
         @Override
         public void intervalAdded(ListDataEvent e) {
-            base.tableChanged(getEvent(e, TableModelEvent.INSERT));
+            SwingUtilities.invokeLater(() ->
+                    base.tableChanged(getEvent(e, TableModelEvent.INSERT))
+            );
         }
 
         @Override
         public void intervalRemoved(ListDataEvent e) {
-            base.tableChanged(getEvent(e, TableModelEvent.DELETE));
+            SwingUtilities.invokeLater(() ->
+                    base.tableChanged(getEvent(e, TableModelEvent.DELETE))
+            );
         }
 
         @Override
         public void contentsChanged(ListDataEvent e) {
-            base.tableChanged(getEvent(e, TableModelEvent.UPDATE));
+            SwingUtilities.invokeLater(() ->
+                    base.tableChanged(getEvent(e, TableModelEvent.UPDATE))
+            );
         }
     }
 }

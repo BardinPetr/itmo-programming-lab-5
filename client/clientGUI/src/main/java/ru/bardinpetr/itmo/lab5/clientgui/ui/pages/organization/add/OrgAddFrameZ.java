@@ -3,7 +3,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.add;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandManager;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddOrgCommand;
 
 import javax.swing.*;
@@ -62,7 +62,7 @@ public class OrgAddFrameZ extends ResourcedFrame {
                 } else {
                     var command = new AddOrgCommand();
                     command.element = organization.data;
-                    APICommandMenger.getInstance().sendCommand(
+                    APICommandManager.getInstance().sendCommand(
                             command,
                             orgInfoPanel,
                             "OrgAddFrameZ.addOrgError.text",

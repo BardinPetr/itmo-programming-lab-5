@@ -10,6 +10,8 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Decorator class for providing paging for any TableModel
@@ -43,8 +45,10 @@ public class PagingTableModel implements TableModel {
             }
         });
 
-        decoratee.addTableModelListener(this::onModelDataUpdate);
-        onModelDataUpdate(null);
+        decoratee.addTableModelListener(e -> SwingUtilities.invokeLater(() -> onModelDataUpdate(e)));
+
+        Executors.newSingleThreadScheduledExecutor()
+                .schedule(() -> onModelDataUpdate(null), 1, TimeUnit.SECONDS);
     }
 
     private void onModelDataUpdate(TableModelEvent e) {
@@ -100,17 +104,21 @@ public class PagingTableModel implements TableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return decoratee.isCellEditable(rowIndex, columnIndex);
+        return decoratee.isCellEditable(convertIndexFromOffset(rowIndex), columnIndex);
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return decoratee.getValueAt(convertIndexFromOffset(rowIndex), columnIndex);
+        try {
+            return decoratee.getValueAt(convertIndexFromOffset(rowIndex), columnIndex);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            return null;
+        }
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        decoratee.setValueAt(aValue, rowIndex, columnIndex);
+        decoratee.setValueAt(aValue, convertIndexFromOffset(rowIndex), columnIndex);
     }
 
     @Override

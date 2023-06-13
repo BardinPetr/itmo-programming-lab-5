@@ -44,11 +44,9 @@ public class XTable extends JPanel {
         header.setResizingAllowed(false);
 
         rowSorter = new FilterRowSorter<>(model, table::updateUI);
-        pagedModel = new PagingTableModel(
-                table,
-                new RowSorterModelAdapter<>(model, rowSorter)
-        );
+        var sortedModel = new RowSorterModelAdapter<>(model, rowSorter);
 
+        pagedModel = new PagingTableModel(table, sortedModel);
         table.setModel(pagedModel);
 
         externalHeader = new FilterSortTableHeader(table, model);

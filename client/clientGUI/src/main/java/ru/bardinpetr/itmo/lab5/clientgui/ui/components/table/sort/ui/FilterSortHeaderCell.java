@@ -40,7 +40,7 @@ public class FilterSortHeaderCell extends JPanel {
         buttonBox.add(filterButton);
 
         var rowItems = infoModel.getRowItems();
-        rowItems.addCheckedEventListener(i -> infoModel.fireFilterChanged());
+        rowItems.addCheckedEventListener(i -> SwingUtilities.invokeLater(infoModel::fireFilterChanged));
         var fsm = new SelectFilterControl(filterButton, rowItems);
 
         setBorder(BorderFactory.createEtchedBorder());
@@ -50,7 +50,7 @@ public class FilterSortHeaderCell extends JPanel {
         infoModel.addEventListener(new ColumnInfoEventListener() {
             @Override
             public void onColumnDataChanged(int column) {
-                update();
+                SwingUtilities.invokeLater(FilterSortHeaderCell.this::update);
             }
 
             @Override
@@ -60,7 +60,7 @@ public class FilterSortHeaderCell extends JPanel {
 
             @Override
             public void onSortChanged(int columnId, SortOrder order) {
-                update();
+                SwingUtilities.invokeLater(FilterSortHeaderCell.this::update);
             }
         });
         update();

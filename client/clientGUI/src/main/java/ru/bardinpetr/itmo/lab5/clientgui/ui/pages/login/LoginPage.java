@@ -8,7 +8,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.PasswordField;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.UsernameField;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandManager;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.PasswordLoginCommand;
@@ -137,7 +137,7 @@ public class LoginPage extends ResourcedFrame {
 
         cmd.setCredentials(new DefaultAuthenticationCredentials(username.data, password.data));
 
-        APICommandMenger.getInstance().sendCommand(
+        APICommandManager.getInstance().sendCommand(
                 cmd,
                 this,
                 "loginPage.error.authorizationFailed",

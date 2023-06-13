@@ -4,7 +4,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationHeaderPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandManager;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.models.commands.api.UpdateOrgCommand;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
@@ -63,7 +63,7 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
                 } else {
                     var ogs = orgInfoPanel.getOrganization().data;
                     var cmd = new UpdateOrgCommand(ogs.getId(), ogs);
-                    APICommandMenger.getInstance().sendCommand(
+                    APICommandManager.getInstance().sendCommand(
                             cmd,
                             null,
                             "OrgUpdateFrameZ.updateError.text",

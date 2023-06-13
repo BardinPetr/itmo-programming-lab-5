@@ -62,7 +62,7 @@ public class FilterSortTableHeader extends JPanel implements ColumnInfoEventList
                 ))
                 .forEach(this::add);
 
-        model().addTableModelListener(this::modelChanged);
+        model().addTableModelListener(e -> SwingUtilities.invokeLater(() -> modelChanged(e)));
         modelChanged(null);
     }
 

@@ -3,7 +3,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandManager;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.AddIfMaxCommand;
@@ -88,7 +88,7 @@ public class WorkerAddFrameZ extends ResourcedFrame {
                             command = new AddIfMinCommand();
                         }
                         command.setElement(worker.data);
-                        APICommandMenger.getInstance().sendCommand(
+                        APICommandManager.getInstance().sendCommand(
                                 command,
                                 workerInfoPanel,
                                 "MainFrame.canNotAddMsg.text",
@@ -103,7 +103,6 @@ public class WorkerAddFrameZ extends ResourcedFrame {
                                     );
                                 }
                         );
-                        System.out.println(worker);
                     }
                 });
             }

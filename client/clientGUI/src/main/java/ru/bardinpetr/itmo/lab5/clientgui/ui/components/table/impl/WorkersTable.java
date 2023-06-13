@@ -5,7 +5,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerTableModel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.XTable;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerUpdateFrameFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandManager;
 import ru.bardinpetr.itmo.lab5.models.commands.api.RemoveByIdCommand;
 
 import java.awt.event.ActionEvent;
@@ -25,7 +25,7 @@ public class WorkersTable extends XTable {
         if (selected.size() != 1)
             return;
         var data = baseModel.get(selected.get(0));
-        APICommandMenger.getInstance().sendCommand(
+        APICommandManager.getInstance().sendCommand(
                 new RemoveByIdCommand(
                         data.getId()
                 ),

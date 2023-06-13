@@ -72,8 +72,9 @@ public class PagingTableControl extends Box {
 
     public void setRowCount(int val) {
         rowCount = val;
-        if ((page - 1) * pageSize > rowCount)
+        if ((page - 1) * pageSize >= rowCount)
             page = rowCount / pageSize;
+
         updateStatus();
     }
 

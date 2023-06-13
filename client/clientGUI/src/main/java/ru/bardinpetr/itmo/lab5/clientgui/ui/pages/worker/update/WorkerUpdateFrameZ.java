@@ -3,7 +3,7 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerHeaderPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandManager;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.models.commands.api.RemoveByIdCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.api.UpdateCommand;
@@ -64,7 +64,7 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
             deleteWorkerButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    APICommandMenger.getInstance().sendCommand(
+                    APICommandManager.getInstance().sendCommand(
                             new RemoveByIdCommand(
                                     defaultWorker.getId()
                             ),
@@ -88,7 +88,7 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
                                     getResources().get("AddFrame.input.error.text"),
                                     JOptionPane.ERROR_MESSAGE);
                         } else {
-                            APICommandMenger.getInstance().sendCommand(
+                            APICommandManager.getInstance().sendCommand(
                                     new UpdateCommand(worker.data.getId(), worker.data),
                                     workerInfoPanel,
                                     "WorkerUpdateFrameZ.updateFailed.text",

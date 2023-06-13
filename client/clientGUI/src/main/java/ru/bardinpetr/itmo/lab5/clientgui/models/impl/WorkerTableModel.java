@@ -1,18 +1,13 @@
 package ru.bardinpetr.itmo.lab5.clientgui.models.impl;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.DateField;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.LocalDateField;
-import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.NullableDatePanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model.TableListModelAdapter;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.EnumPresenter;
 import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.OrganizationPresenter;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import java.text.DateFormat;
-import java.time.Instant;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class WorkerTableModel extends TableListModelAdapter<Worker, WorkerModel> {
@@ -53,9 +48,15 @@ public class WorkerTableModel extends TableListModelAdapter<Worker, WorkerModel>
                         DateFormat.MEDIUM,
                         Locale.getDefault()
                 );
-        var endDate = object.getEndDate()!=null?dateFormat.format(
-                Date.from(object.getEndDate().atStartOfDay(ZoneId.systemDefault()).toInstant()
-                )):UIResources.getInstance().get("WorkerInfoPanel.endDateNull.text");
+
+        String endDate;
+        if (object.getEndDate() == null)
+            endDate = UIResources.getInstance().get("WorkerInfoPanel.endDateNull.text");
+        else
+            endDate = dateFormat.format(Date.from(object.getEndDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
+        var org = new OrganizationPresenter(object.getOrganization()).toString();
+        var position = new EnumPresenter<>(object.getPosition()).toString();
 
         return List.of(
                 object.getId(),
@@ -67,12 +68,8 @@ public class WorkerTableModel extends TableListModelAdapter<Worker, WorkerModel>
                 endDate,
                 object.getCoordinates().getX(),
                 object.getCoordinates().getY(),
-                new OrganizationPresenter(
-                        object.getOrganization()
-                ),
-                new EnumPresenter<>(
-                        object.getPosition()
-                )
+                org,
+                position
         ).get(column);
     }
 

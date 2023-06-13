@@ -213,14 +213,16 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
 
     @Override
     public void intervalAdded(ListDataEvent e) {
-        for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
-            var real = model.getElementAt(i);
-            var pk = real.getPrimaryKey();
-            sprites.put(
-                    pk,
-                    createSprite(pk, real)
-            );
-        }
+        SwingUtilities.invokeLater(() -> {
+            for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
+                var real = model.getElementAt(i);
+                var pk = real.getPrimaryKey();
+                sprites.put(
+                        pk,
+                        createSprite(pk, real)
+                );
+            }
+        });
     }
 
     @Override
@@ -229,18 +231,20 @@ public abstract class MapPage<T extends IKeyedEntity<Integer>, M extends Externa
 
     @Override
     public void contentsChanged(ListDataEvent e) {
-        for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
-            var real = model.getElementAt(i);
+        SwingUtilities.invokeLater(() -> {
+            for (var i = e.getIndex0(); i <= e.getIndex1(); i++) {
+                var real = model.getElementAt(i);
 
-            var pk = real.getPrimaryKey();
+                var pk = real.getPrimaryKey();
 
-            var sprite = sprites.getOrDefault(pk, null);
-            if (sprite == null) {
-                intervalAdded(new ListDataEvent(e.getSource(), e.getType(), i, i));
-            } else {
-                updateSprite(pk, sprite, real);
+                var sprite = sprites.getOrDefault(pk, null);
+                if (sprite == null) {
+                    intervalAdded(new ListDataEvent(e.getSource(), e.getType(), i, i));
+                } else {
+                    updateSprite(pk, sprite, real);
+                }
             }
-        }
+        });
     }
 
     protected void onServerEvent(Event event) {
