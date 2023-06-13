@@ -4,7 +4,9 @@ import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationHeaderPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandMenger;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
+import ru.bardinpetr.itmo.lab5.models.commands.api.UpdateOrgCommand;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 
 import javax.swing.*;
@@ -59,17 +61,21 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
                 if (!organization.isAllowed) {
                     JOptionPane.showMessageDialog(orgInfoPanel, UIResources.getInstance().get(organization.msg), UIResources.getInstance().get("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
                 } else {
-                    //TODO update organization command
-                    System.out.println(organization);
+                    var ogs = orgInfoPanel.getOrganization().data;
+                    var cmd = new UpdateOrgCommand(ogs.getId(), ogs);
+                    new APICommandMenger().sendCommand(
+                            cmd,
+                            null,
+                            "OrgUpdateFrameZ.updateError.text",
+                            (e2) -> {}
+                    );
                 }
             }
         });
         initComponentsI18n();
-
         pack();
         setLocationRelativeTo(getOwner());
     }
-
     @Override
     protected void initComponentsI18n() {
         resources = getResources();

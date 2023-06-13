@@ -17,7 +17,7 @@ public abstract class AbstractWorkerComboBox<T> extends JComboBox implements IDa
 
     public AbstractWorkerComboBox(Consumer<T> handler) {
         this.handler = handler;
-        invokeLater(() -> groupItems());
+        groupItems();
         addItemListener((e -> {
             if (e.getStateChange() == ItemEvent.DESELECTED) return;
             var item = (T) e.getItem();

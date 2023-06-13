@@ -34,7 +34,7 @@ public class OrganizationInfoPanelZ extends ResourcedPanel {
 
     public OrganizationInfoPanelZ(Organization defaultOrganization) {
         this.defaultOrganization = defaultOrganization;
-        invokeLater(() ->initComponents());
+        initComponents();
         setVisible(true);
         setPreferredSize(new Dimension(400, 50));
 
@@ -72,6 +72,7 @@ public class OrganizationInfoPanelZ extends ResourcedPanel {
             typeCombobox.setData(new EnumPresenter(organization.getType()));
         }
     }
+
 
     public DataContainer<Organization> getOrganization() {
         workerDataContainer = new DataContainer<>(

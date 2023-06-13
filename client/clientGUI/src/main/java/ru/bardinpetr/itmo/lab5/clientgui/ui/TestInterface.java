@@ -65,13 +65,13 @@ public class TestInterface {
                 LocalDate.now(),
                 new Coordinates(1, 2),
                 new Organization(2, "2344", OrganizationType.OPEN_JOINT_STOCK_COMPANY),
-                Position.CLEANER
+                Position.ENGINEER
         );
         var testOrg = new Organization(
                 122,
-                "13123",
+                "131232334",
                 OrganizationType.OPEN_JOINT_STOCK_COMPANY);
-
+        APIProvider.getPoolingEventSource().subscribe(System.out::println);
 
 //        new LoginPage(MainFrameZ::new);
 //        new WorkerUpdateFrameZ(testWorker, true);
@@ -79,7 +79,7 @@ public class TestInterface {
 
 //        System.out.println(Charset.defaultCharset());
 //        new OrgUpdateFrameZ(testOrg);
-//        new WorkerUpdateFrameZ(null, false);
+//        new WorkerUpdateFrameZ(testWorker, false);
         new MainFrameZ();
 //        testPanel(new OrganizationInfoPanelZ(testOrg));
     }

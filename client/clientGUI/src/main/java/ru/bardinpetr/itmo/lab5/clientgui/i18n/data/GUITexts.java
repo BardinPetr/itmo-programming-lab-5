@@ -38,6 +38,7 @@ public class GUITexts extends ListResourceBundle {
                 {"AddFrame.input.error.text", "Input Error"},
                 {"OrgUpdateFrameZ.title", "Organization update"},
                 {"OrgUpdateFrameZ.addOrgError.text", "Update organization error"},
+                {"OrgUpdateFrameZ.updateError.text", "Could not update organization"},
                 {"OrgAddFrameZ.title", "Organization add"},
                 {"OrgAddFrameZ.addOrgError.text", "Add organization error"},
                 {"MainFrame.scriptChooseText.text", "Select a script file"},

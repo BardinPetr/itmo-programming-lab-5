@@ -10,15 +10,12 @@ public abstract class AbstractEnumCombobox extends AbstractWorkerComboBox<EnumPr
     public AbstractEnumCombobox(Consumer<EnumPresenter> handler) {
         super(handler);
     }
-
-
     @Override
     protected void groupItems() {
         for (var i: getList()){
             addItem(i);
         }
     }
-
     @Override
     public DataContainer<EnumPresenter> getData() {
         return new DataContainer(true,
