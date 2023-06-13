@@ -30,9 +30,10 @@ def translate(data):
         return text
 
     try:
-        res = ts.translate_text(text, from_language=BASE_LANG, to_language=to)
+        res = ts.translate_text(text, from_language=BASE_LANG, to_language=to, translator='bing')
         return res if len(res) else text
-    except:
+    except Exception as ex:
+        print(ex)
         return text
 
 
@@ -60,7 +61,7 @@ def main():
     texts = {i[0]: i[1] for i in data}
 
     for target in TARGET_LANGS:
-        with mp.Pool(processes=8) as pool:
+        with mp.Pool(processes=4) as pool:
             lang = target.split('-')[0]
             res = pool.map(translate, zip(texts.keys(), texts.values(), [lang] * len(texts)))
             save_file(dst_dir, class_name, package, target, zip(texts.keys(), res))
