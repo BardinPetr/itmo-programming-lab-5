@@ -36,6 +36,8 @@ public class GUITexts extends ListResourceBundle {
                 {"ScriptPanel.executeScriptButton.text", "Execute script"},
                 {"ScriptPanel.executeScriptButton.process.text", "Execute script process..."},
                 {"AddFrame.input.error.text", "Input Error"},
+                {"OrgUpdateFrameZ.title", "Organization update"},
+                {"OrgUpdateFrameZ.addOrgError.text", "Update organization error"},
                 {"OrgAddFrameZ.title", "Organization add"},
                 {"OrgAddFrameZ.addOrgError.text", "Add organization error"},
                 {"MainFrame.scriptChooseText.text", "Select a script file"},
@@ -67,6 +69,7 @@ public class GUITexts extends ListResourceBundle {
                 {"MainFrame.mapMenuButton.text", "map"},
                 {"MainFrame.orgsMenuButton.text", "organizations"},
                 {"OrgAddFrame.addOrgButton.text", "add"},
+                {"OrgUpdateFrameZ.addOrgButton.text", "update"},
                 {"OrgAddFrame.orgrAddCancelButton.text", "cancel"},
                 {"OrganizationShowPanel.clearOrgButton.text", "Clear"},
                 {"OrganizationShowPanel.openAddOrgPlane.text", "Add"},
@@ -94,7 +97,7 @@ public class GUITexts extends ListResourceBundle {
                 {"WorkerRemoveGFrame.removeGreaterWorkerButton.error.text", "Remove greater command error"},
                 {"OrganizationValidator.workerName.null.text", "name can not be null"},
                 {"OrganizationValidator.label1.text", "name"},
-                {"OrganizationValidator.label2.text", "Type"},
+                {"OrganizationValidator.label2.text", "type"},
                 {"CredentialsValidator.username.empty", "username cannot be empty"},
                 {"CredentialsValidator.invalid.text", "Credentials are invalid"},
                 {"CredentialsValidator.username.invalidLength", "username must be shorter than 40 characters"},
@@ -120,6 +123,7 @@ public class GUITexts extends ListResourceBundle {
                 {"WorkerInfoPanel.yCoordinate.badFormat.text", "Y coordinate must be a number"},
                 {"WorkerInfoPanel.yCoordinate.notInRange.text", "Y coordinate must be greater than -413"},
                 {"WorkerHeaderPanel.idLabel.text", "Worker's id"},
+                {"OrganizationHeaderPanel.idLabel.text", "Organization's id"},
                 {"WorkerHeaderPanel.usernameLabel.text", "Owner's username"},
                 {"EnumPresenter.value.null.text", ""},
                 {"EnumPresenter.value.cleaner.text", "cleaner"},
@@ -183,23 +187,7 @@ public class GUITexts extends ListResourceBundle {
                 {"ScriptInvoker.default.success", "Success!"},
                 {"ScriptInvoker.scriptFailed.text", "Script failed: "},
                 {"ScriptInvoker.scriptFailed.unknownError.text", "Unknown error"},
-                {"ScriptInvoker.help.text", """
-                help : show help for available commands
-                info : print information about the collection to standard output (type, initialization date, number of elements, etc.)
-                show : print to standard output all elements of the collection in string representation
-                add {element} : add a new element to the collection
-                update id {element} : update the value of the collection element whose id is equal to the given one
-                remove_by_id id : remove an element from the collection by its id
-                clear : clear the collection
-                save : save the collection to a file
-                execute_script file_name : read and execute script from specified file. The script contains commands in the same form in which they are entered by the user in interactive mode.
-                exit : exit the program (without saving to a file)
-                add_if_max {element} : add a new element to the collection if its value is greater than the value of the largest element in this collection
-                add_if_min {element} : add a new element to the collection if its value is less than the smallest element in this collection
-                remove_greater {element} : remove from the collection all elements greater than the given one
-                filter_less_than_position position : display elements whose position field value is less than the given one
-                print_descending : Print the elements of a collection in descending order
-                print_unique_organization : print the unique values of the organization field of all elements in the collection"""}
+                {"ScriptInvoker.help.text", "God will help"}
         };
     }
 }

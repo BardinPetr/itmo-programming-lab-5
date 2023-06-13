@@ -25,6 +25,7 @@ public class UIResources {
     private Locale currentLocale;
 
     private UIResources() {
+        System.setProperty("file.encoding", "UTF-8");
         IconFontSwing.register(FontAwesome.getIconFont());
 
         var font = buildFont();

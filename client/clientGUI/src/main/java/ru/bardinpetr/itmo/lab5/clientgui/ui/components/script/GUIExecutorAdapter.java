@@ -69,6 +69,7 @@ public class GUIExecutorAdapter extends SwingWorker<JPanel, Integer> {
     @Override
     protected void done() {
         try {
+            mainResultPanel.removeAll();
             mainResultPanel.add(get());
             successHandle.run();
         } catch (Exception ignore) {}

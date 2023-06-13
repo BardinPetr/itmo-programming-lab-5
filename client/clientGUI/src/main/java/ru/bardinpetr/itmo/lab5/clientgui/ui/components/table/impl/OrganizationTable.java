@@ -4,6 +4,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.models.impl.OrganizationModel;
 import ru.bardinpetr.itmo.lab5.clientgui.models.impl.OrganizationTableModel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.XTable;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.add.OrgAddFrameZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update.OrgUpdateFrameZ;
 
 import java.awt.event.ActionEvent;
 
@@ -19,8 +20,8 @@ public class OrganizationTable extends XTable {
     @Override
     protected void initButtonBlock() {
         super.initButtonBlock();
-        updateButton.setVisible(false);
-        deleteButton.setVisible(false);
+//        updateButton.setVisible(false);
+//        deleteButton.setVisible(false);
     }
 
     @Override
@@ -29,7 +30,6 @@ public class OrganizationTable extends XTable {
         if (selected.size() != 1)
             return;
         var data = baseModel.get(selected.get(0));
-
         // TODO add delete
         System.err.println("NO DELETE IMPLEMENTATION");
     }
@@ -40,9 +40,7 @@ public class OrganizationTable extends XTable {
         if (selected.size() != 1)
             return;
         var data = baseModel.get(selected.get(0));
-
-        // TODO add update
-        System.err.println("NO UPDATE IMPLEMENTATION");
+        new OrgUpdateFrameZ(data);
     }
 
     @Override

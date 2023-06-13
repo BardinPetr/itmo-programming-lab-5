@@ -21,11 +21,12 @@ public class OrganizationValidator implements Validator {
 
 
     /**
-     * @param coordinates Coordinates object
+     * @param organization Coordinates object
      * @return response with error message
      */
-    public static ValidationResponse validateAll(Organization coordinates) {
-        return validateFullName(coordinates.getFullName());
+    public static ValidationResponse validateAll(Organization organization) {
+        if (organization==null) return new ValidationResponse(true, "");
+        return validateFullName(organization.getFullName());
     }
 }
 

@@ -5,7 +5,10 @@ import ru.bardinpetr.itmo.lab5.client.api.connectors.APIProvider;
 import ru.bardinpetr.itmo.lab5.client.controller.auth.api.StoredJWTCredentials;
 import ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory;
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update.OrgUpdateFrameZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ;
 import ru.bardinpetr.itmo.lab5.common.error.APIClientException;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.AuthCommand;
 import ru.bardinpetr.itmo.lab5.models.commands.auth.PasswordLoginCommand;
@@ -14,6 +17,7 @@ import ru.bardinpetr.itmo.lab5.models.commands.auth.models.JWTLoginResponse;
 import ru.bardinpetr.itmo.lab5.models.data.*;
 
 import javax.swing.*;
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -50,7 +54,6 @@ public class TestInterface {
 //        new MainFrameZ();
 
 //        new OrgUpdateFrameZ(new Organization(1,"Itmo", OrganizationType.OPEN_JOINT_STOCK_COMPANY));
-
         var testWorker = new Worker(
                 194,
                 "u",
@@ -64,16 +67,22 @@ public class TestInterface {
                 new Organization(2, "2344", OrganizationType.OPEN_JOINT_STOCK_COMPANY),
                 Position.CLEANER
         );
+        var testOrg = new Organization(
+                122,
+                "13123",
+                OrganizationType.OPEN_JOINT_STOCK_COMPANY);
 
 
 //        new LoginPage(MainFrameZ::new);
 //        new WorkerUpdateFrameZ(testWorker, true);
 //        });
-//        new WorkerUpdateFrameZ(testWorker, true);
-        new MainFrameZ();
-//        testPanel(new ScriptPanel());
-    }
 
+//        System.out.println(Charset.defaultCharset());
+//        new OrgUpdateFrameZ(testOrg);
+//        new WorkerUpdateFrameZ(null, false);
+        new MainFrameZ();
+//        testPanel(new OrganizationInfoPanelZ(testOrg));
+    }
     private static void testPanel(JPanel panel) {
         var mainFrame = new JFrame();
         mainFrame.add(panel);

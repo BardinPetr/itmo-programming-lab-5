@@ -2,7 +2,9 @@ package ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update;
 
 import ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationHeaderPanel;
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ;
+import ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains;
 import ru.bardinpetr.itmo.lab5.models.data.Organization;
 
 import javax.swing.*;
@@ -13,10 +15,10 @@ import java.awt.event.MouseEvent;
 public class OrgUpdateFrameZ extends ResourcedFrame {
     private final Organization defaultOrganization;
     private OrganizationInfoPanelZ orgInfoPanel;
-    private JPanel panel1;
     private JButton updateOrgButton;
     private JButton orgUpdateCancelButton;
     private UIResources resources = getResources();
+    private OrganizationHeaderPanel header;
 
     public OrgUpdateFrameZ(Organization defaultOrganization) {
         this.defaultOrganization = defaultOrganization;
@@ -25,20 +27,22 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
     }
 
     protected void initComponents() {
+        header = new OrganizationHeaderPanel(defaultOrganization);
         orgInfoPanel = new OrganizationInfoPanelZ(defaultOrganization);
-        panel1 = new JPanel();
+
         updateOrgButton = new JButton();
         orgUpdateCancelButton = new JButton();
 
-        var contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout());
+        setLayout(new GridBagLayout());
 
-        panel1.setLayout(new BorderLayout());
-        panel1.add(updateOrgButton, BorderLayout.WEST);
-        panel1.add(orgUpdateCancelButton, BorderLayout.EAST);
-
-        add(orgInfoPanel, BorderLayout.NORTH);
-        add(panel1, BorderLayout.SOUTH);
+        var headerConstrains = GridConstrains.placedAdd(0,0);
+        headerConstrains.gridwidth = GridBagConstraints.REMAINDER;
+        add(header, headerConstrains);
+        var infoConstrains = GridConstrains.placedAdd(0,1);
+        infoConstrains.gridwidth = GridBagConstraints.REMAINDER;
+        add(orgInfoPanel, infoConstrains);
+        add(updateOrgButton, GridConstrains.placedAdd(0, 2));
+        add(orgUpdateCancelButton, GridConstrains.placedAdd(1, 2));
 
 
         orgUpdateCancelButton.addMouseListener(new MouseAdapter() {
@@ -51,12 +55,12 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
         updateOrgButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                var worker = orgInfoPanel.getOrganization();
-                if (!worker.isAllowed) {
-                    JOptionPane.showMessageDialog(orgInfoPanel, UIResources.getInstance().get(worker.msg), UIResources.getInstance().get("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
+                var organization = orgInfoPanel.getOrganization();
+                if (!organization.isAllowed) {
+                    JOptionPane.showMessageDialog(orgInfoPanel, UIResources.getInstance().get(organization.msg), UIResources.getInstance().get("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
                 } else {
-                    //TODO add organization command
-                    System.out.println(worker);
+                    //TODO update organization command
+                    System.out.println(organization);
                 }
             }
         });
@@ -69,8 +73,8 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
     @Override
     protected void initComponentsI18n() {
         resources = getResources();
-        setTitle(resources.get("OrgAddFrameZ.title"));
-        updateOrgButton.setText(resources.get("OrgAddFrame.addOrgButton.text"));
+        setTitle(resources.get("OrgUpdateFrameZ.title"));
+        updateOrgButton.setText(resources.get("OrgUpdateFrameZ.addOrgButton.text"));
         orgUpdateCancelButton.setText(resources.get("OrgAddFrame.orgrAddCancelButton.text"));
     }
 }

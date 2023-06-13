@@ -62,7 +62,6 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
             }
         });
         if (isEditable) {
-
             deleteWorkerButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
