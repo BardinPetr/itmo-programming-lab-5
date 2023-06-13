@@ -4,6 +4,9 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.Abstrac
 import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer;
 import ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesStringValidator;
 
+import javax.swing.text.BadLocationException;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.function.Consumer;
 
 
@@ -28,7 +31,17 @@ public class YCoordinateWorkerField extends AbstractTextWorkerField<Float> {
                     0.0f,
                     validateValue());
     }
-
+    protected String getFullText() {
+        var format = NumberFormat.getNumberInstance(Locale.getDefault());
+        var doc = getDocument();
+        try {
+            return format.format(
+                    Float.valueOf(doc.getText(0, doc.getLength()))
+            );
+        } catch (BadLocationException e) {
+            throw null;
+        }
+    }
     @Override
     public void setData(Float data) {
          setTextLater(String.valueOf(data));
