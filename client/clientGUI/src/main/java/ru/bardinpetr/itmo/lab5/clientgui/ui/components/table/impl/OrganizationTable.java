@@ -25,11 +25,12 @@ public class OrganizationTable extends XTable {
         if (selected.size() != 1)
             return;
         var data = baseModel.get(selected.get(0));
-        new APICommandMenger().sendCommand(
+        APICommandMenger.getInstance().sendCommand(
                 new RemoveOrganizationCommand(data.getId()),
                 null,
                 "OrganizationTable.deleteError.text",
-                (e) -> {}
+                (e) -> {
+                }
 
         );
     }

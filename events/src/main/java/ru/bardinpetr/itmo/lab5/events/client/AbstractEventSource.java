@@ -29,8 +29,7 @@ public abstract class AbstractEventSource {
     }
 
     protected void notifyListeners(EventSet data) {
-        for (var i : consumers)
-            i.accept(data);
+        new Thread(() -> consumers.forEach(i -> i.accept(data))).start();
     }
 
     public void stop() {

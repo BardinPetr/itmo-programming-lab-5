@@ -37,10 +37,10 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
 
         setLayout(new GridBagLayout());
 
-        var headerConstrains = GridConstrains.placedAdd(0,0);
+        var headerConstrains = GridConstrains.placedAdd(0, 0);
         headerConstrains.gridwidth = GridBagConstraints.REMAINDER;
         add(header, headerConstrains);
-        var infoConstrains = GridConstrains.placedAdd(0,1);
+        var infoConstrains = GridConstrains.placedAdd(0, 1);
         infoConstrains.gridwidth = GridBagConstraints.REMAINDER;
         add(orgInfoPanel, infoConstrains);
         add(updateOrgButton, GridConstrains.placedAdd(0, 2));
@@ -63,11 +63,12 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
                 } else {
                     var ogs = orgInfoPanel.getOrganization().data;
                     var cmd = new UpdateOrgCommand(ogs.getId(), ogs);
-                    new APICommandMenger().sendCommand(
+                    APICommandMenger.getInstance().sendCommand(
                             cmd,
                             null,
                             "OrgUpdateFrameZ.updateError.text",
-                            (e2) -> {}
+                            (e2) -> {
+                            }
                     );
                     dispose();
                 }
@@ -77,6 +78,7 @@ public class OrgUpdateFrameZ extends ResourcedFrame {
         pack();
         setLocationRelativeTo(getOwner());
     }
+
     @Override
     protected void initComponentsI18n() {
         resources = getResources();

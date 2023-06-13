@@ -10,7 +10,6 @@ import ru.bardinpetr.itmo.lab5.events.models.Event;
 import ru.bardinpetr.itmo.lab5.events.models.EventSet;
 import ru.bardinpetr.itmo.lab5.models.data.collection.IKeyedEntity;
 
-import javax.swing.*;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -44,7 +43,8 @@ public class ExternalSyncedListModel<T extends IKeyedEntity<Integer>> extends Ex
     public void setLoaders(Supplier<List<T>> getAll, Function<Integer, T> getSingle) {
         this.getAll = getAll;
         this.getSingle = getSingle;
-        SwingUtilities.invokeLater(this::firstPool);
+
+        executor.execute(this::firstPool);
     }
 
     private void firstPool() {

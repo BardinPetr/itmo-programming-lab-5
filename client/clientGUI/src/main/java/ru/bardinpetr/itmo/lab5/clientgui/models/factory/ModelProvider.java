@@ -4,12 +4,23 @@ import ru.bardinpetr.itmo.lab5.clientgui.models.impl.OrganizationModel;
 import ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerModel;
 
 public class ModelProvider {
+    private static ModelProvider instance;
 
-    private static WorkerModel currentWorkers;
-    private static OrganizationModel currentOrganizations;
+    private WorkerModel currentWorkers;
+    private OrganizationModel currentOrganizations;
 
+    private ModelProvider() {
+        workers();
+        organizations();
+    }
 
-    public static WorkerModel workers() {
+    public static ModelProvider getInstance() {
+        if (instance == null)
+            instance = new ModelProvider();
+        return instance;
+    }
+
+    public WorkerModel workers() {
         if (currentWorkers != null)
             return currentWorkers;
 
@@ -17,7 +28,7 @@ public class ModelProvider {
         return currentWorkers;
     }
 
-    public static OrganizationModel organizations() {
+    public OrganizationModel organizations() {
         if (currentOrganizations != null)
             return currentOrganizations;
 

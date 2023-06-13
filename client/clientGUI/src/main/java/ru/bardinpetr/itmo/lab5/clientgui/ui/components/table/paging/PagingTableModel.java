@@ -23,7 +23,7 @@ public class PagingTableModel implements TableModel {
     private final PagingTableControl paginatorControl;
     private final JTable table;
 
-    private Integer pageSize = 5;
+    private Integer pageSize = 10;
     private Integer curPage = 0;
 
 

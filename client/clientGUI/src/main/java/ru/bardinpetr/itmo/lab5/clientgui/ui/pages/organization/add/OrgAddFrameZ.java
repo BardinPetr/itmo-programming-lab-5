@@ -62,7 +62,7 @@ public class OrgAddFrameZ extends ResourcedFrame {
                 } else {
                     var command = new AddOrgCommand();
                     command.element = organization.data;
-                    new APICommandMenger().sendCommand(
+                    APICommandMenger.getInstance().sendCommand(
                             command,
                             orgInfoPanel,
                             "OrgAddFrameZ.addOrgError.text",

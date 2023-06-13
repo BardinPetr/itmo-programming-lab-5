@@ -23,7 +23,7 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
         setVisible(true);
     }
 
-    protected void initComponents(){
+    protected void initComponents() {
         workerInfoPanel = new WorkerInfoPanelZ();
         removeWorkerButton = new JButton();
         workerUpdateCancelButton = new JButton();
@@ -31,7 +31,7 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
 
         setLayout(new GridBagLayout());
 
-        var infoConstrains = GridConstrains.placedAdd(0,0);
+        var infoConstrains = GridConstrains.placedAdd(0, 0);
         infoConstrains.gridwidth = GridBagConstraints.REMAINDER;
         add(workerInfoPanel, infoConstrains);
         add(removeWorkerButton, GridConstrains.placedAdd(0, 1));
@@ -50,13 +50,13 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
                 var worker = workerInfoPanel.getWorker();
                 if (!worker.isAllowed) {
                     JOptionPane.showMessageDialog(workerInfoPanel, getResources().get(worker.msg), getResources().get("AddFrame.input.error.text"), JOptionPane.ERROR_MESSAGE);
-                }
-                else {
-                    new APICommandMenger().sendCommand(
+                } else {
+                    APICommandMenger.getInstance().sendCommand(
                             new RemoveGreaterCommand(worker.data),
                             workerInfoPanel,
                             "WorkerRemoveGFrame.removeGreaterWorkerButton.error.text",
-                            (response) -> {}
+                            (response) -> {
+                            }
                     );
                 }
             }
@@ -66,6 +66,7 @@ public class WorkerRemoveGFrame extends ResourcedFrame {
         pack();
         setLocationRelativeTo(getOwner());
     }
+
     @Override
     protected void initComponentsI18n() {
         var resources = getResources();

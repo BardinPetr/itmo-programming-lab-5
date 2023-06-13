@@ -88,7 +88,7 @@ public class WorkerAddFrameZ extends ResourcedFrame {
                             command = new AddIfMinCommand();
                         }
                         command.setElement(worker.data);
-                        new APICommandMenger().sendCommand(
+                        APICommandMenger.getInstance().sendCommand(
                                 command,
                                 workerInfoPanel,
                                 "MainFrame.canNotAddMsg.text",

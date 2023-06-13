@@ -13,12 +13,18 @@ import java.awt.*;
 import static javax.swing.SwingUtilities.invokeLater;
 
 public class APICommandMenger {
+    private static APICommandMenger instance;
     private final APIClientConnector apiConnector;
 
-    public APICommandMenger() {
+    private APICommandMenger() {
         apiConnector = APIProvider.getConnector();
     }
 
+    public static APICommandMenger getInstance() {
+        if (instance == null)
+            instance = new APICommandMenger();
+        return instance;
+    }
 
     public void sendCommand(
             APICommand cmd,
@@ -119,11 +125,11 @@ public class APICommandMenger {
             handler.handle(result);
         };
 
-        if (!needWait)
-            invokeLater(task);
-        else {
-            task.run();
-        }
+//        if (!needWait) {
+        invokeLater(task);
+//        } else {
+//            task.run();
+//        }
     }
 
 }

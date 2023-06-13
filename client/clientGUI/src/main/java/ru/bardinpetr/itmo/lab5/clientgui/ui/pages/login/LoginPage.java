@@ -137,7 +137,7 @@ public class LoginPage extends ResourcedFrame {
 
         cmd.setCredentials(new DefaultAuthenticationCredentials(username.data, password.data));
 
-        new APICommandMenger().sendCommand(
+        APICommandMenger.getInstance().sendCommand(
                 cmd,
                 this,
                 "loginPage.error.authorizationFailed",

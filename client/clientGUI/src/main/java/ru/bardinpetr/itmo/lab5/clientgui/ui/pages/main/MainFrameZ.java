@@ -33,18 +33,18 @@ public class MainFrameZ extends ResourcedFrame {
     private JMenuItem mapMenuButton;
     private JMenuItem scriptMenuButton;
     private UsersInfoZ usersInfo;
+    private APICommandMenger apiManager;
 
     public MainFrameZ() {
         initComponents();
         setSize(new Dimension(800, 500));
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     protected void initComponents() {
+        apiManager = APICommandMenger.getInstance();
         mainPanel = new JPanel();
         bottomMenu = new BottomPanelZ();
         upperPanel = new JPanel();
@@ -66,17 +66,12 @@ public class MainFrameZ extends ResourcedFrame {
             var b = menuButtons.get(i);
             b.setHorizontalAlignment(CENTER);
             b.setBorder(buttonBorder);
-            b.addActionListener(
-                    e -> {
-                        ((CardLayout) mainPanel.getLayout())
-                                .show(mainPanel, buttonKey);
+            b.addActionListener(e -> {
+                ((CardLayout) mainPanel.getLayout()).show(mainPanel, buttonKey);
 
-                        menuButtons.forEach(
-                                cur -> cur.setBorder(cur == b ? buttonPressedBorder : buttonBorder)
-                        );
-                        b.setBackground(null);
-                    }
-            );
+                menuButtons.forEach(cur -> cur.setBorder(cur == b ? buttonPressedBorder : buttonBorder));
+                b.setBackground(null);
+            });
             menuBar.add(b);
         }
         workersMenuButton.setBorder(buttonPressedBorder);
@@ -96,34 +91,39 @@ public class MainFrameZ extends ResourcedFrame {
 
         mainPanel.setLayout(new CardLayout());
         mainPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-        mainPanel.add(new WorkerShowPanelZ(), "WORKERS");
-        mainPanel.add(new OrganizationShowPanel(), "ORGANIZATIONS");
-        mainPanel.add(new WorkersMapPage(ModelProvider.workers()), "MAP");
-        mainPanel.add(new ScriptPanel(() -> scriptMenuButton.setBackground(new Color(135,206,235))), "SCRIPT");
+
+        invokeLater(() -> {
+            mainPanel.add(new WorkerShowPanelZ(), "WORKERS");
+            mainPanel.add(new OrganizationShowPanel(), "ORGANIZATIONS");
+            mainPanel.add(new WorkersMapPage(ModelProvider.getInstance().workers()), "MAP");
+            mainPanel.add(new ScriptPanel(() -> scriptMenuButton.setBackground(new Color(135, 206, 235))), "SCRIPT");
+        });
 
         initComponentsI18n();
         pack();
         setLocationRelativeTo(getOwner());
-        invokeLater(() -> {
-            new APICommandMenger().sendCommand(
-                    new GetSelfInfoCommand(),
-                    this,
-                    "MainFrame.canNotGetUsernameError.text",
-                    (response) -> {
-                        var resp = (GetSelfInfoCommand.GetSelfInfoResponse) response;
-                        usersInfo.setUsername(resp.getUsername());
-                    }
-            );
-        });
-        invokeLater(this::updateInformation);
-        APIProvider.getPoolingEventSource().subscribe(new ResourceEventConsumer(
-                (e -> updateInformation()),
-                "worker"
-        ));
+
+        new Thread(this::loadData).start();
     }
 
-    public void updateInformation() {
-        new APICommandMenger().sendCommand(
+    private void loadData() {
+        invokeLater(
+                () -> apiManager.sendCommand(
+                        new GetSelfInfoCommand(),
+                        this,
+                        "MainFrame.canNotGetUsernameError.text",
+                        (response) -> {
+                            var resp = (GetSelfInfoCommand.GetSelfInfoResponse) response;
+                            usersInfo.setUsername(resp.getUsername());
+                        }
+                )
+        );
+        invokeLater(this::updateInformation);
+        APIProvider.getPoolingEventSource().subscribe(new ResourceEventConsumer((e -> updateInformation()), "worker"));
+    }
+
+    private void updateInformation() {
+        apiManager.sendCommand(
                 new ShowMineCommand(),
                 this,
                 "MainFrame.canNotGetMineWorkers.text",
@@ -133,7 +133,7 @@ public class MainFrameZ extends ResourcedFrame {
                 }
         );
 
-        new APICommandMenger().sendCommand(
+        apiManager.sendCommand(
                 new InfoCommand(),
                 this,
                 "MainFrame.canNotFetInfo.text",

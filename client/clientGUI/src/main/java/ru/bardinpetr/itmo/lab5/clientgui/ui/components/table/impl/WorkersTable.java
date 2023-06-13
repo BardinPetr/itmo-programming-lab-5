@@ -25,7 +25,7 @@ public class WorkersTable extends XTable {
         if (selected.size() != 1)
             return;
         var data = baseModel.get(selected.get(0));
-        new APICommandMenger().sendCommand(
+        APICommandMenger.getInstance().sendCommand(
                 new RemoveByIdCommand(
                         data.getId()
                 ),

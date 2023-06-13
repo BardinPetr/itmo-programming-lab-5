@@ -21,8 +21,8 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
 
     private JButton updateWorkerButton;
     private JButton workerUpdateCancelButton;
-    private Worker defaultWorker;
-    private boolean isEditable;
+    private final Worker defaultWorker;
+    private final boolean isEditable;
     private JButton deleteWorkerButton;
     private WorkerHeaderPanel workerHeaderPanel;
 
@@ -34,7 +34,7 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
         setVisible(true);
     }
 
-    protected void initComponents(){
+    protected void initComponents() {
         workerInfoPanel = new WorkerInfoPanelZ(defaultWorker, isEditable);
         workerHeaderPanel = new WorkerHeaderPanel(defaultWorker);
         updateWorkerButton = new JButton();
@@ -44,10 +44,10 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
 
         setLayout(new GridBagLayout());
 
-        var headerConstrains = GridConstrains.placedAdd(0,0);
+        var headerConstrains = GridConstrains.placedAdd(0, 0);
         headerConstrains.gridwidth = GridBagConstraints.REMAINDER;
         add(workerHeaderPanel, headerConstrains);
-        var infoConstrains = GridConstrains.placedAdd(0,1);
+        var infoConstrains = GridConstrains.placedAdd(0, 1);
         infoConstrains.gridwidth = GridBagConstraints.REMAINDER;
         add(workerInfoPanel, infoConstrains);
         add(updateWorkerButton, GridConstrains.placedAdd(0, 2));
@@ -65,7 +65,7 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
             deleteWorkerButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    new APICommandMenger().sendCommand(
+                    APICommandMenger.getInstance().sendCommand(
                             new RemoveByIdCommand(
                                     defaultWorker.getId()
                             ),
@@ -80,7 +80,7 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
             updateWorkerButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    invokeLater(() ->{
+                    invokeLater(() -> {
                         var worker = workerInfoPanel.getWorker();
                         if (!worker.isAllowed) {
                             JOptionPane.showMessageDialog(
@@ -88,14 +88,13 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
                                     getResources().get(worker.msg),
                                     getResources().get("AddFrame.input.error.text"),
                                     JOptionPane.ERROR_MESSAGE);
-                            return;
-                        }
-                        else {
-                            new APICommandMenger().sendCommand(
+                        } else {
+                            APICommandMenger.getInstance().sendCommand(
                                     new UpdateCommand(worker.data.getId(), worker.data),
                                     workerInfoPanel,
                                     "WorkerUpdateFrameZ.updateFailed.text",
-                                    (e1) -> {}
+                                    (e1) -> {
+                                    }
                             );
                         }
                     });
@@ -110,8 +109,8 @@ public class WorkerUpdateFrameZ extends ResourcedFrame {
         setLocationRelativeTo(getOwner());
 
 
-
     }
+
     @Override
     protected void initComponentsI18n() {
         var resources = getResources();

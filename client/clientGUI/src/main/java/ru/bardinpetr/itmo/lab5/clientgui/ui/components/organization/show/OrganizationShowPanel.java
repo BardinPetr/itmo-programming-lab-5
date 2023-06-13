@@ -13,7 +13,7 @@ public class OrganizationShowPanel extends ResourcedPanel {
     private JButton clearOrgButton;
 
     public OrganizationShowPanel() {
-        orgTablePanel = new OrganizationTable(ModelProvider.organizations());
+        orgTablePanel = new OrganizationTable(ModelProvider.getInstance().organizations());
 
         initComponents();
         setVisible(true);
