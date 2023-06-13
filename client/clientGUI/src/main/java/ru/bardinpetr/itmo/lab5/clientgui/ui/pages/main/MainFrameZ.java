@@ -33,16 +33,19 @@ public class MainFrameZ extends ResourcedFrame {
     private JMenuItem mapMenuButton;
     private JMenuItem scriptMenuButton;
     private UsersInfoZ usersInfo;
+    private String scriptCard;
 
     public MainFrameZ() {
         initComponents();
-        setSize(new Dimension(800, 500));
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        setSize(new Dimension(800, 500));
 //        setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
 
     }
+
+
 
     protected void initComponents() {
         mainPanel = new JPanel();
@@ -57,7 +60,6 @@ public class MainFrameZ extends ResourcedFrame {
 
         var menuButtons = List.of(workersMenuButton, orgsMenuButton, mapMenuButton, scriptMenuButton);
         var menuButtonKeys = List.of("WORKERS", "ORGANIZATIONS", "MAP", "SCRIPT");
-
         var buttonBorder = BorderFactory.createRaisedBevelBorder();
         var buttonPressedBorder = BorderFactory.createLoweredBevelBorder();
 
@@ -68,6 +70,7 @@ public class MainFrameZ extends ResourcedFrame {
             b.setBorder(buttonBorder);
             b.addActionListener(
                     e -> {
+                        scriptCard = buttonKey;
                         ((CardLayout) mainPanel.getLayout())
                                 .show(mainPanel, buttonKey);
 
@@ -99,7 +102,11 @@ public class MainFrameZ extends ResourcedFrame {
         mainPanel.add(new WorkerShowPanelZ(), "WORKERS");
         mainPanel.add(new OrganizationShowPanel(), "ORGANIZATIONS");
         mainPanel.add(new WorkersMapPage(ModelProvider.workers()), "MAP");
-        mainPanel.add(new ScriptPanel(() -> scriptMenuButton.setBackground(new Color(135,206,235))), "SCRIPT");
+        mainPanel.add(new ScriptPanel((e) -> {
+            if (e && !scriptCard.equals("SCRIPT")) {
+                scriptMenuButton.setBackground(new Color(135, 206, 235));
+            }
+        }), "SCRIPT");
 
         initComponentsI18n();
         pack();
