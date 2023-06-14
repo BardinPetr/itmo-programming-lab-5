@@ -5,13 +5,12 @@ Artem
 02-03-2023
 C
 02-03-2023
-110
-12s
+11
+120
 C
-17
+19
 C
 MANAGER_OF_CLEANING
-execute_script .\scripts\scriptUsualAdd.zb
 info
 show
 filter_less_than_position MANAGER_OF_CLEANING
