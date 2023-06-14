@@ -7,6 +7,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.OrganizationPresenter;
 import ru.bardinpetr.itmo.lab5.models.data.Worker;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -48,7 +49,7 @@ public class WorkerTableModel extends TableListModelAdapter<Worker, WorkerModel>
                         DateFormat.MEDIUM,
                         Locale.getDefault()
                 );
-
+        var numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
         String endDate;
         if (object.getEndDate() == null)
             endDate = UIResources.getInstance().get("WorkerInfoPanel.endDateNull.text");
@@ -63,11 +64,11 @@ public class WorkerTableModel extends TableListModelAdapter<Worker, WorkerModel>
                 object.getOwnerUsername(),
                 timeFormat.format(Date.from(object.getCreationDate().toInstant())),
                 object.getName(),
-                object.getSalary(),
+                numberFormat.format(object.getSalary()),
                 dateFormat.format(object.getStartDate()),
                 endDate,
-                object.getCoordinates().getX(),
-                object.getCoordinates().getY(),
+                numberFormat.format(object.getCoordinates().getX()),
+                numberFormat.format(object.getCoordinates().getY()),
                 org,
                 position
         ).get(column);

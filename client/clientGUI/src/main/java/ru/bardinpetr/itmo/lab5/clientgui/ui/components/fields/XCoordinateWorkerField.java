@@ -6,6 +6,7 @@ import ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContaine
 import ru.bardinpetr.itmo.lab5.models.data.validation.CoordinatesStringValidator;
 
 import javax.swing.text.BadLocationException;
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.function.Consumer;
@@ -33,13 +34,9 @@ public class XCoordinateWorkerField extends AbstractFormattedField<Integer> {
 
     }
 
-    @Override
-    protected Integer convert(String value) {
-        return Integer.parseInt(value);
-    }
 
     @Override
     public void setData(Integer data) {
-        setTextLater(String.valueOf(data));
+        setTextLater(new BigDecimal(data).toPlainString());
     }
 }
