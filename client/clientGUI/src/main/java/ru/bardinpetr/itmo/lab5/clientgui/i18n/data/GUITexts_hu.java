@@ -33,6 +33,9 @@ public class GUITexts_hu extends ListResourceBundle {
                 {"ScriptPanel.executeScriptButton.text", "Szkript végrehajtása"},
                 {"ScriptPanel.executeScriptButton.process.text", "Szkript folyamat végrehajtása..."},
                 {"AddFrame.input.error.text", "Beviteli hiba"},
+                {"OrgUpdateFrameZ.title", "Szervezeti frissítés"},
+                {"OrgUpdateFrameZ.addOrgError.text", "Szervezeti hiba frissítése"},
+                {"OrgUpdateFrameZ.updateError.text", "Nem sikerült frissíteni a szervezetet"},
                 {"OrgAddFrameZ.title", "Szervezet hozzáadása"},
                 {"OrgAddFrameZ.addOrgError.text", "Szervezeti hiba hozzáadása"},
                 {"MainFrame.scriptChooseText.text", "Válasszon ki egy parancsfájlt"},
@@ -64,6 +67,7 @@ public class GUITexts_hu extends ListResourceBundle {
                 {"MainFrame.mapMenuButton.text", "térkép"},
                 {"MainFrame.orgsMenuButton.text", "Szervezetek"},
                 {"OrgAddFrame.addOrgButton.text", "hozzáad"},
+                {"OrgUpdateFrameZ.addOrgButton.text", "frissít"},
                 {"OrgAddFrame.orgrAddCancelButton.text", "érvénytelenít"},
                 {"OrganizationShowPanel.clearOrgButton.text", "Világos"},
                 {"OrganizationShowPanel.openAddOrgPlane.text", "Hozzáad"},
@@ -91,7 +95,7 @@ public class GUITexts_hu extends ListResourceBundle {
                 {"WorkerRemoveGFrame.removeGreaterWorkerButton.error.text", "Nagyobb parancshiba eltávolítása"},
                 {"OrganizationValidator.workerName.null.text", "A név nem lehet null"},
                 {"OrganizationValidator.label1.text", "név"},
-                {"OrganizationValidator.label2.text", "Típus"},
+                {"OrganizationValidator.label2.text", "típus"},
                 {"CredentialsValidator.username.empty", "A felhasználónév nem lehet üres"},
                 {"CredentialsValidator.invalid.text", "A hitelesítő adatok érvénytelenek"},
                 {"CredentialsValidator.username.invalidLength", "A felhasználónévnek 40 karakternél rövidebbnek kell lennie"},
@@ -117,6 +121,7 @@ public class GUITexts_hu extends ListResourceBundle {
                 {"WorkerInfoPanel.yCoordinate.badFormat.text", "Az Y koordinátának számnak kell lennie"},
                 {"WorkerInfoPanel.yCoordinate.notInRange.text", "Az Y koordinátának nagyobbnak kell lennie, mint -413"},
                 {"WorkerHeaderPanel.idLabel.text", "Munkavállalói azonosító"},
+                {"OrganizationHeaderPanel.idLabel.text", "Szervezet azonosítója"},
                 {"WorkerHeaderPanel.usernameLabel.text", "Tulajdonos felhasználóneve"},
                 {"EnumPresenter.value.null.text", ""},
                 {"EnumPresenter.value.cleaner.text", "tisztító"},
@@ -174,12 +179,13 @@ public class GUITexts_hu extends ListResourceBundle {
                 {"ErrorHandlingApplication.methodNotAvailable", "A módszer nem áll rendelkezésre"},
                 {"OrganizationTableModel.Column.ID.text", "AZONOSÍTÓ"},
                 {"OrganizationTableModel.Column.Name.text", "Név"},
-                {"OrganizationTableModel.Column.Type.text", "Típus"},
+                {"OrganizationTable.deleteError.text", "A törlés sikertelen"},
                 {"ScriptLocalCommand.invalidScript.text", "Érvénytelen parancsfájl"},
                 {"ScriptLocalCommand.noScriptFile.text", "Nem sikerült parancsfájlt átadni"},
                 {"ScriptInvoker.default.success", "Siker!"},
                 {"ScriptInvoker.scriptFailed.text", "A parancsfájl nem sikerült:"},
-                {"ScriptInvoker.scriptFailed.unknownError.text", "Ismeretlen hiba"}
+                {"ScriptInvoker.scriptFailed.unknownError.text", "Ismeretlen hiba"},
+                {"ScriptInvoker.help.text", "Isten segíteni fog"}
         };
     }
 }

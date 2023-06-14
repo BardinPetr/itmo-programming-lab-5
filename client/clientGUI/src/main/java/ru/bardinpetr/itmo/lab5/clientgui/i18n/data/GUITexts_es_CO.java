@@ -33,6 +33,9 @@ public class GUITexts_es_CO extends ListResourceBundle {
                 {"ScriptPanel.executeScriptButton.text", "Ejecutar script"},
                 {"ScriptPanel.executeScriptButton.process.text", "Ejecutar proceso de script..."},
                 {"AddFrame.input.error.text", "Error de entrada"},
+                {"OrgUpdateFrameZ.title", "Actualización de la organización"},
+                {"OrgUpdateFrameZ.addOrgError.text", "Error de organización de actualización"},
+                {"OrgUpdateFrameZ.updateError.text", "No se pudo actualizar la organización"},
                 {"OrgAddFrameZ.title", "Adición de organización"},
                 {"OrgAddFrameZ.addOrgError.text", "Agregar error de organización"},
                 {"MainFrame.scriptChooseText.text", "Seleccione un archivo de script"},
@@ -64,6 +67,7 @@ public class GUITexts_es_CO extends ListResourceBundle {
                 {"MainFrame.mapMenuButton.text", "mapa"},
                 {"MainFrame.orgsMenuButton.text", "Organizaciones"},
                 {"OrgAddFrame.addOrgButton.text", "agregar"},
+                {"OrgUpdateFrameZ.addOrgButton.text", "actualizar"},
                 {"OrgAddFrame.orgrAddCancelButton.text", "Cancelar"},
                 {"OrganizationShowPanel.clearOrgButton.text", "Clear"},
                 {"OrganizationShowPanel.openAddOrgPlane.text", "Agregar"},
@@ -91,7 +95,7 @@ public class GUITexts_es_CO extends ListResourceBundle {
                 {"WorkerRemoveGFrame.removeGreaterWorkerButton.error.text", "Eliminar mayor error de comando"},
                 {"OrganizationValidator.workerName.null.text", "El nombre no puede ser nulo"},
                 {"OrganizationValidator.label1.text", "nombre"},
-                {"OrganizationValidator.label2.text", "Tipo"},
+                {"OrganizationValidator.label2.text", "tipo"},
                 {"CredentialsValidator.username.empty", "El nombre de usuario no puede estar vacío"},
                 {"CredentialsValidator.invalid.text", "Las credenciales no son válidas"},
                 {"CredentialsValidator.username.invalidLength", "El nombre de usuario debe tener menos de 40 caracteres"},
@@ -117,6 +121,7 @@ public class GUITexts_es_CO extends ListResourceBundle {
                 {"WorkerInfoPanel.yCoordinate.badFormat.text", "La coordenada Y debe ser un número"},
                 {"WorkerInfoPanel.yCoordinate.notInRange.text", "La coordenada Y debe ser mayor que -413"},
                 {"WorkerHeaderPanel.idLabel.text", "Identificación del trabajador"},
+                {"OrganizationHeaderPanel.idLabel.text", "ID de la organización"},
                 {"WorkerHeaderPanel.usernameLabel.text", "Nombre de usuario del propietario"},
                 {"EnumPresenter.value.null.text", ""},
                 {"EnumPresenter.value.cleaner.text", "cleaner"},
@@ -174,12 +179,13 @@ public class GUITexts_es_CO extends ListResourceBundle {
                 {"ErrorHandlingApplication.methodNotAvailable", "Método no disponible"},
                 {"OrganizationTableModel.Column.ID.text", "IDENTIFICACIÓN"},
                 {"OrganizationTableModel.Column.Name.text", "Nombre"},
-                {"OrganizationTableModel.Column.Type.text", "Tipo"},
+                {"OrganizationTable.deleteError.text", "Error al eliminar"},
                 {"ScriptLocalCommand.invalidScript.text", "Script no válido"},
                 {"ScriptLocalCommand.noScriptFile.text", "No se ha pasado ningún archivo de script"},
                 {"ScriptInvoker.default.success", "¡Éxito!"},
                 {"ScriptInvoker.scriptFailed.text", "Error de script:"},
-                {"ScriptInvoker.scriptFailed.unknownError.text", "Error desconocido"}
+                {"ScriptInvoker.scriptFailed.unknownError.text", "Error desconocido"},
+                {"ScriptInvoker.help.text", "Dios ayudará"}
         };
     }
 }

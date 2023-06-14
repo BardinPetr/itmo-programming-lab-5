@@ -33,6 +33,9 @@ public class GUITexts_fi extends ListResourceBundle {
                 {"ScriptPanel.executeScriptButton.text", "Suorita komentosarja"},
                 {"ScriptPanel.executeScriptButton.process.text", "Suorita komentosarjaprosessi..."},
                 {"AddFrame.input.error.text", "Syöttövirhe"},
+                {"OrgUpdateFrameZ.title", "Organisaation päivitys"},
+                {"OrgUpdateFrameZ.addOrgError.text", "Päivitä organisaation virhe"},
+                {"OrgUpdateFrameZ.updateError.text", "Organisaatiota ei voitu päivittää"},
                 {"OrgAddFrameZ.title", "Organisaation lisäys"},
                 {"OrgAddFrameZ.addOrgError.text", "Lisää organisaatiovirhe"},
                 {"MainFrame.scriptChooseText.text", "Valitse komentosarjatiedosto"},
@@ -64,6 +67,7 @@ public class GUITexts_fi extends ListResourceBundle {
                 {"MainFrame.mapMenuButton.text", "kartta"},
                 {"MainFrame.orgsMenuButton.text", "Järjestöt"},
                 {"OrgAddFrame.addOrgButton.text", "lisätä"},
+                {"OrgUpdateFrameZ.addOrgButton.text", "päivittää"},
                 {"OrgAddFrame.orgrAddCancelButton.text", "perua"},
                 {"OrganizationShowPanel.clearOrgButton.text", "Selvä"},
                 {"OrganizationShowPanel.openAddOrgPlane.text", "Lisätä"},
@@ -91,7 +95,7 @@ public class GUITexts_fi extends ListResourceBundle {
                 {"WorkerRemoveGFrame.removeGreaterWorkerButton.error.text", "Poista suurempi komentovirhe"},
                 {"OrganizationValidator.workerName.null.text", "nimi ei voi olla tyhjä"},
                 {"OrganizationValidator.label1.text", "Nimi"},
-                {"OrganizationValidator.label2.text", "Tyyppi"},
+                {"OrganizationValidator.label2.text", "tyyppi"},
                 {"CredentialsValidator.username.empty", "Käyttäjänimi ei voi olla tyhjä"},
                 {"CredentialsValidator.invalid.text", "Tunnistetiedot ovat virheelliset"},
                 {"CredentialsValidator.username.invalidLength", "Käyttäjänimen on oltava alle 40 merkkiä pitkä"},
@@ -117,6 +121,7 @@ public class GUITexts_fi extends ListResourceBundle {
                 {"WorkerInfoPanel.yCoordinate.badFormat.text", "Y-koordinaatin on oltava luku"},
                 {"WorkerInfoPanel.yCoordinate.notInRange.text", "Y-koordinaatin on oltava suurempi kuin -413"},
                 {"WorkerHeaderPanel.idLabel.text", "Työntekijän tunnus"},
+                {"OrganizationHeaderPanel.idLabel.text", "Organisaation tunnus"},
                 {"WorkerHeaderPanel.usernameLabel.text", "Omistajan käyttäjätunnus"},
                 {"EnumPresenter.value.null.text", ""},
                 {"EnumPresenter.value.cleaner.text", "siivooja"},
@@ -174,12 +179,13 @@ public class GUITexts_fi extends ListResourceBundle {
                 {"ErrorHandlingApplication.methodNotAvailable", "Menetelmä ei ole käytettävissä"},
                 {"OrganizationTableModel.Column.ID.text", "HENKILÖLLISYYSTODISTUS"},
                 {"OrganizationTableModel.Column.Name.text", "Nimi"},
-                {"OrganizationTableModel.Column.Type.text", "Tyyppi"},
+                {"OrganizationTable.deleteError.text", "Poisto epäonnistui"},
                 {"ScriptLocalCommand.invalidScript.text", "Virheellinen komentosarja"},
                 {"ScriptLocalCommand.noScriptFile.text", "Komentosarjatiedostoa ei läpäisty"},
                 {"ScriptInvoker.default.success", "Menestys!"},
                 {"ScriptInvoker.scriptFailed.text", "Komentosarja epäonnistui:"},
-                {"ScriptInvoker.scriptFailed.unknownError.text", "Tuntematon virhe"}
+                {"ScriptInvoker.scriptFailed.unknownError.text", "Tuntematon virhe"},
+                {"ScriptInvoker.help.text", "Jumala auttaa"}
         };
     }
 }

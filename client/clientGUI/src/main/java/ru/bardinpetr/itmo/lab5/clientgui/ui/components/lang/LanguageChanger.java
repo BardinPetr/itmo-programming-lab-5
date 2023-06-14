@@ -19,20 +19,22 @@ public class LanguageChanger extends JPanel implements ActionListener {
         resources = UIResources.getInstance();
 
         combobox = new JComboBox<>();
-        combobox.addActionListener(this);
-        var renderer = new LocaleRenderer();
-        combobox.setRenderer(renderer);
-
-        add(combobox);
+        combobox.setRenderer(new LocaleRenderer());
 
         for (var i : resources.getSupportedLocales())
             combobox.addItem(i);
+
+        combobox.setSelectedItem(Locale.getDefault());
+        combobox.addActionListener(this);
+
+        add(combobox);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         var newLocale = (Locale) combobox.getSelectedItem();
-        resources.setLocale(newLocale);
+        if (newLocale != null)
+            resources.setLocale(newLocale);
     }
 
 

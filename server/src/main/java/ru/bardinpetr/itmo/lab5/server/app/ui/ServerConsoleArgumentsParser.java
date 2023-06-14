@@ -39,7 +39,6 @@ public class ServerConsoleArgumentsParser extends AbstractConsoleArgumentsParser
                 .hasArg(true)
                 .desc("database username")
                 .build();
-        dbuser.setRequired(true);
         options.addOption(dbuser);
 
 
@@ -49,7 +48,6 @@ public class ServerConsoleArgumentsParser extends AbstractConsoleArgumentsParser
                 .hasArg(true)
                 .desc("database password")
                 .build();
-        dbpass.setRequired(true);
         options.addOption(dbpass);
 
 
@@ -58,27 +56,26 @@ public class ServerConsoleArgumentsParser extends AbstractConsoleArgumentsParser
                 .hasArg(true)
                 .desc("UDP port")
                 .build();
-        port.setRequired(true);
         options.addOption(port);
 
         return options;
     }
 
     public String getDatabaseUrl() {
-        return getOptions().getOptionValue("dburl", "jdbc:postgresql://localhost:5432/studs");
+        return getOptions().getOptionValue("dburl", "jdbc:postgresql://82.209.92.89:5000/workers");
     }
 
     public String getUsername() {
-        return getOptions().getOptionValue("dbuser");
+        return getOptions().getOptionValue("dbuser", "s367079");
     }
 
     public String getPassword() {
-        return getOptions().getOptionValue("dbpass");
+        return getOptions().getOptionValue("dbpass", "aKNKcUmScdpvwhYu");
     }
 
     public Integer getPort() {
         try {
-            var port = Integer.parseInt(getOptions().getOptionValue("port", "5000"));
+            var port = Integer.parseInt(getOptions().getOptionValue("port", "5001"));
             if (port < 1 || port > 65535)
                 throw new Exception();
             return port;

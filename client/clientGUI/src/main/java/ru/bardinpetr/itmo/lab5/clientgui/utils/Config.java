@@ -15,7 +15,7 @@ public class Config {
 //        });
 
         var hostname = System.getProperty("serverHost", "localhost");
-        var port = System.getProperty("serverPort", "5000");
+        var port = System.getProperty("serverPort", "5001");
         int intPort;
         try {
             intPort = Integer.parseInt(port);

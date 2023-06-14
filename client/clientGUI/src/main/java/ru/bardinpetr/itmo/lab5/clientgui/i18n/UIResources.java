@@ -74,7 +74,6 @@ public class UIResources {
     }
 
     public void setLocale(Locale newLocale) {
-        var oldLocale = currentLocale;
         currentLocale = newLocale;
         Locale.setDefault(newLocale);
         ResourceBundle.clearCache();
