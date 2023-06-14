@@ -11,8 +11,8 @@ public class Config {
     private InetSocketAddress serverAddress;
 
     private Config() {
-        Thread.setDefaultUncaughtExceptionHandler((t, e) -> {
-        });
+//        Thread.setDefaultUncaughtExceptionHandler((t, e) -> {
+//        });
 
         var hostname = System.getProperty("serverHost", "localhost");
         var port = System.getProperty("serverPort", "5000");
