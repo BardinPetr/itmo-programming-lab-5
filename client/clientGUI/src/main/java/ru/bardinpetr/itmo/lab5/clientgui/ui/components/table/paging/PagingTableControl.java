@@ -67,13 +67,13 @@ public class PagingTableControl extends Box {
     }
 
     public int getPageCount() {
-        return (int) Math.ceil((double) rowCount / pageSize);
+        return Math.max(1, (int) Math.ceil((double) rowCount / pageSize));
     }
 
     public void setRowCount(int val) {
         rowCount = val;
         if ((page - 1) * pageSize >= rowCount)
-            page = rowCount / pageSize;
+            page = Math.max(1, rowCount / pageSize);
 
         updateStatus();
     }
