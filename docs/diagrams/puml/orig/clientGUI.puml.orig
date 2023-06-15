@@ -1,0 +1,1279 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class APICommandManager {
+  - APICommandManager(): 
+  - apiConnector: APIClientConnector
+  - instance: APICommandManager
+  + getInstance(): APICommandManager
+  + sendCommand(APICommand, Component, String, String, String, ISuccessCommandHandler, boolean): void
+  + sendCommand(APICommand, Component, String, ISuccessCommandHandler): void
+  + sendCommand(APICommand, Component, String, ISuccessCommandHandler, boolean): void
+}
+class APIConnectorFactory {
+  + APIConnectorFactory(): 
+  + create(): void
+}
+class AbstractDateField<T> {
+  + AbstractDateField(Consumer<Date>): 
+  - dateFormatter: DateFormat
+  # resources: UIResources
+  # initComponentsI18n(): void
+  + getText(): String
+  + setEditable(boolean): void
+  - getResources(): UIResources
+  # getStringFormatKey(): String
+  + validateValue(): ValidationResponse
+}
+class AbstractEnumCombobox {
+  + AbstractEnumCombobox(Consumer<EnumPresenter>): 
+  + getData(): DataContainer<EnumPresenter>
+  + validateValue(): ValidationResponse
+  # groupItems(): void
+  + setData(EnumPresenter): void
+}
+class AbstractFormattedField<T> {
+  + AbstractFormattedField(String, IStringValidator, Consumer<String>): 
+  # getFullText(): String
+}
+class AbstractTextWorkerField<T> {
+  + AbstractTextWorkerField(String, IStringValidator, Consumer<String>): 
+  + toolTipMsg: String
+  ~ validator: IStringValidator
+  # resources: UIResources
+  # getFullText(): String
+  # setTextLater(String): void
+  # initComponentsI18n(): void
+  + getText(): String
+  + validateValue(): ValidationResponse
+  - getResources(): UIResources
+}
+class AbstractWorkerComboBox<T> {
+  + AbstractWorkerComboBox(Consumer<T>): 
+  # resources: UIResources
+  ~ handler: Consumer<T>
+  + getText(): String
+  - getResources(): UIResources
+  # getList(): List<T>
+  # groupItems(): void
+  + setData(T): void
+  # initComponentsI18n(): void
+}
+entity ActionCellControl << record >> {
+  + ActionCellControl(JComponent): 
+  - component: JComponent
+  + component(): JComponent
+}
+class ActionCellInfo {
+  + ActionCellInfo(): 
+  + of(ActionCellControl[]): ActionCellInfo
+}
+class ActionColumn {
+  + ActionColumn(): 
+  + getCellEditorValue(): Object
+  + getTableCellRendererComponent(JTable, Object, boolean, boolean, int, int): Component
+  + install(JTable): void
+  + getTableCellEditorComponent(JTable, Object, boolean, int, int): Component
+}
+class BottomPanelZ {
+  + BottomPanelZ(): 
+  - infoPanel: CollectionInfoPanel
+  - langLayout: LanguageChanger
+  + setBDSize(Integer): void
+  # initComponents(): void
+  # initComponentsI18n(): void
+  + setInitDate(ZonedDateTime): void
+}
+class Build_gradle {
+  + Build_gradle(String[]): 
+  + main(String[]): Unit
+}
+class CheckBoxList {
+  + CheckBoxList(CheckBoxListModel): 
+}
+class CheckBoxListModel {
+  + CheckBoxListModel(): 
+  + setChecked(int, boolean): void
+  + removeCheckedEventListener(CheckedListener): void
+  + getAll(): Stream<CheckedItem>
+  + fireCheckedChanged(int): void
+  + getChecked(): Set<Object>
+  + addCheckedEventListener(CheckedListener): void
+  + toggleChecked(int): void
+}
+class CheckboxListCellRenderer {
+  # CheckboxListCellRenderer(): 
+  + getListCellRendererComponent(JList<CheckedItem>, CheckedItem, int, boolean, boolean): Component
+}
+class CheckedEvent {
+  + CheckedEvent(Object, CheckedItem): 
+  - element: CheckedItem
+  + getElement(): CheckedItem
+}
+class CheckedItem {
+  + CheckedItem(Object, boolean): 
+  - data: Object
+  - checked: boolean
+  + hashCode(): int
+  + setChecked(boolean): void
+  + equals(Object): boolean
+  + setData(Object): void
+  + getData(): Object
+  + toString(): String
+  + isChecked(): boolean
+  # canEqual(Object): boolean
+}
+interface CheckedListener << interface >> {
+  + checkedChanged(CheckedEvent): void
+}
+class CollectionInfoPanel {
+  + CollectionInfoPanel(): 
+  - bdDateField: JLabel
+  - initDate: ZonedDateTime
+  - workersCountField: JLabel
+  - dbTypeNameLabel: JLabel
+  - label4: JLabel
+  - label2: JLabel
+  - infoText: JLabel
+  + setInitDate(ZonedDateTime): void
+  # initComponentsI18n(): void
+  + setBDSize(Integer): void
+  # initComponents(): void
+}
+interface ColumnInfoEventListener << interface >> {
+  + onColumnDataChanged(int): void
+}
+entity ColumnSort << record >> {
+  + ColumnSort(SortOrder): 
+  # ColumnSort(SortOrder, Instant): 
+  - lastChange: Instant
+  - order: SortOrder
+  + lastChange(): Instant
+  + order(): SortOrder
+}
+class Config {
+  - Config(): 
+  - serverAddress: InetSocketAddress
+  - instance: Config
+  + getInstance(): Config
+  + getServerAddress(): InetSocketAddress
+}
+class DataContainer<T> {
+  + DataContainer(boolean, T, String): 
+  + DataContainer(T, ValidationResponse): 
+  + msg: String
+  + isAllowed: boolean
+  + data: T
+  + copyMeta(DataContainer): void
+  + toString(): String
+}
+class DateField {
+  + DateField(Consumer<Date>): 
+  # getStringFormatKey(): String
+  + getData(): DataContainer<Date>
+  + setData(Date): void
+}
+class DateLabelFormatter {
+  + DateLabelFormatter(): 
+  - datePattern: String
+  - dateFormatter: DateFormat
+  + valueToString(Object): String
+  + stringToValue(String): Object
+}
+class DoubleAnimator {
+  + DoubleAnimator(double): 
+  - speed: double
+  - epsilon: double
+  - step: double
+  - PERIOD: int
+  # update(Double): Double
+  # preconfigure(): void
+  + setEpsilon(double): void
+  # checkEnded(Double): boolean
+}
+class EditableHeaderRenderer {
+  + EditableHeaderRenderer(JComponent): 
+  - editor: JComponent
+  - table: JTable
+  - reporter: MouseEventReposter
+  + getTableCellRendererComponent(JTable, Object, boolean, boolean, int, int): Component
+}
+class EditableHeaderTableColumn {
+  + EditableHeaderTableColumn(): 
+  # headerEditor: TableCellEditor
+  + getHeaderEditor(): TableCellEditor
+  + setHeaderEditor(TableCellEditor): void
+}
+class EnumPresenter<T> {
+  + EnumPresenter(Enum<T>): 
+  - enumData: Enum<T>
+  + fromList(List<Enum>): List<EnumPresenter>
+  # canEqual(Object): boolean
+  + compareTo(EnumPresenter): int
+  + hashCode(): int
+  + equals(Object): boolean
+  + toString(): String
+  + getEnumData(): Enum<T>
+}
+class EventUtils {
+  + EventUtils(): 
+  + fireAll(EventListenerList, Class<T>, Consumer<T>): void
+}
+class ExtendedListModel<T> {
+  + ExtendedListModel(): 
+  + getByPK(int): T
+  + asStream(): Stream<T>
+  + asList(): List<T>
+}
+class ExternalSyncedListModel<T> {
+  + ExternalSyncedListModel(boolean, String): 
+  - resourceId: String
+  - eventSubscriber: ResourceEventConsumer
+  - connector: APIClientConnector
+  - executor: ScheduledExecutorService
+  - eventSource: PoolingEventSource
+  - getSingle: Function<Integer, T>
+  - getAll: Supplier<List<T>>
+  - autoSyncEnabled: boolean
+  + addServerEventListener(ServerEventListener): void
+  + removeServerEventListener(ServerEventListener): void
+  + setLoaders(Supplier<List<T>>, Function<Integer, T>): void
+  # fireBaseEvent(Event): void
+  - firstPool(): void
+  - onUpdate(EventSet): void
+  - onCreateEvent(Integer): void
+  - onUpdateEvent(Integer): void
+  - onDeleteEvent(Integer): void
+  + getVectorPos(Integer): int
+}
+class FilterRowSorter<M> {
+  + FilterRowSorter(M, Runnable): 
+  - columnSortOrder: Map<Integer, ColumnSort>
+  - rowFilter: RowFilter<M, Integer>
+  - model: M
+  - indexViewToModel: List<Integer>
+  - indexModelToView: List<Integer>
+  + rowsDeleted(int, int): void
+  + getSortKeys(): List<SortKey>
+  + toggleSortOrder(int): void
+  + setSortKeys(List<SortKey>): void
+  + rowsInserted(int, int): void
+  - buildComparator(): Comparator<Row>
+  + convertRowIndexToModel(int): int
+  + getViewRowCount(): int
+  + convertRowIndexToView(int): int
+  + setRowFilter(RowFilter<M, Integer>): void
+  + allRowsChanged(): void
+  + getModelRowCount(): int
+  + setSortOrder(int, SortOrder): void
+  + getModel(): M
+  + rowsUpdated(int, int): void
+  # updateSort(): void
+  + rowsUpdated(int, int, int): void
+  + modelStructureChanged(): void
+}
+class FilterSortColumnInfoModel {
+  + FilterSortColumnInfoModel(int): 
+  - label: String
+  - sortOrder: SortOrder
+  - columnId: int
+  - listeners: EventListenerList
+  - rowItems: CheckBoxListModel
+  + setSortOrder(SortOrder): void
+  + setRowItems(CheckBoxListModel): void
+  + fireFilterChanged(): void
+  + fireDataChanged(): void
+  + getColumnId(): int
+  + setLabel(String): void
+  + getRowItems(): CheckBoxListModel
+  + removeEventListener(ColumnInfoEventListener): void
+  + getLabel(): String
+  + fireSortChanged(): void
+  + addEventListener(ColumnInfoEventListener): void
+  + getSortOrder(): SortOrder
+}
+class FilterSortHeaderCell {
+  + FilterSortHeaderCell(FilterSortColumnInfoModel): 
+  - infoModel: FilterSortColumnInfoModel
+  - headerLabel: JLabel
+  - ICON_SIZE: int
+  - directionButton: IconButton
+  + getInfoModel(): FilterSortColumnInfoModel
+  - changeDirection(ActionEvent): void
+  - update(): void
+  - getIcon(IconCode): Icon
+}
+interface FilterSortParamsEventListener << interface >> {
+  + onSortChanged(int, SortOrder): void
+  + onFilterChanged(int, Set<Object>): void
+}
+class FilterSortTableHeader {
+  + FilterSortTableHeader(JTable, TableModel): 
+  - FILTER_AGGREGATE_DURATION_MILLIS: long
+  - table: JTable
+  - executor: ScheduledExecutorService
+  - colInfoModels: List<FilterSortColumnInfoModel>
+  - sourceModel: TableModel
+  - filterEventDelayedFire: ScheduledFuture<?>
+  + addFilterSortParamsListener(FilterSortParamsEventListener): void
+  - model(): TableModel
+  + onSortChanged(int, SortOrder): void
+  - modelChanged(TableModelEvent): void
+  + onFilterChanged(int, Set<Object>): void
+  + onColumnDataChanged(int): void
+  + removeFilterSortParamsListener(FilterSortParamsEventListener): void
+  - getColumnValues(int): Set<Object>
+}
+class FloatTextField {
+  + FloatTextField(String, IStringValidator, Consumer<String>): 
+  + getData(): DataContainer<Float>
+  + setData(Float): void
+}
+class GUIExecutorAdapter {
+  + GUIExecutorAdapter(String, JPanel, Consumer<Boolean>): 
+  - scriptExecutor: ScriptExecutor
+  - tmpPanel: JPanel
+  - scriptPath: String
+  - handle: Consumer<Boolean>
+  - mainResultPanel: JPanel
+  # done(): void
+  - getResources(): UIResources
+  # doInBackground(): DataContainer<JPanel>
+}
+class GUITexts {
+  + GUITexts(): 
+  # getContents(): Object[][]
+}
+class GUITexts_es_CO {
+  + GUITexts_es_CO(): 
+  # getContents(): Object[][]
+}
+class GUITexts_fi {
+  + GUITexts_fi(): 
+  # getContents(): Object[][]
+}
+class GUITexts_hu {
+  + GUITexts_hu(): 
+  # getContents(): Object[][]
+}
+class GUITexts_ru {
+  + GUITexts_ru(): 
+  # getContents(): Object[][]
+}
+class GraphicsUtils {
+  + GraphicsUtils(): 
+  + drawArrow(Graphics, int, int, int, int, int): void
+}
+class GridConstrains {
+  + GridConstrains(): 
+  + normalAdd(): GridBagConstraints
+  + placedAdd(int, int, int, int): GridBagConstraints
+  + placedAdd(int, int): GridBagConstraints
+}
+interface IDataStorage<T> << interface >> {
+  + getText(): String
+  + validateValue(): ValidationResponse
+  + setData(T): void
+  + getData(): DataContainer<T>
+}
+interface IStringValidator << interface >> {
+  + validate(String): ValidationResponse
+}
+interface ISuccessCommandHandler << interface >> {
+  + handle(APICommandResponse): void
+}
+class IconButton {
+  + IconButton(Icon): 
+  + IconButton(int): 
+}
+class LanguageChanger {
+  + LanguageChanger(): 
+  - combobox: JComboBox<Locale>
+  - resources: UIResources
+  + actionPerformed(ActionEvent): void
+}
+class ListDataListenerAdapter {
+  + ListDataListenerAdapter(): 
+  + intervalAdded(ListDataEvent): void
+  + intervalRemoved(ListDataEvent): void
+}
+class ListUtil {
+  + ListUtil(): 
+  + stream(Enumeration<T>): Stream<T>
+}
+class LocalDateField {
+  + LocalDateField(Consumer<Date>): 
+  + setData(LocalDate): void
+  + getData(): DataContainer
+  # getStringFormatKey(): String
+}
+interface LocaleChangedEventListener << interface >> {
+  + onChange(Locale): void
+}
+class LocaleRenderer {
+  - LocaleRenderer(): 
+  + getListCellRendererComponent(JList<Locale>, Locale, int, boolean, boolean): Component
+}
+class LoginPage {
+  + LoginPage(Runnable): 
+  - onSuccess: Runnable
+  - showCheckBox: JCheckBox
+  - usernameField: UsernameField
+  - loginButton: JButton
+  - credentialsStorage: ICredentialsStorage<StoredJWTCredentials>
+  - userLabel: JLabel
+  - passwordField: PasswordField
+  - passLabel: JLabel
+  - apiConnector: APIClientConnector
+  - registerButton: JButton
+  + build(): void
+  - togglePasswordVisibility(ItemEvent): void
+  - onButtonClick(ActionEvent): void
+  # initComponentsI18n(): void
+}
+class Main {
+  + Main(): 
+  + main(String[]): void
+}
+class MainFrameZ {
+  + MainFrameZ(): 
+  - bottomMenu: BottomPanelZ
+  - scriptMenuButton: JMenuItem
+  - apiManager: APICommandManager
+  - mapMenuButton: JMenuItem
+  - mainPanel: JPanel
+  - usersInfo: UsersInfoZ
+  - workersMenuButton: JMenuItem
+  - menuBar: JMenuBar
+  - orgsMenuButton: JMenuItem
+  - upperPanel: JPanel
+  - scriptCard: String
+  # initComponents(): void
+  # initComponentsI18n(): void
+  - loadData(): void
+  - logout(): void
+  - updateInformation(): void
+}
+class MapPage<T, M, S> {
+  + MapPage(M): 
+  - SCALE_FACTOR: double
+  - shiftTransform: AffineTransform
+  # sprites: Map<Integer, S>
+  - AXES_TICK_STEP: int
+  # model: M
+  - scaleTransform: AffineTransform
+  - temporalPaneTransform: AffineTransform
+  - paneMinCoords: Point
+  - paneMaxCoords: Point
+  - AXES_TICK_SIZE: int
+  - dragLastPosition: Point
+  + mouseExited(MouseEvent): void
+  + intervalAdded(ListDataEvent): void
+  + centerMap(): void
+  # onServerEvent(Event): void
+  + mouseDragged(MouseEvent): void
+  - drawItems(Graphics2D): void
+  + intervalRemoved(ListDataEvent): void
+  + mouseWheelMoved(MouseWheelEvent): void
+  + mousePressed(MouseEvent): void
+  # recalculateAxis(): void
+  + mouseReleased(MouseEvent): void
+  + start(): void
+  + contentsChanged(ListDataEvent): void
+  + setAxis(Point, Point): void
+  - drawAxes(Graphics2D): void
+  - getCurrentTransform(): AffineTransform
+  # onClick(T): void
+  + mouseEntered(MouseEvent): void
+  + mouseMoved(MouseEvent): void
+  # updateSprite(Integer, S, T): void
+  # paintComponent(Graphics): void
+  # createSprite(Integer, T): S
+  + mouseClicked(MouseEvent): void
+}
+class MapSprite {
+  + MapSprite(): 
+  + calculateBorder(): Rectangle
+}
+class ModelProvider {
+  - ModelProvider(): 
+  - instance: ModelProvider
+  - currentOrganizations: OrganizationModel
+  - currentWorkers: WorkerModel
+  + organizations(): OrganizationModel
+  + getInstance(): ModelProvider
+  + workers(): WorkerModel
+}
+class MouseEventReposter {
+  + MouseEventReposter(JTableHeader, int, Component): 
+  - header: JTableHeader
+  - editor: Component
+  - column: int
+  - dispatchComponent: Component
+  + mousePressed(MouseEvent): void
+  + setColumn(int): void
+  - repostEvent(MouseEvent): void
+  - setDispatchComponent(MouseEvent): void
+  + mouseReleased(MouseEvent): void
+}
+class NameField {
+  + NameField(Consumer<String>): 
+  + getData(): DataContainer<String>
+  + setData(String): void
+}
+class NullableDatePanel {
+  + NullableDatePanel(Consumer<Date>): 
+  - endDateNullCheckbox: JCheckBox
+  - workerEndDateField: LocalDateField
+  - initComponentsI18n(): void
+  - getResources(): UIResources
+  + validateValue(): ValidationResponse
+  - changeEndDateNull(ItemEvent): void
+  + setData(LocalDate): void
+  + setEditable(boolean): void
+  + getData(): DataContainer<LocalDate>
+  + getText(): String
+}
+class OrgAddFrameZ {
+  + OrgAddFrameZ(): 
+  - resources: UIResources
+  - orgInfoPanel: OrganizationInfoPanelZ
+  - panel1: JPanel
+  - addOrgButton: JButton
+  - orgAddCancelButton: JButton
+  # initComponentsI18n(): void
+  # initComponents(): void
+}
+class OrgUpdateFrameZ {
+  + OrgUpdateFrameZ(Organization): 
+  - orgInfoPanel: OrganizationInfoPanelZ
+  - updateOrgButton: JButton
+  - orgUpdateCancelButton: JButton
+  - resources: UIResources
+  - defaultOrganization: Organization
+  - header: OrganizationHeaderPanel
+  # initComponents(): void
+  # initComponentsI18n(): void
+}
+class OrganizationCombobox {
+  + OrganizationCombobox(Consumer<OrganizationPresenter>): 
+  - cachedList: List<OrganizationPresenter>
+  + setData(OrganizationPresenter): void
+  + getData(): DataContainer<OrganizationPresenter>
+  + validateValue(): ValidationResponse
+  # getList(): List<OrganizationPresenter>
+  # groupItems(): void
+}
+class OrganizationHeaderPanel {
+  + OrganizationHeaderPanel(Organization): 
+  - defaultOrganization: Organization
+  - idField: JTextField
+  - idLabel: JLabel
+  ~ resources: UIResources
+  # initComponents(): void
+  # initComponentsI18n(): void
+}
+class OrganizationInfoPanelZ {
+  + OrganizationInfoPanelZ(): 
+  + OrganizationInfoPanelZ(Organization): 
+  - workerNameField: NameField
+  - workerDataContainer: DataContainer<Organization>
+  - defaultOrganization: Organization
+  - label2: JLabel
+  ~ resources: UIResources
+  - typeCombobox: OrganizationTypeCombobox
+  - label1: JLabel
+  + setData(Organization): void
+  # initComponentsI18n(): void
+  # initComponents(): void
+  + getOrganization(): DataContainer<Organization>
+}
+class OrganizationModel {
+  + OrganizationModel(boolean): 
+  - loadOne(Integer): Organization
+  - loadAll(): List<Organization>
+}
+class OrganizationPresenter {
+  + OrganizationPresenter(Organization): 
+  + OrganizationPresenter(): 
+  + OrganizationPresenter(Integer, String, OrganizationType): 
+  - organization: Organization
+  + toString(): String
+  + compareTo(OrganizationPresenter): int
+  + equals(Object): boolean
+  + getOrganization(): Organization
+}
+class OrganizationShowPanel {
+  + OrganizationShowPanel(): 
+  - orgTablePanel: JPanel
+  - clearOrgButton: JButton
+  # initComponents(): void
+  # initComponentsI18n(): void
+}
+class OrganizationTable {
+  + OrganizationTable(OrganizationModel): 
+  - baseModel: OrganizationModel
+  # onDelete(ActionEvent): void
+  # onUpdate(ActionEvent): void
+  # onInsert(ActionEvent): void
+}
+class OrganizationTableModel {
+  + OrganizationTableModel(OrganizationModel): 
+  - columnNameKeys: List<String>
+  # getValueAt(Organization, int): Object
+  # getColumnNames(): List<String>
+}
+class OrganizationTypeCombobox {
+  + OrganizationTypeCombobox(Consumer<EnumPresenter>): 
+  # getList(): List<EnumPresenter>
+}
+interface PagingConfigChangedListener << interface >> {
+  + onChange(int, int): void
+}
+class PagingTableControl {
+  + PagingTableControl(PagingConfigChangedListener): 
+  - prevBtn: JButton
+  - pageSize: int
+  - firstBtn: JButton
+  - pageMaxSizeUpdatesEnabled: boolean
+  - lastBtn: JButton
+  - nextBtn: JButton
+  - rowCount: int
+  - pageLabel: JLabel
+  - page: int
+  - spinnerModel: SpinnerNumberModel
+  - listener: PagingConfigChangedListener
+  - getIcon(IconCode): Icon
+  + getPageCount(): int
+  - fireUpdate(): void
+  + setMaxPageSize(int): void
+  - onPageSizeSpinnerEvent(ChangeEvent): void
+  + setRowCount(int): void
+  + setPageMaxSizeUpdatesEnabled(boolean): void
+  - onPageButtonClicked(ActionEvent): void
+  - updateStatus(): void
+}
+class PagingTableModel {
+  + PagingTableModel(JTable, TableModel): 
+  - listenerList: EventListenerList
+  - pageSize: Integer
+  - paginatorControl: PagingTableControl
+  - table: JTable
+  - curPage: Integer
+  - decoratee: TableModel
+  + getPaginatorControl(): PagingTableControl
+  + removeTableModelListener(TableModelListener): void
+  + isCellEditable(int, int): boolean
+  - onModelDataUpdate(TableModelEvent): void
+  + getPageCount(): int
+  + getRowCount(): int
+  + setValueAt(Object, int, int): void
+  - onPagingControlEvent(int, int): void
+  + convertIndexFromOffset(int): int
+  + getColumnName(int): String
+  + fireTableDataChanged(): void
+  + getColumnClass(int): Class<?>
+  + getValueAt(int, int): Object
+  + getColumnCount(): int
+  + addTableModelListener(TableModelListener): void
+}
+class PasswordField {
+  + PasswordField(Consumer<String>): 
+  + getData(): DataContainer<String>
+  + setData(String): void
+}
+class PointAnimator {
+  + PointAnimator(double): 
+  - PERIOD: int
+  - yVal: double
+  - xVal: double
+  - yStep: double
+  - speed: double
+  - xStep: double
+  - distanceEpsilon: double
+  + setDistanceEpsilon(double): void
+  # checkEnded(Point): boolean
+  # preconfigure(): void
+  # update(Point): Point
+}
+class PopupMenuButton {
+  + PopupMenuButton(JPopupMenu): 
+  - menu: JPopupMenu
+  + popupMenuWillBecomeInvisible(PopupMenuEvent): void
+  + popupMenuCanceled(PopupMenuEvent): void
+  + popupMenuWillBecomeVisible(PopupMenuEvent): void
+  + actionPerformed(ActionEvent): void
+}
+class PopupPanel {
+  + PopupPanel(JComponent): 
+  - currentPopup: Popup
+  - baseComponent: JComponent
+  - factory: PopupFactory
+  + open(): void
+  + close(): void
+}
+class PositionComboBox {
+  + PositionComboBox(Consumer<EnumPresenter>): 
+  # getList(): List<EnumPresenter>
+}
+class PropertyAnimator<T> {
+  + PropertyAnimator(int): 
+  - currentStatus: T
+  - listenerList: EventListenerList
+  # startPoint: T
+  # endPoint: T
+  - timer: Timer
+  + removeListener(PropertyAnimatorListener<T>): void
+  - update(ActionEvent): void
+  # checkEnded(T): boolean
+  + addListener(PropertyAnimatorListener<T>): void
+  + setCurrentStatus(T): void
+  # preconfigure(): void
+  # update(T): T
+  + animate(T): void
+  # fireUpdateEvent(): void
+}
+interface PropertyAnimatorListener<T> << interface >> {
+  + update(T, boolean): void
+}
+class QueuedAPIConnector {
+  + QueuedAPIConnector(APIClientConnector): 
+  - executor: ExecutorService
+  + call(APICommand): APICommandResponse
+}
+class ResourcedAreaText {
+  + ResourcedAreaText(String): 
+  + ResourcedAreaText(String, String): 
+  - label: JTextArea
+  - labelTextKey: String
+  - extraString: String
+  - initComponents(): void
+  # initComponentsI18n(): void
+}
+class ResourcedFrame {
+  + ResourcedFrame(): 
+  - uiResources: UIResources
+  # getUIResources(): UIResources
+  + dispose(): void
+  # getResources(): UIResources
+  # initComponentsI18n(): void
+  - localeChange(Locale): void
+}
+class ResourcedLabel {
+  + ResourcedLabel(String, String): 
+  + ResourcedLabel(String): 
+  - label: JLabel
+  - labelTextKey: String
+  - extraString: String
+  - initComponents(): void
+  # initComponentsI18n(): void
+}
+class ResourcedPanel {
+  + ResourcedPanel(): 
+  - uiResources: UIResources
+  - localeChange(Locale): void
+  # initComponentsI18n(): void
+  # getResources(): UIResources
+  # getUIResources(): UIResources
+}
+entity Row << record >> {
+  # Row(int, Vector<?>): 
+  - data: Vector<?>
+  - realIndex: int
+  + realIndex(): int
+  + data(): Vector<?>
+}
+class RowFilterEntry {
+  + RowFilterEntry(M, Integer): 
+  - model: M
+  - identifier: Integer
+  + getValueCount(): int
+  + getModel(): M
+  + getIdentifier(): Integer
+  + getValue(int): Object
+}
+class RowSorterEventAdapter<M> {
+  + RowSorterEventAdapter(FilterRowSorter<M>): 
+  - sorter: FilterRowSorter<M>
+  - filters: Map<Integer, RowFilter<M, Integer>>
+  - buildFilterFromEqualsList(int, Set<Object>): RowFilter<M, Integer>
+  + onSortChanged(int, SortOrder): void
+  - getCombinedFilter(): RowFilter<M, Integer>
+  + onFilterChanged(int, Set<Object>): void
+}
+class RowSorterModelAdapter<M> {
+  + RowSorterModelAdapter(M, RowSorter<M>): 
+  - sorter: RowSorter<M>
+  - model: M
+  + isCellEditable(int, int): boolean
+  + setValueAt(Object, int, int): void
+  + removeTableModelListener(TableModelListener): void
+  + addTableModelListener(TableModelListener): void
+  + getColumnClass(int): Class<?>
+  # calculateRow(int): int
+  + getValueAt(int, int): Object
+  + getRowCount(): int
+  + getColumnName(int): String
+  + getColumnCount(): int
+}
+class SalaryWorkerField {
+  + SalaryWorkerField(Consumer<Float>): 
+}
+class ScriptCommandRegistry {
+  + ScriptCommandRegistry(ScriptExecutor, APICommandRegistry, UIReceiver): 
+  - registry: APICommandRegistry
+  + withUI(UIReceiver): CommandRegistry
+}
+class ScriptInvoker {
+  + ScriptInvoker(JPanel): 
+  - log: Logger
+  - mainResultPanel: JPanel
+  - resources: UIResources
+  - show(String, ClientCommandResponse<UserPrintableAPICommandResponse>): void
+  - handleHelpResponse(JPanel): void
+  - handleFilter_less_than_positionResponse(UserPrintableAPICommandResponse, JPanel): void
+  - handleExecute_scriptResponse(UserPrintableAPICommandResponse, JPanel): void
+  - handlePrint_descendingResponse(UserPrintableAPICommandResponse, JPanel): void
+  - handleExitResponse(UserPrintableAPICommandResponse, JPanel): void
+  - defaultHandel(JPanel): void
+  - createWorkerTable(List<Worker>): JPanel
+  - handleShowResponse(UserPrintableAPICommandResponse, JPanel): void
+  - handlePrint_unique_organizationResponse(UserPrintableAPICommandResponse, JPanel): void
+  + invoke(UICallableCommand, List<String>): boolean
+  - handleAddResponse(UserPrintableAPICommandResponse, JPanel): void
+  - handleInfoResponse(UserPrintableAPICommandResponse, JPanel): void
+  - createOrganizationTable(List<Organization>): JPanel
+}
+class ScriptPanel {
+  + ScriptPanel(Consumer<Boolean>): 
+  - scriptChooser: JFileChooser
+  - resultPanel: JPanel
+  - handle: Consumer<Boolean>
+  - scriptExecutor: ScriptExecutor
+  - buttonTextKey: String
+  - executeScriptButton: JButton
+  - initComponents(): void
+  # initComponentsI18n(): void
+  - getResultArea(): JScrollPane
+}
+class SelectFilterControl {
+  + SelectFilterControl(JComponent, CheckBoxListModel): 
+  - itemsModel: CheckBoxListModel
+  - setAll(boolean): void
+}
+interface ServerEventListener << interface >> {
+  + onEvent(Event): void
+}
+class TableListModelAdapter<T, M> {
+  + TableListModelAdapter(M, int): 
+  - listenerList: EventListenerList
+  - columnNames: List<String>
+  - baseModel: M
+  + getColumnName(int): String
+  + isCellEditable(int, int): boolean
+  + getBaseModel(): M
+  + getColumnClass(int): Class<?>
+  # setValueAt(T, Object, int): void
+  + getRowCount(): int
+  + addTableModelListener(TableModelListener): void
+  + getValueAt(int, int): Object
+  + removeTableModelListener(TableModelListener): void
+  # updateColumnNames(): void
+  # getValueAt(T, int): Object
+  # getColumnNames(): List<String>
+  + getColumnCount(): int
+  + setValueAt(Object, int, int): void
+}
+class TableListModelListenerAdapter {
+  + TableListModelListenerAdapter(TableModel, TableModelListener): 
+  - cache: Map<TableModelListener, TableListModelListenerAdapter>
+  - model: TableModel
+  - base: TableModelListener
+  + wrap(TableModel, TableModelListener): TableListModelListenerAdapter
+  + intervalRemoved(ListDataEvent): void
+  + intervalAdded(ListDataEvent): void
+  + contentsChanged(ListDataEvent): void
+  - getEvent(ListDataEvent, int): TableModelEvent
+}
+class TableUtils {
+  + TableUtils(): 
+  + buildRow(TableModel, int): Vector<Object>
+}
+class TestInterface {
+  + TestInterface(): 
+  + main(String[]): void
+}
+class TextFieldValidator {
+  + TextFieldValidator(IStringValidator, Consumer<String>, Consumer<String>): 
+  - bad: Consumer<String>
+  - validator: IStringValidator
+  - good: Consumer<String>
+  + insertUpdate(DocumentEvent): void
+  - change(DocumentEvent): void
+  + changedUpdate(DocumentEvent): void
+  + removeUpdate(DocumentEvent): void
+}
+class TypedTableModel<T> {
+  + TypedTableModel(): 
+  - originalData: List<T>
+  + setData(List<T>): void
+  + getOriginalData(): List<T>
+  # convertRow(T): List<Object>
+}
+class UIReloginAPIConnector {
+  + UIReloginAPIConnector(APIClientConnector): 
+  - decoratee: APIClientConnector
+  - onLogout: Runnable
+  + registerOnLogoutListener(Runnable): void
+  + call(APICommand): APICommandResponse
+  + logout(): void
+}
+class UIResources {
+  - UIResources(): 
+  + LOCALE_PROPERTY: String
+  - instance: UIResources
+  - currentLocale: Locale
+  + BASE_BUNDLE_NAME: String
+  - listenerList: EventListenerList
+  + get(String): String
+  + getBundle(): ResourceBundle
+  + getCurrentLocale(): Locale
+  + getSupportedLocales(): List<Locale>
+  + getInstance(): UIResources
+  + addLocaleChangeListener(LocaleChangedEventListener): void
+  + setLocale(Locale): void
+  - buildFont(): Font
+  + removeLocaleChangeListener(LocaleChangedEventListener): void
+}
+class UsernameField {
+  + UsernameField(Consumer<String>): 
+  + setData(String): void
+  + getData(): DataContainer<String>
+}
+class UsersInfoZ {
+  + UsersInfoZ(): 
+  - username: JLabel
+  - workersCountField: JLabel
+  - usernameField: JLabel
+  - workersCountText: JLabel
+  + setWorkersCount(Integer): void
+  # initComponents(): void
+  # initComponentsI18n(): void
+  + setUsername(String): void
+}
+class WorkerAddFrameZ {
+  + WorkerAddFrameZ(): 
+  - addWorkerButton: JButton
+  - workerAddCancelButton: JButton
+  - normalAdd: JRadioButton
+  - ifMinAdd: JRadioButton
+  - ifMaxAdd: JRadioButton
+  - workerInfoPanel: WorkerInfoPanelZ
+  # initComponentsI18n(): void
+  # initComponents(): void
+}
+class WorkerHeaderPanel {
+  + WorkerHeaderPanel(Worker): 
+  - defaultWorker: Worker
+  - usernameField: JTextField
+  ~ resources: UIResources
+  - usernameLabel: JLabel
+  - idLabel: JLabel
+  - idField: JTextField
+  # initComponents(): void
+  # initComponentsI18n(): void
+}
+class WorkerInfoPanelZ {
+  + WorkerInfoPanelZ(): 
+  + WorkerInfoPanelZ(Worker, boolean): 
+  - label5: JLabel
+  - defaultWorker: Worker
+  - label4: JLabel
+  - workerDataContainer: DataContainer<Worker>
+  - workerXField: XCoordinateWorkerField
+  - label2: JLabel
+  - workerNameField: NameField
+  - workerStartField: DateField
+  - endDatePanel: NullableDatePanel
+  - label7: JLabel
+  - label8: JLabel
+  - label6: JLabel
+  - isChangeable: boolean
+  ~ resources: UIResources
+  - workerSalaryField: SalaryWorkerField
+  - label1: JLabel
+  - workerYField: YCoordinateWorkerField
+  - workerPositionCombobox: PositionComboBox
+  - label3: JLabel
+  - organizationIdField: OrganizationCombobox
+  # initComponentsI18n(): void
+  + setData(Worker): void
+  # initComponents(): void
+  + getWorker(): DataContainer<Worker>
+}
+class WorkerModel {
+  + WorkerModel(boolean): 
+  - currentUserId: Integer
+  - loadOwner(): void
+  - loadAll(): List<Worker>
+  - loadOne(Integer): Worker
+  + isEditableByCurrentUser(Worker): boolean
+  + getOwners(): NavigableSet<Integer>
+}
+class WorkerRemoveGFrame {
+  + WorkerRemoveGFrame(): 
+  - removeWorkerButton: JButton
+  - workerInfoPanel: WorkerInfoPanelZ
+  - workerUpdateCancelButton: JButton
+  # initComponentsI18n(): void
+  # initComponents(): void
+}
+class WorkerShowPanelZ {
+  + WorkerShowPanelZ(): 
+  - clearWorkerButton: JButton
+  - removeGreaterButton: JButton
+  - workerTablePanel: JPanel
+  - openAddWorkerPlane: JButton
+  + main(String[]): void
+  # initComponents(): void
+  # initComponentsI18n(): void
+}
+class WorkerSprite {
+  + WorkerSprite(Integer): 
+  - workerID: Integer
+  - redrawRequest: Runnable
+  - ANIMATION_SPEED_PXS: int
+  - currentPosition: Point
+  - positionAnimator: PropertyAnimator<Point>
+  - ICON_SIZE: int
+  - currentName: String
+  - workerData: Worker
+  - opacity: Double
+  - transparencyAnimator: PropertyAnimator<Double>
+  - color: Color
+  - currentIcon: Icon
+  - NAME_LENGTH_MAX: int
+  - endHandler: Runnable
+  + getCoordinates(Worker): Point
+  + hideObject(Runnable): void
+  + setColor(Color): void
+  + paint(Graphics): void
+  - getWorkerSizeMultiplier(): float
+  + getPrimaryKey(): Integer
+  - setOpacity(Double, boolean): void
+  + calculateBorder(): Rectangle
+  + paintComponent(Graphics): void
+  + update(Worker): void
+  - setCurrentPosition(Point, boolean): void
+  + showObject(): void
+  + setOnRedrawRequest(Runnable): void
+}
+class WorkerTableModel {
+  + WorkerTableModel(WorkerModel): 
+  - columnNameKeys: List<String>
+  - lockedColumns: Set<String>
+  # getValueAt(Worker, int): Object
+  # getColumnNames(): List<String>
+  + isCellEditable(int, int): boolean
+}
+class WorkerUpdateFrameFactory {
+  + WorkerUpdateFrameFactory(): 
+  - instance: WorkerUpdateFrameFactory
+  - cache: Map<Integer, WorkerUpdateFrameZ>
+  + getInstance(): WorkerUpdateFrameFactory
+  + open(Worker, boolean): WorkerUpdateFrameZ
+}
+class WorkerUpdateFrameZ {
+  + WorkerUpdateFrameZ(Worker, boolean): 
+  - deleteWorkerButton: JButton
+  - defaultWorker: Worker
+  - workerInfoPanel: WorkerInfoPanelZ
+  - workerUpdateCancelButton: JButton
+  - isEditable: boolean
+  - updateWorkerButton: JButton
+  - workerHeaderPanel: WorkerHeaderPanel
+  # initComponentsI18n(): void
+  # initComponents(): void
+}
+class WorkersMapPage {
+  + WorkersMapPage(WorkerModel): 
+  - ownerColors: Map<Integer, Color>
+  # onClick(Worker): void
+  # recalculateAxis(): void
+  # createSprite(Integer, Worker): WorkerSprite
+  # updateSprite(Integer, WorkerSprite, Worker): void
+  # onServerEvent(Event): void
+}
+class WorkersTable {
+  + WorkersTable(WorkerModel): 
+  - baseModel: WorkerModel
+  # onDelete(ActionEvent): void
+  # onUpdate(ActionEvent): void
+  # onInsert(ActionEvent): void
+}
+class XCoordinateWorkerField {
+  + XCoordinateWorkerField(Consumer<String>): 
+  + getData(): DataContainer<Integer>
+  + setData(Integer): void
+}
+class XTable {
+  + XTable(TableModel): 
+  - table: JTable
+  # updateButton: JButton
+  # deleteButton: JButton
+  - rowSorter: FilterRowSorter<TableModel>
+  - pagedModel: PagingTableModel
+  - model: TableModel
+  - bottomToolbox: Box
+  - externalHeader: FilterSortTableHeader
+  # fireAction(ActionEvent): void
+  # onDelete(ActionEvent): void
+  # initButtonBlock(): void
+  - initSelection(): void
+  + getTable(): JTable
+  + getBottomToolbox(): Box
+  + getSelectedIndexes(): List<Integer>
+  + addActionListener(ActionListener): void
+  # onInsert(ActionEvent): void
+  # onUpdate(ActionEvent): void
+  + removeActionListener(ActionListener): void
+  + setTableStatic(boolean): void
+}
+class YCoordinateWorkerField {
+  + YCoordinateWorkerField(Consumer<String>): 
+}
+
+AbstractDateField              -[#008200,dashed]-^  IDataStorage                  
+AbstractDateField             "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+AbstractEnumCombobox           -[#000082,plain]-^  AbstractWorkerComboBox        
+AbstractFormattedField         -[#000082,plain]-^  AbstractTextWorkerField       
+AbstractTextWorkerField        -[#008200,dashed]-^  IDataStorage                  
+AbstractTextWorkerField       "1" *-[#595959,plain]-> "validator\n1" IStringValidator              
+AbstractTextWorkerField       "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+AbstractWorkerComboBox         -[#008200,dashed]-^  IDataStorage                  
+AbstractWorkerComboBox        "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+ActionCellControl              +-[#820000,plain]-  ActionCellInfo                
+BottomPanelZ                  "1" *-[#595959,plain]-> "infoPanel\n1" CollectionInfoPanel           
+BottomPanelZ                  "1" *-[#595959,plain]-> "langLayout\n1" LanguageChanger               
+BottomPanelZ                   -[#000082,plain]-^  ResourcedPanel                
+CheckboxListCellRenderer       +-[#820000,plain]-  CheckBoxList                  
+CheckedEvent                   +-[#820000,plain]-  CheckBoxListModel             
+CheckedEvent                  "1" *-[#595959,plain]-> "element\n1" CheckedItem                   
+CheckedItem                    +-[#820000,plain]-  CheckBoxList                  
+CheckedListener                +-[#820000,plain]-  CheckBoxListModel             
+CollectionInfoPanel            -[#000082,plain]-^  ResourcedPanel                
+ColumnInfoEventListener        -[#008200,plain]-^  FilterSortParamsEventListener 
+ColumnSort                     +-[#820000,plain]-  FilterRowSorter               
+DateField                      -[#000082,plain]-^  AbstractDateField             
+DoubleAnimator                 -[#000082,plain]-^  PropertyAnimator              
+EditableHeaderRenderer        "1" *-[#595959,plain]-> "reporter\n1" MouseEventReposter            
+ExternalSyncedListModel        -[#000082,plain]-^  ExtendedListModel             
+FilterRowSorter               "1" *-[#595959,plain]-> "columnSortOrder\n*" ColumnSort                    
+FilterSortColumnInfoModel     "1" *-[#595959,plain]-> "rowItems\n1" CheckBoxListModel             
+FilterSortHeaderCell          "1" *-[#595959,plain]-> "infoModel\n1" FilterSortColumnInfoModel     
+FilterSortHeaderCell          "1" *-[#595959,plain]-> "directionButton\n1" IconButton                    
+FilterSortTableHeader          -[#008200,dashed]-^  ColumnInfoEventListener       
+FilterSortTableHeader         "1" *-[#595959,plain]-> "colInfoModels\n*" FilterSortColumnInfoModel     
+FloatTextField                 -[#000082,plain]-^  AbstractFormattedField        
+LanguageChanger               "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+LocalDateField                 -[#000082,plain]-^  AbstractDateField             
+LocaleChangedEventListener     +-[#820000,plain]-  UIResources                   
+LocaleRenderer                 +-[#820000,plain]-  LanguageChanger               
+LoginPage                     "1" *-[#595959,plain]-> "passwordField\n1" PasswordField                 
+LoginPage                      -[#000082,plain]-^  ResourcedFrame                
+LoginPage                     "1" *-[#595959,plain]-> "usernameField\n1" UsernameField                 
+MainFrameZ                    "1" *-[#595959,plain]-> "apiManager\n1" APICommandManager             
+MainFrameZ                    "1" *-[#595959,plain]-> "bottomMenu\n1" BottomPanelZ                  
+MainFrameZ                     -[#000082,plain]-^  ResourcedFrame                
+MainFrameZ                    "1" *-[#595959,plain]-> "usersInfo\n1" UsersInfoZ                    
+MapPage                        -[#595959,dashed]->  ExternalSyncedListModel       
+MapPage                        -[#595959,dashed]->  MapSprite                     
+ModelProvider                 "1" *-[#595959,plain]-> "currentOrganizations\n1" OrganizationModel             
+ModelProvider                 "1" *-[#595959,plain]-> "currentWorkers\n1" WorkerModel                   
+MouseEventReposter             +-[#820000,plain]-  EditableHeaderRenderer        
+NameField                      -[#000082,plain]-^  AbstractTextWorkerField       
+NullableDatePanel              -[#008200,dashed]-^  IDataStorage                  
+NullableDatePanel             "1" *-[#595959,plain]-> "workerEndDateField\n1" LocalDateField                
+OrgAddFrameZ                  "1" *-[#595959,plain]-> "orgInfoPanel\n1" OrganizationInfoPanelZ        
+OrgAddFrameZ                   -[#000082,plain]-^  ResourcedFrame                
+OrgAddFrameZ                  "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+OrgUpdateFrameZ               "1" *-[#595959,plain]-> "header\n1" OrganizationHeaderPanel       
+OrgUpdateFrameZ               "1" *-[#595959,plain]-> "orgInfoPanel\n1" OrganizationInfoPanelZ        
+OrgUpdateFrameZ                -[#000082,plain]-^  ResourcedFrame                
+OrgUpdateFrameZ               "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+OrganizationCombobox           -[#000082,plain]-^  AbstractWorkerComboBox        
+OrganizationCombobox          "1" *-[#595959,plain]-> "cachedList\n*" OrganizationPresenter         
+OrganizationHeaderPanel        -[#000082,plain]-^  ResourcedPanel                
+OrganizationHeaderPanel       "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+OrganizationInfoPanelZ        "1" *-[#595959,plain]-> "workerDataContainer\n1" DataContainer                 
+OrganizationInfoPanelZ        "1" *-[#595959,plain]-> "workerNameField\n1" NameField                     
+OrganizationInfoPanelZ        "1" *-[#595959,plain]-> "typeCombobox\n1" OrganizationTypeCombobox      
+OrganizationInfoPanelZ         -[#000082,plain]-^  ResourcedPanel                
+OrganizationInfoPanelZ        "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+OrganizationModel              -[#000082,plain]-^  ExternalSyncedListModel       
+OrganizationShowPanel          -[#000082,plain]-^  ResourcedPanel                
+OrganizationTable             "1" *-[#595959,plain]-> "baseModel\n1" OrganizationModel             
+OrganizationTable              -[#000082,plain]-^  XTable                        
+OrganizationTableModel         -[#000082,plain]-^  TableListModelAdapter         
+OrganizationTypeCombobox       -[#000082,plain]-^  AbstractEnumCombobox          
+PagingConfigChangedListener    +-[#820000,plain]-  PagingTableControl            
+PagingTableControl            "1" *-[#595959,plain]-> "listener\n1" PagingConfigChangedListener   
+PagingTableModel              "1" *-[#595959,plain]-> "paginatorControl\n1" PagingTableControl            
+PasswordField                  -[#000082,plain]-^  AbstractTextWorkerField       
+PointAnimator                  -[#000082,plain]-^  PropertyAnimator              
+PositionComboBox               -[#000082,plain]-^  AbstractEnumCombobox          
+ResourcedAreaText              -[#000082,plain]-^  ResourcedPanel                
+ResourcedFrame                "1" *-[#595959,plain]-> "uiResources\n1" UIResources                   
+ResourcedLabel                 -[#000082,plain]-^  ResourcedPanel                
+ResourcedPanel                "1" *-[#595959,plain]-> "uiResources\n1" UIResources                   
+Row                            +-[#820000,plain]-  FilterRowSorter               
+RowFilterEntry                 +-[#820000,plain]-  FilterRowSorter               
+RowSorterEventAdapter         "1" *-[#595959,plain]-> "sorter\n1" FilterRowSorter               
+RowSorterEventAdapter          -[#008200,dashed]-^  FilterSortParamsEventListener 
+SalaryWorkerField              -[#000082,plain]-^  FloatTextField                
+ScriptInvoker                 "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+ScriptPanel                    -[#000082,plain]-^  ResourcedPanel                
+SelectFilterControl           "1" *-[#595959,plain]-> "itemsModel\n1" CheckBoxListModel             
+SelectFilterControl            -[#000082,plain]-^  PopupPanel                    
+TableListModelListenerAdapter  +-[#820000,plain]-  TableListModelAdapter         
+TextFieldValidator            "1" *-[#595959,plain]-> "validator\n1" IStringValidator              
+UsernameField                  -[#000082,plain]-^  AbstractTextWorkerField       
+UsersInfoZ                     -[#000082,plain]-^  ResourcedPanel                
+WorkerAddFrameZ                -[#000082,plain]-^  ResourcedFrame                
+WorkerAddFrameZ               "1" *-[#595959,plain]-> "workerInfoPanel\n1" WorkerInfoPanelZ              
+WorkerHeaderPanel              -[#000082,plain]-^  ResourcedPanel                
+WorkerHeaderPanel             "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+WorkerInfoPanelZ              "1" *-[#595959,plain]-> "workerDataContainer\n1" DataContainer                 
+WorkerInfoPanelZ              "1" *-[#595959,plain]-> "workerStartField\n1" DateField                     
+WorkerInfoPanelZ              "1" *-[#595959,plain]-> "workerNameField\n1" NameField                     
+WorkerInfoPanelZ              "1" *-[#595959,plain]-> "endDatePanel\n1" NullableDatePanel             
+WorkerInfoPanelZ              "1" *-[#595959,plain]-> "organizationIdField\n1" OrganizationCombobox          
+WorkerInfoPanelZ              "1" *-[#595959,plain]-> "workerPositionCombobox\n1" PositionComboBox              
+WorkerInfoPanelZ               -[#000082,plain]-^  ResourcedPanel                
+WorkerInfoPanelZ              "1" *-[#595959,plain]-> "workerSalaryField\n1" SalaryWorkerField             
+WorkerInfoPanelZ              "1" *-[#595959,plain]-> "resources\n1" UIResources                   
+WorkerInfoPanelZ              "1" *-[#595959,plain]-> "workerXField\n1" XCoordinateWorkerField        
+WorkerInfoPanelZ              "1" *-[#595959,plain]-> "workerYField\n1" YCoordinateWorkerField        
+WorkerModel                    -[#000082,plain]-^  ExternalSyncedListModel       
+WorkerRemoveGFrame             -[#000082,plain]-^  ResourcedFrame                
+WorkerRemoveGFrame            "1" *-[#595959,plain]-> "workerInfoPanel\n1" WorkerInfoPanelZ              
+WorkerShowPanelZ               -[#000082,plain]-^  ResourcedPanel                
+WorkerSprite                   -[#000082,plain]-^  MapSprite                     
+WorkerSprite                  "1" *-[#595959,plain]-> "positionAnimator\n1" PropertyAnimator              
+WorkerTableModel               -[#000082,plain]-^  TableListModelAdapter         
+WorkerUpdateFrameFactory      "1" *-[#595959,plain]-> "cache\n*" WorkerUpdateFrameZ            
+WorkerUpdateFrameZ             -[#000082,plain]-^  ResourcedFrame                
+WorkerUpdateFrameZ            "1" *-[#595959,plain]-> "workerHeaderPanel\n1" WorkerHeaderPanel             
+WorkerUpdateFrameZ            "1" *-[#595959,plain]-> "workerInfoPanel\n1" WorkerInfoPanelZ              
+WorkersMapPage                 -[#000082,plain]-^  MapPage                       
+WorkersTable                  "1" *-[#595959,plain]-> "baseModel\n1" WorkerModel                   
+WorkersTable                   -[#000082,plain]-^  XTable                        
+XCoordinateWorkerField         -[#000082,plain]-^  AbstractFormattedField        
+XTable                        "1" *-[#595959,plain]-> "rowSorter\n1" FilterRowSorter               
+XTable                        "1" *-[#595959,plain]-> "externalHeader\n1" FilterSortTableHeader         
+XTable                        "1" *-[#595959,plain]-> "pagedModel\n1" PagingTableModel              
+YCoordinateWorkerField         -[#000082,plain]-^  FloatTextField                
+@enduml

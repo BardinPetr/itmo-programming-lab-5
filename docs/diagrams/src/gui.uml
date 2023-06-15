@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/petr/Desktop/itmo-programming-lab-5/client/clientGUI</OriginalElement>
+  <nodes>
+    <node x="1813.3016055045873" y="3195.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxList</node>
+    <node x="4647.461448598131" y="1194.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.OrganizationTypeCombobox</node>
+    <node x="15.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model.TypedTableModel</node>
+    <node x="2602.9266055045873" y="3905.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.button.IconButton</node>
+    <node x="2305.9266055045873" y="3918.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel.CheckedListener</node>
+    <node x="234.42660550458731" y="5365.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter.Row</node>
+    <node x="4378.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.i18n.data.GUITexts_es_CO</node>
+    <node x="1983.5420560747662" y="1718.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show.OrganizationShowPanel</node>
+    <node x="2670.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.utils.EventUtils</node>
+    <node x="5102.856651376147" y="3406.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.editable.EditableHeaderRenderer.MouseEventReposter</node>
+    <node x="5794.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.ui.TestInterface</node>
+    <node x="3517.356651376147" y="4990.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.MapPage</node>
+    <node x="2319.2935779816517" y="5315.0">ru.bardinpetr.itmo.lab5.clientgui.ui.animation.impl.DoubleAnimator</node>
+    <node x="6842.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.models.sync.ServerEventListener</node>
+    <node x="7711.542056074766" y="162.0">ru.bardinpetr.itmo.lab5.clientgui.ui.utils.TextFieldValidator</node>
+    <node x="3504.356651376147" y="5981.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.WorkersMapPage</node>
+    <node x="5072.461448598131" y="1194.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.PositionComboBox</node>
+    <node x="4616.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.i18n.data.GUITexts_hu</node>
+    <node x="3805.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.utils.ListUtil</node>
+    <node x="2239.542056074766" y="1693.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedLabel</node>
+    <node x="848.5420560747662" y="1693.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationHeaderPanel</node>
+    <node x="7116.356651376147" y="3195.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.button.PopupMenuButton</node>
+    <node x="1100.9380733944954" y="6006.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.OrganizationTable</node>
+    <node x="942.5" y="4394.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.FilterSortTableHeader</node>
+    <node x="5838.961448598131" y="577.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.DateField</node>
+    <node x="597.5" y="4282.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter</node>
+    <node x="6799.356651376147" y="3195.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.actions.ActionCellInfo</node>
+    <node x="7068.375" y="602.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractFormattedField</node>
+    <node x="3897.356651376147" y="3793.5">ru.bardinpetr.itmo.lab5.clientgui.models.impl.OrganizationTableModel</node>
+    <node x="1577.2920560747662" y="1143.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel</node>
+    <node x="852.9380733944954" y="6006.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.WorkersTable</node>
+    <node x="3144.875" y="4344.5">ru.bardinpetr.itmo.lab5.clientgui.models.sync.ExternalSyncedListModel</node>
+    <node x="4225.356651376147" y="3195.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model.TableListModelAdapter</node>
+    <node x="2497.542056074766" y="1618.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ</node>
+    <node x="2845.25" y="2313.5">ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.add.OrgAddFrameZ</node>
+    <node x="6626.961448598131" y="1181.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.NameField</node>
+    <node x="6813.856651376147" y="3330.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.actions.ActionCellInfo.ActionCellControl</node>
+    <node x="7175.711448598131" y="866.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.FloatTextField</node>
+    <node x="517.75" y="2326.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.BottomPanelZ</node>
+    <node x="1204.4300458715597" y="3892.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.SelectFilterControl</node>
+    <node x="-181.5" y="2389.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger.LocaleRenderer</node>
+    <node x="207.5" y="3667.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableControl</node>
+    <node x="7958.961448598131" y="589.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.PasswordField</node>
+    <node x="4854.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.i18n.data.GUITexts_fi</node>
+    <node x="3788.211448598131" y="2301.0">ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ</node>
+    <node x="4833.336448598131" y="2839.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerUpdateFrameFactory</node>
+    <node x="5568.0" y="6237.0">Build_gradle</node>
+    <node x="3150.0516055045873" y="5390.5">ru.bardinpetr.itmo.lab5.clientgui.models.impl.OrganizationModel</node>
+    <node x="4846.836448598131" y="2288.5">ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ</node>
+    <node x="3457.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.ui.utils.TableUtils</node>
+    <node x="1329.0435779816517" y="3417.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.listeners.FilterSortParamsEventListener</node>
+    <node x="5152.375" y="149.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractWorkerComboBox</node>
+    <node x="-251.0" y="3417.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxList.CheckboxListCellRenderer</node>
+    <node x="6393.461448598131" y="766.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.NullableDatePanel</node>
+    <node x="3698.0424454828662" y="1693.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame</node>
+    <node x="724.7935779816517" y="5165.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.XTable</node>
+    <node x="4204.375" y="1131.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer</node>
+    <node x="7269.542056074766" y="137.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractTextWorkerField</node>
+    <node x="7672.961448598131" y="589.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.UsernameField</node>
+    <node x="6528.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.ui.utils.ISuccessCommandHandler</node>
+    <node x="-99.5" y="1731.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger</node>
+    <node x="1851.606651376147" y="4394.5">ru.bardinpetr.itmo.lab5.clientgui.ui.animation.PropertyAnimator</node>
+    <node x="5999.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.Main</node>
+    <node x="2094.5424454828662" y="-456.0">ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources</node>
+    <node x="6304.417056074766" y="-317.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.IDataStorage</node>
+    <node x="1673.2935779816517" y="5277.5">ru.bardinpetr.itmo.lab5.clientgui.ui.animation.impl.PointAnimator</node>
+    <node x="4644.375" y="37.0">ru.bardinpetr.itmo.lab5.clientgui.utils.script.ScriptInvoker</node>
+    <node x="7925.356651376147" y="3195.0">ru.bardinpetr.itmo.lab5.clientgui.utils.Config</node>
+    <node x="6204.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.ui.animation.PropertyAnimatorListener</node>
+    <node x="1971.461448598131" y="2301.0">ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update.OrgUpdateFrameZ</node>
+    <node x="1911.9266055045873" y="3704.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.models.FilterSortColumnInfoModel</node>
+    <node x="934.6685779816517" y="3366.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.panel.PopupPanel</node>
+    <node x="4913.875" y="841.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractEnumCombobox</node>
+    <node x="3089.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.utils.GraphicsUtils</node>
+    <node x="638.5" y="3854.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter.ColumnSort</node>
+    <node x="1991.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.api.QueuedAPIConnector</node>
+    <node x="5575.356651376147" y="3195.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.RowSorterModelAdapter</node>
+    <node x="5092.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.i18n.data.GUITexts_ru</node>
+    <node x="2571.4266055045873" y="3342.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel</node>
+    <node x="201.5" y="4307.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableModel</node>
+    <node x="576.5420560747662" y="1631.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.CollectionInfoPanel</node>
+    <node x="934.0" y="3918.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.listeners.ColumnInfoEventListener</node>
+    <node x="5051.356651376147" y="3195.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.editable.EditableHeaderRenderer</node>
+    <node x="4119.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.api.APIConnectorFactory</node>
+    <node x="-251.0" y="250.5">ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources.LocaleChangedEventListener</node>
+    <node x="6253.292056074766" y="149.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractDateField</node>
+    <node x="275.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.actions.ActionColumn</node>
+    <node x="-251.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.ui.utils.DateLabelFormatter</node>
+    <node x="0.4266055045873145" y="5340.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter.RowFilterEntry</node>
+    <node x="2505.4266055045873" y="4469.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.FilterSortHeaderCell</node>
+    <node x="4373.211448598131" y="2226.0">ru.bardinpetr.itmo.lab5.clientgui.ui.pages.login.LoginPage</node>
+    <node x="1506.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.utils.script.ScriptCommandRegistry</node>
+    <node x="3182.356651376147" y="5981.0">ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelProvider</node>
+    <node x="3227.875" y="3880.0">ru.bardinpetr.itmo.lab5.clientgui.models.ExtendedListModel</node>
+    <node x="4080.211448598131" y="2338.5">ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.remove.greater.WorkerRemoveGFrame</node>
+    <node x="6444.356651376147" y="3195.0">ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.EnumPresenter</node>
+    <node x="5970.461448598131" y="803.5">ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.OrganizationPresenter</node>
+    <node x="6786.461448598131" y="866.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.XCoordinateWorkerField</node>
+    <node x="4525.356651376147" y="3731.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model.TableListModelAdapter.TableListModelListenerAdapter</node>
+    <node x="3496.375" y="3304.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxList.CheckedItem</node>
+    <node x="1440.5420560747662" y="1681.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerShowPanelZ</node>
+    <node x="6331.461448598131" y="577.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.LocalDateField</node>
+    <node x="5996.356651376147" y="3195.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.script.GUIExecutorAdapter</node>
+    <node x="3473.875" y="3892.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel.CheckedEvent</node>
+    <node x="807.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.editable.EditableHeaderTableColumn</node>
+    <node x="1208.2935779816517" y="5340.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.RowSorterEventAdapter</node>
+    <node x="1936.2935779816517" y="5077.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.WorkerSprite</node>
+    <node x="4244.356651376147" y="3768.5">ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerTableModel</node>
+    <node x="5531.461448598131" y="1131.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.OrganizationCombobox</node>
+    <node x="4875.253504672897" y="1456.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ</node>
+    <node x="2313.961448598131" y="2689.0">ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ</node>
+    <node x="5330.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.i18n.data.GUITexts</node>
+    <node x="2823.0516055045873" y="5340.0">ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerModel</node>
+    <node x="1130.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.ui.utils.GridConstrains</node>
+    <node x="7516.292056074766" y="-280.0">ru.bardinpetr.itmo.lab5.clientgui.ui.utils.IStringValidator</node>
+    <node x="7375.211448598131" y="1207.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.YCoordinateWorkerField</node>
+    <node x="7076.211448598131" y="1207.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.SalaryWorkerField</node>
+    <node x="2876.4266055045873" y="4557.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.MapSprite</node>
+    <node x="3146.25" y="2326.0">ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandManager</node>
+    <node x="2350.0" y="6237.0">ru.bardinpetr.itmo.lab5.clientgui.utils.ListDataListenerAdapter</node>
+    <node x="247.0" y="3430.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableControl.PagingConfigChangedListener</node>
+    <node x="1166.5420560747662" y="1656.0">ru.bardinpetr.itmo.lab5.clientgui.ui.components.script.ScriptPanel</node>
+    <node x="5230.253504672897" y="1668.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerHeaderPanel</node>
+    <node x="7555.356651376147" y="3195.0">ru.bardinpetr.itmo.lab5.clientgui.api.UIReloginAPIConnector</node>
+    <node x="1701.5420560747662" y="1693.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedAreaText</node>
+    <node x="317.54205607476615" y="1668.5">ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo.UsersInfoZ</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.OrganizationTable" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.XTable" relationship="GENERALIZATION">
+      <point x="-72.0" y="-80.5" />
+      <point x="1172.9380733944954" y="5921.0" />
+      <point x="880.2935779816517" y="5921.0" />
+      <point x="0.0" y="280.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.add.OrgAddFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame" relationship="GENERALIZATION">
+      <point x="70.25" y="-118.0" />
+      <point x="3056.0" y="2194.0" />
+      <point x="3817.5424454828662" y="2194.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter.Row" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter" relationship="INNER_CLASS">
+      <point x="0.0" y="-80.5" />
+      <point x="318.4266055045873" y="4969.0" />
+      <point x="256.91857798165165" y="4969.0" />
+      <point x="256.91857798165165" y="4959.0" />
+      <point x="678.75" y="4959.0" />
+      <point x="-81.25" y="318.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter.RowFilterEntry" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter" relationship="INNER_CLASS">
+      <point x="0.0" y="-105.5" />
+      <point x="107.42660550458731" y="4969.0" />
+      <point x="256.91857798165165" y="4969.0" />
+      <point x="256.91857798165165" y="4959.0" />
+      <point x="678.75" y="4959.0" />
+      <point x="-81.25" y="318.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.login.LoginPage" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame" relationship="GENERALIZATION">
+      <point x="-109.25" y="-205.5" />
+      <point x="4482.461448598131" y="2194.0" />
+      <point x="3817.5424454828662" y="2194.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelProvider" target="ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerModel" relationship="TO_ONE">
+      <point x="-150.99965137614709" y="-0.0" />
+      <point x="1998.5" y="6086.5" />
+      <point x="1998.5" y="5978.0" />
+      <point x="2976.552" y="5978.0" />
+      <point x="3.9449541282010614E-4" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.WorkersTable" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.XTable" relationship="GENERALIZATION">
+      <point x="-57.0" y="-80.5" />
+      <point x="909.9380733944954" y="5921.0" />
+      <point x="880.2935779816517" y="5921.0" />
+      <point x="0.0" y="280.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.WorkerSprite" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.MapSprite" relationship="GENERALIZATION">
+      <point x="90.75" y="-368.0" />
+      <point x="2208.5435779816517" y="4959.0" />
+      <point x="2931.1766055045873" y="4959.0" />
+      <point x="-54.75" y="42.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.WorkerSprite" target="ru.bardinpetr.itmo.lab5.clientgui.ui.animation.PropertyAnimator" relationship="TO_ONE">
+      <point x="-84.1869266055046" y="-368.0" />
+      <point x="-0.0" y="205.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerTableModel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model.TableListModelAdapter" relationship="GENERALIZATION">
+      <point x="0.0" y="-93.0" />
+      <point x="4374.856651376147" y="3711.0" />
+      <point x="4217.856651376147" y="3711.0" />
+      <point x="4217.856651376147" y="3701.0" />
+      <point x="4319.356651376147" y="3701.0" />
+      <point x="-94.0" y="243.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.actions.ActionCellInfo.ActionCellControl" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.actions.ActionCellInfo" relationship="INNER_CLASS">
+      <point x="0.0" y="-55.5" />
+      <point x="0.0" y="42.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo.UsersInfoZ" relationship="TO_ONE">
+      <point x="-133.5" y="15.0" />
+      <point x="437.04205607476615" y="2934.5" />
+      <point x="-0.0" y="130.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.YCoordinateWorkerField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.FloatTextField" relationship="GENERALIZATION">
+      <point x="0.0" y="-29.5" />
+      <point x="7537.711448598131" y="1104.0" />
+      <point x="7376.711448598131" y="1104.0" />
+      <point x="0.0" y="55.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.script.ScriptPanel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="0.0" y="-143.0" />
+      <point x="1293.5420560747662" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.CollectionInfoPanel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="0.0" y="-168.0" />
+      <point x="702.0420560747662" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.LocalDateField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractDateField" relationship="GENERALIZATION">
+      <point x="0.0" y="-67.5" />
+      <point x="6458.461448598131" y="550.0" />
+      <point x="6390.792056074766" y="550.0" />
+      <point x="0.0" y="130.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.XCoordinateWorkerField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractFormattedField" relationship="GENERALIZATION">
+      <point x="0.0" y="-55.0" />
+      <point x="6948.961448598131" y="739.0" />
+      <point x="7278.875" y="739.0" />
+      <point x="0.0" y="42.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractFormattedField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractTextWorkerField" relationship="GENERALIZATION">
+      <point x="0.0" y="-42.5" />
+      <point x="7278.875" y="550.0" />
+      <point x="7480.542056074766" y="550.0" />
+      <point x="0.0" y="143.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableModel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableControl" relationship="TO_ONE">
+      <point x="-0.0" y="-293.0" />
+      <point x="-0.0" y="280.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.PositionComboBox" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractEnumCombobox" relationship="GENERALIZATION">
+      <point x="0.0" y="-42.5" />
+      <point x="5245.461448598131" y="1104.0" />
+      <point x="5105.375" y="1104.0" />
+      <point x="0.0" y="80.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.utils.script.ScriptInvoker" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="-244.0" y="-0.0" />
+      <point x="2961.0" y="280.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.remove.greater.WorkerRemoveGFrame" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame" relationship="GENERALIZATION">
+      <point x="-68.25" y="-93.0" />
+      <point x="4148.461448598131" y="2194.0" />
+      <point x="3817.5424454828662" y="2194.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame" relationship="GENERALIZATION">
+      <point x="-76.5" y="-143.0" />
+      <point x="4923.336448598131" y="2194.0" />
+      <point x="3817.5424454828662" y="2194.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerHeaderPanel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="-58.0" y="-130.5" />
+      <point x="5288.253504672897" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update.OrgUpdateFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ" relationship="TO_ONE">
+      <point x="14.999551401868757" y="-130.5" />
+      <point x="2126.961" y="2247.0" />
+      <point x="2682.042" y="2247.0" />
+      <point x="-5.607476623481489E-5" y="180.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.PositionComboBox" relationship="TO_ONE">
+      <point x="37.20794392523385" y="-343.0" />
+      <point x="-165.5" y="42.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.YCoordinateWorkerField" relationship="TO_ONE">
+      <point x="167.5" y="148.0" />
+      <point x="7537.711448598131" y="1947.0" />
+      <point x="-0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableControl.PagingConfigChangedListener" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableControl" relationship="INNER_CLASS">
+      <point x="71.25" y="29.5" />
+      <point x="460.75" y="3646.0" />
+      <point x="480.5" y="3646.0" />
+      <point x="91.0" y="-280.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="184.49994392523377" y="-0.0" />
+      <point x="2961.0" y="1799.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.FilterSortHeaderCell" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.models.FilterSortColumnInfoModel" relationship="TO_ONE">
+      <point x="3.9449541282010614E-4" y="-130.5" />
+      <point x="2680.927" y="4323.0" />
+      <point x="2098.927" y="4323.0" />
+      <point x="3.9449541282010614E-4" y="243.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="14.999943925233765" y="93.0" />
+      <point x="1711.792" y="1383.0" />
+      <point x="2961.0" y="1383.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractTextWorkerField" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="-211.00005607476578" y="-0.0" />
+      <point x="6706.961" y="280.0" />
+      <point x="6706.961" y="1149.0" />
+      <point x="6400.961" y="1149.0" />
+      <point x="6400.961" y="2168.0" />
+      <point x="2961.0" y="2168.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.SalaryWorkerField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.FloatTextField" relationship="GENERALIZATION">
+      <point x="0.0" y="-29.5" />
+      <point x="7215.711448598131" y="1104.0" />
+      <point x="7376.711448598131" y="1104.0" />
+      <point x="0.0" y="55.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer" relationship="TO_ONE">
+      <point x="14.999943925233765" y="-180.5" />
+      <point x="2697.042" y="1529.0" />
+      <point x="4345.375" y="1529.0" />
+      <point x="-0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update.OrgUpdateFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationHeaderPanel" relationship="TO_ONE">
+      <point x="-140.5" y="-0.0" />
+      <point x="997.5420560747662" y="2431.5" />
+      <point x="-0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model.TableListModelAdapter.TableListModelListenerAdapter" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model.TableListModelAdapter" relationship="INNER_CLASS">
+      <point x="0.0" y="-130.5" />
+      <point x="4765.856651376147" y="3711.0" />
+      <point x="4507.356651376147" y="3711.0" />
+      <point x="94.0" y="243.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter.ColumnSort" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter" relationship="INNER_CLASS">
+      <point x="-60.75" y="93.0" />
+      <point x="699.25" y="4260.0" />
+      <point x="678.75" y="4260.0" />
+      <point x="-81.25" y="-318.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.OrganizationCombobox" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractWorkerComboBox" relationship="GENERALIZATION">
+      <point x="-104.5" y="-105.5" />
+      <point x="5635.961448598131" y="1104.0" />
+      <point x="5351.461448598131" y="1104.0" />
+      <point x="5351.461448598131" y="550.0" />
+      <point x="5307.375" y="550.0" />
+      <point x="0.0" y="130.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame" relationship="GENERALIZATION">
+      <point x="66.75" y="-230.5" />
+      <point x="2514.211448598131" y="2668.0" />
+      <point x="3658.75" y="2668.0" />
+      <point x="3658.75" y="2194.0" />
+      <point x="3817.5424454828662" y="2194.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="-83.75" y="-343.0" />
+      <point x="4959.003504672897" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.models.sync.ExternalSyncedListModel" target="ru.bardinpetr.itmo.lab5.clientgui.models.ExtendedListModel" relationship="GENERALIZATION">
+      <point x="0.0" y="-255.5" />
+      <point x="0.0" y="67.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.utils.DataContainer" relationship="TO_ONE">
+      <point x="-167.49950467289727" y="-198.0" />
+      <point x="3832.542" y="1601.0" />
+      <point x="3832.542" y="1529.0" />
+      <point x="4345.375" y="1529.0" />
+      <point x="-0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.editable.EditableHeaderRenderer.MouseEventReposter" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.editable.EditableHeaderRenderer" relationship="INNER_CLASS">
+      <point x="94.0" y="-143.0" />
+      <point x="5384.856651376147" y="3381.0" />
+      <point x="5410.606651376147" y="3381.0" />
+      <point x="119.75" y="80.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.DateField" relationship="TO_ONE">
+      <point x="167.5" y="-178.0" />
+      <point x="5498.961448598131" y="1621.0" />
+      <point x="5498.961448598131" y="644.5" />
+      <point x="-121.0" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.show.OrganizationShowPanel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="0.0" y="-80.5" />
+      <point x="2101.542056074766" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractWorkerComboBox" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.IDataStorage" relationship="REALIZATION">
+      <point x="77.5" y="-130.5" />
+      <point x="5384.875" y="6.0" />
+      <point x="6435.417056074766" y="6.0" />
+      <point x="0.0" y="67.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update.OrgUpdateFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame" relationship="GENERALIZATION">
+      <point x="70.25" y="-130.5" />
+      <point x="2182.211448598131" y="2194.0" />
+      <point x="3817.5424454828662" y="2194.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.XTable" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableModel" relationship="TO_ONE">
+      <point x="-155.5" y="-0.0" />
+      <point x="419.9266055045873" y="5445.5" />
+      <point x="30.426605504587314" y="293.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedLabel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="0.0" y="-105.5" />
+      <point x="2358.542056074766" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.listeners.ColumnInfoEventListener" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.listeners.FilterSortParamsEventListener" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-29.5" />
+      <point x="1058.5" y="3646.0" />
+      <point x="1400.0435779816517" y="3646.0" />
+      <point x="-71.0" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.FloatTextField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractFormattedField" relationship="GENERALIZATION">
+      <point x="0.0" y="-55.0" />
+      <point x="7376.711448598131" y="739.0" />
+      <point x="7278.875" y="739.0" />
+      <point x="0.0" y="42.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.UsernameField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractTextWorkerField" relationship="GENERALIZATION">
+      <point x="0.0" y="-55.0" />
+      <point x="7805.961448598131" y="550.0" />
+      <point x="7480.542056074766" y="550.0" />
+      <point x="0.0" y="143.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.animation.impl.DoubleAnimator" target="ru.bardinpetr.itmo.lab5.clientgui.ui.animation.PropertyAnimator" relationship="GENERALIZATION">
+      <point x="0.0" y="-130.5" />
+      <point x="2432.7935779816517" y="4969.0" />
+      <point x="2080.0550458715597" y="4969.0" />
+      <point x="2080.0550458715597" y="4959.0" />
+      <point x="2124.606651376147" y="4959.0" />
+      <point x="91.0" y="205.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractDateField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.IDataStorage" relationship="REALIZATION">
+      <point x="68.75" y="-130.5" />
+      <point x="6459.542056074766" y="6.0" />
+      <point x="6435.417056074766" y="6.0" />
+      <point x="0.0" y="67.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.add.OrgAddFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="-0.0" y="-118.0" />
+      <point x="2985.75" y="2168.0" />
+      <point x="2961.0" y="2168.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerHeaderPanel" relationship="TO_ONE">
+      <point x="153.0" y="-0.0" />
+      <point x="5346.253504672897" y="2431.5" />
+      <point x="-0.0" y="130.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.utils.TextFieldValidator" target="ru.bardinpetr.itmo.lab5.clientgui.ui.utils.IStringValidator" relationship="TO_ONE">
+      <point x="-5.607476578006754E-5" y="-118.0" />
+      <point x="7921.542" y="-29.5" />
+      <point x="7648.292" y="-29.5" />
+      <point x="-5.607476578006754E-5" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.models.impl.OrganizationTableModel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.model.TableListModelAdapter" relationship="GENERALIZATION">
+      <point x="0.0" y="-68.0" />
+      <point x="4060.856651376147" y="3711.0" />
+      <point x="4217.856651376147" y="3711.0" />
+      <point x="4217.856651376147" y="3701.0" />
+      <point x="4319.356651376147" y="3701.0" />
+      <point x="-94.0" y="243.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.models.factory.ModelProvider" target="ru.bardinpetr.itmo.lab5.clientgui.models.impl.OrganizationModel" relationship="TO_ONE">
+      <point x="3.486238529148977E-4" y="105.5" />
+      <point x="3333.357" y="6213.5" />
+      <point x="2118.5" y="6213.5" />
+      <point x="2118.5" y="6194.0" />
+      <point x="3159.5" y="6194.0" />
+      <point x="-108.05160550458731" y="55.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedAreaText" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="0.0" y="-105.5" />
+      <point x="1832.5420560747662" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.NullableDatePanel" relationship="TO_ONE">
+      <point x="167.5" y="-148.0" />
+      <point x="6185.961448598131" y="1651.0" />
+      <point x="6185.961448598131" y="1057.0" />
+      <point x="-139.0" y="135.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel.CheckedListener" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel" relationship="INNER_CLASS">
+      <point x="0.0" y="-29.5" />
+      <point x="2444.4266055045873" y="3646.0" />
+      <point x="2930.6766055045873" y="3646.0" />
+      <point x="2930.6766055045873" y="3636.0" />
+      <point x="2851.1766055045873" y="3636.0" />
+      <point x="93.25" y="117.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel.CheckedEvent" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxList.CheckedItem" relationship="TO_ONE">
+      <point x="5.0" y="-55.5" />
+      <point x="-0.0" y="155.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.login.LoginPage" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.PasswordField" relationship="TO_ONE">
+      <point x="-0.0" y="205.5" />
+      <point x="4591.711448598131" y="3017.5" />
+      <point x="8088.961448598131" y="3017.5" />
+      <point x="-0.0" y="55.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.add.OrgAddFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ" relationship="TO_ONE">
+      <point x="15.0" y="-118.0" />
+      <point x="3000.75" y="2247.0" />
+      <point x="2682.042" y="2247.0" />
+      <point x="-5.607476623481489E-5" y="180.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.FilterSortHeaderCell" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.button.IconButton" relationship="TO_ONE">
+      <point x="15.00039449541282" y="-130.5" />
+      <point x="15.00039449541282" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" relationship="TO_ONE">
+      <point x="-153.0004485981308" y="-0.0" />
+      <point x="4828.0" y="2431.5" />
+      <point x="4828.0" y="1799.0" />
+      <point x="-167.49950467289727" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel.CheckedEvent" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel" relationship="INNER_CLASS">
+      <point x="-68.25" y="-55.5" />
+      <point x="3542.125" y="3646.0" />
+      <point x="2930.6766055045873" y="3646.0" />
+      <point x="2930.6766055045873" y="3636.0" />
+      <point x="2851.1766055045873" y="3636.0" />
+      <point x="93.25" y="117.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.SelectFilterControl" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.panel.PopupPanel" relationship="GENERALIZATION">
+      <point x="-94.0" y="-55.5" />
+      <point x="1298.4300458715597" y="3636.0" />
+      <point x="1050.1685779816517" y="3636.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.NameField" relationship="TO_ONE">
+      <point x="-5.607476623481489E-5" y="-180.5" />
+      <point x="2682.042" y="1403.0" />
+      <point x="6751.961" y="1403.0" />
+      <point x="-4.485981307880138E-4" y="55.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.RowSorterEventAdapter" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter" relationship="TO_ONE">
+      <point x="-222.49957798165156" y="-0.0" />
+      <point x="1122.0" y="5445.5" />
+      <point x="1122.0" y="4828.5" />
+      <point x="162.5" y="228.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.XTable" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter" relationship="TO_ONE">
+      <point x="155.50042201834844" y="-0.0" />
+      <point x="1122.0" y="5445.5" />
+      <point x="1122.0" y="4828.5" />
+      <point x="162.5" y="228.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="-92.25" y="-180.5" />
+      <point x="2589.792056074766" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.utils.APICommandManager" relationship="TO_ONE">
+      <point x="133.5" y="-0.0" />
+      <point x="3397.25" y="2919.5" />
+      <point x="-0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.userInfo.UsersInfoZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="0.0" y="-130.5" />
+      <point x="437.04205607476615" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableControl" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.paging.PagingTableControl.PagingConfigChangedListener" relationship="TO_ONE">
+      <point x="-0.0" y="-280.5" />
+      <point x="-0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerHeaderPanel" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="4.953271027261508E-4" y="-130.5" />
+      <point x="5346.254" y="1440.0" />
+      <point x="2961.0" y="1440.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="-0.0" y="-68.0" />
+      <point x="32.5" y="1440.0" />
+      <point x="2961.0" y="1440.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.login.LoginPage" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.UsernameField" relationship="TO_ONE">
+      <point x="218.5" y="160.5" />
+      <point x="7805.961448598131" y="2592.0" />
+      <point x="-0.0" y="55.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.OrganizationTypeCombobox" relationship="TO_ONE">
+      <point x="-15.000056074766235" y="-180.5" />
+      <point x="2667.042" y="994.0" />
+      <point x="4834.961448598131" y="994.0" />
+      <point x="-15.0" y="-42.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationHeaderPanel" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="-5.607476612112805E-5" y="-105.5" />
+      <point x="997.542" y="1440.0" />
+      <point x="2961.0" y="1440.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame" relationship="GENERALIZATION">
+      <point x="-68.0" y="-130.5" />
+      <point x="3856.211448598131" y="2194.0" />
+      <point x="3817.5424454828662" y="2194.0" />
+      <point x="0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.MapPage" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.MapSprite" relationship="DEPENDENCY">
+      <point x="0.0" y="-455.5" />
+      <point x="3678.356651376147" y="4959.0" />
+      <point x="3040.6766055045873" y="4959.0" />
+      <point x="54.75" y="42.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.DateField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractDateField" relationship="GENERALIZATION">
+      <point x="0.0" y="-67.5" />
+      <point x="5959.961448598131" y="550.0" />
+      <point x="6390.792056074766" y="550.0" />
+      <point x="0.0" y="130.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.main.MainFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.BottomPanelZ" relationship="TO_ONE">
+      <point x="-133.5" y="-0.0" />
+      <point x="646.0" y="2919.5" />
+      <point x="2.75" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerUpdateFrameFactory" target="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.update.WorkerUpdateFrameZ" relationship="TO_MANY">
+      <point x="-0.0" y="-80.5" />
+      <point x="-0.0" y="143.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.RowSorterEventAdapter" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.listeners.FilterSortParamsEventListener" relationship="REALIZATION">
+      <point x="111.25" y="-105.5" />
+      <point x="1542.0435779816517" y="4969.0" />
+      <point x="1617.5" y="4969.0" />
+      <point x="1617.5" y="3636.0" />
+      <point x="1542.0435779816517" y="3636.0" />
+      <point x="71.0" y="42.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.NameField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractTextWorkerField" relationship="GENERALIZATION">
+      <point x="0.0" y="-55.0" />
+      <point x="6751.961448598131" y="550.0" />
+      <point x="7480.542056074766" y="550.0" />
+      <point x="0.0" y="143.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger.LocaleRenderer" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger" relationship="INNER_CLASS">
+      <point x="0.0" y="-42.5" />
+      <point x="56.5" y="2204.0" />
+      <point x="-33.5" y="2204.0" />
+      <point x="-66.0" y="68.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractDateField" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="-137.50005607476578" y="-0.0" />
+      <point x="5479.875" y="280.0" />
+      <point x="5479.875" y="1383.0" />
+      <point x="2961.0" y="1383.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.OrganizationCombobox" relationship="TO_ONE">
+      <point x="167.5" y="-163.0" />
+      <point x="5740.461448598131" y="1636.0" />
+      <point x="-0.0" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources.LocaleChangedEventListener" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="INNER_CLASS">
+      <point x="0.0" y="-29.5" />
+      <point x="-114.5" y="6.0" />
+      <point x="2206.0424454828662" y="6.0" />
+      <point x="-111.5" y="205.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.NullableDatePanel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.LocalDateField" relationship="TO_ONE">
+      <point x="-74.0" y="-155.5" />
+      <point x="-0.0" y="67.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.WorkersTable" target="ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerModel" relationship="TO_ONE">
+      <point x="-7.339449541632348E-5" y="-80.5" />
+      <point x="966.938" y="5978.0" />
+      <point x="2976.552" y="5978.0" />
+      <point x="3.9449541282010614E-4" y="105.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractTextWorkerField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.utils.IStringValidator" relationship="TO_ONE">
+      <point x="210.99994392523422" y="-140.5" />
+      <point x="7750.0" y="139.5" />
+      <point x="7750.0" y="-29.5" />
+      <point x="7648.292" y="-29.5" />
+      <point x="-5.607476578006754E-5" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.impl.OrganizationTable" target="ru.bardinpetr.itmo.lab5.clientgui.models.impl.OrganizationModel" relationship="TO_ONE">
+      <point x="-7.339449530263664E-5" y="80.5" />
+      <point x="1244.938" y="6194.0" />
+      <point x="3159.5" y="6194.0" />
+      <point x="-108.05160550458731" y="55.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractWorkerComboBox" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="128.58600000000024" y="130.5" />
+      <point x="5435.961" y="1383.0" />
+      <point x="2961.0" y="1383.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxList.CheckedItem" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxList" relationship="INNER_CLASS">
+      <point x="0.0" y="-155.5" />
+      <point x="3615.375" y="3279.0" />
+      <point x="1943.3016055045873" y="3279.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractEnumCombobox" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractWorkerComboBox" relationship="GENERALIZATION">
+      <point x="0.0" y="-80.0" />
+      <point x="5105.375" y="550.0" />
+      <point x="5307.375" y="550.0" />
+      <point x="0.0" y="130.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.FilterSortTableHeader" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.models.FilterSortColumnInfoModel" relationship="TO_MANY">
+      <point x="-0.0" y="-205.5" />
+      <point x="1174.5" y="4323.0" />
+      <point x="2098.927" y="4323.0" />
+      <point x="3.9449541282010614E-4" y="243.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.remove.greater.WorkerRemoveGFrame" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" relationship="TO_ONE">
+      <point x="-4.485981307880138E-4" y="-93.0" />
+      <point x="4216.711" y="2248.0" />
+      <point x="4058.0" y="2248.0" />
+      <point x="4058.0" y="2015.0" />
+      <point x="4828.0" y="2015.0" />
+      <point x="4828.0" y="1799.0" />
+      <point x="-167.49950467289727" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractTextWorkerField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.IDataStorage" relationship="REALIZATION">
+      <point x="105.5" y="-143.0" />
+      <point x="7586.042056074766" y="6.0" />
+      <point x="6435.417056074766" y="6.0" />
+      <point x="0.0" y="67.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.FilterSortTableHeader" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.listeners.ColumnInfoEventListener" relationship="REALIZATION">
+      <point x="-116.0" y="-205.5" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="4.953271027261508E-4" y="-343.0" />
+      <point x="5042.754" y="1440.0" />
+      <point x="2961.0" y="1440.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.animation.impl.PointAnimator" target="ru.bardinpetr.itmo.lab5.clientgui.ui.animation.PropertyAnimator" relationship="GENERALIZATION">
+      <point x="0.0" y="-168.0" />
+      <point x="1794.7935779816517" y="4969.0" />
+      <point x="2080.0550458715597" y="4969.0" />
+      <point x="2080.0550458715597" y="4959.0" />
+      <point x="2124.606651376147" y="4959.0" />
+      <point x="91.0" y="205.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.worker.add.WorkerAddFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" relationship="TO_ONE">
+      <point x="-4.4859813124276116E-4" y="-130.5" />
+      <point x="3924.211" y="2248.0" />
+      <point x="4058.0" y="2248.0" />
+      <point x="4058.0" y="2015.0" />
+      <point x="4828.0" y="2015.0" />
+      <point x="4828.0" y="1799.0" />
+      <point x="-167.49950467289727" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.show.WorkerShowPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="0.0" y="-118.0" />
+      <point x="1561.0420560747662" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.organization.info.OrganizationHeaderPanel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="74.5" y="-105.5" />
+      <point x="1072.0420560747662" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.PasswordField" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractTextWorkerField" relationship="GENERALIZATION">
+      <point x="0.0" y="-55.0" />
+      <point x="8088.961448598131" y="550.0" />
+      <point x="7480.542056074766" y="550.0" />
+      <point x="0.0" y="143.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedFrame" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="-4.454828663256194E-4" y="-105.5" />
+      <point x="3817.542" y="1440.0" />
+      <point x="2961.0" y="1440.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.pages.organization.update.OrgUpdateFrameZ" target="ru.bardinpetr.itmo.lab5.clientgui.i18n.UIResources" relationship="TO_ONE">
+      <point x="-4.4859813124276116E-4" y="-130.5" />
+      <point x="2111.961" y="2168.0" />
+      <point x="2961.0" y="2168.0" />
+      <point x="2961.0" y="-250.5" />
+      <point x="222.99955451713367" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.editable.EditableHeaderRenderer" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.editable.EditableHeaderRenderer.MouseEventReposter" relationship="TO_ONE">
+      <point x="-0.0" y="80.5" />
+      <point x="-0.0" y="-143.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.XTable" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.FilterSortTableHeader" relationship="TO_ONE">
+      <point x="69.70642201834835" y="-280.5" />
+      <point x="-224.5" y="205.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.models.impl.WorkerModel" target="ru.bardinpetr.itmo.lab5.clientgui.models.sync.ExternalSyncedListModel" relationship="GENERALIZATION">
+      <point x="0.0" y="-105.5" />
+      <point x="2976.5516055045873" y="4969.0" />
+      <point x="3122.0516055045873" y="4969.0" />
+      <point x="3122.0516055045873" y="4949.0" />
+      <point x="3242.875" y="4949.0" />
+      <point x="-98.0" y="255.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.models.FilterSortColumnInfoModel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel" relationship="TO_ONE">
+      <point x="3.9449541282010614E-4" y="-243.0" />
+      <point x="2098.927" y="3675.0" />
+      <point x="2074.5" y="3675.0" />
+      <point x="2074.5" y="3459.5" />
+      <point x="-186.49960550458718" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.ui.SelectFilterControl" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxListModel" relationship="TO_ONE">
+      <point x="-4.587155967783474E-5" y="-55.5" />
+      <point x="1392.43" y="3675.0" />
+      <point x="2074.5" y="3675.0" />
+      <point x="2074.5" y="3459.5" />
+      <point x="-186.49960550458718" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.OrganizationTypeCombobox" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.AbstractEnumCombobox" relationship="GENERALIZATION">
+      <point x="0.0" y="-42.5" />
+      <point x="4849.961448598131" y="1104.0" />
+      <point x="5105.375" y="1104.0" />
+      <point x="0.0" y="80.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.table.sort.sorter.FilterRowSorter.ColumnSort" relationship="TO_MANY">
+      <point x="-0.0" y="-318.0" />
+      <point x="-0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.models.impl.OrganizationModel" target="ru.bardinpetr.itmo.lab5.clientgui.models.sync.ExternalSyncedListModel" relationship="GENERALIZATION">
+      <point x="0.0" y="-55.0" />
+      <point x="3267.5516055045873" y="4969.0" />
+      <point x="3122.0516055045873" y="4969.0" />
+      <point x="3122.0516055045873" y="4949.0" />
+      <point x="3242.875" y="4949.0" />
+      <point x="-98.0" y="255.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.XCoordinateWorkerField" relationship="TO_ONE">
+      <point x="167.5" y="178.0" />
+      <point x="6948.961448598131" y="1977.0" />
+      <point x="-0.0" y="55.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.WorkersMapPage" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.MapPage" relationship="GENERALIZATION">
+      <point x="0.0" y="-105.5" />
+      <point x="0.0" y="455.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.BottomPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.frames.ResourcedPanel" relationship="GENERALIZATION">
+      <point x="62.75" y="-105.5" />
+      <point x="706.0" y="2204.0" />
+      <point x="838.0420560747662" y="2204.0" />
+      <point x="838.0420560747662" y="1424.0" />
+      <point x="1696.7920560747662" y="1424.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.OrganizationCombobox" target="ru.bardinpetr.itmo.lab5.clientgui.utils.presenters.OrganizationPresenter" relationship="TO_MANY">
+      <point x="-0.0" y="-105.5" />
+      <point x="5740.461448598131" y="921.5" />
+      <point x="-201.5" y="-0.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.BottomPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.lang.LanguageChanger" relationship="TO_ONE">
+      <point x="-125.5" y="-60.0" />
+      <point x="71.5" y="2371.5" />
+      <point x="39.0" y="68.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.SalaryWorkerField" relationship="TO_ONE">
+      <point x="167.5" y="163.0" />
+      <point x="7215.711448598131" y="1962.0" />
+      <point x="-0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.map.MapPage" target="ru.bardinpetr.itmo.lab5.clientgui.models.sync.ExternalSyncedListModel" relationship="DEPENDENCY">
+      <point x="0.0" y="-455.5" />
+      <point x="3678.356651376147" y="4959.0" />
+      <point x="3438.875" y="4959.0" />
+      <point x="98.0" y="255.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.worker.info.WorkerInfoPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.NameField" relationship="TO_ONE">
+      <point x="-14.999504672897274" y="-343.0" />
+      <point x="5027.754" y="1403.0" />
+      <point x="6751.961" y="1403.0" />
+      <point x="-4.485981307880138E-4" y="55.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.NullableDatePanel" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.fields.interfaces.IDataStorage" relationship="REALIZATION">
+      <point x="69.5" y="-155.5" />
+      <point x="6601.211448598131" y="6.0" />
+      <point x="6435.417056074766" y="6.0" />
+      <point x="0.0" y="67.0" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxList.CheckboxListCellRenderer" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.checkedlist.CheckBoxList" relationship="INNER_CLASS">
+      <point x="0.0" y="-42.5" />
+      <point x="-12.0" y="3279.0" />
+      <point x="1943.3016055045873" y="3279.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.BottomPanelZ" target="ru.bardinpetr.itmo.lab5.clientgui.ui.components.bottom.CollectionInfoPanel" relationship="TO_ONE">
+      <point x="-0.0" y="-105.5" />
+      <point x="-58.79205607476615" y="168.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.2804407370517929" showDependencies="true" x="785.1516093229739" y="1140.3999999999996" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
